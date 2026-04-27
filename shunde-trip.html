@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>顺德2天美食行程</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+    background: #faf9f7;
+    color: #2d3436;
+    min-height: 100vh;
+  }
+  
+  /* Hero Header */
+  .hero {
+    background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 30%, #fde68a 100%);
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #f0e6d3;
+  }
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #c2410c, #b45309, #92400e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 4px;
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    color: #78716c;
+    margin-top: 12px;
+    letter-spacing: 2px;
+  }
+  .hero .tags {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .hero .tag {
+    background: rgba(255,255,255,0.7);
+    border: 1px solid #e7e5e4;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #57534e;
+    backdrop-filter: blur(4px);
+  }
+  
+  /* Overview Cards */
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 30px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid #e7e5e4;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .stat-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .stat-card .value { font-size: 20px; font-weight: 700; color: #c2410c; }
+  .stat-card .label { font-size: 13px; color: #a8a29e; margin-top: 4px; }
+  
+  /* Day Section */
+  .day-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0 20px;
+  }
+  .day-badge {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .day1 .day-badge { background: linear-gradient(135deg, #ea580c, #f97316); }
+  .day2 .day-badge { background: linear-gradient(135deg, #0284c7, #38bdf8); }
+  .day-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1c1917;
+  }
+  .day-header .day-desc {
+    font-size: 14px;
+    color: #a8a29e;
+  }
+  
+  /* Map Container */
+  .map-container {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e7e5e4;
+    margin: 20px 0;
+    height: 450px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+    margin: 20px 0 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #d6d3d1, #e7e5e4);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -33px;
+    top: 6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    z-index: 1;
+  }
+  .day1 .timeline-dot { background: #ea580c; box-shadow: 0 0 0 4px rgba(234,88,12,0.15); }
+  .day2 .timeline-dot { background: #0284c7; box-shadow: 0 0 0 4px rgba(2,132,199,0.15); }
+  
+  .stop-card {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #f5f5f4;
+    border-radius: 14px;
+    padding: 16px 20px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .stop-card:hover {
+    border-color: #d6d3d1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateX(3px);
+  }
+  .stop-card .name {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1c1917;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stop-card .name .type-icon { font-size: 18px; }
+  .stop-card .meta {
+    display: flex;
+    gap: 12px;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #78716c;
+  }
+  .stop-card .meta .rating { color: #d97706; font-weight: 500; }
+  .stop-card .meta .cost { color: #059669; font-weight: 500; }
+  .stop-card .address {
+    font-size: 12px;
+    color: #a8a29e;
+    margin-top: 3px;
+  }
+  .stop-card .transport-info {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+  .transport-walk {
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+  }
+  .transport-taxi {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+  }
+  .transport-start {
+    background: #fffbeb;
+    color: #d97706;
+    border: 1px solid #fde68a;
+  }
+  
+  .time-label {
+    min-width: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #a8a29e;
+    padding-top: 4px;
+    text-align: right;
+  }
+  
+  /* Budget table */
+  .budget-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 40px;
+  }
+  .budget-section h3 { font-size: 20px; color: #1c1917; margin-bottom: 16px; }
+  .budget-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border: 1px solid #e7e5e4;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .budget-table th {
+    background: #fafaf9;
+    padding: 14px 20px;
+    text-align: left;
+    font-weight: 500;
+    color: #78716c;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #e7e5e4;
+  }
+  .budget-table td {
+    padding: 14px 20px;
+    border-top: 1px solid #f5f5f4;
+    font-size: 15px;
+    color: #44403c;
+  }
+  .budget-table tr:last-child td {
+    font-weight: 700;
+    color: #c2410c;
+    font-size: 17px;
+    background: #fffbeb;
+  }
+  
+  /* Notes */
+  .notes {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 0 40px;
+  }
+  .notes h3 {
+    font-size: 20px;
+    color: #1c1917;
+    margin-bottom: 16px;
+  }
+  .notes ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .notes li {
+    background: #fff;
+    border: 1px solid #f5f5f4;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #57534e;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .notes li .warn-icon { flex-shrink: 0; font-size: 16px; }
+  
+  /* Backup restaurants */
+  .backup-section {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 40px;
+  }
+  .backup-section h3 {
+    font-size: 20px;
+    color: #1c1917;
+    margin-bottom: 16px;
+  }
+  .backup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .backup-card {
+    background: #fff;
+    border: 1px solid #f5f5f4;
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .backup-card .name { font-size: 14px; font-weight: 500; color: #44403c; }
+  .backup-card .info { font-size: 12px; color: #a8a29e; margin-top: 4px; }
+  
+  /* Print */
+  @media print {
+    body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .map-container { height: 400px !important; break-inside: avoid; }
+    .hero { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>顺德美食行程</h1>
+  <div class="subtitle">2天1晚 · 大良核心区深度美食探索</div>
+  <div class="tags">
+    <span class="tag">🏛 岭南园林</span>
+    <span class="tag">🍜 粥水火锅</span>
+    <span class="tag">🥛 双皮奶</span>
+    <span class="tag">🔥 煲仔饭</span>
+    <span class="tag">🐟 顺德鱼生</span>
+  </div>
+</div>
+
+<div class="overview">
+  <div class="stat-card">
+    <div class="icon">📅</div>
+    <div class="value">2天1晚</div>
+    <div class="label">行程天数</div>
+  </div>
+  <div class="stat-card">
+    <div class="icon">🍜</div>
+    <div class="value">9站</div>
+    <div class="label">美食打卡</div>
+  </div>
+  <div class="stat-card">
+    <div class="icon">🏨</div>
+    <div class="value">万豪 ★4.4</div>
+    <div class="label">五星级 · 距清晖园2.2km</div>
+  </div>
+  <div class="stat-card">
+    <div class="icon">💰</div>
+    <div class="value">¥1200-1800</div>
+    <div class="label">人均预算</div>
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<div class="day-section day1">
+  <div class="day-header">
+    <div class="day-badge">D1</div>
+    <div>
+      <h2>大良核心美食日</h2>
+      <div class="day-desc">清晖园周边步行圈 · 8个打卡点 · 步行+打车混合</div>
+    </div>
+  </div>
+  
+  <div class="map-container" id="map1"></div>
+  
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot">1</div>
+      <div class="time-label">10:00</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🏛</span>清晖园</div>
+        <div class="meta"><span class="rating">★ 4.8</span><span class="cost">¥15 门票</span></div>
+        <div class="address">📍 清晖路23号</div>
+        <div class="transport-info transport-start">📍 起点 · 岭南四大名园</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">2</div>
+      <div class="time-label">11:30</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🍚</span>探记煲仔饭</div>
+        <div class="meta"><span class="rating">★ 4.6</span><span class="cost">¥62/人</span></div>
+        <div class="address">📍 华盖里四巷26号</div>
+        <div class="transport-info transport-walk">🚶 步行 364m · 约3分钟</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">3</div>
+      <div class="time-label">13:00</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🍮</span>仁信甜品</div>
+        <div class="meta"><span class="rating">★ 4.5</span><span class="cost">¥28/人</span></div>
+        <div class="address">📍 东乐路3号德富大厦</div>
+        <div class="transport-info transport-taxi">🚕 打车 1.2km · 约5分钟</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">4</div>
+      <div class="time-label">13:30</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">☕</span>CBR COFFEE</div>
+        <div class="meta"><span class="rating">★ 4.3</span><span class="cost">¥28/人</span></div>
+        <div class="address">📍 信怡楼115铺</div>
+        <div class="transport-info transport-walk">🚶 步行 595m · 约5分钟</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">5</div>
+      <div class="time-label">14:30</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🍜</span>华叔茶記</div>
+        <div class="meta"><span class="rating">★ 4.7</span><span class="cost">¥39/人</span></div>
+        <div class="address">📍 东乐路15号</div>
+        <div class="transport-info transport-walk">🚶 步行 926m · 约8分钟</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">6</div>
+      <div class="time-label">16:00</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🍖</span>大润龍眼炸猪肉</div>
+        <div class="meta"><span class="rating">★ 4.5</span><span class="cost">¥21/人</span></div>
+        <div class="address">📍 丁字直街7号</div>
+        <div class="transport-info transport-walk">🚶 步行 626m · 约5分钟</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">7</div>
+      <div class="time-label">18:00</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🐟</span>开眉粥 · 粥水火锅顺德鱼生</div>
+        <div class="meta"><span class="rating">★ 4.7</span><span class="cost">¥58/人</span></div>
+        <div class="address">📍 广源8街4号之二</div>
+        <div class="transport-info transport-taxi">🚕 打车 3.2km · 约10分钟</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">8</div>
+      <div class="time-label">20:00</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🍵</span>豆福甜汤</div>
+        <div class="meta"><span class="rating">★ 4.4</span><span class="cost">¥19/人</span></div>
+        <div class="address">📍 苏龙街八巷</div>
+        <div class="transport-info transport-taxi">🚕 打车 4.4km · 约11分钟</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">H</div>
+      <div class="time-label">20:30</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🏨</span>顺德美的万豪酒店</div>
+        <div class="meta"><span class="rating">★ 4.4</span><span>五星级</span></div>
+        <div class="address">📍 南国东路388号美的广场</div>
+        <div class="transport-info transport-taxi">🚕 打车 约15分钟 · 回酒店休息</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 2 -->
+<div class="day-section day2">
+  <div class="day-header">
+    <div class="day-badge">D2</div>
+    <div>
+      <h2>深度探索日</h2>
+      <div class="day-desc">早茶 → 顺峰山 → 私房菜 → 伦教糕 · 全程打车</div>
+    </div>
+  </div>
+  
+  <div class="map-container" id="map2"></div>
+  
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot">H</div>
+      <div class="time-label">08:00</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🏨</span>顺德美的万豪酒店</div>
+        <div class="address">📍 南国东路388号美的广场</div>
+        <div class="transport-info transport-start">📍 出发</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">A</div>
+      <div class="time-label">08:30</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🫖</span>大门公小公馆</div>
+        <div class="meta"><span class="rating">★ 4.7</span><span class="cost">¥60/人</span></div>
+        <div class="address">📍 田心村巴路二街6号</div>
+        <div class="transport-info transport-taxi">🚕 打车 约12分钟</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">B</div>
+      <div class="time-label">10:30</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🏛</span>顺峰山公园</div>
+        <div class="meta"><span class="rating">★ 4.8</span><span class="cost">免费</span></div>
+        <div class="address">📍 南国东路40号</div>
+        <div class="transport-info transport-taxi">🚕 打车 5.8km · 约14分钟 · 亚洲最大牌坊</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">C</div>
+      <div class="time-label">12:30</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🍽</span>醉沁苑私房菜</div>
+        <div class="meta"><span class="rating">★ 4.5</span><span class="cost">¥79/人</span></div>
+        <div class="address">📍 南江中路八巷4号</div>
+        <div class="transport-info transport-taxi">🚕 打车 4.0km · 约12分钟 · 需提前预约</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">D</div>
+      <div class="time-label">14:00</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">🍰</span>欢姐伦教糕</div>
+        <div class="meta"><span class="rating">★ 4.5</span><span class="cost">¥36/人</span></div>
+        <div class="address">📍 伦教镇北海大道北50号</div>
+        <div class="transport-info transport-taxi">🚕 打车 14.4km · 约20分钟 · 伦教糕发源地</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">🏠</div>
+      <div class="time-label">15:30</div>
+      <div class="stop-card">
+        <div class="name"><span class="type-icon">✈️</span>返程</div>
+        <div class="transport-info transport-start">👋 结束行程</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Backup -->
+<div class="backup-section">
+  <h3>📋 备选餐厅</h3>
+  <div class="backup-grid">
+    <div class="backup-card"><div class="name">🥣 石洪品粥 ★4.6</div><div class="info">¥111/人 · 大良 · 高端粥品</div></div>
+    <div class="backup-card"><div class="name">🥣 山泉粥 ★4.5</div><div class="info">¥78/人 · 大良桂畔里</div></div>
+    <div class="backup-card"><div class="name">🍲 杏坛公平靓正 ★4.7</div><div class="info">¥87/人 · 大良延年食街 · 粥底火锅</div></div>
+    <div class="backup-card"><div class="name">🍜 沙煲兄弟 ★4.6</div><div class="info">¥38/人 · 大良 · 煲仔菜</div></div>
+    <div class="backup-card"><div class="name">🍽 文巧食店 ★4.4</div><div class="info">¥73/人 · 大良 · 私房菜</div></div>
+    <div class="backup-card"><div class="name">🍽 阳辉里 ★4.7</div><div class="info">¥78/人 · 三洲 · 鸡包饭出名</div></div>
+    <div class="backup-card"><div class="name">🐷 均安蒸猪 ★4.0</div><div class="info">¥38/人 · 均安镇 · 特色蒸猪</div></div>
+    <div class="backup-card"><div class="name">🥣 毋米粥 ★4.7</div><div class="info">¥90/人 · 禅城店</div></div>
+  </div>
+</div>
+
+<!-- Budget -->
+<div class="budget-section">
+  <h3>💰 费用估算</h3>
+  <table class="budget-table">
+    <thead><tr><th>项目</th><th>费用/人</th></tr></thead>
+    <tbody>
+      <tr><td>🍜 餐饮（6-8顿）</td><td>¥350 - 500</td></tr>
+      <tr><td>🏨 住宿（万豪1晚）</td><td>¥600 - 1000</td></tr>
+      <tr><td>🎫 门票（清晖园）</td><td>¥15</td></tr>
+      <tr><td>🚕 打车（约8-10次）</td><td>¥120 - 180</td></tr>
+      <tr><td><strong>合计</strong></td><td><strong>¥1085 - 1695</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Notes -->
+<div class="notes">
+  <h3>⚠️ 注意事项</h3>
+  <ul>
+    <li><span class="warn-icon">🕐</span>很多小店18:00前打烊，甜品店尤其注意</li>
+    <li><span class="warn-icon">🫖</span>顺德早茶一般7:00-10:30，过时段品种减少</li>
+    <li><span class="warn-icon">📞</span>醉沁苑等私房菜需提前1天预约</li>
+    <li><span class="warn-icon">👥</span>五一/国庆热门餐厅排队1-2小时，建议错峰</li>
+    <li><span class="warn-icon">🐟</span>顺德鱼生选正规店，注意食品安全</li>
+  </ul>
+</div>
+
+<!-- Hotels comparison -->
+<div class="backup-section">
+  <h3>🏨 五星级酒店备选</h3>
+  <div class="backup-grid">
+    <div class="backup-card" style="border-left:3px solid #c2410c">
+      <div class="name">🏨 顺德美的万豪酒店 ★4.4 <span style="font-size:11px;color:#c2410c;font-weight:700">推荐</span></div>
+      <div class="info">南国东路388号 · 距清晖园2.2km · Marriott国际品牌</div>
+    </div>
+    <div class="backup-card">
+      <div class="name">🏨 顺德喜来登酒店 ★4.4</div>
+      <div class="info">德胜中路11号 · 距清晖园6.7km · Sheraton</div>
+    </div>
+    <div class="backup-card">
+      <div class="name">🏨 顺德希尔顿酒店 ★4.6</div>
+      <div class="info">桂洲大道67号 · 容桂区 · Hilton · 评分最高</div>
+    </div>
+    <div class="backup-card">
+      <div class="name">🏨 顺德泷居酒店 ★4.7</div>
+      <div class="info">德胜西路11号 · 距清晖园6km · 精品酒店</div>
+    </div>
+  </div>
+</div>
+
+<div style="height:40px"></div>
+
+<script>
+// Map data - hotel changed to 万豪
+const marriott = {name:"万豪酒店", lat:22.824, lng:113.272, icon:"🏨", idx:"H"};
+
+const day1Stops = [
+  {name:"清晖园", lat:22.835613, lng:113.255086, icon:"🏛", idx:"1"},
+  {name:"探记煲仔饭", lat:22.834153, lng:113.255437, icon:"🍚", idx:"2", transport:"walk"},
+  {name:"仁信甜品", lat:22.835107, lng:113.258257, icon:"🍮", idx:"3", transport:"taxi"},
+  {name:"CBR COFFEE", lat:22.836269, lng:113.261098, icon:"☕", idx:"4", transport:"walk"},
+  {name:"华叔茶記", lat:22.835633, lng:113.257565, icon:"🍜", idx:"5", transport:"walk"},
+  {name:"大润龍眼炸猪肉", lat:22.833854, lng:113.256380, icon:"🍖", idx:"6", transport:"walk"},
+  {name:"开眉粥", lat:22.818427, lng:113.268879, icon:"🐟", idx:"7", transport:"taxi"},
+  {name:"豆福甜汤", lat:22.810292, lng:113.293286, icon:"🍵", idx:"8", transport:"taxi"},
+  {...marriott, transport:"taxi"},
+];
+
+const day2Stops = [
+  {...marriott},
+  {name:"大门公小公馆", lat:22.811935, lng:113.257255, icon:"🫖", idx:"A", transport:"taxi"},
+  {name:"顺峰山公园", lat:22.819589, lng:113.286112, icon:"🏛", idx:"B", transport:"taxi"},
+  {name:"醉沁苑私房菜", lat:22.802050, lng:113.284617, icon:"🍽", idx:"C", transport:"taxi"},
+  {name:"欢姐伦教糕", lat:22.881584, lng:113.205957, icon:"🍰", idx:"D", transport:"taxi"},
+];
+
+function createMap(containerId, stops, accentColor) {
+  const map = L.map(containerId, {zoomControl: true, attributionControl: false});
+  
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19
+  }).addTo(map);
+  
+  // Route segments
+  for (let i = 1; i < stops.length; i++) {
+    const from = stops[i-1], to = stops[i];
+    const isWalk = to.transport === 'walk';
+    L.polyline([[from.lat, from.lng], [to.lat, to.lng]], {
+      color: isWalk ? '#059669' : '#dc2626',
+      weight: isWalk ? 3 : 4,
+      opacity: 0.8,
+      dashArray: isWalk ? '8,8' : null,
+      lineCap: 'round'
+    }).addTo(map);
+    
+    const midLat = (from.lat + to.lat) / 2, midLng = (from.lng + to.lng) / 2;
+    L.marker([midLat, midLng], {
+      icon: L.divIcon({
+        className: '',
+        html: `<div style="font-size:14px;background:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,0.2)">${isWalk ? '🚶' : '🚕'}</div>`,
+        iconSize: [22, 22], iconAnchor: [11, 11]
+      })
+    }).addTo(map);
+  }
+  
+  // Markers
+  stops.forEach((s, i) => {
+    const isHotel = s.idx === 'H';
+    const bg = isHotel ? '#b45309' : accentColor;
+    L.marker([s.lat, s.lng], {
+      icon: L.divIcon({
+        className: '',
+        html: `<div style="width:30px;height:30px;border-radius:50%;background:${bg};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.25);border:2px solid #fff">${s.idx}</div>`,
+        iconSize: [30, 30], iconAnchor: [15, 15]
+      })
+    }).addTo(map).bindTooltip(`<b>${s.icon} ${s.name}</b>`, {
+      permanent: true,
+      direction: i % 2 === 0 ? 'right' : 'left',
+      offset: i % 2 === 0 ? [17, 0] : [-17, 0],
+      className: 'map-tip'
+    });
+  });
+  
+  map.fitBounds(L.latLngBounds(stops.map(s => [s.lat, s.lng])).pad(0.15));
+  
+  // Legend
+  const legend = L.control({position: 'bottomleft'});
+  legend.onAdd = function() {
+    const div = L.DomUtil.create('div');
+    div.innerHTML = `<div style="background:#fff;border:1px solid #e7e5e4;border-radius:10px;padding:8px 14px;font-size:12px;color:#57534e;display:flex;gap:14px;font-family:'Noto Sans SC',sans-serif;box-shadow:0 1px 4px rgba(0,0,0,0.1)">
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:18px;height:0;border-top:3px dashed #059669;display:inline-block"></span>🚶 步行</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:18px;height:3px;background:#dc2626;border-radius:2px;display:inline-block"></span>🚕 打车</span>
+    </div>`;
+    return div;
+  };
+  legend.addTo(map);
+}
+
+// Tooltip style
+const s = document.createElement('style');
+s.textContent = `.map-tip{background:#fff!important;border:1px solid #d6d3d1!important;border-radius:8px!important;color:#1c1917!important;font-family:'Noto Sans SC',sans-serif!important;font-size:12px!important;padding:4px 10px!important;box-shadow:0 2px 8px rgba(0,0,0,0.1)!important}.map-tip::before{border-right-color:#d6d3d1!important}.leaflet-tooltip-left.map-tip::before{border-left-color:#d6d3d1!important}`;
+document.head.appendChild(s);
+
+createMap('map1', day1Stops, '#ea580c');
+createMap('map2', day2Stops, '#0284c7');
+</script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>顺德美食地图</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC','PingFang SC',sans-serif; background:#faf9f7; }
+  
+  .header {
+    background: linear-gradient(135deg, #fff7ed, #fef3c7);
+    padding: 24px 30px;
+    border-bottom: 1px solid #f0e6d3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #c2410c, #b45309);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header .sub { font-size: 13px; color: #78716c; }
+  
+  /* Legend panel */
+  .legend-panel {
+    background: #fff;
+    border-bottom: 1px solid #e7e5e4;
+    padding: 14px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #57534e;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .legend-item:hover { background: #fafaf9; }
+  .legend-item.inactive { opacity: 0.35; border-color: #e7e5e4; }
+  .legend-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .legend-count {
+    background: #f5f5f4;
+    color: #78716c;
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  
+  #map { height: calc(100vh - 120px); width: 100%; }
+  
+  /* Popup style */
+  .poi-popup { font-family:'Noto Sans SC',sans-serif; min-width: 200px; }
+  .poi-popup .p-name { font-size: 15px; font-weight: 600; color: #1c1917; margin-bottom: 4px; }
+  .poi-popup .p-cat { font-size: 11px; padding: 2px 8px; border-radius: 6px; display: inline-block; margin-bottom: 6px; }
+  .poi-popup .p-meta { font-size: 13px; color: #57534e; line-height: 1.6; }
+  .poi-popup .p-meta .rating { color: #d97706; font-weight: 500; }
+  .poi-popup .p-meta .cost { color: #059669; font-weight: 500; }
+  .poi-popup .p-addr { font-size: 12px; color: #a8a29e; margin-top: 4px; }
+  
+  .leaflet-popup-content-wrapper {
+    border-radius: 12px !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12) !important;
+  }
+  .leaflet-popup-tip { box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>📍 顺德美食全景地图</h1>
+    <div class="sub">所有餐厅 · 景点 · 酒店 一览 — 点击图标查看详情，点击图例筛选</div>
+  </div>
+</div>
+
+<div class="legend-panel" id="legendPanel"></div>
+
+<div id="map"></div>
+
+<script>
+const categories = {
+  attraction: { label: '🏛 景点', color: '#7c3aed', emoji: '🏛', order: 0 },
+  hotel_5star: { label: '🏨 五星酒店', color: '#b45309', emoji: '🏨', order: 1 },
+  hotel_budget: { label: '🏠 经济酒店', color: '#92400e', emoji: '🏠', order: 2 },
+  dessert: { label: '🍮 甜品咖啡', color: '#ec4899', emoji: '🍮', order: 3 },
+  claypot: { label: '🍚 煲仔饭', color: '#ea580c', emoji: '🍚', order: 4 },
+  porridge: { label: '🥣 粥/粥水火锅', color: '#0284c7', emoji: '🥣', order: 5 },
+  hotpot: { label: '🍲 火锅', color: '#dc2626', emoji: '🍲', order: 6 },
+  private: { label: '🍽 私房菜/饭馆', color: '#059669', emoji: '🍽', order: 7 },
+  other: { label: '🍜 特色小吃', color: '#d97706', emoji: '🍜', order: 8 },
+};
+
+const pois = [
+  // Attractions
+  {name:"清晖园", lat:22.835613, lng:113.255086, cat:"attraction", rating:"4.8", cost:"¥15门票", addr:"清晖路23号", note:"岭南四大名园"},
+  {name:"顺峰山公园", lat:22.819589, lng:113.286112, cat:"attraction", rating:"4.8", cost:"免费", addr:"南国东路40号", note:"亚洲最大牌坊"},
+  {name:"逢简水乡", lat:22.813153, lng:113.154462, cat:"attraction", rating:"4.5", cost:"免费", addr:"逢简村", note:"岭南水乡"},
+  {name:"碧江金楼", lat:22.942558, lng:113.262272, cat:"attraction", rating:"4.6", cost:"", addr:"泰宁西路6号", note:"清代古建筑"},
+  {name:"欢乐海岸PLUS", lat:22.816365, lng:113.303499, cat:"attraction", rating:"4.8", cost:"", addr:"欢乐大道1号", note:"拍照打卡"},
+
+  // 5-star hotels
+  {name:"顺德美的万豪酒店", lat:22.824, lng:113.272, cat:"hotel_5star", rating:"4.4", cost:"", addr:"南国东路388号", note:"Marriott · 距清晖园2.2km"},
+  {name:"顺德喜来登酒店", lat:22.818, lng:113.268, cat:"hotel_5star", rating:"4.4", cost:"", addr:"德胜中路11号", note:"Sheraton"},
+  {name:"顺德希尔顿酒店", lat:22.781, lng:113.321, cat:"hotel_5star", rating:"4.6", cost:"", addr:"桂洲大道67号", note:"Hilton · 容桂区"},
+  {name:"顺德泷居酒店", lat:22.810, lng:113.253, cat:"hotel_5star", rating:"4.7", cost:"", addr:"德胜西路11号", note:"精品五星"},
+
+  // Budget hotels
+  {name:"桔子水晶酒店", lat:22.837107, lng:113.254943, cat:"hotel_budget", rating:"4.9", cost:"", addr:"清晖园旁166m", note:"性价比之选"},
+  {name:"汉庭酒店(清晖园)", lat:22.834424, lng:113.256405, cat:"hotel_budget", rating:"4.8", cost:"", addr:"清晖路148号", note:"距清晖园189m"},
+  {name:"麗枫酒店(清晖园)", lat:22.834092, lng:113.255851, cat:"hotel_budget", rating:"4.3", cost:"", addr:"清晖园店", note:""},
+
+  // Dessert & Coffee
+  {name:"仁信甜品", lat:22.835107, lng:113.258257, cat:"dessert", rating:"4.5", cost:"¥28/人", addr:"东乐路3号德富大厦", note:"双皮奶·姜撞奶"},
+  {name:"CBR COFFEE", lat:22.836269, lng:113.261098, cat:"dessert", rating:"4.3", cost:"¥28/人", addr:"信怡楼115铺", note:"精品咖啡"},
+  {name:"豆福甜汤", lat:22.810292, lng:113.293286, cat:"dessert", rating:"4.4", cost:"¥19/人", addr:"苏龙街八巷", note:"夜宵甜汤"},
+  {name:"金榜欢记牛乳", lat:22.837536, lng:113.247774, cat:"dessert", rating:"4.4", cost:"", addr:"金榜上街19号", note:"传统牛乳"},
+  {name:"欢姐伦教糕", lat:22.881584, lng:113.205957, cat:"dessert", rating:"4.5", cost:"¥36/人", addr:"伦教镇北海大道北50号", note:"伦教糕发源地"},
+
+  // Claypot rice
+  {name:"探记煲仔饭", lat:22.834153, lng:113.255437, cat:"claypot", rating:"4.6", cost:"¥62/人", addr:"华盖里四巷26号", note:"腊味煲仔饭"},
+  {name:"红星光发煲仔饭", lat:22.750447, lng:113.277428, cat:"claypot", rating:"4.5", cost:"¥71/人", addr:"容桂文海西路7号", note:"容桂区"},
+
+  // Porridge
+  {name:"开眉粥·粥水火锅", lat:22.818427, lng:113.268879, cat:"porridge", rating:"4.7", cost:"¥58/人", addr:"广源8街4号之二", note:"粥水火锅+顺德鱼生"},
+  {name:"石洪品粥", lat:22.819017, lng:113.265103, cat:"porridge", rating:"4.6", cost:"¥111/人", addr:"福祥街2号", note:"高端粥品"},
+  {name:"山泉粥", lat:22.850886, lng:113.261806, cat:"porridge", rating:"4.5", cost:"¥78/人", addr:"桂畔里F1层", note:""},
+  {name:"毋米粥(禅城)", lat:23.002731, lng:113.106139, cat:"porridge", rating:"4.7", cost:"¥90/人", addr:"禅城区", note:"非顺德·禅城店"},
+  {name:"荣记猪杂粥", lat:23.041993, lng:113.125262, cat:"porridge", rating:"4.5", cost:"¥56/人", addr:"禅城区鲤鱼沙路", note:"非顺德·禅城"},
+
+  // Hotpot
+  {name:"杏坛公平靓正", lat:22.810334, lng:113.263276, cat:"hotpot", rating:"4.7", cost:"¥87/人", addr:"延年路32号", note:"粥底火锅"},
+  {name:"潮汕俊记牛肉火锅", lat:23.047457, lng:113.167142, cat:"hotpot", rating:"4.7", cost:"¥76/人", addr:"南海桂城", note:"非顺德·南海"},
+
+  // Private kitchen / restaurants
+  {name:"文巧食店", lat:22.837700, lng:113.258963, cat:"private", rating:"4.4", cost:"¥73/人", addr:"聚源直街3巷6号", note:"私房菜"},
+  {name:"醉沁苑私房菜", lat:22.802050, lng:113.284617, cat:"private", rating:"4.5", cost:"¥79/人", addr:"南江中路八巷4号", note:"需提前预约"},
+  {name:"友口福饭馆", lat:23.039865, lng:113.205118, cat:"private", rating:"4.0", cost:"¥28/人", addr:"南海平北美食街9号", note:"非顺德"},
+  {name:"永锋饭店", lat:22.993166, lng:113.226984, cat:"private", rating:"4.5", cost:"¥63/人", addr:"南海三山", note:"非顺德"},
+  {name:"黄但记知味食府", lat:22.953228, lng:113.238366, cat:"private", rating:"4.5", cost:"¥78/人", addr:"陈村景明路18号", note:"陈村粉名店"},
+  {name:"顺峰山庄", lat:22.952152, lng:113.231038, cat:"private", rating:"4.5", cost:"¥93/人", addr:"陈村景成路1号", note:"大型酒楼"},
+
+  // Other specialties
+  {name:"大润龍眼炸猪肉", lat:22.833854, lng:113.256380, cat:"other", rating:"4.5", cost:"¥21/人", addr:"丁字直街7号", note:"炸猪肉小吃"},
+  {name:"华叔茶記", lat:22.835633, lng:113.257565, cat:"other", rating:"4.7", cost:"¥39/人", addr:"东乐路15号", note:"猪脚姜·粉面"},
+  {name:"沙煲兄弟", lat:22.837669, lng:113.260316, cat:"other", rating:"4.6", cost:"¥38/人", addr:"聚源直街59号", note:"煲仔菜"},
+  {name:"阳辉里", lat:22.882856, lng:113.266056, cat:"other", rating:"4.7", cost:"¥78/人", addr:"三洲乌洲路", note:"鸡包饭"},
+  {name:"大门公小公馆", lat:22.811935, lng:113.257255, cat:"other", rating:"4.7", cost:"¥60/人", addr:"田心村巴路二街6号", note:"地道早茶"},
+  {name:"民信老铺", lat:23.031653, lng:113.114509, cat:"other", rating:"4.5", cost:"¥24/人", addr:"禅城人民路", note:"非顺德·禅城"},
+  {name:"均安蒸猪", lat:22.813678, lng:113.156011, cat:"other", rating:"4.0", cost:"¥38/人", addr:"均安镇", note:"特色蒸猪"},
+];
+
+// ===== Map Init =====
+const map = L.map('map', { zoomControl: true, attributionControl: false });
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(map);
+
+// Layer groups per category
+const layers = {};
+const counts = {};
+Object.keys(categories).forEach(k => { layers[k] = L.layerGroup().addTo(map); counts[k] = 0; });
+
+// Add markers
+pois.forEach(p => {
+  if (!p.lat || !p.lng) return;
+  const cat = categories[p.cat];
+  if (!cat) return;
+  counts[p.cat]++;
+
+  const marker = L.marker([p.lat, p.lng], {
+    icon: L.divIcon({
+      className: '',
+      html: `<div style="
+        width:28px;height:28px;border-radius:50%;
+        background:${cat.color};
+        display:flex;align-items:center;justify-content:center;
+        font-size:14px;
+        box-shadow:0 2px 6px rgba(0,0,0,0.25);
+        border:2px solid #fff;
+        cursor:pointer;
+      ">${cat.emoji}</div>`,
+      iconSize: [28, 28],
+      iconAnchor: [14, 14]
+    })
+  });
+
+  const costHtml = p.cost ? `<span class="cost">${p.cost}</span> · ` : '';
+  const noteHtml = p.note ? `<div style="font-size:12px;color:#78716c;margin-top:2px;font-style:italic">${p.note}</div>` : '';
+  const catStyle = `background:${cat.color}15;color:${cat.color};border:1px solid ${cat.color}30`;
+
+  marker.bindPopup(`
+    <div class="poi-popup">
+      <div class="p-name">${cat.emoji} ${p.name}</div>
+      <span class="p-cat" style="${catStyle}">${cat.label}</span>
+      <div class="p-meta">
+        <span class="rating">★ ${p.rating}</span> · ${costHtml}${p.addr}
+      </div>
+      ${noteHtml}
+    </div>
+  `, { maxWidth: 280 });
+
+  marker.addTo(layers[p.cat]);
+});
+
+// Fit bounds
+const allLatLngs = pois.filter(p => p.lat && p.lng).map(p => [p.lat, p.lng]);
+map.fitBounds(L.latLngBounds(allLatLngs).pad(0.05));
+
+// Build legend
+const panel = document.getElementById('legendPanel');
+const sortedCats = Object.entries(categories).sort((a,b) => a[1].order - b[1].order);
+
+sortedCats.forEach(([key, cat]) => {
+  const count = counts[key] || 0;
+  if (count === 0) return;
+  const item = document.createElement('div');
+  item.className = 'legend-item';
+  item.dataset.cat = key;
+  item.innerHTML = `
+    <span class="legend-dot" style="background:${cat.color};color:#fff;font-size:12px">${cat.emoji}</span>
+    <span>${cat.label}</span>
+    <span class="legend-count">${count}</span>
+  `;
+  item.addEventListener('click', () => {
+    item.classList.toggle('inactive');
+    if (item.classList.contains('inactive')) {
+      map.removeLayer(layers[key]);
+    } else {
+      map.addLayer(layers[key]);
+    }
+  });
+  panel.appendChild(item);
+});
+</script>
+</body>
+</html>

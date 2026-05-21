@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>大同2日游攻略</title>
+<title>大同2日团建攻略 5.28-29</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -13,17 +13,22 @@ body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background:#f8f7
 h1 { text-align:center; font-size:2em; margin:20px 0 5px; color:#1a1a1a; }
 .subtitle { text-align:center; color:#888; margin-bottom:30px; font-size:0.95em; }
 h2 { font-size:1.4em; color:#b45309; border-bottom:2px solid #b45309; padding-bottom:6px; margin:30px 0 15px; }
+h2.day2 { color:#059669; border-bottom-color:#059669; }
 h3 { font-size:1.15em; color:#555; margin:20px 0 10px; }
-.map-container { width:100%; height:450px; border-radius:12px; overflow:hidden; margin:15px 0; box-shadow:0 2px 12px rgba(0,0,0,0.1); }
+.map-container { width:100%; height:420px; border-radius:12px; overflow:hidden; margin:15px 0; box-shadow:0 2px 12px rgba(0,0,0,0.1); }
 .overview { background:#fff; border-radius:12px; padding:20px; margin:15px 0; box-shadow:0 1px 6px rgba(0,0,0,0.06); }
-.overview li { margin:6px 0; line-height:1.6; }
+.overview li { margin:6px 0; line-height:1.7; }
 .card { background:#fff; border-radius:12px; padding:18px 20px; margin:12px 0; box-shadow:0 1px 6px rgba(0,0,0,0.06); border-left:4px solid #b45309; }
+.card.train { border-left-color:#0369a1; background:linear-gradient(135deg,#f0f9ff,#fff); }
 .card.food { border-left-color:#dc2626; }
 .card.hotel { border-left-color:#2563eb; }
+.card.green { border-left-color:#059669; }
 .card .time { font-weight:700; color:#b45309; font-size:1.05em; }
+.card.train .time { color:#0369a1; }
 .card.food .time { color:#dc2626; }
+.card.green .time { color:#059669; }
 .card .name { font-size:1.1em; font-weight:600; margin:4px 0; }
-.card .meta { color:#888; font-size:0.9em; line-height:1.6; }
+.card .meta { color:#666; font-size:0.9em; line-height:1.7; }
 .card .transport { background:#f0f9ff; border-radius:6px; padding:6px 10px; margin-top:6px; font-size:0.88em; color:#0369a1; }
 .card .alt { color:#999; font-size:0.85em; margin-top:6px; font-style:italic; }
 .budget-table { width:100%; border-collapse:collapse; margin:15px 0; }
@@ -31,292 +36,278 @@ h3 { font-size:1.15em; color:#555; margin:20px 0 10px; }
 .budget-table th { background:#f5f0e8; color:#78350f; }
 .budget-table tr:nth-child(even) { background:#fafaf8; }
 .notes { background:#fffbeb; border-radius:12px; padding:18px 20px; margin:15px 0; }
-.notes li { margin:6px 0; line-height:1.6; }
+.notes li { margin:6px 0; line-height:1.7; }
 .legend { display:flex; gap:15px; flex-wrap:wrap; margin:8px 0 5px; font-size:0.85em; }
 .legend span { display:inline-flex; align-items:center; gap:4px; }
 .legend .dot { width:12px; height:12px; border-radius:50%; display:inline-block; }
 .allmap { height:500px; }
+.day-banner { background:linear-gradient(135deg,#fef3c7,#fff7ed); border-radius:12px; padding:14px 20px; margin:20px 0 10px; text-align:center; font-size:1.1em; }
+.day-banner.d2 { background:linear-gradient(135deg,#d1fae5,#ecfdf5); }
 </style>
 </head>
 <body>
 <div class="container">
 
-<h1>🏛 大同 2 日游攻略</h1>
-<p class="subtitle">云冈石窟 · 古城寺庙 · 大同美食 · 北魏遗韵</p>
+<h1>🏛 大同 2 日团建攻略</h1>
+<p class="subtitle">5月28-29日 ｜ 北京北 ⇄ 大同南 ｜ 云冈石窟 · 华严寺 · 悬空寺 · 应县木塔</p>
 
 <div class="overview">
-<h2>📋 概览</h2>
+<h2>📋 行程速览</h2>
 <ul>
-<li><b>天数：</b>2天1晚</li>
-<li><b>交通：</b>市区打车为主，云冈石窟距古城约16km（打车约30分钟）</li>
-<li><b>住宿推荐：</b>大同花园大饭店（古城内，★4.8）/ 福朋喜来登（东关，★4.8）/ 金地豪生（★4.7）</li>
-<li><b>费用估算：</b>约 ¥800-1200/人（含住宿、门票、餐饮、交通）</li>
-<li><b>最佳季节：</b>5-10月，夏季凉爽是避暑好去处</li>
+<li><b>Day 1（5/28 周四）：</b>北京→大同 → 华严寺 → 午餐 → 云冈石窟 → 晚餐 → 酒店</li>
+<li><b>Day 2（5/29 周五）：</b>早起包车 → 悬空寺 → 应县木塔 → 大同南站返京</li>
+<li><b>交通：</b>G2531 北京北08:20→大同南10:06 ｜ 返程自行安排</li>
+<li><b>住宿推荐：</b>花园大饭店（古城内 ★4.8）/ 福朋喜来登（★4.8）/ 金地豪生（★4.7）</li>
+<li><b>费用估算：</b>约 ¥900-1400/人（含住宿、门票、餐饮、交通、包车）</li>
 </ul>
 </div>
 
-<!-- DAY 1 MAP -->
-<h2>🗓 Day 1 — 云冈石窟 + 古城漫步</h2>
+<!-- ==================== DAY 1 ==================== -->
+<div class="day-banner">🌟 Day 1｜5月28日（周四）— 快乐出发 + 精华打卡日</div>
+<h2>🗓 Day 1 路线地图</h2>
 <div class="map-container" id="map1"></div>
 
-<div class="card food">
-<div class="time">08:30 🍜 早餐</div>
-<div class="name">东方削面（迎泽街店）</div>
-<div class="meta">📍 云中路建设里小区西区36号底商 | ★4.7 | ¥16/人<br>大同刀削面是必吃项目，浇头推荐肉酱、番茄鸡蛋</div>
-<div class="alt">备选：老柴削面（★4.4 ¥17/人）</div>
+<div class="card train">
+<div class="time">🚄 08:20 - 10:06</div>
+<div class="name">北京北 → 大同南（G2531）</div>
+<div class="meta">约1小时46分 ｜ 到站后打车前往古城约20分钟</div>
 </div>
 
 <div class="card">
-<div class="time">09:30 - 12:30 🏛 上午核心</div>
-<div class="name">云冈石窟</div>
-<div class="meta">📍 晋福花园东北侧 | ★4.9 | 门票¥120<br>开放 08:30-17:00 | 建议游览3小时<br>世界文化遗产，北魏皇家石窟，第5-6窟（大佛洞）、第9-13窟（五华洞）必看</div>
-<div class="transport">🚕 从市区打车约30分钟 ¥35-45</div>
-</div>
-
-<div class="card food">
-<div class="time">12:30 🍜 午餐</div>
-<div class="name">云冈石窟景区周边 或 返回市区</div>
-<div class="meta">景区内有简餐；建议返回市区吃正餐</div>
-</div>
-
-<div class="card">
-<div class="time">14:00 - 15:30 🏛 下午</div>
+<div class="time">10:40 - 12:00 🏯</div>
 <div class="name">华严寺</div>
-<div class="meta">📍 下寺坡街459号 | ★4.8 | 门票¥50<br>开放 08:30-17:30<br>辽金建筑瑰宝，上华严寺大雄宝殿为中国现存最大辽代木构建筑</div>
-<div class="transport">🚕 从云冈石窟打车回古城约30分钟</div>
-</div>
-
-<div class="card">
-<div class="time">15:40 - 16:30 🏛</div>
-<div class="name">九龙壁</div>
-<div class="meta">📍 大同古城大东街18号 | ★4.7 | 门票免费<br>中国现存最大最古老的琉璃九龙壁，比北京故宫九龙壁早250年</div>
-<div class="transport">🚶 从华严寺步行约10分钟（800m）</div>
-</div>
-
-<div class="card">
-<div class="time">16:30 - 17:30 🏛</div>
-<div class="name">大同古城墙</div>
-<div class="meta">📍 和阳街 | ★4.7 | 登城墙¥30<br>明代古城墙，周长7.24km，可骑行或步行一段，傍晚光线最佳</div>
-<div class="transport">🚶 从九龙壁步行约10分钟</div>
+<div class="meta">📍 下寺坡街459号 ｜ ★4.8 ｜ 门票¥50<br>开放 08:30-17:30<br>辽金建筑瑰宝，上华严寺大雄宝殿为中国现存最大辽代木构建筑<br>薄伽教藏殿内的辽代彩塑"合掌露齿菩萨"被誉为东方维纳斯</div>
+<div class="transport">🚕 大同南站打车至古城约20分钟 ¥25</div>
 </div>
 
 <div class="card food">
-<div class="time">18:00 🍽 晚餐</div>
+<div class="time">12:15 🍜 团队午餐</div>
 <div class="name">凤临阁（东南邑店）</div>
-<div class="meta">📍 古城内和阳街新和坊3-2号 | ★4.6 | ¥94/人<br>营业 17:00-21:00<br>大同最有名餐厅，必点：百花烧麦、凤趣烧麦、浑源凉粉</div>
-<div class="transport">🚶 从古城墙步行约10分钟</div>
-<div class="alt">备选：紫泥369粗粮季（★4.8 ¥62/人，山西粗粮特色）</div>
+<div class="meta">📍 古城内和阳街新和坊3-2号 ｜ ★4.6 ｜ ¥94/人<br>营业 11:00-14:00<br>大同最有名餐厅，必点：百花烧麦、凤趣烧麦、浑源凉粉、大同铜火锅</div>
+<div class="transport">🚶 从华严寺步行约12分钟</div>
+<div class="alt">备选：紫泥369粗粮季（★4.8 ¥62/人，莜面栲栳栳、黄糕）</div>
+</div>
+
+<div class="card">
+<div class="time">14:00 - 17:00 🗿</div>
+<div class="name">云冈石窟</div>
+<div class="meta">📍 大同市西郊武周山南麓 ｜ ★4.9 ｜ 门票¥120<br>开放 08:30-17:00 ｜ 建议游览3小时<br>世界文化遗产！北魏皇家石窟群，现存主要洞窟45座、石雕造像51000余尊<br>精华：第5-6窟（大佛洞）、第9-13窟（五华洞）、第20窟（露天大佛，经典打卡）</div>
+<div class="transport">🚕 从古城打车约30分钟 ¥35-45</div>
+</div>
+
+<div class="card food">
+<div class="time">18:00 🍽 团队晚餐</div>
+<div class="name">紫泥369粗粮季（四牌楼店）</div>
+<div class="meta">📍 大同古城四牌楼西北角 ｜ ★4.8 ｜ ¥62/人<br>营业 17:00-21:30<br>山西粗粮特色：莜面栲栳栳、大同黄糕、浑源凉粉、羊杂汤、烧麦</div>
+<div class="transport">🚕 从云冈石窟返回古城约30分钟</div>
+<div class="alt">备选：东方削面（★4.7 ¥16/人，大同刀削面必吃）</div>
 </div>
 
 <div class="card hotel">
 <div class="time">🏨 住宿</div>
-<div class="name">大同花园大饭店</div>
-<div class="meta">📍 永泰街93号（古城内）| ★4.8<br>位置绝佳，步行可达华严寺、九龙壁等景点</div>
-<div class="alt">备选：福朋喜来登（东关万寿路）★4.8 / 金地豪生（平城街88号）★4.7</div>
+<div class="name">推荐：大同花园大饭店</div>
+<div class="meta">📍 永泰街93号（古城内）｜ ★4.8<br>位置绝佳，步行可达华严寺、九龙壁、善化寺<br>晚饭后可自由逛古城夜景、城墙灯光</div>
+<div class="alt">备选：福朋喜来登（东关）★4.8 ｜ 金地豪生（平城街）★4.7</div>
 </div>
 
-<!-- DAY 2 -->
-<h2>🗓 Day 2 — 善化寺 + 古城深度 / 可选悬空寺</h2>
+<!-- ==================== DAY 2 ==================== -->
+<div class="day-banner d2">🌿 Day 2｜5月29日（周五）— 悬空寺 + 应县木塔</div>
+<h2 class="day2">🗓 Day 2 路线地图</h2>
 <div class="map-container" id="map2"></div>
 
-<h3>方案A：古城深度游（轻松版）</h3>
-
-<div class="card food">
-<div class="time">08:00 🍜 早餐</div>
-<div class="name">紫泥369粗粮季（四牌楼店）</div>
-<div class="meta">📍 大同古城四牌楼西北角 | ★4.8 | ¥62/人<br>营业 10:30起，但早餐可选酒店或附近早点摊<br>午餐来这里体验山西粗粮：莜面栲栳栳、黄糕、豆面</div>
+<div class="card green">
+<div class="time">07:00 出发 🚗</div>
+<div class="name">包车/拼车出发</div>
+<div class="meta">建议提前一天联系包车（7座商务车约¥600-800/天）<br>路线：大同古城 → 悬空寺（70km，约1.5h）→ 应县木塔（58km，约50min）→ 大同南站（67km，约1h）</div>
 </div>
 
-<div class="card">
-<div class="time">09:00 - 10:30 🏛</div>
-<div class="name">善化寺</div>
-<div class="meta">📍 大同古城南寺街6号 | ★4.8 | 门票免费<br>开放 08:00-18:00<br>中国现存最完整的辽金寺院，比华严寺更原汁原味，游客少清静</div>
-<div class="transport">🚶 从花园大饭店步行约5分钟</div>
-</div>
-
-<div class="card">
-<div class="time">10:40 - 12:00 🏛</div>
-<div class="name">古城漫步：鼓楼 → 四牌楼 → 代王府</div>
-<div class="meta">📍 古城中轴线 | ★4.6<br>代王府为明代藩王府复建，九龙壁原为其照壁<br>沿途逛古城商业街，淘大同铜器、剪纸等手工艺品</div>
-<div class="transport">🚶 善化寺出发步行15分钟</div>
-</div>
-
-<div class="card food">
-<div class="time">12:00 🍽 午餐</div>
-<div class="name">紫泥369粗粮季</div>
-<div class="meta">📍 古城四牌楼西北角 | ★4.8 | ¥62/人<br>必点：莜面栲栳栳、大同黄糕、浑源凉粉、羊杂汤</div>
-<div class="transport">🚶 就在四牌楼旁</div>
-</div>
-
-<div class="card">
-<div class="time">13:30 返程</div>
-<div class="name">前往大同站/大同南站</div>
-<div class="meta">大同站在古城北侧，打车约10分钟；大同南站较远约20分钟</div>
-</div>
-
-<h3>方案B：悬空寺一日游（体力版）</h3>
-<div class="card">
-<div class="time">07:00 出发 → 09:00 抵达</div>
+<div class="card green">
+<div class="time">08:30 - 10:00 ⛰</div>
 <div class="name">悬空寺</div>
-<div class="meta">📍 浑源县恒山山腰 | ★4.8 | 门票¥125（含登临费）<br>距大同市区约75km，车程约1.5小时<br>建在悬崖峭壁上的奇观，全球最奇险建筑之一</div>
-<div class="transport">🚕 包车往返约¥300-400，或拼车</div>
-<div class="alt">可顺路去恒山（门票¥45），但需额外2-3小时</div>
+<div class="meta">📍 浑源县大磁窑镇恒山山腰 ｜ ★4.8 ｜ 门票¥125（含登临费）<br>始建于北魏，距今1500多年，镶嵌在万仞峭壁之上<br>儒释道三教合一，全球最奇险建筑之一<br>⚠️ 旺季限流，建议早到；恐高者可在下方观赏不登临</div>
+<div class="transport">🚗 从大同古城约1.5小时车程</div>
 </div>
 
-<!-- ALL POI MAP -->
-<h2>🗺 推荐汇总地图</h2>
+<div class="card green">
+<div class="time">11:00 - 12:00 🏯</div>
+<div class="name">应县木塔（释迦塔）</div>
+<div class="meta">📍 应县城内应元街1号 ｜ ★4.9 ｜ 门票¥50<br>世界现存最高最古老的纯木结构楼阁式建筑（67.31米）<br>建于辽清宁二年（1056年），全塔无一铁钉，与比萨斜塔、埃菲尔铁塔并称世界三大奇塔<br>目前仅开放一层参观</div>
+<div class="transport">🚗 从悬空寺约50分钟车程</div>
+</div>
+
+<div class="card food">
+<div class="time">12:15 🍜 午餐</div>
+<div class="name">应县当地午餐</div>
+<div class="meta">应县凉粉是当地特色，木塔附近有不少小馆子<br>也可在路上简单解决，赶回大同南站</div>
+</div>
+
+<div class="card train">
+<div class="time">🚗 约14:00 返回大同南站</div>
+<div class="name">应县木塔 → 大同南站</div>
+<div class="meta">约1小时车程（67km）｜ 建议预留充足时间<br>返程高铁自行安排，参考：G2510 16:10→18:12 或更晚班次</div>
+</div>
+
+<!-- ==================== ALL MAP ==================== -->
+<h2>🗺 全部景点地图</h2>
 <div class="legend">
 <span><span class="dot" style="background:#7c3aed"></span> 景点</span>
 <span><span class="dot" style="background:#dc2626"></span> 餐厅</span>
 <span><span class="dot" style="background:#2563eb"></span> 酒店</span>
 <span><span class="dot" style="background:#059669"></span> 远郊景点</span>
+<span><span class="dot" style="background:#0369a1"></span> 车站</span>
 </div>
 <div class="map-container allmap" id="mapAll"></div>
 
 <!-- BUDGET -->
-<h2>💰 费用估算</h2>
+<h2>💰 费用估算（人均）</h2>
 <table class="budget-table">
-<tr><th>项目</th><th>费用（人均）</th><th>备注</th></tr>
+<tr><th>项目</th><th>费用</th><th>备注</th></tr>
+<tr><td>高铁往返</td><td>¥200-300</td><td>二等座约¥150单程</td></tr>
 <tr><td>云冈石窟门票</td><td>¥120</td><td>学生半价</td></tr>
 <tr><td>华严寺门票</td><td>¥50</td><td></td></tr>
-<tr><td>古城墙</td><td>¥30</td><td>可选不登</td></tr>
-<tr><td>悬空寺（可选）</td><td>¥125</td><td>含登临费</td></tr>
+<tr><td>悬空寺门票</td><td>¥125</td><td>含登临费</td></tr>
+<tr><td>应县木塔门票</td><td>¥50</td><td></td></tr>
 <tr><td>住宿1晚</td><td>¥200-400</td><td>花园大饭店/喜来登</td></tr>
 <tr><td>餐饮（3-4顿）</td><td>¥150-250</td><td></td></tr>
-<tr><td>市内交通</td><td>¥100-150</td><td>打车为主</td></tr>
-<tr><td>悬空寺包车（可选）</td><td>¥150-200</td><td>两人分摊</td></tr>
-<tr style="font-weight:700;background:#fef3c7"><td>合计</td><td>¥650-1200</td><td>视是否去悬空寺</td></tr>
+<tr><td>Day1市内交通</td><td>¥80-120</td><td>打车</td></tr>
+<tr><td>Day2包车分摊</td><td>¥100-150</td><td>5-6人分摊约¥600-800总价</td></tr>
+<tr style="font-weight:700;background:#fef3c7"><td>合计</td><td>¥900-1400</td><td></td></tr>
 </table>
 
 <!-- NOTES -->
 <div class="notes">
 <h2>📝 注意事项</h2>
 <ul>
-<li>云冈石窟建议上午去，光线好适合拍照（下午逆光）</li>
-<li>凤临阁非常热门，建议提前1天预约或17:00准时到</li>
-<li>大同海拔约1000m，夏天早晚凉，带件薄外套</li>
-<li>古城内景点步行可达，不需要打车</li>
-<li>悬空寺旺季限流，尽量早到；恐高者慎选登临</li>
-<li>大同刀削面随处可见，但品质参差，选评分高的店</li>
-<li>善化寺免费且游客少，是拍照和感受辽金建筑的最佳地点</li>
+<li>☀️ 云冈石窟建议下午去（上午华严寺），下午光线正面照射石窟更壮观</li>
+<li>🍽 凤临阁非常热门，<b>建议提前1天电话预约</b>或11:00准时到</li>
+<li>🧥 大同海拔约1000m，5月早晚偏凉（10-22°C），带件薄外套</li>
+<li>⛰ 悬空寺旺季限流，Day2尽量早出发（7:00）；恐高者慎选登临</li>
+<li>🚗 Day2包车建议提前联系，可让酒店帮忙安排或网上预约</li>
+<li>🏯 应县木塔目前仅开放一层，外观拍照效果最佳</li>
+<li>🍜 大同刀削面随处可见，品质参差，认准评分高的店（东方削面、老柴削面）</li>
+<li>🏛 古城内华严寺、善化寺、九龙壁步行可达，晚饭后可随意逛逛</li>
 </ul>
 </div>
 
 </div><!-- container -->
 
 <script>
-// POI Data
-const pois = {
-  attractions: [
-    {name:"云冈石窟", lat:40.113157, lng:113.137763, rating:"4.9", info:"世界文化遗产，门票¥120"},
-    {name:"华严寺", lat:40.092531, lng:113.295060, rating:"4.8", info:"辽金建筑瑰宝，门票¥50"},
-    {name:"善化寺", lat:40.087041, lng:113.300335, rating:"4.8", info:"最完整辽金寺院，免费"},
-    {name:"九龙壁", lat:40.093042, lng:113.303979, rating:"4.7", info:"中国最大最古老琉璃九龙壁，免费"},
-    {name:"大同古城墙", lat:40.084584, lng:113.302262, rating:"4.7", info:"明代城墙，登城¥30"},
-    {name:"代王府", lat:40.095887, lng:113.304299, rating:"4.6", info:"明代藩王府复建"},
-  ],
-  remote: [
-    {name:"悬空寺", lat:39.661139, lng:113.715781, rating:"4.8", info:"悬崖奇观，门票¥125"},
-    {name:"北岳恒山", lat:39.669540, lng:113.727792, rating:"4.7", info:"五岳之一，门票¥45"},
-  ],
-  restaurants: [
-    {name:"凤临阁(东南邑店)", lat:40.093159, lng:113.309812, rating:"4.6", cost:"¥94/人", info:"百花烧麦"},
-    {name:"紫泥369粗粮季", lat:40.093742, lng:113.301951, rating:"4.8", cost:"¥62/人", info:"莜面栲栳栳"},
-    {name:"东方削面(迎泽街)", lat:40.088864, lng:113.284127, rating:"4.7", cost:"¥16/人", info:"大同刀削面"},
-    {name:"老柴削面", lat:40.106078, lng:113.365082, rating:"4.4", cost:"¥17/人", info:"刀削面老店"},
-  ],
-  hotels: [
-    {name:"花园大饭店", lat:40.090239, lng:113.301718, rating:"4.8", info:"古城内，位置绝佳"},
-    {name:"福朋喜来登", lat:40.089448, lng:113.319780, rating:"4.8", info:"东关，国际品牌"},
-    {name:"金地豪生", lat:40.102773, lng:113.317368, rating:"4.7", info:"平城街"},
-  ]
-};
-
 function makeIcon(color, label) {
   return L.divIcon({
     className:'',
-    html:`<div style="background:${color};color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3)">${label}</div>`,
-    iconSize:[26,26], iconAnchor:[13,13]
+    html:`<div style="background:${color};color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3)">${label}</div>`,
+    iconSize:[28,28], iconAnchor:[14,14]
   });
 }
 
-// Day 1 map
+// ========== DAY 1 MAP ==========
 (function(){
-  const m = L.map('map1').setView([40.095,113.28],12);
+  const m = L.map('map1').setView([40.095,113.25],12);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'&copy; OSM & CARTO'}).addTo(m);
   const stops = [
-    {name:"① 东方削面", lat:40.088864, lng:113.284127},
-    {name:"② 云冈石窟", lat:40.113157, lng:113.137763},
-    {name:"③ 华严寺", lat:40.092531, lng:113.295060},
-    {name:"④ 九龙壁", lat:40.093042, lng:113.303979},
-    {name:"⑤ 古城墙", lat:40.084584, lng:113.302262},
-    {name:"⑥ 凤临阁", lat:40.093159, lng:113.309812},
-    {name:"H 花园大饭店", lat:40.090239, lng:113.301718},
-  ];
-  const colors = ['#dc2626','#7c3aed','#7c3aed','#7c3aed','#7c3aed','#dc2626','#2563eb'];
-  const labels = ['1','2','3','4','5','6','H'];
-  const coords = [];
-  stops.forEach((s,i) => {
-    L.marker([s.lat,s.lng],{icon:makeIcon(colors[i],labels[i])}).addTo(m).bindTooltip(s.name,{permanent:true,direction:'right',offset:[12,0],className:'leaflet-tooltip'});
-    coords.push([s.lat,s.lng]);
-  });
-  // route lines
-  for(let i=0;i<coords.length-1;i++){
-    const isDrive = (i===0||i===1); // to/from yungang
-    L.polyline([coords[i],coords[i+1]],{color:isDrive?'#dc2626':'#059669',weight:3,dashArray:isDrive?'':'8 6',opacity:0.7}).addTo(m);
-  }
-  m.fitBounds(coords,{padding:[30,30]});
-})();
-
-// Day 2 map
-(function(){
-  const m = L.map('map2').setView([40.09,113.30],14);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'&copy; OSM & CARTO'}).addTo(m);
-  const stops = [
+    {name:"🚄 大同南站", lat:40.046162, lng:113.365088, color:'#0369a1', label:'🚄'},
+    {name:"① 华严寺", lat:40.092531, lng:113.295060, color:'#7c3aed', label:'1'},
+    {name:"② 凤临阁(午餐)", lat:40.093159, lng:113.309812, color:'#dc2626', label:'2'},
+    {name:"③ 云冈石窟", lat:40.113157, lng:113.137763, color:'#7c3aed', label:'3'},
+    {name:"④ 紫泥369(晚餐)", lat:40.093742, lng:113.301951, color:'#dc2626', label:'4'},
     {name:"H 花园大饭店", lat:40.090239, lng:113.301718, color:'#2563eb', label:'H'},
-    {name:"A 善化寺", lat:40.087041, lng:113.300335, color:'#7c3aed', label:'A'},
-    {name:"B 代王府/四牌楼", lat:40.095887, lng:113.304299, color:'#7c3aed', label:'B'},
-    {name:"C 紫泥369", lat:40.093742, lng:113.301951, color:'#dc2626', label:'C'},
   ];
   const coords = [];
   stops.forEach(s => {
-    L.marker([s.lat,s.lng],{icon:makeIcon(s.color,s.label)}).addTo(m).bindTooltip(s.name,{permanent:true,direction:'right',offset:[12,0]});
+    L.marker([s.lat,s.lng],{icon:makeIcon(s.color,s.label)}).addTo(m)
+      .bindTooltip(s.name,{permanent:true,direction:'right',offset:[14,0]});
     coords.push([s.lat,s.lng]);
   });
   for(let i=0;i<coords.length-1;i++){
-    L.polyline([coords[i],coords[i+1]],{color:'#059669',weight:3,dashArray:'8 6',opacity:0.7}).addTo(m);
+    const drive = (i===0||i===1||i===2||i===3);
+    L.polyline([coords[i],coords[i+1]],{
+      color: drive?'#ef4444':'#059669', weight:3,
+      dashArray: drive?'':'8 6', opacity:0.7
+    }).addTo(m);
   }
-  // Also show 悬空寺 as optional
-  L.marker([39.661139,113.715781],{icon:makeIcon('#a8a29e','?')}).addTo(m).bindTooltip("悬空寺（方案B）",{direction:'right',offset:[12,0]});
-  m.fitBounds(coords,{padding:[30,30]});
+  m.fitBounds(coords,{padding:[40,40]});
 })();
 
-// All POI map
+// ========== DAY 2 MAP ==========
 (function(){
-  const m = L.map('mapAll').setView([40.09,113.30],12);
+  const m = L.map('map2').setView([39.85,113.35],9);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'&copy; OSM & CARTO'}).addTo(m);
+  const stops = [
+    {name:"H 酒店出发", lat:40.090239, lng:113.301718, color:'#2563eb', label:'H'},
+    {name:"A 悬空寺", lat:39.661139, lng:113.715781, color:'#059669', label:'A'},
+    {name:"B 应县木塔", lat:39.566465, lng:113.188831, color:'#059669', label:'B'},
+    {name:"🚄 大同南站", lat:40.046162, lng:113.365088, color:'#0369a1', label:'🚄'},
+  ];
+  const coords = [];
+  stops.forEach(s => {
+    L.marker([s.lat,s.lng],{icon:makeIcon(s.color,s.label)}).addTo(m)
+      .bindTooltip(s.name,{permanent:true,direction:'right',offset:[14,0]});
+    coords.push([s.lat,s.lng]);
+  });
+  for(let i=0;i<coords.length-1;i++){
+    L.polyline([coords[i],coords[i+1]],{
+      color:'#059669', weight:3, opacity:0.7
+    }).addTo(m);
+  }
+  // 标注距离
+  const dists = ["70km 约1.5h","58km 约50min","67km 约1h"];
+  for(let i=0;i<coords.length-1;i++){
+    const mid = [(coords[i][0]+coords[i+1][0])/2, (coords[i][1]+coords[i+1][1])/2];
+    L.marker(mid,{icon:L.divIcon({className:'',html:`<div style="background:#fff;border:1px solid #059669;border-radius:4px;padding:2px 6px;font-size:11px;color:#059669;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,0.1)">🚗 ${dists[i]}</div>`,iconSize:[0,0]})}).addTo(m);
+  }
+  m.fitBounds(coords,{padding:[40,40]});
+})();
+
+// ========== ALL POI MAP ==========
+(function(){
+  const m = L.map('mapAll').setView([39.85,113.35],9);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'&copy; OSM & CARTO'}).addTo(m);
   
-  const layers = {};
   const groups = {
-    '🏛 景点': {data: pois.attractions, color:'#7c3aed'},
-    '🍽 餐厅': {data: pois.restaurants, color:'#dc2626'},
-    '🏨 酒店': {data: pois.hotels, color:'#2563eb'},
-    '🏔 远郊': {data: pois.remote, color:'#059669'},
+    '🏛 景点': {color:'#7c3aed', data:[
+      {name:"华严寺",lat:40.092531,lng:113.295060,info:"★4.8 门票¥50"},
+      {name:"云冈石窟",lat:40.113157,lng:113.137763,info:"★4.9 门票¥120"},
+      {name:"九龙壁",lat:40.093042,lng:113.303979,info:"★4.7 免费"},
+      {name:"善化寺",lat:40.087041,lng:113.300335,info:"★4.8 免费"},
+      {name:"大同古城墙",lat:40.084584,lng:113.302262,info:"★4.7 登城¥30"},
+    ]},
+    '⛰ 远郊景点': {color:'#059669', data:[
+      {name:"悬空寺",lat:39.661139,lng:113.715781,info:"★4.8 门票¥125"},
+      {name:"应县木塔",lat:39.566465,lng:113.188831,info:"★4.9 门票¥50"},
+      {name:"北岳恒山",lat:39.669540,lng:113.727792,info:"★4.7 门票¥45"},
+    ]},
+    '🍽 餐厅': {color:'#dc2626', data:[
+      {name:"凤临阁",lat:40.093159,lng:113.309812,info:"★4.6 ¥94/人"},
+      {name:"紫泥369粗粮季",lat:40.093742,lng:113.301951,info:"★4.8 ¥62/人"},
+      {name:"东方削面",lat:40.088864,lng:113.284127,info:"★4.7 ¥16/人"},
+      {name:"老柴削面",lat:40.106078,lng:113.365082,info:"★4.4 ¥17/人"},
+    ]},
+    '🏨 酒店': {color:'#2563eb', data:[
+      {name:"花园大饭店",lat:40.090239,lng:113.301718,info:"★4.8 古城内"},
+      {name:"福朋喜来登",lat:40.089448,lng:113.319780,info:"★4.8 东关"},
+      {name:"金地豪生",lat:40.102773,lng:113.317368,info:"★4.7"},
+    ]},
+    '🚄 车站': {color:'#0369a1', data:[
+      {name:"大同南站",lat:40.046162,lng:113.365088,info:"高铁站"},
+    ]},
   };
   
   const allCoords = [];
-  for (const [cat, {data, color}] of Object.entries(groups)) {
+  const layers = {};
+  for (const [cat, {color, data}] of Object.entries(groups)) {
     const lg = L.layerGroup();
     data.forEach(p => {
-      const popup = `<b>${p.name}</b><br>★${p.rating}<br>${p.info}${p.cost?' | '+p.cost:''}`;
-      L.marker([p.lat,p.lng],{icon:makeIcon(color,cat[0])}).bindPopup(popup).bindTooltip(p.name,{direction:'right',offset:[12,0]}).addTo(lg);
+      L.marker([p.lat,p.lng],{icon:makeIcon(color,cat[0])})
+        .bindPopup(`<b>${p.name}</b><br>${p.info}`)
+        .bindTooltip(p.name,{direction:'right',offset:[14,0]})
+        .addTo(lg);
       allCoords.push([p.lat,p.lng]);
     });
     lg.addTo(m);
     layers[cat] = lg;
   }
   L.control.layers(null, layers, {collapsed:false}).addTo(m);
-  m.fitBounds(allCoords, {padding:[30,30]});
+  m.fitBounds(allCoords, {padding:[40,40]});
 })();
 </script>
 </body>

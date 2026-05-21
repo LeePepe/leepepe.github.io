@@ -35,9 +35,10 @@ body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
 </div>
 
 <!-- Mobile Toggle -->
-<div class="narrow-only sticky top-0 z-50 bg-white/90 backdrop-blur shadow-sm p-3 flex justify-center gap-3">
+<div class="narrow-only sticky top-0 z-50 bg-white/90 backdrop-blur shadow-sm p-3 flex flex-wrap justify-center gap-3">
   <button id="btn-relaxed" onclick="setMode('relaxed')" class="px-5 py-2 rounded-full text-sm font-semibold border-2 border-emerald-400 text-emerald-600 bg-white">🌿 轻松版</button>
   <button id="btn-packed" onclick="setMode('packed')" class="px-5 py-2 rounded-full text-sm font-semibold border-2 border-orange-400 bg-orange-500 text-white">🔥 充实版</button>
+  <div class="text-xs text-gray-400 w-full text-center mt-1">← 左右滑动切换 →</div>
 </div>
 
 <div class="max-w-7xl mx-auto px-4 py-6 space-y-8">
@@ -513,6 +514,21 @@ function setMode(mode) {
 }
 
 window.addEventListener('resize', () => setMode(currentMode));
+
+// Swipe gesture for narrow screens
+let touchStartX = 0, touchStartY = 0;
+document.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, {passive: true});
+document.addEventListener('touchend', e => {
+  if (window.innerWidth >= 1024) return;
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  const dy = e.changedTouches[0].screenY - touchStartY;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+    setMode(dx < 0 ? 'relaxed' : 'packed');
+  }
+}, {passive: true});
 
 document.addEventListener('DOMContentLoaded', () => {
   initAllMaps();

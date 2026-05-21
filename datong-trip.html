@@ -3,654 +3,521 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>大同3日攻略 5.28-30</title>
+<title>大同三日游攻略 🏯 轻松版 / 充实版</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        amber: { 650: '#b45309' },
-      }
-    }
-  }
-}
-</script>
 <style>
-.leaflet-tooltip { font-size: 12px !important; }
+body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+.map-container { height: 350px; border-radius: 1rem; z-index: 0; }
+.card { transition: transform 0.15s; }
+.card:hover { transform: translateY(-2px); }
+.leaflet-div-icon { background: none !important; border: none !important; }
+.comparison-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 1024px) {
+  .comparison-grid { grid-template-columns: 1fr 1fr; }
+  .narrow-only { display: none !important; }
+  .wide-only { display: block !important; }
+}
+@media (max-width: 1023px) {
+  .wide-only { display: none !important; }
+}
+.dashed-border { border-left-style: dashed !important; }
 </style>
 </head>
-<body class="bg-stone-50 text-gray-800 font-[PingFang_SC,Microsoft_YaHei,sans-serif]">
+<body class="bg-gray-50 text-gray-800">
 
-<div class="max-w-3xl mx-auto px-4 py-8">
-
-  <!-- Header -->
-  <div class="text-center mb-4">
-    <h1 class="text-4xl font-bold text-gray-900 mb-2">🏛 大同 3 日攻略</h1>
-    <p class="text-gray-500">5月28-30日 ｜ 北京北 ⇄ 大同南 ｜ 云冈石窟 · 华严寺 · 悬空寺 · 应县木塔</p>
-  </div>
-
-  <!-- Mode Toggle Bar -->
-  <div class="sticky top-0 z-50 bg-stone-50/95 backdrop-blur-sm py-3 mb-6 border-b border-gray-200">
-    <div class="flex justify-center gap-3">
-      <button id="btn-relaxed" onclick="setMode('relaxed')" class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 border-2 border-emerald-400 text-emerald-600 bg-white hover:bg-emerald-50">🌿 轻松版</button>
-      <button id="btn-packed" onclick="setMode('packed')" class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 border-2 border-orange-400 bg-orange-500 text-white">🔥 充实版</button>
-    </div>
-  </div>
-
-  <!-- Overview -->
-  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8">
-    <h2 class="text-xl font-bold text-amber-700 mb-4 pb-2 border-b-2 border-amber-200">📋 行程总览</h2>
-    <ul class="space-y-2 text-[15px]">
-      <li><span class="inline-block bg-amber-50 text-amber-700 text-xs font-medium px-2 py-0.5 rounded mr-1">团建日</span><b>Day 0（5/28 周四）</b>：北京→大同 → 华严寺 → 午餐 → 云冈石窟 → 晚餐 → 古城夜游</li>
-      <li id="overview-day1-packed"><span class="inline-block bg-emerald-50 text-emerald-700 text-xs font-medium px-2 py-0.5 rounded mr-1">远郊一日</span><b>Day 1（5/29 周五）</b>：包车 → 悬空寺 → 应县木塔 → 古城墙 → 九龙壁</li>
-      <li id="overview-day1-relaxed" style="display:none"><span class="inline-block bg-emerald-50 text-emerald-700 text-xs font-medium px-2 py-0.5 rounded mr-1">远郊轻松</span><b>Day 1（5/29 周五）</b>：包车 → 悬空寺 → 应县木塔 → 返回大同 → 酒店休息</li>
-      <li id="overview-day2-packed"><span class="inline-block bg-violet-50 text-violet-700 text-xs font-medium px-2 py-0.5 rounded mr-1">古城深度</span><b>Day 2（5/30 周六）</b>：善化寺 → 法华寺 → 古城漫步 → 大同博物馆 → 返京</li>
-      <li id="overview-day2-relaxed" style="display:none"><span class="inline-block bg-violet-50 text-violet-700 text-xs font-medium px-2 py-0.5 rounded mr-1">古城悠闲</span><b>Day 2（5/30 周六）</b>：睡到自然醒 → 善化寺 → 古城闲逛+午餐 → 返京</li>
-      <li>🏨 <b>住宿：</b>温德姆至尊豪廷大酒店（恒安街 ★4.7）连住2晚</li>
-      <li id="overview-budget-packed">💰 <b>费用：</b>约 ¥1200-1800/人（含2晚住宿、门票、餐饮、交通、包车）</li>
-      <li id="overview-budget-relaxed" style="display:none">💰 <b>费用：</b>约 ¥1100-1650/人（含2晚住宿、门票、餐饮、交通、包车）</li>
-    </ul>
-  </div>
-
-  <!-- ==================== DAY 0 ==================== -->
-  <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-4 text-center text-lg font-semibold text-amber-800 mb-4">
-    🌟 Day 0｜5月28日（周四）— 团建日
-  </div>
-
-  <h2 class="text-xl font-bold text-amber-700 mb-3 pb-2 border-b-2 border-amber-200">🗓 Day 0 路线</h2>
-  <div class="w-full h-[400px] rounded-2xl overflow-hidden shadow-md mb-6" id="map0"></div>
-
-  <!-- Train -->
-  <div class="bg-gradient-to-br from-sky-50 to-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-sky-500">
-    <div class="text-sky-600 font-bold text-[15px]">🚄 08:20 - 10:06</div>
-    <div class="text-lg font-semibold mt-1">北京北 → 大同南（G2531）</div>
-    <div class="text-gray-500 text-sm mt-1">约1小时46分 ｜ 到站后打车至古城约20分钟</div>
-  </div>
-
-  <!-- Huayan Temple -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-amber-600">
-    <div class="text-amber-700 font-bold text-[15px]">10:40 - 12:00 🏯</div>
-    <div class="text-lg font-semibold mt-1">华严寺</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 下寺坡街459号 ｜ ★4.8 ｜ 门票¥50<br>辽金建筑瑰宝，大雄宝殿为中国现存最大辽代木构建筑<br>"合掌露齿菩萨"被誉为东方维纳斯</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚕 大同南站→古城约20分钟 ¥25</div>
-  </div>
-
-  <!-- Lunch -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-red-500">
-    <div class="text-red-600 font-bold text-[15px]">12:15 🍜 团队午餐</div>
-    <div class="text-lg font-semibold mt-1">凤临阁（东南邑店）</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 古城内和阳街新和坊3-2号 ｜ ★4.6 ｜ ¥94/人<br>必点：百花烧麦、凤趣烧麦、浑源凉粉、大同铜火锅</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚶 从华严寺步行约12分钟</div>
-    <div class="text-gray-400 text-xs mt-2 italic">备选：紫泥369粗粮季（★4.8 ¥62/人，莜面栲栳栳、黄糕）</div>
-  </div>
-
-  <!-- Yungang -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-amber-600">
-    <div class="text-amber-700 font-bold text-[15px]">14:00 - 17:00 🗿</div>
-    <div class="text-lg font-semibold mt-1">云冈石窟</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 大同市西郊武周山南麓 ｜ ★4.9 ｜ 门票¥120<br>世界文化遗产！北魏皇家石窟群，51000余尊石雕造像<br>精华：第5-6窟（大佛洞）、第9-13窟（五华洞）、第20窟（露天大佛）</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚕 从古城打车约30分钟 ¥35-45</div>
-  </div>
-
-  <!-- Dinner -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-red-500">
-    <div class="text-red-600 font-bold text-[15px]">18:00 🍽 团队晚餐</div>
-    <div class="text-lg font-semibold mt-1">紫泥369粗粮季（四牌楼店）</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 大同古城四牌楼西北角 ｜ ★4.8 ｜ ¥62/人<br>莜面栲栳栳、大同黄糕、浑源凉粉、羊杂汤</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚕 从云冈石窟返回古城约30分钟</div>
-  </div>
-
-  <!-- Night Tour -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-amber-600">
-    <div class="text-amber-700 font-bold text-[15px]">19:30 - 21:00 🌙</div>
-    <div class="text-lg font-semibold mt-1">古城夜游：城墙灯光 + 代王府夜景</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 古城墙和阳门段 / 代王府<br>古城墙夜间灯光璀璨，和阳门是最佳拍照点<br>沿古城中轴线散步消食，感受北魏古都的夜晚氛围</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚶 晚餐后步行即达</div>
-  </div>
-
-  <!-- Hotel -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-blue-500">
-    <div class="text-blue-600 font-bold text-[15px]">🏨 入住</div>
-    <div class="text-lg font-semibold mt-1">大同温德姆至尊豪廷大酒店</div>
-    <div class="text-gray-500 text-sm mt-1">📍 恒安街253号 ｜ ★4.7<br>距古城约3km，打车10分钟</div>
-  </div>
-
-  <!-- ==================== DAY 1 ==================== -->
-  <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-4 text-center text-lg font-semibold text-emerald-800 mb-4 mt-10">
-    🏔 Day 1｜5月29日（周五）— 悬空寺 + 应县木塔
-  </div>
-
-  <h2 class="text-xl font-bold text-emerald-700 mb-3 pb-2 border-b-2 border-emerald-200">🗓 Day 1 路线</h2>
-  <div class="w-full h-[400px] rounded-2xl overflow-hidden shadow-md mb-6" id="map1-packed" data-mode="packed"></div>
-  <div class="w-full h-[400px] rounded-2xl overflow-hidden shadow-md mb-6" id="map1-relaxed" data-mode="relaxed" style="display:none"></div>
-
-  <!-- Breakfast (both) -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-red-500">
-    <div class="text-red-600 font-bold text-[15px]">06:30 🍜 早餐</div>
-    <div class="text-lg font-semibold mt-1">东方削面（迎泽街店）</div>
-    <div class="text-gray-500 text-sm mt-1">📍 云中路建设里小区36号底商 ｜ ★4.7 ｜ ¥16/人<br>大同刀削面必吃体验</div>
-    <div class="text-gray-400 text-xs mt-2 italic">备选：老柴削面（★4.4 ¥17/人）/ 酒店早餐</div>
-  </div>
-
-  <!-- Charter (both) -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-emerald-500">
-    <div class="text-emerald-600 font-bold text-[15px]">07:00 出发 🚗</div>
-    <div class="text-lg font-semibold mt-1">包车前往悬空寺</div>
-    <div class="text-gray-500 text-sm mt-1">轿车约¥500-600/天，7座约¥700-800<br>全天：大同→悬空寺(70km 1.5h)→应县木塔(58km 50min)→大同(67km 1h)</div>
-  </div>
-
-  <!-- Xuankong Temple (both) -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-emerald-500">
-    <div class="text-emerald-600 font-bold text-[15px]">08:30 - 10:30 ⛰</div>
-    <div class="text-lg font-semibold mt-1">悬空寺</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 浑源县大磁窑镇恒山山腰 ｜ ★4.8 ｜ 门票¥125（含登临费）<br>始建于北魏，距今1500多年，镶嵌在万仞峭壁之上<br>儒释道三教合一，全球最奇险建筑之一<br>⚠️ 旺季限流建议早到；恐高者可在下方观赏</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚗 从大同约1.5小时</div>
-  </div>
-
-  <!-- Yingxian Wooden Pagoda (both) -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-emerald-500">
-    <div class="text-emerald-600 font-bold text-[15px]">11:30 - 12:30 🏯</div>
-    <div class="text-lg font-semibold mt-1">应县木塔（释迦塔）</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 应县城内应元街1号 ｜ ★4.9 ｜ 门票¥50<br>世界现存最高最古老纯木结构楼阁（67.31米）<br>建于辽清宁二年（1056年），全塔无一铁钉<br>与比萨斜塔、埃菲尔铁塔并称世界三大奇塔</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚗 从悬空寺约50分钟</div>
-  </div>
-
-  <!-- Lunch (both) -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-red-500">
-    <div class="text-red-600 font-bold text-[15px]">12:30 🍜 午餐</div>
-    <div class="text-lg font-semibold mt-1">应县当地小馆</div>
-    <div class="text-gray-500 text-sm mt-1">应县凉粉、应县牛腰、应县面皮，木塔周边小店</div>
-  </div>
-
-  <!-- Return (both) -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-emerald-500">
-    <div class="text-emerald-600 font-bold text-[15px]">14:00 🚗 返回大同</div>
-    <div class="text-lg font-semibold mt-1">应县 → 大同（约1小时）</div>
-    <div class="text-gray-500 text-sm mt-1">15:00左右回到古城</div>
-  </div>
-
-  <!-- RELAXED: Hotel rest -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-blue-500" data-mode="relaxed" style="display:none">
-    <div class="text-blue-600 font-bold text-[15px]">15:00 - 18:00 😴</div>
-    <div class="text-lg font-semibold mt-1">回酒店休息</div>
-    <div class="text-gray-500 text-sm mt-1">远郊奔波一天，回酒店补个觉、泡个澡<br>养精蓄锐，晚上自由活动</div>
-  </div>
-
-  <!-- RELAXED: Dinner casual -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-red-500" data-mode="relaxed" style="display:none">
-    <div class="text-red-600 font-bold text-[15px]">18:30 🍽 晚餐随意</div>
-    <div class="text-lg font-semibold mt-1">古城内自由觅食 / 外卖</div>
-    <div class="text-gray-500 text-sm mt-1">想出门可以逛逛古城，不想动就点外卖<br>推荐：大同铜火锅、兔头、烧麦</div>
-  </div>
-
-  <!-- PACKED: City Wall -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-emerald-500" data-mode="packed">
-    <div class="text-emerald-600 font-bold text-[15px]">15:00 - 16:00 🏛</div>
-    <div class="text-lg font-semibold mt-1">大同古城墙（登城骑行/漫步）</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 和阳门段 ｜ ★4.7 ｜ 登城¥30<br>明代古城墙周长7.24km，可租自行车骑行一圈（约40分钟）<br>下午光线柔和，俯瞰古城全景</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚕 从温德姆打车至和阳门约10分钟</div>
-  </div>
-
-  <!-- PACKED: Jiulong Wall -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-emerald-500" data-mode="packed">
-    <div class="text-emerald-600 font-bold text-[15px]">16:10 - 17:30 🏛</div>
-    <div class="text-lg font-semibold mt-1">九龙壁 + 代王府</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 大东街18号 ｜ 九龙壁★4.7 免费 ｜ 代王府★4.6<br>中国最大最古老琉璃九龙壁，比故宫那座早250年<br>代王府为明代藩王府复建，两处相邻步行2分钟</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚶 从城墙和阳门下来步行约8分钟</div>
-  </div>
-
-  <!-- PACKED: Dinner -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-red-500" data-mode="packed">
-    <div class="text-red-600 font-bold text-[15px]">18:00 🍽 晚餐</div>
-    <div class="text-lg font-semibold mt-1">凤临阁 或 古城内探店</div>
-    <div class="text-gray-500 text-sm mt-1">Day0没吃到凤临阁可今天补上<br>也可试试铜火锅、兔头、烧麦</div>
-    <div class="text-gray-400 text-xs mt-2 italic">推荐：大同铜火锅（古城内多家）、浑源凉粉专卖店</div>
-  </div>
-
-  <!-- Hotel D1 (both) -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-blue-500">
-    <div class="text-blue-600 font-bold text-[15px]">🏨 第二晚</div>
-    <div class="text-lg font-semibold mt-1">温德姆至尊豪廷大酒店（续住）</div>
-    <div class="text-gray-500 text-sm mt-1">晚上可打车去古城墙看夜景</div>
-  </div>
-
-  <!-- ==================== DAY 2 ==================== -->
-  <div class="bg-gradient-to-r from-violet-50 to-purple-50 rounded-2xl p-4 text-center text-lg font-semibold text-violet-800 mb-4 mt-10">
-    🧭 Day 2｜5月30日（周六）— 古城深度 + 返京
-  </div>
-
-  <h2 class="text-xl font-bold text-violet-700 mb-3 pb-2 border-b-2 border-violet-200">🗓 Day 2 路线</h2>
-  <div class="w-full h-[400px] rounded-2xl overflow-hidden shadow-md mb-6" id="map2-packed" data-mode="packed"></div>
-  <div class="w-full h-[400px] rounded-2xl overflow-hidden shadow-md mb-6" id="map2-relaxed" data-mode="relaxed" style="display:none"></div>
-
-  <!-- RELAXED: Sleep in -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-blue-500" data-mode="relaxed" style="display:none">
-    <div class="text-blue-600 font-bold text-[15px]">~09:00 😴</div>
-    <div class="text-lg font-semibold mt-1">睡到自然醒</div>
-    <div class="text-gray-500 text-sm mt-1">最后一天不赶早，酒店吃个早餐慢慢收拾</div>
-  </div>
-
-  <!-- PACKED: Shanhua Temple (early) -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-violet-500" data-mode="packed">
-    <div class="text-violet-600 font-bold text-[15px]">08:00 - 09:30 🏛</div>
-    <div class="text-lg font-semibold mt-1">善化寺</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 大同古城南寺街6号 ｜ ★4.8 ｜ <b>免费</b><br>中国现存最完整的辽金寺院，比华严寺更原汁原味<br>游客少、清静，大雄宝殿内辽代壁画精美</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚕 从温德姆打车至古城约10分钟</div>
-  </div>
-
-  <!-- RELAXED: Shanhua Temple (late) -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-violet-500" data-mode="relaxed" style="display:none">
-    <div class="text-violet-600 font-bold text-[15px]">09:30 - 10:30 🏛</div>
-    <div class="text-lg font-semibold mt-1">善化寺</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 大同古城南寺街6号 ｜ ★4.8 ｜ <b>免费</b><br>中国现存最完整的辽金寺院，比华严寺更原汁原味<br>游客少、清静，大雄宝殿内辽代壁画精美</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚕 从温德姆打车至古城约10分钟</div>
-  </div>
-
-  <!-- PACKED: Fahua Temple -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-violet-500" data-mode="packed">
-    <div class="text-violet-600 font-bold text-[15px]">09:40 - 10:20 🏛</div>
-    <div class="text-lg font-semibold mt-1">法华寺</div>
-    <div class="text-gray-500 text-sm mt-1">📍 大东街137号 ｜ ★4.7 ｜ 免费<br>始建于元代，以琉璃塔闻名</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚶 从善化寺步行约15分钟</div>
-  </div>
-
-  <!-- PACKED: Ancient City Walk -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-violet-500" data-mode="packed">
-    <div class="text-violet-600 font-bold text-[15px]">10:20 - 11:00 🏛</div>
-    <div class="text-lg font-semibold mt-1">古城漫步：九龙壁 → 鼓楼 → 纯阳宫</div>
-    <div class="text-gray-500 text-sm mt-1">全部步行可达，沿途逛古城商业街，淘铜器、剪纸</div>
-  </div>
-
-  <!-- RELAXED: City stroll + lunch -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-violet-500" data-mode="relaxed" style="display:none">
-    <div class="text-violet-600 font-bold text-[15px]">10:30 - 12:30 🚶</div>
-    <div class="text-lg font-semibold mt-1">古城闲逛 + 午餐</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">不赶景点，随心逛逛古城街巷<br>找家小店吃碗刀削面或来顿铜火锅<br>推荐：紫泥369粗粮季 / 东方削面 / 古城内随缘</div>
-  </div>
-
-  <!-- PACKED: Lunch -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-red-500" data-mode="packed">
-    <div class="text-red-600 font-bold text-[15px]">11:30 🍜 午餐</div>
-    <div class="text-lg font-semibold mt-1">紫泥369粗粮季 或 东方削面</div>
-    <div class="text-gray-500 text-sm mt-1">没吃过的补上！</div>
-  </div>
-
-  <!-- PACKED: Museum -->
-  <div class="bg-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-violet-500" data-mode="packed">
-    <div class="text-violet-600 font-bold text-[15px]">13:00 - 14:30 🏛</div>
-    <div class="text-lg font-semibold mt-1">大同市博物馆</div>
-    <div class="text-gray-500 text-sm mt-1 leading-relaxed">📍 御东新区太和路506号 ｜ ★4.8 ｜ <b>免费</b><br>北魏、辽金文物精品，司马金龙墓漆画屏风（国宝级）<br>为这几天所见做个历史总结</div>
-    <div class="bg-sky-50 rounded-lg px-3 py-2 mt-2 text-sky-700 text-sm">🚕 从古城打车约15分钟</div>
-  </div>
-
-  <!-- Return Train (both) -->
-  <div class="bg-gradient-to-br from-sky-50 to-white rounded-2xl p-5 mb-3 shadow-sm border-l-4 border-sky-500">
-    <div class="text-sky-600 font-bold text-[15px]">🚄 返程推荐</div>
-    <div class="text-lg font-semibold mt-1">大同南 → 北京</div>
-    <div class="text-gray-500 text-sm mt-1" id="return-packed" data-mode="packed">博物馆14:30出来，打车10分钟到大同南站</div>
-    <div class="text-gray-500 text-sm mt-1" id="return-relaxed" data-mode="relaxed" style="display:none">午餐后直接打车去大同南站，时间充裕不赶</div>
-  </div>
-
-  <!-- Train Timetable -->
-  <div class="overflow-x-auto mb-8">
-    <table class="w-full text-sm border-collapse">
-      <thead>
-        <tr class="bg-sky-50 text-sky-800">
-          <th class="px-4 py-3 text-left font-semibold rounded-tl-xl">车次</th>
-          <th class="px-4 py-3 text-left font-semibold">发车</th>
-          <th class="px-4 py-3 text-left font-semibold">到达</th>
-          <th class="px-4 py-3 text-left font-semibold">耗时</th>
-          <th class="px-4 py-3 text-left font-semibold">终到站</th>
-          <th class="px-4 py-3 text-left font-semibold rounded-tr-xl">备注</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-100">
-        <tr class="bg-sky-50/50">
-          <td class="px-4 py-2.5 font-bold text-sky-700">G2548</td>
-          <td class="px-4 py-2.5">14:43</td><td class="px-4 py-2.5">16:36</td>
-          <td class="px-4 py-2.5">1时53分</td><td class="px-4 py-2.5">北京北</td>
-          <td class="px-4 py-2.5"><span class="bg-sky-100 text-sky-700 text-xs px-2 py-0.5 rounded-full">⚡ 最早可赶上</span></td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2.5 font-medium">G2538</td>
-          <td class="px-4 py-2.5">15:38</td><td class="px-4 py-2.5">17:57</td>
-          <td class="px-4 py-2.5">2时19分</td><td class="px-4 py-2.5">清河</td>
-          <td class="px-4 py-2.5"></td>
-        </tr>
-        <tr class="bg-amber-50/60">
-          <td class="px-4 py-2.5 font-bold text-amber-700">G2510</td>
-          <td class="px-4 py-2.5">16:10</td><td class="px-4 py-2.5">18:12</td>
-          <td class="px-4 py-2.5">2时02分</td><td class="px-4 py-2.5">北京北</td>
-          <td class="px-4 py-2.5"><span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full">⭐ 团建同车次</span></td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2.5 font-medium">G2544</td>
-          <td class="px-4 py-2.5">16:25</td><td class="px-4 py-2.5">18:24</td>
-          <td class="px-4 py-2.5">1时59分</td><td class="px-4 py-2.5">北京北</td>
-          <td class="px-4 py-2.5"></td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2.5 font-medium">D1046</td>
-          <td class="px-4 py-2.5">16:30</td><td class="px-4 py-2.5">18:53</td>
-          <td class="px-4 py-2.5">2时23分</td><td class="px-4 py-2.5">清河</td>
-          <td class="px-4 py-2.5"></td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2.5 font-medium">D1050</td>
-          <td class="px-4 py-2.5">17:17</td><td class="px-4 py-2.5">19:16</td>
-          <td class="px-4 py-2.5">1时59分</td><td class="px-4 py-2.5">清河</td>
-          <td class="px-4 py-2.5"></td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2.5 font-medium">G2524</td>
-          <td class="px-4 py-2.5">17:23</td><td class="px-4 py-2.5">19:31</td>
-          <td class="px-4 py-2.5">2时08分</td><td class="px-4 py-2.5">北京北</td>
-          <td class="px-4 py-2.5"></td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2.5 font-medium">D1120</td>
-          <td class="px-4 py-2.5">18:20</td><td class="px-4 py-2.5">20:32</td>
-          <td class="px-4 py-2.5">2时12分</td><td class="px-4 py-2.5">清河</td>
-          <td class="px-4 py-2.5"></td>
-        </tr>
-        <tr class="bg-emerald-50/50">
-          <td class="px-4 py-2.5 font-bold text-emerald-700">G2540</td>
-          <td class="px-4 py-2.5">18:36</td><td class="px-4 py-2.5">20:13</td>
-          <td class="px-4 py-2.5">1时37分</td><td class="px-4 py-2.5">清河</td>
-          <td class="px-4 py-2.5"><span class="bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-full">⚡ 全天最快</span></td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2.5 font-medium">G2550</td>
-          <td class="px-4 py-2.5">19:14</td><td class="px-4 py-2.5">20:59</td>
-          <td class="px-4 py-2.5">1时45分</td><td class="px-4 py-2.5">北京北</td>
-          <td class="px-4 py-2.5"></td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2.5 font-medium">G2528</td>
-          <td class="px-4 py-2.5">19:30</td><td class="px-4 py-2.5">21:23</td>
-          <td class="px-4 py-2.5">1时53分</td><td class="px-4 py-2.5">清河</td>
-          <td class="px-4 py-2.5"></td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2.5 font-medium">G2514</td>
-          <td class="px-4 py-2.5">19:39</td><td class="px-4 py-2.5">21:55</td>
-          <td class="px-4 py-2.5">2时16分</td><td class="px-4 py-2.5">北京北</td>
-          <td class="px-4 py-2.5"></td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2.5 font-medium">G2456</td>
-          <td class="px-4 py-2.5">20:08</td><td class="px-4 py-2.5">22:00</td>
-          <td class="px-4 py-2.5">1时52分</td><td class="px-4 py-2.5">北京北</td>
-          <td class="px-4 py-2.5"></td>
-        </tr>
-        <tr class="bg-gray-50">
-          <td class="px-4 py-2.5 font-medium text-gray-500">G2542</td>
-          <td class="px-4 py-2.5">20:59</td><td class="px-4 py-2.5">22:45</td>
-          <td class="px-4 py-2.5">1时46分</td><td class="px-4 py-2.5">清河</td>
-          <td class="px-4 py-2.5"><span class="bg-gray-200 text-gray-600 text-xs px-2 py-0.5 rounded-full">🌙 末班</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="text-gray-400 text-xs mb-8">💡 清河站可换乘地铁13号线/昌平线，北京北站即西直门。</p>
-
-  <!-- ==================== ALL MAP ==================== -->
-  <h2 class="text-xl font-bold text-gray-700 mb-3 pb-2 border-b-2 border-gray-200">🗺 全部景点汇总地图</h2>
-  <div class="flex flex-wrap gap-3 mb-2 text-xs">
-    <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-violet-600 inline-block"></span> 景点</span>
-    <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span> 餐厅</span>
-    <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-blue-500 inline-block"></span> 酒店</span>
-    <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-emerald-600 inline-block"></span> 远郊</span>
-    <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-sky-600 inline-block"></span> 车站</span>
-  </div>
-  <div class="w-full h-[500px] rounded-2xl overflow-hidden shadow-md mb-8" id="mapAll"></div>
-
-  <!-- Budget -->
-  <h2 class="text-xl font-bold text-gray-700 mb-3 pb-2 border-b-2 border-gray-200">💰 费用估算（人均）</h2>
-  <div class="overflow-x-auto mb-8">
-    <table class="w-full text-sm border-collapse">
-      <thead>
-        <tr class="bg-amber-50 text-amber-800">
-          <th class="px-4 py-3 text-left font-semibold rounded-tl-xl">项目</th>
-          <th class="px-4 py-3 text-left font-semibold">费用</th>
-          <th class="px-4 py-3 text-left font-semibold rounded-tr-xl">备注</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-100">
-        <tr><td class="px-4 py-2.5">高铁往返</td><td class="px-4 py-2.5">¥300</td><td class="px-4 py-2.5 text-gray-400">二等座约¥150/程</td></tr>
-        <tr class="bg-gray-50/50"><td class="px-4 py-2.5">云冈石窟</td><td class="px-4 py-2.5">¥120</td><td class="px-4 py-2.5 text-gray-400">Day0</td></tr>
-        <tr><td class="px-4 py-2.5">华严寺</td><td class="px-4 py-2.5">¥50</td><td class="px-4 py-2.5 text-gray-400">Day0</td></tr>
-        <tr class="bg-gray-50/50"><td class="px-4 py-2.5">悬空寺</td><td class="px-4 py-2.5">¥125</td><td class="px-4 py-2.5 text-gray-400">Day1 含登临费</td></tr>
-        <tr><td class="px-4 py-2.5">应县木塔</td><td class="px-4 py-2.5">¥50</td><td class="px-4 py-2.5 text-gray-400">Day1</td></tr>
-        <tr class="bg-gray-50/50" data-mode="packed"><td class="px-4 py-2.5">古城墙</td><td class="px-4 py-2.5">¥30</td><td class="px-4 py-2.5 text-gray-400">Day1 可选</td></tr>
-        <tr><td class="px-4 py-2.5">博物馆/善化寺等</td><td class="px-4 py-2.5">免费</td><td class="px-4 py-2.5 text-gray-400">Day2</td></tr>
-        <tr class="bg-gray-50/50"><td class="px-4 py-2.5">住宿2晚</td><td class="px-4 py-2.5">¥400-800</td><td class="px-4 py-2.5 text-gray-400">温德姆约¥300-500/晚</td></tr>
-        <tr><td class="px-4 py-2.5">餐饮（6-7顿）</td><td class="px-4 py-2.5">¥250-400</td><td class="px-4 py-2.5 text-gray-400"></td></tr>
-        <tr class="bg-gray-50/50"><td class="px-4 py-2.5">Day0+2市内交通</td><td class="px-4 py-2.5">¥120-180</td><td class="px-4 py-2.5 text-gray-400">打车</td></tr>
-        <tr><td class="px-4 py-2.5">Day1包车</td><td class="px-4 py-2.5">¥500-800</td><td class="px-4 py-2.5 text-gray-400">独享；多人分摊更便宜</td></tr>
-        <tr class="bg-amber-50 font-bold" id="budget-total-packed" data-mode="packed">
-          <td class="px-4 py-3 rounded-bl-xl">合计</td>
-          <td class="px-4 py-3">¥1200-1800</td>
-          <td class="px-4 py-3 rounded-br-xl text-gray-500 font-normal">2-3人分摊包车可省¥200-400</td>
-        </tr>
-        <tr class="bg-amber-50 font-bold" id="budget-total-relaxed" data-mode="relaxed" style="display:none">
-          <td class="px-4 py-3 rounded-bl-xl">合计</td>
-          <td class="px-4 py-3">¥1100-1650</td>
-          <td class="px-4 py-3 rounded-br-xl text-gray-500 font-normal">轻松版省去古城墙门票，少几顿正餐</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Notes -->
-  <div class="bg-amber-50/60 rounded-2xl p-6 mb-8 border border-amber-100">
-    <h2 class="text-xl font-bold text-amber-700 mb-4">📝 注意事项</h2>
-    <ul class="space-y-2 text-sm text-gray-600 leading-relaxed">
-      <li>🍽 <b>凤临阁非常热门</b>，建议提前1天电话预约或准点到</li>
-      <li>🧥 大同海拔约1000m，5月早晚偏凉（10-22°C），带件薄外套</li>
-      <li>⛰ 悬空寺旺季限流，Day1建议7:00出发争取早到</li>
-      <li>🚗 Day1包车提前联系，可让酒店帮忙安排或网上预约</li>
-      <li>🏯 应县木塔目前仅开放一层，外观拍照最壮观</li>
-      <li>🏛 善化寺游客极少，是感受辽金建筑和拍照的最佳地点</li>
-      <li>🍜 大同刀削面遍地，认准东方削面、老柴削面</li>
-      <li>🏛 大同博物馆周一闭馆（5/30是周六，OK）</li>
-      <li>📱 古城内景点密集，全部步行可达</li>
-      <li>🌙 古城墙有夜间灯光，晚上散步很有氛围</li>
-    </ul>
-  </div>
-
+<!-- Header -->
+<div class="bg-gradient-to-r from-amber-500 via-violet-500 to-emerald-500 text-white py-8 px-4 text-center">
+  <h1 class="text-3xl md:text-4xl font-bold mb-2">🏯 大同三日游攻略</h1>
+  <p class="text-lg opacity-90">5月28日-30日 ｜ 云冈石窟 · 悬空寺 · 古城探秘</p>
+  <p class="mt-2 text-sm opacity-80">两种节奏，同样精彩 — 选择你的旅行风格</p>
 </div>
 
+<!-- Mobile Toggle -->
+<div class="narrow-only sticky top-0 z-50 bg-white/90 backdrop-blur shadow-sm p-3 flex justify-center gap-3">
+  <button id="btn-relaxed" onclick="setMode('relaxed')" class="px-5 py-2 rounded-full text-sm font-semibold border-2 border-emerald-400 text-emerald-600 bg-white">🌿 轻松版</button>
+  <button id="btn-packed" onclick="setMode('packed')" class="px-5 py-2 rounded-full text-sm font-semibold border-2 border-orange-400 bg-orange-500 text-white">🔥 充实版</button>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 py-6 space-y-8">
+
+<!-- ==================== DAY 0 ==================== -->
+<section>
+  <div class="bg-gradient-to-r from-amber-400 to-amber-500 text-white rounded-2xl p-5 mb-4 text-center text-xl font-bold shadow">🌟 Day 0｜5月28日（周四）— 团建日</div>
+  <div id="map0" class="map-container mb-4 shadow"></div>
+  <div class="space-y-3">
+    <!-- Train -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-sky-400 card">
+      <div class="font-bold text-lg">🚄 08:20 → 10:06 北京北 → 大同南</div>
+      <div class="text-gray-500 text-sm mt-1">G2531｜1时46分</div>
+    </div>
+    <!-- 华严寺 -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-amber-400 card">
+      <div class="text-xs text-gray-400 mb-1">🚕 大同南站→古城约20分钟 ¥25</div>
+      <div class="font-bold text-lg">🏯 10:40-12:00 华严寺</div>
+      <div class="text-sm text-gray-500 mt-1">📍下寺坡街459号 ★4.8 ¥50</div>
+    </div>
+    <!-- 凤临阁 -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-red-400 card">
+      <div class="text-xs text-gray-400 mb-1">🚶 步行约12分钟</div>
+      <div class="font-bold text-lg">🍜 12:15 凤临阁</div>
+      <div class="text-sm text-gray-500 mt-1">📍古城内和阳街新和坊3-2号 ★4.6 ¥94/人</div>
+      <div class="text-xs text-gray-400 mt-1">备选：紫泥369粗粮季</div>
+    </div>
+    <!-- 云冈石窟 -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-amber-400 card">
+      <div class="text-xs text-gray-400 mb-1">🚕 从古城约30分钟 ¥35-45</div>
+      <div class="font-bold text-lg">🗿 14:00-17:00 云冈石窟</div>
+      <div class="text-sm text-gray-500 mt-1">📍西郊武周山南麓 ★4.9 ¥120</div>
+    </div>
+    <!-- 紫泥369 -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-red-400 card">
+      <div class="text-xs text-gray-400 mb-1">🚕 从云冈石窟约30分钟</div>
+      <div class="font-bold text-lg">🍽 18:00 紫泥369粗粮季</div>
+      <div class="text-sm text-gray-500 mt-1">📍四牌楼西北角 ★4.8 ¥62/人</div>
+    </div>
+    <!-- 夜游 -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-amber-400 card">
+      <div class="text-xs text-gray-400 mb-1">🚶 步行即达</div>
+      <div class="font-bold text-lg">🌙 19:30-21:00 古城夜游</div>
+      <div class="text-sm text-gray-500 mt-1">城墙灯光 + 代王府夜景</div>
+    </div>
+    <!-- Hotel -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-blue-500 card">
+      <div class="font-bold text-lg">🏨 温德姆至尊豪廷大酒店</div>
+      <div class="text-sm text-gray-500 mt-1">📍恒安街253号 ★4.7</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DAY 1 ==================== -->
+<section>
+  <div class="bg-gradient-to-r from-emerald-400 to-emerald-500 text-white rounded-2xl p-5 mb-4 text-center text-xl font-bold shadow">🗓 Day 1｜5月29日 — 选择你的节奏</div>
+  
+  <!-- Wide: column headers -->
+  <div class="comparison-grid wide-only mb-2">
+    <div class="text-center"><span class="inline-block bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full font-semibold">🌿 轻松版 — 古城慢游</span></div>
+    <div class="text-center"><span class="inline-block bg-orange-100 text-orange-700 px-4 py-1 rounded-full font-semibold">🔥 充实版 — 远郊探索+古城</span></div>
+  </div>
+
+  <div class="comparison-grid">
+    <!-- Relaxed Day 1 -->
+    <div data-mode="relaxed" class="space-y-3">
+      <div class="bg-emerald-50 rounded-xl p-3 text-center font-semibold text-emerald-700 lg:hidden">🌿 Day 1｜5月29日 — 古城慢游</div>
+      <div id="map1-relaxed" class="map-container shadow"></div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-red-400 card">
+        <div class="font-bold">🍜 09:00 东方削面 早餐</div>
+        <div class="text-sm text-gray-500">📍迎泽街 ★4.7 ¥16/人</div>
+        <div class="text-xs text-emerald-600 mt-1">😴 睡到自然醒</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-emerald-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚕 从温德姆约10分钟</div>
+        <div class="font-bold">🏛 10:00-11:30 善化寺</div>
+        <div class="text-sm text-gray-500">📍南寺街6号 ★4.8 免费</div>
+        <div class="text-xs text-emerald-600 mt-1">中国现存最完整辽金寺院，游客少清静</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-emerald-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚶 步行约15分钟</div>
+        <div class="font-bold">🏛 11:30-12:30 九龙壁</div>
+        <div class="text-sm text-gray-500">📍大东街18号 ★4.7 免费</div>
+        <div class="text-xs text-emerald-600 mt-1">中国最大最古老琉璃九龙壁</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-red-400 card">
+        <div class="font-bold">🍜 12:30 午餐随意</div>
+        <div class="text-xs text-emerald-600 mt-1">古城内探店，铜火锅/刀削面/烧麦</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-emerald-300 card dashed-border">
+        <div class="font-bold">☕ 14:00-15:30 自由时间</div>
+        <div class="text-xs text-emerald-600 mt-1">古城咖啡馆发呆（推荐栯茶会客厅 ★4.5）/ 回酒店休息 / 逛古城商业街</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-emerald-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚶 步行即达</div>
+        <div class="font-bold">🏛 16:00-17:00 古城墙散步</div>
+        <div class="text-sm text-gray-500">📍和阳门段 ★4.7 ¥30</div>
+        <div class="text-xs text-emerald-600 mt-1">不赶时间，傍晚光线最佳</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-red-400 card">
+        <div class="font-bold">🍽 18:00 晚餐 凤临阁或古城内</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-blue-500 card">
+        <div class="font-bold">🏨 温德姆续住</div>
+      </div>
+    </div>
+
+    <!-- Packed Day 1 -->
+    <div data-mode="packed" class="space-y-3">
+      <div class="bg-orange-50 rounded-xl p-3 text-center font-semibold text-orange-700 lg:hidden">🔥 Day 1｜5月29日 — 远郊探索+古城</div>
+      <div id="map1-packed" class="map-container shadow"></div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-red-400 card">
+        <div class="font-bold">🍜 06:30 东方削面 早餐</div>
+        <div class="text-sm text-gray-500">📍迎泽街 ★4.7 ¥16/人</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-emerald-400 card">
+        <div class="font-bold">🚗 07:00 包车出发</div>
+        <div class="text-xs text-orange-600 mt-1">轿车¥500-600/天，7座¥700-800</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-emerald-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚗 约1.5小时 70km</div>
+        <div class="font-bold">⛰ 08:30-10:30 悬空寺</div>
+        <div class="text-sm text-gray-500">📍浑源县恒山山腰 ★4.8 ¥125</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-emerald-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚗 约50分钟 52km</div>
+        <div class="font-bold">🏯 11:30-12:30 应县木塔</div>
+        <div class="text-sm text-gray-500">📍应元街1号 ★4.9 ¥50</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-red-400 card">
+        <div class="font-bold">🍜 12:30 应县午餐</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-emerald-400 card">
+        <div class="font-bold">🚗 14:00 返回大同</div>
+        <div class="text-sm text-gray-500">约1h 68km</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-emerald-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚕 从温德姆约10分钟</div>
+        <div class="font-bold">🏛 15:00-16:00 古城墙骑行</div>
+        <div class="text-sm text-gray-500">📍和阳门 ★4.7 ¥30</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-emerald-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚶 步行约8分钟</div>
+        <div class="font-bold">🏛 16:10-17:30 九龙壁+代王府</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-red-400 card">
+        <div class="font-bold">🍽 18:00 晚餐</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-blue-500 card">
+        <div class="font-bold">🏨 温德姆续住</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DAY 2 ==================== -->
+<section>
+  <div class="bg-gradient-to-r from-violet-400 to-violet-500 text-white rounded-2xl p-5 mb-4 text-center text-xl font-bold shadow">🗓 Day 2｜5月30日 — 最后一天+返京</div>
+
+  <div class="comparison-grid wide-only mb-2">
+    <div class="text-center"><span class="inline-block bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full font-semibold">🌿 轻松版 — 悬空寺+木塔+返京</span></div>
+    <div class="text-center"><span class="inline-block bg-orange-100 text-orange-700 px-4 py-1 rounded-full font-semibold">🔥 充实版 — 古城深度+返京</span></div>
+  </div>
+
+  <div class="comparison-grid">
+    <!-- Relaxed Day 2 -->
+    <div data-mode="relaxed" class="space-y-3">
+      <div class="bg-emerald-50 rounded-xl p-3 text-center font-semibold text-emerald-700 lg:hidden">🌿 Day 2｜5月30日 — 悬空寺+木塔+返京</div>
+      <div id="map2-relaxed" class="map-container shadow"></div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-violet-400 card">
+        <div class="font-bold">🚗 08:00 包车出发</div>
+        <div class="text-xs text-gray-500 mt-1">退房寄存行李或带上车</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-violet-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚗 约1.5小时</div>
+        <div class="font-bold">⛰ 09:30-11:00 悬空寺</div>
+        <div class="text-sm text-gray-500">📍浑源县恒山山腰 ★4.8 ¥125</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-violet-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚗 约50分钟</div>
+        <div class="font-bold">🏯 11:50-12:30 应县木塔</div>
+        <div class="text-sm text-gray-500">📍应元街1号 ★4.9 ¥50</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-red-400 card">
+        <div class="font-bold">🍜 12:30 应县午餐</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-violet-400 card">
+        <div class="font-bold">🚗 13:30 应县→大同南站</div>
+        <div class="text-xs text-violet-600 mt-1">不走回头路！从应县直奔大同南站约1h 68km</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-sky-400 card">
+        <div class="font-bold">🚄 返程</div>
+        <div class="text-sm text-gray-500 mt-1">推荐：14:43 G2548 或 15:38 G2538</div>
+      </div>
+    </div>
+
+    <!-- Packed Day 2 -->
+    <div data-mode="packed" class="space-y-3">
+      <div class="bg-orange-50 rounded-xl p-3 text-center font-semibold text-orange-700 lg:hidden">🔥 Day 2｜5月30日 — 古城深度+返京</div>
+      <div id="map2-packed" class="map-container shadow"></div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-violet-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚕 从温德姆约10分钟</div>
+        <div class="font-bold">🏛 08:00-09:30 善化寺</div>
+        <div class="text-sm text-gray-500">📍南寺街6号 ★4.8 免费</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-violet-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚶 步行约15分钟</div>
+        <div class="font-bold">🏛 09:40-10:20 法华寺</div>
+        <div class="text-sm text-gray-500">📍大东街137号 ★4.7 免费</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-violet-400 card">
+        <div class="font-bold">🏛 10:20-11:00 古城漫步</div>
+        <div class="text-sm text-gray-500">九龙壁→鼓楼→纯阳宫</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-red-400 card">
+        <div class="font-bold">🍜 11:30 午餐 紫泥369或东方削面</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-violet-400 card">
+        <div class="text-xs text-gray-400 mb-1">🚕 从古城约15分钟</div>
+        <div class="font-bold">🏛 13:00-14:30 大同博物馆</div>
+        <div class="text-sm text-gray-500">📍太和路506号 ★4.8 免费</div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-sky-400 card">
+        <div class="font-bold">🚄 返程</div>
+        <div class="text-xs text-gray-500 mt-1">博物馆14:30出来，打车10分钟到大同南站</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRAIN TIMETABLE ==================== -->
+<section>
+  <div class="bg-gradient-to-r from-sky-400 to-sky-500 text-white rounded-2xl p-5 mb-4 text-center text-xl font-bold shadow">🚄 大同南→北京 返程列车时刻表</div>
+  <div class="overflow-x-auto">
+    <table class="w-full bg-white rounded-2xl shadow-sm text-sm">
+      <thead class="bg-sky-50">
+        <tr><th class="p-3 text-left">车次</th><th class="p-3">出发</th><th class="p-3">到达</th><th class="p-3">用时</th><th class="p-3">终点站</th><th class="p-3">备注</th></tr>
+      </thead>
+      <tbody>
+        <tr class="border-t bg-amber-50 font-semibold"><td class="p-3">G2548</td><td class="p-3">14:43</td><td class="p-3">16:36</td><td class="p-3">1时53分</td><td class="p-3">北京北</td><td class="p-3">⚡最早可赶上</td></tr>
+        <tr class="border-t"><td class="p-3">G2538</td><td class="p-3">15:38</td><td class="p-3">17:57</td><td class="p-3">2时19分</td><td class="p-3">清河</td><td class="p-3"></td></tr>
+        <tr class="border-t bg-emerald-50 font-semibold"><td class="p-3">G2510</td><td class="p-3">16:10</td><td class="p-3">18:12</td><td class="p-3">2时02分</td><td class="p-3">北京北</td><td class="p-3">⭐团建同车次</td></tr>
+        <tr class="border-t"><td class="p-3">G2544</td><td class="p-3">16:25</td><td class="p-3">18:24</td><td class="p-3">1时59分</td><td class="p-3">北京北</td><td class="p-3"></td></tr>
+        <tr class="border-t"><td class="p-3">D1046</td><td class="p-3">16:30</td><td class="p-3">18:53</td><td class="p-3">2时23分</td><td class="p-3">清河</td><td class="p-3"></td></tr>
+        <tr class="border-t"><td class="p-3">D1050</td><td class="p-3">17:17</td><td class="p-3">19:16</td><td class="p-3">1时59分</td><td class="p-3">清河</td><td class="p-3"></td></tr>
+        <tr class="border-t"><td class="p-3">G2524</td><td class="p-3">17:23</td><td class="p-3">19:31</td><td class="p-3">2时08分</td><td class="p-3">北京北</td><td class="p-3"></td></tr>
+        <tr class="border-t"><td class="p-3">D1120</td><td class="p-3">18:20</td><td class="p-3">20:32</td><td class="p-3">2时12分</td><td class="p-3">清河</td><td class="p-3"></td></tr>
+        <tr class="border-t bg-sky-50 font-semibold"><td class="p-3">G2540</td><td class="p-3">18:36</td><td class="p-3">20:13</td><td class="p-3">1时37分</td><td class="p-3">清河</td><td class="p-3">⚡全天最快</td></tr>
+        <tr class="border-t"><td class="p-3">G2550</td><td class="p-3">19:14</td><td class="p-3">20:59</td><td class="p-3">1时45分</td><td class="p-3">北京北</td><td class="p-3"></td></tr>
+        <tr class="border-t"><td class="p-3">G2528</td><td class="p-3">19:30</td><td class="p-3">21:23</td><td class="p-3">1时53分</td><td class="p-3">清河</td><td class="p-3"></td></tr>
+        <tr class="border-t"><td class="p-3">G2514</td><td class="p-3">19:39</td><td class="p-3">21:55</td><td class="p-3">2时16分</td><td class="p-3">北京北</td><td class="p-3"></td></tr>
+        <tr class="border-t"><td class="p-3">G2456</td><td class="p-3">20:08</td><td class="p-3">22:00</td><td class="p-3">1时52分</td><td class="p-3">北京北</td><td class="p-3"></td></tr>
+        <tr class="border-t bg-gray-50"><td class="p-3">G2542</td><td class="p-3">20:59</td><td class="p-3">22:45</td><td class="p-3">1时46分</td><td class="p-3">清河</td><td class="p-3">🌙末班</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="text-xs text-gray-400 mt-2 text-center">清河站换乘地铁13号线/昌平线，北京北站即西直门</div>
+</section>
+
+<!-- ==================== ALL POI MAP ==================== -->
+<section>
+  <div class="bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-2xl p-5 mb-4 text-center text-xl font-bold shadow">🗺 全部景点总览</div>
+  <div id="mapAll" class="map-container shadow" style="height:450px;"></div>
+</section>
+
+<!-- ==================== BUDGET ==================== -->
+<section>
+  <div class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-2xl p-5 mb-4 text-center text-xl font-bold shadow">💰 预算估算</div>
+  <div class="overflow-x-auto">
+    <table class="w-full bg-white rounded-2xl shadow-sm text-sm">
+      <thead class="bg-yellow-50"><tr><th class="p-3 text-left">项目</th><th class="p-3">费用</th><th class="p-3">版本</th></tr></thead>
+      <tbody>
+        <tr class="border-t"><td class="p-3">🚄 高铁往返</td><td class="p-3">¥300</td><td class="p-3">共同</td></tr>
+        <tr class="border-t"><td class="p-3">🏯 华严寺</td><td class="p-3">¥50</td><td class="p-3">共同</td></tr>
+        <tr class="border-t"><td class="p-3">🗿 云冈石窟</td><td class="p-3">¥120</td><td class="p-3">共同</td></tr>
+        <tr class="border-t"><td class="p-3">⛰ 悬空寺</td><td class="p-3">¥125</td><td class="p-3">共同</td></tr>
+        <tr class="border-t"><td class="p-3">🏯 应县木塔</td><td class="p-3">¥50</td><td class="p-3">共同</td></tr>
+        <tr class="border-t"><td class="p-3">🏛 古城墙</td><td class="p-3">¥30</td><td class="p-3">共同</td></tr>
+        <tr class="border-t"><td class="p-3">🏨 住宿2晚</td><td class="p-3">¥400-800</td><td class="p-3">共同</td></tr>
+        <tr class="border-t"><td class="p-3">🍜 餐饮</td><td class="p-3">¥250-400</td><td class="p-3">共同</td></tr>
+        <tr class="border-t bg-emerald-50"><td class="p-3">🚗 Day2包车（轻松版）</td><td class="p-3">¥500-800</td><td class="p-3">🌿</td></tr>
+        <tr class="border-t bg-emerald-50"><td class="p-3">🚕 Day1市内交通（轻松版）</td><td class="p-3">¥80</td><td class="p-3">🌿</td></tr>
+        <tr class="border-t bg-orange-50"><td class="p-3">🚗 Day1包车（充实版）</td><td class="p-3">¥500-800</td><td class="p-3">🔥</td></tr>
+        <tr class="border-t bg-orange-50"><td class="p-3">🚕 Day2市内交通（充实版）</td><td class="p-3">¥80</td><td class="p-3">🔥</td></tr>
+        <tr class="border-t bg-yellow-100 font-bold"><td class="p-3">合计</td><td class="p-3">¥1200-1800</td><td class="p-3">两版相近</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== NOTES ==================== -->
+<section>
+  <div class="bg-gradient-to-r from-gray-400 to-gray-500 text-white rounded-2xl p-5 mb-4 text-center text-xl font-bold shadow">📝 贴心提示</div>
+  <div class="bg-white rounded-2xl p-5 shadow-sm space-y-2 text-sm text-gray-600">
+    <p>🎫 云冈石窟、悬空寺建议提前在公众号/携程预约购票</p>
+    <p>🚗 包车可在携程/美团预约，或让酒店前台帮忙叫车</p>
+    <p>👟 悬空寺台阶陡峭，穿舒适防滑鞋</p>
+    <p>🌡 5月底大同早晚温差大（10-25°C），带件薄外套</p>
+    <p>📱 善化寺、法华寺等免费景点无需预约，直接去</p>
+    <p>🧳 Day2退房后可寄存行李在酒店前台</p>
+    <p>💡 两个版本核心景点一样（华严寺+云冈+悬空寺+木塔），只是Day1/Day2安排对调</p>
+  </div>
+</section>
+
+</div><!-- max-w-7xl -->
+
+<footer class="text-center text-xs text-gray-400 py-6">大同三日游攻略 v2.0 ｜ 轻松版 & 充实版</footer>
+
 <script>
-// Current mode state
+const TILE = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+const ATTR = '&copy; OpenStreetMap &copy; CARTO';
+const maps = {};
 let currentMode = 'packed';
+
+function marker(map, lat, lng, color, label) {
+  return L.marker([lat, lng], {
+    icon: L.divIcon({
+      className: 'leaflet-div-icon',
+      html: `<div style="background:${color};color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">${label}</div>`,
+      iconSize: [28, 28], iconAnchor: [14, 14]
+    })
+  }).addTo(map);
+}
+
+function distLabel(map, lat1, lng1, lat2, lng2, text) {
+  const lat = (lat1+lat2)/2, lng = (lng1+lng2)/2;
+  L.marker([lat, lng], {
+    icon: L.divIcon({
+      className: 'leaflet-div-icon',
+      html: `<div style="background:#fff;padding:2px 6px;border-radius:8px;font-size:10px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.2);color:#555">${text}</div>`,
+      iconSize: [80, 20], iconAnchor: [40, 10]
+    })
+  }).addTo(map);
+}
+
+function initMap(id, stops, zoom, lines, distLabels) {
+  const el = document.getElementById(id);
+  if (!el) return null;
+  const m = L.map(id).setView([stops[0].lat, stops[0].lng], zoom || 12);
+  L.tileLayer(TILE, {attribution: ATTR, maxZoom: 18}).addTo(m);
+  const coords = [];
+  stops.forEach(s => {
+    marker(m, s.lat, s.lng, s.color, s.label);
+    coords.push([s.lat, s.lng]);
+  });
+  if (lines !== false) L.polyline(coords, {color: '#6366f1', weight: 2, opacity: 0.5, dashArray: '6,8'}).addTo(m);
+  if (distLabels) distLabels.forEach(d => distLabel(m, d[0], d[1], d[2], d[3], d[4]));
+  m.fitBounds(coords, {padding: [30, 30]});
+  return m;
+}
+
+function initAllMaps() {
+  // Map 0
+  maps.map0 = initMap('map0', [
+    {lat:40.046162,lng:113.365088,color:'#0369a1',label:'🚄'},
+    {lat:40.092531,lng:113.295060,color:'#7c3aed',label:'①'},
+    {lat:40.093159,lng:113.309812,color:'#dc2626',label:'②'},
+    {lat:40.113157,lng:113.137763,color:'#7c3aed',label:'③'},
+    {lat:40.093742,lng:113.301951,color:'#dc2626',label:'④'},
+    {lat:40.095887,lng:113.304299,color:'#7c3aed',label:'⑤'},
+    {lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
+  ], 12);
+
+  // Map 1 relaxed
+  maps['map1-relaxed'] = initMap('map1-relaxed', [
+    {lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
+    {lat:40.087041,lng:113.300335,color:'#059669',label:'A'},
+    {lat:40.093042,lng:113.303979,color:'#059669',label:'B'},
+    {lat:40.084584,lng:113.302262,color:'#059669',label:'C'},
+  ], 14);
+
+  // Map 1 packed
+  maps['map1-packed'] = initMap('map1-packed', [
+    {lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
+    {lat:39.661139,lng:113.715781,color:'#059669',label:'A'},
+    {lat:39.566465,lng:113.188831,color:'#059669',label:'B'},
+    {lat:40.084584,lng:113.302262,color:'#7c3aed',label:'C'},
+    {lat:40.093042,lng:113.303979,color:'#7c3aed',label:'D'},
+  ], 9, true, [
+    [40.075386,113.342009,39.661139,113.715781,'70km 1.5h'],
+    [39.661139,113.715781,39.566465,113.188831,'52km 50min'],
+    [39.566465,113.188831,40.084584,113.302262,'68km 1h'],
+  ]);
+
+  // Map 2 relaxed
+  maps['map2-relaxed'] = initMap('map2-relaxed', [
+    {lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
+    {lat:39.661139,lng:113.715781,color:'#059669',label:'A'},
+    {lat:39.566465,lng:113.188831,color:'#059669',label:'B'},
+    {lat:40.046162,lng:113.365088,color:'#0369a1',label:'🚄'},
+  ], 9, true, [
+    [40.075386,113.342009,39.661139,113.715781,'64km 1.5h'],
+    [39.661139,113.715781,39.566465,113.188831,'52km 1h'],
+    [39.566465,113.188831,40.046162,113.365088,'68km 1h'],
+  ]);
+
+  // Map 2 packed
+  maps['map2-packed'] = initMap('map2-packed', [
+    {lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
+    {lat:40.087041,lng:113.300335,color:'#7c3aed',label:'A'},
+    {lat:40.094551,lng:113.310478,color:'#7c3aed',label:'B'},
+    {lat:40.091466,lng:113.302265,color:'#7c3aed',label:'C'},
+    {lat:40.090880,lng:113.364794,color:'#7c3aed',label:'D'},
+    {lat:40.046162,lng:113.365088,color:'#0369a1',label:'🚄'},
+  ], 13);
+
+  // All POI map
+  const allMap = L.map('mapAll').setView([40.0, 113.35], 10);
+  L.tileLayer(TILE, {attribution: ATTR, maxZoom: 18}).addTo(allMap);
+  maps.mapAll = allMap;
+
+  const day0 = L.layerGroup(), day1r = L.layerGroup(), day1p = L.layerGroup(), day2r = L.layerGroup(), day2p = L.layerGroup();
+  const allPois = [
+    // Day 0
+    [40.046162,113.365088,'#0369a1','🚄','大同南站', day0],
+    [40.092531,113.295060,'#f59e0b','①','华严寺', day0],
+    [40.093159,113.309812,'#dc2626','🍜','凤临阁', day0],
+    [40.113157,113.137763,'#f59e0b','③','云冈石窟', day0],
+    [40.093742,113.301951,'#dc2626','🍽','紫泥369', day0],
+    [40.095887,113.304299,'#f59e0b','⑤','古城夜游', day0],
+    [40.075386,113.342009,'#2563eb','H','温德姆酒店', day0],
+    // Day 1 relaxed
+    [40.087041,113.300335,'#059669','A','善化寺', day1r],
+    [40.093042,113.303979,'#059669','B','九龙壁', day1r],
+    [40.084584,113.302262,'#059669','C','古城墙', day1r],
+    // Day 1 packed
+    [39.661139,113.715781,'#059669','A','悬空寺', day1p],
+    [39.566465,113.188831,'#059669','B','应县木塔', day1p],
+    // Day 2 packed
+    [40.094551,113.310478,'#7c3aed','B','法华寺', day2p],
+    [40.090880,113.364794,'#7c3aed','D','大同博物馆', day2p],
+  ];
+  const allCoords = [];
+  allPois.forEach(p => {
+    const m = L.marker([p[0],p[1]], {
+      icon: L.divIcon({
+        className:'leaflet-div-icon',
+        html:`<div style="background:${p[2]};color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3)">${p[3]}</div>`,
+        iconSize:[24,24],iconAnchor:[12,12]
+      })
+    }).bindPopup(`<b>${p[4]}</b>`);
+    p[5].addLayer(m);
+    allCoords.push([p[0],p[1]]);
+  });
+  [day0,day1r,day1p,day2r,day2p].forEach(g=>g.addTo(allMap));
+  L.control.layers(null, {
+    'Day 0 团建日': day0,
+    'Day 1 轻松版': day1r,
+    'Day 1 充实版': day1p,
+    'Day 2 轻松版': day2r,
+    'Day 2 充实版': day2p,
+  }, {collapsed: false}).addTo(allMap);
+  allMap.fitBounds(allCoords, {padding:[30,30]});
+}
 
 function setMode(mode) {
   currentMode = mode;
-  // Update toggle buttons
-  const btnR = document.getElementById('btn-relaxed');
-  const btnP = document.getElementById('btn-packed');
-  if (mode === 'relaxed') {
-    btnR.className = 'px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 border-2 border-emerald-500 bg-emerald-600 text-white shadow-md';
-    btnP.className = 'px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 border-2 border-orange-400 text-orange-600 bg-white hover:bg-orange-50';
-  } else {
-    btnR.className = 'px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 border-2 border-emerald-400 text-emerald-600 bg-white hover:bg-emerald-50';
-    btnP.className = 'px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 border-2 border-orange-500 bg-orange-500 text-white shadow-md';
-  }
-  // Show/hide elements with data-mode
+  const isWide = window.innerWidth >= 1024;
   document.querySelectorAll('[data-mode]').forEach(el => {
-    const elMode = el.getAttribute('data-mode');
-    if (elMode === mode) {
+    if (isWide) {
       el.style.display = '';
     } else {
-      el.style.display = 'none';
+      el.style.display = el.dataset.mode === mode ? '' : 'none';
     }
   });
-  // Invalidate map sizes for newly visible maps
-  setTimeout(() => {
-    if (mode === 'relaxed') {
-      if (window.map1Relaxed) window.map1Relaxed.invalidateSize();
-      if (window.map2Relaxed) window.map2Relaxed.invalidateSize();
-    } else {
-      if (window.map1Packed) window.map1Packed.invalidateSize();
-      if (window.map2Packed) window.map2Packed.invalidateSize();
-    }
-  }, 100);
+  document.getElementById('btn-relaxed').className = mode === 'relaxed'
+    ? 'px-5 py-2 rounded-full text-sm font-semibold border-2 border-emerald-400 bg-emerald-500 text-white'
+    : 'px-5 py-2 rounded-full text-sm font-semibold border-2 border-emerald-400 text-emerald-600 bg-white';
+  document.getElementById('btn-packed').className = mode === 'packed'
+    ? 'px-5 py-2 rounded-full text-sm font-semibold border-2 border-orange-400 bg-orange-500 text-white'
+    : 'px-5 py-2 rounded-full text-sm font-semibold border-2 border-orange-400 text-orange-600 bg-white';
+  setTimeout(() => { Object.values(maps).forEach(m => m?.invalidateSize()); }, 100);
 }
 
-function makeIcon(color,label){
-  return L.divIcon({className:'',html:`<div style="background:${color};color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">${label}</div>`,iconSize:[28,28],iconAnchor:[14,14]});
-}
-function addRoute(map,stops){
-  const coords=[];
-  stops.forEach(s=>{
-    L.marker([s.lat,s.lng],{icon:makeIcon(s.color,s.label)}).addTo(map).bindTooltip(s.name,{permanent:true,direction:'right',offset:[14,0]});
-    coords.push([s.lat,s.lng]);
-  });
-  for(let i=0;i<coords.length-1;i++){
-    L.polyline([coords[i],coords[i+1]],{color:stops[i+1].line||'#059669',weight:3,dashArray:stops[i+1].walk?'8 6':'',opacity:.7}).addTo(map);
-  }
-  return coords;
-}
-const tile=s=>{L.tileLayer('https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'© OSM & CARTO'}).addTo(s);return s;};
+window.addEventListener('resize', () => setMode(currentMode));
 
-// Day 0
-(function(){
-  const m=tile(L.map('map0').setView([40.09,113.25],12));
-  const s=[
-    {name:"🚄 大同南站",lat:40.046162,lng:113.365088,color:'#0369a1',label:'🚄',line:'#ef4444'},
-    {name:"① 华严寺",lat:40.092531,lng:113.295060,color:'#7c3aed',label:'1',line:'#ef4444'},
-    {name:"② 凤临阁(午)",lat:40.093159,lng:113.309812,color:'#dc2626',label:'2',line:'#059669',walk:true},
-    {name:"③ 云冈石窟",lat:40.113157,lng:113.137763,color:'#7c3aed',label:'3',line:'#ef4444'},
-    {name:"④ 紫泥369(晚)",lat:40.093742,lng:113.301951,color:'#dc2626',label:'4',line:'#ef4444'},
-    {name:"⑤ 古城夜游",lat:40.095887,lng:113.304299,color:'#7c3aed',label:'5',line:'#059669',walk:true},
-    {name:"H 温德姆酒店",lat:40.075386,lng:113.342009,color:'#2563eb',label:'H',line:'#ef4444'},
-  ];
-  const c=addRoute(m,s);m.fitBounds(c,{padding:[40,40]});
-})();
-
-// Day 1 - Packed
-(function(){
-  const m=tile(L.map('map1-packed').setView([39.85,113.35],9));
-  window.map1Packed = m;
-  const pts=[
-    {name:"H 温德姆出发",lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
-    {name:"A 悬空寺",lat:39.661139,lng:113.715781,color:'#059669',label:'A'},
-    {name:"B 应县木塔",lat:39.566465,lng:113.188831,color:'#059669',label:'B'},
-    {name:"C 古城墙",lat:40.084584,lng:113.302262,color:'#7c3aed',label:'C'},
-    {name:"D 九龙壁",lat:40.093042,lng:113.303979,color:'#7c3aed',label:'D'},
-  ];
-  pts.forEach(p=>{L.marker([p.lat,p.lng],{icon:makeIcon(p.color,p.label)}).addTo(m).bindTooltip(p.name,{permanent:true,direction:'right',offset:[14,0]});});
-  const route=pts.map(p=>[p.lat,p.lng]);
-  for(let i=0;i<route.length-1;i++) L.polyline([route[i],route[i+1]],{color:'#059669',weight:3,opacity:.7}).addTo(m);
-  const dists=["70km 1.5h","58km 50min","67km 1h",""];
-  for(let i=0;i<3;i++){
-    const mid=[(route[i][0]+route[i+1][0])/2,(route[i][1]+route[i+1][1])/2];
-    L.marker(mid,{icon:L.divIcon({className:'',html:`<div style="background:#fff;border:1px solid #059669;border-radius:6px;padding:2px 8px;font-size:11px;color:#059669;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.1)">🚗 ${dists[i]}</div>`,iconSize:[0,0]})}).addTo(m);
-  }
-  m.fitBounds(route,{padding:[40,40]});
-})();
-
-// Day 1 - Relaxed (fewer stops)
-(function(){
-  const m=tile(L.map('map1-relaxed').setView([39.85,113.35],9));
-  window.map1Relaxed = m;
-  const pts=[
-    {name:"H 温德姆出发",lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
-    {name:"A 悬空寺",lat:39.661139,lng:113.715781,color:'#059669',label:'A'},
-    {name:"B 应县木塔",lat:39.566465,lng:113.188831,color:'#059669',label:'B'},
-    {name:"H 返回酒店",lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
-  ];
-  pts.forEach(p=>{L.marker([p.lat,p.lng],{icon:makeIcon(p.color,p.label)}).addTo(m).bindTooltip(p.name,{permanent:true,direction:'right',offset:[14,0]});});
-  const route=pts.map(p=>[p.lat,p.lng]);
-  for(let i=0;i<route.length-1;i++) L.polyline([route[i],route[i+1]],{color:'#059669',weight:3,opacity:.7}).addTo(m);
-  const dists=["70km 1.5h","58km 50min","67km 1h"];
-  for(let i=0;i<3;i++){
-    const mid=[(route[i][0]+route[i+1][0])/2,(route[i][1]+route[i+1][1])/2];
-    L.marker(mid,{icon:L.divIcon({className:'',html:`<div style="background:#fff;border:1px solid #059669;border-radius:6px;padding:2px 8px;font-size:11px;color:#059669;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.1)">🚗 ${dists[i]}</div>`,iconSize:[0,0]})}).addTo(m);
-  }
-  m.fitBounds(route,{padding:[40,40]});
-})();
-
-// Day 2 - Packed
-(function(){
-  const m=tile(L.map('map2-packed').setView([40.09,113.30],13));
-  window.map2Packed = m;
-  const s=[
-    {name:"H 温德姆酒店",lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
-    {name:"A 善化寺",lat:40.087041,lng:113.300335,color:'#7c3aed',label:'A',line:'#ef4444'},
-    {name:"B 法华寺",lat:40.094551,lng:113.310478,color:'#7c3aed',label:'B',line:'#7c3aed',walk:true},
-    {name:"C 九龙壁/鼓楼",lat:40.091466,lng:113.302265,color:'#7c3aed',label:'C',line:'#7c3aed',walk:true},
-    {name:"D 博物馆",lat:40.090880,lng:113.364794,color:'#7c3aed',label:'D',line:'#ef4444'},
-    {name:"🚄 大同南站",lat:40.046162,lng:113.365088,color:'#0369a1',label:'🚄',line:'#ef4444'},
-  ];
-  const c=addRoute(m,s);m.fitBounds(c,{padding:[40,40]});
-})();
-
-// Day 2 - Relaxed (fewer stops)
-(function(){
-  const m=tile(L.map('map2-relaxed').setView([40.09,113.30],13));
-  window.map2Relaxed = m;
-  const s=[
-    {name:"H 温德姆酒店",lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
-    {name:"A 善化寺",lat:40.087041,lng:113.300335,color:'#7c3aed',label:'A',line:'#ef4444'},
-    {name:"B 古城闲逛+午餐",lat:40.092531,lng:113.301951,color:'#dc2626',label:'B',line:'#7c3aed',walk:true},
-    {name:"🚄 大同南站",lat:40.046162,lng:113.365088,color:'#0369a1',label:'🚄',line:'#ef4444'},
-  ];
-  const c=addRoute(m,s);m.fitBounds(c,{padding:[40,40]});
-})();
-
-// All POI
-(function(){
-  const m=tile(L.map('mapAll').setView([39.85,113.35],9));
-  const groups={
-    '🏛 古城景点':{color:'#7c3aed',data:[
-      {name:"华严寺",lat:40.092531,lng:113.295060,info:"★4.8 ¥50"},
-      {name:"善化寺",lat:40.087041,lng:113.300335,info:"★4.8 免费"},
-      {name:"九龙壁",lat:40.093042,lng:113.303979,info:"★4.7 免费"},
-      {name:"法华寺",lat:40.094551,lng:113.310478,info:"★4.7 免费"},
-      {name:"古城墙",lat:40.084584,lng:113.302262,info:"★4.7 ¥30"},
-      {name:"代王府",lat:40.095887,lng:113.304299,info:"★4.6"},
-      {name:"鼓楼",lat:40.091466,lng:113.302265,info:"★4.7"},
-      {name:"纯阳宫",lat:40.091922,lng:113.300759,info:"★4.6"},
-      {name:"大同博物馆",lat:40.090880,lng:113.364794,info:"★4.8 免费"},
-    ]},
-    '🗿 核心景区':{color:'#b45309',data:[
-      {name:"云冈石窟",lat:40.113157,lng:113.137763,info:"★4.9 ¥120"},
-    ]},
-    '⛰ 远郊':{color:'#059669',data:[
-      {name:"悬空寺",lat:39.661139,lng:113.715781,info:"★4.8 ¥125"},
-      {name:"应县木塔",lat:39.566465,lng:113.188831,info:"★4.9 ¥50"},
-      {name:"北岳恒山",lat:39.669540,lng:113.727792,info:"★4.7 ¥45（可选）"},
-    ]},
-    '🍽 餐厅':{color:'#dc2626',data:[
-      {name:"凤临阁",lat:40.093159,lng:113.309812,info:"★4.6 ¥94/人"},
-      {name:"紫泥369粗粮季",lat:40.093742,lng:113.301951,info:"★4.8 ¥62/人"},
-      {name:"东方削面",lat:40.088864,lng:113.284127,info:"★4.7 ¥16/人"},
-      {name:"老柴削面",lat:40.106078,lng:113.365082,info:"★4.4 ¥17/人"},
-    ]},
-    '🏨 酒店':{color:'#2563eb',data:[
-      {name:"温德姆至尊豪廷",lat:40.075386,lng:113.342009,info:"★4.7 恒安街"},
-    ]},
-    '🚄 车站':{color:'#0369a1',data:[
-      {name:"大同南站",lat:40.046162,lng:113.365088,info:"高铁站"},
-    ]},
-  };
-  const all=[];const layers={};
-  for(const[cat,{color,data}]of Object.entries(groups)){
-    const lg=L.layerGroup();
-    data.forEach(p=>{
-      L.marker([p.lat,p.lng],{icon:makeIcon(color,cat[0])}).bindPopup(`<b>${p.name}</b><br>${p.info}`).bindTooltip(p.name,{direction:'right',offset:[14,0]}).addTo(lg);
-      all.push([p.lat,p.lng]);
-    });
-    lg.addTo(m);layers[cat]=lg;
-  }
-  L.control.layers(null,layers,{collapsed:false}).addTo(m);
-  m.fitBounds(all,{padding:[40,40]});
-})();
+document.addEventListener('DOMContentLoaded', () => {
+  initAllMaps();
+  setMode('packed');
+});
 </script>
 </body>
 </html>

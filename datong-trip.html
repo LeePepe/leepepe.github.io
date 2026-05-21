@@ -63,7 +63,7 @@ h3{font-size:1.15em;color:#555;margin:20px 0 10px}
 <li><b>Day 0（5/28 周四）：</b><span class="tag">团建日</span> 北京→大同 → 华严寺 → 午餐 → 云冈石窟 → 晚餐 → 酒店</li>
 <li><b>Day 1（5/29 周五）：</b><span class="tag">远郊一日</span> 包车 → 悬空寺 → 应县木塔 → 返回大同</li>
 <li><b>Day 2（5/30 周六）：</b><span class="tag">古城深度</span> 善化寺 → 古城漫步 → 大同博物馆 → 返京</li>
-<li><b>住宿：</b>推荐花园大饭店（古城内 ★4.8）连住2晚</li>
+<li><b>住宿：</b>推荐温德姆至尊豪廷大酒店（恒安街 ★4.7）连住2晚</li>
 <li><b>费用估算：</b>约 ¥1200-1800/人（含2晚住宿、门票、餐饮、交通、包车）</li>
 </ul>
 </div>
@@ -109,9 +109,8 @@ h3{font-size:1.15em;color:#555;margin:20px 0 10px}
 
 <div class="card hotel">
 <div class="time">🏨 入住</div>
-<div class="name">花园大饭店</div>
-<div class="meta">📍 永泰街93号（古城内）｜ ★4.8<br>晚饭后可逛古城夜景、城墙灯光</div>
-<div class="alt">备选：福朋喜来登 ★4.8 ｜ 金地豪生 ★4.7</div>
+大同温德姆至尊豪廷大酒店</div>
+<div class="meta">📍 恒安街253号 ｜ ★4.7<br>距古城约3km，打车10分钟；晚饭后可打车去古城逛夜景</div>
 </div>
 
 <!-- ==================== DAY 1 ==================== -->
@@ -167,8 +166,8 @@ h3{font-size:1.15em;color:#555;margin:20px 0 10px}
 
 <div class="card hotel">
 <div class="time">🏨 第二晚</div>
-<div class="name">花园大饭店（续住）</div>
-<div class="meta">晚上可登古城墙看夜景（夜间有灯光）</div>
+<div class="name">温德姆至尊豪廷大酒店（续住）</div>
+<div class="meta">晚上可打车去古城墙看夜景</div>
 </div>
 
 <!-- ==================== DAY 2 ==================== -->
@@ -180,7 +179,7 @@ h3{font-size:1.15em;color:#555;margin:20px 0 10px}
 <div class="time">08:00 - 09:30 🏛</div>
 <div class="name">善化寺</div>
 <div class="meta">📍 大同古城南寺街6号 ｜ ★4.8 ｜ <b>免费</b><br>中国现存最完整的辽金寺院，比华严寺更原汁原味<br>游客少、清静、适合拍照，大雄宝殿内辽代壁画精美</div>
-<div class="transport">🚶 从花园大饭店步行约5分钟</div>
+<div class="transport">🚕 从温德姆打车至古城约10分钟</div>
 </div>
 
 <div class="card purple">
@@ -238,7 +237,7 @@ h3{font-size:1.15em;color:#555;margin:20px 0 10px}
 <tr><td>古城墙</td><td>¥30</td><td>可选</td></tr>
 <tr><td>大同博物馆</td><td>免费</td><td>Day2</td></tr>
 <tr><td>善化寺/九龙壁等</td><td>免费</td><td>Day2</td></tr>
-<tr><td>住宿2晚</td><td>¥400-800</td><td>花园大饭店约¥300-400/晚</td></tr>
+<tr><td>住宿2晚</td><td>¥400-800</td><td>温德姆约¥300-500/晚</td></tr>
 <tr><td>餐饮（6-7顿）</td><td>¥250-400</td><td></td></tr>
 <tr><td>Day0+Day2市内交通</td><td>¥120-180</td><td>打车</td></tr>
 <tr><td>Day1包车</td><td>¥500-800</td><td>独享；多人分摊更便宜</td></tr>
@@ -291,7 +290,7 @@ function addRoute(map,stops){
     {name:"② 凤临阁(午)",lat:40.093159,lng:113.309812,color:'#dc2626',label:'2',line:'#059669',walk:true},
     {name:"③ 云冈石窟",lat:40.113157,lng:113.137763,color:'#7c3aed',label:'3',line:'#ef4444'},
     {name:"④ 紫泥369(晚)",lat:40.093742,lng:113.301951,color:'#dc2626',label:'4',line:'#ef4444'},
-    {name:"H 花园大饭店",lat:40.090239,lng:113.301718,color:'#2563eb',label:'H',line:'#059669',walk:true},
+    {name:"H 温德姆酒店",lat:40.075386,lng:113.342009,color:'#2563eb',label:'H',line:'#059669',walk:true},
   ];
   const c=addRoute(m,s);
   m.fitBounds(c,{padding:[40,40]});
@@ -302,7 +301,7 @@ function addRoute(map,stops){
   const m=L.map('map1').setView([39.85,113.35],9);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'© OSM & CARTO'}).addTo(m);
   const s=[
-    {name:"H 酒店出发",lat:40.090239,lng:113.301718,color:'#2563eb',label:'H'},
+    {name:"H 温德姆出发",lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
     {name:"A 悬空寺",lat:39.661139,lng:113.715781,color:'#059669',label:'A',line:'#059669'},
     {name:"B 应县木塔",lat:39.566465,lng:113.188831,color:'#059669',label:'B',line:'#059669'},
     {name:"🔙 返回大同",lat:40.090239,lng:113.301718,color:'#2563eb',label:'🔙',line:'#059669'},
@@ -329,7 +328,7 @@ function addRoute(map,stops){
   const m=L.map('map2').setView([40.09,113.30],14);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'© OSM & CARTO'}).addTo(m);
   const s=[
-    {name:"H 花园大饭店",lat:40.090239,lng:113.301718,color:'#2563eb',label:'H'},
+    {name:"H 温德姆酒店",lat:40.075386,lng:113.342009,color:'#2563eb',label:'H'},
     {name:"A 善化寺",lat:40.087041,lng:113.300335,color:'#7c3aed',label:'A',line:'#7c3aed',walk:true},
     {name:"B 法华寺",lat:40.094551,lng:113.310478,color:'#7c3aed',label:'B',line:'#7c3aed',walk:true},
     {name:"C 九龙壁",lat:40.093042,lng:113.303979,color:'#7c3aed',label:'C',line:'#7c3aed',walk:true},
@@ -372,7 +371,7 @@ function addRoute(map,stops){
       {name:"老柴削面",lat:40.106078,lng:113.365082,info:"★4.4 ¥17/人"},
     ]},
     '🏨 酒店':{color:'#2563eb',data:[
-      {name:"花园大饭店",lat:40.090239,lng:113.301718,info:"★4.8 古城内"},
+      {name:"温德姆至尊豪廷",lat:40.075386,lng:113.342009,info:"★4.7 恒安街"},
       {name:"福朋喜来登",lat:40.089448,lng:113.319780,info:"★4.8"},
       {name:"金地豪生",lat:40.102773,lng:113.317368,info:"★4.7"},
     ]},

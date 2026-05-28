@@ -46,7 +46,7 @@ body{font-family:'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;-we
 
 <!-- Main -->
 <div class="max-w-7xl mx-auto px-4 py-6">
-  <div class="lg:grid lg:grid-cols-2 lg:gap-8 relative overflow-hidden" id="versionsContainer" style="min-height:600px">
+    <div class="lg:grid lg:grid-cols-2 lg:gap-8 relative" id="versionsContainer">
 
     <!-- ====== Version A: 7:00 ====== -->
     <div id="versionA" class="version-panel transition-all duration-300">
@@ -166,7 +166,7 @@ body{font-family:'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;-we
     </div>
 
     <!-- ====== Version B: 9:00 ====== -->
-    <div id="versionB" class="version-panel transition-all duration-300 mt-8 lg:mt-0">
+    <div id="versionB" class="version-panel transition-all duration-300 mt-8 lg:mt-0" style="display:none">
       <div class="mb-4 text-center">
         <span class="inline-block bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full px-5 py-1.5 text-sm font-bold">😴 9:00 出门 · 睡个懒觉</span>
       </div>
@@ -346,13 +346,12 @@ function handleResize() {
   if (isWide()) {
     vA.style.display = '';
     vB.style.display = '';
-    // Reset buttons to both active-ish on wide
     btnA.className = 'px-5 py-2 rounded-full text-sm font-bold transition-all bg-amber-500 text-white shadow-md shadow-amber-200';
     btnB.className = 'px-5 py-2 rounded-full text-sm font-bold transition-all bg-indigo-500 text-white shadow-md shadow-indigo-200';
   } else {
     showVersion(current);
   }
-  setTimeout(() => { mapA.invalidateSize(); mapB.invalidateSize(); }, 100);
+  setTimeout(() => { if(mapA)mapA.invalidateSize(); if(mapB)mapB.invalidateSize(); }, 200);
 }
 window.addEventListener('resize', handleResize);
 

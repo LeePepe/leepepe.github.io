@@ -8,254 +8,351 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-body{font-family:'PingFang SC','Microsoft YaHei',sans-serif}
-.card{@apply bg-white rounded-2xl p-5 shadow-sm}
+body{font-family:'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased}
 .leaflet-container{border-radius:1rem;z-index:1}
-.toggle-btn{@apply px-4 py-2 rounded-full text-sm font-semibold transition-all}
-.toggle-btn.active{@apply text-white shadow-md}
-.version-panel{transition:transform .3s ease,opacity .3s ease}
-@media(max-width:1023px){
-  .version-panel{position:absolute;top:0;left:0;width:100%}
-  .version-panel.hidden-left{transform:translateX(-100%);opacity:0;pointer-events:none}
-  .version-panel.hidden-right{transform:translateX(100%);opacity:0;pointer-events:none}
-}
+.dist-label{background:rgba(255,255,255,.92)!important;border:none!important;border-radius:6px!important;padding:2px 8px!important;font-size:11px!important;font-weight:600!important;box-shadow:0 1px 4px rgba(0,0,0,.12)!important;white-space:nowrap!important}
+.timeline-item{position:relative;padding-left:2.5rem}
+.timeline-item::before{content:'';position:absolute;left:13px;top:0;bottom:0;width:2px;background:#e5e7eb}
+.timeline-item:last-child::before{display:none}
+.timeline-dot{position:absolute;left:6px;top:12px;width:16px;height:16px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px currentColor,0 1px 3px rgba(0,0,0,.15);z-index:2}
+.swipe-hint{animation:fadeOut 3s 2s forwards}
+@keyframes fadeOut{to{opacity:0}}
 </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gradient-to-b from-slate-50 to-stone-100 min-h-screen">
 
-<!-- Header -->
-<header class="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-6 px-4 text-center">
-  <h1 class="text-2xl md:text-3xl font-bold">🏔️ 大同一日游 — 悬空寺 · 应县木塔</h1>
-  <p class="mt-2 text-amber-100 text-sm">G2510 · 16:10 大同南→北京北 | 温德姆至尊豪廷大酒店出发</p>
+<!-- Hero Header -->
+<header class="relative overflow-hidden bg-gradient-to-br from-amber-600 via-orange-500 to-rose-500 text-white">
+  <div class="absolute inset-0 opacity-10" style="background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><path d=%22M0 80L40 0L80 80%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221%22/></svg>');background-size:80px 80px"></div>
+  <div class="relative py-8 px-4 text-center">
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">🏔️ 大同一日游</h1>
+    <p class="text-xl md:text-2xl font-light mt-1 text-amber-100">悬空寺 · 应县木塔</p>
+    <div class="mt-4 flex flex-wrap justify-center gap-3 text-sm">
+      <span class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5">🏨 温德姆至尊豪廷</span>
+      <span class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5">🚄 G2510 16:10 返京</span>
+      <span class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5">🚗 全天包车</span>
+    </div>
+  </div>
 </header>
 
-<!-- Toggle (mobile) -->
-<div class="lg:hidden flex justify-center gap-2 py-4 sticky top-0 bg-gray-50 z-10">
-  <button id="btnA" onclick="showVersion('A')" class="toggle-btn active bg-amber-500">⏰ 7:00 从容版</button>
-  <button id="btnB" onclick="showVersion('B')" class="toggle-btn bg-gray-200 text-gray-600">😴 9:00 懒觉版</button>
+<!-- Toggle Bar -->
+<div class="sticky top-0 z-30 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100">
+  <div class="max-w-7xl mx-auto flex justify-center gap-2 py-3 px-4">
+    <button id="btnA" onclick="showVersion('A')" class="px-5 py-2 rounded-full text-sm font-bold transition-all bg-amber-500 text-white shadow-md shadow-amber-200">⏰ 7:00 从容版</button>
+    <button id="btnB" onclick="showVersion('B')" class="px-5 py-2 rounded-full text-sm font-bold transition-all bg-gray-100 text-gray-500">😴 9:00 懒觉版</button>
+    <p class="lg:hidden swipe-hint text-gray-400 text-xs w-full text-center mt-1">← 左右滑动切换 →</p>
+  </div>
 </div>
 
-<!-- Main Content -->
-<div class="max-w-7xl mx-auto px-4 py-4">
-  <div class="lg:grid lg:grid-cols-2 lg:gap-6 relative" id="versionsContainer">
+<!-- Main -->
+<div class="max-w-7xl mx-auto px-4 py-6">
+  <div class="lg:grid lg:grid-cols-2 lg:gap-8 relative overflow-hidden" id="versionsContainer" style="min-height:600px">
 
-    <!-- Version A -->
-    <div id="versionA" class="version-panel space-y-3 mb-6 lg:mb-0">
-      <h2 class="text-xl font-bold text-amber-600 text-center">⏰ 7:00 出门版 <span class="text-sm font-normal text-gray-500">从容不迫</span></h2>
-
-      <div class="card border-l-4 border-amber-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🍜 07:00 早餐</span>
-          <span class="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">30min</span>
-        </div>
-        <p class="text-gray-600 text-sm mt-1">东方削面（迎泽街）★4.7 · ¥16/人</p>
+    <!-- ====== Version A: 7:00 ====== -->
+    <div id="versionA" class="version-panel transition-all duration-300">
+      <div class="mb-4 text-center">
+        <span class="inline-block bg-amber-50 text-amber-700 border border-amber-200 rounded-full px-5 py-1.5 text-sm font-bold">⏰ 7:00 出门 · 从容不迫</span>
       </div>
 
-      <div class="card border-l-4 border-amber-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🚗 07:30 出发→悬空寺</span>
-          <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">70km · 1.5h</span>
+      <div class="space-y-1">
+        <!-- 早餐 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-red-400" style="color:#f87171"></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-bold text-base">🍜 07:00 早餐</span>
+                <p class="text-gray-500 text-sm mt-0.5">东方削面（迎泽街）★4.7 · ¥16/人</p>
+              </div>
+              <span class="text-xs bg-red-50 text-red-600 px-2.5 py-1 rounded-full font-semibold shrink-0 ml-2">30min</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="card border-l-4 border-emerald-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🏛️ 09:00-10:30 悬空寺</span>
-          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">1.5h</span>
+        <!-- 出发 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-amber-400" style="color:#fbbf24"></div>
+          <div class="bg-amber-50/60 rounded-xl p-3 border border-amber-100">
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-sm text-amber-800">🚗 07:30 出发 → 悬空寺</span>
+              <span class="text-xs text-amber-600 font-medium">70km · 1.5h</span>
+            </div>
+          </div>
         </div>
-        <p class="text-gray-600 text-sm mt-1">★4.8 · ¥125 · 浑源县恒山山腰</p>
-        <p class="text-gray-500 text-xs mt-1">⏳ 充足时间，慢慢拍照</p>
-      </div>
-
-      <div class="card border-l-4 border-amber-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🚗 10:30 出发→应县木塔</span>
-          <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">52km · 50min</span>
+        <!-- 悬空寺 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-emerald-500" style="color:#10b981"></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-bold text-base">🏛️ 09:00 — 10:30 悬空寺</span>
+                <p class="text-gray-500 text-sm mt-0.5">★4.8 · ¥125 · 浑源县恒山山腰</p>
+                <p class="text-emerald-600 text-xs mt-1 font-medium">⏳ 充足时间，慢慢拍照欣赏</p>
+              </div>
+              <span class="text-xs bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full font-semibold shrink-0 ml-2">1.5h</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="card border-l-4 border-emerald-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🗼 11:20-12:20 应县木塔</span>
-          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">1h</span>
+        <!-- 出发木塔 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-amber-400" style="color:#fbbf24"></div>
+          <div class="bg-amber-50/60 rounded-xl p-3 border border-amber-100">
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-sm text-amber-800">🚗 10:30 出发 → 应县木塔</span>
+              <span class="text-xs text-amber-600 font-medium">52km · 50min</span>
+            </div>
+          </div>
         </div>
-        <p class="text-gray-600 text-sm mt-1">★4.9 · ¥50 · 应元街1号</p>
-        <p class="text-gray-500 text-xs mt-1">⏳ 从容游览，世界最高木结构建筑</p>
-      </div>
-
-      <div class="card border-l-4 border-red-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🍜 12:20 应县午餐</span>
-          <span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full">40min</span>
+        <!-- 应县木塔 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-emerald-500" style="color:#10b981"></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-bold text-base">🗼 11:20 — 12:20 应县木塔</span>
+                <p class="text-gray-500 text-sm mt-0.5">★4.9 · ¥50 · 应元街1号</p>
+                <p class="text-emerald-600 text-xs mt-1 font-medium">⏳ 从容游览，世界最高木结构建筑</p>
+              </div>
+              <span class="text-xs bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full font-semibold shrink-0 ml-2">1h</span>
+            </div>
+          </div>
         </div>
-        <p class="text-gray-600 text-sm mt-1">应县凉粉、刀削面 · 推荐应县老字号</p>
-      </div>
-
-      <div class="card border-l-4 border-amber-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🚗 13:00 出发→大同南站</span>
-          <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">68km · 1h</span>
+        <!-- 午餐 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-red-400" style="color:#f87171"></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-bold text-base">🍜 12:20 应县午餐</span>
+                <p class="text-gray-500 text-sm mt-0.5">应县凉粉、刀削面 · 推荐应县老字号</p>
+              </div>
+              <span class="text-xs bg-red-50 text-red-600 px-2.5 py-1 rounded-full font-semibold shrink-0 ml-2">40min</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="card border-l-4 border-sky-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🚉 14:00 到大同南站</span>
-          <span class="text-xs bg-sky-100 text-sky-700 px-2 py-0.5 rounded-full">buffer 2h+</span>
+        <!-- 出发南站 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-amber-400" style="color:#fbbf24"></div>
+          <div class="bg-amber-50/60 rounded-xl p-3 border border-amber-100">
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-sm text-amber-800">🚗 13:00 出发 → 大同南站</span>
+              <span class="text-xs text-amber-600 font-medium">68km · 1h</span>
+            </div>
+          </div>
         </div>
-        <p class="text-gray-600 text-sm mt-1">可逛逛附近或进站休息</p>
-      </div>
-
-      <div class="card border-l-4 border-sky-400 bg-sky-50">
-        <span class="text-lg font-semibold">🚄 16:10 G2510 大同南→北京北</span>
+        <!-- 到站 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-sky-500" style="color:#0ea5e9"></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-bold text-base">🚉 14:00 到达大同南站</span>
+                <p class="text-gray-500 text-sm mt-0.5">可逛逛附近或提前进站休息</p>
+              </div>
+              <span class="text-xs bg-sky-50 text-sky-700 px-2.5 py-1 rounded-full font-semibold shrink-0 ml-2">余裕 2h+</span>
+            </div>
+          </div>
+        </div>
+        <!-- 火车 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-sky-600" style="color:#0284c7"></div>
+          <div class="bg-gradient-to-r from-sky-50 to-blue-50 rounded-xl p-4 border border-sky-200">
+            <span class="font-bold text-base text-sky-800">🚄 16:10 G2510 大同南 → 北京北</span>
+          </div>
+        </div>
       </div>
 
       <!-- Map A -->
-      <div id="mapA" class="w-full h-64 rounded-2xl shadow-sm"></div>
+      <div id="mapA" class="w-full rounded-2xl shadow-md border border-gray-200 mt-4" style="height:320px"></div>
     </div>
 
-    <!-- Version B -->
-    <div id="versionB" class="version-panel space-y-3 lg:block hidden-right">
-      <h2 class="text-xl font-bold text-indigo-600 text-center">😴 9:00 出门版 <span class="text-sm font-normal text-gray-500">睡个懒觉</span></h2>
-
-      <div class="card border-l-4 border-red-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🍳 09:00 早餐</span>
-          <span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full">15min</span>
-        </div>
-        <p class="text-gray-600 text-sm mt-1">酒店早餐或附近简单吃</p>
+    <!-- ====== Version B: 9:00 ====== -->
+    <div id="versionB" class="version-panel transition-all duration-300 mt-8 lg:mt-0">
+      <div class="mb-4 text-center">
+        <span class="inline-block bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full px-5 py-1.5 text-sm font-bold">😴 9:00 出门 · 睡个懒觉</span>
       </div>
 
-      <div class="card border-l-4 border-amber-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🚗 09:15 出发→悬空寺</span>
-          <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">70km · 1.5h</span>
+      <div class="space-y-1">
+        <!-- 早餐 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-red-400" style="color:#f87171"></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-bold text-base">🍳 09:00 早餐</span>
+                <p class="text-gray-500 text-sm mt-0.5">酒店早餐或附近简单吃</p>
+              </div>
+              <span class="text-xs bg-red-50 text-red-600 px-2.5 py-1 rounded-full font-semibold shrink-0 ml-2">15min</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="card border-l-4 border-emerald-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🏛️ 10:45-11:45 悬空寺</span>
-          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">1h</span>
+        <!-- 出发 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-indigo-400" style="color:#818cf8"></div>
+          <div class="bg-indigo-50/60 rounded-xl p-3 border border-indigo-100">
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-sm text-indigo-800">🚗 09:15 出发 → 悬空寺</span>
+              <span class="text-xs text-indigo-600 font-medium">70km · 1.5h</span>
+            </div>
+          </div>
         </div>
-        <p class="text-gray-600 text-sm mt-1">★4.8 · ¥125 · 重点打卡，效率游览</p>
-      </div>
-
-      <div class="card border-l-4 border-amber-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🚗 11:45 出发→应县木塔</span>
-          <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">52km · 50min</span>
+        <!-- 悬空寺 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-emerald-500" style="color:#10b981"></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-bold text-base">🏛️ 10:45 — 11:45 悬空寺</span>
+                <p class="text-gray-500 text-sm mt-0.5">★4.8 · ¥125 · 重点打卡，效率游览</p>
+              </div>
+              <span class="text-xs bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full font-semibold shrink-0 ml-2">1h</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="card border-l-4 border-emerald-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🗼 12:35-13:15 应县木塔</span>
-          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">40min</span>
+        <!-- 出发木塔 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-indigo-400" style="color:#818cf8"></div>
+          <div class="bg-indigo-50/60 rounded-xl p-3 border border-indigo-100">
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-sm text-indigo-800">🚗 11:45 出发 → 应县木塔</span>
+              <span class="text-xs text-indigo-600 font-medium">52km · 50min</span>
+            </div>
+          </div>
         </div>
-        <p class="text-gray-600 text-sm mt-1">★4.9 · ¥50 · 快速打卡</p>
-      </div>
-
-      <div class="card border-l-4 border-red-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🍜 13:15 应县快速午餐</span>
-          <span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full">30min</span>
+        <!-- 应县木塔 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-emerald-500" style="color:#10b981"></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-bold text-base">🗼 12:35 — 13:15 应县木塔</span>
+                <p class="text-gray-500 text-sm mt-0.5">★4.9 · ¥50 · 快速打卡</p>
+              </div>
+              <span class="text-xs bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full font-semibold shrink-0 ml-2">40min</span>
+            </div>
+          </div>
         </div>
-        <p class="text-gray-600 text-sm mt-1">就近解决，不挑了</p>
-      </div>
-
-      <div class="card border-l-4 border-amber-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🚗 13:45 出发→大同南站</span>
-          <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">68km · 1h</span>
+        <!-- 午餐 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-red-400" style="color:#f87171"></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-bold text-base">🍜 13:15 应县快速午餐</span>
+                <p class="text-gray-500 text-sm mt-0.5">就近解决，应县凉粉或刀削面</p>
+              </div>
+              <span class="text-xs bg-red-50 text-red-600 px-2.5 py-1 rounded-full font-semibold shrink-0 ml-2">30min</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="card border-l-4 border-sky-400">
-        <div class="flex justify-between items-center">
-          <span class="text-lg font-semibold">🚉 14:45 到大同南站</span>
-          <span class="text-xs bg-sky-100 text-sky-700 px-2 py-0.5 rounded-full">buffer 1.5h</span>
+        <!-- 出发南站 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-indigo-400" style="color:#818cf8"></div>
+          <div class="bg-indigo-50/60 rounded-xl p-3 border border-indigo-100">
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-sm text-indigo-800">🚗 13:45 出发 → 大同南站</span>
+              <span class="text-xs text-indigo-600 font-medium">68km · 1h</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="card border-l-4 border-sky-400 bg-sky-50">
-        <span class="text-lg font-semibold">🚄 16:10 G2510 大同南→北京北</span>
+        <!-- 到站 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-sky-500" style="color:#0ea5e9"></div>
+          <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-bold text-base">🚉 14:45 到达大同南站</span>
+                <p class="text-gray-500 text-sm mt-0.5">进站候车</p>
+              </div>
+              <span class="text-xs bg-sky-50 text-sky-700 px-2.5 py-1 rounded-full font-semibold shrink-0 ml-2">余裕 1.5h</span>
+            </div>
+          </div>
+        </div>
+        <!-- 火车 -->
+        <div class="timeline-item">
+          <div class="timeline-dot bg-sky-600" style="color:#0284c7"></div>
+          <div class="bg-gradient-to-r from-sky-50 to-blue-50 rounded-xl p-4 border border-sky-200">
+            <span class="font-bold text-base text-sky-800">🚄 16:10 G2510 大同南 → 北京北</span>
+          </div>
+        </div>
       </div>
 
       <!-- Map B -->
-      <div id="mapB" class="w-full h-64 rounded-2xl shadow-sm"></div>
+      <div id="mapB" class="w-full rounded-2xl shadow-md border border-gray-200 mt-4" style="height:320px"></div>
     </div>
+
   </div>
 
   <!-- Budget -->
-  <div class="mt-8 card border-l-4 border-violet-400 max-w-2xl mx-auto">
-    <h3 class="text-lg font-bold text-violet-600 mb-3">💰 预算估算</h3>
+  <div class="mt-10 bg-white rounded-2xl shadow-sm border border-gray-100 max-w-2xl mx-auto overflow-hidden">
+    <div class="bg-gradient-to-r from-violet-500 to-purple-500 px-5 py-3">
+      <h3 class="text-white font-bold text-lg">💰 预算估算</h3>
+    </div>
     <table class="w-full text-sm">
       <tbody>
-        <tr class="border-b border-gray-100"><td class="py-2">🚗 包车（全天）</td><td class="text-right font-semibold">¥500-800</td></tr>
-        <tr class="border-b border-gray-100"><td class="py-2">🏛️ 悬空寺门票</td><td class="text-right font-semibold">¥125</td></tr>
-        <tr class="border-b border-gray-100"><td class="py-2">🗼 应县木塔门票</td><td class="text-right font-semibold">¥50</td></tr>
-        <tr class="border-b border-gray-100"><td class="py-2">🍜 早餐</td><td class="text-right font-semibold">¥15-30</td></tr>
-        <tr class="border-b border-gray-100"><td class="py-2">🍜 午餐</td><td class="text-right font-semibold">¥30-60</td></tr>
-        <tr class="bg-violet-50 font-bold"><td class="py-2 rounded-l-lg pl-2">💵 总计</td><td class="text-right text-violet-700 rounded-r-lg pr-2">¥720-1065</td></tr>
+        <tr class="border-b border-gray-50 hover:bg-gray-50/50"><td class="py-3 px-5">🚗 包车（全天）</td><td class="text-right font-semibold px-5 text-gray-700">¥500 – 800</td></tr>
+        <tr class="border-b border-gray-50 hover:bg-gray-50/50"><td class="py-3 px-5">🏛️ 悬空寺门票</td><td class="text-right font-semibold px-5 text-gray-700">¥125</td></tr>
+        <tr class="border-b border-gray-50 hover:bg-gray-50/50"><td class="py-3 px-5">🗼 应县木塔门票</td><td class="text-right font-semibold px-5 text-gray-700">¥50</td></tr>
+        <tr class="border-b border-gray-50 hover:bg-gray-50/50"><td class="py-3 px-5">🍜 早餐</td><td class="text-right font-semibold px-5 text-gray-700">¥15 – 30</td></tr>
+        <tr class="border-b border-gray-50 hover:bg-gray-50/50"><td class="py-3 px-5">🍜 午餐</td><td class="text-right font-semibold px-5 text-gray-700">¥30 – 60</td></tr>
+        <tr class="bg-violet-50"><td class="py-3 px-5 font-bold text-violet-700">💵 总计</td><td class="text-right font-bold px-5 text-violet-700 text-base">¥720 – 1,065</td></tr>
       </tbody>
     </table>
   </div>
 
   <!-- Notes -->
-  <div class="mt-4 card border-l-4 border-gray-300 max-w-2xl mx-auto mb-8">
-    <h3 class="text-lg font-bold text-gray-700 mb-3">📝 实用提醒</h3>
-    <ul class="text-sm text-gray-600 space-y-2">
-      <li>🚗 <strong>包车</strong>：提前一天联系酒店前台或携程/美团预约，确认走高速</li>
-      <li>👟 <strong>悬空寺</strong>：建议穿平底鞋，台阶陡峭窄小，恐高慎入登临部分</li>
-      <li>📸 <strong>悬空寺</strong>：最佳拍摄角度在山下仰拍，登寺后空间狭小不好拍全景</li>
-      <li>🗼 <strong>应县木塔</strong>：目前只能外观，不能登塔，30-40分钟足够</li>
-      <li>🚉 <strong>大同南站</strong>：站不大，提前30分钟到即可；站内有便利店</li>
-      <li>⛽ 包车通常含油费过路费，上车前确认好总价，避免纠纷</li>
-      <li>🌡️ 大同早晚温差大，夏天也建议带薄外套</li>
-    </ul>
+  <div class="mt-4 bg-white rounded-2xl shadow-sm border border-gray-100 max-w-2xl mx-auto p-5 mb-10">
+    <h3 class="font-bold text-lg text-gray-800 mb-3">📝 实用提醒</h3>
+    <div class="space-y-2.5 text-sm text-gray-600">
+      <div class="flex gap-2"><span class="shrink-0">🚗</span><span><strong>包车</strong>：提前一天联系酒店前台或携程/美团预约，确认走高速，含油费过路费</span></div>
+      <div class="flex gap-2"><span class="shrink-0">👟</span><span><strong>悬空寺</strong>：穿平底鞋，台阶陡峭狭窄，恐高慎入登临部分</span></div>
+      <div class="flex gap-2"><span class="shrink-0">📸</span><span><strong>悬空寺</strong>：最佳拍摄角度在山下仰拍，登寺后空间狭小不好拍全景</span></div>
+      <div class="flex gap-2"><span class="shrink-0">🗼</span><span><strong>应县木塔</strong>：目前只能外观参观不能登塔，30-40分钟足够</span></div>
+      <div class="flex gap-2"><span class="shrink-0">🚉</span><span><strong>大同南站</strong>：站不大，提前30分钟到即可；站内有便利店</span></div>
+      <div class="flex gap-2"><span class="shrink-0">⛽</span><span>上车前确认好包车总价（含高速费），避免纠纷</span></div>
+      <div class="flex gap-2"><span class="shrink-0">🌡️</span><span>大同早晚温差大，即使夏天也建议带薄外套</span></div>
+    </div>
   </div>
 </div>
 
-<footer class="text-center text-gray-400 text-xs py-4">大同一日游行程规划 · 2025</footer>
+<footer class="text-center text-gray-400 text-xs py-4 border-t border-gray-100">大同一日游行程规划 · 2026</footer>
 
 <script>
-// Toggle logic
 let current = 'A';
+const vA = document.getElementById('versionA');
+const vB = document.getElementById('versionB');
+const btnA = document.getElementById('btnA');
+const btnB = document.getElementById('btnB');
+
+function isWide() { return window.innerWidth >= 1024; }
+
 function showVersion(v) {
   current = v;
-  const a = document.getElementById('versionA');
-  const b = document.getElementById('versionB');
-  const btnA = document.getElementById('btnA');
-  const btnB = document.getElementById('btnB');
+  if (isWide()) return; // wide screen always shows both
   if (v === 'A') {
-    a.classList.remove('hidden-left','hidden-right');
-    b.classList.add('hidden-right');
-    b.classList.remove('hidden-left');
-    btnA.className = 'toggle-btn active bg-amber-500 text-white';
-    btnB.className = 'toggle-btn bg-gray-200 text-gray-600';
+    vA.style.display = '';
+    vB.style.display = 'none';
+    btnA.className = 'px-5 py-2 rounded-full text-sm font-bold transition-all bg-amber-500 text-white shadow-md shadow-amber-200';
+    btnB.className = 'px-5 py-2 rounded-full text-sm font-bold transition-all bg-gray-100 text-gray-500';
   } else {
-    b.classList.remove('hidden-left','hidden-right');
-    a.classList.add('hidden-left');
-    a.classList.remove('hidden-right');
-    btnB.className = 'toggle-btn active bg-indigo-500 text-white';
-    btnA.className = 'toggle-btn bg-gray-200 text-gray-600';
+    vA.style.display = 'none';
+    vB.style.display = '';
+    btnB.className = 'px-5 py-2 rounded-full text-sm font-bold transition-all bg-indigo-500 text-white shadow-md shadow-indigo-200';
+    btnA.className = 'px-5 py-2 rounded-full text-sm font-bold transition-all bg-gray-100 text-gray-500';
   }
-  // Invalidate maps
-  setTimeout(() => { mapA.invalidateSize(); mapB.invalidateSize(); }, 350);
+  setTimeout(() => { mapA.invalidateSize(); mapB.invalidateSize(); }, 100);
 }
 
-// On wide screen, show both
 function handleResize() {
-  const wide = window.innerWidth >= 1024;
-  const a = document.getElementById('versionA');
-  const b = document.getElementById('versionB');
-  if (wide) {
-    a.classList.remove('hidden-left','hidden-right');
-    b.classList.remove('hidden-left','hidden-right');
+  if (isWide()) {
+    vA.style.display = '';
+    vB.style.display = '';
+    // Reset buttons to both active-ish on wide
+    btnA.className = 'px-5 py-2 rounded-full text-sm font-bold transition-all bg-amber-500 text-white shadow-md shadow-amber-200';
+    btnB.className = 'px-5 py-2 rounded-full text-sm font-bold transition-all bg-indigo-500 text-white shadow-md shadow-indigo-200';
   } else {
     showVersion(current);
   }
+  setTimeout(() => { mapA.invalidateSize(); mapB.invalidateSize(); }, 100);
 }
 window.addEventListener('resize', handleResize);
 
@@ -263,7 +360,7 @@ window.addEventListener('resize', handleResize);
 let touchStartX = 0;
 document.getElementById('versionsContainer').addEventListener('touchstart', e => {
   touchStartX = e.changedTouches[0].screenX;
-});
+}, {passive:true});
 document.getElementById('versionsContainer').addEventListener('touchend', e => {
   const diff = e.changedTouches[0].screenX - touchStartX;
   if (Math.abs(diff) > 60) {
@@ -272,45 +369,52 @@ document.getElementById('versionsContainer').addEventListener('touchend', e => {
   }
 });
 
-// POIs
+// Maps
 const hotel = [40.075386, 113.342009];
 const xuankong = [39.661139, 113.715781];
 const muta = [39.566465, 113.188831];
 const station = [40.046162, 113.365088];
-
 const tiles = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-const attr = '&copy; OpenStreetMap &copy; CARTO';
+const attr = '&copy; <a href="https://openstreetmap.org">OSM</a> &copy; <a href="https://carto.com">CARTO</a>';
+
+function circleIcon(color, label) {
+  return L.divIcon({
+    className: '',
+    html: `<div style="width:28px;height:28px;border-radius:50%;background:${color};color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25)">${label}</div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14]
+  });
+}
 
 function makeMap(id) {
-  const m = L.map(id, {scrollWheelZoom: false}).fitBounds([hotel, xuankong, muta, station], {padding: [30,30]});
+  const m = L.map(id, {scrollWheelZoom: false, zoomControl: false})
+    .fitBounds([hotel, xuankong, muta, station], {padding: [40, 40]});
+  L.control.zoom({position: 'bottomright'}).addTo(m);
   L.tileLayer(tiles, {attribution: attr, maxZoom: 16}).addTo(m);
 
-  L.marker(hotel).addTo(m).bindPopup('<b>温德姆酒店</b><br>起点');
-  L.marker(xuankong).addTo(m).bindPopup('<b>悬空寺</b><br>★4.8 · ¥125');
-  L.marker(muta).addTo(m).bindPopup('<b>应县木塔</b><br>★4.9 · ¥50');
-  L.marker(station).addTo(m).bindPopup('<b>大同南站</b><br>G2510 16:10');
+  L.marker(hotel, {icon: circleIcon('#3b82f6','H')}).addTo(m).bindPopup('<b>🏨 温德姆酒店</b><br>出发点');
+  L.marker(xuankong, {icon: circleIcon('#10b981','1')}).addTo(m).bindPopup('<b>🏛️ 悬空寺</b><br>★4.8 · ¥125');
+  L.marker(muta, {icon: circleIcon('#10b981','2')}).addTo(m).bindPopup('<b>🗼 应县木塔</b><br>★4.9 · ¥50');
+  L.marker(station, {icon: circleIcon('#0ea5e9','🚄')}).addTo(m).bindPopup('<b>🚉 大同南站</b><br>G2510 16:10');
 
-  // Route lines
-  L.polyline([hotel, xuankong], {color:'#f59e0b',weight:3,dashArray:'8,6'}).addTo(m);
-  L.polyline([xuankong, muta], {color:'#10b981',weight:3,dashArray:'8,6'}).addTo(m);
-  L.polyline([muta, station], {color:'#0ea5e9',weight:3,dashArray:'8,6'}).addTo(m);
+  L.polyline([hotel, xuankong], {color:'#f59e0b', weight:3, dashArray:'8,6', opacity:.7}).addTo(m);
+  L.polyline([xuankong, muta], {color:'#10b981', weight:3, dashArray:'8,6', opacity:.7}).addTo(m);
+  L.polyline([muta, station], {color:'#0ea5e9', weight:3, dashArray:'8,6', opacity:.7}).addTo(m);
 
-  // Distance labels
-  function mid(a,b){return [(a[0]+b[0])/2,(a[1]+b[1])/2]}
-  L.tooltip({permanent:true,direction:'center',className:'text-xs font-bold bg-white/90 border-0 shadow px-1 py-0.5 rounded'})
-    .setLatLng(mid(hotel,xuankong)).setContent('70km 1.5h').addTo(m);
-  L.tooltip({permanent:true,direction:'center',className:'text-xs font-bold bg-white/90 border-0 shadow px-1 py-0.5 rounded'})
-    .setLatLng(mid(xuankong,muta)).setContent('52km 50min').addTo(m);
-  L.tooltip({permanent:true,direction:'center',className:'text-xs font-bold bg-white/90 border-0 shadow px-1 py-0.5 rounded'})
-    .setLatLng(mid(muta,station)).setContent('68km 1h').addTo(m);
+  // Offset labels to avoid overlap
+  function offset(a, b, dx, dy) { return [(a[0]+b[0])/2 + dx, (a[1]+b[1])/2 + dy]; }
+  L.tooltip({permanent:true, direction:'center', className:'dist-label'})
+    .setLatLng(offset(hotel, xuankong, 0.05, 0.05)).setContent('70km · 1.5h').addTo(m);
+  L.tooltip({permanent:true, direction:'center', className:'dist-label'})
+    .setLatLng(offset(xuankong, muta, -0.05, -0.02)).setContent('52km · 50min').addTo(m);
+  L.tooltip({permanent:true, direction:'center', className:'dist-label'})
+    .setLatLng(offset(muta, station, -0.08, 0.04)).setContent('68km · 1h').addTo(m);
 
   return m;
 }
 
 const mapA = makeMap('mapA');
 const mapB = makeMap('mapB');
-
-// Init display
 handleResize();
 </script>
 </body>

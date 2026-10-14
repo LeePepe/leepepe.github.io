@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-style="a">
+<head>
+{% include ai-head.html %}
+</head>
+<body class="aw">
+{% assign series = site.categories["ai-workflow"] | sort: "date" %}
+{% assign idx = 0 %}
+{% for p in series %}{% if p.url == page.url %}{% assign idx = forloop.index %}{% endif %}{% endfor %}
+{% assign prev_i = idx | minus: 2 %}
+<main class="aw-page">
+  <article class="aw-card">
+    <header class="aw-head">
+      <a class="aw-badge" href="/ai-workflow/">带一群 AI 干活 · 第 {{ idx }} 篇</a>
+      <h1 class="aw-title">{{ page.title | escape }}</h1>
+      <p class="aw-date">{{ page.date | date: "%Y 年 %-m 月 %-d 日" }}</p>
+    </header>
+    <div class="aw-body">
+      {{ content }}
+    </div>
+    <footer class="aw-nav">
+      {% if idx > 1 %}{% assign p = series[prev_i] %}
+      <a class="aw-nav-link prev" href="{{ p.url }}"><span>上一篇</span>{{ p.title | escape }}</a>
+      {% else %}<span class="aw-nav-link empty"></span>{% endif %}
+      {% if idx < series.size %}{% assign p = series[idx] %}
+      <a class="aw-nav-link next" href="{{ p.url }}"><span>下一篇</span>{{ p.title | escape }}</a>
+      {% else %}<span class="aw-nav-link empty"></span>{% endif %}
+    </footer>
+    <p class="aw-back"><a href="/ai-workflow/">回到目录</a></p>
+  </article>
+</main>
+{% include ai-switcher.html %}
+</body>
+</html>

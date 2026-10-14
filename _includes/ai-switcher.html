@@ -1,0 +1,26 @@
+<nav class="aw-switch" aria-label="阅读样式">
+  <button type="button" data-set="a" aria-label="纸上手记"><span class="dot"></span>纸</button>
+  <button type="button" data-set="b" aria-label="午后咖啡"><span class="dot"></span>咖啡</button>
+  <button type="button" data-set="c" aria-label="暖光夜读"><span class="dot"></span>夜</button>
+</nav>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll(".aw-switch button");
+    function mark() {
+      var cur = root.getAttribute("data-style");
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].setAttribute("aria-pressed", buttons[i].getAttribute("data-set") === cur ? "true" : "false");
+      }
+    }
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function () {
+        var s = this.getAttribute("data-set");
+        root.setAttribute("data-style", s);
+        try { localStorage.setItem("ai-workflow-style", s); } catch (e) {}
+        mark();
+      });
+    }
+    mark();
+  })();
+</script>

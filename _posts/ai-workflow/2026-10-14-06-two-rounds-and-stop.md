@@ -1,13 +1,11 @@
 ---
-layout: post
+layout: ai-post
 title: '两轮就停'
 date: 2026-10-14 06:00:00 +0800
 categories: ai-workflow
 permalink: /ai-workflow/06-two-rounds-and-stop/
 author: LeePepe
 ---
-
-> 系列《带一群 AI 干活》第 6 篇 · [目录](/ai-workflow/)
 
 ## 晚上九点四十三分，又一个任务停下来问我
 

@@ -1,13 +1,11 @@
 ---
-layout: post
+layout: ai-post
 title: '一个说"没有 PR"的机器人'
 date: 2026-10-14 04:00:00 +0800
 categories: ai-workflow
 permalink: /ai-workflow/04-the-bot-that-said-no-prs/
 author: LeePepe
 ---
-
-> 系列《带一群 AI 干活》第 4 篇 · [目录](/ai-workflow/)
 
 ## 晚上六点那轮扫描，报告写得很干净
 

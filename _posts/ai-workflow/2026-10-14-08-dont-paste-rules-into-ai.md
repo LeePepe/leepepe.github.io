@@ -1,13 +1,11 @@
 ---
-layout: post
+layout: ai-post
 title: '别把规则粘贴给 AI'
 date: 2026-10-14 08:00:00 +0800
 categories: ai-workflow
 permalink: /ai-workflow/08-dont-paste-rules-into-ai/
 author: LeePepe
 ---
-
-> 系列《带一群 AI 干活》第 8 篇 · [目录](/ai-workflow/)
 
 ## 10 月 12 日，平台上的说明和源文件对不上了
 

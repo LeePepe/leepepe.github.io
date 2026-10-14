@@ -1,0 +1,23 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
+<script>
+  (function () {
+    var allowed = { a: 1, b: 1, c: 1 };
+    var style = "a";
+    try {
+      var saved = localStorage.getItem("ai-workflow-style");
+      if (allowed[saved]) style = saved;
+    } catch (e) {}
+    var m = /[?&]style=([abc])\b/.exec(location.search);
+    if (m) {
+      style = m[1];
+      try { localStorage.setItem("ai-workflow-style", style); } catch (e) {}
+    }
+    document.documentElement.setAttribute("data-style", style);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/assets/ai-workflow.css">

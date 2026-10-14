@@ -1,13 +1,11 @@
 ---
-layout: post
+layout: ai-post
 title: '它说它会重跑'
 date: 2026-10-14 05:00:00 +0800
 categories: ai-workflow
 permalink: /ai-workflow/05-it-said-it-would-rerun/
 author: LeePepe
 ---
-
-> 系列《带一群 AI 干活》第 5 篇 · [目录](/ai-workflow/)
 
 ## 晚上八点四十，三个 issue 都停在八小时前
 

@@ -1,13 +1,11 @@
 ---
-layout: post
+layout: ai-post
 title: '谁都不能批自己'
 date: 2026-10-14 07:00:00 +0800
 categories: ai-workflow
 permalink: /ai-workflow/07-nobody-approves-themselves/
 author: LeePepe
 ---
-
-> 系列《带一群 AI 干活》第 7 篇 · [目录](/ai-workflow/)
 
 ## 晚上九点多，我让 AI 替我点批准
 

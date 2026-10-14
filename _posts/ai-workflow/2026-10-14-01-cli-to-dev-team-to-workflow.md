@@ -1,13 +1,11 @@
 ---
-layout: post
+layout: ai-post
 title: '从一个终端窗口，到一张没有指挥官的图'
 date: 2026-10-14 01:00:00 +0800
 categories: ai-workflow
 permalink: /ai-workflow/01-cli-to-dev-team-to-workflow/
 author: LeePepe
 ---
-
-> 系列《带一群 AI 干活》第 1 篇 · [目录](/ai-workflow/)
 
 ## 最早，我只是在终端里跟一个 AI 说话
 

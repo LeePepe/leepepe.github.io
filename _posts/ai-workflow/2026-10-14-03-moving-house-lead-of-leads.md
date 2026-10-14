@@ -1,13 +1,11 @@
 ---
-layout: post
+layout: ai-post
 title: '我陪一群 AI 搬了一次家'
 date: 2026-10-14 03:00:00 +0800
 categories: ai-workflow
 permalink: /ai-workflow/03-moving-house-lead-of-leads/
 author: LeePepe
 ---
-
-> 系列《带一群 AI 干活》第 3 篇 · [目录](/ai-workflow/)
 
 ## 那天晚上我在终端里打了一句"我陷进细节里了"
 

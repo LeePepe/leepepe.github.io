@@ -1,13 +1,11 @@
 ---
-layout: post
+layout: ai-post
 title: '十万字符的角色说明'
 date: 2026-10-14 02:00:00 +0800
 categories: ai-workflow
 permalink: /ai-workflow/02-patches-forced-the-refine/
 author: LeePepe
 ---
-
-> 系列《带一群 AI 干活》第 2 篇 · [目录](/ai-workflow/)
 
 ## 9 月 24 日，我把七份角色说明从平台上拉了下来
 

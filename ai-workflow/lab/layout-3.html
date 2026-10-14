@@ -1,0 +1,93 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>布局三：双栏阅读 | Lee Pepe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap">
+<style>
+:root{--bg:#F6EFE6;--paper:#FFFDF9;--accent:#B7773D;--accent-soft:#F1E2CF;--ink:#4A3A2E;
+--muted:#8B7766;--line:#E8DCCB;--code:#F3E9DC;
+--hand:"LXGW Marker Gothic","Yozai","Noto Sans SC",sans-serif;
+--title:"Long Cang","Yozai",cursive;
+--body:"Noto Sans SC",-apple-system,"PingFang SC",sans-serif}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.9;
+-webkit-text-size-adjust:100%;overflow-wrap:anywhere}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+code{font-family:"SF Mono",Menlo,monospace;font-size:.86em;background:var(--code);padding:.1em .35em;border-radius:5px}
+pre{background:var(--code);padding:14px 16px;border-radius:10px;overflow-x:auto;font-size:14px;line-height:1.6}
+pre code{background:none;padding:0}
+blockquote{margin:1.4em 0;padding:.2em 1.1em;border-left:3px solid var(--accent);color:var(--muted)}
+.prose h2{font-family:var(--hand);font-weight:400;font-size:1.45em;line-height:1.5;margin:2.2em 0 .7em;color:var(--ink)}
+.prose p{margin:0 0 1.15em}
+
+.shell{display:grid;grid-template-columns:300px 1fr;min-height:100vh}
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 22px;background:#EFE4D6;border-right:1px solid var(--line)}
+.side .brand{font-family:var(--title);font-size:34px;line-height:1.1;color:#3D2E23;margin:0 0 4px}
+.side .meta{font-size:13px;color:var(--muted);margin:0 0 14px}
+.bar{height:6px;border-radius:99px;background:#E3D3BF;overflow:hidden;margin:0 0 18px}.bar i{display:block;height:100%;width:44%;background:var(--accent);border-radius:99px}
+.chapters{list-style:none;margin:0;padding:0}
+.chapters>li>a{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border-radius:12px;text-decoration:none;color:var(--ink);font-family:var(--hand);font-size:16px;line-height:1.45}
+.chapters .m{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-family:var(--body);font-size:12px;border:1.5px solid var(--accent);color:var(--accent)}
+.chapters li.done .m{background:var(--accent);color:#fff}
+.chapters li.on>a{background:var(--paper);box-shadow:0 4px 14px rgba(120,80,40,.1)}
+.outline{margin:6px 0 10px 44px;padding:0;list-style:none;border-left:2px solid var(--line)}
+.outline a{display:block;padding:4px 0 4px 12px;font-size:13px;color:var(--muted);text-decoration:none;line-height:1.5}
+.outline a:hover{color:var(--accent)}
+.main{padding:48px 32px 80px}
+.paper{max-width:700px;margin:0 auto;background:var(--paper);border-radius:22px;padding:48px 56px;box-shadow:0 8px 30px rgba(120,80,40,.08)}
+.paper .series{display:inline-block;padding:2px 12px;border-radius:99px;background:var(--accent-soft);color:var(--accent);font-size:13px}
+.paper h1{font-family:var(--hand);font-weight:400;font-size:38px;line-height:1.35;margin:.4em 0 .2em}
+.paper .date{color:var(--muted);font-size:14px}
+.ends{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+.ends a{display:block;padding:16px 18px;border-radius:16px;background:var(--accent-soft);text-decoration:none;color:var(--ink);font-family:var(--hand);font-size:17px}
+.ends small{display:block;font-family:var(--body);color:var(--accent);font-size:12px}
+.drawer{display:none}
+@media (max-width:860px){
+.shell{display:block}.side{display:none}
+.drawer{display:block;position:sticky;top:0;z-index:5;background:rgba(239,228,214,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.drawer summary{list-style:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;font-family:var(--hand);font-size:16px;cursor:pointer}
+.drawer summary::-webkit-details-marker{display:none}
+.drawer summary b{font-weight:400;color:var(--accent)}
+.drawer .bar{margin:0 16px 10px}
+.drawer .chapters{padding:0 10px 14px;max-height:70vh;overflow-y:auto}
+.main{padding:16px 10px 56px}.paper{padding:28px 18px;border-radius:16px}.paper h1{font-size:28px}
+.ends{grid-template-columns:1fr}}
+</style></head><body id="top">
+<details class="drawer"><summary><span>带一群 AI 干活 · 第 4 / 8 篇</span><b>目录 ▾</b></summary><div class="bar"><i></i></div><ol class="chapters"><li class="done"><a href="#top"><span class="m">✓</span><span>从一个终端窗口，到一张没有指挥官的图</span></a></li><li class="done"><a href="#top"><span class="m">✓</span><span>十万字符的角色说明</span></a></li><li class="done"><a href="#top"><span class="m">✓</span><span>我陪一群 AI 搬了一次家</span></a></li><li class="on"><a href="#top"><span class="m">4</span><span>一个说&quot;没有 PR&quot;的机器人</span></a><ol class="outline"><li><a href="#s1">晚上六点那轮扫描，报告写得很干净</a></li><li><a href="#s2">它不是没找到，是没读到</a></li><li><a href="#s3">同一天白天，另一个方向的失败</a></li><li><a href="#s4">我修成了&quot;失败就停&quot;</a></li><li><a href="#s5">傍晚这次，每样东西都在它该在的位置上</a></li><li><a href="#s6">两处修复，一处在机器上，一处在规则里</a></li><li><a href="#s7">那一截命令还在我脑子里</a></li></ol></li><li class=""><a href="#top"><span class="m">5</span><span>它说它会重跑</span></a></li><li class=""><a href="#top"><span class="m">6</span><span>两轮就停</span></a></li><li class=""><a href="#top"><span class="m">7</span><span>谁都不能批自己</span></a></li><li class=""><a href="#top"><span class="m">8</span><span>别把规则粘贴给 AI</span></a></li></ol></details>
+<div class="shell"><aside class="side"><p class="brand">带一群 AI 干活</p><p class="meta">8 篇 · 已读 3 篇</p><div class="bar"><i></i></div><ol class="chapters"><li class="done"><a href="#top"><span class="m">✓</span><span>从一个终端窗口，到一张没有指挥官的图</span></a></li><li class="done"><a href="#top"><span class="m">✓</span><span>十万字符的角色说明</span></a></li><li class="done"><a href="#top"><span class="m">✓</span><span>我陪一群 AI 搬了一次家</span></a></li><li class="on"><a href="#top"><span class="m">4</span><span>一个说&quot;没有 PR&quot;的机器人</span></a><ol class="outline"><li><a href="#s1">晚上六点那轮扫描，报告写得很干净</a></li><li><a href="#s2">它不是没找到，是没读到</a></li><li><a href="#s3">同一天白天，另一个方向的失败</a></li><li><a href="#s4">我修成了&quot;失败就停&quot;</a></li><li><a href="#s5">傍晚这次，每样东西都在它该在的位置上</a></li><li><a href="#s6">两处修复，一处在机器上，一处在规则里</a></li><li><a href="#s7">那一截命令还在我脑子里</a></li></ol></li><li class=""><a href="#top"><span class="m">5</span><span>它说它会重跑</span></a></li><li class=""><a href="#top"><span class="m">6</span><span>两轮就停</span></a></li><li class=""><a href="#top"><span class="m">7</span><span>谁都不能批自己</span></a></li><li class=""><a href="#top"><span class="m">8</span><span>别把规则粘贴给 AI</span></a></li></ol></aside>
+<main class="main"><article class="paper"><span class="series">第 4 篇</span><h1>一个说&quot;没有 PR&quot;的机器人</h1><div class="date">2026 年 10 月 14 日 · 约 8 分钟</div>
+<div class="prose"><h2 id="s1">晚上六点那轮扫描，报告写得很干净</h2>
+<p>10 月 13 日晚上六点，PR Manager 的定时扫描跑完了。它每 30 分钟扫一遍我名下所有仓库，找出还开着、又没人跟的 PR。这一轮的报告很短：检查了 11 个仓库，每个仓库都没有开放的 PR，所以没有新建任何跟踪任务。</p>
+<p>报告本身挑不出毛病，有范围，有结论，还逐个列了检查过的仓库名。换成我自己看，大概就这么划过去了。</p>
+<p>发现不对的是终端里替我盯进度的 AI。它记得半小时前的上一轮。那一轮新建了 3 个跟踪任务，还写明有 2 个 PR 按"每轮最多建 3 个"的规矩留到下一轮。半小时后，这 2 个 PR 不可能自己消失。</p>
+<p>它去 GitHub 上数了一下，开着的非 Draft PR 有 5 个，分在 shared-ci、VitalStride 和 VoxPocket 三个仓库里。</p>
+<h2 id="s2">它不是没找到，是没读到</h2>
+<p>翻开那一轮的运行记录，列 PR 的那条命令就有问题。它对 11 个仓库逐个执行 <code>gh pr list</code>，每条命令后面跟着 <code>2&gt;/dev/null || echo NO_ACCESS_OR_NO_PRS</code>。gh 是 GitHub 的命令行工具。后面这一截的意思是：把错误信息扔掉，失败了就打印一句"没权限或者没有 PR"。</p>
+<p>11 个仓库，打印了 11 次这句话。</p>
+<p>agent 后来确实觉得不对，又跑了 <code>gh auth status</code> 查登录状态。结果写得很清楚："You are not logged into any GitHub hosts"，也就是没有登录任何 GitHub 账号。它又换了一种方式取令牌重试，这次连"失败"的提示都没有打印，每个仓库名下面都是空的。最后它写下了那份干净的报告。</p>
+<h2 id="s3">同一天白天，另一个方向的失败</h2>
+<p>要讲清楚它为什么没登录，得先讲这天白天的事。</p>
+<p>我的 Dev Team 里的 agent 不用我的账号。它们有一个 GitHub App 身份，提交、开 PR、合并都记在这个 App 名下，和我本人分开。那天白天，有一个公开仓库的 PR 被合并了，合并人一栏写的却是我的个人账号。</p>
+<p>查下来有两层原因。第一层，平台上的角色说明还是旧版，里面取 App 令牌的路径指向旧电脑，在新电脑上取到的是空值。第二层更隐蔽。跑这个角色的 runtime 用的是 Copilot，它执行命令时会把系统自带的 gh 所在目录排到 PATH 最前面。PATH 是系统找程序时依次查看的目录清单。我给 agent 准备的 gh 包装脚本排在后面，等于被绕开了。系统自带的 gh 一看没有令牌，就去用电脑钥匙串里登录着的我的账号。</p>
+<p>合并记录改不了，合并人那一栏会一直写着我的名字。</p>
+<h2 id="s4">我修成了"失败就停"</h2>
+<p>傍晚之前的修法很直接：给 agent 单独建一个 gh 配置目录，里面不存任何登录信息。agent 环境里的 gh 只会读这个目录，读不到令牌就报"未登录"，不会再退回我的账号。终端里的 AI 在本机模拟 agent 的环境试了一遍，绕开包装脚本直接调系统的 gh，得到的就是"未登录"。</p>
+<p>傍晚六点那一轮扫描说明，这个修法生效了。Copilot 照样把系统的 gh 排在前面，照样绕开了包装脚本，gh 照样没找到令牌。这一次它没有拿我的账号，而是老老实实失败了。</p>
+<p>安全那一半做到了。另一半没人管：失败发生了，却没有人听见。</p>
+<h2 id="s5">傍晚这次，每样东西都在它该在的位置上</h2>
+<p>白天那次事故，我是从合并记录里看出来的，那是一个看得见的错误。傍晚这一次，所有东西都在它该在的位置上：扫描按时跑了，报告按格式写了，任务状态是"已完成"。要不是上一轮留下的那两个 PR，这份报告会被当成"今晚很安静"。</p>
+<p>如果连续几轮都这样，结果就是 PR 一直开着，没人跟，也没人知道没人跟。</p>
+<h2 id="s6">两处修复，一处在机器上，一处在规则里</h2>
+<p>我没有自己动手修。这时候我已经让终端里的 AI 当 lead，它把两件事分了出去。</p>
+<p>机器上的那一处交给了 Codex：把 App 令牌直接写进 agent 专用的 gh 配置，再起一个循环，每 20 分钟换一次新令牌。这个循环跟着 daemon（在后台调度这些 agent 的常驻进程）启动，也跟着它退出，不加开机自启。这样不管 PATH 怎么排，agent 环境里的 gh 拿到的都是 App 身份。</p>
+<p>装上以后第一次启动就失败了。刷新脚本报"拿不到有效令牌"，daemon 没有重启。原因是 Codex 写的格式校验只允许字母、数字和下划线，而 GitHub 现在发的 App 令牌有 383 位，中间带着点和横线，被当成了坏令牌。改一个字符集，问题就没了。重启以后，绕开包装脚本直接调系统的 gh，能以 App 身份列出 PR；在我自己的终端里，gh 仍然是我的账号。</p>
+<p>规则那一处交给了 Dev Team。PR Manager 的角色里加了一条：GitHub 读取失败、未登录、出错，都算受阻，要报出是哪个仓库、什么错误，不能当成"没有 PR"。报告"零个 PR"之前，先用一次已登录的读取确认身份，再和上一轮留下的清单对一遍，对不上也算受阻。这条规则由 Dev Team 自己写、自己提 PR，由 PR Manager 以 App 身份合并。</p>
+<p>晚上八点那一轮扫描，报告变长了：6 个已有跟踪的 PR 逐个列出，3 个新 PR 建了跟踪任务，还有 1 个留到下一轮。</p>
+<h2 id="s7">那一截命令还在我脑子里</h2>
+<p><code>2&gt;/dev/null || echo NO_PRS</code> 本身不算错。在一次性的脚本里，这样写能让输出干净一点。放进一个每半小时跑一次、没人盯着看的扫描里，它就把"我读不到"翻译成了"这里什么都没有"。</p>
+<p>现在角色里那条规则写着：读取失败时不要压掉错误输出。</p></div>
+<nav class="ends"><a href="#top"><small>← 上一篇</small>我陪一群 AI 搬了一次家</a><a href="#top"><small>下一篇 →</small>它说它会重跑</a></nav></article></main></div>
+</body></html>

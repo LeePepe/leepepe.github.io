@@ -1,0 +1,104 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>布局一：杂志封面 | Lee Pepe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap">
+<style>
+:root{--bg:#F6EFE6;--paper:#FFFDF9;--accent:#B7773D;--accent-soft:#F1E2CF;--ink:#4A3A2E;
+--muted:#8B7766;--line:#E8DCCB;--code:#F3E9DC;
+--hand:"LXGW Marker Gothic","Yozai","Noto Sans SC",sans-serif;
+--title:"Long Cang","Yozai",cursive;
+--body:"Noto Sans SC",-apple-system,"PingFang SC",sans-serif}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.9;
+-webkit-text-size-adjust:100%;overflow-wrap:anywhere}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+code{font-family:"SF Mono",Menlo,monospace;font-size:.86em;background:var(--code);padding:.1em .35em;border-radius:5px}
+pre{background:var(--code);padding:14px 16px;border-radius:10px;overflow-x:auto;font-size:14px;line-height:1.6}
+pre code{background:none;padding:0}
+blockquote{margin:1.4em 0;padding:.2em 1.1em;border-left:3px solid var(--accent);color:var(--muted)}
+.prose h2{font-family:var(--hand);font-weight:400;font-size:1.45em;line-height:1.5;margin:2.2em 0 .7em;color:var(--ink)}
+.prose p{margin:0 0 1.15em}
+
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.cover{position:relative;margin:24px auto 0;max-width:1040px;border-radius:28px;background:linear-gradient(160deg,#EAD7BF,#F6EFE6 60%);padding:64px 48px 56px;overflow:hidden}
+.cover .cup{position:absolute;right:48px;bottom:36px;width:150px;opacity:.9}
+.kicker{letter-spacing:.3em;color:var(--accent);font-size:14px}
+.cover h1{font-family:var(--title);font-weight:400;font-size:84px;line-height:1.05;margin:.15em 0 .1em;color:#3D2E23}
+.cover .wave{display:block;width:260px;height:16px;margin:0 0 18px}
+.cover p{max-width:520px;font-size:17px;color:#6B5646;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:36px 0 64px}
+.card{display:flex;flex-direction:column;gap:6px;background:var(--paper);border-radius:20px;padding:22px 24px;text-decoration:none;color:var(--ink);
+box-shadow:0 6px 22px rgba(120,80,40,.08);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(120,80,40,.14)}
+.card .no{font-family:var(--title);font-size:34px;line-height:1;color:var(--accent)}
+.card .t{font-family:var(--hand);font-size:22px;line-height:1.4}
+.card .teaser{font-size:14px;color:var(--muted);line-height:1.7}
+.divider{text-align:center;color:var(--muted);margin:24px 0;letter-spacing:.4em}
+.article{max-width:760px;margin:0 auto 80px;background:var(--paper);border-radius:28px;overflow:hidden;box-shadow:0 8px 34px rgba(120,80,40,.1)}
+.a-hero{background:linear-gradient(160deg,#EAD7BF,#F3E6D5);padding:56px 48px 40px;position:relative}
+.a-hero .big{font-family:var(--title);font-size:120px;line-height:.8;color:rgba(183,119,61,.35);position:absolute;right:36px;top:26px}
+.a-hero .series{font-size:14px;color:var(--accent);letter-spacing:.15em}
+.a-hero h1{font-family:var(--hand);font-weight:400;font-size:40px;line-height:1.35;margin:.3em 0 .2em;max-width:85%}
+.a-hero .date{color:#8B7766;font-size:14px}
+.prose{padding:24px 48px 40px}
+.next{display:block;margin:0 48px 48px;padding:22px 24px;border-radius:20px;background:var(--accent-soft);text-decoration:none;color:var(--ink)}
+.next small{color:var(--accent)}
+.next b{display:block;font-family:var(--hand);font-weight:400;font-size:22px}
+@media (max-width:640px){
+.cover{border-radius:0;margin:0;padding:48px 20px 150px}
+.cover h1{font-size:44px;white-space:nowrap}.cover .cup{right:24px;bottom:24px;width:110px}
+.grid{grid-template-columns:1fr;gap:14px}
+.article{border-radius:0}
+.a-hero{padding:40px 20px 28px}.a-hero h1{font-size:30px;max-width:100%}.a-hero .big{position:static;display:block;font-size:56px;margin-bottom:6px}
+.prose{padding:16px 20px 28px}.next{margin:0 20px 32px}}
+</style></head><body>
+<header class="cover"><div class="kicker">LEE PEPE · 系列</div><h1>带一群 AI 干活</h1><svg class="wave" viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8c18-8 36 8 54 0s36-8 54 0 36 8 54 0 36-8 54 0" fill="none" stroke="#B7773D" stroke-width="2.5" stroke-linecap="round"/></svg><p>这组文章写的是我用 AI 搭一个开发团队、再把它理成六条 workflow 的过程。每篇从一件真实发生的事讲起，按顺序读最顺。</p><svg class="cup" viewBox="0 0 120 110" aria-hidden="true"><g fill="none" stroke="#B7773D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 46c2 30 12 46 36 46s34-16 36-46z"/><path d="M94 54c14-2 18 18 2 22"/><path d="M14 98c20 6 70 6 92 0"/>
+<path d="M44 34c-6-8 6-12 0-22"/><path d="M60 32c-6-9 7-13 0-24"/><path d="M76 34c-6-8 6-12 0-22"/></g></svg></header>
+<div class="wrap"><nav class="grid"><a class="card" href="#read"><span class="no">01</span>
+<span class="t">从一个终端窗口，到一张没有指挥官的图</span><span class="teaser">7 月 1 日，我建了一个私有仓库，专门放给 AI 用的 skill。</span></a><a class="card" href="#read"><span class="no">02</span>
+<span class="t">十万字符的角色说明</span><span class="teaser">那天，我把 Dev Team 七份角色说明原样读了下来，存进一个叫 before 的目录。</span></a><a class="card" href="#read"><span class="no">03</span>
+<span class="t">我陪一群 AI 搬了一次家</span><span class="teaser">10 月 13 日晚上，我在 Claude Code 的对话框里打了两段话。</span></a><a class="card" href="#read"><span class="no">04</span>
+<span class="t">一个说&quot;没有 PR&quot;的机器人</span><span class="teaser">10 月 13 日晚上六点，PR Manager 的定时扫描跑完了。</span></a><a class="card" href="#read"><span class="no">05</span>
+<span class="t">它说它会重跑</span><span class="teaser">10 月 13 日晚上八点四十左右，我问终端里的 AI：发布这条线现在卡在哪？</span></a><a class="card" href="#read"><span class="no">06</span>
+<span class="t">两轮就停</span><span class="teaser">10 月 13 日晚上九点四十三分，Dev Team 里一个改文档的任务停了下来，在任务下写了一段&quot;…</span></a><a class="card" href="#read"><span class="no">07</span>
+<span class="t">谁都不能批自己</span><span class="teaser">10 月 13 日晚上九点多，shared-ci #37 的检查全部通过，只差我在 GitHub 上…</span></a><a class="card" href="#read"><span class="no">08</span>
+<span class="t">别把规则粘贴给 AI</span><span class="teaser">10 月 12 日，终端里的 AI 帮我核对 Dev Team 的现状。</span></a></nav><div class="divider">· · ·　文章页　· · ·</div></div>
+<article class="article" id="read"><div class="a-hero"><span class="big">04</span><div class="series">带一群 AI 干活 · 第 4 篇</div>
+<h1>一个说&quot;没有 PR&quot;的机器人</h1><div class="date">2026 年 10 月 14 日 · 约 8 分钟</div></div>
+<div class="prose"><h2>晚上六点那轮扫描，报告写得很干净</h2>
+<p>10 月 13 日晚上六点，PR Manager 的定时扫描跑完了。它每 30 分钟扫一遍我名下所有仓库，找出还开着、又没人跟的 PR。这一轮的报告很短：检查了 11 个仓库，每个仓库都没有开放的 PR，所以没有新建任何跟踪任务。</p>
+<p>报告本身挑不出毛病，有范围，有结论，还逐个列了检查过的仓库名。换成我自己看，大概就这么划过去了。</p>
+<p>发现不对的是终端里替我盯进度的 AI。它记得半小时前的上一轮。那一轮新建了 3 个跟踪任务，还写明有 2 个 PR 按"每轮最多建 3 个"的规矩留到下一轮。半小时后，这 2 个 PR 不可能自己消失。</p>
+<p>它去 GitHub 上数了一下，开着的非 Draft PR 有 5 个，分在 shared-ci、VitalStride 和 VoxPocket 三个仓库里。</p>
+<h2>它不是没找到，是没读到</h2>
+<p>翻开那一轮的运行记录，列 PR 的那条命令就有问题。它对 11 个仓库逐个执行 <code>gh pr list</code>，每条命令后面跟着 <code>2&gt;/dev/null || echo NO_ACCESS_OR_NO_PRS</code>。gh 是 GitHub 的命令行工具。后面这一截的意思是：把错误信息扔掉，失败了就打印一句"没权限或者没有 PR"。</p>
+<p>11 个仓库，打印了 11 次这句话。</p>
+<p>agent 后来确实觉得不对，又跑了 <code>gh auth status</code> 查登录状态。结果写得很清楚："You are not logged into any GitHub hosts"，也就是没有登录任何 GitHub 账号。它又换了一种方式取令牌重试，这次连"失败"的提示都没有打印，每个仓库名下面都是空的。最后它写下了那份干净的报告。</p>
+<h2>同一天白天，另一个方向的失败</h2>
+<p>要讲清楚它为什么没登录，得先讲这天白天的事。</p>
+<p>我的 Dev Team 里的 agent 不用我的账号。它们有一个 GitHub App 身份，提交、开 PR、合并都记在这个 App 名下，和我本人分开。那天白天，有一个公开仓库的 PR 被合并了，合并人一栏写的却是我的个人账号。</p>
+<p>查下来有两层原因。第一层，平台上的角色说明还是旧版，里面取 App 令牌的路径指向旧电脑，在新电脑上取到的是空值。第二层更隐蔽。跑这个角色的 runtime 用的是 Copilot，它执行命令时会把系统自带的 gh 所在目录排到 PATH 最前面。PATH 是系统找程序时依次查看的目录清单。我给 agent 准备的 gh 包装脚本排在后面，等于被绕开了。系统自带的 gh 一看没有令牌，就去用电脑钥匙串里登录着的我的账号。</p>
+<p>合并记录改不了，合并人那一栏会一直写着我的名字。</p>
+<h2>我修成了"失败就停"</h2>
+<p>傍晚之前的修法很直接：给 agent 单独建一个 gh 配置目录，里面不存任何登录信息。agent 环境里的 gh 只会读这个目录，读不到令牌就报"未登录"，不会再退回我的账号。终端里的 AI 在本机模拟 agent 的环境试了一遍，绕开包装脚本直接调系统的 gh，得到的就是"未登录"。</p>
+<p>傍晚六点那一轮扫描说明，这个修法生效了。Copilot 照样把系统的 gh 排在前面，照样绕开了包装脚本，gh 照样没找到令牌。这一次它没有拿我的账号，而是老老实实失败了。</p>
+<p>安全那一半做到了。另一半没人管：失败发生了，却没有人听见。</p>
+<h2>傍晚这次，每样东西都在它该在的位置上</h2>
+<p>白天那次事故，我是从合并记录里看出来的，那是一个看得见的错误。傍晚这一次，所有东西都在它该在的位置上：扫描按时跑了，报告按格式写了，任务状态是"已完成"。要不是上一轮留下的那两个 PR，这份报告会被当成"今晚很安静"。</p>
+<p>如果连续几轮都这样，结果就是 PR 一直开着，没人跟，也没人知道没人跟。</p>
+<h2>两处修复，一处在机器上，一处在规则里</h2>
+<p>我没有自己动手修。这时候我已经让终端里的 AI 当 lead，它把两件事分了出去。</p>
+<p>机器上的那一处交给了 Codex：把 App 令牌直接写进 agent 专用的 gh 配置，再起一个循环，每 20 分钟换一次新令牌。这个循环跟着 daemon（在后台调度这些 agent 的常驻进程）启动，也跟着它退出，不加开机自启。这样不管 PATH 怎么排，agent 环境里的 gh 拿到的都是 App 身份。</p>
+<p>装上以后第一次启动就失败了。刷新脚本报"拿不到有效令牌"，daemon 没有重启。原因是 Codex 写的格式校验只允许字母、数字和下划线，而 GitHub 现在发的 App 令牌有 383 位，中间带着点和横线，被当成了坏令牌。改一个字符集，问题就没了。重启以后，绕开包装脚本直接调系统的 gh，能以 App 身份列出 PR；在我自己的终端里，gh 仍然是我的账号。</p>
+<p>规则那一处交给了 Dev Team。PR Manager 的角色里加了一条：GitHub 读取失败、未登录、出错，都算受阻，要报出是哪个仓库、什么错误，不能当成"没有 PR"。报告"零个 PR"之前，先用一次已登录的读取确认身份，再和上一轮留下的清单对一遍，对不上也算受阻。这条规则由 Dev Team 自己写、自己提 PR，由 PR Manager 以 App 身份合并。</p>
+<p>晚上八点那一轮扫描，报告变长了：6 个已有跟踪的 PR 逐个列出，3 个新 PR 建了跟踪任务，还有 1 个留到下一轮。</p>
+<h2>那一截命令还在我脑子里</h2>
+<p><code>2&gt;/dev/null || echo NO_PRS</code> 本身不算错。在一次性的脚本里，这样写能让输出干净一点。放进一个每半小时跑一次、没人盯着看的扫描里，它就把"我读不到"翻译成了"这里什么都没有"。</p>
+<p>现在角色里那条规则写着：读取失败时不要压掉错误输出。</p></div>
+<a class="next" href="#read"><small>下一篇 →</small><b>它说它会重跑</b></a></article>
+</body></html>

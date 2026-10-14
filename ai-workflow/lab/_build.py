@@ -1,18 +1,25 @@
 #!/usr/bin/env python3
-"""Build the ai-workflow design lab pages (fonts + 3 layouts) from the real stories.
+"""Build the ai-workflow design lab pages from the real stories.
 
-Usage: _build.py <stories-dir>   (files are written next to this script)
+Usage: _build.py [stories-dir] [--reader-only]
+Defaults to the repository's Jekyll posts. Requires Python-Markdown.
+Use --reader-only to preserve the original font/layout experiments.
+Files are written next to this script.
 Pages have no front matter, so Jekyll copies them verbatim.
 """
+import argparse
 import html
+import math
 import pathlib
 import re
-import sys
 
 import markdown
 
 HERE = pathlib.Path(__file__).resolve().parent
-STORIES = pathlib.Path(sys.argv[1])
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("stories_dir", nargs="?", type=pathlib.Path,
+                    default=HERE.parents[1] / "_posts" / "ai-workflow")
+parser.add_argument("--reader-only", action="store_true")
 
 GF = "https://fonts.googleapis.com/css2?family="
 JSD = "https://cdn.jsdelivr.net/npm/@chinese-fonts"
@@ -57,18 +64,38 @@ DOODLE_CUP = """<svg class="cup" viewBox="0 0 120 110" aria-hidden="true"><g fil
 WAVE = """<svg class="wave" viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8c18-8 36 8 54 0s36-8 54 0 36 8 54 0 36-8 54 0" fill="none" stroke="#B7773D" stroke-width="2.5" stroke-linecap="round"/></svg>"""
 
 
-def load_stories():
+def load_stories(directory):
     out = []
-    for p in sorted(STORIES.glob("[0-9][0-9]-*.md")):
+    for p in sorted(directory.glob("*.md")):
         text = p.read_text(encoding="utf-8")
-        m = re.match(r"#\s+(.+)\n+", text)
-        title, body = m.group(1).strip(), text[m.end():]
+        metadata = {}
+        if text.startswith("---\n"):
+            front, body = text[4:].split("\n---", 1)
+            # These story fields are scalar strings; no YAML dependency needed.
+            for line in front.splitlines():
+                if ":" in line:
+                    key, value = line.split(":", 1)
+                    metadata[key] = value.strip().strip("'\"")
+            title = metadata["title"]
+            number = int(re.search(r"\d{4}-\d{2}-\d{2}-(\d{2})-", p.name)[1])
+        else:
+            m = re.match(r"#\s+(.+)\n+", text)
+            if not m:
+                continue
+            title, body = m.group(1).strip(), text[m.end():]
+            number = int(p.name[:2])
         first = next(l for l in body.splitlines() if l.strip() and not l.startswith("#"))
         teaser = re.split(r"(?<=[。？])", first)[0]
+        teaser_full = re.sub(r"`([^`]+)`", r"\1", teaser)
         if len(teaser) > 52:
             teaser = teaser[:50] + "…"
-        out.append({"n": int(p.name[:2]), "title": title, "body": body, "teaser": teaser,
-                    "html": markdown.markdown(body, extensions=["fenced_code"])})
+        rendered = markdown.markdown(body, extensions=["fenced_code"])
+        characters = re.sub(r"\s", "", html.unescape(re.sub(r"<[^>]*>", "", rendered)))
+        out.append({"n": number, "title": title, "body": body, "teaser": teaser,
+                    "teaser_full": teaser_full, "html": rendered,
+                    "minutes": max(1, math.ceil(len(characters) / 400)),
+                    "date": metadata.get("date", "2026-10-14")[:10],
+                    "url": metadata.get("permalink", f"/ai-workflow/{p.stem}/")})
     return out
 
 
@@ -318,6 +345,89 @@ def build_layout3(stories):
     (HERE / "layout-3.html").write_text(page, encoding="utf-8")
 
 
+# ---------- reader v2: a quiet reading room ----------
+def reader_url(story):
+    # Only story 04 is a lab article. Other links open the real series posts.
+    return "reader-04.html" if story["n"] == 4 else story["url"]
+
+
+def reader_progress():
+    return """<div class="reading-status"><p><span>本篇阅读进度</span><span data-progress-label>0%</span></p>
+<div class="progress-track" role="progressbar" aria-label="本篇阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" data-progress-fill></span></div></div>"""
+
+
+def reader_timeline(stories, current=None):
+    chapters = []
+    for story in stories:
+        number = story["n"]
+        active = current is not None and number == current["n"]
+        state = " is-current" if active else (" is-read" if current and number < current["n"] else "")
+        outline = ""
+        if active:
+            links = []
+            for i, title in enumerate(headings(story), 1):
+                selected = ' aria-current="location"' if i == 1 else ''
+                links.append(f'<li><a href="#section-{i}"{selected}>{html.escape(title)}</a></li>')
+            outline = '<ol class="outline" aria-label="本篇小节">' + ''.join(links) + '</ol>' + reader_progress()
+        selected = ' aria-current="page"' if active else ''
+        chapters.append(f'''<li class="chapter{state}"><a class="chapter-link" href="{html.escape(reader_url(story))}"{selected}>
+<span class="chapter-number">{number:02d}</span><span>{html.escape(story['title'])}</span></a>{outline}</li>''')
+    return '<ol class="timeline">' + ''.join(chapters) + '</ol>'
+
+
+def reader_frame(stories, content, current=None):
+    timeline = reader_timeline(stories, current)
+    intro = '' if current else '<p class="rail-intro">从一个终端窗口开始，到一群 AI 自己接力。这里记下这一路的尝试、失误和修补。</p>'
+    position = f'{current["n"]} / {len(stories)}' if current else f'目录 / {len(stories)}'
+    title = current["title"] if current else SERIES
+    return f'''<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F6EFE6"><title>{html.escape(title)} | Lee Pepe</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="{FONT_LINKS['ChillRound']}">
+<link rel="stylesheet" href="reader.css"><script src="reader.js" defer></script></head><body>
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="mobile-bar"><button class="open-series" type="button" aria-label="打开系列目录" aria-haspopup="dialog" aria-controls="series-sheet" aria-expanded="false">
+<span>{SERIES}</span><span class="mobile-position">{position}</span><span class="chevron" aria-hidden="true"></span></button>
+<div class="progress-track" aria-hidden="true"><span class="progress-fill" data-progress-fill></span></div></header>
+<div class="reader-frame"><aside class="rail" aria-label="系列导航"><div class="rail-scroll">
+<a class="series-brand" href="reader-index.html">{SERIES}</a><p class="series-subtitle">写给想用 AI 带团队的人</p>{intro}
+<nav aria-label="系列文章"><p class="nav-caption">系列目录 · 八篇手记</p>{timeline}</nav></div>
+<a class="rail-home" href="/">← Lee Pepe</a></aside>
+<main id="main" tabindex="-1">{content}</main></div>
+<dialog class="series-sheet" id="series-sheet" aria-labelledby="sheet-title"><header class="sheet-header"><h2 id="sheet-title">{SERIES}</h2><button class="close-sheet" type="button" autofocus>关闭</button></header>
+<div class="sheet-content"><p class="sheet-subtitle">写给想用 AI 带团队的人</p><nav aria-label="手机系列文章">{timeline}</nav><a class="sheet-home" href="/">← Lee Pepe</a></div></dialog>
+</body></html>'''
+
+
+def build_reader(stories):
+    current = next(story for story in stories if story["n"] == 4)
+    body = add_ids(current["html"], prefix="section-")
+    body = re.sub(r'(<h2 id="[^"]+")>', r'\1 tabindex="-1">', body)
+    date = current["date"].split('-')
+    date_label = f'{date[0]} 年 {int(date[1])} 月 {int(date[2])} 日'
+    adjacent = []
+    for number, label in ((3, '← 上一篇'), (5, '下一篇 →')):
+        story = next(story for story in stories if story["n"] == number)
+        adjacent.append(f'<a class="page-card" href="{html.escape(reader_url(story))}"><small>{label}</small><span>{html.escape(story["title"])}</span></a>')
+    article = f'''<article class="paper"><div class="reading-column"><header class="article-header">
+<p class="eyebrow">第 {current['n']} 篇</p><h1>{html.escape(current['title'])}</h1>
+<p class="article-meta"><time datetime="{current['date']}">{date_label}</time><span class="meta-dot" aria-hidden="true"></span><span>约 {current['minutes']} 分钟</span></p></header>
+<div class="prose" data-reading-body>{body}</div><footer><div class="article-end">本篇完</div>
+<nav class="pager" aria-label="相邻文章">{''.join(adjacent)}</nav><a class="back-index" href="reader-index.html">回到目录</a></footer></div></article>'''
+    (HERE / "reader-04.html").write_text(reader_frame(stories, article, current), encoding="utf-8")
+
+    cards = []
+    for story in stories:
+        cards.append(f'''<li><a class="story-card" href="{html.escape(reader_url(story))}"><span class="story-no">{story['n']:02d}</span>
+<div><h2>{html.escape(story['title'])}</h2><p class="story-teaser">{html.escape(story['teaser_full'])}</p><span class="story-time">约 {story['minutes']} 分钟</span></div><span class="story-arrow" aria-hidden="true">→</span></a></li>''')
+    index = f'''<section class="paper" aria-labelledby="series-title"><div class="reading-column"><header class="index-header">
+<p class="eyebrow">八篇手记 · 按顺序慢慢读</p><h1 id="series-title">{SERIES}</h1><p class="index-intro">{INTRO}</p>
+<p class="collection-meta">{len(stories)} 篇文章 · 约 {sum(story['minutes'] for story in stories)} 分钟</p></header>
+<nav aria-label="文章目录"><ol class="story-list">{''.join(cards)}</ol></nav><p class="draft-note">初稿，还在修订。</p></div></section>'''
+    (HERE / "reader-index.html").write_text(reader_frame(stories, index), encoding="utf-8")
+
+
 def build_index():
     css = """main{max-width:720px;margin:0 auto;padding:48px 16px 80px}
 h1{font-family:var(--title);font-weight:400;font-size:52px;margin:.1em 0}
@@ -326,7 +436,9 @@ h1{font-family:var(--title);font-weight:400;font-size:52px;margin:.1em 0}
     items = [("fonts.html", "字体样张", "8 款手写感／温暖字体放在同一段真实内容上对比，标了授权和加载体积，前 3 款是推荐。"),
              ("layout-1.html", "布局一：杂志封面", "系列有一张封面大图和手绘咖啡杯，文章是带章节大号码的卡片，适合当“一本小册子”。"),
              ("layout-2.html", "布局二：信笺", "像一封写在格子纸上的信：手写称呼、目录虚线引导、顶部 8 个圆点的进度条、页边手写批注。"),
-             ("layout-3.html", "布局三：双栏阅读", "左边固定的系列目录和本篇小标题、阅读进度；右边正文。手机上目录收进顶部抽屉。")]
+             ("layout-3.html", "布局三：双栏阅读", "左边固定的系列目录和本篇小标题、阅读进度；右边正文。手机上目录收进顶部抽屉。"),
+             ("reader-index.html", "双栏阅读器 v2（寒蝉全圆体）", "系列目录：八篇真实手记，咖啡色时间线与安静的纸面。"),
+             ("reader-04.html", "双栏阅读器 v2（寒蝉全圆体）", "第 4 篇：一个说“没有 PR”的机器人；手机目录、小节定位与阅读进度。")]
     links = "".join(f'<a class="item" href="{u}"><b>{t}</b><span>{d}</span></a>' for u, t, d in items)
     page = head("设计实验室", css) + f"""<body><main><p><a href="/ai-workflow/">← 回到系列</a></p><h1>设计实验室</h1>
 <p>保留咖啡色系，换手写感字体，重新设计布局。三个布局都用同一篇真实文章（第 4 篇）。</p>{links}</main></body></html>"""
@@ -334,10 +446,13 @@ h1{font-family:var(--title);font-weight:400;font-size:52px;margin:.1em 0}
 
 
 if __name__ == "__main__":
-    st = load_stories()
-    build_fonts(st)
-    build_layout1(st)
-    build_layout2(st)
-    build_layout3(st)
+    args = parser.parse_args()
+    st = load_stories(args.stories_dir)
+    if not args.reader_only:
+        build_fonts(st)
+        build_layout1(st)
+        build_layout2(st)
+        build_layout3(st)
+    build_reader(st)
     build_index()
     print("built", sorted(p.name for p in HERE.glob("*.html")))

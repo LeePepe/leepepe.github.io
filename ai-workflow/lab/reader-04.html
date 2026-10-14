@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F6EFE6"><title>一个说&quot;没有 PR&quot;的机器人 | Lee Pepe</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/hcqyt@2.0.0/dist/ChillRoundFRegular/result.css">
+<link rel="stylesheet" href="reader.css"><script src="reader.js" defer></script></head><body>
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="mobile-bar"><button class="open-series" type="button" aria-label="打开系列目录" aria-haspopup="dialog" aria-controls="series-sheet" aria-expanded="false">
+<span>带一群 AI 干活</span><span class="mobile-position">4 / 8</span><span class="chevron" aria-hidden="true"></span></button>
+<div class="progress-track" aria-hidden="true"><span class="progress-fill" data-progress-fill></span></div></header>
+<div class="reader-frame"><aside class="rail" aria-label="系列导航"><div class="rail-scroll">
+<a class="series-brand" href="reader-index.html">带一群 AI 干活</a><p class="series-subtitle">写给想用 AI 带团队的人</p>
+<nav aria-label="系列文章"><p class="nav-caption">系列目录 · 八篇手记</p><ol class="timeline"><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/01-cli-to-dev-team-to-workflow/">
+<span class="chapter-number">01</span><span>从一个终端窗口，到一张没有指挥官的图</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/02-patches-forced-the-refine/">
+<span class="chapter-number">02</span><span>十万字符的角色说明</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/03-moving-house-lead-of-leads/">
+<span class="chapter-number">03</span><span>我陪一群 AI 搬了一次家</span></a></li><li class="chapter is-current"><a class="chapter-link" href="reader-04.html" aria-current="page">
+<span class="chapter-number">04</span><span>一个说&quot;没有 PR&quot;的机器人</span></a><ol class="outline" aria-label="本篇小节"><li><a href="#section-1" aria-current="location">晚上六点那轮扫描，报告写得很干净</a></li><li><a href="#section-2">它不是没找到，是没读到</a></li><li><a href="#section-3">同一天白天，另一个方向的失败</a></li><li><a href="#section-4">我修成了&quot;失败就停&quot;</a></li><li><a href="#section-5">傍晚这次，每样东西都在它该在的位置上</a></li><li><a href="#section-6">两处修复，一处在机器上，一处在规则里</a></li><li><a href="#section-7">那一截命令还在我脑子里</a></li></ol><div class="reading-status"><p><span>本篇阅读进度</span><span data-progress-label>0%</span></p>
+<div class="progress-track" role="progressbar" aria-label="本篇阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" data-progress-fill></span></div></div></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/05-it-said-it-would-rerun/">
+<span class="chapter-number">05</span><span>它说它会重跑</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/06-two-rounds-and-stop/">
+<span class="chapter-number">06</span><span>两轮就停</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/07-nobody-approves-themselves/">
+<span class="chapter-number">07</span><span>谁都不能批自己</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/08-dont-paste-rules-into-ai/">
+<span class="chapter-number">08</span><span>别把规则粘贴给 AI</span></a></li></ol></nav></div>
+<a class="rail-home" href="/">← Lee Pepe</a></aside>
+<main id="main" tabindex="-1"><article class="paper"><div class="reading-column"><header class="article-header">
+<p class="eyebrow">第 4 篇</p><h1>一个说&quot;没有 PR&quot;的机器人</h1>
+<p class="article-meta"><time datetime="2026-10-14">2026 年 10 月 14 日</time><span class="meta-dot" aria-hidden="true"></span><span>约 6 分钟</span></p></header>
+<div class="prose" data-reading-body><h2 id="section-1" tabindex="-1">晚上六点那轮扫描，报告写得很干净</h2>
+<p>10 月 13 日晚上六点，PR Manager 的定时扫描跑完了。它每 30 分钟扫一遍我名下所有仓库，找出还开着、又没人跟的 PR。这一轮的报告很短：检查了 11 个仓库，每个仓库都没有开放的 PR，所以没有新建任何跟踪任务。</p>
+<p>报告本身挑不出毛病，有范围，有结论，还逐个列了检查过的仓库名。换成我自己看，大概就这么划过去了。</p>
+<p>发现不对的是终端里替我盯进度的 AI。它记得半小时前的上一轮。那一轮新建了 3 个跟踪任务，还写明有 2 个 PR 按"每轮最多建 3 个"的规矩留到下一轮。半小时后，这 2 个 PR 不可能自己消失。</p>
+<p>它去 GitHub 上数了一下，开着的非 Draft PR 有 5 个，分在 shared-ci、VitalStride 和 VoxPocket 三个仓库里。</p>
+<h2 id="section-2" tabindex="-1">它不是没找到，是没读到</h2>
+<p>翻开那一轮的运行记录，列 PR 的那条命令就有问题。它对 11 个仓库逐个执行 <code>gh pr list</code>，每条命令后面跟着 <code>2&gt;/dev/null || echo NO_ACCESS_OR_NO_PRS</code>。gh 是 GitHub 的命令行工具。后面这一截的意思是：把错误信息扔掉，失败了就打印一句"没权限或者没有 PR"。</p>
+<p>11 个仓库，打印了 11 次这句话。</p>
+<p>agent 后来确实觉得不对，又跑了 <code>gh auth status</code> 查登录状态。结果写得很清楚："You are not logged into any GitHub hosts"，也就是没有登录任何 GitHub 账号。它又换了一种方式取令牌重试，这次连"失败"的提示都没有打印，每个仓库名下面都是空的。最后它写下了那份干净的报告。</p>
+<h2 id="section-3" tabindex="-1">同一天白天，另一个方向的失败</h2>
+<p>要讲清楚它为什么没登录，得先讲这天白天的事。</p>
+<p>我的 Dev Team 里的 agent 不用我的账号。它们有一个 GitHub App 身份，提交、开 PR、合并都记在这个 App 名下，和我本人分开。那天白天，有一个公开仓库的 PR 被合并了，合并人一栏写的却是我的个人账号。</p>
+<p>查下来有两层原因。第一层，平台上的角色说明还是旧版，里面取 App 令牌的路径指向旧电脑，在新电脑上取到的是空值。第二层更隐蔽。跑这个角色的 runtime 用的是 Copilot，它执行命令时会把系统自带的 gh 所在目录排到 PATH 最前面。PATH 是系统找程序时依次查看的目录清单。我给 agent 准备的 gh 包装脚本排在后面，等于被绕开了。系统自带的 gh 一看没有令牌，就去用电脑钥匙串里登录着的我的账号。</p>
+<p>合并记录改不了，合并人那一栏会一直写着我的名字。</p>
+<h2 id="section-4" tabindex="-1">我修成了"失败就停"</h2>
+<p>傍晚之前的修法很直接：给 agent 单独建一个 gh 配置目录，里面不存任何登录信息。agent 环境里的 gh 只会读这个目录，读不到令牌就报"未登录"，不会再退回我的账号。终端里的 AI 在本机模拟 agent 的环境试了一遍，绕开包装脚本直接调系统的 gh，得到的就是"未登录"。</p>
+<p>傍晚六点那一轮扫描说明，这个修法生效了。Copilot 照样把系统的 gh 排在前面，照样绕开了包装脚本，gh 照样没找到令牌。这一次它没有拿我的账号，而是老老实实失败了。</p>
+<p>安全那一半做到了。另一半没人管：失败发生了，却没有人听见。</p>
+<h2 id="section-5" tabindex="-1">傍晚这次，每样东西都在它该在的位置上</h2>
+<p>白天那次事故，我是从合并记录里看出来的，那是一个看得见的错误。傍晚这一次，所有东西都在它该在的位置上：扫描按时跑了，报告按格式写了，任务状态是"已完成"。要不是上一轮留下的那两个 PR，这份报告会被当成"今晚很安静"。</p>
+<p>如果连续几轮都这样，结果就是 PR 一直开着，没人跟，也没人知道没人跟。</p>
+<h2 id="section-6" tabindex="-1">两处修复，一处在机器上，一处在规则里</h2>
+<p>我没有自己动手修。这时候我已经让终端里的 AI 当 lead，它把两件事分了出去。</p>
+<p>机器上的那一处交给了 Codex：把 App 令牌直接写进 agent 专用的 gh 配置，再起一个循环，每 20 分钟换一次新令牌。这个循环跟着 daemon（在后台调度这些 agent 的常驻进程）启动，也跟着它退出，不加开机自启。这样不管 PATH 怎么排，agent 环境里的 gh 拿到的都是 App 身份。</p>
+<p>装上以后第一次启动就失败了。刷新脚本报"拿不到有效令牌"，daemon 没有重启。原因是 Codex 写的格式校验只允许字母、数字和下划线，而 GitHub 现在发的 App 令牌有 383 位，中间带着点和横线，被当成了坏令牌。改一个字符集，问题就没了。重启以后，绕开包装脚本直接调系统的 gh，能以 App 身份列出 PR；在我自己的终端里，gh 仍然是我的账号。</p>
+<p>规则那一处交给了 Dev Team。PR Manager 的角色里加了一条：GitHub 读取失败、未登录、出错，都算受阻，要报出是哪个仓库、什么错误，不能当成"没有 PR"。报告"零个 PR"之前，先用一次已登录的读取确认身份，再和上一轮留下的清单对一遍，对不上也算受阻。这条规则由 Dev Team 自己写、自己提 PR，由 PR Manager 以 App 身份合并。</p>
+<p>晚上八点那一轮扫描，报告变长了：6 个已有跟踪的 PR 逐个列出，3 个新 PR 建了跟踪任务，还有 1 个留到下一轮。</p>
+<h2 id="section-7" tabindex="-1">那一截命令还在我脑子里</h2>
+<p><code>2&gt;/dev/null || echo NO_PRS</code> 本身不算错。在一次性的脚本里，这样写能让输出干净一点。放进一个每半小时跑一次、没人盯着看的扫描里，它就把"我读不到"翻译成了"这里什么都没有"。</p>
+<p>现在角色里那条规则写着：读取失败时不要压掉错误输出。</p></div><footer><div class="article-end">本篇完</div>
+<nav class="pager" aria-label="相邻文章"><a class="page-card" href="/ai-workflow/03-moving-house-lead-of-leads/"><small>← 上一篇</small><span>我陪一群 AI 搬了一次家</span></a><a class="page-card" href="/ai-workflow/05-it-said-it-would-rerun/"><small>下一篇 →</small><span>它说它会重跑</span></a></nav><a class="back-index" href="reader-index.html">回到目录</a></footer></div></article></main></div>
+<dialog class="series-sheet" id="series-sheet" aria-labelledby="sheet-title"><header class="sheet-header"><h2 id="sheet-title">带一群 AI 干活</h2><button class="close-sheet" type="button" autofocus>关闭</button></header>
+<div class="sheet-content"><p class="sheet-subtitle">写给想用 AI 带团队的人</p><nav aria-label="手机系列文章"><ol class="timeline"><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/01-cli-to-dev-team-to-workflow/">
+<span class="chapter-number">01</span><span>从一个终端窗口，到一张没有指挥官的图</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/02-patches-forced-the-refine/">
+<span class="chapter-number">02</span><span>十万字符的角色说明</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/03-moving-house-lead-of-leads/">
+<span class="chapter-number">03</span><span>我陪一群 AI 搬了一次家</span></a></li><li class="chapter is-current"><a class="chapter-link" href="reader-04.html" aria-current="page">
+<span class="chapter-number">04</span><span>一个说&quot;没有 PR&quot;的机器人</span></a><ol class="outline" aria-label="本篇小节"><li><a href="#section-1" aria-current="location">晚上六点那轮扫描，报告写得很干净</a></li><li><a href="#section-2">它不是没找到，是没读到</a></li><li><a href="#section-3">同一天白天，另一个方向的失败</a></li><li><a href="#section-4">我修成了&quot;失败就停&quot;</a></li><li><a href="#section-5">傍晚这次，每样东西都在它该在的位置上</a></li><li><a href="#section-6">两处修复，一处在机器上，一处在规则里</a></li><li><a href="#section-7">那一截命令还在我脑子里</a></li></ol><div class="reading-status"><p><span>本篇阅读进度</span><span data-progress-label>0%</span></p>
+<div class="progress-track" role="progressbar" aria-label="本篇阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" data-progress-fill></span></div></div></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/05-it-said-it-would-rerun/">
+<span class="chapter-number">05</span><span>它说它会重跑</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/06-two-rounds-and-stop/">
+<span class="chapter-number">06</span><span>两轮就停</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/07-nobody-approves-themselves/">
+<span class="chapter-number">07</span><span>谁都不能批自己</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/08-dont-paste-rules-into-ai/">
+<span class="chapter-number">08</span><span>别把规则粘贴给 AI</span></a></li></ol></nav><a class="sheet-home" href="/">← Lee Pepe</a></div></dialog>
+</body></html>

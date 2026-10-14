@@ -1,0 +1,67 @@
+---
+layout: null
+title: "两轮就停"
+permalink: /ai-workflow/06-two-rounds-and-stop/
+---
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F6EFE6"><title>两轮就停 | Lee Pepe</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/hcqyt@2.0.0/dist/ChillRoundFRegular/result.css">
+<link rel="stylesheet" href="/ai-workflow/reader.css"><script src="/ai-workflow/reader.js" defer></script></head><body>
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="mobile-bar"><button class="open-series" type="button" aria-label="打开系列目录" aria-haspopup="dialog" aria-controls="series-sheet" aria-expanded="false">
+<span>带一群 AI 干活</span><span class="mobile-position">6 / 8</span><span class="chevron" aria-hidden="true"></span></button>
+<div class="progress-track" aria-hidden="true"><span class="progress-fill" data-progress-fill></span></div></header>
+<div class="reader-frame"><aside class="rail" aria-label="系列导航"><div class="rail-scroll">
+<a class="series-brand" href="/ai-workflow/">带一群 AI 干活</a><p class="series-subtitle">写给想用 AI 带团队的人</p>
+<nav aria-label="系列文章"><p class="nav-caption">系列目录 · 八篇手记</p><ol class="timeline"><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/01-cli-to-dev-team-to-workflow/">
+<span class="chapter-number">01</span><span>从一个终端窗口，到一张没有指挥官的图</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/02-patches-forced-the-refine/">
+<span class="chapter-number">02</span><span>十万字符的角色说明</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/03-moving-house-lead-of-leads/">
+<span class="chapter-number">03</span><span>我陪一群 AI 搬了一次家</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/04-the-bot-that-said-no-prs/">
+<span class="chapter-number">04</span><span>一个说&quot;没有 PR&quot;的机器人</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/05-it-said-it-would-rerun/">
+<span class="chapter-number">05</span><span>它说它会重跑</span></a></li><li class="chapter is-current"><a class="chapter-link" href="/ai-workflow/06-two-rounds-and-stop/" aria-current="page">
+<span class="chapter-number">06</span><span>两轮就停</span></a><ol class="outline" aria-label="本篇小节"><li><a href="#section-1" aria-current="location">晚上九点四十三分，又一个任务停下来问我</a></li><li><a href="#section-2">这条规则是我自己留下的</a></li><li><a href="#section-3">不到一天，它停了五次</a></li><li><a href="#section-4">每次的决定都差不多</a></li><li><a href="#section-5">这条规则只写了什么时候停</a></li></ol><div class="reading-status"><p><span>本篇阅读进度</span><span data-progress-label>0%</span></p>
+<div class="progress-track" role="progressbar" aria-label="本篇阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" data-progress-fill></span></div></div></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/07-nobody-approves-themselves/">
+<span class="chapter-number">07</span><span>谁都不能批自己</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/08-dont-paste-rules-into-ai/">
+<span class="chapter-number">08</span><span>别把规则粘贴给 AI</span></a></li></ol></nav></div>
+<a class="rail-home" href="/">← Lee Pepe</a></aside>
+<main id="main" tabindex="-1"><article class="paper"><div class="reading-column"><header class="article-header">
+<p class="eyebrow">第 6 篇</p><h1>两轮就停</h1>
+<p class="article-meta"><time datetime="2026-10-14">2026 年 10 月 14 日</time><span class="meta-dot" aria-hidden="true"></span><span>约 5 分钟</span></p></header>
+<div class="prose" data-reading-body><h2 id="section-1" tabindex="-1">晚上九点四十三分，又一个任务停下来问我</h2>
+<p>10 月 13 日晚上九点四十三分，Dev Team 里一个改文档的任务停了下来，在任务下写了一段"需要决定"。</p>
+<p>这个任务要做的事很小：把两个旧 skill 里关于巡检角色的说法，和新的角色分工对齐。第一轮审查提了修改意见，工程师改了；第二轮审查又提了意见，这次是五处措辞，连文件和行号都标出来了。按规则，两轮审查都没过，就不能再往下走。它问我：能不能破例，让原来的工程师改完这五处，再让审查做最后一次复核？</p>
+<p>这是那一天里第三次有任务因为同一条规则停下来问我。</p>
+<h2 id="section-2" tabindex="-1">这条规则是我自己留下的</h2>
+<p>9 月底重写角色说明的时候，我删掉了大部分补丁，留下了几条真正通用的规则，"修复最多两轮"是其中一条。</p>
+<p>留下它的理由是防止返工停不下来：审查提意见，工程师改，审查再提新的意见，工程师再改，没有谁喊停。两轮上限就是一个刹车：同一个问题改了两轮还没过，说明不是多改一轮就能解决的，停下来，把情况交给人判断。</p>
+<p>到了 10 月中，拖到第二轮还没过的任务里，好几个只剩已经定位好的小修正：审查意见标着文件和行号，连该换成哪几个字都写好了。刹车还是那个刹车，踩下去的时候，车已经停在路边了。</p>
+<h2 id="section-3" tabindex="-1">不到一天，它停了五次</h2>
+<p>那天晚上我已经把这类决定交给了终端里的 AI，让它当 lead，替我拍板，必要的才来找我。所以下面这几次，都是它做的决定。</p>
+<p>第一次是一个给 workflow 说明补规则的任务，第二轮审查没有发现任何内容问题，只有一个版本引用对不上，而且已经改正了。它问能不能再走一次只核对版本引用的审查。lead 批了，限定只做这一次，当晚这个任务就完成了。</p>
+<p>第二次是一个 VoxPocket 的测试脚本任务。两轮审查前面的意见都改了，第二轮又找出一处边界校验的问题，工程师按要求修了，可是没有审查轮次可以用来确认。Dev Team 给了三个选项，推荐其中一个：只为这一个提交破例，跳过内部的推送前审查，直接开 PR，PR 上的 CI 和代码审查照样必须通过。lead 选了这个。PR 开出来，检查全过，第二天早上我在 GitHub 上批准，它自动合并了。</p>
+<p>第三次就是开头那个改文档的任务。lead 批了最后一次复核。复核很快回来了，还是没过：三处说法里，"发现"这个词前面少了"非 Draft"这个限定。正确的写法已经写在审查意见里，一个字都不用再想。如果照规则，这一次没过就该彻底停掉。lead 没有再批一轮审查，而是批了一次原样替换：工程师把那三处换成审查意见里给出的原文，不改别的，然后直接开 PR，由 PR 上的检查把关。这个 PR 后来由 PR Manager 合并了。</p>
+<p>第四次是给 shared-telemetry 接自动发布的任务，卡在方案阶段。两轮审查用完，剩下的问题里有一半不是方案本身写得不好，而是权限：方案要求读取仓库的 Actions 保留期设置、创建两个发布用的标签，可 Dev Team 用的 App 身份没有这两样权限，Team Lead 按角色规则也不能改仓库设置。lead 没有去给 App 加权限，而是在我的会话里，用我的账号读了设置（保留 90 天），建好了两个标签，把证据贴回任务，再批了一次最后的方案审查。</p>
+<p>第五次反过来。一个改发布 skill 的任务，PR 在第二轮审查意见出来之前，按规则合并了：PR 上该过的检查都过了，而内部审查本来就不是合并的门槛。等第二轮意见回来，说文档里还留着一段已经否决的内嵌步骤。任务关不掉，又停下来问。lead 的决定是：原方案保留，让原来的工程师补一个修正 PR。</p>
+<h2 id="section-4" tabindex="-1">每次的决定都差不多</h2>
+<p>五次看下来，lead 的决定几乎是同一个形状：问题已经被定位到具体位置，修法也已经确定，那就允许一次有边界的继续，比如只做一次复核、只换这几个字、只为这一个提交破例；同时保留 PR 上的检查，作为最后那道真正的门。</p>
+<p>它也在拒绝一些东西。它没有一次批过两轮，没有把"破例"写成以后都适用，也没有为了推进去扩 App 的权限。每次都在任务里写清楚：这次例外的范围到哪为止，超出就停。</p>
+<h2 id="section-5" tabindex="-1">这条规则只写了什么时候停</h2>
+<p>这条规则真正的问题，是它只写了"什么时候停"，没写"停下以后谁、在什么条件下可以继续"。于是每一次停下，都只能等人。</p>
+<p>我回头算了一下这几次停下来的代价。如果那天我没有把决定交给 lead，五次都会落到我这里，每次要我读一段几百字的"需要决定"，看懂上下文，选 A 还是 B。真正需要判断的内容，往往就是"这三个词照原文替换行不行"。</p>
+<p>验证记录里现在有一条：第二轮之后，如果剩下的只是已经定位的少量修正，允许一次有针对性的最终复核，不必每次都升级。这条还没写进角色规则，打算等发布这条线跑通，和其他几条一起改。</p>
+<p>两轮上限我不打算去掉，返工停不下来的问题今天一样会有。要补的是停下以后的那一句：谁可以批一次有边界的继续，边界写到哪里。这句话写进角色规则之前，这类决定还是由 lead 一次次替我做。</p></div><footer><div class="article-end">本篇完</div>
+<nav class="pager" aria-label="相邻文章"><a class="page-card" rel="prev" href="/ai-workflow/05-it-said-it-would-rerun/"><small>← 上一篇</small><span>它说它会重跑</span></a><a class="page-card" rel="next" href="/ai-workflow/07-nobody-approves-themselves/"><small>下一篇 →</small><span>谁都不能批自己</span></a></nav><a class="back-index" href="/ai-workflow/">回到目录</a></footer></div></article></main></div>
+<dialog class="series-sheet" id="series-sheet" aria-labelledby="sheet-title"><header class="sheet-header"><h2 id="sheet-title">带一群 AI 干活</h2><button class="close-sheet" type="button" autofocus>关闭</button></header>
+<div class="sheet-content"><p class="sheet-subtitle">写给想用 AI 带团队的人</p><nav aria-label="手机系列文章"><ol class="timeline"><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/01-cli-to-dev-team-to-workflow/">
+<span class="chapter-number">01</span><span>从一个终端窗口，到一张没有指挥官的图</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/02-patches-forced-the-refine/">
+<span class="chapter-number">02</span><span>十万字符的角色说明</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/03-moving-house-lead-of-leads/">
+<span class="chapter-number">03</span><span>我陪一群 AI 搬了一次家</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/04-the-bot-that-said-no-prs/">
+<span class="chapter-number">04</span><span>一个说&quot;没有 PR&quot;的机器人</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/05-it-said-it-would-rerun/">
+<span class="chapter-number">05</span><span>它说它会重跑</span></a></li><li class="chapter is-current"><a class="chapter-link" href="/ai-workflow/06-two-rounds-and-stop/" aria-current="page">
+<span class="chapter-number">06</span><span>两轮就停</span></a><ol class="outline" aria-label="本篇小节"><li><a href="#section-1" aria-current="location">晚上九点四十三分，又一个任务停下来问我</a></li><li><a href="#section-2">这条规则是我自己留下的</a></li><li><a href="#section-3">不到一天，它停了五次</a></li><li><a href="#section-4">每次的决定都差不多</a></li><li><a href="#section-5">这条规则只写了什么时候停</a></li></ol><div class="reading-status"><p><span>本篇阅读进度</span><span data-progress-label>0%</span></p>
+<div class="progress-track" role="progressbar" aria-label="本篇阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" data-progress-fill></span></div></div></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/07-nobody-approves-themselves/">
+<span class="chapter-number">07</span><span>谁都不能批自己</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/08-dont-paste-rules-into-ai/">
+<span class="chapter-number">08</span><span>别把规则粘贴给 AI</span></a></li></ol></nav><a class="sheet-home" href="/">← Lee Pepe</a></div></dialog>
+</body></html>

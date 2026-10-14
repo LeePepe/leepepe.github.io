@@ -24,6 +24,11 @@ baseurl: "/" # the subpath of your site, e.g. /blog
 url: "leepepe.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  LeePepe
 
+# Keep the series index in minima's header without listing all eight articles.
+header_pages:
+  - about.md
+  - ai-workflow/index.html
+
 # Build settings
 markdown: kramdown
 theme: minima

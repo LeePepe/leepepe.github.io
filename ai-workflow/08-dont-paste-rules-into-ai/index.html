@@ -1,0 +1,76 @@
+---
+layout: null
+title: "别把规则粘贴给 AI"
+permalink: /ai-workflow/08-dont-paste-rules-into-ai/
+---
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F6EFE6"><title>别把规则粘贴给 AI | Lee Pepe</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/hcqyt@2.0.0/dist/ChillRoundFRegular/result.css">
+<link rel="stylesheet" href="/ai-workflow/reader.css"><script src="/ai-workflow/reader.js" defer></script></head><body>
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="mobile-bar"><button class="open-series" type="button" aria-label="打开系列目录" aria-haspopup="dialog" aria-controls="series-sheet" aria-expanded="false">
+<span>带一群 AI 干活</span><span class="mobile-position">8 / 8</span><span class="chevron" aria-hidden="true"></span></button>
+<div class="progress-track" aria-hidden="true"><span class="progress-fill" data-progress-fill></span></div></header>
+<div class="reader-frame"><aside class="rail" aria-label="系列导航"><div class="rail-scroll">
+<a class="series-brand" href="/ai-workflow/">带一群 AI 干活</a><p class="series-subtitle">写给想用 AI 带团队的人</p>
+<nav aria-label="系列文章"><p class="nav-caption">系列目录 · 八篇手记</p><ol class="timeline"><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/01-cli-to-dev-team-to-workflow/">
+<span class="chapter-number">01</span><span>从一个终端窗口，到一张没有指挥官的图</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/02-patches-forced-the-refine/">
+<span class="chapter-number">02</span><span>十万字符的角色说明</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/03-moving-house-lead-of-leads/">
+<span class="chapter-number">03</span><span>我陪一群 AI 搬了一次家</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/04-the-bot-that-said-no-prs/">
+<span class="chapter-number">04</span><span>一个说&quot;没有 PR&quot;的机器人</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/05-it-said-it-would-rerun/">
+<span class="chapter-number">05</span><span>它说它会重跑</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/06-two-rounds-and-stop/">
+<span class="chapter-number">06</span><span>两轮就停</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/07-nobody-approves-themselves/">
+<span class="chapter-number">07</span><span>谁都不能批自己</span></a></li><li class="chapter is-current"><a class="chapter-link" href="/ai-workflow/08-dont-paste-rules-into-ai/" aria-current="page">
+<span class="chapter-number">08</span><span>别把规则粘贴给 AI</span></a><ol class="outline" aria-label="本篇小节"><li><a href="#section-1" aria-current="location">10 月 12 日，平台上的说明和源文件对不上了</a></li><li><a href="#section-2">链接这条路，第一步就走不通</a></li><li><a href="#section-3">搬进公开仓库，要先洗一遍</a></li><li><a href="#section-4">复制版留下的最后一个坑</a></li><li><a href="#section-5">部署这一步，换成了脚本加回读</a></li><li><a href="#section-6">之后每一次改规则，都走同一条路</a></li><li><a href="#section-7">现在平台上还剩什么</a></li></ol><div class="reading-status"><p><span>本篇阅读进度</span><span data-progress-label>0%</span></p>
+<div class="progress-track" role="progressbar" aria-label="本篇阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" data-progress-fill></span></div></div></li></ol></nav></div>
+<a class="rail-home" href="/">← Lee Pepe</a></aside>
+<main id="main" tabindex="-1"><article class="paper"><div class="reading-column"><header class="article-header">
+<p class="eyebrow">第 8 篇</p><h1>别把规则粘贴给 AI</h1>
+<p class="article-meta"><time datetime="2026-10-14">2026 年 10 月 14 日</time><span class="meta-dot" aria-hidden="true"></span><span>约 6 分钟</span></p></header>
+<div class="prose" data-reading-body><h2 id="section-1" tabindex="-1">10 月 12 日，平台上的说明和源文件对不上了</h2>
+<p>10 月 12 日，终端里的 AI 帮我核对 Dev Team 的现状。它把协作平台上 Team Lead 和 Planner 的说明读下来，和私有仓库里的源文件对了一遍，发现两边已经不一样了。</p>
+<p>这些说明是我写的。写法也很简单：在私有仓库里改好，再整段复制到平台上。每改一次规则就重复一次。</p>
+<p>问题是两边靠我手动对齐。只要有一次改了源文件没贴，两边就差一点。私有仓库里改角色说明的提交有三十多次，差到后来，已经说不清哪一份才算数。</p>
+<p>那天我跟 AI 说：以后规则只存在源仓库里，平台上只放链接，不要再复制正文。</p>
+<h2 id="section-2" tabindex="-1">链接这条路，第一步就走不通</h2>
+<p>协作平台本来就支持这种用法。它可以从一个 GitHub 地址导入 skill，源文件更新以后再刷新一次，skill 的编号和它绑定的 agent 都不变。agent 自己的说明只写一行：开始工作前加载哪两个 skill。</p>
+<p>第二天，AI 照这个思路去导入，第一步就报错了：找不到这个地址。原因不复杂，角色说明放在私有仓库里，平台的服务端没有读私有仓库的权限。要走通，就得给服务端配一个 GitHub 令牌。</p>
+<p>我没有去配令牌，而是回头想了想这个仓库本身。私有仓库是我自己用的 skill，放的是我的习惯和偏好。Dev Team 的角色说明给一组 agent 用，规则本身也没有什么需要藏的。它们一开始就放错了地方。</p>
+<p>于是我定了边界：私有仓库只放我自己用的东西，团队的角色和规则都搬进公开的 agent-skills 仓库。</p>
+<h2 id="section-3" tabindex="-1">搬进公开仓库，要先洗一遍</h2>
+<p>搬家没有想象中顺利。公开仓库有自己的审查规则，每个 PR 都要过 Codex 的自动审查，规则里写着：不能出现账号名、各种编号、本机路径、个人信息，也不能有任何"用 Owner 的个人账号去做某件事"的说法。</p>
+<p>旧的角色说明里，这些东西到处都是。平台上 agent 的编号写在交接示例里，我的账号名写在身份段落里，有一段还写着某些情况下可以用我的个人账号操作。复制粘贴的年代，这些都无所谓，反正只有平台和我看得到。</p>
+<p>第一次提交，审查连着打回了几轮：先是账号名，再是一句漏掉的"使用 Owner 账号"，再是几个指向占位符的坏链接，最后是一个第三方工具的标识。中间我说过一句：GitHub 编号可以公开，其他的都不要。后来干脆定成更严的一条：按仓库规则来，账号名和编号都不写，运行时需要的身份，让 agent 自己去查。</p>
+<p>还有一次卡在体积上。第一个 PR 把审计用的整套素材也一起搬了，差不多 946KB，其中一份网页素材就有一万五千行。Codex 审查每次最多读 200KB，超过就直接判失败。最后拆成两个 PR，没人引用的素材留在私有仓库里存档。</p>
+<p>这两个 PR 合并以后，角色说明第一次变成了一份公开、可审查、有历史记录的文件。</p>
+<h2 id="section-4" tabindex="-1">复制版留下的最后一个坑</h2>
+<p>还没来得及部署新版本，旧版本先出了事。</p>
+<p>平台上那份复制来的旧说明里，有一行写着 App 令牌脚本的路径。这个路径指向旧电脑，新电脑上根本没有这个文件。agent 照着旧说明去取令牌，取到的是空值，最后用了我的个人账号去合并一个 PR。那件事的另一半原因在第 4 篇里讲过，这里只说一点：源文件早就改过身份那一段，平台上的副本一直没跟上。</p>
+<p>这件事以后，部署新角色就不是"有空再做"的事了。</p>
+<h2 id="section-5" tabindex="-1">部署这一步，换成了脚本加回读</h2>
+<p>真正部署的时候，AI 自己执行导入的命令被安全检查拦下了。它把整个部署写成一个脚本交给我，我在终端里跑了一遍：从公开仓库导入 7 个 skill，绑定到 6 个 agent 上，把每个 agent 和 squad 的说明换成一行指针。</p>
+<p>跑完以后，AI 把平台上的 7 个 skill 逐个读回来，和仓库里的源文件做对比，7 份逐字一致。</p>
+<p>旧的长提示词也一起清掉了。巡检用的两个定时任务，提示词里写了上千字的历史规则，AIDash 那个编号一直编到了第 14 条。现在两个定时任务的提示词都只剩一句：按某个 skill 的规定执行。</p>
+<h2 id="section-6" tabindex="-1">之后每一次改规则，都走同一条路</h2>
+<p>从那以后，改规则只有一种做法：在公开仓库里开 PR，审查通过后合并，在平台上刷新对应的 skill，再读回来对比。</p>
+<p>当天晚上就用上了两次。PR Manager 的规则补了两条，一条写清"所有来源的 PR 都要跟进到合并"，一条写清"读不到 GitHub 不能报告成没有 PR"。第一个是终端里的 AI 提的，第二个是 Dev Team 自己提的，都由 PR Manager 合并。我跑了一次刷新脚本，AI 读回来对比，一致。</p>
+<p>第三次没那么顺。补上"检查有结果就重新叫醒 PR Manager"的那个 PR 合并以后，刷新请求在服务端连着报错，平台的其他操作都正常。AI 先手动试了两次，又在后台每五分钟重试，前后失败了好几次才成功，读回来对比，一致。</p>
+<p>这一次刷新慢了不少，但我知道它慢在哪一步，也知道最后平台上的内容和仓库里是同一份。复制粘贴的年代，同样的情况我只会知道"应该贴上去了"。</p>
+<h2 id="section-7" tabindex="-1">现在平台上还剩什么</h2>
+<p>每个 agent 的说明现在只有一句话：开始工作前，加载 squad 的规则和自己的角色规则，来源是公开仓库里的某个目录，这里写的任何东西都不覆盖它们。</p>
+<p>这句话以后应该不会再改了。要改的东西都在仓库里，有 PR、有审查、有历史。</p></div><footer><div class="article-end">本篇完</div>
+<nav class="pager" aria-label="相邻文章"><a class="page-card" rel="prev" href="/ai-workflow/07-nobody-approves-themselves/"><small>← 上一篇</small><span>谁都不能批自己</span></a></nav><a class="back-index" href="/ai-workflow/">回到目录</a></footer></div></article></main></div>
+<dialog class="series-sheet" id="series-sheet" aria-labelledby="sheet-title"><header class="sheet-header"><h2 id="sheet-title">带一群 AI 干活</h2><button class="close-sheet" type="button" autofocus>关闭</button></header>
+<div class="sheet-content"><p class="sheet-subtitle">写给想用 AI 带团队的人</p><nav aria-label="手机系列文章"><ol class="timeline"><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/01-cli-to-dev-team-to-workflow/">
+<span class="chapter-number">01</span><span>从一个终端窗口，到一张没有指挥官的图</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/02-patches-forced-the-refine/">
+<span class="chapter-number">02</span><span>十万字符的角色说明</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/03-moving-house-lead-of-leads/">
+<span class="chapter-number">03</span><span>我陪一群 AI 搬了一次家</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/04-the-bot-that-said-no-prs/">
+<span class="chapter-number">04</span><span>一个说&quot;没有 PR&quot;的机器人</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/05-it-said-it-would-rerun/">
+<span class="chapter-number">05</span><span>它说它会重跑</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/06-two-rounds-and-stop/">
+<span class="chapter-number">06</span><span>两轮就停</span></a></li><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/07-nobody-approves-themselves/">
+<span class="chapter-number">07</span><span>谁都不能批自己</span></a></li><li class="chapter is-current"><a class="chapter-link" href="/ai-workflow/08-dont-paste-rules-into-ai/" aria-current="page">
+<span class="chapter-number">08</span><span>别把规则粘贴给 AI</span></a><ol class="outline" aria-label="本篇小节"><li><a href="#section-1" aria-current="location">10 月 12 日，平台上的说明和源文件对不上了</a></li><li><a href="#section-2">链接这条路，第一步就走不通</a></li><li><a href="#section-3">搬进公开仓库，要先洗一遍</a></li><li><a href="#section-4">复制版留下的最后一个坑</a></li><li><a href="#section-5">部署这一步，换成了脚本加回读</a></li><li><a href="#section-6">之后每一次改规则，都走同一条路</a></li><li><a href="#section-7">现在平台上还剩什么</a></li></ol><div class="reading-status"><p><span>本篇阅读进度</span><span data-progress-label>0%</span></p>
+<div class="progress-track" role="progressbar" aria-label="本篇阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" data-progress-fill></span></div></div></li></ol></nav><a class="sheet-home" href="/">← Lee Pepe</a></div></dialog>
+</body></html>

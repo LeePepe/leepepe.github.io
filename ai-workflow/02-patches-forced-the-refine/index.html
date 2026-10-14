@@ -1,0 +1,72 @@
+---
+layout: null
+title: "十万字符的角色说明"
+permalink: /ai-workflow/02-patches-forced-the-refine/
+---
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F6EFE6"><title>十万字符的角色说明 | Lee Pepe</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/hcqyt@2.0.0/dist/ChillRoundFRegular/result.css">
+<link rel="stylesheet" href="/ai-workflow/reader.css"><script src="/ai-workflow/reader.js" defer></script></head><body>
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="mobile-bar"><button class="open-series" type="button" aria-label="打开系列目录" aria-haspopup="dialog" aria-controls="series-sheet" aria-expanded="false">
+<span>带一群 AI 干活</span><span class="mobile-position">2 / 8</span><span class="chevron" aria-hidden="true"></span></button>
+<div class="progress-track" aria-hidden="true"><span class="progress-fill" data-progress-fill></span></div></header>
+<div class="reader-frame"><aside class="rail" aria-label="系列导航"><div class="rail-scroll">
+<a class="series-brand" href="/ai-workflow/">带一群 AI 干活</a><p class="series-subtitle">写给想用 AI 带团队的人</p>
+<nav aria-label="系列文章"><p class="nav-caption">系列目录 · 八篇手记</p><ol class="timeline"><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/01-cli-to-dev-team-to-workflow/">
+<span class="chapter-number">01</span><span>从一个终端窗口，到一张没有指挥官的图</span></a></li><li class="chapter is-current"><a class="chapter-link" href="/ai-workflow/02-patches-forced-the-refine/" aria-current="page">
+<span class="chapter-number">02</span><span>十万字符的角色说明</span></a><ol class="outline" aria-label="本篇小节"><li><a href="#section-1" aria-current="location">9 月 24 日，我把七份角色说明从平台上拉了下来</a></li><li><a href="#section-2">补丁是怎么长出来的</a></li><li><a href="#section-3">9 月 21 日到 24 日，三天的账</a></li><li><a href="#section-4">补丁又回来了</a></li><li><a href="#section-5">10 月 4 日，补丁停了</a></li><li><a href="#section-6">现在还会出问题，但问题落在哪里变了</a></li></ol><div class="reading-status"><p><span>本篇阅读进度</span><span data-progress-label>0%</span></p>
+<div class="progress-track" role="progressbar" aria-label="本篇阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" data-progress-fill></span></div></div></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/03-moving-house-lead-of-leads/">
+<span class="chapter-number">03</span><span>我陪一群 AI 搬了一次家</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/04-the-bot-that-said-no-prs/">
+<span class="chapter-number">04</span><span>一个说&quot;没有 PR&quot;的机器人</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/05-it-said-it-would-rerun/">
+<span class="chapter-number">05</span><span>它说它会重跑</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/06-two-rounds-and-stop/">
+<span class="chapter-number">06</span><span>两轮就停</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/07-nobody-approves-themselves/">
+<span class="chapter-number">07</span><span>谁都不能批自己</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/08-dont-paste-rules-into-ai/">
+<span class="chapter-number">08</span><span>别把规则粘贴给 AI</span></a></li></ol></nav></div>
+<a class="rail-home" href="/">← Lee Pepe</a></aside>
+<main id="main" tabindex="-1"><article class="paper"><div class="reading-column"><header class="article-header">
+<p class="eyebrow">第 2 篇</p><h1>十万字符的角色说明</h1>
+<p class="article-meta"><time datetime="2026-10-14">2026 年 10 月 14 日</time><span class="meta-dot" aria-hidden="true"></span><span>约 6 分钟</span></p></header>
+<div class="prose" data-reading-body><h2 id="section-1" tabindex="-1">9 月 24 日，我把七份角色说明从平台上拉了下来</h2>
+<p>那天，我把 Dev Team 七份角色说明原样读了下来，存进一个叫 before 的目录。七份加起来 104,898 个字符。最长的是 PR Manager，19,313 个字符；巡检用的 Supervisor 也有 18,349 个字符，一百四十多行。</p>
+<p>我本来只是想重写一版短的。读到第一屏就停住了。Supervisor 的开头是一个标着"最高优先级"的段落，第一条规则说：本 prompt 后面出现的某个产品项目的 ID 和措辞，都只是历史示例，不是默认值，已被本段取代。往下翻，还有一个"三项目延续覆盖"分支，只在三个指定项目上生效，里面直接写着项目 ID。</p>
+<p>一份说明里，后写的段落在声明前面的段落作废。我意识到自己读到的不是一份设计，是几个月里一层层盖上去的补丁。</p>
+<h2 id="section-2" tabindex="-1">补丁是怎么长出来的</h2>
+<p>回头看，每一条都来得很合理。</p>
+<p>Dev Team 是 7 月初开始跑的。角色说明我写在一个私有仓库里，再复制到平台上。某个 agent 出了一次错，我就在它的说明里加一条，告诉它下次遇到这种情况该怎么做。</p>
+<p>后来出错的方式越来越细，补丁也越来越细。工程师的说明里出现了"在旧合同下创建的提交""已发布 SHA 的遗留审查请求"这类分支，每一种都要求先判断自己属于哪种历史情况，再决定怎么做。审查角色的说明里写着：这些区分不能原谅过期的运行 ID、对不上的触发、错误的作者、已被取代的代次、无效的哈希。每个词背后都是一次真实的事故。</p>
+<p>补丁不只打在角色说明里。AIDash 有一个定时巡检任务，它的提示词最后编到了 14 号规则。其中几条开头就是"平台实证"：一条讲 agent 任务注入的临时目录会让 Xcode 的依赖解析看不到版本号，一条讲人在 issue 下随手评论也会触发一次新运行，一条讲巡检任务和正在跑的构建抢同一个缓存，会制造出"数据库被锁"的假故障。每一条都是我们踩过的坑，写得也都对。但一个巡检任务要先读完十几条历史教训才能开始干活，它真正的职责反而被埋在了中间。</p>
+<p>还有一条规则专门处理一件事：某个父任务只被一个人工验证的子任务卡住时，以哪个子任务为准、什么条件下才能再提醒我一次、提醒过的记录要怎么存。为了不让巡检任务每半小时@我一次，这一条写了将近一段话。</p>
+<h2 id="section-3" tabindex="-1">9 月 21 日到 24 日，三天的账</h2>
+<p>9 月 21 日，我给 AI 定了一个大目标：统一升级几个产品仓库的架构。第一版计划是边做边定流程。</p>
+<p>三天后算账：攒了 738 份回执，自研的 CI 沙箱改到了第四代，没有一行代码合进主干。Dev Team 一直在认真工作，补丁也一直在加，可是所有人都在围着补丁转。每次出问题，我的第一反应都是"再加一条规则"，从来没问过"这条流程本身对不对"。</p>
+<p>9 月 24 日的第二版计划，第一条就写：先有 workflow，再做升级。同一天，我把七份角色说明全部重写成薄版，删掉三个项目的 ID 表、代次和冻结树、回执哈希、发布许可这些东西，只留下单一写者、修复两轮上限、30 分钟没动静才接管这类真正通用的规则。七份加起来从 104,898 个字符降到 43,262 个，少了 59%。</p>
+<p>我以为这样就结束了。</p>
+<h2 id="section-4" tabindex="-1">补丁又回来了</h2>
+<p>薄版写好之后，第三天补丁就回来了。</p>
+<p>9 月 27 日，我们发现有些 PR 没有挂在任何任务下面，也就没人跟。于是给 Supervisor 加了一项新职责：巡检时顺便发现这些孤立的 PR，交给 PR Manager。这一项当天在分支上提交了五次，合成两个 PR：先加上，再按审查意见收紧，再改成整个工作区范围，再加去重，最后又明确"由哪个巡检任务负责创建"。</p>
+<p>9 月 28 日，加了"常规 PR 修复自动派给工程师"，以及"遇到和我之前决定冲突的意见，只问我一次，再把答案写回规则"。9 月 29 日，又加了"我在 PR 上留的决定评论怎么认定"。从 9 月 24 日到 10 月 7 日，私有仓库里改角色说明的提交有三十多次。</p>
+<p>每一次都比 9 月以前的补丁讲道理：有审查，有 PR，有理由。但形状没有变。出了问题，就往某个角色身上加一条职责或者一条例外。几个角色之间谁该做什么，没有一个地方能说清楚。孤立 PR 归巡检、跟进 PR 归 PR Manager、修复归工程师、协调归 Team Lead，这些边界散在七份说明里，靠我记着。</p>
+<h2 id="section-5" tabindex="-1">10 月 4 日，补丁停了</h2>
+<p>10 月 4 日，我让 AI 把六条 workflow 各自的设计稿重新写一遍：需求、实现、PR 交付、发布、产品数据、周期维护。写之前先定下一张总图，明确它不指挥任何人。之后每条 workflow 自己写清楚什么时候开始、做什么、什么时候算结束、出了问题找谁。</p>
+<p>这一步和以前打补丁最大的区别，是先问"这件事在哪条 workflow 里、归谁"，再决定规则写在哪里。</p>
+<p>那条 9 月 27 日加给 Supervisor、当天改了五次的"发现孤立 PR"，在新的 PR 交付 workflow 里被整个拿走了。发现 PR 和跟进 PR 本来就是同一件事，统一归 PR Manager，由它自己的定时任务每 30 分钟扫一遍。Supervisor 也改了名字，叫 Flow Supervisor，只剩一项职责：流程真的中断时，叫醒原来负责的那个角色。10 月 13 日这版角色上线，说明里第一次写明了它不做什么：不修平台，也不做 PR 发现。</p>
+<h2 id="section-6" tabindex="-1">现在还会出问题，但问题落在哪里变了</h2>
+<p>新版本跑起来的第一天，问题照样出。PR Manager 等检查时检查失败了，没有人叫醒它，一个 PR 放了 8 个小时；审查两轮的上限把只剩几个字的修改卡到了我这里。</p>
+<p>不同的是，这些问题现在有地方放。PR 没人叫醒，是 PR 交付这条 workflow 缺了一个环节，修在 PR Manager 和 Flow Supervisor 的定义里，而不是给某个 agent 加一句"遇到这种情况要记得"。两轮上限的问题，记在验证记录里，等这一阶段结束统一改规则。</p>
+<p>我还在加规则，只是现在每加一条，都能说清楚它属于哪条 workflow。</p></div><footer><div class="article-end">本篇完</div>
+<nav class="pager" aria-label="相邻文章"><a class="page-card" rel="prev" href="/ai-workflow/01-cli-to-dev-team-to-workflow/"><small>← 上一篇</small><span>从一个终端窗口，到一张没有指挥官的图</span></a><a class="page-card" rel="next" href="/ai-workflow/03-moving-house-lead-of-leads/"><small>下一篇 →</small><span>我陪一群 AI 搬了一次家</span></a></nav><a class="back-index" href="/ai-workflow/">回到目录</a></footer></div></article></main></div>
+<dialog class="series-sheet" id="series-sheet" aria-labelledby="sheet-title"><header class="sheet-header"><h2 id="sheet-title">带一群 AI 干活</h2><button class="close-sheet" type="button" autofocus>关闭</button></header>
+<div class="sheet-content"><p class="sheet-subtitle">写给想用 AI 带团队的人</p><nav aria-label="手机系列文章"><ol class="timeline"><li class="chapter is-read"><a class="chapter-link" href="/ai-workflow/01-cli-to-dev-team-to-workflow/">
+<span class="chapter-number">01</span><span>从一个终端窗口，到一张没有指挥官的图</span></a></li><li class="chapter is-current"><a class="chapter-link" href="/ai-workflow/02-patches-forced-the-refine/" aria-current="page">
+<span class="chapter-number">02</span><span>十万字符的角色说明</span></a><ol class="outline" aria-label="本篇小节"><li><a href="#section-1" aria-current="location">9 月 24 日，我把七份角色说明从平台上拉了下来</a></li><li><a href="#section-2">补丁是怎么长出来的</a></li><li><a href="#section-3">9 月 21 日到 24 日，三天的账</a></li><li><a href="#section-4">补丁又回来了</a></li><li><a href="#section-5">10 月 4 日，补丁停了</a></li><li><a href="#section-6">现在还会出问题，但问题落在哪里变了</a></li></ol><div class="reading-status"><p><span>本篇阅读进度</span><span data-progress-label>0%</span></p>
+<div class="progress-track" role="progressbar" aria-label="本篇阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="progress-fill" data-progress-fill></span></div></div></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/03-moving-house-lead-of-leads/">
+<span class="chapter-number">03</span><span>我陪一群 AI 搬了一次家</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/04-the-bot-that-said-no-prs/">
+<span class="chapter-number">04</span><span>一个说&quot;没有 PR&quot;的机器人</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/05-it-said-it-would-rerun/">
+<span class="chapter-number">05</span><span>它说它会重跑</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/06-two-rounds-and-stop/">
+<span class="chapter-number">06</span><span>两轮就停</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/07-nobody-approves-themselves/">
+<span class="chapter-number">07</span><span>谁都不能批自己</span></a></li><li class="chapter"><a class="chapter-link" href="/ai-workflow/08-dont-paste-rules-into-ai/">
+<span class="chapter-number">08</span><span>别把规则粘贴给 AI</span></a></li></ol></nav><a class="sheet-home" href="/">← Lee Pepe</a></div></dialog>
+</body></html>

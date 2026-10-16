@@ -36,6 +36,20 @@
     ]
   },
   {
+    "component": "textfield",
+    "sha": "56c6219b84fa11c7262f621d4c9e78d571137f16",
+    "source": "https://github.com/LeePepe/shared-design-system/tree/56c6219b84fa11c7262f621d4c9e78d571137f16",
+    "platform": "iOS 27 simulator",
+    "images": [
+      "textfield/56c6219b84fa11c7262f621d4c9e78d571137f16/textfield-accessibility-narrow.png",
+      "textfield/56c6219b84fa11c7262f621d4c9e78d571137f16/textfield-focused.png",
+      "textfield/56c6219b84fa11c7262f621d4c9e78d571137f16/textfield-graphite-dark.png",
+      "textfield/56c6219b84fa11c7262f621d4c9e78d571137f16/textfield-graphite-light.png",
+      "textfield/56c6219b84fa11c7262f621d4c9e78d571137f16/textfield-ocean-dark.png",
+      "textfield/56c6219b84fa11c7262f621d4c9e78d571137f16/textfield-ocean-light.png"
+    ]
+  },
+  {
     "component": "switch",
     "sha": "d781cda4c9ab9057ff33b8c8939d70ae6b692975",
     "source": "https://github.com/LeePepe/shared-design-system/tree/d781cda4c9ab9057ff33b8c8939d70ae6b692975",

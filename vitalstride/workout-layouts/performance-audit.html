@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>性能源码审计 · VitalStride V2</title><link rel="canonical" href="https://leepepe.github.io/vitalstride/workout-layouts/performance-audit.html"><link rel="stylesheet" href="documents.css"></head><body><main><nav aria-label="站点导航"><a href="./">← 返回布局画廊</a><a href="/">Lee Pepe 的博客</a></nav><h1>紧凑重设计：性能与交互审计</h1>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>性能源码审计 · VitalStride B</title><link rel="canonical" href="https://leepepe.github.io/vitalstride/workout-layouts/performance-audit.html"><link rel="stylesheet" href="documents.css"></head><body><main><nav aria-label="站点导航"><a href="./">← 返回布局画廊</a><a href="/">Lee Pepe 的博客</a></nav><h1>紧凑重设计：性能与交互审计</h1>
 <p>2026-10-16 · 源码基线 <code>4a4f8d6712327965774166d7ced63406eb57864d</code>。
 只读生产源码，唯一产物为本文；未改产品代码、未发 issue、未运行构建、性能采样或真机测试。
 适用设计：主题色单独比较；动作选择保留侧栏 + 双列，搜索 / 筛选 / 确认集中底部；训练页优先重构区域职责、More 与键盘辅助功能。</p>
@@ -163,4 +163,4 @@ K:225 是次数预设轮换，K:251 的 Done 只收键盘，并不完成组。R:
 </tbody>
 </table></div>
 <p>统一采样：Release/profile build，列明设备 / OS、库和训练规模、冷 / 热状态，分别报告 p50 / p95、history fetch、body 更新、main-thread 与 animation hitch。
-60Hz 设备按 16.7ms 帧预算检查；不要用原型导出耗时推算生产帧率 / 能耗。计数与 trace 仅记录 ID、次数、耗时，不输出健康数值或搜索内容。</p><footer>VitalStride V2 · 2026-10-16 · 原型与演示数据</footer></main></body></html>
+60Hz 设备按 16.7ms 帧预算检查；不要用原型导出耗时推算生产帧率 / 能耗。计数与 trace 仅记录 ID、次数、耗时，不输出健康数值或搜索内容。</p><footer>VitalStride B · 2026-10-16 · 原型与演示数据</footer></main></body></html>

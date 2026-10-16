@@ -1,5 +1,8 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>区域职责与行为 · VitalStride V2</title><link rel="canonical" href="https://leepepe.github.io/vitalstride/workout-layouts/north-star.html"><link rel="stylesheet" href="documents.css"></head><body><main><nav aria-label="站点导航"><a href="./">← 返回布局画廊</a><a href="/">Lee Pepe 的博客</a></nav><h1>V2：先把布局和行为做对</h1>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>区域职责与行为 · VitalStride B</title><link rel="canonical" href="https://leepepe.github.io/vitalstride/workout-layouts/north-star.html"><link rel="stylesheet" href="documents.css"></head><body><main><nav aria-label="站点导航"><a href="./">← 返回布局画廊</a><a href="/">Lee Pepe 的博客</a></nav><blockquote>
+<p><strong>历史 V2。用户现已选定 B。</strong> 最新方向见 <a href="b-direction.html">B 细化合同</a>、<a href="b-delivery.html">交付</a> 和 <a href="index.html">最新画廊</a>。以下保留上一次比较结论。</p>
+</blockquote>
+<h1>V2：先把布局和行为做对</h1>
 <p>用户校正：主题色独立；上一轮布局全部不采纳；密度不足。保留当前产品的可用结构，改细节和性能。动作选择保留侧栏＋双列，搜索、filter 和确认操作在底部。训练是本轮重点。</p>
 <p>仅在 Prototype 实现并比较，不改生产 AppUI / 数据合同。统一使用 DesignKit blue/slate、相同字体、圆角与间距，浅深色只作适配检查。旧风格矩阵不参与这轮选型。</p>
 <h2>三种训练布局</h2>
@@ -95,4 +98,4 @@
 <p>生产风险来自真实代码，见 <a href="performance-audit.html">源码性能审计</a>：重复历史 fetch、冗余 keyboard rootView 更新及重复聚合。原型没有生产数据库、UIKit inputView 或 Release trace，不能声称生产卡顿已修复。</p>
 <h2>验收</h2>
 <p>实际渲染 3 布局 × 6 状态（键盘开关 × none/rest/undo）× light/dark。另看 More、RPE、选择器、筛选、无结果与375pt布局回退。独立设计评审必须针对本次紧凑要求、区域职责与触控目标给 /35 + P0/P1，旧评分作废于本轮。</p>
-<p>验证选中任意组、草稿随保存 / 放弃、输入无效阻止导航、RPE / 类型一起提交、跨筛选选择与搜索缓存。所有屏幕都是明确标注演示数据的原生 SwiftUI；macOS ImageRenderer 不冒充 iOS Simulator、VO 或性能验收。</p><footer>VitalStride V2 · 2026-10-16 · 原型与演示数据</footer></main></body></html>
+<p>验证选中任意组、草稿随保存 / 放弃、输入无效阻止导航、RPE / 类型一起提交、跨筛选选择与搜索缓存。所有屏幕都是明确标注演示数据的原生 SwiftUI；macOS ImageRenderer 不冒充 iOS Simulator、VO 或性能验收。</p><footer>VitalStride B · 2026-10-16 · 原型与演示数据</footer></main></body></html>

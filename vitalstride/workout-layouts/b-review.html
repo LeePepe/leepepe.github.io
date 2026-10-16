@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>B 设计评审 · VitalStride B</title><link rel="canonical" href="https://leepepe.github.io/vitalstride/workout-layouts/b-review.html"><link rel="stylesheet" href="documents.css"></head><body><main><nav aria-label="站点导航"><a href="./">← 返回布局画廊</a><a href="/">Lee Pepe 的博客</a></nav><h1>B 独立设计评审</h1>
+<p>2026-10-16 · 独立 design-reviewer · 本次32张B截图，不沿用V2评分。</p>
+<h2>最终全量复核</h2>
+<p><strong>30/35，未发现P0，发现1项P1。</strong> B可继续作为选定设计方向。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th style="text-align: right;">分数</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>间距与留白</td>
+<td style="text-align: right;">5</td>
+<td>连续动作表利用充分，浮层间距稳定</td>
+</tr>
+<tr>
+<td>字体</td>
+<td style="text-align: right;">4</td>
+<td>数字清楚，编辑对象和组号更易辨认</td>
+</tr>
+<tr>
+<td>颜色与对比度</td>
+<td style="text-align: right;">3</td>
+<td>浅色侧栏小字仍需加深</td>
+</tr>
+<tr>
+<td>层级</td>
+<td style="text-align: right;">5</td>
+<td>内容、输入和主要操作层级明确</td>
+</tr>
+<tr>
+<td>分组与对齐</td>
+<td style="text-align: right;">5</td>
+<td>当前组／当前动作／整次训练分组清晰</td>
+</tr>
+<tr>
+<td>状态表达</td>
+<td style="text-align: right;">4</td>
+<td>完成、选中、撤销和继续休息均有明确提示</td>
+</tr>
+<tr>
+<td>平台适配</td>
+<td style="text-align: right;">4</td>
+<td>截图表现协调，运行时体验尚未验证</td>
+</tr>
+</tbody>
+</table></div>
+<p>全量复核P1：浅色侧栏选中项的“编辑”与序号约#0073CC，背景约#CBE4F7，像素对比约3.70:1。建议加深小字、保留蓝底与指示条。</p>
+<p>主执行者随后将这部分小字改为DesignKit的<code>neutrals.text1</code>，保留蓝色底与指示条，重新渲染全部32图。下方记录对此改动的复核；不自行增加评分。</p>
+<h2>最后一项P1修正复核</h2>
+<p>独立reviewer重新查看<code>normal-light</code>、<code>browse-light</code>、<code>keyboard-browse-light</code>三张更新图，确认<strong>这项P1已解决</strong>。序号／“编辑”深色文字约#1C2024，对#CBE4F7背景约12.47:1；跨动作浏览时灰色编辑标识约5.41:1。浏览位置与编辑对象仍有明确区别。</p>
+<p>保留全量评审的<strong>30/35</strong>，本次局部修正未重新评分；已报告的P0/P1均无未解决项。此结论只适用于截图检查，不代表下述运行时项目通过。</p>
+<h2>已解决的前轮问题</h2>
+<ul>
+<li>旧B右侧只展示当前动作的大块空白，已由连续动作表解决。常态可见两个完整动作及下一标题。</li>
+<li>浏览高亮与编辑对象分开：侧栏铅笔＋“编辑”、13pt键盘footer、组号按钮和定位入口形成一致表达。</li>
+<li>撤销明确显示被删动作及原组号；与休息并存时第二行说明继续计时。</li>
+<li>RPE／筛选选中态增加1pt描边与勾；浅色完成圈改深色勾，删除文字加深。删除文字像素抽样约5.80:1。</li>
+<li>snackbar与键盘有独立间距，当前图中字段、提交按钮与倒计时均完整可见。浮层可能覆盖后续列表行，实际滚动访问仍待验证。</li>
+</ul>
+<h2>评审过程与边界</h2>
+<p>初次视觉评审为31/35（28张），额外<a href="b-review-contrast-initial.html">对比度核查</a>为27/35。两者评分口径有差异；本轮按具体发现修正，未取平均或挑选较高分。最终独立评审逐张查看32/32张图：普通、浏览、输入、休息、撤销及组合、More、RPE、动作选择、筛选、空结果，均含明暗；另含375pt两张大字分支图。</p>
+<p>评审仅检查macOS ImageRenderer静态输出，未运行构建或测试，未修改仓库。浏览图是section落点，不是实际拖动。实际手势、滚动可达性、原生Liquid Glass光学效果、iOS Dynamic Type、VoiceOver与运行性能均未验证。构建与14项状态测试的证据由主执行者另行提供。</p><footer>VitalStride B · 2026-10-16 · 原型与演示数据</footer></main></body></html>

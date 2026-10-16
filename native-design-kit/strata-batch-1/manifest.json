@@ -27,5 +27,21 @@
       "switch/d781cda4c9ab9057ff33b8c8939d70ae6b692975/switch-ocean-light-narrow-accessibility3.png",
       "switch/d781cda4c9ab9057ff33b8c8939d70ae6b692975/switch-ocean-light.png"
     ]
+  },
+  {
+    "component": "checkbox",
+    "sha": "c9d8b5ad3170deb1a13545874034a26357a7020b",
+    "source": "https://github.com/LeePepe/shared-design-system/tree/c9d8b5ad3170deb1a13545874034a26357a7020b",
+    "platform": "iOS 27.0 simulator (iPhone 18 Pro)",
+    "images": [
+      "checkbox/c9d8b5ad3170deb1a13545874034a26357a7020b/checkbox-graphite-dark-narrow-accessibility2.png",
+      "checkbox/c9d8b5ad3170deb1a13545874034a26357a7020b/checkbox-graphite-dark.png",
+      "checkbox/c9d8b5ad3170deb1a13545874034a26357a7020b/checkbox-graphite-light-narrow-accessibility2.png",
+      "checkbox/c9d8b5ad3170deb1a13545874034a26357a7020b/checkbox-graphite-light.png",
+      "checkbox/c9d8b5ad3170deb1a13545874034a26357a7020b/checkbox-ocean-dark-narrow-accessibility2.png",
+      "checkbox/c9d8b5ad3170deb1a13545874034a26357a7020b/checkbox-ocean-dark.png",
+      "checkbox/c9d8b5ad3170deb1a13545874034a26357a7020b/checkbox-ocean-light-narrow-accessibility2.png",
+      "checkbox/c9d8b5ad3170deb1a13545874034a26357a7020b/checkbox-ocean-light.png"
+    ]
   }
 ]

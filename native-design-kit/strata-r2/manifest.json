@@ -1,0 +1,575 @@
+{
+  "captureType": "Actual SwiftUI iOS simulator screenshots exported from XCTest result bundles",
+  "components": {
+    "card": {
+      "nativeSHA": "ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7",
+      "providerSHA": "0c38a28e56c5326a0ed9141db2a03d446e27acb3",
+      "candidateOnly": true,
+      "reviewURL": "public-review-card.html",
+      "prURL": "https://github.com/LeePepe/shared-design-system/pull/28",
+      "images": {
+        "blue/dark/glass": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-dark-glass.png",
+        "blue/dark/solid": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-dark-solid.png",
+        "blue/light/glass": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-light-glass.png",
+        "blue/light/solid": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-light-solid.png",
+        "green/dark/glass": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-green-dark-glass.png",
+        "green/dark/solid": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-green-dark-solid.png",
+        "green/light/glass": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-green-light-glass.png",
+        "green/light/solid": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-green-light-solid.png",
+        "pink/dark/glass": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-pink-dark-glass.png",
+        "pink/dark/solid": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-pink-dark-solid.png",
+        "pink/light/glass": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-pink-light-glass.png",
+        "pink/light/solid": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-pink-light-solid.png",
+        "purple/dark/glass": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-purple-dark-glass.png",
+        "purple/dark/solid": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-purple-dark-solid.png",
+        "purple/light/glass": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-purple-light-glass.png",
+        "purple/light/solid": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-purple-light-solid.png",
+        "yellow/dark/glass": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-yellow-dark-glass.png",
+        "yellow/dark/solid": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-yellow-dark-solid.png",
+        "yellow/light/glass": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-yellow-light-glass.png",
+        "yellow/light/solid": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-yellow-light-solid.png"
+      },
+      "allImages": [
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-accessibility3-bottom.png",
+          "sha256": "33033923386138ceb92806e9004e25b6c782f64dedee4f0481bfd2d9a26e25d4"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-accessibility3-top.png",
+          "sha256": "ced822992ac5ac2dd5722fdc92ed238c90a7cf9f24f537758de5b01789ce56a0"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-graphite-dark-fallback.png",
+          "sha256": "6a8982fb796637c174d7b830d0359bf3b218db1f2073a141265ee72e5ce3a75d"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-graphite-dark-glass.png",
+          "sha256": "5bcadada56edc24b8bfe2c0b92e9f1d678a8252ec94774adf7dccbd58361d16a"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-graphite-dark-solid.png",
+          "sha256": "39e1a5c1d8ce3adc92036c76b5a711491b9ee23c1c1090f2014095f65ce72884"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-graphite-light-fallback.png",
+          "sha256": "9f46662cf57e1ed947c5a06a944e5d3d050c95b6fbb5825b10500473d0cc238f"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-graphite-light-glass.png",
+          "sha256": "fdf2640cf8e97e30d7bf3437abd0fed7b7bd53bc4dc966e30054603057bd3d4c"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-graphite-light-solid.png",
+          "sha256": "4957d7dc09046a01b6c04bca1e22b46df38c1c838387cdb867dbcde1e07cc416"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-narrow-long.png",
+          "sha256": "d15fc3ae19f7035d4b8e193e0855458203fc670f09191f0fa6c8f157cfab88b4"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-ocean-dark-fallback.png",
+          "sha256": "44270068780fd7c1f70e3b7f2761bcace0ad861d9abfeb2b0157e12241a1beb6"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-ocean-dark-glass.png",
+          "sha256": "b30d1f45da99076bae6b6c44dc71390c101a1db465ac77160e8866995d93d905"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-ocean-dark-solid.png",
+          "sha256": "7101f5aedcffaac155b718274162ac4709523cefa714facd67b920369c2e83b0"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-ocean-light-fallback.png",
+          "sha256": "3091fdb666509ee7a14e5d9f127e9fc55ea84486fc842e207c5b533ead7bed0b"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-ocean-light-glass.png",
+          "sha256": "db36244b53586272b67a32ff933f7cb4b224d3b9ec7185b759bf285159421257"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-ocean-light-solid.png",
+          "sha256": "21edfdafd4588c807ff070780bd8aa370971b8b9a7f572eff08a5d291d7ef790"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-specimen-accessibility3-action.png",
+          "sha256": "98543b769d1ac338685e120f4f513ede12b5b2325ec83659ddce98b947e09418"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-specimen-accessibility3-bottom.png",
+          "sha256": "982467347120deb3bf96a6cbef58f4049ec63df546109fff73ebd2e8b4ffa343"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-specimen-accessibility3-top.png",
+          "sha256": "ad73a8e00852f4a8c82bdad92e3b2b590104597e6742825529d190b4dba7bb08"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-specimen-action.png",
+          "sha256": "ae07b4f04caa445746716fa4fdcddc5134be02d3110f534a07b57f830763b83d"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-specimen-narrow.png",
+          "sha256": "e4546d01589d5ae11fdef997638c9cfabaef3aae22fd2e5887119a608390f180"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-dark-fallback.png",
+          "sha256": "02bd3bf3b147af328261e9c18c49d6e481fef819c622857ae8c9bb3a2819cb4a"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-dark-glass.png",
+          "sha256": "05d31ccd2c7738db4e1c723b416392b594950c8669d8b675464f1194135bdda8"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-dark-solid.png",
+          "sha256": "02bd3bf3b147af328261e9c18c49d6e481fef819c622857ae8c9bb3a2819cb4a"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-light-fallback.png",
+          "sha256": "d6e0484d82ce16b5b59017061b828dee68e77360382f6da1bd34305a800e0a61"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-light-glass.png",
+          "sha256": "361a54a0e66bb4f451e170faeaabb1b43a8b7bd8fb70de5f55f78aea73c5cd30"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-light-solid.png",
+          "sha256": "16bea3a5ef3f93541766a28c6ae1b52d0e302798fb58fbef8fec8d9943a19545"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-blue-light-system-fallback.png",
+          "sha256": "008199ac48db8e8d0f7d0115f121c5efea8ec42dfab92d78d8094c1bb7168fe1"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-green-dark-fallback.png",
+          "sha256": "37102928c56bb63f401dfd6e8b35042c75c62c3c45fe35ed85395ca7b3207ba4"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-green-dark-glass.png",
+          "sha256": "23fb9c83e15ff5bfd6bbe8cc9b7587806274c5a570f128eed42a97813d05f49a"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-green-dark-solid.png",
+          "sha256": "37102928c56bb63f401dfd6e8b35042c75c62c3c45fe35ed85395ca7b3207ba4"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-green-light-fallback.png",
+          "sha256": "1e80fed69cfb06989f8da24c9b9f9d6a52159933cee69ab4e286e8497134e246"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-green-light-glass.png",
+          "sha256": "2ebbb487ede6f93da678393d85350f201434f459b56d089c4de5ca38f28d1c46"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-green-light-solid.png",
+          "sha256": "1e80fed69cfb06989f8da24c9b9f9d6a52159933cee69ab4e286e8497134e246"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-pink-dark-fallback.png",
+          "sha256": "2d0c64f73f2d73d3cfe1ebe3cdc42fe25b6ac07dc8e8ef0991d7e33165fb7abf"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-pink-dark-glass.png",
+          "sha256": "0a1c3285d4a8ecd284355091dbad5ebd4c39b37e0a8bccacbcfa55fcfd2d40a5"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-pink-dark-solid.png",
+          "sha256": "84fdde6c980d927a4911e5161fd2230f3c05f84531db0e05c9454062f9dea4e6"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-pink-light-fallback.png",
+          "sha256": "7d670a25fa74b5b89fa5ddebbebcfb22983be3a9f98fd4a7542191f9cadc5b8c"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-pink-light-glass.png",
+          "sha256": "aa0b39f86a4e603a0f60c1414e8cf3d43bfefd7eb15fd5a5efb8578b2b52c5ef"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-pink-light-solid.png",
+          "sha256": "7d670a25fa74b5b89fa5ddebbebcfb22983be3a9f98fd4a7542191f9cadc5b8c"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-purple-dark-fallback.png",
+          "sha256": "82673b9251802e27e0bcf160034573623192d7f2801cc537d8dc81ae0ac63854"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-purple-dark-glass.png",
+          "sha256": "28a4f56238b5f3f490532bee89f0b04f49109ca2ec5125fb17ef44d89e04cc77"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-purple-dark-solid.png",
+          "sha256": "82673b9251802e27e0bcf160034573623192d7f2801cc537d8dc81ae0ac63854"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-purple-light-fallback.png",
+          "sha256": "4c6403de6f89a0bc74f16306f85f5651e7dd3c75b20ddf4a61c5db63ce135b31"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-purple-light-glass.png",
+          "sha256": "fd48df6050170df574539dc301b49d5773197e34d88a35bcdf4bdfbe0358eca7"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-purple-light-solid.png",
+          "sha256": "1ad549cb04fa0622a3c63e239d380c904cb0970be35685b5155999dc6e6e087a"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-yellow-dark-fallback.png",
+          "sha256": "44ebafc5d0636d1612dfc3383bbedc73819a3aeed1cd5c13958021d3bf88ab24"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-yellow-dark-glass.png",
+          "sha256": "7871aee759301f587d2928e72b2a391eef18a6a512254e0b08ee8afc775b794a"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-yellow-dark-solid.png",
+          "sha256": "44ebafc5d0636d1612dfc3383bbedc73819a3aeed1cd5c13958021d3bf88ab24"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-yellow-light-fallback.png",
+          "sha256": "108d029fb4b66d6175b0bbbc0e3b6e3d455b10f619525203ca1ee4086c8f1d70"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-yellow-light-glass.png",
+          "sha256": "3e6ec5d111758313e3dfc3f769ce3ff63e1e545bb2455bf7029ce3a27429125a"
+        },
+        {
+          "file": "card/ae42cb0923a1a5b90d5ad2e47de2bf3b9c04f2e7/card-strata-yellow-light-solid.png",
+          "sha256": "108d029fb4b66d6175b0bbbc0e3b6e3d455b10f619525203ca1ee4086c8f1d70"
+        }
+      ]
+    },
+    "list": {
+      "nativeSHA": "fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3",
+      "providerSHA": "0c38a28e56c5326a0ed9141db2a03d446e27acb3",
+      "candidateOnly": true,
+      "prURL": "https://github.com/LeePepe/shared-design-system/pull/27",
+      "reviewURL": "public-review-list.html",
+      "images": {
+        "blue/dark/glass": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-blue-dark-glass.png",
+        "blue/dark/solid": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-blue-dark-solid.png",
+        "blue/light/glass": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-blue-light-glass.png",
+        "blue/light/solid": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-blue-light-solid.png",
+        "green/dark/glass": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-green-dark-glass.png",
+        "green/dark/solid": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-green-dark-solid.png",
+        "green/light/glass": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-green-light-glass.png",
+        "green/light/solid": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-green-light-solid.png",
+        "pink/dark/glass": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-pink-dark-glass.png",
+        "pink/dark/solid": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-pink-dark-solid.png",
+        "pink/light/glass": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-pink-light-glass.png",
+        "pink/light/solid": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-pink-light-solid.png",
+        "purple/dark/glass": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-purple-dark-glass.png",
+        "purple/dark/solid": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-purple-dark-solid.png",
+        "purple/light/glass": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-purple-light-glass.png",
+        "purple/light/solid": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-purple-light-solid.png",
+        "yellow/dark/glass": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-yellow-dark-glass.png",
+        "yellow/dark/solid": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-yellow-dark-solid.png",
+        "yellow/light/glass": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-yellow-light-glass.png",
+        "yellow/light/solid": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-yellow-light-solid.png"
+      },
+      "allImages": [
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-accessibility-narrow.png",
+          "sha256": "dedd0d951d83da856172755f73c7317658109b1560b3d716b9f2b64416fd50d1"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-blue-dark-forced-reduced.png",
+          "sha256": "ab49d5121721d9bc6cb4fa50e4bab6eb7dccdc2996bbc6453f2de81efec9473b"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-blue-dark-glass.png",
+          "sha256": "e0222cfc69cb1277d52aa05fe78a1b9f0db9f4c95092bfc6796c661b7a202daa"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-blue-dark-solid.png",
+          "sha256": "ab49d5121721d9bc6cb4fa50e4bab6eb7dccdc2996bbc6453f2de81efec9473b"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-blue-light-forced-reduced.png",
+          "sha256": "c528da26d2909340c30c057e1590999d9096e01d89756efcaf3ea4a33008da06"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-blue-light-glass.png",
+          "sha256": "6334198766908d77498b1ffa100feab2985ae75318cad4c3a427dcf706499f45"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-blue-light-solid.png",
+          "sha256": "c9e5004e85e40655d19506d35a251478980f51d7a25d4b7eeab93a14733797b5"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-disabled-selection.png",
+          "sha256": "95cbf1d11f5c94fb71937dbc9881a4997c59d4b99827a22471b716e4ec0dbf0f"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-green-dark-forced-reduced.png",
+          "sha256": "8047cf29c09e0eba8083d0df0b862119f8ccb0a29b899ce972ad188aa2ebc6fd"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-green-dark-glass.png",
+          "sha256": "d03baba7b2fea43e2701e7b5399681a0c98fbeaa25e2a3f7ea19bbe5927762c1"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-green-dark-solid.png",
+          "sha256": "8047cf29c09e0eba8083d0df0b862119f8ccb0a29b899ce972ad188aa2ebc6fd"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-green-light-forced-reduced.png",
+          "sha256": "53353bb022aba8bc332c6163be20496988a042390c9b5f955c5ab329959af141"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-green-light-glass.png",
+          "sha256": "7f5f7a5d7d33fd72e2a8cdb2833d23e49504c16009f5baab22339ee26b28a349"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-green-light-solid.png",
+          "sha256": "53353bb022aba8bc332c6163be20496988a042390c9b5f955c5ab329959af141"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-interaction-selection.png",
+          "sha256": "24bae89d9591f88752a244e6e7b8761d462e6a689ee4e6296b2d328fb6f8898b"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-pink-dark-forced-reduced.png",
+          "sha256": "482e82590bdc48b2b1638555a0ba92d19bbc74bc9c1911da3c5cb2edba1bfe7f"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-pink-dark-glass.png",
+          "sha256": "8841871d1e8ff0e781906d4952fb4b17faede9a1bade5cb36958b3a1adcb4ee5"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-pink-dark-solid.png",
+          "sha256": "482e82590bdc48b2b1638555a0ba92d19bbc74bc9c1911da3c5cb2edba1bfe7f"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-pink-light-forced-reduced.png",
+          "sha256": "399772c00160bb3d81689da5b9cdcace64d31e89969bcfa744a3e24bc19654e9"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-pink-light-glass.png",
+          "sha256": "f4ede8de71814afc8908ab4fc7d254f913f7405f494a23ea173bc1efd4586c96"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-pink-light-solid.png",
+          "sha256": "399772c00160bb3d81689da5b9cdcace64d31e89969bcfa744a3e24bc19654e9"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-purple-dark-forced-reduced.png",
+          "sha256": "797b054bfa4803d9401f5e989384f1326ad69f38c5884b00b5a015b8da20b916"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-purple-dark-glass.png",
+          "sha256": "fc5af95daff3b2140c954ea4dc0b98219ce8a48bd6cd58d07235b3dc823fe1a0"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-purple-dark-solid.png",
+          "sha256": "797b054bfa4803d9401f5e989384f1326ad69f38c5884b00b5a015b8da20b916"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-purple-light-forced-reduced.png",
+          "sha256": "d057e7a7f61ecd3bc59ebd8e95dc7db10a9b246459ed1c36233bceb64424ccb4"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-purple-light-glass.png",
+          "sha256": "f9e4d4e65db77d713d0107a92976fd6708f81b16dc3a55d1bff50bee82897e83"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-purple-light-solid.png",
+          "sha256": "d057e7a7f61ecd3bc59ebd8e95dc7db10a9b246459ed1c36233bceb64424ccb4"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-read-only.png",
+          "sha256": "056bc32ffe6af34e0fe132ba33d173557e3da900858287a85855f805cdc0c68d"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-system-reduced-transparency.png",
+          "sha256": "07a76f6ba9969a3b05e711b0ff07a649b478cfcab9f249ed61f565977fd9560b"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-yellow-dark-forced-reduced.png",
+          "sha256": "cd3404f70e2e1362fab24334cf84d67fd5e81dd672ce5d1f9d2f159483d5edd2"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-yellow-dark-glass.png",
+          "sha256": "4c08f668ff1056512d726ae72f938a5385089c8baf78f323e396a7ab1d17aeee"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-yellow-dark-solid.png",
+          "sha256": "cd3404f70e2e1362fab24334cf84d67fd5e81dd672ce5d1f9d2f159483d5edd2"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-yellow-light-forced-reduced.png",
+          "sha256": "f32187982dd3f3a569af75fdca9ad93099ef1a151063551b04649e8dd3f9f40e"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-yellow-light-glass.png",
+          "sha256": "d7ccf288e495d143dba1f6634f5e306e53c2062017c1beacbb4738c9c1ba4648"
+        },
+        {
+          "file": "list/fdb7494f9e2de5ef7a477b6a7e61f13909e39ee3/list-yellow-light-solid.png",
+          "sha256": "f32187982dd3f3a569af75fdca9ad93099ef1a151063551b04649e8dd3f9f40e"
+        }
+      ]
+    },
+    "button": {
+      "nativeSHA": "0b1a92ef7713a9520d59f2ffb26c03e7f10854cc",
+      "providerSHA": "0c38a28e56c5326a0ed9141db2a03d446e27acb3",
+      "candidateOnly": true,
+      "images": {
+        "blue/dark/glass": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-blue-dark-glass.png",
+        "blue/dark/solid": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-blue-dark-solid.png",
+        "blue/light/glass": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-blue-light-glass.png",
+        "blue/light/solid": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-blue-light-solid.png",
+        "green/dark/glass": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-green-dark-glass.png",
+        "green/dark/solid": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-green-dark-solid.png",
+        "green/light/glass": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-green-light-glass.png",
+        "green/light/solid": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-green-light-solid.png",
+        "pink/dark/glass": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-pink-dark-glass.png",
+        "pink/dark/solid": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-pink-dark-solid.png",
+        "pink/light/glass": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-pink-light-glass.png",
+        "pink/light/solid": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-pink-light-solid.png",
+        "purple/dark/glass": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-purple-dark-glass.png",
+        "purple/dark/solid": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-purple-dark-solid.png",
+        "purple/light/glass": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-purple-light-glass.png",
+        "purple/light/solid": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-purple-light-solid.png",
+        "yellow/dark/glass": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-yellow-dark-glass.png",
+        "yellow/dark/solid": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-yellow-dark-solid.png",
+        "yellow/light/glass": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-yellow-light-glass.png",
+        "yellow/light/solid": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-yellow-light-solid.png"
+      },
+      "allImages": [
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-accessibility-narrow.png",
+          "sha256": "d18f11499b362a16868a7011872388e51b909e14581e7a0f27825d05630759be"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-after-press.png",
+          "sha256": "9509c476b5e72264d746452f2007531a2b852524cadcd952f7a624ec4938c026"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-before-press.png",
+          "sha256": "3c61885623d9f9756ed3414ef92c16886f39be99dee7d850b681a5e0e19f1108"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-graphite-dark.png",
+          "sha256": "c8ba6b5575886f1cd77a5b00b2ca2c7c98040480750eed217347009e9b05a792"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-graphite-light.png",
+          "sha256": "8f7e5744f264ee03b06b28c27e36a4ec6075c0b1ee0ecdaff2aed51af30c31ce"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-held-primary.png",
+          "sha256": "546ff028330b6c10f26f6127e858e5bd7aea2cc5386f542536157d7f3df0c187"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-ocean-dark.png",
+          "sha256": "146aba86f0468cd0cd442d54511816f8fe554e1abcc6516dc3cc916c3dd5a30f"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-ocean-light.png",
+          "sha256": "d9c0c465b30314bc975018348e1cdcf21b0d171496de1c48f5211c1a64403ad0"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-reduce-motion-loading.png",
+          "sha256": "ea34a0cc173e01264ab34091a44a8f34b29d269e85e58f33df2f067e5c5eb090"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-blue-dark-glass.png",
+          "sha256": "1fe2f418ec9f8aa323c62ddfd037790c755922cab1c53d7474242b14f9067187"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-blue-dark-solid.png",
+          "sha256": "57d472e391d0fd46e1ef102dcc89e1a32c69afdddefbeeeb0f41e9271d1f746f"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-blue-light-glass.png",
+          "sha256": "696bb767052b60d1b747a9ebc4bb2cb5bb957f1c6ca88bd7fd1aecb18d1511e2"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-blue-light-solid.png",
+          "sha256": "f4147469433026ba25068dbe7634770065ecadf8724e28de747ce3ee7d536403"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-green-dark-glass.png",
+          "sha256": "b01241348a373305a41a7fe6cd9cea74055a5a67539e92822e300bf07f02f64f"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-green-dark-solid.png",
+          "sha256": "421603775a650b0b8fa624599c0f094f168824db3cbf563efd2159edc06467b4"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-green-light-glass.png",
+          "sha256": "eb584e5cefe1464ff9be8b78ee61b50e6bdc27ae0f220888d810e283b77f4add"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-green-light-solid.png",
+          "sha256": "66fa70b98f87d1fdb6fe0388c26e68655dd4272676a8bac075ad89a064e4c080"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-pink-dark-glass.png",
+          "sha256": "601ae59a1a74347752dedd6a16f01e4f95557f206a148d8cec5ae7b8035a0e33"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-pink-dark-solid.png",
+          "sha256": "298a4397bb611a7c97a63028a1497940ae6c137481620566bcf7719bb158fd10"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-pink-light-glass.png",
+          "sha256": "06b0881a4aa9f6917352bca4b214dd95d59393a307ba8e95dd7974e85c07b325"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-pink-light-solid.png",
+          "sha256": "7cff55559f9309a8c8a9aea39947d61182533f9ddb7830199ff4d242bcf6b70d"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-purple-dark-glass.png",
+          "sha256": "7578dcc2f4a1eafaf17f2aab29de71806dcf83f5f7a7ad46e103a697f67820c1"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-purple-dark-reduced-transparency.png",
+          "sha256": "483a936fd36b312b7248b344abe4988d813175b56d2caa983fc5d01cfa26f0ed"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-purple-dark-solid.png",
+          "sha256": "d7871104b437ecbd110d8b3c2c7e05f9a722840211ad21dc3aa2f064fbae04a9"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-purple-light-glass.png",
+          "sha256": "0ed8cf187e319f21b61c3eef24543b8ded73d4220302786202543ae4a9968436"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-purple-light-solid.png",
+          "sha256": "3cd9bb46fb85e80e81c22a3ee072b78f6e18a9030684dde03ecde2ae8d27bed2"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-yellow-dark-glass.png",
+          "sha256": "ad48725e6916f20204df860a3b4fdc489e6e042a558775bbbd50cccff0ef3328"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-yellow-dark-solid.png",
+          "sha256": "43847893f7713cd7b489579fc0973346a794d885b3c7ac4df317734b8ce86118"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-yellow-light-glass.png",
+          "sha256": "035df42562d01d687c8e6a34f0103f582a11d7f7824fbb26fb3de3dadf711f45"
+        },
+        {
+          "file": "button/0b1a92ef7713a9520d59f2ffb26c03e7f10854cc/button-strata-yellow-light-solid.png",
+          "sha256": "2b3ac853171da0da532bce01dabcd88be7de920d3a74781cb84bae90c9e5cf55"
+        }
+      ]
+    }
+  },
+  "palettes": [
+    "blue",
+    "green",
+    "pink",
+    "yellow",
+    "purple"
+  ],
+  "modes": [
+    "light",
+    "dark"
+  ],
+  "materials": [
+    "glass",
+    "solid"
+  ]
+}

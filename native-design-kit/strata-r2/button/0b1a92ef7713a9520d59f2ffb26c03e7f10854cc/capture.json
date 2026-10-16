@@ -1,0 +1,129 @@
+{
+  "component": "button",
+  "nativeSHA": "0b1a92ef7713a9520d59f2ffb26c03e7f10854cc",
+  "providerSHA": "0c38a28e56c5326a0ed9141db2a03d446e27acb3",
+  "candidateOnly": true,
+  "visualAcceptance": "Owner accepted the rendered Button direction in this session.",
+  "images": [
+    {
+      "file": "button-accessibility-narrow.png",
+      "sha256": "d18f11499b362a16868a7011872388e51b909e14581e7a0f27825d05630759be"
+    },
+    {
+      "file": "button-after-press.png",
+      "sha256": "9509c476b5e72264d746452f2007531a2b852524cadcd952f7a624ec4938c026"
+    },
+    {
+      "file": "button-before-press.png",
+      "sha256": "3c61885623d9f9756ed3414ef92c16886f39be99dee7d850b681a5e0e19f1108"
+    },
+    {
+      "file": "button-graphite-dark.png",
+      "sha256": "c8ba6b5575886f1cd77a5b00b2ca2c7c98040480750eed217347009e9b05a792"
+    },
+    {
+      "file": "button-graphite-light.png",
+      "sha256": "8f7e5744f264ee03b06b28c27e36a4ec6075c0b1ee0ecdaff2aed51af30c31ce"
+    },
+    {
+      "file": "button-held-primary.png",
+      "sha256": "546ff028330b6c10f26f6127e858e5bd7aea2cc5386f542536157d7f3df0c187"
+    },
+    {
+      "file": "button-ocean-dark.png",
+      "sha256": "146aba86f0468cd0cd442d54511816f8fe554e1abcc6516dc3cc916c3dd5a30f"
+    },
+    {
+      "file": "button-ocean-light.png",
+      "sha256": "d9c0c465b30314bc975018348e1cdcf21b0d171496de1c48f5211c1a64403ad0"
+    },
+    {
+      "file": "button-reduce-motion-loading.png",
+      "sha256": "ea34a0cc173e01264ab34091a44a8f34b29d269e85e58f33df2f067e5c5eb090"
+    },
+    {
+      "file": "button-strata-blue-dark-glass.png",
+      "sha256": "1fe2f418ec9f8aa323c62ddfd037790c755922cab1c53d7474242b14f9067187"
+    },
+    {
+      "file": "button-strata-blue-dark-solid.png",
+      "sha256": "57d472e391d0fd46e1ef102dcc89e1a32c69afdddefbeeeb0f41e9271d1f746f"
+    },
+    {
+      "file": "button-strata-blue-light-glass.png",
+      "sha256": "696bb767052b60d1b747a9ebc4bb2cb5bb957f1c6ca88bd7fd1aecb18d1511e2"
+    },
+    {
+      "file": "button-strata-blue-light-solid.png",
+      "sha256": "f4147469433026ba25068dbe7634770065ecadf8724e28de747ce3ee7d536403"
+    },
+    {
+      "file": "button-strata-green-dark-glass.png",
+      "sha256": "b01241348a373305a41a7fe6cd9cea74055a5a67539e92822e300bf07f02f64f"
+    },
+    {
+      "file": "button-strata-green-dark-solid.png",
+      "sha256": "421603775a650b0b8fa624599c0f094f168824db3cbf563efd2159edc06467b4"
+    },
+    {
+      "file": "button-strata-green-light-glass.png",
+      "sha256": "eb584e5cefe1464ff9be8b78ee61b50e6bdc27ae0f220888d810e283b77f4add"
+    },
+    {
+      "file": "button-strata-green-light-solid.png",
+      "sha256": "66fa70b98f87d1fdb6fe0388c26e68655dd4272676a8bac075ad89a064e4c080"
+    },
+    {
+      "file": "button-strata-pink-dark-glass.png",
+      "sha256": "601ae59a1a74347752dedd6a16f01e4f95557f206a148d8cec5ae7b8035a0e33"
+    },
+    {
+      "file": "button-strata-pink-dark-solid.png",
+      "sha256": "298a4397bb611a7c97a63028a1497940ae6c137481620566bcf7719bb158fd10"
+    },
+    {
+      "file": "button-strata-pink-light-glass.png",
+      "sha256": "06b0881a4aa9f6917352bca4b214dd95d59393a307ba8e95dd7974e85c07b325"
+    },
+    {
+      "file": "button-strata-pink-light-solid.png",
+      "sha256": "7cff55559f9309a8c8a9aea39947d61182533f9ddb7830199ff4d242bcf6b70d"
+    },
+    {
+      "file": "button-strata-purple-dark-glass.png",
+      "sha256": "7578dcc2f4a1eafaf17f2aab29de71806dcf83f5f7a7ad46e103a697f67820c1"
+    },
+    {
+      "file": "button-strata-purple-dark-reduced-transparency.png",
+      "sha256": "483a936fd36b312b7248b344abe4988d813175b56d2caa983fc5d01cfa26f0ed"
+    },
+    {
+      "file": "button-strata-purple-dark-solid.png",
+      "sha256": "d7871104b437ecbd110d8b3c2c7e05f9a722840211ad21dc3aa2f064fbae04a9"
+    },
+    {
+      "file": "button-strata-purple-light-glass.png",
+      "sha256": "0ed8cf187e319f21b61c3eef24543b8ded73d4220302786202543ae4a9968436"
+    },
+    {
+      "file": "button-strata-purple-light-solid.png",
+      "sha256": "3cd9bb46fb85e80e81c22a3ee072b78f6e18a9030684dde03ecde2ae8d27bed2"
+    },
+    {
+      "file": "button-strata-yellow-dark-glass.png",
+      "sha256": "ad48725e6916f20204df860a3b4fdc489e6e042a558775bbbd50cccff0ef3328"
+    },
+    {
+      "file": "button-strata-yellow-dark-solid.png",
+      "sha256": "43847893f7713cd7b489579fc0973346a794d885b3c7ac4df317734b8ce86118"
+    },
+    {
+      "file": "button-strata-yellow-light-glass.png",
+      "sha256": "035df42562d01d687c8e6a34f0103f582a11d7f7824fbb26fb3de3dadf711f45"
+    },
+    {
+      "file": "button-strata-yellow-light-solid.png",
+      "sha256": "2b3ac853171da0da532bce01dabcd88be7de920d3a74781cb84bae90c9e5cf55"
+    }
+  ]
+}

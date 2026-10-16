@@ -1,0 +1,47 @@
+[
+  {
+    "component": "Button",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "path": "videos/Button.mp4",
+    "device": "iPhone 18 Pro",
+    "runtime": "iOS 27.0",
+    "appearance": "light",
+    "test": "ComponentReviewUITests/testButtonInteraction",
+    "result": "passed",
+    "trimStartSeconds": 33.610577,
+    "encodedDurationSeconds": 11.87,
+    "speed": 1,
+    "method": "simctl screen recording; avconvert startup trim only",
+    "sha256": "ef74ba374e93395b4276ca6c8e169e11776da99758b5a11795a16286be05c785"
+  },
+  {
+    "component": "Toggle",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "path": "videos/Toggle.mp4",
+    "device": "iPhone 18 Pro",
+    "runtime": "iOS 27.0",
+    "appearance": "light",
+    "test": "ComponentReviewUITests/testToggleInteraction",
+    "result": "passed",
+    "trimStartSeconds": 20.060196,
+    "encodedDurationSeconds": 13.063333333333333,
+    "speed": 1,
+    "method": "simctl screen recording; avconvert startup trim only",
+    "sha256": "3b30298ded4839be48ba76e1870555a306778b1369c951099147f4a03dd54c61"
+  },
+  {
+    "component": "TextField",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "path": "videos/TextField.mp4",
+    "device": "iPhone 18 Pro",
+    "runtime": "iOS 27.0",
+    "appearance": "light",
+    "test": "ComponentReviewUITests/testTextFieldInteraction",
+    "result": "passed",
+    "trimStartSeconds": 19.647464,
+    "encodedDurationSeconds": 10.05,
+    "speed": 1,
+    "method": "simctl screen recording; avconvert startup trim only",
+    "sha256": "bbf24767ed335c235696e877e3ad9ad8781f8f676cf7bb52dad0df868753d44e"
+  }
+]

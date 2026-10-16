@@ -1,0 +1,272 @@
+[
+  {
+    "path": "before/iphone/review-Button-light-top.png",
+    "caption": "Button · 浅色 · 改前 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA 270cf2b · 预置初始状态；真实原生渲染",
+    "sourceSHA": "270cf2b1fa0fa2e1af53957735f5be9824cb7aba",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "after/iphone/review-Button-light-top.png",
+    "caption": "Button · 浅色 · 改后 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；真实原生渲染",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "before/iphone/review-Button-dark-top.png",
+    "caption": "Button · 深色 · 改前 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA 270cf2b · 预置初始状态；真实原生渲染",
+    "sourceSHA": "270cf2b1fa0fa2e1af53957735f5be9824cb7aba",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "after/iphone/review-Button-dark-top.png",
+    "caption": "Button · 深色 · 改后 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；真实原生渲染",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "before/mac/review-Button-light.png",
+    "caption": "Button · 浅色 · 改前 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA de78891 · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "de78891b5c784398a8f78c1560f2ae4cf06f0b46",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "after/mac/review-Button-light.png",
+    "caption": "Button · 浅色 · 改后 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA a870b9c · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "before/mac/review-Button-dark.png",
+    "caption": "Button · 深色 · 改前 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA de78891 · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "de78891b5c784398a8f78c1560f2ae4cf06f0b46",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "after/mac/review-Button-dark.png",
+    "caption": "Button · 深色 · 改后 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA a870b9c · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "after/iphone/interaction-Button-floating.png",
+    "caption": "Button · Button-floating · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 真实交互触发",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "真实交互触发"
+  },
+  {
+    "path": "after/iphone/interaction-Button-loading.png",
+    "caption": "Button · Button-loading · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 真实交互触发",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "真实交互触发"
+  },
+  {
+    "path": "after/iphone/interaction-Button-saved.png",
+    "caption": "Button · Button-saved · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 真实交互触发",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "真实交互触发"
+  },
+  {
+    "path": "after/iphone/review-Button-dark-lower.png",
+    "caption": "Button · Button-dark-lower · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；原生运行"
+  },
+  {
+    "path": "after/iphone/review-Button-large-lower.png",
+    "caption": "Button · Button-large-lower · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 强制 accessibility3 环境；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "强制 accessibility3 环境；原生运行"
+  },
+  {
+    "path": "after/iphone/review-Button-large-top.png",
+    "caption": "Button · Button-large-top · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 强制 accessibility3 环境；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "强制 accessibility3 环境；原生运行"
+  },
+  {
+    "path": "after/iphone/review-Button-light-lower.png",
+    "caption": "Button · Button-light-lower · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；原生运行"
+  },
+  {
+    "path": "before/iphone/review-Toggle-light-top.png",
+    "caption": "Toggle · 浅色 · 改前 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA 270cf2b · 预置初始状态；真实原生渲染",
+    "sourceSHA": "270cf2b1fa0fa2e1af53957735f5be9824cb7aba",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "after/iphone/review-Toggle-light-top.png",
+    "caption": "Toggle · 浅色 · 改后 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；真实原生渲染",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "before/iphone/review-Toggle-dark-top.png",
+    "caption": "Toggle · 深色 · 改前 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA 270cf2b · 预置初始状态；真实原生渲染",
+    "sourceSHA": "270cf2b1fa0fa2e1af53957735f5be9824cb7aba",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "after/iphone/review-Toggle-dark-top.png",
+    "caption": "Toggle · 深色 · 改后 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；真实原生渲染",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "before/mac/review-Toggle-light.png",
+    "caption": "Toggle · 浅色 · 改前 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA de78891 · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "de78891b5c784398a8f78c1560f2ae4cf06f0b46",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "after/mac/review-Toggle-light.png",
+    "caption": "Toggle · 浅色 · 改后 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA a870b9c · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "before/mac/review-Toggle-dark.png",
+    "caption": "Toggle · 深色 · 改前 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA de78891 · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "de78891b5c784398a8f78c1560f2ae4cf06f0b46",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "after/mac/review-Toggle-dark.png",
+    "caption": "Toggle · 深色 · 改后 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA a870b9c · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "after/iphone/interaction-Toggle-off.png",
+    "caption": "Toggle · Toggle-off · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 真实交互触发",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "真实交互触发"
+  },
+  {
+    "path": "after/iphone/interaction-Toggle-on.png",
+    "caption": "Toggle · Toggle-on · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 真实交互触发",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "真实交互触发"
+  },
+  {
+    "path": "after/iphone/review-Toggle-dark-lower.png",
+    "caption": "Toggle · Toggle-dark-lower · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；原生运行"
+  },
+  {
+    "path": "after/iphone/review-Toggle-large-lower.png",
+    "caption": "Toggle · Toggle-large-lower · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 强制 accessibility3 环境；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "强制 accessibility3 环境；原生运行"
+  },
+  {
+    "path": "after/iphone/review-Toggle-large-top.png",
+    "caption": "Toggle · Toggle-large-top · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 强制 accessibility3 环境；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "强制 accessibility3 环境；原生运行"
+  },
+  {
+    "path": "after/iphone/review-Toggle-light-lower.png",
+    "caption": "Toggle · Toggle-light-lower · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；原生运行"
+  },
+  {
+    "path": "before/iphone/review-TextField-light-top.png",
+    "caption": "TextField · 浅色 · 改前 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA 270cf2b · 预置初始状态；真实原生渲染",
+    "sourceSHA": "270cf2b1fa0fa2e1af53957735f5be9824cb7aba",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "after/iphone/review-TextField-light-top.png",
+    "caption": "TextField · 浅色 · 改后 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；真实原生渲染",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "before/iphone/review-TextField-dark-top.png",
+    "caption": "TextField · 深色 · 改前 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA 270cf2b · 预置初始状态；真实原生渲染",
+    "sourceSHA": "270cf2b1fa0fa2e1af53957735f5be9824cb7aba",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "after/iphone/review-TextField-dark-top.png",
+    "caption": "TextField · 深色 · 改后 · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；真实原生渲染",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染"
+  },
+  {
+    "path": "before/mac/review-TextField-light.png",
+    "caption": "TextField · 浅色 · 改前 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA de78891 · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "de78891b5c784398a8f78c1560f2ae4cf06f0b46",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "after/mac/review-TextField-light.png",
+    "caption": "TextField · 浅色 · 改后 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA a870b9c · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "before/mac/review-TextField-dark.png",
+    "caption": "TextField · 深色 · 改前 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA de78891 · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "de78891b5c784398a8f78c1560f2ae4cf06f0b46",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "after/mac/review-TextField-dark.png",
+    "caption": "TextField · 深色 · 改后 · macOS 27.0.1 · 480 × 1000 pt · native bitmap · 960 × 2000 px · SHA a870b9c · 预置初始状态；真实原生渲染；bordered fallback，非 Glass",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；真实原生渲染；bordered fallback，非 Glass"
+  },
+  {
+    "path": "after/iphone/interaction-TextField-error.png",
+    "caption": "TextField · TextField-error · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 真实交互触发",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "真实交互触发"
+  },
+  {
+    "path": "after/iphone/interaction-TextField-filled.png",
+    "caption": "TextField · TextField-filled · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 真实交互触发",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "真实交互触发"
+  },
+  {
+    "path": "after/iphone/interaction-TextField-focused.png",
+    "caption": "TextField · TextField-focused · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 真实交互触发",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "真实交互触发"
+  },
+  {
+    "path": "after/iphone/interaction-TextField-submitted.png",
+    "caption": "TextField · TextField-submitted · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 真实交互触发",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "真实交互触发"
+  },
+  {
+    "path": "after/iphone/review-TextField-dark-lower.png",
+    "caption": "TextField · TextField-dark-lower · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；原生运行"
+  },
+  {
+    "path": "after/iphone/review-TextField-large-lower.png",
+    "caption": "TextField · TextField-large-lower · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 强制 accessibility3 环境；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "强制 accessibility3 环境；原生运行"
+  },
+  {
+    "path": "after/iphone/review-TextField-large-top.png",
+    "caption": "TextField · TextField-large-top · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 强制 accessibility3 环境；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "强制 accessibility3 环境；原生运行"
+  },
+  {
+    "path": "after/iphone/review-TextField-light-lower.png",
+    "caption": "TextField · TextField-light-lower · iPhone 18 Pro · iOS 27.0 · 1206 × 2622 px · SHA a870b9c · 预置初始状态；原生运行",
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "kind": "预置初始状态；原生运行"
+  }
+]

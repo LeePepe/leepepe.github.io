@@ -1,0 +1,43 @@
+{
+  "before": {
+    "iphone": {
+      "sourceSHA": "270cf2b1fa0fa2e1af53957735f5be9824cb7aba",
+      "device": "iPhone 18 Pro",
+      "runtime": "iOS 27.0",
+      "render": "XCUIApplication screenshot"
+    },
+    "mac": {
+      "sourceSHA": "de78891b5c784398a8f78c1560f2ae4cf06f0b46",
+      "viewportPoints": [
+        480,
+        1000
+      ],
+      "runtime": "macOS 27.0.1",
+      "render": "NSHostingView native bitmap; bordered fallback, no Glass"
+    }
+  },
+  "provider": {
+    "source": "18c979c62e28c005eb3b988fcaacd343e5359d66",
+    "sha256": "772a99933fb7f2cee3fc19e2c72f2e7357464e6c3d9960d5b676a27f5f240eeb",
+    "release": "unreleased fixture only"
+  },
+  "xcode": "27.0 (27A266a)",
+  "swift": "6.4",
+  "colorDependency": "DesignTokens exact 0.1.1",
+  "after": {
+    "sourceSHA": "a870b9cac06a90f50155e226d2ba167af78ef8f6",
+    "iphone": {
+      "device": "iPhone 18 Pro",
+      "runtime": "iOS 27.0",
+      "renderer": "XCUIApplication real app screenshot"
+    },
+    "mac": {
+      "viewportPoints": [
+        480,
+        1000
+      ],
+      "runtime": "macOS 27.0.1",
+      "renderer": "NSHostingView native bitmap; explicit bordered fallback"
+    }
+  }
+}

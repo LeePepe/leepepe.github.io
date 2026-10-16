@@ -13,6 +13,29 @@
     ]
   },
   {
+    "component": "card",
+    "sha": "0dc6bb5b381438a5aa833c3702fad6cc7b158d30",
+    "source": "https://github.com/LeePepe/shared-design-system/tree/0dc6bb5b381438a5aa833c3702fad6cc7b158d30",
+    "platform": "iOS 27 simulator",
+    "images": [
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-accessibility3-bottom.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-accessibility3-top.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-graphite-dark-fallback.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-graphite-dark-glass.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-graphite-dark-solid.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-graphite-light-fallback.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-graphite-light-glass.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-graphite-light-solid.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-narrow-long.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-ocean-dark-fallback.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-ocean-dark-glass.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-ocean-dark-solid.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-ocean-light-fallback.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-ocean-light-glass.png",
+      "card/0dc6bb5b381438a5aa833c3702fad6cc7b158d30/card-ocean-light-solid.png"
+    ]
+  },
+  {
     "component": "switch",
     "sha": "d781cda4c9ab9057ff33b8c8939d70ae6b692975",
     "source": "https://github.com/LeePepe/shared-design-system/tree/d781cda4c9ab9057ff33b8c8939d70ae6b692975",

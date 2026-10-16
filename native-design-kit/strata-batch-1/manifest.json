@@ -110,6 +110,21 @@
     ]
   },
   {
+    "component": "progress-bar",
+    "sha": "3722734ff711e41386d0d19a2539ab69f8103659",
+    "source": "https://github.com/LeePepe/shared-design-system/tree/3722734ff711e41386d0d19a2539ab69f8103659",
+    "platform": "iOS 27 simulator",
+    "images": [
+      "progress-bar/3722734ff711e41386d0d19a2539ab69f8103659/progress-bar-accessibility-narrow.png",
+      "progress-bar/3722734ff711e41386d0d19a2539ab69f8103659/progress-bar-graphite-dark.png",
+      "progress-bar/3722734ff711e41386d0d19a2539ab69f8103659/progress-bar-graphite-light.png",
+      "progress-bar/3722734ff711e41386d0d19a2539ab69f8103659/progress-bar-long-narrow.png",
+      "progress-bar/3722734ff711e41386d0d19a2539ab69f8103659/progress-bar-ocean-dark.png",
+      "progress-bar/3722734ff711e41386d0d19a2539ab69f8103659/progress-bar-ocean-light.png",
+      "progress-bar/3722734ff711e41386d0d19a2539ab69f8103659/progress-bar-reduced-motion-request.png"
+    ]
+  },
+  {
     "component": "avatar",
     "sha": "18c6c65a481d41d64f6ee439ae747b062a0d37c3",
     "source": "https://github.com/LeePepe/shared-design-system/tree/18c6c65a481d41d64f6ee439ae747b062a0d37c3",

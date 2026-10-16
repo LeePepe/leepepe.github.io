@@ -94,5 +94,18 @@
       "avatar/18c6c65a481d41d64f6ee439ae747b062a0d37c3/avatar-ocean-dark.png",
       "avatar/18c6c65a481d41d64f6ee439ae747b062a0d37c3/avatar-ocean-light.png"
     ]
+  },
+  {
+    "component": "chip",
+    "sha": "74546935dd249297e6c4d30a19f8e79bd5621d67",
+    "source": "https://github.com/LeePepe/shared-design-system/tree/74546935dd249297e6c4d30a19f8e79bd5621d67",
+    "platform": "iOS 27 simulator",
+    "images": [
+      "chip/74546935dd249297e6c4d30a19f8e79bd5621d67/chip-accessibility-narrow.png",
+      "chip/74546935dd249297e6c4d30a19f8e79bd5621d67/chip-graphite-dark.png",
+      "chip/74546935dd249297e6c4d30a19f8e79bd5621d67/chip-graphite-light.png",
+      "chip/74546935dd249297e6c4d30a19f8e79bd5621d67/chip-ocean-dark.png",
+      "chip/74546935dd249297e6c4d30a19f8e79bd5621d67/chip-ocean-light.png"
+    ]
   }
 ]

@@ -66,5 +66,19 @@
       "checkbox/c9d8b5ad3170deb1a13545874034a26357a7020b/checkbox-ocean-light-narrow-accessibility2.png",
       "checkbox/c9d8b5ad3170deb1a13545874034a26357a7020b/checkbox-ocean-light.png"
     ]
+  },
+  {
+    "component": "avatar",
+    "sha": "18c6c65a481d41d64f6ee439ae747b062a0d37c3",
+    "source": "https://github.com/LeePepe/shared-design-system/tree/18c6c65a481d41d64f6ee439ae747b062a0d37c3",
+    "platform": "iOS 27 simulator",
+    "images": [
+      "avatar/18c6c65a481d41d64f6ee439ae747b062a0d37c3/avatar-accessibility-narrow.png",
+      "avatar/18c6c65a481d41d64f6ee439ae747b062a0d37c3/avatar-clipping.png",
+      "avatar/18c6c65a481d41d64f6ee439ae747b062a0d37c3/avatar-graphite-dark.png",
+      "avatar/18c6c65a481d41d64f6ee439ae747b062a0d37c3/avatar-graphite-light.png",
+      "avatar/18c6c65a481d41d64f6ee439ae747b062a0d37c3/avatar-ocean-dark.png",
+      "avatar/18c6c65a481d41d64f6ee439ae747b062a0d37c3/avatar-ocean-light.png"
+    ]
   }
 ]

@@ -1,0 +1,15 @@
+[
+  {
+    "component": "button",
+    "sha": "caca479136ef1664c35434c4531faf59d3da3e59",
+    "source": "https://github.com/LeePepe/shared-design-system/tree/caca479136ef1664c35434c4531faf59d3da3e59",
+    "platform": "macOS 27 \u00b7 actual hosted SwiftUI",
+    "images": [
+      "button/caca479136ef1664c35434c4531faf59d3da3e59/button-accessibility-narrow.png",
+      "button/caca479136ef1664c35434c4531faf59d3da3e59/button-graphite-dark.png",
+      "button/caca479136ef1664c35434c4531faf59d3da3e59/button-graphite-light.png",
+      "button/caca479136ef1664c35434c4531faf59d3da3e59/button-ocean-dark.png",
+      "button/caca479136ef1664c35434c4531faf59d3da3e59/button-ocean-light.png"
+    ]
+  }
+]

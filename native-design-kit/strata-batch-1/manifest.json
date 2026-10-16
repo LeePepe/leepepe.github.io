@@ -1,15 +1,15 @@
 [
   {
     "component": "button",
-    "sha": "caca479136ef1664c35434c4531faf59d3da3e59",
-    "source": "https://github.com/LeePepe/shared-design-system/tree/caca479136ef1664c35434c4531faf59d3da3e59",
-    "platform": "macOS 27 \u00b7 actual hosted SwiftUI",
+    "sha": "46aed939c89060bc37fe1d6b49480babbefdc20a",
+    "source": "https://github.com/LeePepe/shared-design-system/tree/46aed939c89060bc37fe1d6b49480babbefdc20a",
+    "platform": "iOS 27 simulator",
     "images": [
-      "button/caca479136ef1664c35434c4531faf59d3da3e59/button-accessibility-narrow.png",
-      "button/caca479136ef1664c35434c4531faf59d3da3e59/button-graphite-dark.png",
-      "button/caca479136ef1664c35434c4531faf59d3da3e59/button-graphite-light.png",
-      "button/caca479136ef1664c35434c4531faf59d3da3e59/button-ocean-dark.png",
-      "button/caca479136ef1664c35434c4531faf59d3da3e59/button-ocean-light.png"
+      "button/46aed939c89060bc37fe1d6b49480babbefdc20a/button-accessibility-narrow.png",
+      "button/46aed939c89060bc37fe1d6b49480babbefdc20a/button-graphite-dark.png",
+      "button/46aed939c89060bc37fe1d6b49480babbefdc20a/button-graphite-light.png",
+      "button/46aed939c89060bc37fe1d6b49480babbefdc20a/button-ocean-dark.png",
+      "button/46aed939c89060bc37fe1d6b49480babbefdc20a/button-ocean-light.png"
     ]
   }
 ]

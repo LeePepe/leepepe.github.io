@@ -82,6 +82,21 @@
     ]
   },
   {
+    "component": "radio-group",
+    "sha": "e71c2a46d17a70edd67b87e18791ac7e6c56b5db",
+    "source": "https://github.com/LeePepe/shared-design-system/tree/e71c2a46d17a70edd67b87e18791ac7e6c56b5db",
+    "platform": "iOS 27 simulator",
+    "images": [
+      "radio-group/e71c2a46d17a70edd67b87e18791ac7e6c56b5db/radio-group-accessibility-narrow.png",
+      "radio-group/e71c2a46d17a70edd67b87e18791ac7e6c56b5db/radio-group-explicit-dark-opposing-light.png",
+      "radio-group/e71c2a46d17a70edd67b87e18791ac7e6c56b5db/radio-group-explicit-light-opposing-dark.png",
+      "radio-group/e71c2a46d17a70edd67b87e18791ac7e6c56b5db/radio-group-graphite-dark.png",
+      "radio-group/e71c2a46d17a70edd67b87e18791ac7e6c56b5db/radio-group-graphite-light.png",
+      "radio-group/e71c2a46d17a70edd67b87e18791ac7e6c56b5db/radio-group-ocean-dark.png",
+      "radio-group/e71c2a46d17a70edd67b87e18791ac7e6c56b5db/radio-group-ocean-light.png"
+    ]
+  },
+  {
     "component": "avatar",
     "sha": "18c6c65a481d41d64f6ee439ae747b062a0d37c3",
     "source": "https://github.com/LeePepe/shared-design-system/tree/18c6c65a481d41d64f6ee439ae747b062a0d37c3",

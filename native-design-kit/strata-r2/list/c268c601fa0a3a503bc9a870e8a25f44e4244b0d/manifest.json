@@ -1,0 +1,1813 @@
+{
+  "component": "List",
+  "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+  "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+  "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+  "foundationSHA": "4b67ef2ab7cc3dc35f15d2b0d9777170da932dfe",
+  "provider": {
+    "repository": "https://github.com/LeePepe/shared-design-tokens.git",
+    "version": "0.2.0",
+    "revision": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+    "candidateOnly": false
+  },
+  "testResult": {
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0
+  },
+  "imageCount": 35,
+  "settings": {
+    "actualOriginal": "0",
+    "reduced": "1",
+    "actualRestored": "0",
+    "restoredSwiftUI": "System transparency: full"
+  },
+  "images": [
+    {
+      "name": "list-blue-light-glass",
+      "file": "list-blue-light-glass.png",
+      "sha256": "124d60122f04419c3a29243d3122da18b24d51e111b28bf87550bcc327ef159e",
+      "bytes": 760481,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-blue",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-blue-light-solid",
+      "file": "list-blue-light-solid.png",
+      "sha256": "1bced700b48f9c7076c5b9ba5db9c0bfee2962e6687c21a5b4e2639e60c27524",
+      "bytes": 189250,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-blue",
+      "theme": "light",
+      "requestedMaterial": "solid",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-blue-light-forced-reduced",
+      "file": "list-blue-light-forced-reduced.png",
+      "sha256": "1bced700b48f9c7076c5b9ba5db9c0bfee2962e6687c21a5b4e2639e60c27524",
+      "bytes": 189250,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-blue",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": true,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-blue-dark-glass",
+      "file": "list-blue-dark-glass.png",
+      "sha256": "f96fbae624646c8918e30309b845b26ec7967dabcbf318d2f89bb292449aa5ef",
+      "bytes": 530349,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-blue",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-blue-dark-solid",
+      "file": "list-blue-dark-solid.png",
+      "sha256": "ec2b8aa6c5d3ea75d99c965bfd2618c8191affd02fe664e32015fdd10049db4d",
+      "bytes": 189541,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-blue",
+      "theme": "dark",
+      "requestedMaterial": "solid",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-blue-dark-forced-reduced",
+      "file": "list-blue-dark-forced-reduced.png",
+      "sha256": "ec2b8aa6c5d3ea75d99c965bfd2618c8191affd02fe664e32015fdd10049db4d",
+      "bytes": 189541,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-blue",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": true,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-green-light-glass",
+      "file": "list-green-light-glass.png",
+      "sha256": "9fd596e82169a69176b3930be782072ddd96dd4d28e712f52b1673c951303524",
+      "bytes": 646698,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-green",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-green-light-solid",
+      "file": "list-green-light-solid.png",
+      "sha256": "9b9b67705ae19ad278621a4cf6c1ce1415cacd692b3b1586396fd0926b9b9edb",
+      "bytes": 189965,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-green",
+      "theme": "light",
+      "requestedMaterial": "solid",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-green-light-forced-reduced",
+      "file": "list-green-light-forced-reduced.png",
+      "sha256": "9b9b67705ae19ad278621a4cf6c1ce1415cacd692b3b1586396fd0926b9b9edb",
+      "bytes": 189965,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-green",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": true,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-green-dark-glass",
+      "file": "list-green-dark-glass.png",
+      "sha256": "2ae33a2ab8f7112fdb57a9d6d36bdc8ab3adcbd0521ae57663214ee0f5da8920",
+      "bytes": 449287,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-green",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-green-dark-solid",
+      "file": "list-green-dark-solid.png",
+      "sha256": "c65ef3e85dce836b317d3e003517695a7c76a0904850f5be7f29108760e81fb0",
+      "bytes": 188606,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-green",
+      "theme": "dark",
+      "requestedMaterial": "solid",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-green-dark-forced-reduced",
+      "file": "list-green-dark-forced-reduced.png",
+      "sha256": "c65ef3e85dce836b317d3e003517695a7c76a0904850f5be7f29108760e81fb0",
+      "bytes": 188606,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-green",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": true,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-pink-light-glass",
+      "file": "list-pink-light-glass.png",
+      "sha256": "258ed835b76c03110012fec290dcd8722d32e1a25ca0c8a0826b9541a4c504c9",
+      "bytes": 789313,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-pink",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-pink-light-solid",
+      "file": "list-pink-light-solid.png",
+      "sha256": "c349d46421f641a088f41cc00462f4f6d4c90007035a2ad7c7f83808df1d7ae4",
+      "bytes": 190643,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-pink",
+      "theme": "light",
+      "requestedMaterial": "solid",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-pink-light-forced-reduced",
+      "file": "list-pink-light-forced-reduced.png",
+      "sha256": "5ab54b316d8eee174f577296fa8eb043ca29d4c8bd865697699bb5769d523cba",
+      "bytes": 189733,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-pink",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": true,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-pink-dark-glass",
+      "file": "list-pink-dark-glass.png",
+      "sha256": "8a21adc49048d6e955022ddf90be4277ed6a5c6dc39962a51f89ba2f6c7de056",
+      "bytes": 457190,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-pink",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-pink-dark-solid",
+      "file": "list-pink-dark-solid.png",
+      "sha256": "60c0b73aea3530e5b04943f0e23eec6f3ef45fb8485bfd32cbd72191e29036f8",
+      "bytes": 189593,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-pink",
+      "theme": "dark",
+      "requestedMaterial": "solid",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-pink-dark-forced-reduced",
+      "file": "list-pink-dark-forced-reduced.png",
+      "sha256": "60c0b73aea3530e5b04943f0e23eec6f3ef45fb8485bfd32cbd72191e29036f8",
+      "bytes": 189593,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-pink",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": true,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-yellow-light-glass",
+      "file": "list-yellow-light-glass.png",
+      "sha256": "a2ac702027137d85edaa1c758f1711c301836b912aba8e928d92c23d026be6d8",
+      "bytes": 775937,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-yellow",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-yellow-light-solid",
+      "file": "list-yellow-light-solid.png",
+      "sha256": "0b5875ccb6e5330f11d785d3cf5b06f051ca3331e87d594b94bcd414679ebe11",
+      "bytes": 190789,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-yellow",
+      "theme": "light",
+      "requestedMaterial": "solid",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-yellow-light-forced-reduced",
+      "file": "list-yellow-light-forced-reduced.png",
+      "sha256": "0b5875ccb6e5330f11d785d3cf5b06f051ca3331e87d594b94bcd414679ebe11",
+      "bytes": 190789,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-yellow",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": true,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-yellow-dark-glass",
+      "file": "list-yellow-dark-glass.png",
+      "sha256": "5ade5e810aca4ea0f65e97ad20d64a1e4101268c0a0c3a00a3af40630c09aa28",
+      "bytes": 465348,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-yellow",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-yellow-dark-solid",
+      "file": "list-yellow-dark-solid.png",
+      "sha256": "11128f532bb87ade2b79ab4aeb5b1800d26a98486adc5abb462cb893d9734681",
+      "bytes": 188363,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-yellow",
+      "theme": "dark",
+      "requestedMaterial": "solid",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-yellow-dark-forced-reduced",
+      "file": "list-yellow-dark-forced-reduced.png",
+      "sha256": "11128f532bb87ade2b79ab4aeb5b1800d26a98486adc5abb462cb893d9734681",
+      "bytes": 188363,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-yellow",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": true,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-purple-light-glass",
+      "file": "list-purple-light-glass.png",
+      "sha256": "aaa17476dd8e166ba29e2302ee12a9d91caa838609a4abf2c64604a27b2a15f1",
+      "bytes": 753638,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-purple",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-purple-light-solid",
+      "file": "list-purple-light-solid.png",
+      "sha256": "67d0a69a3bf54db33a8666849ad65f2c1939f6b9755b20df2f05ffeab5204c79",
+      "bytes": 188473,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-purple",
+      "theme": "light",
+      "requestedMaterial": "solid",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-purple-light-forced-reduced",
+      "file": "list-purple-light-forced-reduced.png",
+      "sha256": "67d0a69a3bf54db33a8666849ad65f2c1939f6b9755b20df2f05ffeab5204c79",
+      "bytes": 188473,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-purple",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": true,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-purple-dark-glass",
+      "file": "list-purple-dark-glass.png",
+      "sha256": "d42360a6349a69d2c17c0ae67b079a37dbd93dda02755e497d9fe8352246ce8e",
+      "bytes": 524252,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-purple",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-purple-dark-solid",
+      "file": "list-purple-dark-solid.png",
+      "sha256": "6190ec94c0b533a338ff5bf5ae8c3a47e0ebdbf42560b3cc19f1950692aed037",
+      "bytes": 189564,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-purple",
+      "theme": "dark",
+      "requestedMaterial": "solid",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-purple-dark-forced-reduced",
+      "file": "list-purple-dark-forced-reduced.png",
+      "sha256": "6190ec94c0b533a338ff5bf5ae8c3a47e0ebdbf42560b3cc19f1950692aed037",
+      "bytes": 189564,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-purple",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": true,
+      "actualSystemReduced": false,
+      "state": "selected-first-row",
+      "scenario": "specimen",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-disabled-selection",
+      "file": "list-disabled-selection.png",
+      "sha256": "6d718e7d99fb05ed1ca5ba5ab303740c9099c31565fd75e4f03722036777fc71",
+      "bytes": 1006343,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-blue",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "disabled-selection",
+      "scenario": "interaction",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-interaction-selection",
+      "file": "list-interaction-selection.png",
+      "sha256": "3f943eccacce8dec642ae974413d94b0e4b9deb7ffb91cd7ecccff0c8a6e36ee",
+      "bytes": 1006805,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-blue",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "interaction-selection",
+      "scenario": "interaction",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-read-only",
+      "file": "list-read-only.png",
+      "sha256": "b55e6e9e6f1dad58775a990379af13696556d21b3d8c6acf6571f1fb7a5d88cc",
+      "bytes": 1017219,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-blue",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "read-only",
+      "scenario": "read-only",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-accessibility-narrow",
+      "file": "list-accessibility-narrow.png",
+      "sha256": "bd0ef66ac4589e3c89f59b31d448427abd3fda698bc5daf1141037caf2774c37",
+      "bytes": 312604,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 320,
+      "brand": "strata-blue",
+      "theme": "dark",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "glass",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": false,
+      "state": "accessibility-narrow",
+      "scenario": "long-label",
+      "dynamicType": "accessibility2",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    },
+    {
+      "name": "list-system-reduced-transparency",
+      "file": "list-system-reduced-transparency.png",
+      "sha256": "502cc1cc69fc82b190afac7db5f58febebe85be0be9874655c90a3bb91c74f47",
+      "bytes": 248004,
+      "dimensionsPixels": [
+        1206,
+        2622
+      ],
+      "screenPoints": [
+        0,
+        0,
+        402,
+        874
+      ],
+      "scale": 3,
+      "specimenWidthPoints": 402,
+      "brand": "strata-blue",
+      "theme": "light",
+      "requestedMaterial": "glass",
+      "effectiveMaterial": "solid",
+      "forcedReduceTransparency": false,
+      "actualSystemReduced": true,
+      "state": "system-reduced-transparency",
+      "scenario": "system-fallback",
+      "dynamicType": "large",
+      "locale": {
+        "AppleLanguages": [
+          "zh-Hans-US",
+          "en-US"
+        ],
+        "AppleLocale": "zh-Hans_US",
+        "AKLastLocale": "zh-Hans_US",
+        "AppleLanguagesSchemaVersion": 5400
+      },
+      "sourceSHA": "c268c601fa0a3a503bc9a870e8a25f44e4244b0d",
+      "sourceTree": "1611495a6999abecdf1f208832e7d5c0855aa497",
+      "providerSHA": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "providerVersion": "0.2.0",
+      "fixtureTree": "6d28419932f3f7ef0196bce1b57898b3b0715bb3",
+      "runStartedAt": "2026-10-17T04:53:15.154923+00:00",
+      "runFinishedAt": "2026-10-17T04:58:08.297099+00:00",
+      "platform": {
+        "architecture": "arm64",
+        "deviceName": "iPhone 18 Pro NDK Strata List Final",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      }
+    }
+  ],
+  "acceptance": "Source-author inspection only; independent visual/spec/code review is separate."
+}

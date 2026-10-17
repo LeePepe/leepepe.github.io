@@ -1,0 +1,1097 @@
+{
+  "source": "09eb080b4d6f197968cf65dc464627d6ddb74df6",
+  "provider": {
+    "version": "0.2.0",
+    "revision": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+    "public": true,
+    "candidateOnly": false
+  },
+  "capture": "Original SwiftUI iOS simulator PNGs exported from XCTest attachments",
+  "device": "iPhone 18 Pro NDK Strata Card R2 / iOS27",
+  "viewportPoints": [
+    402.0,
+    874.0
+  ],
+  "locale": "English literal synthetic fixture content; inherited zh-Hans_US device locale; Settings process requests en/en_US",
+  "images": [
+    {
+      "name": "card-ocean-light-solid",
+      "file": "card-ocean-light-solid.png",
+      "sha256": "c963bc9f38a1351b55fefc1421d9df8a4532592311b265134e83215ce9c44781",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-ocean-light-solid",
+        "file": "card-ocean-light-solid.png",
+        "test": "CardReviewUITests/testVisualOceanLight()",
+        "exported_attachment": "39F0306D-B449-4E50-B74F-583A6CC4A7D6.png"
+      },
+      "brand": "ocean",
+      "mode": "light",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-ocean-light-glass",
+      "file": "card-ocean-light-glass.png",
+      "sha256": "f8fbc97d7eeaa6531a66af86e3cffc88f7647c6d8e8ccf0a49892406c41ffdda",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-ocean-light-glass",
+        "file": "card-ocean-light-glass.png",
+        "test": "CardReviewUITests/testVisualOceanLight()",
+        "exported_attachment": "AE26FD20-E1FA-49C8-BBCC-0F3F6F93B665.png"
+      },
+      "brand": "ocean",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-ocean-light-fallback",
+      "file": "card-ocean-light-fallback.png",
+      "sha256": "3cecef6b7eacf707f8220db107e12651060fdd6e6abdd173b1091de14a450e0b",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-ocean-light-fallback",
+        "file": "card-ocean-light-fallback.png",
+        "test": "CardReviewUITests/testVisualOceanLight()",
+        "exported_attachment": "381DB141-0A5D-4109-ACCA-91F17A15889F.png"
+      },
+      "brand": "ocean",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-ocean-dark-solid",
+      "file": "card-ocean-dark-solid.png",
+      "sha256": "e3d40c3806d63fb2369f7cc4c261794e4213e2cb82bf126fff151847ec4aade6",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-ocean-dark-solid",
+        "file": "card-ocean-dark-solid.png",
+        "test": "CardReviewUITests/testVisualOceanDark()",
+        "exported_attachment": "66B5AACA-C49A-42F7-A862-080AF53F0CC4.png"
+      },
+      "brand": "ocean",
+      "mode": "dark",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-ocean-dark-glass",
+      "file": "card-ocean-dark-glass.png",
+      "sha256": "594a17c2ef28391c26d3e2a4298a46cb54f9f5b7b9795b59393ad85c330d4d64",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-ocean-dark-glass",
+        "file": "card-ocean-dark-glass.png",
+        "test": "CardReviewUITests/testVisualOceanDark()",
+        "exported_attachment": "12B89051-3B68-451A-AE07-E67635CAACC8.png"
+      },
+      "brand": "ocean",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-ocean-dark-fallback",
+      "file": "card-ocean-dark-fallback.png",
+      "sha256": "3f1aeebac46382b467bc0b9f56c3f5a57833aff265eeb236affc1c7749e2d888",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-ocean-dark-fallback",
+        "file": "card-ocean-dark-fallback.png",
+        "test": "CardReviewUITests/testVisualOceanDark()",
+        "exported_attachment": "98B4CF8E-5B2D-4558-9B0C-34CD46A26596.png"
+      },
+      "brand": "ocean",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-graphite-light-solid",
+      "file": "card-graphite-light-solid.png",
+      "sha256": "748d1cc46a11cadb6a47435704ea7acafacdbb9df9d206d85b42b8ad24f22ce3",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-graphite-light-solid",
+        "file": "card-graphite-light-solid.png",
+        "test": "CardReviewUITests/testVisualGraphiteLight()",
+        "exported_attachment": "51DB3CFE-7964-42F8-BF10-23945F008A78.png"
+      },
+      "brand": "graphite",
+      "mode": "light",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-graphite-light-glass",
+      "file": "card-graphite-light-glass.png",
+      "sha256": "7210e581360bcbff04cd1714dce5b92cdd43024ee9d487898bde03a84261f031",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-graphite-light-glass",
+        "file": "card-graphite-light-glass.png",
+        "test": "CardReviewUITests/testVisualGraphiteLight()",
+        "exported_attachment": "6A3722BB-7278-4FA7-9E47-019BABDB02EC.png"
+      },
+      "brand": "graphite",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-graphite-light-fallback",
+      "file": "card-graphite-light-fallback.png",
+      "sha256": "dd61d7779b720aefc7623f84b69f64648fe514351f1248c36ed99fd8bfd9b80a",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-graphite-light-fallback",
+        "file": "card-graphite-light-fallback.png",
+        "test": "CardReviewUITests/testVisualGraphiteLight()",
+        "exported_attachment": "CE9CB445-5474-4361-8B9E-687E6992BA25.png"
+      },
+      "brand": "graphite",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-graphite-dark-solid",
+      "file": "card-graphite-dark-solid.png",
+      "sha256": "bbdd83fbfacea4f9a2e5449fc267e31ed99064722e6ade77f9fcf88d430dcf88",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-graphite-dark-solid",
+        "file": "card-graphite-dark-solid.png",
+        "test": "CardReviewUITests/testVisualGraphiteDark()",
+        "exported_attachment": "88102BAD-18E0-450D-86AB-E34FEFC7BCF8.png"
+      },
+      "brand": "graphite",
+      "mode": "dark",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-graphite-dark-glass",
+      "file": "card-graphite-dark-glass.png",
+      "sha256": "b3673c669a104a8cfd63c408c29cf46f0e4ef8e34b064ef625cc26cce9994fc1",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-graphite-dark-glass",
+        "file": "card-graphite-dark-glass.png",
+        "test": "CardReviewUITests/testVisualGraphiteDark()",
+        "exported_attachment": "C5F36391-6E9B-4F70-9DB1-7F09DC74CEB6.png"
+      },
+      "brand": "graphite",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-graphite-dark-fallback",
+      "file": "card-graphite-dark-fallback.png",
+      "sha256": "51f96a505fb809c1ae8664b30396cf3ba39e56fa4998dd7ad4e131bf8bb1ee5a",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-graphite-dark-fallback",
+        "file": "card-graphite-dark-fallback.png",
+        "test": "CardReviewUITests/testVisualGraphiteDark()",
+        "exported_attachment": "F43A19FA-7255-41B4-AF42-3AEA0D484B58.png"
+      },
+      "brand": "graphite",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "four-slot"
+    },
+    {
+      "name": "card-narrow-long",
+      "file": "card-narrow-long.png",
+      "sha256": "129aa833de0dea049e0ae1c0c8202dac57c080db672a7ca15df2f5ae0506d2c2",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-narrow-long",
+        "file": "card-narrow-long.png",
+        "test": "CardReviewUITests/testLongTextAndAccessibilityDynamicTypeGrowWithoutHorizontalOverflow()",
+        "exported_attachment": "0095BEC9-CA7D-408D-89C7-073CFDF24BA6.png"
+      },
+      "brand": "ocean",
+      "mode": "light",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "long",
+      "state": "narrow/scroll growth"
+    },
+    {
+      "name": "card-accessibility3-top",
+      "file": "card-accessibility3-top.png",
+      "sha256": "989564089a7e1cfcddfb2d7e2f97ab65424fd5f8550e40eefb57907157695017",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-accessibility3-top",
+        "file": "card-accessibility3-top.png",
+        "test": "CardReviewUITests/testLongTextAndAccessibilityDynamicTypeGrowWithoutHorizontalOverflow()",
+        "exported_attachment": "530106CE-1AEE-4073-8ECC-2E7CFC92F0D6.png"
+      },
+      "brand": "ocean",
+      "mode": "light",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "accessibility3",
+      "scenario": "long",
+      "state": "narrow/scroll growth"
+    },
+    {
+      "name": "card-accessibility3-bottom",
+      "file": "card-accessibility3-bottom.png",
+      "sha256": "988e2214d7af09d192146b21615ccc5d5c9fb99dc00133468eddcb9b418da530",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-accessibility3-bottom",
+        "file": "card-accessibility3-bottom.png",
+        "test": "CardReviewUITests/testLongTextAndAccessibilityDynamicTypeGrowWithoutHorizontalOverflow()",
+        "exported_attachment": "97BDA372-E2C7-4947-A12E-CE028AE3CE18.png"
+      },
+      "brand": "ocean",
+      "mode": "light",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "accessibility3",
+      "scenario": "long",
+      "state": "narrow/scroll growth"
+    },
+    {
+      "name": "card-strata-blue-light-solid",
+      "file": "card-strata-blue-light-solid.png",
+      "sha256": "62d0328471aec662fafd6acba788aac1b2d9e6aa1ba3adf2b1145087edb42498",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-blue-light-solid",
+        "file": "card-strata-blue-light-solid.png",
+        "test": "CardReviewUITests/testStrataBlueLight()",
+        "exported_attachment": "E552B446-CD66-4C4B-89FB-070110D7DAF4.png"
+      },
+      "brand": "strata-blue",
+      "mode": "light",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-blue-light-glass",
+      "file": "card-strata-blue-light-glass.png",
+      "sha256": "307602b77d83bd6619fdff6614e9718233a8f7f5fd5fd11039387fd94996c7e5",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-blue-light-glass",
+        "file": "card-strata-blue-light-glass.png",
+        "test": "CardReviewUITests/testStrataBlueLight()",
+        "exported_attachment": "FF34D043-88F1-47C1-927F-FD144B6AF987.png"
+      },
+      "brand": "strata-blue",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-blue-light-fallback",
+      "file": "card-strata-blue-light-fallback.png",
+      "sha256": "62d0328471aec662fafd6acba788aac1b2d9e6aa1ba3adf2b1145087edb42498",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-blue-light-fallback",
+        "file": "card-strata-blue-light-fallback.png",
+        "test": "CardReviewUITests/testStrataBlueLight()",
+        "exported_attachment": "BE479161-26A5-4824-A8AE-CE8B84BC8064.png"
+      },
+      "brand": "strata-blue",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-blue-dark-solid",
+      "file": "card-strata-blue-dark-solid.png",
+      "sha256": "13d6d00828a040d875849b14070d931e4d479362f8d292c57c820adf0eb0dc17",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-blue-dark-solid",
+        "file": "card-strata-blue-dark-solid.png",
+        "test": "CardReviewUITests/testStrataBlueDark()",
+        "exported_attachment": "00AF6542-DB98-40F9-B6C7-09CE0AEDB269.png"
+      },
+      "brand": "strata-blue",
+      "mode": "dark",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-blue-dark-glass",
+      "file": "card-strata-blue-dark-glass.png",
+      "sha256": "1cfb0dd5bc829f509d5c0f3aed61696c8a287f4b3c82ca7b10226350b2349447",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-blue-dark-glass",
+        "file": "card-strata-blue-dark-glass.png",
+        "test": "CardReviewUITests/testStrataBlueDark()",
+        "exported_attachment": "11BA2626-C435-4EFA-9010-4B74765B33BF.png"
+      },
+      "brand": "strata-blue",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-blue-dark-fallback",
+      "file": "card-strata-blue-dark-fallback.png",
+      "sha256": "13d6d00828a040d875849b14070d931e4d479362f8d292c57c820adf0eb0dc17",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-blue-dark-fallback",
+        "file": "card-strata-blue-dark-fallback.png",
+        "test": "CardReviewUITests/testStrataBlueDark()",
+        "exported_attachment": "06B2625A-E433-458D-A972-CA6D3799B566.png"
+      },
+      "brand": "strata-blue",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-green-light-solid",
+      "file": "card-strata-green-light-solid.png",
+      "sha256": "4201d45083b77f9f39384f52ea2bdb03800b24336c46768792057d5bda3b1b56",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-green-light-solid",
+        "file": "card-strata-green-light-solid.png",
+        "test": "CardReviewUITests/testStrataGreenLight()",
+        "exported_attachment": "0C82E400-06DD-47FF-BBE8-039F020BCD65.png"
+      },
+      "brand": "strata-green",
+      "mode": "light",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-green-light-glass",
+      "file": "card-strata-green-light-glass.png",
+      "sha256": "6637dbbead070c2ae7789d5d3168ca6c108ab9e01f7b0ed25a463c0292c0fcf7",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-green-light-glass",
+        "file": "card-strata-green-light-glass.png",
+        "test": "CardReviewUITests/testStrataGreenLight()",
+        "exported_attachment": "69F36A80-3EB9-4F54-A744-551C6408C91F.png"
+      },
+      "brand": "strata-green",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-green-light-fallback",
+      "file": "card-strata-green-light-fallback.png",
+      "sha256": "4201d45083b77f9f39384f52ea2bdb03800b24336c46768792057d5bda3b1b56",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-green-light-fallback",
+        "file": "card-strata-green-light-fallback.png",
+        "test": "CardReviewUITests/testStrataGreenLight()",
+        "exported_attachment": "86F778B8-4608-4A27-853E-347C9BB47388.png"
+      },
+      "brand": "strata-green",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-green-dark-solid",
+      "file": "card-strata-green-dark-solid.png",
+      "sha256": "9a4136bfe65d04d5da86701e0927b17cca3fca198bd5f63dde8101019f6d8e18",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-green-dark-solid",
+        "file": "card-strata-green-dark-solid.png",
+        "test": "CardReviewUITests/testStrataGreenDark()",
+        "exported_attachment": "442CA4D9-7E8D-40B4-8E4F-F98CDAECE9DC.png"
+      },
+      "brand": "strata-green",
+      "mode": "dark",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-green-dark-glass",
+      "file": "card-strata-green-dark-glass.png",
+      "sha256": "a5a342e16e1d43b5a8083b8d4006158782afa81e842692e0c27c6526078b16fd",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-green-dark-glass",
+        "file": "card-strata-green-dark-glass.png",
+        "test": "CardReviewUITests/testStrataGreenDark()",
+        "exported_attachment": "80819EAA-1F42-4057-A3AB-E5552484501A.png"
+      },
+      "brand": "strata-green",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-green-dark-fallback",
+      "file": "card-strata-green-dark-fallback.png",
+      "sha256": "9a4136bfe65d04d5da86701e0927b17cca3fca198bd5f63dde8101019f6d8e18",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-green-dark-fallback",
+        "file": "card-strata-green-dark-fallback.png",
+        "test": "CardReviewUITests/testStrataGreenDark()",
+        "exported_attachment": "5A4564EA-C637-4631-9181-50AC64CC85B1.png"
+      },
+      "brand": "strata-green",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-pink-light-solid",
+      "file": "card-strata-pink-light-solid.png",
+      "sha256": "07e8cca68ce57fbc2fda859bd32512b819aba1bf45b5c16d456c3fd5765010db",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-pink-light-solid",
+        "file": "card-strata-pink-light-solid.png",
+        "test": "CardReviewUITests/testStrataPinkLight()",
+        "exported_attachment": "44B4E447-50F6-4EE8-82FF-C0D542011039.png"
+      },
+      "brand": "strata-pink",
+      "mode": "light",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-pink-light-glass",
+      "file": "card-strata-pink-light-glass.png",
+      "sha256": "cb1241dc061c4d729a646187c015382a021737bcedfa97f3713aa104f5df7d5d",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-pink-light-glass",
+        "file": "card-strata-pink-light-glass.png",
+        "test": "CardReviewUITests/testStrataPinkLight()",
+        "exported_attachment": "0B3BF92D-1A02-4453-BCCD-0B4160332233.png"
+      },
+      "brand": "strata-pink",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-pink-light-fallback",
+      "file": "card-strata-pink-light-fallback.png",
+      "sha256": "07e8cca68ce57fbc2fda859bd32512b819aba1bf45b5c16d456c3fd5765010db",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-pink-light-fallback",
+        "file": "card-strata-pink-light-fallback.png",
+        "test": "CardReviewUITests/testStrataPinkLight()",
+        "exported_attachment": "81645F0F-97AD-4A3A-9A70-4B3AFD7A6378.png"
+      },
+      "brand": "strata-pink",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-pink-dark-solid",
+      "file": "card-strata-pink-dark-solid.png",
+      "sha256": "923d3c1c3a59966b5c007283a21118a82713ac1f4f448b2bbcbd0f1fedd03db7",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-pink-dark-solid",
+        "file": "card-strata-pink-dark-solid.png",
+        "test": "CardReviewUITests/testStrataPinkDark()",
+        "exported_attachment": "DD710FCE-D18C-4FE5-80FC-94E591A41488.png"
+      },
+      "brand": "strata-pink",
+      "mode": "dark",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-pink-dark-glass",
+      "file": "card-strata-pink-dark-glass.png",
+      "sha256": "47aca41b23ac99d718f18e9ca951e75cb461228207e6ffb2dccb2b3c238c14f2",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-pink-dark-glass",
+        "file": "card-strata-pink-dark-glass.png",
+        "test": "CardReviewUITests/testStrataPinkDark()",
+        "exported_attachment": "E844EEC1-DD06-47CF-BEFB-EE836038B701.png"
+      },
+      "brand": "strata-pink",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-pink-dark-fallback",
+      "file": "card-strata-pink-dark-fallback.png",
+      "sha256": "8a8a7e1cade9df0321be67df7816f9970f1beb67903d9082f1d15a4267acfe6e",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-pink-dark-fallback",
+        "file": "card-strata-pink-dark-fallback.png",
+        "test": "CardReviewUITests/testStrataPinkDark()",
+        "exported_attachment": "CAAE753A-C5C2-411E-9801-28659A22C9FA.png"
+      },
+      "brand": "strata-pink",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-yellow-light-solid",
+      "file": "card-strata-yellow-light-solid.png",
+      "sha256": "0be734c4af85183ed23cf9fe64c730e02605dbf44c24e431b397cfb1e13bb37a",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-yellow-light-solid",
+        "file": "card-strata-yellow-light-solid.png",
+        "test": "CardReviewUITests/testStrataYellowLight()",
+        "exported_attachment": "FFC6D243-AC08-4A87-A650-F1D75D1E6C5C.png"
+      },
+      "brand": "strata-yellow",
+      "mode": "light",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-yellow-light-glass",
+      "file": "card-strata-yellow-light-glass.png",
+      "sha256": "86aa683ed435b48e9e1dad2dcb920d851a371a26ccf76196033e9fcb7dd1ab14",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-yellow-light-glass",
+        "file": "card-strata-yellow-light-glass.png",
+        "test": "CardReviewUITests/testStrataYellowLight()",
+        "exported_attachment": "A5BE228C-DF8B-43D0-B15A-CC9966E7D3EE.png"
+      },
+      "brand": "strata-yellow",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-yellow-light-fallback",
+      "file": "card-strata-yellow-light-fallback.png",
+      "sha256": "0be734c4af85183ed23cf9fe64c730e02605dbf44c24e431b397cfb1e13bb37a",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-yellow-light-fallback",
+        "file": "card-strata-yellow-light-fallback.png",
+        "test": "CardReviewUITests/testStrataYellowLight()",
+        "exported_attachment": "494F5403-41B3-4BA7-9356-E2D5BB1123A9.png"
+      },
+      "brand": "strata-yellow",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-yellow-dark-solid",
+      "file": "card-strata-yellow-dark-solid.png",
+      "sha256": "ce6003a8d37eac2483f8fbb439249c6b874210a186b9ae26c83e349cea9968e4",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-yellow-dark-solid",
+        "file": "card-strata-yellow-dark-solid.png",
+        "test": "CardReviewUITests/testStrataYellowDark()",
+        "exported_attachment": "135ADD9C-AEB5-4EA0-BD18-3EDA7F11FD95.png"
+      },
+      "brand": "strata-yellow",
+      "mode": "dark",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-yellow-dark-glass",
+      "file": "card-strata-yellow-dark-glass.png",
+      "sha256": "58f9c64a243a9ee002ed7ba00c7fb8f9e272f3c81dc05786d931f53c8753bf77",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-yellow-dark-glass",
+        "file": "card-strata-yellow-dark-glass.png",
+        "test": "CardReviewUITests/testStrataYellowDark()",
+        "exported_attachment": "2B322E22-698C-4EDF-936E-44F3F45BC78C.png"
+      },
+      "brand": "strata-yellow",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-yellow-dark-fallback",
+      "file": "card-strata-yellow-dark-fallback.png",
+      "sha256": "ce6003a8d37eac2483f8fbb439249c6b874210a186b9ae26c83e349cea9968e4",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-yellow-dark-fallback",
+        "file": "card-strata-yellow-dark-fallback.png",
+        "test": "CardReviewUITests/testStrataYellowDark()",
+        "exported_attachment": "19C384C7-04B4-4C6D-A800-16F15510659E.png"
+      },
+      "brand": "strata-yellow",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-purple-light-solid",
+      "file": "card-strata-purple-light-solid.png",
+      "sha256": "e8cc2f39e63291a39382d2780a5ffdc7213147b449bc5a5c9ed7cb4acf6938c4",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-purple-light-solid",
+        "file": "card-strata-purple-light-solid.png",
+        "test": "CardReviewUITests/testStrataPurpleLight()",
+        "exported_attachment": "73BB9C7F-3E7B-4FAE-A63F-CA12EDE81904.png"
+      },
+      "brand": "strata-purple",
+      "mode": "light",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-purple-light-glass",
+      "file": "card-strata-purple-light-glass.png",
+      "sha256": "b711d61170e871249c2c852c38a4c28fb24cb67504bc8c91621316a087cbb27a",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-purple-light-glass",
+        "file": "card-strata-purple-light-glass.png",
+        "test": "CardReviewUITests/testStrataPurpleLight()",
+        "exported_attachment": "A0A25D9B-5F17-4CF0-9D70-6D1C2E8873CF.png"
+      },
+      "brand": "strata-purple",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-purple-light-fallback",
+      "file": "card-strata-purple-light-fallback.png",
+      "sha256": "ac009e7306098a4b09cf5c77e6e093425ac12f068e38416eb940e9d58f4f199f",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-purple-light-fallback",
+        "file": "card-strata-purple-light-fallback.png",
+        "test": "CardReviewUITests/testStrataPurpleLight()",
+        "exported_attachment": "C4878F7F-B9E1-4048-B770-2B5553C9B4FF.png"
+      },
+      "brand": "strata-purple",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-purple-dark-solid",
+      "file": "card-strata-purple-dark-solid.png",
+      "sha256": "f1af275cd3883921e92eb9077feb85c961a1f28804b1ba8616fd4af62f156058",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-purple-dark-solid",
+        "file": "card-strata-purple-dark-solid.png",
+        "test": "CardReviewUITests/testStrataPurpleDark()",
+        "exported_attachment": "BF2FEA20-C2E5-4C89-BE0F-42B2FE39BF89.png"
+      },
+      "brand": "strata-purple",
+      "mode": "dark",
+      "requestedSurface": "solid",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-purple-dark-glass",
+      "file": "card-strata-purple-dark-glass.png",
+      "sha256": "fddcb29235862f7d2955c5f266588740d14c7882cd0548652a4284e2d5c1cfbe",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-purple-dark-glass",
+        "file": "card-strata-purple-dark-glass.png",
+        "test": "CardReviewUITests/testStrataPurpleDark()",
+        "exported_attachment": "2281FFD7-E135-4891-A877-A71EBBC4B8F1.png"
+      },
+      "brand": "strata-purple",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-strata-purple-dark-fallback",
+      "file": "card-strata-purple-dark-fallback.png",
+      "sha256": "f1af275cd3883921e92eb9077feb85c961a1f28804b1ba8616fd4af62f156058",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-purple-dark-fallback",
+        "file": "card-strata-purple-dark-fallback.png",
+        "test": "CardReviewUITests/testStrataPurpleDark()",
+        "exported_attachment": "B846E850-4042-462F-89BF-A2F8FD8E5C2E.png"
+      },
+      "brand": "strata-purple",
+      "mode": "dark",
+      "requestedSurface": "glass",
+      "transparency": "forced-on",
+      "textSize": "large",
+      "scenario": "specimen"
+    },
+    {
+      "name": "card-specimen-action",
+      "file": "card-specimen-action.png",
+      "sha256": "245ac325eff434a5d6bdf0c97a167ed5f8f8d3490865d96cb7f9687cfcbaf982",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-specimen-action",
+        "file": "card-specimen-action.png",
+        "test": "CardReviewUITests/testSpecimenCallerActionAndNarrowAccessibilityLayout()",
+        "exported_attachment": "9AC8490A-B7EB-46FF-B0AB-F2D158837FA0.png"
+      },
+      "brand": "strata-blue",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen",
+      "state": "after caller action"
+    },
+    {
+      "name": "card-specimen-narrow",
+      "file": "card-specimen-narrow.png",
+      "sha256": "cd520537f5709b4ee7df876abed7750d69d1c8c0be6231edb111fb9b4a4d74a9",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-specimen-narrow",
+        "file": "card-specimen-narrow.png",
+        "test": "CardReviewUITests/testSpecimenCallerActionAndNarrowAccessibilityLayout()",
+        "exported_attachment": "EAD8633E-08F2-4A1B-B069-446019DDE061.png"
+      },
+      "brand": "strata-blue",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "large",
+      "scenario": "specimen-long",
+      "state": "narrow/scroll growth"
+    },
+    {
+      "name": "card-specimen-accessibility3-top",
+      "file": "card-specimen-accessibility3-top.png",
+      "sha256": "243e394a533c47ec7d079cab10906efe0202fb788e63997fc6d8bdb3bd1fe063",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-specimen-accessibility3-top",
+        "file": "card-specimen-accessibility3-top.png",
+        "test": "CardReviewUITests/testSpecimenCallerActionAndNarrowAccessibilityLayout()",
+        "exported_attachment": "A7E6A0AC-4248-430A-B524-DFB03C51E387.png"
+      },
+      "brand": "strata-blue",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "accessibility3",
+      "scenario": "specimen-long",
+      "state": "narrow/scroll growth"
+    },
+    {
+      "name": "card-specimen-accessibility3-action",
+      "file": "card-specimen-accessibility3-action.png",
+      "sha256": "f280f1ae336c1e641e0b705a62086fd37949dfb94166e5679c24a1720b975acd",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-specimen-accessibility3-action",
+        "file": "card-specimen-accessibility3-action.png",
+        "test": "CardReviewUITests/testSpecimenCallerActionAndNarrowAccessibilityLayout()",
+        "exported_attachment": "48F15B77-4C51-4AAD-8D4B-B6E6310313EB.png"
+      },
+      "brand": "strata-blue",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "accessibility3",
+      "scenario": "specimen-long",
+      "state": "narrow/scroll growth"
+    },
+    {
+      "name": "card-specimen-accessibility3-bottom",
+      "file": "card-specimen-accessibility3-bottom.png",
+      "sha256": "e930da3ebf16090abac1ab2135712285a4a6e94cc8e1647a847f197f897dd947",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-specimen-accessibility3-bottom",
+        "file": "card-specimen-accessibility3-bottom.png",
+        "test": "CardReviewUITests/testSpecimenCallerActionAndNarrowAccessibilityLayout()",
+        "exported_attachment": "C2C64C64-A448-48F0-A1B1-9370BB38065F.png"
+      },
+      "brand": "strata-blue",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "forced-off",
+      "textSize": "accessibility3",
+      "scenario": "specimen-long",
+      "state": "narrow/scroll growth"
+    },
+    {
+      "name": "card-strata-blue-light-system-fallback",
+      "file": "card-strata-blue-light-system-fallback.png",
+      "sha256": "f9ab1b0a280e3278cac2c704d3d34e7c4f6323556fe8123cac4ed64725b7cba8",
+      "dimensions": [
+        1206,
+        2622
+      ],
+      "attachment": {
+        "name": "card-strata-blue-light-system-fallback",
+        "file": "card-strata-blue-light-system-fallback.png",
+        "test": "CardReviewUITests/testSystemReduceTransparencyUsesTheSameSolidCardRole()",
+        "exported_attachment": "4DAAFDAD-FD2C-4965-9A93-02084DD63C30.png"
+      },
+      "brand": "strata-blue",
+      "mode": "light",
+      "requestedSurface": "glass",
+      "transparency": "actual-system",
+      "textSize": "large",
+      "scenario": "specimen"
+    }
+  ]
+}

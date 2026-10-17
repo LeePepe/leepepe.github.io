@@ -1,0 +1,992 @@
+{
+  "component": "Button",
+  "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+  "provider_version": "0.2.0",
+  "provider_revision": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+  "base": "4b67ef2ab7cc3dc35f15d2b0d9777170da932dfe",
+  "original_xctest_pngs": 48,
+  "supplementary_real_held_press_pngs": 1,
+  "native_hover_tab_space": "FAILED; Owner temporarily deferred; cause UNKNOWN",
+  "images": [
+    {
+      "name": "button-ocean-light",
+      "sha256": "2048aef9c2fbb8b49bac6b4ea9e797ea3600167736b3bfc50d48fa0f01f72f71",
+      "bytes": 182224,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "ocean",
+      "mode": "light",
+      "material": "glass",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "explicit-surface",
+      "file": "button-ocean-light.png"
+    },
+    {
+      "name": "button-ocean-dark",
+      "sha256": "10a2c331386c35cc5fc6a7a054e3435e49d41513c8a0b8005f25b9cf824aa156",
+      "bytes": 172798,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "ocean",
+      "mode": "dark",
+      "material": "glass",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "explicit-surface",
+      "file": "button-ocean-dark.png"
+    },
+    {
+      "name": "button-graphite-light",
+      "sha256": "fb7aa773d1f155002166238e4e8f2536719a126267862d59db09857b4c3f810a",
+      "bytes": 180756,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "graphite",
+      "mode": "light",
+      "material": "glass",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "explicit-surface",
+      "file": "button-graphite-light.png"
+    },
+    {
+      "name": "button-graphite-dark",
+      "sha256": "ddce8359523a6b1ea8c4bf234e45063fd19bc121d5ced1b70b3507e1ee332a56",
+      "bytes": 167329,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "graphite",
+      "mode": "dark",
+      "material": "glass",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "explicit-surface",
+      "file": "button-graphite-dark.png"
+    },
+    {
+      "name": "button-accessibility-narrow",
+      "sha256": "62a79ecda26c0d20f80c5b285c250130d867dfc410e849b5b7d3d36e24b67e40",
+      "bytes": 150829,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "de",
+      "dynamic_type": "accessibility2",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "glass",
+      "state": "accessibility-narrow",
+      "initializer": "explicit-surface",
+      "file": "button-accessibility-narrow.png"
+    },
+    {
+      "name": "button-strata-blue-light-glass",
+      "sha256": "28402b7032bfd97400b0b3e8c5388da0f72b7155cc79b1466953ac9f586672e6",
+      "bytes": 550796,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "glass",
+      "state": "glass",
+      "initializer": "explicit-surface",
+      "file": "button-strata-blue-light-glass.png"
+    },
+    {
+      "name": "button-strata-blue-light-solid",
+      "sha256": "0211edda188fcdaf727c0227a52a6493f16725db71502a116e66f0c41999f9d2",
+      "bytes": 135109,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "solid",
+      "state": "solid",
+      "initializer": "explicit-surface",
+      "file": "button-strata-blue-light-solid.png"
+    },
+    {
+      "name": "button-strata-blue-dark-glass",
+      "sha256": "69ee31354a7c77c235a4ba15d34926539296a1be5c4674ba15ec3e69fab2b6cd",
+      "bytes": 403435,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "dark",
+      "material": "glass",
+      "state": "glass",
+      "initializer": "explicit-surface",
+      "file": "button-strata-blue-dark-glass.png"
+    },
+    {
+      "name": "button-strata-blue-dark-solid",
+      "sha256": "d663cc6792bd7c23dadffe4465cdd67ba4b86c1b4f8034c1398ed28a5899acbf",
+      "bytes": 136563,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "dark",
+      "material": "solid",
+      "state": "solid",
+      "initializer": "explicit-surface",
+      "file": "button-strata-blue-dark-solid.png"
+    },
+    {
+      "name": "button-strata-green-light-glass",
+      "sha256": "62f1a35994bf595548c8013d0bd69e0042476a13a2046b210afe3516af64bd36",
+      "bytes": 501041,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-green",
+      "mode": "light",
+      "material": "glass",
+      "state": "glass",
+      "initializer": "explicit-surface",
+      "file": "button-strata-green-light-glass.png"
+    },
+    {
+      "name": "button-strata-green-light-solid",
+      "sha256": "f4d0dc7d6460c4d7801459cd1f13ca607947fee01b0973956cb56efe97f898fb",
+      "bytes": 134112,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-green",
+      "mode": "light",
+      "material": "solid",
+      "state": "solid",
+      "initializer": "explicit-surface",
+      "file": "button-strata-green-light-solid.png"
+    },
+    {
+      "name": "button-strata-green-dark-glass",
+      "sha256": "c34ccd2c2f01ca39a68dd0ea156b1a4a2847b7ddb80a36f227fb0a3404db4fa4",
+      "bytes": 361037,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-green",
+      "mode": "dark",
+      "material": "glass",
+      "state": "glass",
+      "initializer": "explicit-surface",
+      "file": "button-strata-green-dark-glass.png"
+    },
+    {
+      "name": "button-strata-green-dark-solid",
+      "sha256": "183e05ed4735195dfa38ddbf292f8dd41288fdac49c365f3455a1fbf87b23eac",
+      "bytes": 134836,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-green",
+      "mode": "dark",
+      "material": "solid",
+      "state": "solid",
+      "initializer": "explicit-surface",
+      "file": "button-strata-green-dark-solid.png"
+    },
+    {
+      "name": "button-strata-pink-light-glass",
+      "sha256": "c1cdc7b29246bdaf92388a17519db4f0682fe4bbdc03627615b36511d5b3f2ba",
+      "bytes": 593238,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-pink",
+      "mode": "light",
+      "material": "glass",
+      "state": "glass",
+      "initializer": "explicit-surface",
+      "file": "button-strata-pink-light-glass.png"
+    },
+    {
+      "name": "button-strata-pink-light-solid",
+      "sha256": "deed46b350ac5a8ea65a0af8fb63e62e409b5d890f4801b0a478e7b6f5715d78",
+      "bytes": 133910,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-pink",
+      "mode": "light",
+      "material": "solid",
+      "state": "solid",
+      "initializer": "explicit-surface",
+      "file": "button-strata-pink-light-solid.png"
+    },
+    {
+      "name": "button-strata-pink-dark-glass",
+      "sha256": "834c8d3f97a745faf088e4eb877881d67f85f59e68ff5e8ab56cf353ffcf5bd8",
+      "bytes": 370021,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-pink",
+      "mode": "dark",
+      "material": "glass",
+      "state": "glass",
+      "initializer": "explicit-surface",
+      "file": "button-strata-pink-dark-glass.png"
+    },
+    {
+      "name": "button-strata-pink-dark-solid",
+      "sha256": "032d906a20837f4153309b9cc02c9fd1cc57354e8c36565764f68f6ed3594f10",
+      "bytes": 134713,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-pink",
+      "mode": "dark",
+      "material": "solid",
+      "state": "solid",
+      "initializer": "explicit-surface",
+      "file": "button-strata-pink-dark-solid.png"
+    },
+    {
+      "name": "button-strata-yellow-light-glass",
+      "sha256": "475f11d614a32505654dd175376757e741696eea7656bd3274d33341595daecf",
+      "bytes": 607818,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-yellow",
+      "mode": "light",
+      "material": "glass",
+      "state": "glass",
+      "initializer": "explicit-surface",
+      "file": "button-strata-yellow-light-glass.png"
+    },
+    {
+      "name": "button-strata-yellow-light-solid",
+      "sha256": "5f45c45831e95bcd3ac17485052a4aa34e23c029ac412222303a54b1355aec43",
+      "bytes": 135413,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-yellow",
+      "mode": "light",
+      "material": "solid",
+      "state": "solid",
+      "initializer": "explicit-surface",
+      "file": "button-strata-yellow-light-solid.png"
+    },
+    {
+      "name": "button-strata-yellow-dark-glass",
+      "sha256": "e0179e89d85e52814a0dd04ad9b0d89dd8e424be28cb304a8f197a789799114b",
+      "bytes": 340037,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-yellow",
+      "mode": "dark",
+      "material": "glass",
+      "state": "glass",
+      "initializer": "explicit-surface",
+      "file": "button-strata-yellow-dark-glass.png"
+    },
+    {
+      "name": "button-strata-yellow-dark-solid",
+      "sha256": "92189c8d5da40f8d4e4e9715f1289f58b31488a2bab4731bb3b7e18a70726e97",
+      "bytes": 135738,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-yellow",
+      "mode": "dark",
+      "material": "solid",
+      "state": "solid",
+      "initializer": "explicit-surface",
+      "file": "button-strata-yellow-dark-solid.png"
+    },
+    {
+      "name": "button-strata-purple-light-glass",
+      "sha256": "dfd7c54a71af03d15045835c1418646d7c6d3a8bebb8e7c69ee63a15a979d9ab",
+      "bytes": 547262,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-purple",
+      "mode": "light",
+      "material": "glass",
+      "state": "glass",
+      "initializer": "explicit-surface",
+      "file": "button-strata-purple-light-glass.png"
+    },
+    {
+      "name": "button-strata-purple-light-solid",
+      "sha256": "b91ab75a6bdd93467a5d7e1fc4facde55ea62f556b93a3fc0830aa2edd846370",
+      "bytes": 134060,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-purple",
+      "mode": "light",
+      "material": "solid",
+      "state": "solid",
+      "initializer": "explicit-surface",
+      "file": "button-strata-purple-light-solid.png"
+    },
+    {
+      "name": "button-strata-purple-dark-glass",
+      "sha256": "f24432ffc463dc9e5448493b8e637835e85b4da3788a599324d1ad9a67fcd68f",
+      "bytes": 381880,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-purple",
+      "mode": "dark",
+      "material": "glass",
+      "state": "glass",
+      "initializer": "explicit-surface",
+      "file": "button-strata-purple-dark-glass.png"
+    },
+    {
+      "name": "button-strata-purple-dark-solid",
+      "sha256": "98f6d7d9a7fc31fb01ce1c63024e9e37caebcf2adf7a750e17cb7d62ba0de648",
+      "bytes": 136264,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-purple",
+      "mode": "dark",
+      "material": "solid",
+      "state": "solid",
+      "initializer": "explicit-surface",
+      "file": "button-strata-purple-dark-solid.png"
+    },
+    {
+      "name": "button-reduce-motion-loading",
+      "sha256": "806091129c6bedb8a75b6a9b1d934924de4e38b90ccc7c9fca514c0f8e6e9561",
+      "bytes": 113894,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "glass",
+      "state": "reduce-motion-loading",
+      "initializer": "explicit-surface",
+      "file": "button-reduce-motion-loading.png"
+    },
+    {
+      "name": "button-strata-purple-dark-reduced-transparency",
+      "sha256": "782156a39fea9eca5c8e6f3dc1be9dd44144cc6df21afbf403f4ef6bee98d356",
+      "bytes": 175965,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-purple",
+      "mode": "dark",
+      "material": "glass",
+      "state": "reduced-transparency",
+      "initializer": "explicit-surface",
+      "file": "button-strata-purple-dark-reduced-transparency.png"
+    },
+    {
+      "name": "button-before-press",
+      "sha256": "a6eeb999185dde39aa86959b1aee6057bdabcd2ec9b3f51f551729d47796d3f1",
+      "bytes": 97902,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "glass",
+      "state": "before-press",
+      "initializer": "explicit-surface",
+      "file": "button-before-press.png"
+    },
+    {
+      "name": "button-after-press",
+      "sha256": "5c18bc8197010d9ca15e519d2e37de4c3afb7603f1e3d41e1d52e7128fc4fe2d",
+      "bytes": 97016,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "glass",
+      "state": "after-press",
+      "initializer": "explicit-surface",
+      "file": "button-after-press.png"
+    },
+    {
+      "name": "button-strata-purple-dark-forced-fallback",
+      "sha256": "acdf6e5910a25fb59f6063674e82f269c5874359d5b4735d7976aeb44ff5f00d",
+      "bytes": 136271,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-purple",
+      "mode": "dark",
+      "material": "glass",
+      "state": "forced-fallback",
+      "initializer": "explicit-surface",
+      "file": "button-strata-purple-dark-forced-fallback.png"
+    },
+    {
+      "name": "button-system-reduce-motion-restored-app",
+      "sha256": "7238c66c20bc11d8af57fec607bda4b730528bb067de18bb6dbd567d1381f5d2",
+      "bytes": 97918,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "glass",
+      "state": "system-reduce-motion-restored-app",
+      "initializer": "explicit-surface",
+      "file": "button-system-reduce-motion-restored-app.png"
+    },
+    {
+      "name": "button-system-reduce-transparency-restored-app",
+      "sha256": "45ee7d7f3dac9458223e0df9d1d7da3d8b76158986586bb14eeb8b41a8b80f7c",
+      "bytes": 382379,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-purple",
+      "mode": "dark",
+      "material": "glass",
+      "state": "system-reduce-transparency-restored-app",
+      "initializer": "explicit-surface",
+      "file": "button-system-reduce-transparency-restored-app.png"
+    },
+    {
+      "name": "button-original-before-press",
+      "sha256": "a6eeb999185dde39aa86959b1aee6057bdabcd2ec9b3f51f551729d47796d3f1",
+      "bytes": 97902,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "solid",
+      "state": "original-before-press",
+      "initializer": "original-no-surface",
+      "file": "button-original-before-press.png"
+    },
+    {
+      "name": "button-original-after-press",
+      "sha256": "5c18bc8197010d9ca15e519d2e37de4c3afb7603f1e3d41e1d52e7128fc4fe2d",
+      "bytes": 97016,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "solid",
+      "state": "original-after-press",
+      "initializer": "original-no-surface",
+      "file": "button-original-after-press.png"
+    },
+    {
+      "name": "button-original-action-enabled",
+      "sha256": "5c18bc8197010d9ca15e519d2e37de4c3afb7603f1e3d41e1d52e7128fc4fe2d",
+      "bytes": 97016,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "solid",
+      "state": "original-action-enabled",
+      "initializer": "original-no-surface",
+      "file": "button-original-action-enabled.png"
+    },
+    {
+      "name": "button-original-action-disabled",
+      "sha256": "c077053c7fdb6948ca6fd21fe046e84921de8d96e5daf2314fba03aeace24781",
+      "bytes": 95142,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "solid",
+      "state": "original-action-disabled",
+      "initializer": "original-no-surface",
+      "file": "button-original-action-disabled.png"
+    },
+    {
+      "name": "button-original-action-loading",
+      "sha256": "90890b1490134f2b6769e5c52d649e99c33f5468f61935cedf0ac60ef1dccefc",
+      "bytes": 107552,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "solid",
+      "state": "original-action-loading",
+      "initializer": "original-no-surface",
+      "file": "button-original-action-loading.png"
+    },
+    {
+      "name": "button-original-action-re-enabled",
+      "sha256": "35726ff23e01db1dc2d9de6ebd97b1920e665ef9ce2be8a7207de2a4f40d906a",
+      "bytes": 97657,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "solid",
+      "state": "original-action-re-enabled",
+      "initializer": "original-no-surface",
+      "file": "button-original-action-re-enabled.png"
+    },
+    {
+      "name": "button-original-accessibility-narrow",
+      "sha256": "847a03648d3150aedc1c286537b6a3484735dba86e56f92e1da36baf84ebb46e",
+      "bytes": 149876,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "de",
+      "dynamic_type": "accessibility2",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "solid",
+      "state": "original-accessibility-narrow",
+      "initializer": "original-no-surface",
+      "file": "button-original-accessibility-narrow.png"
+    },
+    {
+      "name": "button-original-accessibility-narrow-loading",
+      "sha256": "bd27005b0ca726e496f9302139619664be109088ce588a7b3be370aaab78dfb3",
+      "bytes": 160515,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "de",
+      "dynamic_type": "accessibility2",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "solid",
+      "state": "original-accessibility-narrow-loading",
+      "initializer": "original-no-surface",
+      "file": "button-original-accessibility-narrow-loading.png"
+    },
+    {
+      "name": "button-original-solid-ocean-light",
+      "sha256": "0fd306f78bf4af84f8ca06ce286ee9e91d2d2559756d57b26e63ac8a09b2542b",
+      "bytes": 175905,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "ocean",
+      "mode": "light",
+      "material": "solid",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "original-no-surface",
+      "file": "button-original-solid-ocean-light.png"
+    },
+    {
+      "name": "button-explicit-solid-ocean-light",
+      "sha256": "0fd306f78bf4af84f8ca06ce286ee9e91d2d2559756d57b26e63ac8a09b2542b",
+      "bytes": 175905,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "ocean",
+      "mode": "light",
+      "material": "solid",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "explicit-surface",
+      "file": "button-explicit-solid-ocean-light.png"
+    },
+    {
+      "name": "button-original-solid-ocean-dark",
+      "sha256": "fc88c2b7b33bb84444aef546d1c8e206b5c93eafd1635ae03f6c3e3b6f2bd9a8",
+      "bytes": 164245,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "ocean",
+      "mode": "dark",
+      "material": "solid",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "original-no-surface",
+      "file": "button-original-solid-ocean-dark.png"
+    },
+    {
+      "name": "button-explicit-solid-ocean-dark",
+      "sha256": "9c308c6d2109dd5bd705f3faccb49209345f5a2f67e230aca24e9ac4881fefd9",
+      "bytes": 165068,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "ocean",
+      "mode": "dark",
+      "material": "solid",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "explicit-surface",
+      "file": "button-explicit-solid-ocean-dark.png"
+    },
+    {
+      "name": "button-original-solid-graphite-light",
+      "sha256": "369341bdd44b460f42149fc23f63dc2f1543989121c05fa209d4ad1939388cee",
+      "bytes": 174119,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "graphite",
+      "mode": "light",
+      "material": "solid",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "original-no-surface",
+      "file": "button-original-solid-graphite-light.png"
+    },
+    {
+      "name": "button-explicit-solid-graphite-light",
+      "sha256": "9e80cd651756fabfd6cd78955ad7e48069df8fc16fc61709bc4f59d1b5b83ad6",
+      "bytes": 174224,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "graphite",
+      "mode": "light",
+      "material": "solid",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "explicit-surface",
+      "file": "button-explicit-solid-graphite-light.png"
+    },
+    {
+      "name": "button-original-solid-graphite-dark",
+      "sha256": "ab2cf9f664a426926373de405e02a505ec25da8212e77d0f17e9ec9b2ea53598",
+      "bytes": 158587,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "graphite",
+      "mode": "dark",
+      "material": "solid",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "original-no-surface",
+      "file": "button-original-solid-graphite-dark.png"
+    },
+    {
+      "name": "button-explicit-solid-graphite-dark",
+      "sha256": "626fabb017538333446ad32594d7eb52b6ae89fa747bba74e00d4e964430dc3b",
+      "bytes": 158686,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "original XCTest screenshot attachment",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "locale": "en",
+      "dynamic_type": "large",
+      "palette": "graphite",
+      "mode": "dark",
+      "material": "solid",
+      "state": "normal/loading/disabled matrix",
+      "initializer": "explicit-surface",
+      "file": "button-explicit-solid-graphite-dark.png"
+    },
+    {
+      "name": "button-held-native-press",
+      "sha256": "fa7772d026fc98f58a3a3a619e69516e00262dfe58277346b0029f148a823735",
+      "bytes": 117956,
+      "pixels": [
+        1206,
+        2622
+      ],
+      "kind": "supplementary actual simctl screenshot during native XCTest four-second press",
+      "source": "297606a2657db4487cff2e3915d31a453be53ccd",
+      "provider": "87bef8fbab5bf67a748815d7ed04d7ae199f760a",
+      "palette": "strata-blue",
+      "mode": "light",
+      "material": "glass",
+      "state": "held press; Actions0",
+      "locale": "en",
+      "dynamic_type": "large",
+      "initializer": "explicit-surface",
+      "file": "button-held-native-press.png"
+    }
+  ]
+}

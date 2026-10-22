@@ -1,0 +1,15 @@
+---
+---
+<a class="btn btn--ghost back-link" href="{{ '/' | relative_url }}">返回文章列表</a>
+<article class="card article">
+  <header class="article-header">
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y 年 %m 月 %d 日' }}</time></div>
+  </header>
+  <div class="prose">{{ content }}</div>
+</article>
+<nav class="post-nav" aria-label="文章导航">
+  {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}
+  {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
+</nav>
+

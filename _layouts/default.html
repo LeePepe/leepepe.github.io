@@ -1,0 +1,8 @@
+{% include head.html %}
+<body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+    {% include header.html %}
+    <main id="main" class="shell">{{ content }}</main>
+{% include footer.html %}
+

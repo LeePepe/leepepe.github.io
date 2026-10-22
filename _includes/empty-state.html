@@ -1,0 +1,6 @@
+<section class="empty-state">
+  <h1>{{ include.title | default: '这里还没有内容' }}</h1>
+  <p>{{ include.message | default: '新文章正在路上，稍后再来看看。' }}</p>
+  <a class="btn btn--primary" href="{{ '/' | relative_url }}">回到首页</a>
+</section>
+

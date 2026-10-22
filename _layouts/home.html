@@ -1,0 +1,21 @@
+---
+---
+<section class="page-intro">
+  <span class="demo-note">Lee Pepe</span>
+  <h1>写代码，也写生活</h1>
+  <p>{{ site.description }}</p>
+</section>
+{% if paginator.posts.size > 0 %}
+<section class="card" aria-labelledby="latest">
+  <h2 id="latest" class="visually-hidden">最新文章</h2>
+  <ol class="post-list">
+    {% for post in paginator.posts %}{% include post-item.html %}{% endfor %}
+  </ol>
+  {% if paginator.total_pages > 1 %}<nav class="pagination" aria-label="分页">
+    {% if paginator.previous_page %}<a class="btn btn--ghost" href="{{ paginator.previous_page_path | relative_url }}">较新</a>{% endif %}
+    <span>第 {{ paginator.page }} / {{ paginator.total_pages }} 页</span>
+    {% if paginator.next_page %}<a class="btn btn--secondary" href="{{ paginator.next_page_path | relative_url }}">较旧</a>{% endif %}
+  </nav>{% endif %}
+</section>
+{% else %}<div class="empty-inline">{% include empty-state.html message='还没有发布文章。' %}</div>{% endif %}
+

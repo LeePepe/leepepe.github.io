@@ -1,0 +1,201 @@
+/*
+ * Strata alias layer (app-owned adapter) for leepepe.github.io — from my-designer templates/strata-web,
+ * trimmed to the one product brand family (strata-yellow / 麦芽黄).
+ *
+ * Import order:
+ *   1. @leepepe/design-tokens/colors.css   (generated provider data, --lp-*; from shared-design-system
+ *      Packages/DesignTokens, npm-packed at the pinned tag — never hand-copied)
+ *   2. this file
+ *   3. (Tailwind v4 apps) tailwind-theme.css after `@import "tailwindcss";`
+ *
+ * Root owner sets on <html>:
+ *   data-lp-theme="light|dark"            (provider requirement; no OS inference by the provider)
+ *   data-strata-brand="blue|green|pink|yellow|purple"
+ *   data-strata-material="glass|solid"    (effective material; solid when reduced transparency or
+ *                                          backdrop-filter unsupported — see StrataThemeRoot.tsx)
+ *
+ * Color values come only from --lp-* variables. Non-color numbers below are the Strata v0.2
+ * web rules (docs/strata-theme-v0.2.md + demoUI tokens.mjs), which are design rules, not
+ * provider data yet.
+ */
+
+/* ---- Brand family → semantic aliases (麦芽黄 only) ---- */
+[data-strata-brand="yellow"] {
+  --strata-brand-seed: var(--lp-brand-strata-yellow-seed);
+  --strata-brand-seed-ink: var(--lp-brand-strata-yellow-seed-ink);
+  --strata-brand-primary: var(--lp-brand-strata-yellow-primary);
+  --strata-brand-hover: var(--lp-brand-strata-yellow-hover);
+  --strata-brand-active: var(--lp-brand-strata-yellow-active);
+  --strata-brand-subtle: var(--lp-brand-strata-yellow-subtle);
+  --strata-brand-text: var(--lp-brand-strata-yellow-text);
+  --strata-brand-on-accent: var(--lp-brand-strata-yellow-on-accent);
+  --strata-surface-page: var(--lp-product-strata-yellow-surface-page);
+  --strata-surface-region: var(--lp-product-strata-yellow-surface-region);
+  --strata-surface-card: var(--lp-product-strata-yellow-surface-card);
+  --strata-surface-inset: var(--lp-product-strata-yellow-surface-inset);
+  --strata-surface-hover: var(--lp-product-strata-yellow-surface-hover);
+  --strata-surface-selected: var(--lp-product-strata-yellow-surface-selected);
+  --strata-glass-panel: var(--lp-product-strata-yellow-material-panel);
+  --strata-glass-content: var(--lp-product-strata-yellow-material-content);
+  --strata-glass-control: var(--lp-product-strata-yellow-material-control);
+  --strata-ambient: var(--lp-product-strata-yellow-material-ambient);
+  --strata-ambient-soft: var(--lp-product-strata-yellow-material-ambient-soft);
+  --strata-ambient-edge: var(--lp-product-strata-yellow-material-ambient-edge);
+}
+
+/* ---- Brand-independent roles + Strata v0.2 shape/rhythm ---- */
+[data-strata-brand] {
+  --strata-text-primary: var(--lp-product-strata-text-primary);
+  --strata-text-secondary: var(--lp-product-strata-text-secondary);
+  --strata-border: var(--lp-product-strata-border);
+  --strata-success: var(--lp-status-strata-success);
+  --strata-success-surface: var(--lp-status-strata-success-surface);
+  --strata-warning: var(--lp-status-strata-warning);
+  --strata-warning-surface: var(--lp-status-strata-warning-surface);
+  --strata-error: var(--lp-status-strata-error);
+  --strata-error-surface: var(--lp-status-strata-error-surface);
+  --strata-chart-1: var(--lp-product-strata-chart-primary);
+  --strata-chart-2: var(--lp-product-strata-chart-secondary);
+  --strata-chart-3: var(--lp-product-strata-chart-tertiary);
+  --strata-edge: var(--lp-product-strata-material-edge);
+  --strata-highlight: var(--lp-product-strata-material-highlight);
+  --strata-inner-edge: var(--lp-product-strata-material-inner-edge);
+  --strata-shadow-color: var(--lp-product-strata-material-shadow);
+  --strata-focus-ring: var(--strata-brand-primary);
+
+  --strata-radius-control: 16px;
+  --strata-radius-card: 24px;
+  --strata-radius-container: 32px;
+  --strata-radius-pill: 999px;
+  --strata-space-1: 4px;
+  --strata-space-2: 8px;
+  --strata-space-3: 12px;
+  --strata-space-4: 16px;
+  --strata-space-6: 24px;
+  --strata-space-8: 32px;
+  --strata-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --strata-font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --strata-font-label: 11px;
+  --strata-font-small: 12px;
+  --strata-font-body: 14px;
+  --strata-font-heading: 18px;
+  --strata-font-title: 32px;
+  --strata-font-metric: 40px;
+  --strata-line: 1.6;
+  --strata-control-height: 40px;
+  --strata-focus-width: 3px;
+  --strata-content-max: 1232px;
+  --strata-motion-quick: 140ms;
+  --strata-easing: cubic-bezier(.2, .8, .2, 1);
+
+  /* Effective-material switches (solid defaults; glass overrides below). */
+  --strata-panel-bg: var(--strata-surface-region);
+  --strata-content-bg: var(--strata-surface-card);
+  --strata-control-bg: var(--strata-surface-card);
+  --strata-blur: none;
+  --strata-sheen: none;
+  --strata-panel-shadow: none;
+  --strata-panel-edge: transparent;
+  --strata-content-edge: transparent;
+  --strata-ambient-visibility: 0;
+}
+
+[data-strata-brand][data-strata-material="glass"] {
+  --strata-panel-bg: var(--strata-glass-panel);
+  --strata-content-bg: var(--strata-glass-content);
+  --strata-control-bg: var(--strata-glass-control);
+  --strata-blur: blur(24px) saturate(125%);
+  --strata-sheen: linear-gradient(155deg, var(--strata-highlight), transparent 40%);
+  --strata-panel-shadow: 0 8px 32px var(--strata-shadow-color);
+  --strata-panel-edge: var(--strata-edge);
+  --strata-content-edge: var(--strata-inner-edge);
+  --strata-ambient-visibility: 1;
+}
+
+/* ---- Minimal surface primitives (compose; do not multiply blur layers) ---- */
+.strata-page {
+  background: var(--strata-surface-page);
+  color: var(--strata-text-primary);
+  font: var(--strata-font-body)/var(--strata-line) var(--strata-font-family);
+}
+.strata-shell { width: min(calc(100% - var(--strata-space-8) * 2), var(--strata-content-max)); margin-inline: auto; }
+
+/* Outer region: the ONLY blurred layer. */
+.strata-region {
+  background: var(--strata-panel-bg);
+  background-image: var(--strata-sheen);
+  border-radius: var(--strata-radius-container);
+  padding: var(--strata-space-4);
+  -webkit-backdrop-filter: var(--strata-blur);
+  backdrop-filter: var(--strata-blur);
+  box-shadow: inset 0 0 0 1px var(--strata-panel-edge), var(--strata-panel-shadow);
+}
+/* Reading surface: denser, no own blur, weaker edge. */
+.strata-card {
+  background: var(--strata-content-bg);
+  border-radius: var(--strata-radius-card);
+  padding: var(--strata-space-4);
+  box-shadow: inset 0 0 0 1px var(--strata-content-edge);
+  min-width: 0;
+}
+.strata-inset { background: var(--strata-surface-inset); border-radius: var(--strata-radius-control); padding: var(--strata-space-3); }
+
+.strata-button {
+  min-height: var(--strata-control-height);
+  padding: var(--strata-space-2) var(--strata-space-4);
+  border: 0; border-radius: var(--strata-radius-pill);
+  font: 550 var(--strata-font-body)/1 var(--strata-font-family);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--strata-space-2);
+  transition: background-color var(--strata-motion-quick) var(--strata-easing);
+  cursor: pointer;
+}
+/* Primary is always solid. */
+.strata-button--primary { background: var(--strata-brand-primary); color: var(--strata-brand-on-accent); }
+.strata-button--primary:hover { background: var(--strata-brand-hover); }
+.strata-button--primary:active { background: var(--strata-brand-active); }
+.strata-button--secondary { background: var(--strata-control-bg); color: var(--strata-text-primary); box-shadow: inset 0 0 0 1px var(--strata-panel-edge); }
+.strata-button--ghost { background: transparent; color: var(--strata-brand-text); }
+.strata-button:disabled { opacity: .45; cursor: not-allowed; }
+:where([data-strata-brand]) :focus-visible { outline: var(--strata-focus-width) solid var(--strata-focus-ring); outline-offset: var(--strata-space-1); }
+
+/* Status pill: color + surface + text/icon (never color alone). */
+.strata-pill { display: inline-flex; align-items: center; gap: var(--strata-space-1); border-radius: var(--strata-radius-pill); padding: 2px var(--strata-space-2); font: 500 var(--strata-font-small)/1.5 var(--strata-font-family); }
+.strata-pill--success { color: var(--strata-success); background: var(--strata-success-surface); }
+.strata-pill--warning { color: var(--strata-warning); background: var(--strata-warning-surface); }
+.strata-pill--error { color: var(--strata-error); background: var(--strata-error-surface); }
+.strata-pill--neutral { color: var(--strata-text-secondary); background: var(--strata-surface-inset); }
+
+/* Selected rows: neutral plane + checkmark/label in markup. */
+.strata-row[aria-selected="true"], .strata-row[aria-pressed="true"] { background: var(--strata-surface-selected); }
+.strata-row:hover { background: var(--strata-surface-hover); }
+
+.strata-metric { font: 600 var(--strata-font-metric)/1.2 var(--strata-font-family); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.strata-meta { font-size: var(--strata-font-small); color: var(--strata-text-secondary); }
+
+@media (max-width: 420px) {
+  .strata-grid { grid-template-columns: 1fr !important; gap: var(--strata-space-3) !important; }
+  .strata-card { padding: var(--strata-space-4); }
+}
+
+/* ---- Fallbacks ---- */
+@media (prefers-reduced-transparency: reduce) {
+  [data-strata-brand] {
+    --strata-panel-bg: var(--strata-surface-region); --strata-content-bg: var(--strata-surface-card);
+    --strata-control-bg: var(--strata-surface-card); --strata-blur: none; --strata-sheen: none;
+    --strata-panel-shadow: none; --strata-panel-edge: transparent; --strata-content-edge: transparent;
+    --strata-ambient-visibility: 0;
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-strata-brand] {
+    --strata-panel-bg: var(--strata-surface-region); --strata-content-bg: var(--strata-surface-card);
+    --strata-control-bg: var(--strata-surface-card); --strata-blur: none; --strata-sheen: none;
+    --strata-panel-shadow: none; --strata-ambient-visibility: 0;
+  }
+}
+@media (forced-colors: active) {
+  .strata-region, .strata-card, .strata-button { border: 1px solid CanvasText; backdrop-filter: none; box-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-strata-brand] *, [data-strata-brand] *::before, [data-strata-brand] *::after { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,15 @@
+title: Lee Pepe
+email: 1105208297@qq.com
+description: >-
+  记录做 App、搭工作流、跑步和生活时想明白的事。
+url: "https://leepepe.github.io"
+baseurl: ""
+github_username: LeePepe
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+paginate: 5
+paginate_path: "/page:num/"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+

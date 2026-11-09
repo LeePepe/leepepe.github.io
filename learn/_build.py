@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import html
+import json
 import re
 from pathlib import Path
 from typing import Any
@@ -181,6 +182,72 @@ def strip_frontmatter_and_h1(md_text: str) -> str:
     return "\n".join(out_lines).strip()
 
 
+def strip_html_tags(s: str) -> str:
+    return html.unescape(re.sub(r"<[^>]+>", "", s)).strip()
+
+
+_SYNTAX_KEYWORDS = {
+    "swift", "func", "let", "var", "struct", "enum", "class", "protocol", "extension",
+    "if", "else", "for", "in", "while", "switch", "case", "default", "return", "break",
+    "continue", "guard", "where", "import", "private", "public", "internal", "fileprivate",
+    "open", "static", "mutating", "async", "await", "throws", "try", "catch", "some", "any",
+    "self", "Self", "super", "init", "deinit", "true", "false", "nil", "inout", "override",
+    "final", "lazy", "weak", "unowned", "as", "is",
+    # Metal / C / C++
+    "kernel", "vertex", "fragment", "constant", "device", "threadgroup", "thread",
+    "float", "float2", "float3", "float4", "half", "half2", "half3", "half4", "int",
+    "uint", "uint2", "bool", "void", "include", "using", "namespace", "metal", "const",
+    # Python / Bash / JS
+    "def", "from", "lambda", "with", "yield", "None", "True", "False", "and", "or", "not",
+    "export", "function", "local", "echo", "fi", "then", "do", "done",
+}
+
+_TOKEN_RE = re.compile(
+    r"(?P<cmt>//[^\n]*|/\*[\s\S]*?\*/|#(?![include\w])[^\n]*)"
+    r"|(?P<str>\"(?:\\.|[^\"\\])*\"|'(?:\\.|[^'\\])*')"
+    r"|(?P<attr>@[A-Za-z_][A-Za-z0-9_]*|\[\[[A-Za-z0-9_:]+\]\])"
+    r"|(?P<num>\b\d+(?:\.\d+)?(?:f|h|u|L|ms|s|px|rem|em|deg|%)?\b)"
+    r"|(?P<ident>\b[A-Za-z_][A-Za-z0-9_]*\b)"
+)
+
+
+def highlight_code(code_str: str, lang: str) -> str:
+    """Deterministic build-time syntax highlighter with Strata-Yellow token spans."""
+    out: list[str] = []
+    last = 0
+    for m in _TOKEN_RE.finditer(code_str):
+        if m.start() > last:
+            out.append(html.escape(code_str[last:m.start()]))
+        tok = m.group(0)
+        escaped = html.escape(tok)
+        if m.group("cmt"):
+            out.append(f'<span class="tok-cmt">{escaped}</span>')
+        elif m.group("str"):
+            out.append(f'<span class="tok-str">{escaped}</span>')
+        elif m.group("attr"):
+            out.append(f'<span class="tok-attr">{escaped}</span>')
+        elif m.group("num"):
+            out.append(f'<span class="tok-num">{escaped}</span>')
+        elif m.group("ident"):
+            # Look ahead in raw string for '(' to detect function/method calls
+            after = code_str[m.end():m.end() + 1]
+            before = code_str[max(0, m.start() - 1):m.start()]
+            if tok in _SYNTAX_KEYWORDS:
+                out.append(f'<span class="tok-kw">{escaped}</span>')
+            elif tok[0].isupper():
+                out.append(f'<span class="tok-type">{escaped}</span>')
+            elif after == "(" or before == ".":
+                out.append(f'<span class="tok-fn">{escaped}</span>')
+            else:
+                out.append(escaped)
+        else:
+            out.append(escaped)
+        last = m.end()
+    if last < len(code_str):
+        out.append(html.escape(code_str[last:]))
+    return "".join(out)
+
+
 def format_inline(text: str) -> str:
     """Convert inline markdown (code, links, bold, italic, math) safely to HTML."""
     code_spans: list[str] = []
@@ -246,9 +313,20 @@ def render_blocks(lines: list[str], in_checklist: bool = False) -> str:
                 code_lines.append(lines[i])
                 i += 1
             i += 1  # skip closing ```
-            code_escaped = html.escape("\n".join(code_lines))
-            lang_attr = f' class="language-{html.escape(lang)}"' if lang else ""
-            out.append(f"<pre><code{lang_attr}>{code_escaped}</code></pre>")
+            raw_code = "\n".join(code_lines)
+            lang_norm = (lang or "text").lower()
+            lang_badge = html.escape(lang_norm.upper() if lang else "CODE")
+            code_highlighted = highlight_code(raw_code, lang_norm)
+            lang_attr = f' class="language-{html.escape(lang_norm)}"' if lang else ' class="language-text"'
+            out.append(
+                f'<figure class="code-figure">'
+                f'<figcaption class="code-topbar">'
+                f'<span class="code-lang">{lang_badge}</span>'
+                f'<button class="copy-code-btn" type="button" data-copy-code aria-label="复制代码">复制代码</button>'
+                f"</figcaption>"
+                f"<pre><code{lang_attr}>{code_highlighted}</code></pre>"
+                f"</figure>"
+            )
             continue
 
         # Blockquote
@@ -389,8 +467,23 @@ def render_blocks(lines: list[str], in_checklist: bool = False) -> str:
     return "\n".join(out)
 
 
-def render_section(h2_title: str, sec_id: str, body_lines: list[str]) -> str:
-    """Render an H2 section using specialized Knowledge-Digest visual cards."""
+def shorten_q_label(text: str, max_len: int = 18) -> str:
+    clean = re.sub(r"[`*_]", "", text).strip()
+    clean = re.split(r"[？?——：:]", clean)[0].strip()
+    if len(clean) > max_len:
+        return clean[:max_len] + "…"
+    return clean
+
+
+def render_section(
+    h2_title: str,
+    sec_id: str,
+    body_lines: list[str],
+    q_prefix: str = "q",
+) -> tuple[str, list[dict[str, str]]]:
+    """Render an H2 section using specialized Knowledge-Digest visual cards.
+    Returns (section_html, qa_items).
+    """
     heading_html = f'<h2 id="{sec_id}" tabindex="-1">{format_inline(h2_title)}</h2>'
 
     # 1. ⚡ TL;DR Hero Card
@@ -402,30 +495,53 @@ def render_section(h2_title: str, sec_id: str, body_lines: list[str]) -> str:
             f'<div class="tldr-hero-card">'
             f'<div class="tldr-badge">{badge_text}</div>'
             f'<div class="tldr-body">{inner_html}</div>'
-            f"</div>"
+            f"</div>",
+            [],
         )
 
     # 2. 🎯 Pain-Point Q&A Cards
     if "核心痛点直答" in h2_title:
         cards: list[str] = []
+        qa_items: list[dict[str, str]] = []
         cur_q_title: str | None = None
         cur_q_lines: list[str] = []
+        q_idx = 0
 
         def flush_q() -> None:
+            nonlocal q_idx
             if cur_q_title is None:
                 return
+            q_idx += 1
+            q_id = f"{q_prefix}{q_idx}"
             m = re.match(r"^(Q\d+)[：:]\s*(.*)$", cur_q_title)
             if m:
                 q_badge = html.escape(m.group(1))
-                q_rest = format_inline(m.group(2))
+                q_raw_rest = m.group(2).strip()
+                q_rest = format_inline(q_raw_rest)
             else:
-                q_badge = "Q"
-                q_rest = format_inline(cur_q_title)
+                q_badge = f"Q{q_idx}"
+                q_raw_rest = cur_q_title.strip()
+                q_rest = format_inline(q_raw_rest)
+            short_lbl = shorten_q_label(q_raw_rest)
+            qa_items.append(
+                {
+                    "id": q_id,
+                    "badge": q_badge,
+                    "short": short_lbl,
+                    "q": strip_html_tags(q_rest),
+                }
+            )
             body_html = render_blocks(cur_q_lines)
             cards.append(
-                f'<section class="qa-card">'
-                f'<h3 class="qa-question"><span class="qa-q-badge">{q_badge}</span><span>{q_rest}</span></h3>'
-                f"{body_html}"
+                f'<section class="qa-card" id="{q_id}" tabindex="-1">'
+                f'<div class="qa-card-head">'
+                f'<h3 class="qa-question"><span class="qa-q-badge">{q_badge}</span><span class="qa-q-text">{q_rest}</span></h3>'
+                f'<div class="qa-card-actions">'
+                f'<button type="button" class="qa-anchor-btn" data-copy-anchor="#{q_id}" title="复制本条痛点直达链接" aria-label="复制 {q_badge} 直达链接">#</button>'
+                f'<button type="button" class="qa-collapse-btn" data-qa-toggle aria-expanded="true">收起解答</button>'
+                f"</div>"
+                f"</div>"
+                f'<div class="qa-answer-body">{body_html}</div>'
                 f"</section>"
             )
 
@@ -437,12 +553,25 @@ def render_section(h2_title: str, sec_id: str, body_lines: list[str]) -> str:
             else:
                 cur_q_lines.append(line)
         flush_q()
-        return f'{heading_html}\n<div class="qa-stack">{"".join(cards)}</div>'
+
+        pills_html = "".join(
+            f'<a class="qa-jump-pill" href="#{item["id"]}">'
+            f'<strong>{html.escape(item["badge"])}</strong>'
+            f'<span>{html.escape(item["short"])}</span></a>'
+            for item in qa_items
+        )
+        toolbar_html = (
+            f'<div class="qa-toolbar" role="region" aria-label="本篇痛点速跳与自测开关">'
+            f'<div class="qa-jump-list"><span class="qa-toolbar-label">🎯 本篇痛点速跳</span>{pills_html}</div>'
+            f'<button type="button" class="qa-mode-btn" data-qa-toggle-all aria-pressed="false">🎯 折叠解答（自测模式）</button>'
+            f"</div>"
+        )
+        return f'{heading_html}\n{toolbar_html}\n<div class="qa-stack">{"".join(cards)}</div>', qa_items
 
     # 3. ✅ Actionable Checklist
     if "立即可用清单" in h2_title:
         inner_html = render_blocks(body_lines, in_checklist=True)
-        return f'{heading_html}\n<div class="checklist-card">{inner_html}</div>'
+        return f'{heading_html}\n<div class="checklist-card">{inner_html}</div>', []
 
     # 4. 🛠 Reusable Craft Patterns (H3 cards)
     if "可复用视觉化技巧" in h2_title or "可复用制作技巧" in h2_title:
@@ -469,17 +598,19 @@ def render_section(h2_title: str, sec_id: str, body_lines: list[str]) -> str:
             else:
                 cur_c_lines.append(line)
         flush_c()
-        return f'{heading_html}\n<div class="craft-grid">{"".join(cards)}</div>'
+        return f'{heading_html}\n<div class="craft-grid">{"".join(cards)}</div>', []
 
     # Standard section (e.g., 🧰 核心教具与量级速览, 🎬 叙事流, 🔭 延伸视野)
-    return f"{heading_html}\n{render_blocks(body_lines)}"
+    return f"{heading_html}\n{render_blocks(body_lines)}", []
 
 
-def parse_markdown_article(article: dict[str, Any]) -> tuple[list[tuple[str, str]], str]:
-    """Parse one or more source markdown files into (sections_outline, body_html)."""
-    sections_outline: list[tuple[str, str]] = []
+def parse_markdown_article(article: dict[str, Any]) -> tuple[list[dict[str, Any]], str, list[dict[str, str]]]:
+    """Parse one or more source markdown files into (sections_outline, body_html, all_questions)."""
+    sections_outline: list[dict[str, Any]] = []
     rendered_sections: list[str] = []
+    all_questions: list[dict[str, str]] = []
     sec_counter = 0
+    qa_sec_counter = 0
 
     for src_idx, rel_path in enumerate(article["sources"]):
         full_path = VAULT_DIR / rel_path
@@ -499,14 +630,26 @@ def parse_markdown_article(article: dict[str, Any]) -> tuple[list[tuple[str, str
         cur_lines: list[str] = []
 
         def flush_sec() -> None:
-            nonlocal sec_counter
+            nonlocal sec_counter, qa_sec_counter
             if cur_h2 is None:
                 return
             sec_counter += 1
             sec_id = f"section-{sec_counter}"
+            is_qa = "核心痛点直答" in cur_h2
+            if is_qa:
+                qa_sec_counter += 1
+            q_prefix = "q" if qa_sec_counter <= 1 else f"craft-q"
             clean_outline_title = re.sub(r"（[^）]*）|\([^)]*\)", "", cur_h2).strip()
-            sections_outline.append((sec_id, clean_outline_title or cur_h2))
-            rendered_sections.append(render_section(cur_h2, sec_id, cur_lines))
+            sec_html, qa_items = render_section(cur_h2, sec_id, cur_lines, q_prefix=q_prefix)
+            sections_outline.append(
+                {
+                    "id": sec_id,
+                    "title": clean_outline_title or cur_h2,
+                    "sub_items": qa_items,
+                }
+            )
+            all_questions.extend(qa_items)
+            rendered_sections.append(sec_html)
 
         for line in lines:
             if line.startswith("## "):
@@ -517,12 +660,12 @@ def parse_markdown_article(article: dict[str, Any]) -> tuple[list[tuple[str, str
                 cur_lines.append(line)
         flush_sec()
 
-    return sections_outline, "\n".join(rendered_sections)
+    return sections_outline, "\n".join(rendered_sections), all_questions
 
 
 def build_nav_html(
     current_slug: str | None,
-    outline: list[tuple[str, str]] | None,
+    outline: list[dict[str, Any]] | None,
     is_mobile: bool = False,
 ) -> str:
     """Build grouped chapter navigation for desktop rail or mobile dialog."""
@@ -538,9 +681,23 @@ def build_nav_html(
             outline_html = ""
             if is_curr and outline:
                 ol_items = []
-                for idx, (sec_id, sec_title) in enumerate(outline):
+                for idx, sec in enumerate(outline):
+                    sec_id = sec["id"]
+                    sec_title = sec["title"]
                     loc_attr = ' aria-current="location"' if idx == 0 else ""
-                    ol_items.append(f'<li><a href="#{sec_id}"{loc_attr}>{html.escape(sec_title)}</a></li>')
+                    sub_items = sec.get("sub_items") or []
+                    sub_ol = ""
+                    if sub_items:
+                        sub_lis = "".join(
+                            f'<li><a class="outline-q-link" href="#{q["id"]}">'
+                            f'<span class="outline-q-badge">{html.escape(q["badge"])}</span>'
+                            f'<span>{html.escape(q["short"])}</span></a></li>'
+                            for q in sub_items
+                        )
+                        sub_ol = f'<ol class="outline-sub">{sub_lis}</ol>'
+                    ol_items.append(
+                        f'<li><a href="#{sec_id}"{loc_attr}>{html.escape(sec_title)}</a>{sub_ol}</li>'
+                    )
                 aria_lbl = "手机本篇小节" if is_mobile else "本篇小节"
                 outline_html = (
                     f'<ol class="outline" aria-label="{aria_lbl}">{"".join(ol_items)}</ol>'
@@ -565,19 +722,47 @@ def build_nav_html(
     return "".join(groups_html)
 
 
+def render_theme_switcher() -> str:
+    return (
+        '<div class="theme-segmented" role="group" aria-label="主题外观切换" data-theme-toggle>'
+        '<button type="button" class="theme-seg-btn" data-theme-val="light" aria-pressed="false" title="浅色模式">☀️ 浅</button>'
+        '<button type="button" class="theme-seg-btn" data-theme-val="dark" aria-pressed="false" title="深色模式">🌙 深</button>'
+        '<button type="button" class="theme-seg-btn" data-theme-val="auto" aria-pressed="true" title="跟随系统自动切换">◐ 自</button>'
+        "</div>"
+    )
+
+
+def render_search_box(is_mobile: bool = False) -> str:
+    kbd_html = "" if is_mobile else '<kbd class="search-kbd" aria-hidden="true">/</kbd>'
+    return (
+        '<div class="rail-search-wrap">'
+        '<div class="rail-search-field">'
+        '<input type="search" class="rail-search" data-learn-search '
+        'placeholder="搜索文章、痛点 Q&amp;A 或 API… (按 /)" aria-label="搜索专栏">'
+        f"{kbd_html}"
+        "</div>"
+        '<div class="search-results" data-search-results hidden role="listbox" aria-label="搜索结果"></div>'
+        "</div>"
+    )
+
+
 def render_page_shell(
     *,
     title: str,
     permalink: str,
     mobile_pos: str,
     current_slug: str | None,
-    outline: list[tuple[str, str]] | None,
+    outline: list[dict[str, Any]] | None,
     main_inner_html: str,
+    search_index_json: str,
     css_v: str,
     js_v: str,
 ) -> str:
     desktop_nav = build_nav_html(current_slug, outline, is_mobile=False)
     mobile_nav = build_nav_html(current_slug, outline, is_mobile=True)
+    theme_switcher_html = render_theme_switcher()
+    desktop_search_html = render_search_box(is_mobile=False)
+    mobile_search_html = render_search_box(is_mobile=True)
     rail_intro = (
         '<p class="rail-intro">先给反常识本质，再用生活教具破案，最后给可执行清单。</p>'
         if current_slug is None
@@ -590,48 +775,85 @@ title: "{html.escape(title, quote=True)}"
 permalink: {permalink}
 ---
 <!doctype html>
-<html lang="zh-CN" data-lp-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="zh-CN" data-lp-theme="light" data-lp-theme-pref="auto"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#EEECE5"><title>{html.escape(title)} | Knowledge Vault · Lee Pepe</title>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/hcqyt@2.0.0/dist/ChillRoundFRegular/result.css">
-<link rel="stylesheet" href="/learn/reader.css?v={css_v}"><script src="/learn/reader.js?v={js_v}" defer></script></head><body>
+<link rel="stylesheet" href="/learn/reader.css?v={css_v}"><script>window.LEARN_INDEX = {search_index_json};</script><script src="/learn/reader.js?v={js_v}" defer></script></head><body>
 <a class="skip-link" href="#main">跳到正文</a>
+<div class="sr-only" aria-live="polite" data-copy-live></div>
 <header class="mobile-bar"><div class="mobile-bar-inner"><button class="open-series" type="button" aria-label="打开专栏目录" aria-haspopup="dialog" aria-controls="series-sheet" aria-expanded="false">
 <span>直击痛点的求知笔记</span><span class="mobile-position">{html.escape(mobile_pos)}</span><span class="chevron" aria-hidden="true"></span></button>
-<button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">🌙 深色</button></div>
+{theme_switcher_html}</div>
 <div class="progress-track" aria-hidden="true"><span class="progress-fill" data-progress-fill></span></div></header>
 <div class="reader-frame"><aside class="rail" aria-label="专栏导航"><div class="rail-top">
 <div><a class="series-brand" href="/learn/">直击痛点的求知笔记</a><p class="series-subtitle">Knowledge Vault · 原理与好内容拆解</p></div>
-<button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">🌙 深色</button></div>
+{theme_switcher_html}</div>
+{desktop_search_html}
 <div class="rail-scroll">{rail_intro}<nav aria-label="专栏文章">{desktop_nav}</nav></div>
 <div class="rail-footer"><a class="rail-home" href="/">← Lee Pepe 首页</a><a class="rail-home" href="/ai-workflow/">带一群 AI 干活 →</a></div></aside>
 <main id="main" tabindex="-1">{main_inner_html}</main></div>
 <dialog class="series-sheet" id="series-sheet" aria-labelledby="sheet-title"><header class="sheet-header"><h2 id="sheet-title">直击痛点的求知笔记</h2><button class="close-sheet" type="button" autofocus>关闭</button></header>
-<div class="sheet-content"><p class="series-subtitle">先给反常识本质，再用生活教具破案，最后给可执行清单</p><nav aria-label="手机专栏文章">{mobile_nav}</nav><a class="sheet-home" href="/">← Lee Pepe 首页</a></div></dialog>
+<div class="sheet-content"><p class="series-subtitle">先给反常识本质，再用生活教具破案，最后给可执行清单</p>{mobile_search_html}<nav aria-label="手机专栏文章">{mobile_nav}</nav><a class="sheet-home" href="/">← Lee Pepe 首页</a></div></dialog>
 </body></html>
 """
 
 
-def build_index_page(css_v: str, js_v: str) -> None:
+def build_index_page(
+    parsed_articles: dict[str, dict[str, Any]],
+    search_index_json: str,
+    css_v: str,
+    js_v: str,
+) -> None:
+    # Collect unique tags in article order with counts
+    tag_counts: dict[str, int] = {}
+    for art in ARTICLES:
+        for t in art["tags"]:
+            tag_counts[t] = tag_counts.get(t, 0) + 1
+
+    filter_chips_html = [
+        f'<button type="button" class="tag-filter-chip is-active" data-filter-tag="all" aria-pressed="true">'
+        f'全部 <span class="chip-count">({len(ARTICLES)})</span></button>'
+    ]
+    for tag_name, cnt in tag_counts.items():
+        esc_t = html.escape(tag_name)
+        filter_chips_html.append(
+            f'<button type="button" class="tag-filter-chip" data-filter-tag="{esc_t}" aria-pressed="false">'
+            f'{esc_t} <span class="chip-count">({cnt})</span></button>'
+        )
+    tag_bar_html = (
+        f'<div class="tag-filter-wrap">'
+        f'<div class="tag-filter-bar" data-tag-bar role="toolbar" aria-label="按技术标签筛选文章">'
+        f'{"".join(filter_chips_html)}'
+        f"</div>"
+        f'<p class="tag-filter-status" data-filter-status aria-live="polite" hidden></p>'
+        f"</div>"
+    )
+
     cat_sections: list[str] = []
     for cat_id in INDEX_CATEGORY_ORDER:
         cat = next(c for c in CATEGORIES if c["id"] == cat_id)
         cat_articles = [a for a in ARTICLES if a["category_id"] == cat_id]
         cards_html: list[str] = []
         for art in cat_articles:
-            tags_html = "".join(f'<span class="tag-pill">{html.escape(t)}</span>' for t in art["tags"][:4])
+            tags_attr = html.escape("|".join(art["tags"]), quote=True)
+            tags_html = "".join(
+                f'<span class="tag-pill" role="button" tabindex="0" data-filter-tag="{html.escape(t, quote=True)}">{html.escape(t)}</span>'
+                for t in art["tags"][:4]
+            )
+            q_count = len(parsed_articles[art["slug"]]["questions"])
+            q_pill = f'<span class="story-q-count">{q_count} 个痛点 Q&amp;A</span>' if q_count else ""
             cards_html.append(
-                f'<li><a class="story-card" href="/learn/{art["slug"]}/">'
+                f'<li class="story-item" data-story-tags="{tags_attr}" data-story-slug="{art["slug"]}">'
+                f'<a class="story-card" href="/learn/{art["slug"]}/">'
                 f'<span class="story-no">{art["num"]}</span>'
                 f'<div><h3>{html.escape(art["title"])}</h3>'
                 f'<p class="story-teaser">{html.escape(art["teaser"])}</p>'
-                f'<div class="story-meta-row"><span class="story-time">{html.escape(art["reading_time"])}</span>{tags_html}</div></div>'
+                f'<div class="story-meta-row"><span class="story-time">{html.escape(art["reading_time"])}</span>{q_pill}{tags_html}</div></div>'
                 f'<span class="story-arrow" aria-hidden="true">→</span></a></li>'
             )
         cat_sections.append(
-            f'<section class="category-section" aria-labelledby="cat-{cat_id}">'
+            f'<section class="category-section" data-category-section="{cat_id}" aria-labelledby="cat-{cat_id}">'
             f'<div class="category-heading"><h2 id="cat-{cat_id}">{html.escape(cat["title"])}</h2>'
-            f'<span>{len(cat_articles)} 篇</span></div>'
+            f'<span data-category-count>{len(cat_articles)} 篇</span></div>'
             f'<p class="story-teaser" style="margin-top:-6px;margin-bottom:14px;">{html.escape(cat["subtitle"])}</p>'
             f'<ol class="story-list">{"".join(cards_html)}</ol>'
             f"</section>"
@@ -646,7 +868,8 @@ def build_index_page(css_v: str, js_v: str) -> None:
   <div class="pillar-chip"><strong>🎯 核心痛点直答</strong>用透镜、水管、图钉、冰箱等生活教具替代晦涩公式</div>
   <div class="pillar-chip"><strong>✅ 立即可用清单</strong>提炼 ≤3 条零门槛工程/生活实操处方与表达模板</div>
 </div>
-<p class="article-meta" style="margin-top:16px;"><span>7 篇完整专题（覆盖 WWDC 25/26 八节课 + WiFi 科普标杆）</span><span class="meta-dot" aria-hidden="true"></span><span>约 66 分钟</span><span class="meta-dot" aria-hidden="true"></span><span>Strata 麦芽黄双色阅读器</span></p></header>
+<p class="article-meta" style="margin-top:16px;"><span>7 篇完整专题（覆盖 WWDC 25/26 八节课 + WiFi 科普标杆）</span><span class="meta-dot" aria-hidden="true"></span><span>约 66 分钟</span><span class="meta-dot" aria-hidden="true"></span><span>Strata 麦芽黄双色阅读器</span></p>
+{tag_bar_html}</header>
 <nav aria-label="分类文章目录">{"".join(cat_sections)}</nav>
 </div></section>"""
 
@@ -657,16 +880,24 @@ def build_index_page(css_v: str, js_v: str) -> None:
         current_slug=None,
         outline=None,
         main_inner_html=main_html,
+        search_index_json=search_index_json,
         css_v=css_v,
         js_v=js_v,
     )
     (LEARN_DIR / "index.html").write_text(page_html, encoding="utf-8")
 
 
-def build_article_pages(css_v: str, js_v: str) -> None:
+def build_article_pages(
+    parsed_articles: dict[str, dict[str, Any]],
+    search_index_json: str,
+    css_v: str,
+    js_v: str,
+) -> None:
     total = len(ARTICLES)
     for idx, art in enumerate(ARTICLES):
-        outline, body_html = parse_markdown_article(art)
+        parsed = parsed_articles[art["slug"]]
+        outline = parsed["outline"]
+        body_html = parsed["body_html"]
         prev_art = ARTICLES[idx - 1] if idx > 0 else None
         next_art = ARTICLES[idx + 1] if idx + 1 < total else None
 
@@ -684,7 +915,10 @@ def build_article_pages(css_v: str, js_v: str) -> None:
                 f'<span>{html.escape(next_art["title"])}</span></a>'
             )
 
-        tags_html = "".join(f'<span class="tag-pill">{html.escape(t)}</span>' for t in art["tags"])
+        tags_html = "".join(
+            f'<a class="tag-pill" href="/learn/?tag={html.escape(t, quote=True)}">{html.escape(t)}</a>'
+            for t in art["tags"]
+        )
         cat_obj = next(c for c in CATEGORIES if c["id"] == art["category_id"])
 
         main_html = f"""<article class="paper"><div class="reading-column"><header class="article-header">
@@ -705,6 +939,7 @@ def build_article_pages(css_v: str, js_v: str) -> None:
             current_slug=art["slug"],
             outline=outline,
             main_inner_html=main_html,
+            search_index_json=search_index_json,
             css_v=css_v,
             js_v=js_v,
         )
@@ -714,10 +949,36 @@ def build_article_pages(css_v: str, js_v: str) -> None:
 
 
 def main() -> None:
+    parsed_articles: dict[str, dict[str, Any]] = {}
+    search_index: list[dict[str, Any]] = []
+    for art in ARTICLES:
+        outline, body_html, questions = parse_markdown_article(art)
+        parsed_articles[art["slug"]] = {
+            "outline": outline,
+            "body_html": body_html,
+            "questions": questions,
+        }
+        search_index.append(
+            {
+                "num": art["num"],
+                "slug": art["slug"],
+                "url": f'/learn/{art["slug"]}/',
+                "category_id": art["category_id"],
+                "title": art["title"],
+                "short_title": art["short_title"],
+                "teaser": art["teaser"],
+                "tags": art["tags"],
+                "questions": [
+                    {"id": q["id"], "badge": q["badge"], "q": q["q"]}
+                    for q in questions
+                ],
+            }
+        )
+    search_index_json = json.dumps(search_index, ensure_ascii=False, separators=(",", ":"))
     css_v = asset_hash(LEARN_DIR / "reader.css")
     js_v = asset_hash(LEARN_DIR / "reader.js")
-    build_index_page(css_v, js_v)
-    build_article_pages(css_v, js_v)
+    build_index_page(parsed_articles, search_index_json, css_v, js_v)
+    build_article_pages(parsed_articles, search_index_json, css_v, js_v)
     print(f"Built /learn/ index + {len(ARTICLES)} articles (css={css_v}, js={js_v})")
 
 

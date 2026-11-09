@@ -63,4 +63,4 @@ permalink: /learn/wwdc27-and-knowledge-vault-launch/
 | **第 7 站** | **[WWDC26 · 289]** Modernize your AppKit app | Mac 天气卡片 + 状态栏弹窗 | [05 · AppKit 与 UIKit 27 现代化](/learn/appkit-uikit-27/) |
 | **第 8 站** | **[WWDC26 · 278]** Modernize your UIKit app | Mac 镜像下自由拉伸的 iPhone 窗口 | [05 · AppKit 与 UIKit 27 现代化](/learn/appkit-uikit-27/) |
 
-👉 **[点此进入 `/learn/` 专栏总览开始阅读 →](/learn/)**
+👉 **[点此进入 `/learn/` 专栏总览开始阅读 →](/learn/)** ｜ 💭 **[阅读日常随笔专栏：`/thoughts/` 思考与感悟 →](/thoughts/)**

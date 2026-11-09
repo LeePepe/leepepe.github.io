@@ -27,7 +27,7 @@ github_username:  LeePepe
 # Keep the series index in minima's header without listing all eight articles.
 header_pages:
   - about.md
-  - ai-workflow/index.html
+  - thoughts/index.html
   - learn/index.html
   - vitalstride/workout-layouts/index.html
 
@@ -49,3 +49,4 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - learn/_build.py
+  - thoughts/_build.py

@@ -485,10 +485,10 @@ permalink: {permalink}
 {theme_switcher_html}</div>
 {desktop_search_html}
 <div class="rail-scroll">{rail_intro}<nav aria-label="随笔文章">{desktop_nav}</nav></div>
-<div class="rail-footer"><a class="rail-home" href="/">← Lee Pepe 首页</a><a class="rail-home" href="/learn/">直击痛点的求知笔记 (/learn/) →</a></div></aside>
+<div class="rail-footer"><a class="rail-home" href="/">← 首页</a><a class="rail-home" href="/learn/">求知笔记</a><a class="rail-home is-current" href="/thoughts/">思考与感悟</a><a class="rail-home" href="/archive/">归档</a><a class="rail-home" href="/tags/">标签</a><a class="rail-home" href="/about/">关于</a></div></aside>
 <main id="main" tabindex="-1">{main_inner_html}</main></div>
 <dialog class="series-sheet" id="series-sheet" aria-labelledby="sheet-title"><header class="sheet-header"><h2 id="sheet-title">思考与感悟</h2><button class="close-sheet" type="button" autofocus>关闭</button></header>
-<div class="sheet-content"><p class="series-subtitle">记录日常折腾、工具设计与生活裂缝里的直觉瞬间</p>{mobile_search_html}<nav aria-label="手机随笔文章">{mobile_nav}</nav><div class="sheet-footer"><a class="sheet-home" href="/">← Lee Pepe 首页</a><a class="sheet-home" href="/learn/">求知笔记 (/learn/) →</a></div></div></dialog>
+<div class="sheet-content"><p class="series-subtitle">记录日常折腾、工具设计与生活裂缝里的直觉瞬间</p>{mobile_search_html}<nav aria-label="手机随笔文章">{mobile_nav}</nav><div class="sheet-footer"><a class="sheet-home" href="/">← 首页</a><a class="sheet-home" href="/learn/">求知笔记</a><a class="sheet-home is-current" href="/thoughts/">思考与感悟</a><a class="sheet-home" href="/archive/">归档</a><a class="sheet-home" href="/tags/">标签</a><a class="sheet-home" href="/about/">关于</a></div></div></dialog>
 </body></html>
 """
 

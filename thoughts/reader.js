@@ -1,7 +1,8 @@
 (() => {
   // 1. 3-State Theme Management (Light / Dark / Auto)
   const root = document.documentElement;
-  const STORAGE_KEY = 'lp-learn-theme';
+  const PRIMARY_KEY = 'lp-theme';
+  const LEGACY_KEY = 'lp-learn-theme';
   const darkQuery = matchMedia('(prefers-color-scheme: dark)');
   const liveRegion = document.querySelector('[data-copy-live]');
 
@@ -29,7 +30,9 @@
     });
   };
 
-  let currentPref = localStorage.getItem(STORAGE_KEY) || 'auto';
+  let currentPref = localStorage.getItem(PRIMARY_KEY) || localStorage.getItem(LEGACY_KEY) || 'auto';
+  localStorage.setItem(PRIMARY_KEY, currentPref);
+  localStorage.setItem(LEGACY_KEY, currentPref);
   applyTheme(currentPref);
 
   darkQuery.addEventListener('change', () => {
@@ -39,7 +42,8 @@
   document.querySelectorAll('[data-theme-val]').forEach(btn => {
     btn.addEventListener('click', () => {
       currentPref = btn.getAttribute('data-theme-val') || 'auto';
-      localStorage.setItem(STORAGE_KEY, currentPref);
+      localStorage.setItem(PRIMARY_KEY, currentPref);
+      localStorage.setItem(LEGACY_KEY, currentPref);
       applyTheme(currentPref);
     });
   });

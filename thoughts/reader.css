@@ -434,15 +434,18 @@ a:hover { color: var(--accent-hover); }
   padding: 14px 10px 0 8px;
   border-top: 1px solid var(--line);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  font-size: 12.5px;
+  gap: 8px 12px;
+  font-size: 12px;
 }
 .rail-home {
   color: var(--muted);
   text-decoration: none;
+  font-weight: 500;
 }
-.rail-home:hover { color: var(--accent); }
+.rail-home:hover,
+.rail-home.is-current { color: var(--accent); font-weight: 600; }
 
 /* Paper & 660px Warm Editorial Essay Column */
 main { min-width: 0; }
@@ -1100,15 +1103,18 @@ pre code {
     padding-top: 14px;
     border-top: 1px solid var(--line);
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px 14px;
     font-size: 13px;
   }
   .sheet-home {
     color: var(--muted);
     text-decoration: none;
+    font-weight: 500;
   }
-  .sheet-home:hover { color: var(--accent); }
+  .sheet-home:hover,
+  .sheet-home.is-current { color: var(--accent); font-weight: 600; }
   body.sheet-open { overflow: hidden; }
 }
 

@@ -498,15 +498,28 @@ a:hover { color: var(--accent-hover); }
   padding: 14px 10px 0 8px;
   border-top: 1px solid var(--line);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  font-size: 12.5px;
+  gap: 8px 12px;
+  font-size: 12px;
 }
 .rail-home {
   color: var(--muted);
   text-decoration: none;
+  font-weight: 500;
 }
-.rail-home:hover { color: var(--accent); }
+.rail-home:hover,
+.rail-home.is-current { color: var(--accent); font-weight: 600; }
+.sheet-footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  font-size: 13px;
+}
 
 /* Paper & Reading Column */
 main { min-width: 0; }
@@ -1399,12 +1412,13 @@ pre code {
     max-height: calc(86dvh - 70px);
   }
   .sheet-home {
-    display: block;
-    margin: 18px 0 0 12px;
     color: var(--muted);
     font-size: 13px;
     text-decoration: none;
+    font-weight: 500;
   }
+  .sheet-home:hover,
+  .sheet-home.is-current { color: var(--accent); font-weight: 600; }
   body.sheet-open { overflow: hidden; }
 }
 

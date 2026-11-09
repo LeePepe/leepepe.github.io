@@ -28,6 +28,7 @@ github_username:  LeePepe
 header_pages:
   - about.md
   - ai-workflow/index.html
+  - learn/index.html
   - vitalstride/workout-layouts/index.html
 
 # Build settings
@@ -39,11 +40,12 @@ plugins:
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - learn/_build.py

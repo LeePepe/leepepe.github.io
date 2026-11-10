@@ -1,229 +1,113 @@
----
-layout: null
-title: "Lee Pepe · 写代码，也写生活"
-permalink: /
----
 <!doctype html>
-<html lang="zh-CN" data-lp-theme="light" data-lp-theme-pref="auto">
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#EEECE5">
-  <meta name="description" content="Lee Pepe 的个人博客：收录「直击痛点的求知笔记」与「思考与感悟」，采用 Warm Editorial × Strata 麦芽黄阅读体系。">
-  <title>Lee Pepe · 写代码，也写生活</title>
-  <link rel="alternate" type="application/atom+xml" title="Lee Pepe · 全站订阅 (Atom/RSS)" href="/feed.xml">
-  <link rel="stylesheet" href="/assets/site.css?v=00307a031b">
-  <script>window.SITE_SEARCH_INDEX = [{"series":"thoughts","series_label":"思考与感悟","series_badge":"感悟 · 01","url":"/thoughts/study-switch-long-press-ac/","title":"为什么我给书房按键加了「长按开空调」","short_title":"为什么我给书房按键加了「长按开空调」","teaser":"折腾智能家居最舒服的时刻，往往不是写出了多复杂的自动化规则，而是当家里的空调遥控器丢了一个，你顺手把空调连进去，给手边的书房按键加了一个「长按开空调」——因为每次坐下来，其实只需要开就行。","tags":["智能家居","书房","减法设计","Home Assistant"],"questions":[],"sections":[{"id":"section-1","title":"从「找遥控器」到「顺手连上」"},{"id":"section-2","title":"「而且每次只需要开就行」"},{"id":"section-3","title":"一点感悟：好工具是用来消灭「找东西」的"}]},{"series":"learn","series_label":"直击痛点的求知笔记","series_badge":"求知 · 01","url":"/learn/wwdc27-glass-motion/","title":"WWDC25/26 (OS 26 → OS 27) Liquid Glass 与动效 8 节课全景导读地图","short_title":"WWDC 8 节课全景导读地图","teaser":"把 UI 拆成「浮在上面的液态光学控制层（Liquid Glass）」与「沉在底下的全画幅内容流（Pipeline）」——8 节课寻宝图、OS 26→27 进化矩阵与按研发场景 10 分钟精准切入指南。","tags":["WWDC25","WWDC26","Liquid Glass","SwiftUI","OS 27"],"questions":[{"id":"q1","badge":"Q1","q":"从 OS 26（WWDC25）到 OS 27（WWDC26），Liquid Glass 和容器交互到底进化了什么？"},{"id":"q2","badge":"Q2","q":"这 8 节课我没时间全看，按当前手头的研发任务怎么挑最急需的？"},{"id":"q3","badge":"Q3","q":"为什么 OS 27 突然把编译速度和运行时内存同时提升了好几个量级？"},{"id":"q4","badge":"Q4","q":"Xcode 27 提到的内置 Agent Skills 怎么导出来给本地 CLI 工具（如 Claude / Codex / Copilot）用？"}],"sections":[{"id":"section-1","title":"⚡ 一句话本质"},{"id":"section-2","title":"🧰 核心教具与 8 节课寻宝图"},{"id":"section-3","title":"🎯 核心痛点直答"},{"id":"section-4","title":"✅ 立即可用清单"},{"id":"section-5","title":"🔭 延伸视野"}]},{"series":"learn","series_label":"直击痛点的求知笔记","series_badge":"求知 · 02","url":"/learn/liquid-glass-optics/","title":"Liquid Glass 光学第一性原理与 SwiftUI 26→27 实战破案","short_title":"Liquid Glass 光学与 SwiftUI 实战","teaser":"为什么 Liquid Glass 是实时弯折光线的「液态凸透镜」而非磨砂毛玻璃？为什么严禁玻璃叠玻璃？详解 GlassEffectContainer 共享采样区、有色玻璃映射、Toolbar 防挤爆与 @State Macro。","tags":["Liquid Glass","Lensing","GlassEffectContainer","ToolbarOverflowMenu","@State Macro"],"questions":[{"id":"q1","badge":"Q1","q":"为什么设计师一上来把列表 Cell、背景卡片和顶部按钮全加上 .glassEffect()，界面反而变得脏乱眩晕？"},{"id":"q2","badge":"Q2","q":"为什么我写了两个紧挨着的自定义 .glassEffect() 徽章，展开收拢时边缘折射割裂、也没法像水滴一样融合？"},{"id":"q3","badge":"Q3","q":"为什么给玻璃按钮加背景色（.background(.red)）看起来像一块死板的塑料，而系统红色玻璃按钮却像通透的红宝石？"},{"id":"q4","badge":"Q4","q":"升级到 OS 27（WWDC26）后，iPhone 窗口也能自由拉伸了，工具栏按钮被挤没、失焦窗口分不清主次怎么办？"},{"id":"q5","badge":"Q5","q":"为什么在 @State private var store = StickerStore() 里，OS 27 突然既省内存又可能报「init 重复赋值」编译错误？"}],"sections":[{"id":"section-1","title":"⚡ 一句话本质"},{"id":"section-2","title":"🧰 核心教具与量级速览"},{"id":"section-3","title":"🎯 核心痛点直答"},{"id":"section-4","title":"✅ 立即可用清单"},{"id":"section-5","title":"🔭 延伸视野"}]},{"series":"learn","series_label":"直击痛点的求知笔记","series_badge":"求知 · 03","url":"/learn/swiftui-shader-pipeline/","title":"SwiftUI 27 高级图形与动效管线：Metal Shader 扭曲、时间流与图钉对齐","short_title":"SwiftUI 27 Metal Shader 与动效管线","teaser":"拆解 Apple Music 级流体封面与实时歌词：三大 Shader 修饰符选型、Domain Warping 二次噪声采样、TimelineView 无状态时间注入，以及 alignmentGuide 图钉孔位反转法。","tags":["Metal Shader","layerEffect","Domain Warping","TimelineView","alignmentGuide"],"questions":[{"id":"q1","badge":"Q1","q":"colorEffect、distortionEffect 和 layerEffect 三个 Metal Shader 修饰符到底该怎么选？"},{"id":"q2","badge":"Q2","q":"为什么我用噪声图（NoiseTexture）偏移像素做背景动画，看起来像死板的毛玻璃平移，完全没有 Apple Music 歌词背景那种「有机熔岩灯」的流动感？"},{"id":"q3","badge":"Q3","q":"为什么给带 Shader 的视图加 .animation(.linear) 根本动不起来？怎么把「时间流」同时接给背景 Shader 和前景歌词滚动？"},{"id":"q4","badge":"Q4","q":"想在当前歌词左下方「外挂」一个悬浮小时间戳（顶边贴着歌词底边，且不撑大行高影响排版），为什么不能用 .offset(y:)？"}],"sections":[{"id":"section-1","title":"⚡ 一句话本质"},{"id":"section-2","title":"🧰 核心教具与量级速览"},{"id":"section-3","title":"🎯 核心痛点直答"},{"id":"section-4","title":"✅ 立即可用清单"},{"id":"section-5","title":"🔭 延伸视野"}]},{"series":"learn","series_label":"直击痛点的求知笔记","series_badge":"求知 · 04","url":"/learn/swiftui-scroll-drag/","title":"SwiftUI 27 高性能滚动与多元素拖拽：LazyStack 帧预取与纸牌级重排","short_title":"LazyStack 帧预取与纸牌级拖拽重排","teaser":"揪出 LazyVStack 子视图 if 过滤导致内存暴涨、onAppear 废掉帧间预取（Prefetching）三大掉帧元凶；用 .reorderContainer + .dragContainer 解锁纸牌接龙级成叠拖拽与非法弹回。","tags":["LazyVStack","Prefetching","reorderContainer","dragContainer","ScrollView"],"questions":[{"id":"q1","badge":"Q1","q":"为什么我在 LazyVStack 的子视图 StepView 里只加了一行 if step.isVisible(in: detailLevel)，滑着滑着内存就暴涨、离屏视图还在疯狂重绘？"},{"id":"q2","badge":"Q2","q":"为什么我的长列表快速滑动时总是掉帧（Hitch），而且调用 scrollPosition.scrollTo(id:) 滚到底部时经常滚歪？"},{"id":"q3","badge":"Q3","q":"为什么我的 .scrollTransition 旋转放大动效，滑到边缘时卡片会提前啪一下凭空消失？"},{"id":"q4","badge":"Q4","q":"不想用死板的 List，怎么在自定义 LazyVStack、LazyVGrid 甚至多列看板里实现「左滑删除 + 跨列成摞拖拽 + 非法位置禁放」？"}],"sections":[{"id":"section-1","title":"⚡ 一句话本质"},{"id":"section-2","title":"🧰 核心教具与量级速览"},{"id":"section-3","title":"🎯 核心痛点直答"},{"id":"section-4","title":"✅ 立即可用清单"},{"id":"section-5","title":"🔭 延伸视野"}]},{"series":"learn","series_label":"直击痛点的求知笔记","series_badge":"求知 · 05","url":"/learn/appkit-uikit-27/","title":"macOS 27 AppKit 与 iOS 27 UIKit 现代化：自由缩放窗口、同心圆角与手势革命","short_title":"AppKit 与 UIKit 27 窗口与手势现代化","teaser":"iOS 27 让 iPhone 窗口在 Mac 镜像与 iPad 上任意拉伸（UIScreen.main、idiom 与 orientation 彻底失效）；macOS 27 AppKit 告别 mouseDown 阻塞循环，拥抱 NSControl.Events 与容器同心圆角。","tags":["AppKit","UIKit","macOS 27","iOS 27","Concentricity","UIScene"],"questions":[{"id":"q1","badge":"Q1","q":"为什么我的 iPhone 应用在 macOS 27 的「iPhone 镜像（iPhone Mirroring）」或 iPad 上把窗口拉宽后，界面还是挤成细长一条，甚至横竖屏判断全乱了？"},{"id":"q2","badge":"Q2","q":"在 macOS 27 AppKit 中，为什么苹果强烈建议删掉自定义的 mouseDown: 重写？如果兄弟视图挡住了点击、或者要在自绘视图里做文字选择怎么办？"},{"id":"q3","badge":"Q3","q":"为什么我的 Mac 应用在系统夜间自动更新重启时总是卡住系统弹窗报错，或者重启后窗口状态全丢了？"},{"id":"q4","badge":"Q4","q":"macOS 27 和 iOS 27 在 Liquid Glass、同心圆角与 Apple Intelligence（Siri 拖拽）上有哪些必须注意的新细节？"}],"sections":[{"id":"section-1","title":"⚡ 一句话本质"},{"id":"section-2","title":"🧰 核心教具与量级速览"},{"id":"section-3","title":"🎯 核心痛点直答"},{"id":"section-4","title":"✅ 立即可用清单"},{"id":"section-5","title":"🔭 延伸视野"}]},{"series":"learn","series_label":"直击痛点的求知笔记","series_badge":"求知 · 06","url":"/learn/wwdc-storytelling-craft/","title":"WWDC 视觉化与架构讲法拆解：水管数据流、图钉几何与贴纸叙事法","short_title":"WWDC 视觉化与架构讲法拆解","teaser":"提炼 6 节高分 WWDC 视觉动效课的 8 步剧本骨架：先亮出贴纸/折纸/纸牌玩具靶子，用水管/图钉/透镜替掉公式，故意展示直觉写法翻车，再用 2 行代码完成画面质变。","tags":["WWDC 讲法","水管模型","图钉对齐","技术叙事","渐进式披露"],"questions":[],"sections":[{"id":"section-1","title":"⚡ 一句话公式"},{"id":"section-2","title":"🎬 八步 WWDC 标杆课程叙事流"},{"id":"section-3","title":"🛠 四大 WWDC 级可复用视觉化技巧"},{"id":"section-4","title":"🔄 迁移套用模板"}]},{"series":"learn","series_label":"直击痛点的求知笔记","series_badge":"求知 · 07","url":"/learn/wifi-invisible-light/","title":"如果能看见 WiFi：看不见的光、室内信号破案与科普脚本技法","short_title":"如果能看见 WiFi（概念破案 + 脚本技法）","teaser":"把可见光波长放大 25 万倍，穿过客厅只需 30 多纳秒——用冰箱反射、鱼缸吸收、微波炉 1 万倍同频轰炸破案室内断网，并附上「把不可见变成可见」的九步科普脚本拆解。","tags":["WiFi","电磁波","2.4GHz / 5GHz","无线感知","科普脚本拆解"],"questions":[{"id":"q1","badge":"Q1","q":"为什么躺在床上刷视频，手机只挪了几厘米就突然卡顿？"},{"id":"q2","badge":"Q2","q":"为什么厨房微波炉一开，客厅 WiFi（尤其 2.4G）就断流？"},{"id":"q3","badge":"Q3","q":"5G WiFi 和 2.4G WiFi 到底怎么选？为什么 5G 隔堵墙就不行了？"},{"id":"q4","badge":"Q4","q":"路由器 24 小时开着，满屋子都是「WiFi 光」，辐射会破坏 DNA 吗？"}],"sections":[{"id":"section-1","title":"⚡ 一句话本质"},{"id":"section-2","title":"🧰 核心教具与量级速览"},{"id":"section-3","title":"🎯 核心痛点直答"},{"id":"section-4","title":"✅ 立即可用清单"},{"id":"section-5","title":"🔭 延伸视野"},{"id":"section-6","title":"⚡ 一句话公式"},{"id":"section-7","title":"🎬 九步完整脚本结构流"},{"id":"section-8","title":"🛠 四大可复用制作技巧"}]}];</script>
-  <script src="/assets/site.js?v=dc9b66239b" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>首页 · Lee Pepe</title>
+<meta name="description" content="Lee Pepe 的个人博客：记录苹果生态开发、AI 多智能体工程、求知拆解与日常思考。">
+<link rel="alternate" type="application/atom+xml" title="Lee Pepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">跳到正文</a>
-  <div class="sr-only" aria-live="polite" data-copy-live></div>
-
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a class="site-brand" href="/" aria-label="Lee Pepe 首页">
-        <span class="site-brand-monogram" aria-hidden="true">L</span>
-        <span class="site-brand-text">
-          <span class="site-brand-name">Lee Pepe</span>
-          <span class="site-brand-tag">写代码，也写生活</span>
-        </span>
-      </a>
-
-      <nav class="site-nav" aria-label="全站主导航">
-        <a class="site-nav-link is-active" href="/" aria-current="page">首页</a><a class="site-nav-link" href="/learn/">求知笔记</a><a class="site-nav-link" href="/thoughts/">思考与感悟</a><a class="site-nav-link" href="/archive/">归档</a><a class="site-nav-link" href="/tags/">标签</a><a class="site-nav-link" href="/about/">关于</a>
-      </nav>
-
-      <div class="site-actions">
-        <button type="button" class="search-trigger-btn" data-open-search aria-label="搜索全站文章与痛点问答 (快捷键 /)">
-          <span aria-hidden="true">🔍</span>
-          <span class="search-trigger-label">搜索全站…</span>
-          <kbd class="search-kbd" aria-hidden="true">/</kbd>
-        </button>
-        <div class="theme-segmented" role="group" aria-label="主题外观切换" data-theme-toggle><button type="button" class="theme-seg-btn" data-theme-val="light" aria-pressed="false" title="浅色模式">☀️ 浅</button><button type="button" class="theme-seg-btn" data-theme-val="dark" aria-pressed="false" title="深色模式">🌙 深</button><button type="button" class="theme-seg-btn" data-theme-val="auto" aria-pressed="true" title="跟随系统自动切换">◐ 自</button></div>
-        <button type="button" class="mobile-menu-btn" data-open-nav aria-label="打开全站导航菜单" aria-haspopup="dialog" aria-controls="site-nav-dialog" aria-expanded="false">
-          <span>菜单</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main id="main" class="site-main" tabindex="-1">
-    
-    <section class="hero-editorial" aria-labelledby="home-hero-title">
-      <div>
-        <p class="eyebrow">PERSONAL EDITORIAL PORTAL · LEE PEPE</p>
-        <h1 id="home-hero-title" class="hero-title">写代码，也写生活。</h1>
-        <p class="hero-lead">
-          你好，我是 <strong>Lee Pepe</strong>。这里没有教科书式的概念堆砌——在
-          <strong>「直击痛点的求知笔记」</strong>里，我用凸透镜、水管、图钉与冰箱把抽象的工程原理拆成肉眼可见的生活教具；在
-          <strong>「思考与感悟」</strong>里，我把日常折腾智能家居、做减法工具与生活习惯里的真实顿悟记下来。
-        </p>
-        <div class="hero-actions">
-          <a class="btn-primary" href="/learn/">📚 进入求知笔记 (7) →</a>
-          <a class="btn-secondary" href="/thoughts/">💭 阅读思考与感悟 (1)</a>
-          <a class="btn-secondary" href="/archive/">🗂 全站时间轴归档</a>
-        </div>
-      </div>
-      <aside class="hero-stats-card" aria-label="全站内容速览">
-        <div class="hero-stat-row">
-          <span class="hero-stat-label">📚 求知笔记专栏</span>
-          <span class="hero-stat-val">7 篇深度长文</span>
-        </div>
-        <div class="hero-stat-row">
-          <span class="hero-stat-label">🎯 痛点直答 Q&amp;A</span>
-          <span class="hero-stat-val">25 个真问题破案</span>
-        </div>
-        <div class="hero-stat-row">
-          <span class="hero-stat-label">💭 思考与感悟随笔</span>
-          <span class="hero-stat-val">1 篇生活洞察</span>
-        </div>
-        <div class="hero-stat-row">
-          <span class="hero-stat-label">🏷 知识与工具标签</span>
-          <span class="hero-stat-val">39 个主题索引</span>
-        </div>
-      </aside>
+<a class="skip-link" href="#main">跳到正文</a>
+<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+<header class="site-header shell">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
+    <nav class="nav" aria-label="主导航"><a href="/" aria-current="page">首页</a><a href="/learn/">求知</a><a href="/thoughts/">思考</a><a href="/archive/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav>
+    <div class="theme-toggle" role="group" aria-label="外观"><button type="button" data-theme-choice="light" aria-pressed="false" title="浅色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span class="label">浅色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="dark" aria-pressed="false" title="深色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg><span class="label">深色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="system" aria-pressed="true" title="系统"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11.5V14"/></svg><span class="label">系统</span><span class="visually-hidden">主题</span></button></div>
+  </div>
+</header>
+<main id="main" class="shell">
+  <section class="page-intro">
+    <h1>写代码，也写生活</h1>
+    <p>记录苹果生态开发、AI 多智能体工程、求知拆解与日常思考。</p>
+  </section>
+  <div class="layout">
+    <section class="card card--flush" aria-labelledby="latest">
+      <h2 id="latest" class="visually-hidden">最新文章</h2>
+      <ol class="post-list">
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>思考</span><span class="dot" aria-hidden="true">·</span><span>阅读约 3 分钟</span></div>
+  <h2><a href="/thoughts/study-switch-long-press-ac/">为什么我给书房按键加了「长按开空调」</a></h2>
+  <p>折腾智能家居最舒服的时刻，往往不是写出了多复杂的自动化规则，而是当家里的空调遥控器丢了一个，你顺手把空调连进去，给手边的书房按键加了一个「长按开空调」——因为每次坐下来，其实只需要开就行。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t15">智能家居</a></li><li><a class="tag" href="/tags/#t10">书房</a></li><li><a class="tag" href="/tags/#t12">减法设计</a></li></ul>
+</li>
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
+  <h2><a href="/learn/wwdc27-glass-motion/">WWDC25/26 (OS 26 → OS 27) Liquid Glass 与动效 8 节课全景导读地图</a></h2>
+  <p>把 UI 拆成「浮在上面的液态光学控制层（Liquid Glass）」与「沉在底下的全画幅内容流（Pipeline）」——8 节课寻宝图、OS 26→27 进化矩阵与按研发场景 10 分钟精准切入指南。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t2">WWDC26</a></li></ul>
+</li>
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 10 分钟</span></div>
+  <h2><a href="/learn/liquid-glass-optics/">Liquid Glass 光学第一性原理与 SwiftUI 26→27 实战破案</a></h2>
+  <p>为什么 Liquid Glass 是实时弯折光线的「液态凸透镜」而非磨砂毛玻璃？为什么严禁玻璃叠玻璃？详解 GlassEffectContainer 共享采样区、有色玻璃映射、Toolbar 防挤爆与 @State Macro。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t11">光学设计</a></li></ul>
+</li>
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 9 分钟</span></div>
+  <h2><a href="/learn/swiftui-shader-pipeline/">SwiftUI 27 高级图形与动效管线：Metal Shader 扭曲、时间流与图钉对齐</a></h2>
+  <p>拆解 Apple Music 级流体封面与实时歌词：三大 Shader 修饰符选型、Domain Warping 二次噪声采样、TimelineView 无状态时间注入，以及 alignmentGuide 图钉孔位反转法。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t6">Metal Shader</a></li><li><a class="tag" href="/tags/#t13">动效管线</a></li></ul>
+</li>
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 11 分钟</span></div>
+  <h2><a href="/learn/swiftui-scroll-drag/">SwiftUI 27 高性能滚动与多元素拖拽：LazyStack 帧预取与纸牌级重排</a></h2>
+  <p>揪出 LazyVStack 子视图 if 过滤导致内存暴涨、onAppear 废掉帧间预取（Prefetching）三大掉帧元凶；用 .reorderContainer + .dragContainer 解锁纸牌接龙级成叠拖拽与非法弹回。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t7">ScrollView</a></li><li><a class="tag" href="/tags/#t14">性能优化</a></li></ul>
+</li>
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 10 分钟</span></div>
+  <h2><a href="/learn/appkit-uikit-27/">macOS 27 AppKit 与 iOS 27 UIKit 现代化：自由缩放窗口、同心圆角与手势革命</a></h2>
+  <p>iOS 27 让 iPhone 窗口在 Mac 镜像与 iPad 上任意拉伸（UIScreen.main、idiom 与 orientation 彻底失效）；macOS 27 AppKit 告别 mouseDown 阻塞循环，拥抱 NSControl.Events 与容器同心圆角。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t4">AppKit</a></li><li><a class="tag" href="/tags/#t8">UIKit</a></li><li><a class="tag" href="/tags/#t17">窗口适配</a></li></ul>
+</li>
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
+  <h2><a href="/learn/wwdc-storytelling-craft/">WWDC 视觉化与架构讲法拆解：水管数据流、图钉几何与贴纸叙事法</a></h2>
+  <p>提炼 6 节高分 WWDC 视觉动效课的 8 步剧本骨架：先亮出贴纸/折纸/纸牌玩具靶子，用水管/图钉/透镜替掉公式，故意展示直觉写法翻车，再用 2 行代码完成画面质变。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t3">技术叙事</a></li><li><a class="tag" href="/tags/#t2">WWDC26</a></li><li><a class="tag" href="/tags/#t18">视觉隐喻</a></li></ul>
+</li>
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 10 分钟</span></div>
+  <h2><a href="/learn/wifi-invisible-light/">如果能看见 WiFi：看不见的光、室内信号破案与科普脚本技法</a></h2>
+  <p>把可见光波长放大 25 万倍，穿过客厅只需 30 多纳秒——用冰箱反射、鱼缸吸收、微波炉 1 万倍同频轰炸破案室内断网，并附上「把不可见变成可见」的九步科普脚本拆解。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t9">WiFi</a></li><li><a class="tag" href="/tags/#t16">物理可视化</a></li><li><a class="tag" href="/tags/#t3">技术叙事</a></li></ul>
+</li>
+      </ol>
     </section>
-
-    <section class="series-bento" aria-label="双专栏精选導览">
-      <article class="bento-card bento-card--learn">
-        <div>
-          <div class="bento-head">
-            <span class="bento-badge">📚 专栏一 · Knowledge Vault</span>
-            <span class="bento-count">共 7 篇 · 25 个痛点 Q&amp;A</span>
-          </div>
-          <h2 class="bento-title"><a href="/learn/">直击痛点的求知笔记</a></h2>
-          <p class="bento-desc">
-            拒绝平铺直叙的 API 罗列。每一篇都严格遵循「一句话反常识本质 → 生活教具痛点直答 → 明天就能照着改的行动清单」三段式闭环。
-          </p>
-          <div class="bento-pillars">
-            <div class="bento-pillar"><strong>⚡ 一句话本质</strong>3 秒建立反直觉全局坐标系</div>
-            <div class="bento-pillar"><strong>🎯 痛点直答</strong>用透镜/水管/图钉替代公式</div>
-            <div class="bento-pillar"><strong>✅ 行动清单</strong>≤3 条零门槛工程实操处方</div>
-          </div>
-          <ul class="bento-sample-list">
-            <li><a class="bento-sample-link" href="/learn/wwdc27-glass-motion/"><span><span class="bento-sample-num">01</span>WWDC 8 节课全景导读地图</span><span class="bento-sample-meta">4 问 · 约 8 分钟</span></a></li><li><a class="bento-sample-link" href="/learn/liquid-glass-optics/"><span><span class="bento-sample-num">02</span>Liquid Glass 光学与 SwiftUI 实战</span><span class="bento-sample-meta">5 问 · 约 10 分钟</span></a></li><li><a class="bento-sample-link" href="/learn/swiftui-shader-pipeline/"><span><span class="bento-sample-num">03</span>SwiftUI 27 Metal Shader 与动效管线</span><span class="bento-sample-meta">4 问 · 约 9 分钟</span></a></li>
-          </ul>
-        </div>
-        <div class="bento-foot">
-          <span class="bento-count">覆盖 WWDC 25/26 八节课 + WiFi 物理可视化</span>
-          <a class="bento-cta" href="/learn/">浏览全部 7 篇笔记 →</a>
-        </div>
-      </article>
-
-      <article class="bento-card bento-card--thoughts">
-        <div>
-          <div class="bento-head">
-            <span class="bento-badge">💭 专栏二 · Thoughts &amp; Reflections</span>
-            <span class="bento-count">共 1 篇随笔 · 持续记录</span>
-          </div>
-          <h2 class="bento-title"><a href="/thoughts/">思考与感悟</a></h2>
-          <p class="bento-desc">
-            记录日常折腾、工具设计与生活裂缝里的直觉瞬间——不追求大而全的系统宏图，只写那些真正让手头工作和生活变顺手的一点顿悟。
-          </p>
-          <blockquote class="bento-quote"><span class="bento-quote-title">💡 最新随笔 · 为什么我给书房按键加了「长按开空调」</span>折腾智能家居最舒服的时刻，往往不是写出了多复杂的自动化规则，而是当家里的空调遥控器丢了一个，你顺手把空调连进去，给手边的书房按键加了一个「长按开空调」——因为每次坐下来，其实只需要开就行。</blockquote>
-          <ul class="bento-sample-list"><li><a class="bento-sample-link" href="/thoughts/study-switch-long-press-ac/"><span><span class="bento-sample-num">01</span>为什么我给书房按键加了「长按开空调」</span><span class="bento-sample-meta">2026-11-09 · 约 3 分钟</span></a></li></ul>
-        </div>
-        <div class="bento-foot">
-          <span class="bento-count">少一个遥控器，多一次顺手的肌肉记忆</span>
-          <a class="bento-cta" href="/thoughts/">进入思考与感悟专栏 →</a>
-        </div>
-      </article>
-    </section>
-
-    <div class="home-layout">
-      <section class="stream-panel" aria-labelledby="stream-heading">
-        <div class="stream-header">
-          <h2 id="stream-heading" class="stream-title">最新文章与随笔</h2>
-          <div class="series-tabs" role="toolbar" aria-label="按专栏筛选文章" data-series-filter-bar>
-            <button type="button" class="series-tab is-active" data-series-filter="all" aria-pressed="true">全部 (8)</button>
-            <button type="button" class="series-tab" data-series-filter="learn" aria-pressed="false">📚 求知笔记 (7)</button>
-            <button type="button" class="series-tab" data-series-filter="thoughts" aria-pressed="false">💭 思考与感悟 (1)</button>
-          </div>
-        </div>
-        <ol class="stream-list">
-          <li data-item-series="thoughts"><a class="stream-card" href="/thoughts/study-switch-long-press-ac/"><div class="stream-card-top"><span class="series-pill series-pill--thoughts">💭 思考与感悟 · 01</span><time datetime="2026-11-09">2026-11-09</time><span class="meta-dot" aria-hidden="true"></span><span>约 3 分钟</span></div><h3 class="stream-card-title">为什么我给书房按键加了「长按开空调」</h3><p class="stream-card-teaser">折腾智能家居最舒服的时刻，往往不是写出了多复杂的自动化规则，而是当家里的空调遥控器丢了一个，你顺手把空调连进去，给手边的书房按键加了一个「长按开空调」——因为每次坐下来，其实只需要开就行。</p><div class="stream-card-tags"><span class="tag-pill">智能家居</span><span class="tag-pill">书房</span><span class="tag-pill">减法设计</span><span class="tag-pill">Home Assistant</span></div></a></li><li data-item-series="learn"><a class="stream-card" href="/learn/wwdc27-glass-motion/"><div class="stream-card-top"><span class="series-pill">📚 求知笔记 · 01</span><time datetime="2026-11-09">2026-11-09</time><span class="meta-dot" aria-hidden="true"></span><span>约 8 分钟</span><span class="meta-dot" aria-hidden="true"></span><span>4 个痛点 Q&amp;A</span></div><h3 class="stream-card-title">WWDC25/26 (OS 26 → OS 27) Liquid Glass 与动效 8 节课全景导读地图</h3><p class="stream-card-teaser">把 UI 拆成「浮在上面的液态光学控制层（Liquid Glass）」与「沉在底下的全画幅内容流（Pipeline）」——8 节课寻宝图、OS 26→27 进化矩阵与按研发场景 10 分钟精准切入指南。</p><div class="stream-card-tags"><span class="tag-pill">WWDC25</span><span class="tag-pill">WWDC26</span><span class="tag-pill">Liquid Glass</span><span class="tag-pill">SwiftUI</span></div></a></li><li data-item-series="learn"><a class="stream-card" href="/learn/liquid-glass-optics/"><div class="stream-card-top"><span class="series-pill">📚 求知笔记 · 02</span><time datetime="2026-11-09">2026-11-09</time><span class="meta-dot" aria-hidden="true"></span><span>约 10 分钟</span><span class="meta-dot" aria-hidden="true"></span><span>5 个痛点 Q&amp;A</span></div><h3 class="stream-card-title">Liquid Glass 光学第一性原理与 SwiftUI 26→27 实战破案</h3><p class="stream-card-teaser">为什么 Liquid Glass 是实时弯折光线的「液态凸透镜」而非磨砂毛玻璃？为什么严禁玻璃叠玻璃？详解 GlassEffectContainer 共享采样区、有色玻璃映射、Toolbar 防挤爆与 @State Macro。</p><div class="stream-card-tags"><span class="tag-pill">Liquid Glass</span><span class="tag-pill">Lensing</span><span class="tag-pill">GlassEffectContainer</span><span class="tag-pill">ToolbarOverflowMenu</span></div></a></li><li data-item-series="learn"><a class="stream-card" href="/learn/swiftui-shader-pipeline/"><div class="stream-card-top"><span class="series-pill">📚 求知笔记 · 03</span><time datetime="2026-11-09">2026-11-09</time><span class="meta-dot" aria-hidden="true"></span><span>约 9 分钟</span><span class="meta-dot" aria-hidden="true"></span><span>4 个痛点 Q&amp;A</span></div><h3 class="stream-card-title">SwiftUI 27 高级图形与动效管线：Metal Shader 扭曲、时间流与图钉对齐</h3><p class="stream-card-teaser">拆解 Apple Music 级流体封面与实时歌词：三大 Shader 修饰符选型、Domain Warping 二次噪声采样、TimelineView 无状态时间注入，以及 alignmentGuide 图钉孔位反转法。</p><div class="stream-card-tags"><span class="tag-pill">Metal Shader</span><span class="tag-pill">layerEffect</span><span class="tag-pill">Domain Warping</span><span class="tag-pill">TimelineView</span></div></a></li><li data-item-series="learn"><a class="stream-card" href="/learn/swiftui-scroll-drag/"><div class="stream-card-top"><span class="series-pill">📚 求知笔记 · 04</span><time datetime="2026-11-09">2026-11-09</time><span class="meta-dot" aria-hidden="true"></span><span>约 11 分钟</span><span class="meta-dot" aria-hidden="true"></span><span>4 个痛点 Q&amp;A</span></div><h3 class="stream-card-title">SwiftUI 27 高性能滚动与多元素拖拽：LazyStack 帧预取与纸牌级重排</h3><p class="stream-card-teaser">揪出 LazyVStack 子视图 if 过滤导致内存暴涨、onAppear 废掉帧间预取（Prefetching）三大掉帧元凶；用 .reorderContainer + .dragContainer 解锁纸牌接龙级成叠拖拽与非法弹回。</p><div class="stream-card-tags"><span class="tag-pill">LazyVStack</span><span class="tag-pill">Prefetching</span><span class="tag-pill">reorderContainer</span><span class="tag-pill">dragContainer</span></div></a></li><li data-item-series="learn"><a class="stream-card" href="/learn/appkit-uikit-27/"><div class="stream-card-top"><span class="series-pill">📚 求知笔记 · 05</span><time datetime="2026-11-09">2026-11-09</time><span class="meta-dot" aria-hidden="true"></span><span>约 10 分钟</span><span class="meta-dot" aria-hidden="true"></span><span>4 个痛点 Q&amp;A</span></div><h3 class="stream-card-title">macOS 27 AppKit 与 iOS 27 UIKit 现代化：自由缩放窗口、同心圆角与手势革命</h3><p class="stream-card-teaser">iOS 27 让 iPhone 窗口在 Mac 镜像与 iPad 上任意拉伸（UIScreen.main、idiom 与 orientation 彻底失效）；macOS 27 AppKit 告别 mouseDown 阻塞循环，拥抱 NSControl.Events 与容器同心圆角。</p><div class="stream-card-tags"><span class="tag-pill">AppKit</span><span class="tag-pill">UIKit</span><span class="tag-pill">macOS 27</span><span class="tag-pill">iOS 27</span></div></a></li><li data-item-series="learn"><a class="stream-card" href="/learn/wwdc-storytelling-craft/"><div class="stream-card-top"><span class="series-pill">📚 求知笔记 · 06</span><time datetime="2026-11-09">2026-11-09</time><span class="meta-dot" aria-hidden="true"></span><span>约 8 分钟</span></div><h3 class="stream-card-title">WWDC 视觉化与架构讲法拆解：水管数据流、图钉几何与贴纸叙事法</h3><p class="stream-card-teaser">提炼 6 节高分 WWDC 视觉动效课的 8 步剧本骨架：先亮出贴纸/折纸/纸牌玩具靶子，用水管/图钉/透镜替掉公式，故意展示直觉写法翻车，再用 2 行代码完成画面质变。</p><div class="stream-card-tags"><span class="tag-pill">WWDC 讲法</span><span class="tag-pill">水管模型</span><span class="tag-pill">图钉对齐</span><span class="tag-pill">技术叙事</span></div></a></li><li data-item-series="learn"><a class="stream-card" href="/learn/wifi-invisible-light/"><div class="stream-card-top"><span class="series-pill">📚 求知笔记 · 07</span><time datetime="2026-11-09">2026-11-09</time><span class="meta-dot" aria-hidden="true"></span><span>约 10 分钟</span><span class="meta-dot" aria-hidden="true"></span><span>4 个痛点 Q&amp;A</span></div><h3 class="stream-card-title">如果能看见 WiFi：看不见的光、室内信号破案与科普脚本技法</h3><p class="stream-card-teaser">把可见光波长放大 25 万倍，穿过客厅只需 30 多纳秒——用冰箱反射、鱼缸吸收、微波炉 1 万倍同频轰炸破案室内断网，并附上「把不可见变成可见」的九步科普脚本拆解。</p><div class="stream-card-tags"><span class="tag-pill">WiFi</span><span class="tag-pill">电磁波</span><span class="tag-pill">2.4GHz / 5GHz</span><span class="tag-pill">无线感知</span></div></a></li>
-        </ol>
+    <aside class="aside" aria-label="侧栏">
+      <section class="card">
+        <div class="profile"><span class="avatar" aria-hidden="true">L</span><div><h2>Lee Pepe</h2><div class="post-meta">iOS · 前端 · 跑步</div></div></div>
+        <p>做过 iOS、自然语言和前端。从 210 斤减到 150 斤，喜欢健身、跑步和篮球。</p>
+        <a class="btn btn--secondary" href="/about/">关于我</a>
       </section>
-
-      <aside class="home-aside" aria-label="作者简介与快捷索引">
-        <section class="aside-card" aria-labelledby="aside-author-title">
-          <div class="aside-profile-head">
-            <span class="aside-avatar" aria-hidden="true">L</span>
-            <div>
-              <h2 id="aside-author-title" class="aside-card-title" style="margin:0;">Lee Pepe</h2>
-              <span style="font-size:12px;color:var(--muted);">iOS / 前端 / 智能家居 / 认知拆解</span>
-            </div>
-          </div>
-          <p class="aside-bio">
-            生活中从 210 斤减到 150 斤，喜欢健身、跑步与篮球；工作里深耕 Apple 生态（SwiftUI / AppKit / UIKit）、前端与全屋智能自动化，着迷于「把复杂系统讲得人人秒懂」。
-          </p>
-          <div class="aside-links">
-            <a class="aside-link-chip" href="/about/">👤 关于我</a>
-            <a class="aside-link-chip" href="https://github.com/LeePepe" target="_blank" rel="noopener">🐙 GitHub</a>
-            <a class="aside-link-chip" href="/feed.xml">📡 RSS 订阅</a>
-          </div>
-        </section>
-
-        <section class="aside-card" aria-labelledby="aside-tags-title">
-          <div class="aside-card-title">
-            <span id="aside-tags-title">🏷 热门主题标签</span>
-            <a href="/tags/" style="font-size:12px;font-weight:500;">全部 39 个 →</a>
-          </div>
-          <div class="aside-tag-cloud">
-            <a class="tag-pill" href="/tags/?tag=WWDC25">WWDC25 <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=WWDC26">WWDC26 <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=Liquid Glass">Liquid Glass <span>(2)</span></a><a class="tag-pill" href="/tags/?tag=SwiftUI">SwiftUI <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=OS 27">OS 27 <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=Lensing">Lensing <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=GlassEffectContainer">GlassEffectContainer <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=ToolbarOverflowMenu">ToolbarOverflowMenu <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=@State Macro">@State Macro <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=Metal Shader">Metal Shader <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=layerEffect">layerEffect <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=Domain Warping">Domain Warping <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=TimelineView">TimelineView <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=alignmentGuide">alignmentGuide <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=LazyVStack">LazyVStack <span>(1)</span></a><a class="tag-pill" href="/tags/?tag=Prefetching">Prefetching <span>(1)</span></a>
-          </div>
-        </section>
-
-        <section class="aside-card" aria-labelledby="aside-search-title">
-          <h2 id="aside-search-title" class="aside-card-title">⌨️ 快捷键与阅读提示</h2>
-          <p class="aside-bio" style="margin-bottom:10px;">
-            在全站任意页面按 <kbd class="search-kbd">/</kbd> 或 <kbd class="search-kbd">⌘K</kbd> 即可唤起全局搜索，直达任意痛点 Q&amp;A；右上角支持 <strong>浅色 / 深色 / 跟随系统</strong> 三态切换并全站自动同步。
-          </p>
-          <a class="aside-link-chip" href="/archive/">🗂 查看按年份对表归档 →</a>
-        </section>
-      </aside>
-    </div>
-    
-  </main>
-
-  <footer class="site-footer">
-    <div class="site-footer-inner">
-      <div>
-        <strong>Lee Pepe</strong> · 写代码，也写生活 · Warm Editorial × Strata 麦芽黄阅读体系
-      </div>
-      <nav class="site-footer-links" aria-label="页脚导航">
-        <a href="/">首页</a>
-        <a href="/learn/">求知笔记</a>
-        <a href="/thoughts/">思考与感悟</a>
-        <a href="/archive/">归档</a>
-        <a href="/tags/">标签</a>
-        <a href="/about/">关于</a>
-        <a href="/feed.xml">RSS 订阅</a>
-        <a href="https://github.com/LeePepe" target="_blank" rel="noopener">GitHub</a>
-      </nav>
-    </div>
-  </footer>
-
-  <dialog class="site-dialog" id="site-search-dialog" aria-labelledby="search-dialog-title">
-    <div class="dialog-head">
-      <label id="search-dialog-title" class="sr-only" for="site-search-input">搜索全站文章、痛点 Q&amp;A 与随笔感悟</label>
-      <input id="site-search-input" type="search" class="dialog-search-input" data-site-search-input placeholder="输入关键词搜索全站笔记、痛点 Q&amp;A、API 或感悟随笔…" autocomplete="off">
-      <button type="button" class="dialog-close-btn" data-close-search>关闭</button>
-    </div>
-    <div class="dialog-body" data-site-search-results role="listbox" aria-label="全站搜索结果"></div>
-  </dialog>
-
-  <dialog class="site-dialog" id="site-nav-dialog" aria-labelledby="nav-dialog-title">
-    <div class="dialog-head" style="justify-content:space-between;">
-      <strong id="nav-dialog-title" style="font-size:15px;">全站导航 · Lee Pepe</strong>
-      <button type="button" class="dialog-close-btn" data-close-nav>关闭</button>
-    </div>
-    <div class="dialog-body">
-      <ul class="mobile-nav-list">
-        <li><a class="mobile-nav-link" href="/" aria-current="page"><span>首页</span><span aria-hidden="true">→</span></a></li><li><a class="mobile-nav-link" href="/learn/"><span>求知笔记</span><span aria-hidden="true">→</span></a></li><li><a class="mobile-nav-link" href="/thoughts/"><span>思考与感悟</span><span aria-hidden="true">→</span></a></li><li><a class="mobile-nav-link" href="/archive/"><span>归档</span><span aria-hidden="true">→</span></a></li><li><a class="mobile-nav-link" href="/tags/"><span>标签</span><span aria-hidden="true">→</span></a></li><li><a class="mobile-nav-link" href="/about/"><span>关于</span><span aria-hidden="true">→</span></a></li>
-      </ul>
-    </div>
-  </dialog>
+      <section class="card">
+        <h2>专栏</h2>
+        <p>「求知」用生活教具拆穿技术原理（7 篇）；「思考」记录日常工具与生活随笔（1 篇）。</p>
+        <div class="links">
+          <a class="btn btn--secondary" href="/learn/">求知笔记 (7)</a>
+          <a class="btn btn--secondary" href="/thoughts/">思考与感悟 (1)</a>
+        </div>
+      </section>
+      <section class="card">
+        <h2>热门标签</h2>
+        <ul class="tags"><li><a class="tag" href="/tags/#t0">SwiftUI <span class="count">4</span></a></li><li><a class="tag" href="/tags/#t1">Liquid Glass <span class="count">2</span></a></li><li><a class="tag" href="/tags/#t2">WWDC26 <span class="count">2</span></a></li><li><a class="tag" href="/tags/#t3">技术叙事 <span class="count">2</span></a></li><li><a class="tag" href="/tags/#t4">AppKit <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t5">Home Assistant <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t6">Metal Shader <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t7">ScrollView <span class="count">1</span></a></li></ul>
+        <p style="margin-top:16px;margin-bottom:0"><a href="/tags/">查看全部标签 →</a></p>
+      </section>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>© 2026 Lee Pepe · 写代码，也写生活</span>
+    <nav aria-label="页脚"><a href="/feed.xml">RSS 订阅</a><a href="https://github.com/LeePepe">GitHub</a><a href="#main">回到顶部</a></nav>
+  </div>
+</footer>
 </body>
 </html>

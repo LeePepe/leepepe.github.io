@@ -1,32 +1,71 @@
----
-layout: null
-title: "思考与感悟 · Thoughts &amp; Reflections"
-permalink: /thoughts/
----
 <!doctype html>
-<html lang="zh-CN" data-lp-theme="light" data-lp-theme-pref="auto"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#F4EFE7"><title>思考与感悟 · Thoughts &amp; Reflections | 思考与感悟 · Lee Pepe</title>
-<link rel="stylesheet" href="/thoughts/reader.css?v=d058ba587b"><script>window.THOUGHTS_INDEX = [{"num":"01","slug":"study-switch-long-press-ac","url":"/thoughts/study-switch-long-press-ac/","category":"智能家居与生活","title":"为什么我给书房按键加了「长按开空调」","subtitle":"少一个遥控器，多一次顺手的肌肉记忆","insight":"折腾智能家居最舒服的时刻，往往不是写出了多复杂的自动化规则，而是当家里的空调遥控器丢了一个，你顺手把空调连进去，给手边的书房按键加了一个「长按开空调」——因为每次坐下来，其实只需要开就行。","tags":["智能家居","书房","减法设计","Home Assistant"],"sections":[{"id":"section-1","title":"从「找遥控器」到「顺手连上」"},{"id":"section-2","title":"「而且每次只需要开就行」"},{"id":"section-3","title":"一点感悟：好工具是用来消灭「找东西」的"}]}];</script><script src="/thoughts/reader.js?v=a9259947f6" defer></script></head><body>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>思考与感悟 · Lee Pepe</title>
+<meta name="description" content="记录日常折腾智能家居、减法工具设计与生活习惯时的真实随笔。">
+<link rel="alternate" type="application/atom+xml" title="Lee Pepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
 <a class="skip-link" href="#main">跳到正文</a>
-<div class="sr-only" aria-live="polite" data-copy-live></div>
-<header class="mobile-bar"><div class="mobile-bar-inner"><button class="open-series" type="button" aria-label="打开随笔目录" aria-haspopup="dialog" aria-controls="series-sheet" aria-expanded="false">
-<span>思考与感悟</span><span class="mobile-position">目录 / 1</span><span class="chevron" aria-hidden="true"></span></button>
-<div class="theme-segmented" role="group" aria-label="主题外观切换" data-theme-toggle><button type="button" class="theme-seg-btn" data-theme-val="light" aria-pressed="false" title="浅色模式">☀️ 浅</button><button type="button" class="theme-seg-btn" data-theme-val="dark" aria-pressed="false" title="深色模式">🌙 深</button><button type="button" class="theme-seg-btn" data-theme-val="auto" aria-pressed="true" title="跟随系统自动切换">◐ 自</button></div></div>
-<div class="progress-track" aria-hidden="true"><span class="progress-fill" data-progress-fill></span></div></header>
-<div class="reader-frame"><aside class="rail" aria-label="专栏导航"><div class="rail-top">
-<div><a class="series-brand" href="/thoughts/">思考与感悟</a><p class="series-subtitle">Thoughts &amp; Reflections · 日常与工具随笔</p></div>
-<div class="theme-segmented" role="group" aria-label="主题外观切换" data-theme-toggle><button type="button" class="theme-seg-btn" data-theme-val="light" aria-pressed="false" title="浅色模式">☀️ 浅</button><button type="button" class="theme-seg-btn" data-theme-val="dark" aria-pressed="false" title="深色模式">🌙 深</button><button type="button" class="theme-seg-btn" data-theme-val="auto" aria-pressed="true" title="跟随系统自动切换">◐ 自</button></div></div>
-<div class="rail-search-wrap"><div class="rail-search-field"><input type="search" class="rail-search" data-learn-search placeholder="搜索感悟随笔、核心洞察或标签… (按 /)" aria-label="搜索思考与感悟"><kbd class="search-kbd" aria-hidden="true">/</kbd></div><div class="search-results" data-search-results hidden role="listbox" aria-label="搜索结果"></div></div>
-<div class="rail-scroll"><p class="rail-intro">记录日常折腾、工具设计与生活裂缝里的直觉瞬间。</p><nav aria-label="随笔文章"><div class="nav-group"><p class="nav-caption">💭 智能家居与生活</p><ol class="timeline"><li class="chapter"><a class="chapter-link" href="/thoughts/study-switch-long-press-ac/"><span class="chapter-number">01</span><span>为什么我给书房按键加了「长按开空调」</span></a></li></ol></div></nav></div>
-<div class="rail-footer"><a class="rail-home" href="/">← 首页</a><a class="rail-home" href="/learn/">求知笔记</a><a class="rail-home is-current" href="/thoughts/">思考与感悟</a><a class="rail-home" href="/archive/">归档</a><a class="rail-home" href="/tags/">标签</a><a class="rail-home" href="/about/">关于</a></div></aside>
-<main id="main" tabindex="-1"><section class="paper" aria-labelledby="series-title"><div class="reading-column"><header class="index-header">
-<p class="eyebrow">THOUGHTS &amp; REFLECTIONS · 思考与感悟</p>
-<h1 id="series-title">思考与感悟 · Thoughts &amp; Reflections</h1>
-<p class="index-intro">记录日常折腾、工具设计与生活裂缝里的直觉瞬间——不追求大而全的系统宏图，只把那些真正让生活或手头工作变顺手的一点顿悟写下来。</p>
-<p class="article-meta"><span>共 1 篇随笔</span><span class="meta-dot" aria-hidden="true"></span><span>数据源同步自 Knowledge Vault · thoughts/</span><span class="meta-dot" aria-hidden="true"></span><span>Warm Editorial 阅读器</span></p>
-<div class="tag-filter-wrap"><div class="tag-filter-bar" data-tag-bar role="toolbar" aria-label="按标签筛选随笔"><button type="button" class="tag-filter-chip is-active" data-filter-tag="all" aria-pressed="true">全部 <span class="chip-count">(1)</span></button><button type="button" class="tag-filter-chip" data-filter-tag="智能家居" aria-pressed="false">智能家居 <span class="chip-count">(1)</span></button><button type="button" class="tag-filter-chip" data-filter-tag="书房" aria-pressed="false">书房 <span class="chip-count">(1)</span></button><button type="button" class="tag-filter-chip" data-filter-tag="减法设计" aria-pressed="false">减法设计 <span class="chip-count">(1)</span></button><button type="button" class="tag-filter-chip" data-filter-tag="Home Assistant" aria-pressed="false">Home Assistant <span class="chip-count">(1)</span></button></div><p class="tag-filter-status" data-filter-status aria-live="polite" hidden></p></div></header>
-<nav aria-label="分类随笔目录"><section class="category-section" data-category-section="cat-1" aria-labelledby="heading-cat-1"><div class="category-heading"><h2 id="heading-cat-1">💭 智能家居与生活</h2><span data-category-count>1 篇</span></div><ol class="story-list"><li class="story-item" data-story-tags="智能家居|书房|减法设计|Home Assistant" data-story-slug="study-switch-long-press-ac"><a class="story-card" href="/thoughts/study-switch-long-press-ac/"><span class="story-no">01</span><div><h3>为什么我给书房按键加了「长按开空调」</h3><p class="story-subtitle">少一个遥控器，多一次顺手的肌肉记忆</p><p class="story-teaser">折腾智能家居最舒服的时刻，往往不是写出了多复杂的自动化规则，而是当家里的空调遥控器丢了一个，你顺手把空调连进去，给手边的书房按键加了一个「长按开空调」——因为每次坐下来，其实只需要开就行。</p><div class="story-meta-row"><span class="story-time">2026-11-09</span><span class="meta-dot" aria-hidden="true"></span><span class="story-time">约 3 分钟</span><span class="tag-pill" role="button" tabindex="0" data-filter-tag="智能家居">智能家居</span><span class="tag-pill" role="button" tabindex="0" data-filter-tag="书房">书房</span><span class="tag-pill" role="button" tabindex="0" data-filter-tag="减法设计">减法设计</span><span class="tag-pill" role="button" tabindex="0" data-filter-tag="Home Assistant">Home Assistant</span></div></div><span class="story-arrow" aria-hidden="true">→</span></a></li></ol></section></nav>
-</div></section></main></div>
-<dialog class="series-sheet" id="series-sheet" aria-labelledby="sheet-title"><header class="sheet-header"><h2 id="sheet-title">思考与感悟</h2><button class="close-sheet" type="button" autofocus>关闭</button></header>
-<div class="sheet-content"><p class="series-subtitle">记录日常折腾、工具设计与生活裂缝里的直觉瞬间</p><div class="rail-search-wrap"><div class="rail-search-field"><input type="search" class="rail-search" data-learn-search placeholder="搜索感悟随笔、核心洞察或标签… (按 /)" aria-label="搜索思考与感悟"></div><div class="search-results" data-search-results hidden role="listbox" aria-label="搜索结果"></div></div><nav aria-label="手机随笔文章"><div class="nav-group"><p class="nav-caption">💭 智能家居与生活</p><ol class="timeline"><li class="chapter"><a class="chapter-link" href="/thoughts/study-switch-long-press-ac/"><span class="chapter-number">01</span><span>为什么我给书房按键加了「长按开空调」</span></a></li></ol></div></nav><div class="sheet-footer"><a class="sheet-home" href="/">← 首页</a><a class="sheet-home" href="/learn/">求知笔记</a><a class="sheet-home is-current" href="/thoughts/">思考与感悟</a><a class="sheet-home" href="/archive/">归档</a><a class="sheet-home" href="/tags/">标签</a><a class="sheet-home" href="/about/">关于</a></div></div></dialog>
-</body></html>
+<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+<header class="site-header shell">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
+    <nav class="nav" aria-label="主导航"><a href="/">首页</a><a href="/learn/">求知</a><a href="/thoughts/" aria-current="page">思考</a><a href="/archive/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav>
+    <div class="theme-toggle" role="group" aria-label="外观"><button type="button" data-theme-choice="light" aria-pressed="false" title="浅色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span class="label">浅色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="dark" aria-pressed="false" title="深色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg><span class="label">深色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="system" aria-pressed="true" title="系统"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11.5V14"/></svg><span class="label">系统</span><span class="visually-hidden">主题</span></button></div>
+  </div>
+</header>
+<main id="main" class="shell">
+  <section class="page-intro">
+    <h1>思考与感悟</h1>
+    <p>记录日常折腾智能家居、减法工具设计与生活习惯时的真实随笔。</p>
+  </section>
+  <div class="layout">
+    <section class="card card--flush" aria-labelledby="series-list-heading">
+      <h2 id="series-list-heading" class="visually-hidden">思考与感悟文章列表</h2>
+      <ol class="post-list">
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>思考</span><span class="dot" aria-hidden="true">·</span><span>阅读约 3 分钟</span></div>
+  <h2><a href="/thoughts/study-switch-long-press-ac/">为什么我给书房按键加了「长按开空调」</a></h2>
+  <p>折腾智能家居最舒服的时刻，往往不是写出了多复杂的自动化规则，而是当家里的空调遥控器丢了一个，你顺手把空调连进去，给手边的书房按键加了一个「长按开空调」——因为每次坐下来，其实只需要开就行。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t15">智能家居</a></li><li><a class="tag" href="/tags/#t10">书房</a></li><li><a class="tag" href="/tags/#t12">减法设计</a></li></ul>
+</li>
+      </ol>
+    </section>
+    <aside class="aside" aria-label="侧栏">
+      <section class="card">
+        <h2>关于思考与感悟</h2>
+        <p>不追求大而全的系统宏图，只记录那些真正让手头工作和生活变顺手的一点顿悟。</p>
+        <div class="links">
+          <a class="btn btn--secondary" href="/archive/">查看全站归档</a>
+          <a class="btn btn--ghost" href="/">回首页</a>
+        </div>
+      </section>
+      <section class="card">
+        <h2>本栏标签</h2>
+        <ul class="tags"><li><a class="tag" href="/tags/#t15">智能家居 <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t10">书房 <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t12">减法设计 <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t5">Home Assistant <span class="count">1</span></a></li></ul>
+        <p style="margin-top:16px;margin-bottom:0"><a href="/tags/">查看全部标签 →</a></p>
+      </section>
+      <section class="card">
+        <h2>订阅</h2>
+        <p>新文章通过 RSS 推送，没有邮件、没有追踪。</p>
+        <a class="btn btn--primary" href="/feed.xml">订阅 RSS</a>
+      </section>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>© 2026 Lee Pepe · 写代码，也写生活</span>
+    <nav aria-label="页脚"><a href="/feed.xml">RSS 订阅</a><a href="https://github.com/LeePepe">GitHub</a><a href="#main">回到顶部</a></nav>
+  </div>
+</footer>
+</body>
+</html>

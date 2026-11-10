@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Lee Pepe · 写代码，也写生活</title>
-  <subtitle>直击痛点的求知笔记（/learn/）与思考与感悟（/thoughts/）</subtitle>
+  <subtitle>求知笔记（/learn/）与思考与感悟（/thoughts/）</subtitle>
   <link href="https://leepepe.github.io/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://leepepe.github.io/" rel="alternate" type="text/html"/>
   <id>https://leepepe.github.io/</id>
@@ -27,7 +27,7 @@
     <published>2026-11-09T08:00:00+08:00</published>
     <updated>2026-11-09T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="WWDC25"/><category term="WWDC26"/><category term="Liquid Glass"/><category term="SwiftUI"/><category term="OS 27"/>
+    <category term="SwiftUI"/><category term="Liquid Glass"/><category term="WWDC26"/>
     <summary type="html">把 UI 拆成「浮在上面的液态光学控制层（Liquid Glass）」与「沉在底下的全画幅内容流（Pipeline）」——8 节课寻宝图、OS 26→27 进化矩阵与按研发场景 10 分钟精准切入指南。</summary>
   </entry>
   <entry>
@@ -37,7 +37,7 @@
     <published>2026-11-09T08:00:00+08:00</published>
     <updated>2026-11-09T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="Liquid Glass"/><category term="Lensing"/><category term="GlassEffectContainer"/><category term="ToolbarOverflowMenu"/><category term="@State Macro"/>
+    <category term="Liquid Glass"/><category term="SwiftUI"/><category term="光学设计"/>
     <summary type="html">为什么 Liquid Glass 是实时弯折光线的「液态凸透镜」而非磨砂毛玻璃？为什么严禁玻璃叠玻璃？详解 GlassEffectContainer 共享采样区、有色玻璃映射、Toolbar 防挤爆与 @State Macro。</summary>
   </entry>
   <entry>
@@ -47,7 +47,7 @@
     <published>2026-11-09T08:00:00+08:00</published>
     <updated>2026-11-09T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="Metal Shader"/><category term="layerEffect"/><category term="Domain Warping"/><category term="TimelineView"/><category term="alignmentGuide"/>
+    <category term="SwiftUI"/><category term="Metal Shader"/><category term="动效管线"/>
     <summary type="html">拆解 Apple Music 级流体封面与实时歌词：三大 Shader 修饰符选型、Domain Warping 二次噪声采样、TimelineView 无状态时间注入，以及 alignmentGuide 图钉孔位反转法。</summary>
   </entry>
   <entry>
@@ -57,7 +57,7 @@
     <published>2026-11-09T08:00:00+08:00</published>
     <updated>2026-11-09T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="LazyVStack"/><category term="Prefetching"/><category term="reorderContainer"/><category term="dragContainer"/><category term="ScrollView"/>
+    <category term="SwiftUI"/><category term="ScrollView"/><category term="性能优化"/>
     <summary type="html">揪出 LazyVStack 子视图 if 过滤导致内存暴涨、onAppear 废掉帧间预取（Prefetching）三大掉帧元凶；用 .reorderContainer + .dragContainer 解锁纸牌接龙级成叠拖拽与非法弹回。</summary>
   </entry>
   <entry>
@@ -67,7 +67,7 @@
     <published>2026-11-09T08:00:00+08:00</published>
     <updated>2026-11-09T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="AppKit"/><category term="UIKit"/><category term="macOS 27"/><category term="iOS 27"/><category term="Concentricity"/><category term="UIScene"/>
+    <category term="AppKit"/><category term="UIKit"/><category term="窗口适配"/>
     <summary type="html">iOS 27 让 iPhone 窗口在 Mac 镜像与 iPad 上任意拉伸（UIScreen.main、idiom 与 orientation 彻底失效）；macOS 27 AppKit 告别 mouseDown 阻塞循环，拥抱 NSControl.Events 与容器同心圆角。</summary>
   </entry>
   <entry>
@@ -77,7 +77,7 @@
     <published>2026-11-09T08:00:00+08:00</published>
     <updated>2026-11-09T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="WWDC 讲法"/><category term="水管模型"/><category term="图钉对齐"/><category term="技术叙事"/><category term="渐进式披露"/>
+    <category term="技术叙事"/><category term="WWDC26"/><category term="视觉隐喻"/>
     <summary type="html">提炼 6 节高分 WWDC 视觉动效课的 8 步剧本骨架：先亮出贴纸/折纸/纸牌玩具靶子，用水管/图钉/透镜替掉公式，故意展示直觉写法翻车，再用 2 行代码完成画面质变。</summary>
   </entry>
   <entry>
@@ -87,7 +87,7 @@
     <published>2026-11-09T08:00:00+08:00</published>
     <updated>2026-11-09T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="WiFi"/><category term="电磁波"/><category term="2.4GHz / 5GHz"/><category term="无线感知"/><category term="科普脚本拆解"/>
+    <category term="WiFi"/><category term="物理可视化"/><category term="技术叙事"/>
     <summary type="html">把可见光波长放大 25 万倍，穿过客厅只需 30 多纳秒——用冰箱反射、鱼缸吸收、微波炉 1 万倍同频轰炸破案室内断网，并附上「把不可见变成可见」的九步科普脚本拆解。</summary>
   </entry>
 </feed>

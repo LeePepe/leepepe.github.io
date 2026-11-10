@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Liquid Glass 光学第一性原理与 SwiftUI 26→27 实战破案 · Lee Pepe</title>
+<meta name="description" content="为什么 Liquid Glass 是实时弯折光线的「液态凸透镜」而非磨砂毛玻璃？为什么严禁玻璃叠玻璃？详解 GlassEffectContainer 共享采样区、有色玻璃映射、Toolbar 防挤爆与 @State Macro。">
+<link rel="alternate" type="application/atom+xml" title="Lee Pepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+<header class="site-header shell">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
+    <nav class="nav" aria-label="主导航"><a href="/">首页</a><a href="/learn/" aria-current="page">求知</a><a href="/thoughts/">思考</a><a href="/archive/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav>
+    <div class="theme-toggle" role="group" aria-label="外观"><button type="button" data-theme-choice="light" aria-pressed="false" title="浅色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span class="label">浅色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="dark" aria-pressed="false" title="深色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg><span class="label">深色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="system" aria-pressed="true" title="系统"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11.5V14"/></svg><span class="label">系统</span><span class="visually-hidden">主题</span></button></div>
+  </div>
+</header>
+<main id="main" class="shell">
+  <div class="post-layout">
+    <div>
+      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <article class="card article">
+        <header class="article-header">
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t11">光学设计</a></li></ul>
+          <h1>Liquid Glass 光学第一性原理与 SwiftUI 26→27 实战破案</h1>
+          <p class="lede">为什么 Liquid Glass 是实时弯折光线的「液态凸透镜」而非磨砂毛玻璃？为什么严禁玻璃叠玻璃？详解 GlassEffectContainer 共享采样区、有色玻璃映射、Toolbar 防挤爆与 @State Macro。</p>
+          <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>约 4,400 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 10 分钟</span></div>
+        </header>
+        <div class="prose">
+<blockquote><p><strong>一句话结论</strong>：<strong>Liquid Glass 不是以前的「磨砂毛玻璃（散射光）」，而是实时弯折光线的「液态光学凸透镜（Lensing）」</strong> —— 它必须且只能悬浮在 UI 最顶层的<strong>单一导航平面</strong>上，严禁「玻璃叠玻璃」，且由于<strong>玻璃无法采样另一块玻璃</strong>，相邻自定义玻璃控件必须装进同一个 <code>GlassEffectContainer</code> 共享光学采样区。</p></blockquote>
+<h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
+<table><thead><tr><th>抽象概念 / 机制</th><th>关键规则 / 数字</th><th>生活教具 / 直观参照</th><th>物理与工程效果</th></tr></thead><tbody><tr><td><strong>光学折射（Lensing）</strong></td><td>采样区域 <strong>大于控件自身面积</strong></td><td><strong>放大镜 / 水滴透镜</strong>压在画报上</td><td>边缘实时弯折并浓缩下方光线，即便全透明也能靠折射看清轮廓；显隐靠调制折射率而非生硬透明度淡入淡出</td></tr><tr><td><strong>尺寸自适应厚度</strong></td><td>展开为 Menu 时材质<strong>自动变厚</strong></td><td><strong>薄水膜 → 厚水晶块</strong></td><td>按钮弹开成菜单时，阴影更深、边缘折射更剧烈、散射更柔和，自动撑起高密度文字可读性</td></tr><tr><td><strong>小控件 vs 大容器翻转</strong></td><td>小控件随背景翻转明暗；大容器<strong>固定不翻转</strong></td><td><strong>变色龙纽扣 vs 落地窗</strong></td><td>Navbar/Tabbar 滚过深色图会瞬间翻转 Light/Dark；但 Sidebar/Menu 面积太大，翻转会闪瞎眼，故保持稳定</td></tr><tr><td><strong>Regular vs Clear 变体</strong></td><td>Clear 需满足 <strong>3 个严苛前提</strong></td><td><strong>智能调光玻璃 vs 纯净清玻璃</strong></td><td><code>Regular</code> 全天候自适应；<code>Clear</code> 无自适应，仅限富媒体背景 + 允许加压暗层（Dimming）+ 前景粗亮图标时使用</td></tr><tr><td><strong>同心圆角（Concentricity）</strong></td><td>共享<strong>同一个圆心</strong>（外 R = 内 r + 边距 d）</td><td><strong>俄罗斯套娃 / 跑道内外圈</strong></td><td><code>.rect(corner: .containerConcentric)</code> 让弹窗底部按钮自动贴合 iPhone 屏幕或窗口圆角弧度</td></tr><tr><td><strong>OS 27 工具栏缩放防挤爆</strong></td><td><code>visibilityPriority(.high)</code> + <code>ToolbarOverflowMenu</code></td><td><strong>登机随身包（必带）vs 托运行李箱（折叠）</strong></td><td>iPhone 自由缩放窗口变窄时，保住 Undo/Redo 与固定在右侧的 Share，把低频按钮收进折叠菜单</td></tr></tbody></table>
+<h2 id="sec-2">核心痛点问答<a class="anchor" href="#sec-2" aria-label="本节链接">#</a></h2>
+<h3 id="sec-2-1">Q1. 为什么设计师一上来把列表 Cell、背景卡片和顶部按钮全加上 <code>.glassEffect()</code>，界面反而变得脏乱眩晕？<a class="anchor" href="#sec-2-1" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：违背了 Liquid Glass 的第一铁律——<strong>只属于浮在内容之上的「导航与控制层」，严禁下沉到内容层，更严禁「Glass on Glass（玻璃叠玻璃）」</strong>。</li><li><strong>原理与教具</strong>：想象你透过<strong>一副老花镜（顶部导航玻璃）</strong>去看报纸，字很清楚；但如果你在报纸上又叠了<strong>三层凹凸不平的玻璃镇纸（内容层玻璃卡片 + 玻璃按钮）</strong>，光线经过多次折射就会彻底糊成一团。WWDC25 Session 219（<code>13:04–13:44</code>）明确规定：<ol><li><code>TableView</code> / <code>List</code> 必须留在底下做纯粹的<strong>内容层</strong>；</li><li>当需要在玻璃侧栏或菜单之上再放选中态或子控件时，<strong>绝不能再套一层 <code>.glassEffect()</code></strong>，而应该使用半透明填充（Fills）、透明度（Transparency）和鲜明度（Vibrancy），让它像贴在玻璃表面的一层薄贴膜。</li></ol></li></ul>
+<h3 id="sec-2-2">Q2. 为什么我写了两个紧挨着的自定义 <code>.glassEffect()</code> 徽章，展开收拢时边缘折射割裂、也没法像水滴一样融合？<a class="anchor" href="#sec-2-2" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：因为<strong>「玻璃无法采样另一块玻璃」</strong>——没有放进同一个 <code>GlassEffectContainer</code> 的相邻玻璃控件各自为战，必须用容器共享采样区并绑定 <code>.glassEffectID(_:in:)</code>。</li><li><strong>原理与教具</strong>：每块 Liquid Glass 为了做出边缘折射和环境光溢色，都会像<strong>吸管一样吸取比自己面积更大一圈的背景像素</strong>（WWDC25 Session 323 <code>20:00–20:35</code>）。如果两块玻璃分属不同容器，左边玻璃去采样时碰到了右边玻璃，系统禁止“玻璃套娃采样”，就会出现光线断层。放进同一个 <code>GlassEffectContainer</code> 后，它们共用同一张背景采样底片，并在距离靠近时像两滴水珠一样融合成一个液态平面：</li></ul>
+<div class="language-swift highlighter-rouge"><span class="code-label" aria-hidden="true">SWIFT</span><div class="highlight"><pre class="highlight"><code><span class="kd">@Namespace</span> <span class="kd">private</span> <span class="kd">var</span> <span class="kd">namespace</span>
+
+<span class="kt">GlassEffectContainer</span> {
+    <span class="kt">VStack</span> {
+        <span class="kd">if</span> isExpanded {
+            <span class="kt">VStack</span>(spacing: <span class="mi">16</span>) {
+                <span class="kt">ForEach</span>(badges) { badge <span class="kd">in</span>
+                    <span class="kt">BadgeLabel</span>(badge: badge)
+                        .<span class="nf">glassEffect</span>(.<span class="nf">regular</span>.<span class="nf">interactive</span>())
+                        .<span class="nf">glassEffectID</span>(badge.<span class="nf">id</span>, <span class="kd">in</span>: <span class="kd">namespace</span>)
+                }
+            }
+        }
+        <span class="kt">BadgeToggle</span>()
+            .<span class="nf">buttonStyle</span>(.<span class="nf">glass</span>)
+            .<span class="nf">glassEffectID</span>(<span class="s">&quot;badgeToggle&quot;</span>, <span class="kd">in</span>: <span class="kd">namespace</span>)
+    }
+}</code></pre></div></div>
+<h3 id="sec-2-3">Q3. 为什么给玻璃按钮加背景色（<code>.background(.red)</code>）看起来像一块死板的塑料，而系统红色玻璃按钮却像通透的红宝石？<a class="anchor" href="#sec-2-3" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：因为实色填充直接封死了光线折射通道；必须用 <code>.glassEffect(.regular.tint(.red))</code> 或 <code>.buttonStyle(.glassProminent)</code>，让系统按<strong>有色玻璃光学映射</strong>染色。</li><li><strong>原理与教具</strong>：真实世界里的<strong>彩色玻璃酒瓶</strong>，对着太阳看是透亮的浅红，放在阴影里是深邃的暗红（WWDC25 Session 219 <code>16:08–17:20</code>）。Liquid Glass 的 <code>.tint()</code> 会根据你选定的颜色生成一整条<strong>色调映射带（Tone Range）</strong>，实时按照下方滚过内容的明暗度动态调整色相、亮度和饱和度。同时切记：<strong>只给页面最核心的主操作（如「去结算」）加 Tint</strong>，全屏五颜六色的玻璃等于没有重点。</li></ul>
+<h3 id="sec-2-4">Q4. 升级到 OS 27（WWDC26）后，iPhone 窗口也能自由拉伸了，工具栏按钮被挤没、失焦窗口分不清主次怎么办？<a class="anchor" href="#sec-2-4" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：OS 27 提供了<strong>「工具栏三级防挤爆 API」</strong>、<strong><code>@Environment(\.appearsActive)</code> 窗口焦点感知</strong>，以及首次登陆 macOS 的 <strong><code>.interactive()</code> 鼠标点击流体反馈</strong>。</li><li><strong>原理与教具</strong>：在 WWDC26 Session 269（<code>02:17–07:47</code>）的 Stickers 贴纸应用中，当窗口被缩窄时：<ol><li><strong>保核心</strong>：给高频的 Undo/Redo 加上 <code>.visibilityPriority(.high)</code>，给分享按钮用 <code>.topBarPinnedTrailing</code> 钉死在右上角；</li><li><strong>收低频</strong>：把换图、清空等低频操作直接放进 <code>ToolbarOverflowMenu { ... }</code>；</li><li><strong>让出画布</strong>：给滚动视图加上 <code>.toolbarMinimizeBehavior(.onScrollDown, for: .navigationBar)</code>（以及 TabView 的 <code>.tabBarMinimizeBehavior(.onScrollDown)</code>），向下滚动时导航栏自动滑出视野；</li><li><strong>失焦降暗</strong>：在自定义侧栏底部读取 <code>@Environment(\.appearsActive)</code>，当用户切到别的窗口时将自定义头像透明度降为 <code>0.5</code>，与系统玻璃自动退后（Recede）保持步调一致。</li></ol></li></ul>
+<h3 id="sec-2-5">Q5. 为什么在 <code>@State private var store = StickerStore()</code> 里，OS 27 突然既省内存又可能报「init 重复赋值」编译错误？<a class="anchor" href="#sec-2-5" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：因为 OS 27 将 <code>@State</code> 从普通属性包装器升级成了 <strong>Macro（宏）</strong>，把初始化表达式自动改写为<strong>整个视图生命周期只执行 1 次的惰性闭包</strong>（且回溯兼容至 iOS 17 / macOS 14）。</li><li><strong>原理与教具</strong>：在旧版 SwiftUI 中，每次父视图刷新重建 <code>StickerStoreView</code> 结构体时，<code>StickerStore()</code> 都会像<strong>用完即扔的纸杯</strong>一样被重新 <code>init</code> 一次再立刻丢弃（因为 <code>@State</code> 内部沿用旧实例）。OS 27 的 <code>@State</code> 宏根治了这个隐患（WWDC26 Session 269 <code>23:01–24:06</code>）。唯一需要注意的是：如果你在属性声明写了默认值 <code>@State private var page = StickerPage()</code>，又在 <code>init(title:)</code> 里写 <code>self.page = ...</code>，编译器会报错——<strong>直接删掉属性声明处的默认值</strong>即可修复。</li></ul>
+<h2 id="sec-3">立即可用清单<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
+<ul><li><strong>三删三换适配法</strong>：删掉旧工程里 Toolbar/Sheet 背后的自定义模糊遮罩、删掉 <code>.presentationBackground</code>、删掉内容层多余的玻璃材质；换上原生 <code>.buttonStyle(.glass / .glassProminent)</code>、<code>.backgroundExtensionEffect()</code>（让大图自然镜像模糊延伸到侧边栏玻璃下方）与 <code>.rect(corner: .containerConcentric)</code>。</li><li><strong>自定义玻璃必进容器</strong>：只要界面上有 ≥2 个自定义 <code>.glassEffect()</code> 元素需要并排或展开过渡，一律用 <code>GlassEffectContainer</code> 包裹并配对 <code>@Namespace</code> + <code>.glassEffectID</code>，在 macOS/iOS 交互控件上开启 <code>.interactive()</code>。</li><li><strong>为自由窗口缩放加固 Toolbar</strong>：立刻用 <code>.visibilityPriority(.high)</code>、<code>ToolbarOverflowMenu</code> 和 <code>.topBarPinnedTrailing</code> 标记工具栏按钮优先级，防止在 iPhone 窄屏或 Mac/iPad 分屏缩放时核心按钮被系统自动隐藏。</li></ul>
+<h2 id="sec-4">延伸视野<a class="anchor" href="#sec-4" aria-label="本节链接">#</a></h2>
+<ul><li><strong>硬件弧度与软件流体的终极合龙</strong>：从 Mac OS X Aqua 的水滴高光、iOS 7 的实时高斯模糊、iPhone X 的圆角屏与灵动岛，到 visionOS 的空间玻璃，Liquid Glass 第一次让苹果全平台拥有了同一套物理光学底座——<strong>软件控件不再是画在屏幕上的扁平贴纸，而是嵌在硬件圆角边框里、随手指和光线呼吸的真实光学透镜</strong>。</li></ul>
+        </div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/wwdc27-glass-motion/"><span class="dir">← 上一篇</span><span class="t">WWDC25/26 (OS 26 → OS 27) Liquid Glass 与动效 8 节课全景导读地图</span></a><a class="next" href="/learn/swiftui-shader-pipeline/"><span class="dir">下一篇 →</span><span class="t">SwiftUI 27 高级图形与动效管线：Metal Shader 扭曲、时间流与图钉对齐</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+      </article>
+    </div>
+    <aside class="toc" aria-label="本文目录">
+      <p class="section-label">目录</p>
+      <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">核心痛点问答</a></li><li class="l3"><a href="#sec-2-1">Q1. 为什么设计师一上来把列表 Cell、背景卡…</a></li><li class="l3"><a href="#sec-2-2">Q2. 为什么我写了两个紧挨着的自定义 .glas…</a></li><li class="l3"><a href="#sec-2-3">Q3. 为什么给玻璃按钮加背景色（.backgro…</a></li><li class="l3"><a href="#sec-2-4">Q4. 升级到 OS 27（WWDC26）后，iP…</a></li><li class="l3"><a href="#sec-2-5">Q5. 为什么在 @State private v…</a></li><li class="l2"><a href="#sec-3">立即可用清单</a></li><li class="l2"><a href="#sec-4">延伸视野</a></li></ol>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>© 2026 Lee Pepe · 写代码，也写生活</span>
+    <nav aria-label="页脚"><a href="/feed.xml">RSS 订阅</a><a href="https://github.com/LeePepe">GitHub</a><a href="#main">回到顶部</a></nav>
+  </div>
+</footer>
+</body>
+</html>

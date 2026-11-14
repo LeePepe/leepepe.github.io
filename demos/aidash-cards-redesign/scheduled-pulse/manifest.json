@@ -1,0 +1,121 @@
+{
+  "schema": "aidash-cards-redesign/chooser-manifest-v1",
+  "category": "scheduled-pulse",
+  "category_title": "⏱️ 定时脉搏 Card (10套)",
+  "frame": {
+    "width": 1280,
+    "height": 800
+  },
+  "variants": [
+    {
+      "id": "v01",
+      "title": "离站时刻 · Departure Board",
+      "p0": "A 的下一次计划触发还有 00:40；唯一大号时间信号，不把等待时间伪装成健康分。",
+      "axis_y": "单活动行 accordion：任意时刻只有一行可容纳结果、阶段或证据；其余四个任务的命名行始终可见。",
+      "layout": "单块横向离站板：五行共用列网格，A 默认行内展开；没有侧栏、顶部任务摘要或独立详情列表。",
+      "archetype": "Swiss Chrono departure instrument; VS-007 的对齐数字、紧凑时刻与无弹跳操作。",
+      "prompt_file": "prompts/v01-prompt.md",
+      "prompt_sha256": "98114e09c10a84bdb761f926bc706d6d96550b463771608c5ab5551d6e5e6a29",
+      "html_sha256": "c39f7e33acdac90ef4d7cba2c3e6336aa379fa617fc23f7b4bcc2f74fd6b62d8"
+    },
+    {
+      "id": "v02",
+      "title": "待办工单 · One Open Work Order",
+      "p0": "B 的一项演示决策：核对 14m20s 前的旧回执；大字问题而非 KPI。",
+      "axis_y": "工单折页：证据翻开为左纸面内部替换页；同一时间只有一张工单展开，四张侧签保持完整命名。",
+      "layout": "左侧一张展开工单 + 右侧四条收起工单的非对称 1+4 托盘；被选中对象从右托盘迁入左工单而不是复制。",
+      "archetype": "Zen Paper Checklist; VS-005 的一件事、一张纸、明确小动作，采用薄荷色档案纸而非通用灰卡。",
+      "prompt_file": "prompts/v02-prompt.md",
+      "prompt_sha256": "1a21a845417d3cdbc7ba3ef0d9b624062d2a9bf94848bfc1640bba8d95ea5f56",
+      "html_sha256": "05f6a7242c8c9a5f480a350e1b255a720b10b339500d1f64a9489c0356c83e18"
+    },
+    {
+      "id": "v03",
+      "title": "阶段航道 · Stage Lock Chamber",
+      "p0": "D 的五阶段中第 5 段尚待核对；唯一焦点是阶段连续性，不是五个健康分。",
+      "axis_y": "阶段门式局部 reveal：选中一个阶段，五段共用一个下方解释位；整个右舞台又可被“证据”透镜替换。",
+      "layout": "左窄任务 spine + 右横向五段闸室；唯一命名任务集在 spine，选中阶段的内容就地向下揭开。",
+      "archetype": "Precision Swiss telemetry remixed with CL-003 cyan; engineering section, not sci-fi cockpit decoration.",
+      "prompt_file": "prompts/v03-prompt.md",
+      "prompt_sha256": "3102b519f622fe29ca2d29eab0f720b3cbf0c278bde95b8b505e21bba572884b",
+      "html_sha256": "5f0c89ebe4e78410ee4173a0f006f620f54a58effbdd91664e00d9a5b979ab2d"
+    },
+    {
+      "id": "v04",
+      "title": "节奏星盘 · Quiet Cadence Dial",
+      "p0": "E 的下一个日更窗口 04:15 CST；中央只展示该时刻，星盘位置不代表真实时间比例。",
+      "axis_y": "固定节点 + inspector 单透镜；选中节点不旋转，结果/证据替换右侧同一内容位。",
+      "layout": "五个唯一命名节点围绕一只无刻度静态星盘，右侧单选 inspector；没有额外任务列表或图例。",
+      "archetype": "Mindful Focus Recovery; VS-006 的静态呼吸空间，不使用呼吸动画或占星装饰。",
+      "prompt_file": "prompts/v04-prompt.md",
+      "prompt_sha256": "a206f538d11c3f7b45897c26faa5197a932d8279e27e7b47596dde88f11be27a",
+      "html_sha256": "a32a467f0e99cc1192f13f79cb4106e342b5f49ba9fe6a43c932f74581f0323b"
+    },
+    {
+      "id": "v05",
+      "title": "脉冲总谱 · Receipt Score",
+      "p0": "B 的 03:45 旧回执到演示时钟之间的 14m20s 空档；突出缺口，不做整体成功率。",
+      "axis_y": "选中泳道双透镜：时间/证据互斥替换该行的同一绘图区；其他行的命名锚点永远可见。",
+      "layout": "五行共用 03:40–04:20 时间轴的一张总谱；每个 Job 只有一个行首名字，选中行的图带可替换为证据。",
+      "archetype": "Precision Acoustic telemetry; VS-003 的静态音轨秩序，用在运行回执而非虚构波形。",
+      "prompt_file": "prompts/v05-prompt.md",
+      "prompt_sha256": "41c863c9c9fb2f9a3568eec8917f401ac802050247eb3e28bf32825220892546",
+      "html_sha256": "3f70d6cacbc8bc57462cd7e60239ef9ff1de039368be2b3f0a57faf30689b603"
+    },
+    {
+      "id": "v06",
+      "title": "回执账簿 · The Coalesced Receipt",
+      "p0": "C 的合并跳过不是失败；单张大回执解释这个结果，不制造未证实的重试需求。",
+      "axis_y": "回执页折签：摘要/证据共用右页；需要处理与阶段作为页内 disclosure，任一时刻只打开一个。",
+      "layout": "左页五行对齐账簿 + 右页一张反相实体回执；只在左页命名五任务，右页是选中对象的字段投影而非重复摘要。",
+      "archetype": "Warm Editorial Swiss Ledger; VS-002 的借阅账页与明确回执语义，不做金融金额拟物。",
+      "prompt_file": "prompts/v06-prompt.md",
+      "prompt_sha256": "c17d0bf75be1a13a28c3cce81eb4d566ad81d39fc745ca3913e6c7c30b5d4c65",
+      "html_sha256": "6c0f2eed1acf12d70dc1dd5cfc46ea4c1f2fa6edc5648f4efdfe78c1d85729b2"
+    },
+    {
+      "id": "v07",
+      "title": "候选信封 · Three Questions, Two Destinations",
+      "p0": "E 的 3 题候选将交给 Linear & AIDash；目前尚无回执，所以呈“等待候选”而非伪造完成数。",
+      "axis_y": "Z-stack 文件夹口袋：名签固定在五个不重叠槽位，选择只把对应内容页带到前景；证据是内页替换。",
+      "layout": "五个错层但全部完整可见的文件夹名签 + 一块共用展开内页；仅所选文件夹承载内容，非五列相同卡片。",
+      "archetype": "Ambient Tactile utility; VS-004 借用文件夹的空间层次，拒绝五张平铺灰卡与装饰性儿童贴纸。",
+      "prompt_file": "prompts/v07-prompt.md",
+      "prompt_sha256": "536a3f398933715a91cb336e0349a70b2dc2aa7e886c840c9b0cab2de8cf2ab4",
+      "html_sha256": "53128d21045e31bf508c5d5687ade1f1656e76c653e2ce650edc61ab83acd18c"
+    },
+    {
+      "id": "v08",
+      "title": "晨间副刊 · The Unfinished Edition",
+      "p0": "D 的“已有产出，不代表完整交付”一句结果叙事；不再用红绿 KPI 掩盖 partial。",
+      "axis_y": "脚注式行内展开：主文的证据/五阶段在同一文本栏替换正文，点返回恢复，不开第三列。",
+      "layout": "一篇左侧主文 + 右侧四条简讯目录；主文任务与目录四项互斥迁移，没有第五条重复目录项。",
+      "archetype": "Editorial Poster Block restrained to a text-led edition; VS-008 的强标题与不对称版心，不用亮色贴片墙。",
+      "prompt_file": "prompts/v08-prompt.md",
+      "prompt_sha256": "695bd602a5adcd8e47fd4a0b174bb84f3d0a1f9d2db92b007d228d98f20b49a9",
+      "html_sha256": "d6cc5caa42220d88127acf8947a098db7f2e152a965118e3e1766c55616a9e41"
+    },
+    {
+      "id": "v09",
+      "title": "回执地平线 · Receipt Age Silhouette",
+      "p0": "B 的回执年龄约为节奏的 2.87×；这是演示用比值，不是健康结论或真实 SLO。",
+      "axis_y": "柱体内挖式 detail cavity：证据取代所选柱的视觉填充，五个基座不动；回到比值模式恢复。",
+      "layout": "一张五列年龄轮廓图，五个命名基座各一次；选中柱下部变成唯一证据腔体，不再另造 legend/list。",
+      "archetype": "Precision instrument remixed with restrained CL-001 volt; technical silhouette, not fitness rings or a five-KPI bento.",
+      "prompt_file": "prompts/v09-prompt.md",
+      "prompt_sha256": "7606b63d12e3cbdc59d6c7311f0da6047b938523b53d9b016f472215a2b73cef",
+      "html_sha256": "8ee2614a0adcef6cbe5ac24717b1c7bdace74c318e9f2fc607b0285fe56c1d7f"
+    },
+    {
+      "id": "v10",
+      "title": "双速晨历 · Fast Watch, Slow Edition",
+      "p0": "下一个日更预约 04:00 CST（D）；把快轮询与慢日更分开，不显示五个竞争倒计时。",
+      "axis_y": "日历页横向揭页：选中日更的预约体内切换计划/回执；选择快巡检时右部主体替换为其详情，同时两日更命名页签仍可见。",
+      "layout": "左侧三条周期巡检索引 + 右侧仅两项的纵向晨历；五任务跨两域唯一分配，不再汇总复制。",
+      "archetype": "Editorial Swiss calendar; VS-002 的安静纸页 + CL-007 的丁香晨光，不使用网页月历和移动底部导航。",
+      "prompt_file": "prompts/v10-prompt.md",
+      "prompt_sha256": "05c8032088b9bf6dc81e14c6b9e93be1e37f81125356cf81df02d438d538d0a1",
+      "html_sha256": "9b9af5531951b39a595af5bd68a2564de368500f1fddc4805fe3e1bb0420ab13"
+    }
+  ]
+}

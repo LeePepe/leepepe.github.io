@@ -1,0 +1,121 @@
+{
+  "schema": "aidash-cards-redesign/chooser-manifest-v1",
+  "category": "skills-context-roi",
+  "category_title": "📐 Skills 效能与上下文 ROI Card (10套)",
+  "frame": {
+    "width": 1280,
+    "height": 800
+  },
+  "variants": [
+    {
+      "id": "v01",
+      "title": "Token Altimeter · 上下文高度计",
+      "p0": "S12: Search P95 18,400 tok; inspect the oversized-result proposal",
+      "axis_y": "Persistent vertical Lenses; evidence replaces the trailing inspector; other metrics reuse the instrument stage",
+      "layout": "Three-column instrument: narrow lens mast, wide zero-based burn plot, trailing action inspector",
+      "archetype": "VS-007",
+      "prompt_file": "prompts/v01-prompt.md",
+      "prompt_sha256": "3aeaf3afd09162034c97ac4c1ed559e7acdec7899b3de9641e8a582502a56933",
+      "html_sha256": "ef843f6ab8e5e019eb96019bc8859f9980f425e01670042059d485f093994067"
+    },
+    {
+      "id": "v02",
+      "title": "The ROI Ledger · 回报率批注账页",
+      "p0": "S10: Atlas ROI score 0.4; review one low-ROI proposal without claiming monetary return",
+      "axis_y": "Editorial index with a single selected ledger leaf; evidence opens as marginal annotations",
+      "layout": "Asymmetric ledger: slim index, central ranking leaf, wide annotation margin",
+      "archetype": "VS-002",
+      "prompt_file": "prompts/v02-prompt.md",
+      "prompt_sha256": "3c18fa11a4767f888c7eae4340096bbe111172df34ee451cc2b6f97cc1f71f5e",
+      "html_sha256": "b9f2cfc751ffc9b9ccfefa4f3b99a4bee821f9b5b0bee12dd370564fa01100d9"
+    },
+    {
+      "id": "v03",
+      "title": "Pin Check Desk · 固定版本核对台",
+      "p0": "S1: 2 of 8 inspected consumers have pin drift; review a safe alignment plan",
+      "axis_y": "Single-active Quality accordion with inline consumer evidence and a compact supporting proposal rail",
+      "layout": "Wide accordion worktable beside a narrow plan pocket, with product Lenses embedded in the worktable heading",
+      "archetype": "VS-005",
+      "prompt_file": "prompts/v03-prompt.md",
+      "prompt_sha256": "ff64153eae43d7911af50e2183c1dc90e14f9d27d4344f553bf0d8a70ad87a62",
+      "html_sha256": "356efaec698dd6bf3c3b16295787bfc154d3197f60b83c2ffecb955404ee4bde"
+    },
+    {
+      "id": "v04",
+      "title": "Selective Read Gate · 渐进阅读闸口",
+      "p0": "S7: 15% observed deep-read violations; inspect selective disclosure, without inventing an L2 stage",
+      "axis_y": "A gateway chart turns over in place to expose provenance; sibling disclosure metrics occupy mutually exclusive leaves",
+      "layout": "Centered branching reading plane with a shallow left lens index and an inset right intervention column",
+      "archetype": "VS-003",
+      "prompt_file": "prompts/v04-prompt.md",
+      "prompt_sha256": "58824e232fa35022b598316a2f3ed548a65837dcb39d59137e1598322404a133",
+      "html_sha256": "8eb7fef3045ce5e5220164c9cadc22b4769f9931908ca3f3162c392b2ba41523"
+    },
+    {
+      "id": "v05",
+      "title": "Context Atlas · 五片上下文地图",
+      "p0": "S11: Tool results occupy 40% of an estimated 50,000-token context; inspect a result-budget hypothesis",
+      "axis_y": "Direct-select mosaic with a side legend that becomes a slice inspector; other Lenses replace the whole atlas",
+      "layout": "Poster split: large typographic left margin and an area-faithful right mosaic with integrated labels",
+      "archetype": "VS-008",
+      "prompt_file": "prompts/v05-prompt.md",
+      "prompt_sha256": "97562b0a6c2f768cd8da80e9313fe075c4b0cae529578976b29c8a3f301120f5",
+      "html_sha256": "4bb05532cd496a623571c4e296dc342753b49c954078ec98669584d2ef5895cd"
+    },
+    {
+      "id": "v06",
+      "title": "After the Skill · 使用后的安静复盘",
+      "p0": "S8: 18 post-skill edit events across 20 observed sessions; review the associated outcome, not a causal verdict",
+      "axis_y": "A focus-stage evidence curtain replaces the numeric field; alternative metrics are quiet chapter links",
+      "layout": "Centered calm stage flanked by an origin margin on the left and a narrow vertical chapter navigation on the right",
+      "archetype": "VS-006",
+      "prompt_file": "prompts/v06-prompt.md",
+      "prompt_sha256": "eb540cc032d85f5f9fec1b1678534856b60604d1d270fdfe1add4f87c14f1774",
+      "html_sha256": "b244072b755b7e686f75e99825db0b885132f6a327c41cf71c0d5df88a7527eb"
+    },
+    {
+      "id": "v07",
+      "title": "Gate Balance · 拦截与噪声天平",
+      "p0": "S2: review 4 noisy runs out of 40; do not confuse catch rate with recall or precision",
+      "axis_y": "A comparison bridge opens a full-width evidence row below the selected track while sibling Quality findings stay in a compact selector",
+      "layout": "Offset comparison bridge: wide twin-track analysis on the left, narrow decision column on the right, no persistent sidebar",
+      "archetype": "VS-007",
+      "prompt_file": "prompts/v07-prompt.md",
+      "prompt_sha256": "013eea8e071ee9df06483e82864348b9bc931287a7c54bf0cfa520c55dab8924",
+      "html_sha256": "83e929d895fee6496dbabf8727979428523ef88107485302b8d01250881a6514"
+    },
+    {
+      "id": "v08",
+      "title": "Practice Pocket · 加载与实践卡袋",
+      "p0": "S4/S6: Atlas has 40 loads, 12 script executions and 20% observed script touch; inspect the practice gap honestly",
+      "axis_y": "Four solid domain cards retain true overlapping pocket geometry; only the selected front card is readable; evidence pulls out within that card",
+      "layout": "Left overlapping domain pocket stack with one front analytical card and a compact right review slip",
+      "archetype": "VS-004",
+      "prompt_file": "prompts/v08-prompt.md",
+      "prompt_sha256": "9b4a26847c4a446dfca300cff7faf5da148fffcfdddee3f30a937c48fa86c687",
+      "html_sha256": "fc4d67c7a18d74063d42abf3ae162427d64aa09da7f4ddb334927fd10274cb44"
+    },
+    {
+      "id": "v09",
+      "title": "Eval Fieldbook · 健康与评测活页",
+      "p0": "S3: 9 of 12 skills passed audit; inspect three non-passing audit entries separately from eval count",
+      "axis_y": "A foldout audit leaf opens from the selected audit mark; product Lenses are spine tabs; one audit leaf at a time",
+      "layout": "Open fieldbook spread: narrow tabbed spine, large audit page, facing evidence leaf that replaces the review page",
+      "archetype": "VS-005",
+      "prompt_file": "prompts/v09-prompt.md",
+      "prompt_sha256": "e9a22a99879c37f076a2d473dbd86e421f3853162522874188ca17eb7cc0aadb",
+      "html_sha256": "9c7fb49a70dae714ae14b24a9f9dd86591b43e8ced7af531c58b6faa84c2cbfb"
+    },
+    {
+      "id": "v10",
+      "title": "Escape Casebook · 归因分诊卷宗",
+      "p0": "S9: 5 [SPEC_GAP] escape records; review specification evidence rather than routing blame automatically",
+      "axis_y": "Two attribution branches lead into one selected case leaf; an evidence file opens in place; no modal pile",
+      "layout": "Bifurcated casebook: left domain rail, upper two-lane attribution plot and lower selected-case dossier within one solid stage",
+      "archetype": "VS-002",
+      "prompt_file": "prompts/v10-prompt.md",
+      "prompt_sha256": "6e43e1371fa2776bb9ebd3d87643402977b7c265d57b61ea8ab976ce737f1390",
+      "html_sha256": "745ec1c315262a35d359f5c602fef40e89c6638dfeec362c2f2b78990cae2be6"
+    }
+  ]
+}

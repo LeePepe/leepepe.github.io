@@ -1,0 +1,50 @@
+# v04 — Segmented Glass Lens Todo Board
+
+## The lens is a view, not another task
+Build a quiet Todo board whose only animated navigation object is a sliding optical lens. A focused task “完成青屿手册的校样” remains above a replaceable list scene. Changing status looks like looking through another window, not jumping between dashboards. Routing coordinates: VS-003 Precision Acoustic with VS-005 paper restraint; CL-003 sonic cyan, solid light/dark reading planes. X: one P0 focus object/complete; P1 three-state list lens; P2 voice-add and runner actions behind a disclosure; P3 notes in sheet/inspector. Y: mutually exclusive segmented scenes, never three stacked status lists. Z: floating functional lens above solid list and content. This is a complete standalone prompt for later sandbox HTML, not a shared template or production AppTheme decision.
+
+## Mobile: bottom lens, empty upper air
+Fill100vw ×100vh at390×844, inside the OUTER chooser's Dynamic Island bezel. Native title “待办” is small at x24/y86; keep y112–184 empty. A single hero line block at x28/y198/width334 reads the P0, with its circular checkring at x28/y294 and “今天只推进这一件” in subordinate ink at x72/y304. Sibling list occupies x24/y386/width342 and has two78px rows visible at a time; it scrolls independently with bottom padding160. There are no top status capsules.
+
+At x20/y688/width350/height64 place the segmented lens with three equal-width44px targets labeled “待处理”, “AI 执行中”, “已完成”. A shallow clear selection lens slides under the active label within ONE optical container; adjacent segments are not separate panes of glass. A quiet “补录待办” disclosure at x136/y770 opens the voice accessory at x20/y652/width350/height158 and moves the lens to y576/height64, leaving a12px gap. The sibling scroll well then ends at y564; these functional surfaces must never overlap. Seven bars and unfilled capture button share that accessory. No second primary blue button. Starting capture does not hide the focused task.
+
+Selecting a task opens a half detail sheet y410 with a full detent y96. Glass is only the grabber/actions strip; detail prose is opaque L1. Lens selection and list scroll restore on dismiss. The focus task is intentionally outside sibling status filtering and is not copied into any segment. Once complete it remains as the sole subdued focus receipt until explicit “选择下一项”; do not automatically create a second hero.
+
+## Desktop: native toolbar lens and board, not phone enlargement
+At1280×800 the outer frame owns traffic lights. Native app toolbar y40–84 has the same three-segment lens at x424/width360/height36, not a bottom-tab navigation bar. Focus is a narrow typographic column x72/y180/width312. The active sibling scene is a broad vertical list x448/y150/width456. Opening detail inserts a trailing inspector x944/width288 and shortens the list's measure to fit without squeezing the focus typography below its minimum. The inspector is initially collapsed, leaving an intentional empty right margin. Voice accessory is attached to the focus column's lower edge x72/y664/width312/height84; it is a task workbench accessory, not floating desktop navigation. Selection, filter and keyboard focus persist across the scene swap; list rows never scale up from390px phone geometry.
+
+Below920px the lens belongs to the lower touch zone; at920px and above it relocates to the native toolbar while the state remains the same. Reference coordinates must become available-width constraints, never a fixed390px body. When height is short, scroll the list with padding above the lens/voice regions instead of overlapping them. Respect prefers-reduced-motion: reduce for both selection-lens travel and waveform; do not add a visible motion setting. Scene selection and capture draft persist across resize.
+
+## Local data and event contract
+Initial siblings: pending “校正风铃目录” and “检查示例脚注”; running “整理溪谷摘要”; done “归档纸片版本”. Lens counts derive from this state and exclude the pinned P0. Active scene begins 待处理. Arrow Left/Right moves segment focus; Enter/Space commits, pointer click commits directly, aria-pressed reflects selection. An empty scene shows a short native empty message and “回到待处理”, not decorative cards. “全部” is available in the lens's accessible contextual menu and uses the same scene area, not an added fourth pill.
+
+Task text selects; custom circular completion buttons independently toggle aria-pressed. Check draws140ms; row fades to70% ink for180ms; the active lens briefly gains a 1px success rim, no screen-wide flash. If row leaves the chosen status, move focus to the next visible row before a220ms collapse. Undo appears for5s inside the list scene and remains in detail history; undo cancels stale removal callbacks. A completed hero never vanishes during an open sheet. Notes, action steps and runner use one active accordion in mobile detail; desktop inspector can show steps plus one-line runner but notes stay folded.
+
+Runner begins only on “运行三步”: 待命 → 排队(250ms) → 第1/3步 → 第2/3步 → 第3/3步 → 完成, 800ms per step. Stop pauses; Continue resumes; Retry clears only runner progress. A synthetic blocked outcome in runner overflow exposes “重试” with clear reason “示例执行已暂停”, not a false network error. Running must not silently check completion buttons.
+
+## Voice-add and decomposition states
+Idle is hidden behind “补录待办” until requested. Once exposed, hold>=180ms on voice enters Listening; release enters Refining for850ms; Done shows exactly3 child action items with a quiet Apply action. Tap or focused Enter toggles listening/stop; held focused Space supports hold/release; no repeated-key activation or post-hold click duplication. Seven waveform bars use heights8,13,22,29,22,13,8px, no actual audio input.
+
+Use the synthetic utterance “整理青屿手册：读完校样，标出错字，写修改清单”. Resolve exactly “读完一轮校样”, “标出需要修改的错字”, “写一份修改清单”. Quick-add context creates one new parent and three children only after “加入待办”; existing-parent “语音拆解” updates that parent's generated children only after “应用三步”. Do not overwrite preexisting children without confirmation. Accepted session IDs prevent duplicate inserts. Cancel/Escape, pointercancel, lost capture, page exit and cancellation while Refining discard preview and restore pre-session data, cancel timers and return Idle. Done supports rerecord or discard. No network, microphone permission, clipboard or personal content; all runner/capture activity is visibly synthetic within task context.
+
+## Measured style and optical construction
+Use native stack -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text". Mobile P028px/650/37px, title17/600/25, row17/450/26, lens/meta13/550/19. Desktop P034/620/44, row15/450/23, toolbar13/550/20, meta12/450/18. Keep four font sizes per pane maximum. Spacing base4, icon gap6, row padding16, section32, hero-to-list56. Minimum container padding18; internal gaps<=12. CJK wraps; numeric values are tabular, never ellipsized or clipped.
+
+Light L0 #F0F6F9, L1 #F6FAFC, L2 #FFFFFF; ink #18313F, secondary #526B7A, accent #086987, success #226B49. Dark L0 #101E29, L1 #172A36, L2 #1D3442; ink #EEF8FC, secondary #AEC4D0, accent #80DDF0, success #95D9B6. Surface polarity is solid pale paper/dark ink in light, deep acoustic blue/pale ink in dark; never translucent task rows. Text>=4.5:1 and large focal text>=3:1. One focus ring/active segment is chromatic; do not make all states fluorescent.
+
+Optics have three isolated layers: ambient cyan radial light behind the lens (opacity.12/.08), transparent lens shell, solid readable label/control layer. Shell blur(28px) saturate(190%) and -webkit-backdrop-filter with identical values; tint rgba(255,255,255,.28) light or rgba(31,67,86,.42) dark; radius30 mobile/18 desktop. Inset top Fresnel 0 1px 0 rgba(255,255,255,.75), shadow0 10px 28px rgba(13,56,81,.16), rim rgba(255,255,255,.25). Sliding selection uses a rim/transparent wash inside this same shell, not a second backdrop sampler. Optional clean Chromium Snell/Fresnel distortion<=2px samples background only and excludes labels. WebKit omits it. HTML is an approximation, not native glass. Reduced transparency/unsupported backdrop yields opaque L1 plus inset rim; no content distortion.
+
+## Bespoke stroke controls
+Each inline SVG: viewBox="0 0 24 24", fill="none", stroke="currentColor", stroke-width="1.7", round linecaps/joins. Exact paths:
+- Lens/status: M3 7h18v10H3Z M9 7v10M15 7v10
+- Completion: M5 12l4 4L19 6
+- Voice: M9 5a3 3 0 0 1 6 0v7a3 3 0 0 1-6 0V5 M5 11v1a7 7 0 0 0 14 0v-1 M12 19v3M9 22h6
+- Expand voice: M7 14l5-5 5 5
+- Details: M5 4h14v16H5Z M9 9h6M9 13h6M9 17h3
+- Runner: M9 5l10 7-10 7Z
+- Close: M6 6l12 12M18 6 6 18
+- Back: M14 5l-7 7 7 7
+Draw checkring with circle center12,12/r10, not a square checkbox input. Symbols are not emoji or Unicode icon characters.
+
+## Guardrails and evidence expected later
+Mobile targets>=44px, desktop>=28px invisibly padded, focus2px/offset3px, accessible pressed/expanded/selected states, keyboard menu navigation, sheet focus trap and return required. Reduced motion makes lens position immediate and bars static, with80ms opacity only. Live status is polite and transition-based, not per animation frame. Keep scroll padding above accessories and support200% type. Retain page-config and trusted outer chooser postMessage theme/platform hooks; do not add internal platform/theme/design-selection controls. Ban inner website headers, footer disclaimers, Active/Matte debugging, 28×28 ruler boxes, raw checkbox inputs, rich-r3.css, .caustic-veil and repeating-linear-gradient stripes. Native app toolbar remains allowed. If entering capture home, preserve frozen baseline read-only: zero top capsule, huge whitespace/single sentence, bottom glass sheet, hold/release seven bars, bottom-leading Fold unfolding Todo List and Settings. Stage2 must verify390×844 and1280×800 in both appearances, each lens including empty/undo, detail dismissal, all capture paths, exactly-three decomposition and runner stop/retry. This prompt's validation is textual, not a fabricated browser result.

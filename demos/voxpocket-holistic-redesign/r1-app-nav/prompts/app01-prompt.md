@@ -1,0 +1,111 @@
+# app01 — Fold-Sheet Hub & MenuBar Island
+
+## HTML sandbox · A quiet desk with one unfolding drawer
+
+Design a complete VoxPocket navigation experiment, not a marketing page and not production SwiftUI. The opening iPhone is the frozen r3/v02 capture composition. Everything beyond it behaves like pulling open a beautifully fitted drawer: a short Fold hub, then a depth-first sheet stack, then a precise action receipt. On macOS, the equivalent is an unobtrusive camera-avoiding MenuBar Island that hands a finished thought to a three-column workbench. Do not turn this into cards swiped sideways, a segmented single-stage lens, or a permanent phone tab bar.
+
+This is one independently specified candidate for Stage 2 implementation. Read the supplied read-only baseline/original/v02.html, baseline/original/round3.css and baseline/interactive.html as composition references. Do not link the legacy adapter/runtime into the new page: it contains prohibited stripes, square inputs and obsolete click behavior. Preserve composition, not those defects. Use only synthetic in-memory data. No microphone permission, audio API, model service, analytics, external font, network request, personal document or real clipboard read.
+
+**Direction:** native mobile Sheet + NavigationStack; native desktop NSPanel + NavigationSplitView. Taxonomy coordinates: **VS-003 Precision Acoustic & AI Studio**, **CL-003 Deep Slate / Sonic Cyan**, with restrained CL-006 paper luminance. Dimensions: layout-navigation, glass-material, typography-copy, motion-interaction. **X:** P0 capture or the current action, P1 navigation/decomposition, P2 recent notes/receipt/filter, P3 model configuration/export. **Y:** single-active sheet stack and collapsed remaining queue. **Z:** opaque content at 0, ambient aura behind functional chrome, optical drawer rim at 10, readable controls at 11, transient settings/receipt at 20. These are exploratory coordinates, not a selected AppTheme.
+
+## First frame: the non-negotiable iPhone root
+
+The page fills **100vw × 100vh**. At the outer chooser's **390×844 Dynamic Island** viewport there is no internal bezel, status mockup or top capsule. The baseline stage occupies x=24..366, y=0..694, with its one sentence centered around y=347, maximum width 330. Preserve the baseline 25px/650/33.75px sentence with -0.03em tracking; do not insert an app title, greeting, stats, card or navigation at the top. Idle may show the inherited single cue “准备好时，轻触底部玻璃。”; only the bottom feedback changes to explain hold/release. Listening and Done replace that same sentence, never add a transcript column.
+
+The full-width bottom sheet is x=0, y=696, w=390, h=148, top corners 24px, bottom corners zero. Seven waveform bars remain bottom-leading, x=22, bottom=28, width=4 each, gap=4, resting height 10, maximum listening height 29. The recording button remains bottom-trailing, right=22, bottom=24, 44×44 invisible hit area. Fold remains bottom-leading at left=18, bottom=84, minimum 44px tall, labeled “Fold”, with a bespoke folding icon. The root has enormous empty air and exactly one P0: hold to record. Never recolor or reposition this common frozen root to differentiate this candidate. All candidate-specific composition begins after Fold, or on macOS.
+
+Fold first expands in place into a 212px-high functional drawer above the baseline sheet. Its two direct destinations are **Todo List** and **Settings**; a collapsed “最近速记” disclosure houses the P2 notes entry. No extra permanent capsule. Fold again closes the drawer without losing a Done result. Choosing a destination closes the hub; the frozen canvas becomes inert beneath the active presentation.
+
+## How the drawer turns into a complete app
+
+All graph content IDs remain exact: `r3v02_capture`, `todo_list`, `todo_detail`, `voice_notes`; overlays are `settings_sheet` (sheet) and `runner_status` (popover). Bind app01 to scheme 1 of the supplied voxpocket-app-flows.json. Preserve `architecture.kind=stack`, root r3v02_capture, destinations [r3v02_capture,todo_list,voice_notes], primary {screen:r3v02_capture,action:0}, sheet settings_sheet, overflow [{screen:r3v02_capture,action:3},{screen:voice_notes,action:3}], collapse_title=true. A content route may be visually presented in a detented drawer without changing its graph role to an overlay.
+
+**Mobile Todo:** pushing todo_list opens the drawer at medium **45vh**, anchored to the viewport bottom; expanding reaches **80vh**, with explicit height and max-height, never an unbounded page. Thus medium top=464.2 and large top=168.8 at 844px. The drawer covers the old recording controls, which are inert and not separately actionable. Within it, use a 4×36 grabber, 44px native navigation row, 24px side padding, 28px gap, then one opaque focus surface. The focus task “整理会议决定” sits near the drawer's leading edge, not in the frozen root center. A 22px circular completion ring inside a 44px semantic button is its only prominent action. Below is a plain P1 “语音拆解成三步” text action. “其余 2 项” is a closed single-active accordion; the receipt and status filter sit behind that disclosure. Half-height contains only title, focus, decomposition and the collapsed queue, not a crowded list. Full-height exposes the chosen queue. Provide both drag and labeled expand/collapse actions through the grabber button.
+
+**Mobile details:** todo_detail is a push within the same drawer, keeping height, scroll and source selection. A short source sentence, three editable-state-free action rows and one “执行三步行动” action form two content groups. The three synthetic steps are “确认输入 / 复核摘要 / 留下回执”. Their custom checkrings have the same semantics as the focus task. Back pops to the true caller; when entered by notes it returns to notes, not an unrelated Todo root. The graph's todo_list fallback is used only if no caller history exists.
+
+**Mobile notes:** the P2 capture entry opens voice_notes by push. Use a simple chronological list of three synthetic notes with an indented date, not another glass card grid. Initial selected note is “下周发布准备”; its preview replaces the list body when opened. “转为行动项” is the one P0 for the selected preview. A native Back row returns to the list; its outer Back returns along the drawer history. A P2 filter disclosure selects 最近/全部 and visibly changes the list. Overflow contains export. “新建速记” switches to the capture root and closes the drawer, retaining notes selection for later.
+
+**Mobile models/settings:** Settings is a separate sheet over the caller. Medium 45vh, large 80vh, opaque body, functional glass top edge only. Show “本地模型 · 就绪” and “云端模型 · 未配置” as two text rows; never solicit a key or offer a fake connection. “选用本地模型” commits and dismisses, with a consequence receipt on the previous screen. A collapsed model-routing disclosure opens runner_status. Nested receipt dismissal restores settings, not the capture root.
+
+**Mobile runner:** anchor the status popover to its invoking receipt/run control; on compact width present a maximum 342px-wide, max-height 45vh dialog without clipping. It shows a synthetic phase and exactly one three-row receipt, not a duplicated task list. Refresh advances one deterministic phase. Close/outside/Escape dismiss only this layer and restores focus. Opening settings or a new main route first closes the old unrelated popover; never leave invisible modal interceptors.
+
+## Desktop: island to three-column workspace, and back
+
+The same page adapts to the outer **1280×800 traffic-light bezel**; do not draw duplicate traffic lights or a second window frame. Initial desktop capture is a MenuBar Island at x=420,y=18,w=440,h=88 with a shallow centered notch-avoidance recess in the optical shell, never a fake camera cutout. Its text and controls occupy side lobes away from the recess. The synthetic desktop behind it is quiet neutral paper, not a screenshot of a real user's files. Idle has hold control, short intent cue and muted shortcut labels. While Listening it grows to h=132, retaining its top anchor and seven bars. Done replaces raw text with the refined sentence and a single prominent “在工作台打开” action; a quiet “再录一句” action does not compete.
+
+Opening the workspace hides/inerts the island and expands to the full inner viewport. Native app action toolbar height 44; sidebar width 184; center width 760; inspector width 336 at 1280. Sidebar is navigation, not a website header: 录音 / 待办 / 速记 with Settings at its lower edge. Toolbar has contextual Back and the current route action; no bottom floating dock. Column bodies have 20px internal padding and 28px structural gaps. Todo center uses one focus row with a leading checkring, folded remaining tasks, and whitespace; selecting detail binds the right inspector to the same todo_detail object rather than displaying a duplicate focus card. The inspector hosts the one “执行三步行动” P0 only while a detail is selected; demote completion in the center while the inspector owns action focus.
+
+Desktop capture in the center has one sentence and a top-trailing hold button. Notes center is a selectable chronological table with solid rows; the inspector holds the selected preview and Convert action. Settings is a 420px-wide attached sheet, with its caller retained; runner_status is an anchored 320px-wide popover, including a return path to settings if opened there. Workspace toolbar “收回浮岛” hides the workbench, restores the island with current result, and saves route/selection/column scroll. The island's “在工作台打开” restores that snapshot. Opening via ⌥Space or ⌥⇧Space reveals the island in the current HTML viewport; these are simulated in-page shortcuts, not global OS registration. No mobile tab strip on macOS.
+
+## Operative graph/action ledger
+
+Use the graph dispatcher for visible controls, keyboard equivalents and drawer choices. Indexes below are zero-based. Do not merely display commit counters; update the synthetic domain object and give a specific inline receipt. The global architecture primary binding stays capture/0, but its visible presentation is suppressed while a different route or modal owns the single P0.
+
+| Screen / action | Frequency | Commit / transition and visible consequence |
+|---|---|---|
+| r3v02_capture / 0 | P0 | `voice_capture` on successful Done only; one synthetic note added, no commit on hold/cancel |
+| r3v02_capture / 1 | P1 | `pushScreen(todo_list)` from Fold Todo List |
+| r3v02_capture / 2 | P2 | `pushScreen(voice_notes)` from Fold recent disclosure |
+| r3v02_capture / 3 | P3 | `toggleSheet(settings_sheet)` from Fold Settings, graph overflow |
+| todo_list / 0 | P0 | `todo_completed`; toggle focus completion with 5-second Undo, preserve its ID and selection |
+| todo_list / 1 | P1 | `todo_decomposed` then `pushScreen(todo_detail)`; exactly three unique steps, repeat is idempotent |
+| todo_list / 2 | P1 | `switchTab(r3v02_capture)`; close drawer, restore frozen root/result |
+| todo_list / 3 | P2 | `togglePopover(runner_status)` inside queue/receipt disclosure |
+| todo_detail / 0 | P0 | `runner_started` then `togglePopover(runner_status)`; explicit review precedes execution |
+| todo_detail / 1 | P1 | `popScreen(todo_list)` fallback, otherwise actual source history |
+| voice_notes / 0 | P0 | `note_to_todo` then `pushScreen(todo_detail)`; reuse existing conversion for that note ID |
+| voice_notes / 1 | P1 | `switchTab(r3v02_capture)`; new synthetic capture intent |
+| voice_notes / 2 | P2 | `notes_filtered`; closed filter disclosure changes rendered rows and empty state |
+| voice_notes / 3 | P3 | `notes_exported`; overflow reveals a selectable plain-text export preview of synthetic notes only |
+| settings_sheet / 0 | P1 | `model_local`, `dismissOverlay`; “已选本地模型 · 下一段使用离线模拟” |
+| settings_sheet / 1 | P2 | `togglePopover(runner_status)`; preserve settings as suspended caller |
+| settings_sheet / 2 | P3 | `dismissOverlay`; restore exact opener focus |
+| runner_status / 0 | P1 | `runner_receipt`; accepted → running → completed, record one visible phase receipt |
+| runner_status / 1 | P3 | `dismissOverlay`; pop only current modal layer |
+
+## Type, paper polarity and optical construction
+
+Use the exact native font stack **-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text"** with a final sans-serif fallback; no downloaded typeface, monospaced font substitution or decorative serif. Size/weight/line-height in CSS pixels: frozen sentence 25/650/33.75; mobile route title 28/650/34; task/body 17/500/24; utility/caption 13/500/18. Desktop route title 24/650/30; body/task 13/500/19; toolbar 13/600/18; caption/shortcut 11/500/16. Use at most four sizes in any visible pane. Tabular numerals for time and counts, normal tracking except the frozen sentence. Wrap CJK naturally, allow long task titles to grow; never ellipsize numeric data or render raw localization keys. Sentence and task text stay fully readable.
+
+Phone root light colors remain baseline: background aura white over #EAF5F8 to #DCE8F4 to #EEF8F7, ink #122033, muted #607287. Root dark uses #142837 to #1A293C, ink #EBF3F9, secondary #B6C7D5. The inherited 25px muted cue is large text (minimum 3:1); small feedback/control labels use the existing root primary ink on a stable readable backing for 4.5:1, without moving or adding any root element. After Fold and in desktop workbench, light L0 #F2F7FA, L1 #F8FBFD, L2 #FFFFFF, main ink #122033, secondary #526579, interactive cyan ink #116B85; dark L0 #0E1117, L1 #151D27, L2 #1D2936, main ink #EBF3F9, secondary #B6C7D5, cyan #70DAED. Recording state coral is #B42343 light / #FF8DA8 dark, always accompanied by text. Ninety percent neutral; accent only active selection and P0. Completion green ink #186945 / #78DCAE. All readable text must meet 4.5:1 on its actual resolved opaque backing; large title minimum 3:1. L0→L1→L2 brighten in both appearances; no inverted white content tile in dark mode.
+
+Use a 4px spacing unit, atoms 4, padding 20 mobile / 16 desktop, sections 28 or 32. Drawer radius 28, internal solid focus surface 16; do not outline every row. The glass belongs only to Fold drawer chrome, island, app toolbar and transient overlay rims, never task rows or note text backgrounds.
+
+Three optically separate parts are mandatory: (1) ambient aura behind the glass, a nonrepeating radial cyan at 18% and indigo at 10%, blurred 36px, static and unable to intercept input; (2) transparent optical shell, white at .30 light or #142837 at .62 dark, **backdrop-filter blur(28px) saturate(190%) and -webkit-backdrop-filter blur(28px) saturate(190%)**; (3) sharp solid foreground/content, excluded from every blur/displacement. Add **inset 0 1px 0 rgba(255,255,255,.75)** Fresnel, a .5px rim white/.36 light or white/.18 dark, shadow 0 18px 48px rgba(18,45,68,.16) light / rgba(0,0,0,.32) dark. Keep glass inside one sampling group so it never samples another glass layer. A settings body is opaque L1, with only its functional edge/chrome optical. WebKit uses this clean blur/rim fallback. Chromium may add a signed squircle Snell/Fresnel backdrop map at max 3px displacement, clipped to the edge of the shell, never applied to text, icons, solid content or the whole app. This HTML is an approximation of native Liquid Glass, not native rendering. On window blur automatically dim accents and soften rim to .30; no Active/Matte control. Reduce Transparency uses an opaque L1 shell and the same readable foreground.
+
+## Bespoke controls: exact path dictionary
+
+Every icon below uses a **24×24 viewBox (0 0 24 24)**, **fill none**, **stroke currentColor**, **stroke-width 1.7**, round linecap/linejoin. Each semicolon separates separate path elements. Render them as inline SVG, not Unicode substitutes. They are route/action icons, not gallery decorations.
+
+| Control | Exact SVG path data |
+|---|---|
+| Hold microphone | `M9 5a3 3 0 0 1 6 0v7a3 3 0 0 1-6 0V5Z`; `M6 10v2a6 6 0 0 0 12 0v-2M12 18v4M9 22h6` |
+| Fold drawer | `M4 5h16v6H4z`; `M4 11l3 8h10l3-8M9 8h6` |
+| Back | `M14.5 5.5 8 12l6.5 6.5` |
+| Circular completion | `M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z`; checked mark `M7.5 12l3 3 6-6` |
+| Notes | `M6 3.5h9l3 3V20H6z`; `M14.5 3.5V7H18M9 11h6M9 15h5` |
+| Model route | `M4 6h6M14 6h6M4 18h6M14 18h6M8 6v12M16 6v12`; `M6 9h4M14 15h4` |
+| Run | `M9 6.5 18 12l-9 5.5z` |
+| Close / cancel | `M6 6l12 12M18 6 6 18` |
+| Workspace return | `M3.5 5.5h17v13h-17zM8 5.5v13M3.5 9.5H8` |
+
+Custom checkrings are real semantic button elements with aria-pressed, a task-specific accessible name, a visible circle and an actual checked path; never raw checkbox inputs. Only the glyph is 22–24px; mobile hit regions are **at least 44×44**, desktop **at least 28×28**, preferably 32. No visible ruler or debug hitbox. Icon-only controls have names; decorative SVG is hidden from assistive technology. Do not nest the completion button inside a row-selection button: use separate siblings.
+
+## State choreography, navigation safety and host contract
+
+Idle → Listening on primary pointer-down/hold; set pointer capture and start seven unequal bars at deterministic phases. Pointer-up/release → Refining immediately; stop bars and show “正在整理” in the existing feedback line. At 900ms → Done, replace the single sentence with “整理发布决定，确认下一步行动。”, commit voice_capture exactly once and select that synthetic note. Holding again from Done starts a new capture, preserving the previous committed note. Pointercancel, lost capture, Escape, page hidden or focus loss while held cancels pending capture/refinement and returns to Idle without note/step creation; invalidate stale timers. A primary press while Refining cannot start a second request. No synthetic click after pointer-up may restart capture. Focused Space keydown/up is hold parity; Enter or assistive activation offers start/stop toggling without requiring a sustained gesture. ⌥Space captures text, ⌥⇧Space captures a Todo draft; do not intercept keys in editable fields or consume repeated keydown. Labels explain these in the native island feedback, never a debug toolbar.
+
+Todo completion updates counts and the collapsed queue, shows a concrete Undo receipt and retains selected item ID. Decomposition makes precisely three steps once. Runner phases are accepted/running/completed, advancing by 600ms simulated ticks or the explicit refresh action without duplicating completion; reopening shows the same receipt. An inline “重试模拟” appears if a local state operation fails, without pretending a network error occurred. Empty Todo shows one calm “暂时没有待办” message and a plain return-to-capture action; no-result Notes offers clear filter. Every selection/undo/filter/route survives opening and closing an overlay for the life of this HTML document.
+
+Back order: cancel active uncommitted recording first, then dismiss top popover, dismiss settings, pop content history, collapse Todo drawer, close Fold hub. Outside tap dismisses only dismissible overlays; interaction within a sheet never leaks to the recording button beneath. Root has no inert Back button. Store opener focus and return it, trap focus only for modal presentations, and inert hidden panes. Touch drag is confined to the sheet grabber; vertical list scroll must not close it. Provide visible 3px focus rings with 3px offset, logical Tab order and no hover-only actions. At prefers-reduced-motion remove waveform looping, spring morph, parallax and smooth scrolling; use static unequal bars and immediate state changes or ≤100ms opacity. At increased text size keep 44px targets, wrap content, independently scroll drawer bodies and preserve the bottom safe area; never shrink text to fit. Pad mobile bottom interaction above the 34px home-indicator area without moving the frozen baseline anchors.
+
+Keep the scaffolded **page-config** application/json block intact: schema navigation-page/v3, id app01, supplied platform, scheme, coordinates/provenance if present, anti-pattern and style fields. Do not forge new graph IDs. Route all action bindings through the same declared action indices; preserve the callable navigationDemo dispatcher/currentScreen surface if supplied so browser tests can inspect real state. Do not retain the canonical starter's visible context paragraph/large gallery title or generic debug actions.
+
+The outer chooser alone owns framing, platform, theme, stars and selection. Respond to inherited same-origin parent **postMessage** hooks `rich-theme` with theme light/dark and `rich-platform` with platform phone/desktop (accept mobile/macos aliases mapped internally); validate event.source===parent and origin, treating file: null origins only as local-preview compatibility. Unknown values do nothing. Respect the chooser's direct data-theme mutations on documentElement/body too, and viewport resize as fallback when no explicit platform arrives. Switching phone/desktop retains current logical route, task ID, note selection and settings state; never runs a capture twice. Emit existing rich-nav route notifications only if the host uses them, not invented selection messages. Never add inner theme/platform/variant controls.
+
+## Stage 2 acceptance and absolute refusals
+
+Test actual Chromium and WebKit at 390×844 and 1280×800, light and dark. Capture root Idle/Listening/Refining/Done plus open Todo/detail/settings/runner and workspace↔island transitions. Verify sheet detents, true caller Back from Notes conversion, nested settings→receipt→settings return, one note per release, cancel with no commit, completion Undo, three-step idempotence, filter no-result recovery, export preview, model receipt, pointer/keyboard parity and host hooks. Assert no horizontal overflow, clipped labels or numeric ellipses; inspect pixels as well as computed styles. This prompt's static completeness is not a browser validation claim.
+
+Absolutely no `.caustic-veil`, no `repeating-linear-gradient` stripe/caustic textures, no shared `rich-r3.css` gray template, no raw checkbox inputs, no inner website headers, no Active/Matte debug controls, no 28×28 ruler boxes, no footer disclaimers, no nested device bezel, no inner gallery theme/platform/selection buttons. Legitimate native route navigation/titlebars/action toolbars specified above are allowed. No other candidate's prompt or shared prompt-template is needed to implement this complete scheme.

@@ -1,0 +1,56 @@
+# v04 — MenuBar Popover Glass Studio
+
+This design lives at the upper-right menu-bar anchor. Think of a compact recording atelier pulled down from a single status item, with a bright optical tool shelf above a quiet three-note cabinet. Preserve the MenuBar popover identity, dual-depth optics, and access to exactly three recent synthetic notes. Do not turn it into a centered Spotlight clone.
+
+## Start from the anchor
+
+The content page fills `100vw × 100vh`, at 1280×800 inside the OUTER chooser's macOS traffic-light bezel. No duplicate bezel or full fake macOS menu bar. One legitimate app menu-status anchor occupies x=1180, y=12, 32×28px. Initially its attached popover is already open for discoverability: x=832, y=52, width=380, height=384, radius=22, with a restrained 10px neck pointing to the anchor. Anchor click or `Command+Shift+M` dismisses/restores it without losing a Done result. This anchor is real application navigation, not a gallery/platform switch.
+
+The popover has a 72px functional glass shelf with a leading 40px capture button, seven bars in the center and a trailing workspace-expansion icon. Under the shelf place an opaque 332×144px transcription/result well inset 24px, with 20px vertical clearance. At the bottom of the content area put one “Recent notes · 3” disclosure row. Expanding it grows the popover downward to 572px, revealing exactly three 52px solid rows. Use no glass on these rows. There is only one selected row, and its content replaces the well when selected; do not duplicate it in an additional detail card. P1 recent notes fold behind the row. P2 refinement route and settings fold behind a More action in the shelf; dismiss one popover before showing another so glass never samples glass.
+
+Workspace expansion has a horizontal hinge: “Open workspace” or `Command+Return` replaces the compact popover with a solid 960×640px document workspace at x=252, y=88, attached visually to the same upper-right anchor. Its 220px recent-note rail and 668px selected-note area use 24px outer padding and a 24px gutter. The leading rail is initially collapsed; the existing Recent disclosure reveals it. Keep one 36px native toolbar with Back, the selected result action and More. Do not add a website header or a second window titlebar. Back/`Command+[` returns to the compact popover, including its selected note and Recent expansion. Selection is a pale row band plus leading mark; no multiple selected rows, no accidental capture on selection.
+
+## Appearance recipe, measured rather than generic
+
+Lock **VS-004 Ambient Home Tactile Glass**, remixed as a quiet desktop atelier, with **CL-004 Warm Amber / Soft Sage** in restrained quantities. Taxonomy: glass-material/system-blur-materials and glass-refraction-specular, visual-style/surface-texture-lighting, layout-navigation/navigation-bars-tabs-sidebars, motion-interaction/gesture-physical-manipulation. **X:** P0 capture then paste sample result; P1 three-note cabinet; P2 routing/settings. **Y:** downward popover growth followed by an anchored horizontal workspace replacement. **Z:** two separated functional optical shelf depths over a solid readable cabinet, never glass content.
+
+Use `-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text"` exactly. Result/well title 20px/550/28px; transcription/body 14px/400/22px; actions/recent rows 13px/550/18px; hints/timer 11px/500/16px. Four roles, tabular timer, sentence case. Atomic spacing 4px; related rows 12px; shell inset 24px; main section separation 24px. Shelves have at least 16px padding against 12px control gaps. Keep warm accent coverage under 10%; one P0 only.
+
+Light colors: background #F5F2EC, content #FFFEFA, selected row #ECEFE4, main ink #302E25, secondary #625E50, amber #855500, sage #2D6654, recording #B53245. Dark: background #191B19, content #242824, selected #303C33, ink #F4F4E9, secondary #C0C4B6, amber #F3C979, sage #98D2B9, recording #FF98A7. Light favors warm pale solid wells and dark ink; dark uses green-charcoal wells with pale ink. No solid neon rows or amber body text on transparent material.
+
+Separate a stationary ambient amber radial glow, radius 180px centered at (1110,92), alpha .12 light/.08 dark, from the optical surface. The upper shelf uses white .23 / #39463B .34 tint; a 6px rear rim recedes behind it but samples the original desktop only, not the front shelf. This is the dual-depth effect: use one backdrop sampling group, with two differently clipped rim silhouettes, not nested blur filters. Set standard and `-webkit-backdrop-filter` to `blur(28px) saturate(190%)`; inset top Fresnel is exactly `inset 0 1px 0 rgba(255,255,255,.75)`, side rim white .28, shadow 0 16px 40px rgba(48,50,33,.18), dark .34. Keep text/buttons as a sharp separate foreground; use solid backing in the well. Optional clean Chromium Snell/Fresnel distortion can affect only the outer rim, max 1.5px, not text, bars or rows. WebKit falls back to blur and specular highlights. HTML approximates, rather than natively renders, macOS Liquid Glass.
+
+Actual document/window blur automatically dims anchor and shelf, removes rear-rim emphasis and aura, changes saturation to 110%, tint alpha .76, rim .20; cancel unfinished capture/refinement but keep Done content. Focus gain restores optics only. Reduce Transparency uses an opaque #F6F4ED/#2A332B tool shelf. No Active/Matte debug button.
+
+## Record, refine, place
+
+The native key-hint row belongs inside the functional shelf's expanded area: “Option+Space · Text”, “Option+Shift+Space · Todo”, “Escape · Cancel”. Only handle these chords within the focused sandbox; no global hotkey claims. Physical Space keydown snapshots intent, ignores repeat and opens the popover if needed. Stop on Space keyup even if Option has already been released.
+
+Holding the capture button enters **Listening** immediately, with pointer capture. Show seven 3px round bars, gap 3px, height envelope 6/10/17/25/17/10/6px at 120ms phase intervals, an explicit Listening label and a tabular 00:01 timer. Stream synthetic text into the well: “For the fictional workshop, print the route cards and reserve a quiet room.” Releasing button/Space enters **Refining** for 850ms, keeps raw text and seven short 5px bars, and rejects duplicate submissions. **Done** replaces raw text with “Print route cards and reserve a quiet room for the sample workshop.” P0 changes to “Paste into sample draft.” This pastes only into the local mock draft in workspace and reveals the inserted sentence there; it never sends keystrokes to another application. Announce “Inserted sample workshop note.” Store exactly one insertion per capture ID; retries cannot duplicate it.
+
+For Todo chord, Done is one “Prepare the sample workshop” task with two folded substeps, “Print route cards” and “Reserve a quiet room.” P0 becomes “Add to Todo.” On explicit Add, append one in-memory task with semantic circular button checkrings; its completion is reversible. No runner or automatic execution. New capture is a quiet shelf action that preserves committed notes.
+
+The three recent notes are “Workshop route” (“Print route cards for the fictional workshop”), “Sample welcome” (“Welcome to the sample workshop”), and “Draft outline” (“Introduce the route, explain the stops, then invite questions”). Expand Recent, navigate Up/Down, Return to select and inspect, then `Command+Option+1`, `Command+Option+2` or `Command+Option+3` selects the corresponding numbered sample and inserts it into the local mock draft, only while Recent or the workspace rail has focus and at rest. Show these native key equivalents in the rows. Elsewhere those chords do nothing. `Command+Z` undoes the last insertion/Add and announces its consequence. A Copy command in More copies the selected sample only on user activation, with selected-text fallback if clipboard denied. Escape closes More, then Recent, then the popover, in that order at rest.
+
+Escape in Listening/Refining has priority over closing UI: invalidate the run token, clear timers, restore previous Done or Idle, announce “Capture cancelled” and focus the capture button. Pointercancel, lost capture, page hiding and blur take the same route. Ordinary release outside completes via pointer capture; suppress the later click. A focused primary button activated with Enter/Space offers toggle start/stop instead of hold. Navigation and recent insertion are disabled during transient recording states, never silently abandon a run. Provide a local seeded refinement failure in More: “Try unavailable refinement”; the next run preserves raw text and offers Retry. Retry must re-enter the local Refining state without recapturing.
+
+## Small, exact controls
+
+Inline SVG contract: viewBox `0 0 24 24`, fill `none`, stroke `currentColor`, stroke-width `1.7`, round caps and joins. Exact path d values:
+
+| Control | Path d |
+|---|---|
+| Menu anchor / capture | M9 5a3 3 0 0 1 6 0v7a3 3 0 0 1-6 0V5 M6 10v2a6 6 0 0 0 12 0v-2 M12 18v3 M9 21h6 |
+| Recent cabinet | M4 5h16v14H4z M4 10h16 M8 14h8 |
+| Open workspace | M4 9V4h5 M15 4h5v5 M20 15v5h-5 M9 20H4v-5 |
+| Place into draft | M5 4h14v16H5z M8 9h8 M12 12v5 M9 15l3 3 3-3 |
+| More | M5 11v2 M12 11v2 M19 11v2 |
+| Cancel | M6 6l12 12 M18 6L6 18 |
+| Circular checkring | M21 12a9 9 0 1 1-18 0 9 9 0 1 1 18 0 M7 12l3 3 7-7 |
+| Back | M14 5l-7 7 7 7 M7 12h13 |
+
+Use 16–18px drawings in invisible 32×32px desktop hit regions, never below 28px. Anchor is at least 32×28px. Touch/coarse pointer expands targets to at least 44px and reflows popover padding, not overlapping them. Completion is a semantic button with `aria-pressed`, never a raw checkbox. Tab traverses capture → workspace → result → Recent → More; focus stays within the open modal settings popover and returns to its opener on dismissal. Nonmodal recording popover itself must not trap Tab. Visible 2px sage focus ring with 3px offset, explicit spoken labels and one polite status live region. Reduced motion removes growth/travel and moving bar animation; show seven fixed bars and state text, use instant layout or 100ms fade. Ensure 4.5:1 text contrast, wrap long CJK/English, never truncate numeric values, and allow inner list/document scrolling without page overflow.
+
+Preserve page-config and outer theme/platform message hooks; no inner gallery selection/theme/platform controls. Never alter baseline/original or baseline/interactive.html. The frozen iPhone r3/v02 retains zero top capsule, large whitespace/single sentence, bottom glass sheet, seven-bar hold/release and bottom-leading Fold to Todo List/Settings. Prohibit `.caustic-veil`, `repeating-linear-gradient` stripes, `rich-r3.css`/shared gray template, inner website headers, footer disclaimers, Active/Matte controls, 28×28 ruler boxes, emoji/Unicode control glyphs and raw checkbox inputs. Native app anchors/toolbars are allowed. No mic/network/personal data, no actual OS paste, only session-memory samples and explicit Copy.
+
+Later Writer must evidence popover/anchor round-trip, both intents, three recent selections and scoped shortcuts, mock paste/undo, workspace/Back, failure/Retry, cancel in both transient states, blur fallback, light/dark screenshots and keyboard/pointer operation in Chromium and WebKit. This prompt alone does not establish browser PASS.

@@ -444,3 +444,12 @@ pre.highlight code { font-size: 14px; }
 .vault-fields { display:grid; grid-template-columns:minmax(90px,auto) minmax(0,1fr); gap:5px 10px; margin:12px 0 0; font-size:12px; line-height:1.45; overflow-wrap:anywhere; }
 .vault-fields dt { color:var(--strata-text-secondary); font-family:var(--strata-font-mono); }
 .vault-fields dd { margin:0; color:var(--strata-text-primary); }
+@media (max-width:600px) {
+  .site-header__bar { overflow:hidden; }
+  .nav { min-width:0; max-width:100%; overflow-x:auto; justify-content:flex-start; scrollbar-width:thin; box-shadow:inset -18px 0 16px -18px var(--strata-text-secondary); }
+  .nav a { flex:0 0 auto; white-space:nowrap; }
+}
+.vault-palette-bar { display:flex; height:18px; border-radius:999px; overflow:hidden; margin:12px 0; background:var(--strata-surface-inset); }
+.vault-palette-bar span { flex:0 0 var(--pct); background:var(--swatch); min-width:2px; }
+.vault-specimens .vault-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media (max-width:520px) { .vault-specimens .vault-grid { grid-template-columns:minmax(0,1fr); } }

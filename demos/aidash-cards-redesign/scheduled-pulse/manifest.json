@@ -16,7 +16,7 @@
       "archetype": "Swiss Chrono departure instrument; VS-007 的对齐数字、紧凑时刻与无弹跳操作。",
       "prompt_file": "prompts/v01-prompt.md",
       "prompt_sha256": "98114e09c10a84bdb761f926bc706d6d96550b463771608c5ab5551d6e5e6a29",
-      "html_sha256": "c39f7e33acdac90ef4d7cba2c3e6336aa379fa617fc23f7b4bcc2f74fd6b62d8"
+      "html_sha256": "016fc39dcb51e7514f05aa8bbb4921d419ebf61fa5fc31e61f060c7b443f31cb"
     },
     {
       "id": "v02",
@@ -27,7 +27,7 @@
       "archetype": "Zen Paper Checklist; VS-005 的一件事、一张纸、明确小动作，采用薄荷色档案纸而非通用灰卡。",
       "prompt_file": "prompts/v02-prompt.md",
       "prompt_sha256": "1a21a845417d3cdbc7ba3ef0d9b624062d2a9bf94848bfc1640bba8d95ea5f56",
-      "html_sha256": "05f6a7242c8c9a5f480a350e1b255a720b10b339500d1f64a9489c0356c83e18"
+      "html_sha256": "09a72d87c1416865fafdf7f994b9eff98047151ad93fa22c92163adadf0a7b78"
     },
     {
       "id": "v03",
@@ -38,7 +38,7 @@
       "archetype": "Precision Swiss telemetry remixed with CL-003 cyan; engineering section, not sci-fi cockpit decoration.",
       "prompt_file": "prompts/v03-prompt.md",
       "prompt_sha256": "3102b519f622fe29ca2d29eab0f720b3cbf0c278bde95b8b505e21bba572884b",
-      "html_sha256": "5f0c89ebe4e78410ee4173a0f006f620f54a58effbdd91664e00d9a5b979ab2d"
+      "html_sha256": "3b0ba7091e38dfe95fefa711e374cb6e829e6551ddb54a8aafa8d91ddeae91ff"
     },
     {
       "id": "v04",
@@ -49,7 +49,7 @@
       "archetype": "Mindful Focus Recovery; VS-006 的静态呼吸空间，不使用呼吸动画或占星装饰。",
       "prompt_file": "prompts/v04-prompt.md",
       "prompt_sha256": "a206f538d11c3f7b45897c26faa5197a932d8279e27e7b47596dde88f11be27a",
-      "html_sha256": "a32a467f0e99cc1192f13f79cb4106e342b5f49ba9fe6a43c932f74581f0323b"
+      "html_sha256": "1949b5fc651917323e124e2e4c768ba59c9d52dafe362c15ed1f93bbe6628870"
     },
     {
       "id": "v05",
@@ -60,7 +60,7 @@
       "archetype": "Precision Acoustic telemetry; VS-003 的静态音轨秩序，用在运行回执而非虚构波形。",
       "prompt_file": "prompts/v05-prompt.md",
       "prompt_sha256": "41c863c9c9fb2f9a3568eec8917f401ac802050247eb3e28bf32825220892546",
-      "html_sha256": "3f70d6cacbc8bc57462cd7e60239ef9ff1de039368be2b3f0a57faf30689b603"
+      "html_sha256": "38120ca5d2175e0987e1e37f63a623ef4e27fa1fcebf11627efdce53e0122236"
     },
     {
       "id": "v06",
@@ -71,7 +71,7 @@
       "archetype": "Warm Editorial Swiss Ledger; VS-002 的借阅账页与明确回执语义，不做金融金额拟物。",
       "prompt_file": "prompts/v06-prompt.md",
       "prompt_sha256": "c17d0bf75be1a13a28c3cce81eb4d566ad81d39fc745ca3913e6c7c30b5d4c65",
-      "html_sha256": "6c0f2eed1acf12d70dc1dd5cfc46ea4c1f2fa6edc5648f4efdfe78c1d85729b2"
+      "html_sha256": "9f05fa32ef2d3ef179a5af7b985ec71f0cb3304e4b7dc62d4c2c40e5340e19d7"
     },
     {
       "id": "v07",
@@ -82,7 +82,7 @@
       "archetype": "Ambient Tactile utility; VS-004 借用文件夹的空间层次，拒绝五张平铺灰卡与装饰性儿童贴纸。",
       "prompt_file": "prompts/v07-prompt.md",
       "prompt_sha256": "536a3f398933715a91cb336e0349a70b2dc2aa7e886c840c9b0cab2de8cf2ab4",
-      "html_sha256": "53128d21045e31bf508c5d5687ade1f1656e76c653e2ce650edc61ab83acd18c"
+      "html_sha256": "bc1baae7bcbc9065548fc6da245d1d7f646fd8976ede27cb9a015a469198bdd5"
     },
     {
       "id": "v08",
@@ -93,7 +93,7 @@
       "archetype": "Editorial Poster Block restrained to a text-led edition; VS-008 的强标题与不对称版心，不用亮色贴片墙。",
       "prompt_file": "prompts/v08-prompt.md",
       "prompt_sha256": "695bd602a5adcd8e47fd4a0b174bb84f3d0a1f9d2db92b007d228d98f20b49a9",
-      "html_sha256": "d6cc5caa42220d88127acf8947a098db7f2e152a965118e3e1766c55616a9e41"
+      "html_sha256": "3520a226a7ec3bbf910b20452f7bb550b03252ef5535bba2037cd6a36978ce4a"
     },
     {
       "id": "v09",
@@ -104,7 +104,7 @@
       "archetype": "Precision instrument remixed with restrained CL-001 volt; technical silhouette, not fitness rings or a five-KPI bento.",
       "prompt_file": "prompts/v09-prompt.md",
       "prompt_sha256": "7606b63d12e3cbdc59d6c7311f0da6047b938523b53d9b016f472215a2b73cef",
-      "html_sha256": "8ee2614a0adcef6cbe5ac24717b1c7bdace74c318e9f2fc607b0285fe56c1d7f"
+      "html_sha256": "b9728d4ec6cc954071e24f160f87526fc7e9ebede857bf3b23472043341797e7"
     },
     {
       "id": "v10",
@@ -115,7 +115,7 @@
       "archetype": "Editorial Swiss calendar; VS-002 的安静纸页 + CL-007 的丁香晨光，不使用网页月历和移动底部导航。",
       "prompt_file": "prompts/v10-prompt.md",
       "prompt_sha256": "05c8032088b9bf6dc81e14c6b9e93be1e37f81125356cf81df02d438d538d0a1",
-      "html_sha256": "9b9af5531951b39a595af5bd68a2564de368500f1fddc4805fe3e1bb0420ab13"
+      "html_sha256": "be10f0d98ce5a2ff589de627109a2759551b3636d03f87bc4f29e6c89bf25ca3"
     }
   ]
 }

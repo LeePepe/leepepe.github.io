@@ -139,4 +139,82 @@
       phone.dataset.route=e.data.route;
     });
   }
+  // Portal controls are intentionally additive: iframe nodes stay mounted so live state survives.
+  const portal = document.querySelector('.portal-index');
+  if (portal) {
+    let portalPlatform = document.body.dataset.portalActive === 'B' ? 'desktop' : (localStorage.getItem('rich-platform') || 'phone');
+    let portalTheme = document.body.dataset.theme || localStorage.getItem('rich-theme') || 'light';
+    const expectedOrigin = location.protocol === 'file:' ? 'null' : location.origin;
+    function broadcast(type, value) {
+      all('.candidate iframe').forEach(frame => frame.contentWindow?.postMessage({type, [type === 'rich-platform' ? 'platform' : 'theme']: value}, location.protocol === 'file:' ? '*' : location.origin));
+    }
+    function applyPlatform(mode) {
+      portalPlatform = mode === 'desktop' ? 'desktop' : 'phone';
+      localStorage.setItem('rich-platform', portalPlatform);
+      all('[data-frame-mode]').forEach(frame => {
+        const group = frame.closest('[data-group]')?.dataset.group;
+        const actual = group === 'B' ? 'desktop' : portalPlatform;
+        frame.dataset.frameMode = actual;
+        frame.closest('.candidate')?.classList.toggle('desktop-preview', actual === 'desktop');
+        frame.querySelector('iframe')?.contentWindow?.postMessage({type:'rich-platform',platform:actual}, location.protocol === 'file:' ? '*' : location.origin);
+      });
+      all('[data-portal-platform]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.portalPlatform === portalPlatform)));
+      RichOptics.refresh();
+    }
+    function applyTheme(theme) {
+      portalTheme = theme === 'dark' ? 'dark' : 'light';
+      document.body.dataset.theme = portalTheme;
+      localStorage.setItem('rich-theme', portalTheme);
+      broadcast('rich-theme', portalTheme);
+      all('[data-portal-theme]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.portalTheme === portalTheme)));
+    }
+    all('[data-portal-platform]').forEach(b => b.onclick = () => applyPlatform(b.dataset.portalPlatform));
+    all('[data-portal-theme]').forEach(b => b.onclick = () => applyTheme(b.dataset.portalTheme));
+    all('[data-group-filter]').forEach(b => b.onclick = () => {
+      const group = b.dataset.groupFilter;
+      all('.candidate').forEach(card => card.hidden = group !== 'all' && card.dataset.group !== group);
+      all('[data-group-filter]').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.groupFilter === group)));
+    });
+    all('.candidate iframe').forEach(frame => frame.addEventListener('load', () => {
+      frame.contentWindow?.postMessage({type:'rich-platform',platform:frame.closest('[data-group]')?.dataset.group === 'B' ? 'desktop' : portalPlatform}, location.protocol === 'file:' ? '*' : location.origin);
+      frame.contentWindow?.postMessage({type:'rich-theme',theme:portalTheme}, location.protocol === 'file:' ? '*' : location.origin);
+    }));
+    const summary = q('#summary'), summaryText = q('[data-summary-text]', summary), summaryStatus = q('[data-summary-status]', summary);
+    let summaryReturn;
+    function makeSummary() {
+      const selected = ['A','B','C'].flatMap(g => Array.from({length:g === 'A' ? 4 : 10}, (_, i) => {
+        const id = `${g}-${String(i + 1).padStart(2,'0')}`; const r = rating[id] || {};
+        return (r.star || r.select || r.notes?.trim()) ? `${id} · ${r.star ? '★ 已收藏' : ''}${r.select ? ' ✓ 已选' : ''}${r.notes?.trim() ? ` · 反馈：${r.notes.trim()}` : ''}` : null;
+      }).filter(Boolean));
+      return selected.length ? ['VoxPocket 选型摘要', ...selected].join('\\n') : '尚未收藏、选择或评论任何方案。';
+    }
+    async function openSummary() {
+      summaryReturn = document.activeElement; summaryText.value = makeSummary(); summary.hidden = false; summaryText.focus();
+      try { await navigator.clipboard.writeText(summaryText.value); summaryStatus.textContent = '已复制到剪贴板；下方文本也可直接选择复制。'; }
+      catch { summaryStatus.textContent = '剪贴板不可用，请选择下方文本后手动复制。'; }
+    }
+    all('[data-summary]').forEach(b => b.onclick = openSummary);
+    all('[data-summary-close]').forEach(b => b.onclick = () => { summary.hidden = true; summaryReturn?.focus(); });
+    summary?.addEventListener('click', e => { if (e.target === summary) q('[data-summary-close]', summary).click(); });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && summary && !summary.hidden) q('[data-summary-close]', summary).click(); });
+    applyPlatform(portalPlatform); applyTheme(portalTheme);
+    const active = document.body.dataset.portalActive || 'all';
+    all('[data-group-filter="'+active+'"], [data-group-filter="all"]:first-child').forEach(b => b.click());
+  }
+  // Embedded variants relay theme/platform to nested frozen baseline frames.
+  if (window.self !== window.top || new URLSearchParams(location.search).get('embed') === '1') {
+    document.body.dataset.embed = 'true';
+    addEventListener('message', e => {
+      const expected = location.protocol === 'file:' ? 'null' : location.origin;
+      if (e.source !== window.parent || (e.origin !== expected && !(location.protocol === 'file:' && e.origin === 'null'))) return;
+      if (e.data?.type === 'rich-theme' && (e.data.theme === 'light' || e.data.theme === 'dark')) { document.body.dataset.theme = e.data.theme; sendTheme(); }
+      if (e.data?.type === 'rich-platform' && (e.data.platform === 'phone' || e.data.platform === 'desktop')) {
+        const aPlatform = q(`[data-a-platform="${e.data.platform}"]`);
+        if (aPlatform) aPlatform.click(); else setPlatform(e.data.platform);
+      }
+    });
+    const initialPlatform = new URLSearchParams(location.search).get('platform');
+    if (initialPlatform === 'phone' || initialPlatform === 'desktop') setPlatform(initialPlatform);
+    sendTheme();
+  }
 })();

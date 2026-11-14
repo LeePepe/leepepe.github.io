@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "vault" / "manifest.json"
 SHOTS = ROOT / "assets" / "vault" / "shots"
 COLLECTED = Path(os.environ.get("COLLECTED_TOOLS_DIR", str(Path.home() / "Development/Personal/collected-tools")))
+DESIGN_CATALOG = Path(os.environ.get("DESIGN_CATALOG", str(Path.home() / ".copilot/skills/design-studio/scripts/design_catalog.py")))
+DESIGN_VAULT_DIR = os.environ.get("DESIGN_STUDIO_VAULT_DIR")
 
 def slugify(value: str) -> str:
     value = re.sub(r"[^\w\-]+", "-", value.lower(), flags=re.UNICODE).strip("-")
@@ -48,6 +50,22 @@ def load():
 def save(data):
     MANIFEST.parent.mkdir(parents=True, exist_ok=True); MANIFEST.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
+def sync_design_catalog(args, *, image=None, text=None):
+    if getattr(args, "no_vault_write", False):
+        return None
+    if not DESIGN_CATALOG.is_file():
+        raise SystemExit(f"design catalog not found: {DESIGN_CATALOG}; use --no-vault-write to opt out")
+    is_pattern = getattr(args, "kind", None) == "pattern" and not image
+    command = [sys.executable, str(DESIGN_CATALOG), "ingest" if is_pattern else "vault-ingest", "--no-jev"]
+    if DESIGN_VAULT_DIR and not is_pattern:
+        command += ["--vault-dir", DESIGN_VAULT_DIR]
+    if image:
+        command += ["--image", str(image), "--measure-palette"]
+        if getattr(args, "archetype_ref", None): command += ["--archetype-ref", args.archetype_ref]
+    else:
+        command += ["--text", text or ""]
+    return subprocess.run(command, cwd=ROOT, check=True, capture_output=True, text=True)
+
 def maybe_build(args):
     if not args.no_build:
         subprocess.run([sys.executable, str(ROOT / "build_site.py")], cwd=ROOT, check=True)
@@ -63,23 +81,42 @@ def image_import(args, data):
         image.convert("RGBA" if ext == ".png" else "RGB").save(dest)
         small = image.copy(); small.thumbnail((960, 960), Image.Resampling.LANCZOS); small.convert("RGBA" if ext == ".png" else "RGB").save(thumb)
         width, height = image.size
+    sync_design_catalog(args, image=dest)
     data["screenshots"].append({"id": stem, "title": args.title or source.stem, "image": f"/assets/vault/shots/{dest.name}", "thumbnail": f"/assets/vault/shots/{thumb.name}", "width": width, "height": height, "measured_palette": palette(dest) if args.measure_palette else [], "ocr_text": ocr(dest), "archetype_ref": args.archetype_ref, "platform": args.platform.split(",") if args.platform else [], "notes": args.text or "Imported by vault_ingest.py."})
     return {"mode":"image", "id":stem}
+
+def update_collected_readme(*, title, canonical, kind, note):
+    readme = COLLECTED / "README.md"
+    if not readme.exists():
+        readme.write_text("# Collected Tools\n\n| file | 种別 | one-line summary |\n|---|---|---|\n", encoding="utf-8")
+    text = readme.read_text(encoding="utf-8")
+    row = f"| [{note.name}]({note.name}) | {kind} | {canonical} |"
+    if canonical not in text:
+        readme.write_text(text.rstrip() + "\n" + row + "\n", encoding="utf-8")
 
 def url_import(args, data):
     url = args.url.strip(); match = re.match(r"^https?://([^/]+)(/[^?#]*)?", url, re.I)
     if not match: raise SystemExit("--url must be an http(s) URL")
-    host, path = match.group(1).lower(), (match.group(2) or "").rstrip("/")
+    host, path = match.group(1).lower(), re.sub(r"/\.git$", "", (match.group(2) or "").rstrip("/"))
     canonical = f"https://{host}{path}"
     existing = next((x for x in data.get("tools", []) if x.get("url") == canonical or x.get("canonical_url") == canonical), None)
     if not args.no_vault_write:
         COLLECTED.mkdir(parents=True, exist_ok=True); note = COLLECTED / f"{slugify(args.title or host + path)}.md"
         body = f"# {args.title or host}\n\n{args.text or 'Saved source for the asset vault.'}\n\n- link: {canonical}\n- 形態: {args.kind}\n\n## 实际に使ったメモ\n_待使用。_\n"
-        if not note.exists(): note.write_text(body, encoding="utf-8")
-        if not existing: data.setdefault("tools", []).append({"id": f"URL-{len(data.get('tools', []))+1:03d}", "name": args.title or host, "category": args.kind, "platforms": ["web"], "canonical_url": canonical, "track": args.text or "Saved via vault_ingest.py"})
+        if note.exists():
+            previous = note.read_text(encoding="utf-8")
+            if canonical not in previous:
+                note.write_text(previous.rstrip() + f"\n\n## Additional source\n- link: {canonical}\n- 形態: {args.kind}\n", encoding="utf-8")
+        else:
+            note.write_text(body, encoding="utf-8")
+        update_collected_readme(title=args.title or host, canonical=canonical, kind=args.kind, note=note)
+    if not existing: data.setdefault("tools", []).append({"id": f"URL-{len(data.get('tools', []))+1:03d}", "name": args.title or host, "category": args.kind, "platforms": ["web"], "canonical_url": canonical, "track": args.text or "Saved via vault_ingest.py"})
+    if args.text:
+        sync_design_catalog(args, text=args.text)
     return {"mode":"url", "url":canonical, "deduped": bool(existing)}
 
 def text_import(args, data):
+    sync_design_catalog(args, text=args.text)
     entry = {"id": f"TEXT-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}", "name": args.title or args.text[:60], "category": args.kind, "source_prompt_zh": args.text, "created_at": datetime.now(timezone.utc).isoformat()}
     target = "patterns" if args.kind == "pattern" else "cards"; data.setdefault(target, []).append(entry)
     return {"mode":"text", "id":entry["id"]}

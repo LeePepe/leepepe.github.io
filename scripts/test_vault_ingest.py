@@ -11,7 +11,7 @@ class VaultIngestTests(unittest.TestCase):
         self.tmp = Path(tempfile.mkdtemp(prefix='vault-test-', dir=Path.cwd()))
         self.manifest = self.tmp/'manifest.json'; self.shots = self.tmp/'shots'; self.collected = self.tmp/'collected'
         self.manifest.write_text(json.dumps({'schema_version':1,'screenshots':[],'cards':[],'patterns':[],'tools':[],'toolchains':[]}))
-        self.patches = [patch.object(vault_ingest, 'MANIFEST', self.manifest), patch.object(vault_ingest, 'SHOTS', self.shots), patch.object(vault_ingest, 'COLLECTED', self.collected)]
+        self.patches = [patch.object(vault_ingest, 'MANIFEST', self.manifest), patch.object(vault_ingest, 'SHOTS', self.shots), patch.object(vault_ingest, 'COLLECTED', self.collected), patch.object(vault_ingest, 'sync_design_catalog')]
         for p in self.patches: p.start()
     def tearDown(self):
         for p in self.patches: p.stop()
@@ -26,7 +26,7 @@ class VaultIngestTests(unittest.TestCase):
     def test_url_dedupes_canonical_source_and_writes_note(self):
         args=type('Args',(),{'url':'https://github.com/acme/demo/','title':'Demo','text':'use it','kind':'tool','no_vault_write':False})()
         data=vault_ingest.load(); vault_ingest.url_import(args,data); vault_ingest.url_import(args,data)
-        self.assertEqual(len(data['tools']),1); self.assertTrue(list(self.collected.glob('*.md')))
+        self.assertEqual(len(data['tools']),1); self.assertTrue(list(self.collected.glob('*.md'))); self.assertIn('https://github.com/acme/demo', (self.collected/'README.md').read_text())
     def test_text_import_is_structured(self):
         args=type('Args',(),{'text':'undoable interaction','title':'Undo','kind':'pattern'})()
         data=vault_ingest.load(); result=vault_ingest.text_import(args,data)

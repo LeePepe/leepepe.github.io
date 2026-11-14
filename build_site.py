@@ -15,6 +15,7 @@ Strictly follows the approved prototype in /Volumes/SSD/Development/handoff/blog
 from __future__ import annotations
 
 import html
+import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -31,6 +32,7 @@ NAV_ITEMS = [
     ("home", "首页", "/"),
     ("learn", "求知", "/learn/"),
     ("thoughts", "思考", "/thoughts/"),
+    ("vault", "素材库", "/vault/"),
     ("archive", "归档", "/archive/"),
     ("tags", "标签", "/tags/"),
     ("about", "关于", "/about/"),
@@ -814,10 +816,11 @@ def build_home_page(
       </section>
       <section class="card">
         <h2>专栏</h2>
-        <p>「求知」用生活教具拆穿技术原理（{len(learn_items)} 篇）；「思考」记录日常工具与生活随笔（{len(thought_items)} 篇）。</p>
+        <p>「求知」用生活教具拆穿技术原理（{len(learn_items)} 篇）；「思考」记录日常工具与生活随笔（{len(thought_items)} 篇）；「素材库」汇总 40 张设计卡与 8 张实测截图。</p>
         <div class="links">
           <a class="btn btn--secondary" href="/learn/">求知笔记 ({len(learn_items)})</a>
           <a class="btn btn--secondary" href="/thoughts/">思考与感悟 ({len(thought_items)})</a>
+          <a class="btn btn--secondary" href="/vault/">素材库 (40+)</a>
         </div>
       </section>
       <section class="card">
@@ -1197,6 +1200,47 @@ def build_feed_xml(all_items: list[dict[str, Any]]) -> None:
     (REPO_ROOT / "feed.xml").write_text(feed_xml, encoding="utf-8")
 
 
+def _vault_text(value: Any) -> str:
+    if isinstance(value, list):
+        return ", ".join(_vault_text(v) for v in value)
+    if isinstance(value, dict):
+        return "; ".join(f"{k}: {_vault_text(v)}" for k, v in value.items())
+    return str(value or "")
+
+
+def build_vault_page() -> None:
+    manifest_path = REPO_ROOT / "vault" / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    def esc(v: Any) -> str:
+        return html.escape(_vault_text(v), quote=True)
+    stats = [("设计灵感卡", len(manifest["cards"])), ("实测色板与截图", len(manifest["screenshots"])), ("交互与动效模式", len(manifest["patterns"])), ("外部工具与参考库", len(manifest["tools"])), ("动效工具链", len(manifest["toolchains"]))]
+    stat_html = "".join(f'<li><span>{esc(label)}</span><strong>{count}</strong></li>' for label, count in stats)
+    shot_html = []
+    for shot in manifest["screenshots"]:
+        swatches = "".join(f'<button class="vault-swatch" type="button" data-copy="{esc(s["hex"])}" style="--swatch:{esc(s["hex"])}" title="复制 {esc(s["hex"])}"><span>{esc(s["hex"])}</span><small>{s["pct"]}%</small></button>' for s in shot["measured_palette"])
+        shot_html.append(f'''<article class="vault-card vault-shot" data-type="shot" data-search="{esc(shot)}"><button class="vault-image-button" type="button" data-lightbox="{esc(shot["image"])}" aria-label="放大 {esc(shot["title"])}"><img src="{esc(shot["thumbnail"])}" alt="{esc(shot["title"])}" width="960" height="960" loading="lazy"></button><div class="vault-card__body"><div class="vault-kicker">实测截图 · {shot["width"]} × {shot["height"]}</div><h3>{esc(shot["title"])}</h3><div class="vault-swatches">{swatches}</div><p>{esc(shot["notes"])}</p></div></article>''')
+    card_html = []
+    for card in manifest["cards"]:
+        dims = [card.get("primary_dimension", "")] + list(card.get("secondary_dimensions", []))
+        impl = card.get("desktop_macos_implementation") or card.get("web_implementation") or card.get("mobile_implementation")
+        card_html.append(f'''<article class="vault-card vault-design" data-type="design" data-platform="{esc(card.get("platform", card.get("platforms", "")))}" data-dimension="{esc(dims)}" data-search="{esc(card)}"><div class="vault-kicker">{esc(card.get("id"))} · {esc(card.get("category"))}</div><h3>{esc(card.get("name"))}</h3><p class="vault-tags">{esc(card.get("platforms"))} · {esc(dims)}</p><p>{esc(card.get("source_prompt_zh") or card.get("token_integration") or card.get("track"))}</p><details><summary>实现与防呆护栏</summary><p>{esc(impl)}</p><p>{esc(card.get("native_guardrails") or card.get("token_guardrails"))}</p></details></article>''')
+    pattern_html = []
+    for pattern in manifest["patterns"]:
+        states = "".join(f'<span>{esc(s.strip())}</span>' for s in str(pattern.get("state_machine", "")).split("->"))
+        pattern_html.append(f'''<article class="vault-card vault-pattern" data-type="pattern" data-search="{esc(pattern)}"><div class="vault-kicker">{esc(pattern.get("id"))} · {esc(pattern.get("motion_tier"))}</div><h3>{esc(pattern.get("name"))}</h3><div class="vault-state-machine">{states}</div><p>{esc(pattern.get("web_implementation"))}</p><p>{esc(pattern.get("token_guardrails"))}</p></article>''')
+    tool_html = []
+    for tool in manifest["tools"]:
+        links = tool.get("links") or tool.get("source_url") or tool.get("canonical_url") or ""
+        tool_html.append(f'''<article class="vault-card vault-tool" data-type="tool" data-search="{esc(tool)}"><div class="vault-kicker">{esc(tool.get("id"))} · {esc(tool.get("category"))}</div><h3>{esc(tool.get("name"))}</h3><p>{esc(tool.get("track") or tool.get("token_integration"))}</p><p class="vault-tags">{esc(tool.get("platforms"))} · {esc(links)}</p></article>''')
+    main_html = f'''<section class="page-intro vault-intro"><div class="vault-kicker">Asset & Inspiration Vault</div><h1>素材库</h1><p>把真实截图、设计卡、动效状态机与工具来源放在同一条可检索的证据链上；与求知笔记保持数据边界。</p></section><ul class="vault-stats">{stat_html}</ul><section class="vault-controls card" aria-label="素材筛选"><div class="vault-tabs" role="tablist"><button class="vault-filter is-active" data-filter="all" type="button">全部素材</button><button class="vault-filter" data-filter="shot" type="button">截图与色板</button><button class="vault-filter" data-filter="design" type="button">设计卡</button><button class="vault-filter" data-filter="pattern" type="button">MP/IP 模式</button><button class="vault-filter" data-filter="tool" type="button">工具来源</button></div><label class="vault-search">关键词 / ID / Hex <input id="vault-search" type="search" placeholder="例如 CL-006、#4F97FF、hallmark" autocomplete="off"></label></section><section class="vault-section" aria-labelledby="vault-shots"><h2 id="vault-shots">实测色板与 UI 截图</h2><div class="vault-grid">{"".join(shot_html)}</div></section><section class="vault-section" aria-labelledby="vault-design"><h2 id="vault-design">设计灵感与原子规范（40 张）</h2><div class="vault-grid">{"".join(card_html)}</div></section><section class="vault-section" aria-labelledby="vault-patterns"><h2 id="vault-patterns">动效与交互状态机（17 个）</h2><div class="vault-grid">{"".join(pattern_html)}</div></section><section class="vault-section" aria-labelledby="vault-tools"><h2 id="vault-tools">采集工具与参考库（20 个）</h2><div class="vault-grid">{"".join(tool_html)}</div></section><section class="vault-cli card"><h2>多模态一键导入</h2><p>CLI 默认更新 manifest 并重建静态页；测试时可用 <code>--no-vault-write --no-build</code> 隔离外部目录。</p><pre><code>python3 scripts/vault_ingest.py --image ./shot.png --title "新截图" --measure-palette
+python3 scripts/vault_ingest.py --url https://github.com/owner/repo --kind tool
+python3 scripts/vault_ingest.py --text "一个可撤销的确认动效" --kind pattern</code></pre></section><dialog class="vault-lightbox" id="vault-lightbox"><button type="button" class="vault-lightbox__close" aria-label="关闭">关闭</button><img alt=""></dialog><script>{VAULT_SCRIPT}</script>'''
+    (REPO_ROOT / "vault" / "index.html").write_text(render_shell_page(title="素材库 · Asset & Inspiration Vault", description="真实截图、设计卡、动效模式与工具来源素材库。", active_nav="vault", main_html=main_html), encoding="utf-8")
+
+
+VAULT_SCRIPT = """(() => { const root = document; const cards = [...root.querySelectorAll('.vault-card')]; const search = root.querySelector('#vault-search'); const filters = [...root.querySelectorAll('.vault-filter')]; const apply = () => { const q = (search.value || '').toLowerCase().trim(); const active = root.querySelector('.vault-filter.is-active')?.dataset.filter || 'all'; cards.forEach(card => { const type = card.dataset.type; card.hidden = (active !== 'all' && type !== active) || (q && !(card.dataset.search || '').toLowerCase().includes(q)); }); }; filters.forEach(button => button.addEventListener('click', () => { filters.forEach(b => b.classList.remove('is-active')); button.classList.add('is-active'); apply(); })); search.addEventListener('input', apply); root.querySelectorAll('[data-copy]').forEach(button => button.addEventListener('click', async () => { try { await navigator.clipboard.writeText(button.dataset.copy); const before = button.querySelector('span').textContent; button.querySelector('span').textContent = '已复制'; setTimeout(() => button.querySelector('span').textContent = before, 900); } catch (_) {} })); const dialog = root.querySelector('#vault-lightbox'); root.querySelectorAll('[data-lightbox]').forEach(button => button.addEventListener('click', () => { dialog.querySelector('img').src = button.dataset.lightbox; dialog.showModal(); })); dialog.addEventListener('click', e => { if (e.target === dialog || e.target.closest('.vault-lightbox__close')) dialog.close(); }); })();"""
+
+
 def main() -> None:
     learn_items: list[dict[str, Any]] = []
     for art in LEARN_ARTICLES:
@@ -1284,6 +1328,7 @@ def main() -> None:
     build_archive_page(all_items, sorted_tags, tag_id_map)
     build_tags_page(sorted_tags, tag_id_map)
     build_about_page(len(learn_items), len(thought_items))
+    build_vault_page()
     build_404_page()
     build_feed_xml(all_items)
 

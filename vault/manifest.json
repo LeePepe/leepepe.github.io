@@ -1,0 +1,3586 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-14T09:09:36+08:00",
+  "provenance": {
+    "design_catalog": "/Users/lee/.copilot/skills/design-studio/references/vault/desktop-macos.json",
+    "motion_catalog": "/Users/lee/.copilot/skills/design-studio/references/catalog.json",
+    "screenshots": "approved handoff source paths; committed snapshots"
+  },
+  "screenshots": [
+    {
+      "id": "voxpocket-r3-v02",
+      "title": "Voxpocket R3 V02",
+      "image": "/assets/vault/shots/voxpocket-r3-v02.png",
+      "thumbnail": "/assets/vault/shots/voxpocket-r3-v02-thumb.png",
+      "width": 390,
+      "height": 844,
+      "measured_palette": [
+        {
+          "hex": "#E1ECF5",
+          "pct": 30.7
+        },
+        {
+          "hex": "#D7EBF6",
+          "pct": 18.0
+        },
+        {
+          "hex": "#FFFFFF",
+          "pct": 17.3
+        },
+        {
+          "hex": "#E4F2F9",
+          "pct": 15.9
+        },
+        {
+          "hex": "#FAFCFD",
+          "pct": 14.2
+        },
+        {
+          "hex": "#C5D4E5",
+          "pct": 3.9
+        }
+      ],
+      "ocr_text": "",
+      "archetype_ref": null,
+      "notes": "真实来源截图；未对图像内容做合成或替换。"
+    },
+    {
+      "id": "voxpocket-r3-v06",
+      "title": "Voxpocket R3 V06",
+      "image": "/assets/vault/shots/voxpocket-r3-v06.png",
+      "thumbnail": "/assets/vault/shots/voxpocket-r3-v06-thumb.png",
+      "width": 390,
+      "height": 844,
+      "measured_palette": [
+        {
+          "hex": "#DDECF5",
+          "pct": 34.1
+        },
+        {
+          "hex": "#DFF0F7",
+          "pct": 17.4
+        },
+        {
+          "hex": "#FFFFFF",
+          "pct": 17.3
+        },
+        {
+          "hex": "#EDF4F9",
+          "pct": 13.6
+        },
+        {
+          "hex": "#FAFCFD",
+          "pct": 10.8
+        },
+        {
+          "hex": "#CBDAE8",
+          "pct": 6.9
+        }
+      ],
+      "ocr_text": "",
+      "archetype_ref": null,
+      "notes": "真实来源截图；未对图像内容做合成或替换。"
+    },
+    {
+      "id": "voxpocket-tenfold-sheet",
+      "title": "Voxpocket Tenfold Sheet",
+      "image": "/assets/vault/shots/voxpocket-tenfold-sheet.png",
+      "thumbnail": "/assets/vault/shots/voxpocket-tenfold-sheet-thumb.png",
+      "width": 1440,
+      "height": 3192,
+      "measured_palette": [
+        {
+          "hex": "#E2EDF4",
+          "pct": 30.4
+        },
+        {
+          "hex": "#EFF3F5",
+          "pct": 30.1
+        },
+        {
+          "hex": "#FEFEFF",
+          "pct": 13.8
+        },
+        {
+          "hex": "#858C94",
+          "pct": 12.1
+        },
+        {
+          "hex": "#F3F7FA",
+          "pct": 9.0
+        },
+        {
+          "hex": "#E9F3F8",
+          "pct": 4.6
+        }
+      ],
+      "ocr_text": "",
+      "archetype_ref": null,
+      "notes": "真实来源截图；未对图像内容做合成或替换。"
+    },
+    {
+      "id": "vitalstride-exercise-picker",
+      "title": "Vitalstride Exercise Picker",
+      "image": "/assets/vault/shots/vitalstride-exercise-picker.png",
+      "thumbnail": "/assets/vault/shots/vitalstride-exercise-picker-thumb.png",
+      "width": 1179,
+      "height": 2556,
+      "measured_palette": [
+        {
+          "hex": "#F2F4F5",
+          "pct": 28.9
+        },
+        {
+          "hex": "#FAFAFA",
+          "pct": 26.9
+        },
+        {
+          "hex": "#FFFFFF",
+          "pct": 26.0
+        },
+        {
+          "hex": "#BEC5C4",
+          "pct": 15.3
+        },
+        {
+          "hex": "#FEFEFE",
+          "pct": 3.0
+        },
+        {
+          "hex": "#FEFFFF",
+          "pct": 0.0
+        }
+      ],
+      "ocr_text": "",
+      "archetype_ref": null,
+      "notes": "真实来源截图；未对图像内容做合成或替换。"
+    },
+    {
+      "id": "vitalstride-workout-rest",
+      "title": "Vitalstride Workout Rest",
+      "image": "/assets/vault/shots/vitalstride-workout-rest.png",
+      "thumbnail": "/assets/vault/shots/vitalstride-workout-rest-thumb.png",
+      "width": 786,
+      "height": 1704,
+      "measured_palette": [
+        {
+          "hex": "#FFFFFF",
+          "pct": 35.9
+        },
+        {
+          "hex": "#F9F9FB",
+          "pct": 33.6
+        },
+        {
+          "hex": "#F0F3F5",
+          "pct": 22.9
+        },
+        {
+          "hex": "#C4CECC",
+          "pct": 5.4
+        },
+        {
+          "hex": "#FFFDFF",
+          "pct": 1.7
+        },
+        {
+          "hex": "#FFFFFE",
+          "pct": 0.6
+        }
+      ],
+      "ocr_text": "",
+      "archetype_ref": null,
+      "notes": "真实来源截图；未对图像内容做合成或替换。"
+    },
+    {
+      "id": "vitalstride-workout-dark",
+      "title": "Vitalstride Workout Dark",
+      "image": "/assets/vault/shots/vitalstride-workout-dark.png",
+      "thumbnail": "/assets/vault/shots/vitalstride-workout-dark-thumb.png",
+      "width": 786,
+      "height": 2264,
+      "measured_palette": [
+        {
+          "hex": "#111112",
+          "pct": 32.5
+        },
+        {
+          "hex": "#282A2D",
+          "pct": 28.0
+        },
+        {
+          "hex": "#151617",
+          "pct": 20.7
+        },
+        {
+          "hex": "#1B1C1E",
+          "pct": 8.7
+        },
+        {
+          "hex": "#405250",
+          "pct": 6.8
+        },
+        {
+          "hex": "#0F0F10",
+          "pct": 3.3
+        }
+      ],
+      "ocr_text": "",
+      "archetype_ref": null,
+      "notes": "真实来源截图；未对图像内容做合成或替换。"
+    },
+    {
+      "id": "hallmark-atelier",
+      "title": "Hallmark Atelier",
+      "image": "/assets/vault/shots/hallmark-atelier.jpg",
+      "thumbnail": "/assets/vault/shots/hallmark-atelier-thumb.jpg",
+      "width": 1200,
+      "height": 750,
+      "measured_palette": [
+        {
+          "hex": "#F0E2D9",
+          "pct": 31.6
+        },
+        {
+          "hex": "#EFE8E0",
+          "pct": 21.2
+        },
+        {
+          "hex": "#EFE5DD",
+          "pct": 17.0
+        },
+        {
+          "hex": "#CABDAE",
+          "pct": 11.8
+        },
+        {
+          "hex": "#F2ECE3",
+          "pct": 11.1
+        },
+        {
+          "hex": "#EDE2DB",
+          "pct": 7.4
+        }
+      ],
+      "ocr_text": "",
+      "archetype_ref": null,
+      "notes": "真实来源截图；未对图像内容做合成或替换。"
+    },
+    {
+      "id": "hallmark-refract",
+      "title": "Hallmark Refract",
+      "image": "/assets/vault/shots/hallmark-refract.jpg",
+      "thumbnail": "/assets/vault/shots/hallmark-refract-thumb.jpg",
+      "width": 1200,
+      "height": 750,
+      "measured_palette": [
+        {
+          "hex": "#FAF9F5",
+          "pct": 39.4
+        },
+        {
+          "hex": "#AED3DD",
+          "pct": 27.6
+        },
+        {
+          "hex": "#EFFCFD",
+          "pct": 18.6
+        },
+        {
+          "hex": "#FCFEFD",
+          "pct": 9.7
+        },
+        {
+          "hex": "#FAF9F4",
+          "pct": 2.7
+        },
+        {
+          "hex": "#FCF9F5",
+          "pct": 2.0
+        }
+      ],
+      "ocr_text": "",
+      "archetype_ref": null,
+      "notes": "真实来源截图；未对图像内容做合成或替换。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "T-005",
+      "name": "Lottie",
+      "aliases": [],
+      "category": "core-ui-motion",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Read",
+        "Experience"
+      ],
+      "motion_tier": "M1",
+      "automation_mode": "direct-code",
+      "token_integration": "Exports token-colored illustrations for web and lottie-ios/SwiftUI.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "track": "apple-active",
+      "platform_rationale": "Lottie vector animations run natively on macOS (`desktop`) and iOS/iPadOS (`mobile`) via `lottie-spm` (`LottieView` in SwiftUI) alongside native SF Symbols `.symbolEffect`, as well as on `web`.",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "visual-style",
+        "color-palette"
+      ],
+      "sub_category": "micro-feedback-haptics-symbols"
+    },
+    {
+      "id": "T-011",
+      "name": "MCP for Blender",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Exports GLTF for web and USDZ/OBJ for RealityKit/SceneKit using shared materials.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "track": "apple-active",
+      "platform_rationale": "MCP for Blender automates 3D asset authoring and exports USDZ/OBJ models directly consumable by native macOS (`desktop`) and iOS (`mobile`) RealityKit/`Model3D`/SceneKit views, plus GLTF for `web`.",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "glass-material"
+      ],
+      "sub_category": "hero-3d-spatial-canvas"
+    },
+    {
+      "id": "MP-001",
+      "name": "卡片揭角 (Card Corner Peel)",
+      "aliases": [
+        "揭角",
+        "卡片揭角",
+        "corner peel"
+      ],
+      "category": "gesture-physical",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "做一张可揭角的卡片，右下角按住后随拖动卷起，用折线裁切正面并露出背面，折片带柔和明暗。松手沿原路回落，短距离拖动只露一角，整张卡片保持稳定。",
+      "canonical_prompt": "Drag the card's lower-right corner to peel a clipped front layer, reveal the back, then spring back along the inverse path unless committed.",
+      "state_machine": "idle -> press -> drag -> partial_peel -> release -> spring_settle",
+      "web_implementation": "Motion drag progress with CSS clip-path polygon and @nocoo/basalt tokens.",
+      "mobile_implementation": "SwiftUI DragGesture with Canvas/path clipping, native SwiftUI Spring(response:dampingRatio:), and Reduce Motion crossfade.",
+      "token_guardrails": "CLS = 0; tabular-nums where values appear; >=4.5:1 contrast; 44x44pt hit target; Reduce Motion fallback.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "visual-style",
+        "component"
+      ],
+      "sub_category": "gesture-physical-manipulation",
+      "desktop_macos_implementation": "SwiftUI `.onContinuousHover` for corner curl preview plus pointer `DragGesture` driving a custom `Shape` or `Canvas` clip path and `.visualEffect` / Metal `ShaderLibrary` crease shading; settles with native `Animation.spring(duration: 0.38, bounce: 0.15)` while keeping the outer card frame locked inside its `NSWindow` or `NSPopover` grid.",
+      "mobile_ios_implementation": "SwiftUI `DragGesture(minimumDistance: 0)` on a 44x44pt lower-right corner hit region, clipping the front card layer via a dynamic `Path`/`Canvas` fold line and revealing the back layer; uses `Animation.spring(response: 0.35, dampingFraction: 0.78)` on release and `.sensoryFeedback(.impact(flexibility: .soft), trigger: isCommitted)`.",
+      "native_guardrails": "Zero layout shift (card bounds never jump); `.monospacedDigit()` on any revealed numeric metrics; >=4.5:1 foreground/background contrast in Light and Dark mode using semantic `Color.primary` / `Color(nsColor: .controlBackgroundColor)` / `Color(uiColor: .secondarySystemGroupedBackground)`; >=44x44pt corner hit target on iOS and >=28x28pt on macOS; `@Environment(\\.accessibilityReduceMotion)` replaces peel geometry with a direct `.opacity` crossfade; `@Environment(\\.accessibilityReduceTransparency)` replaces translucent back-card layers with opaque system surfaces."
+    },
+    {
+      "id": "MP-002",
+      "name": "滑动确认 (Slide-to-Confirm)",
+      "aliases": [
+        "滑动确认",
+        "slide confirm",
+        "confirm slider"
+      ],
+      "category": "confirmation-safety",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "做一个滑动确认按钮，圆钮与轨道填充跟随同一拖动进度。未到终点松手，阻尼回到起点且不执行；到终点松手才确认，箭头变成对勾，文字变为已完成。",
+      "canonical_prompt": "Keep thumb and track fill on one normalized drag progress; cancel below the endpoint with damped return, commit only at endpoint, then swap arrow to checkmark and copy.",
+      "state_machine": "idle -> drag -> threshold -> commit/cancel -> spring_settle",
+      "web_implementation": "Motion drag controls thumb and track; CSS/SVG icon morph; Basalt semantic success tokens.",
+      "mobile_implementation": "SwiftUI DragGesture with native SwiftUI Spring(response:dampingRatio:), contentTransition(.symbolEffect), SensoryFeedback, and numericText.",
+      "token_guardrails": "No accidental commit; 44x44pt target; explicit threshold; >=4.5:1 contrast; Reduce Motion opacity/state fallback.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "component",
+        "typography-copy"
+      ],
+      "sub_category": "threshold-commit-safety",
+      "desktop_macos_implementation": "SwiftUI pointer `DragGesture` (plus keyboard `Return` / `⌘Return` confirmation equivalent) binding a single normalized progress `CGFloat` (`0.0...1.0`) to both the thumb offset and track fill width; commits only when released at `progress >= 0.95`, morphing SF Symbols (`arrow.right` to `checkmark`) via `.contentTransition(.symbolEffect(.replace))` and settling with `Animation.spring(duration: 0.3, bounce: 0.1)`.",
+      "mobile_ios_implementation": "SwiftUI `DragGesture` on a 44x44pt thumb inside a capsule track (`GlassEffectContainer` / `.glassEffect(.regular.interactive(), in: .capsule)` where appropriate), driving thumb position and tint fill from one shared progress state; damped return via `Animation.spring(response: 0.32, dampingFraction: 0.82)` if released early, or commit at endpoint with `.contentTransition(.symbolEffect(.replace))`, `.contentTransition(.numericText())`, and `.sensoryFeedback(.success, trigger: isConfirmed)`.",
+      "native_guardrails": "No accidental commit below threshold; >=44x44pt thumb hit target on iOS and >=32x32pt on macOS with full keyboard accessibility (`accessibilityAction`); >=4.5:1 text and icon contrast against both unfilled and filled semantic `Color.green` / `Color.accentColor` tracks in Light and Dark modes; `@Environment(\\.accessibilityReduceMotion)` disables spring oscillation and uses instant state/opacity transition; `@Environment(\\.accessibilityReduceTransparency)` backs the track with solid `Color(uiColor: .tertiarySystemFill)`."
+    },
+    {
+      "id": "MP-003",
+      "name": "拉绳开关 (Pull-Cord Light Switch)",
+      "aliases": [
+        "拉绳",
+        "灯光开关",
+        "pull cord"
+      ],
+      "category": "gesture-physical",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "做一个拉绳灯光开关，绳头跟随竖向拖动，超过触发距离时切换灯光与玻璃暖光，每次拉动切换一次。松手收回绳子，摆幅逐渐衰减，再拉一次可以关闭。",
+      "canonical_prompt": "Track vertical cord drag; cross the trigger distance once to toggle light and warm glass glow, then return with damped swing and allow the next pull to turn it off.",
+      "state_machine": "off_idle -> pull -> threshold -> on_commit -> return_swing -> on_idle -> pull -> off_commit -> settle",
+      "web_implementation": "Motion drag transform with Anime.js damped return and tokenized warm-glow CSS.",
+      "mobile_implementation": "SwiftUI DragGesture plus KeyframeAnimator/native SwiftUI Spring, ShaderLibrary glow, and SensoryFeedback.",
+      "token_guardrails": "One toggle per pull; bounded drag; no glare-only status; 44x44pt target; Reduce Motion removes swing.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "glass-material",
+        "visual-style"
+      ],
+      "sub_category": "gesture-physical-manipulation",
+      "desktop_macos_implementation": "SwiftUI vertical pointer `DragGesture` on the cord handle with direct click/keyboard (`Space`) toggle support; crossing the vertical threshold toggles state once per pull, drives warm illumination via native `Canvas` / `.shadow` / `NSGlassEffectView` tinting, and animates the cord's damped pendulum return using `KeyframeAnimator` with `SpringKeyframe`.",
+      "mobile_ios_implementation": "SwiftUI vertical `DragGesture` on a >=44x44pt cord handle target; crossing the trigger distance fires `.sensoryFeedback(.impact(weight: .medium), trigger: isLit)`, toggles the ambient glass glow (`.glassEffect` / radial gradient overlay), and settles the cord back with `KeyframeAnimator` damped swing.",
+      "native_guardrails": "Strictly one toggle per pull cycle with bounded vertical drag distance; state is never communicated by glow alone (always pair with explicit SF Symbol `lightbulb.fill` / `lightbulb` and semantic label); >=44x44pt hit target on iOS and >=28x28pt on macOS; >=4.5:1 contrast in Light and Dark appearances; `@Environment(\\.accessibilityReduceMotion)` eliminates pendulum swing and snaps the cord smoothly; `@Environment(\\.accessibilityReduceTransparency)` uses opaque warm surface fills."
+    },
+    {
+      "id": "MP-004",
+      "name": "滑动工具栏 (Magnification Scrubbing Toolbar)",
+      "aliases": [
+        "滑选工具栏",
+        "放大工具栏",
+        "scrubbing toolbar"
+      ],
+      "category": "spatial-navigation",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "做一条可滑选的工具栏，当前图标随手指靠近连续放大，相邻图标平滑让位，位置由实时宽度累加计算。显示当前名称，松手提交选择，画布同步切换工具效果。",
+      "canonical_prompt": "Scrub across a toolbar whose focused icon magnifies continuously and neighbors make room from live accumulated widths; show the name and commit the selected tool on release.",
+      "state_machine": "idle -> hover/drag -> focus_magnify -> neighbor_reflow -> release -> commit -> settle",
+      "web_implementation": "Motion layout animation with measured widths, CSS transform scale, and tokenized focus ring.",
+      "mobile_implementation": "SwiftUI DragGesture with matchedGeometryEffect, measured layout, and native SwiftUI Spring(response:dampingRatio:).",
+      "token_guardrails": "Live width accumulation, no overlap, single-line label, 44x44pt targets, Reduce Motion uses discrete focus.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "layout-navigation",
+      "secondary_dimensions": [
+        "motion-interaction",
+        "component"
+      ],
+      "sub_category": "spatial-scrubbing-toolbars",
+      "desktop_macos_implementation": "Mac Dock-style scrubbing bar using SwiftUI `.onContinuousHover` and pointer `DragGesture` inside a `GeometryReader` / custom `Layout` that computes each icon's scale from pointer distance and accumulates live widths so neighbors reflow without overlap; displays a single-line tooltip label and commits on click/release with `Animation.interactiveSpring(response: 0.25, dampingFraction: 0.8)`.",
+      "mobile_ios_implementation": "Touch-scrubbing floating toolbar inside a `GlassEffectContainer` using `.glassEffect(.regular.interactive(), in: .capsule)` and `DragGesture(minimumDistance: 0)` to track finger X location, continuously scaling the focused SF Symbol icon while reflowing neighbors from live accumulated widths; emits `.sensoryFeedback(.selection, trigger: hoveredToolID)` as focus changes and commits the active tool on finger release.",
+      "native_guardrails": "Positions derived from live width accumulation so icons never overlap or clip; single-line non-wrapping tool label; >=44x44pt effective touch targets on iOS and >=28x28pt pointer targets on macOS with keyboard arrow-key navigation; >=4.5:1 contrast in Light and Dark modes; `@Environment(\\.accessibilityReduceMotion)` replaces continuous magnification with discrete highlight focus; `@Environment(\\.accessibilityReduceTransparency)` replaces Liquid Glass bar material with opaque system background."
+    },
+    {
+      "id": "MP-005",
+      "name": "消息气泡反馈 (Long-Press Bubble Reaction)",
+      "aliases": [
+        "消息气泡",
+        "长按表情",
+        "bubble reaction"
+      ],
+      "category": "micro-feedback-social",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "长按消息后拾起当前气泡，周围消息降低亮度，三枚表情错峰展开。选中并松手后，同一表情沿弧线缩到气泡角标，菜单收回。徽标随气泡归位，再点可取消。",
+      "canonical_prompt": "Long-press and lift the message bubble, dim neighbors, stagger three reactions, then arc the selected reaction into the bubble badge on release; tap again cancels.",
+      "state_machine": "idle -> long_press -> lifted_dimmed -> reaction_menu -> select -> arc_commit/cancel -> settle",
+      "web_implementation": "Motion shared layout with Anime.js stagger and SVG arc path; Basalt reaction tokens.",
+      "mobile_implementation": "SwiftUI long press, matchedGeometryEffect, KeyframeAnimator arc, and SensoryFeedback.",
+      "token_guardrails": "Preserve message context; 44x44pt reactions; tabular-nums for counts; Reduce Motion uses fade/scale.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "component",
+        "color-palette"
+      ],
+      "sub_category": "micro-feedback-haptics-symbols",
+      "desktop_macos_implementation": "Hover action bar or secondary-click / long-press on a message bubble that dims surrounding rows via `.opacity`, presents staggered SF Symbol / emoji reaction items in a floating `.glassEffect` or `NSPopover`-style callout using `PhaseAnimator`, and arcs the chosen reaction into the bubble corner badge via `matchedGeometryEffect` and `KeyframeAnimator` (clicking the badge again removes it).",
+      "mobile_ios_implementation": "SwiftUI `LongPressGesture` sequenced with `DragGesture` that lifts the target message bubble with `.scaleEffect`, dims background context, staggers three reaction pills inside a `GlassEffectContainer` (`.glassEffectID` morphing), fires `.sensoryFeedback(.impact(weight: .light), trigger: isMenuOpen)`, and animates the selected reaction along a `KeyframeAnimator` arc into the corner badge on release.",
+      "native_guardrails": "Message list scroll offset and layout stability preserved (`CLS = 0`); `.monospacedDigit()` on reaction count badges; >=44x44pt hit targets for each reaction option on iOS and >=28x28pt on macOS; >=4.5:1 badge contrast in Light and Dark modes; `@Environment(\\.accessibilityReduceMotion)` replaces staggered lift and arc trajectory with a direct scale/opacity transition; `@Environment(\\.accessibilityReduceTransparency)` uses opaque elevated surface colors for the reaction bar and badge."
+    },
+    {
+      "id": "MP-006",
+      "name": "文件拖入文件夹 (Spring-Loaded Folder Drop)",
+      "aliases": [
+        "文件夹拖入",
+        "文件拖放",
+        "spring-loaded folder"
+      ],
+      "category": "drag-drop-choreography",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "拖动文件靠近文件夹时，夹口张开并显示落点；悬停阶段保持原数量；松手命中后文件缩进前后盖之间，数量加一，再合上夹口；未命中则回到原位置。",
+      "canonical_prompt": "When a dragged file nears a folder, open the folder and show the drop target without changing count; on hit, tuck the file between covers, increment count, and close, otherwise return.",
+      "state_machine": "idle -> drag -> near_target -> folder_open -> hover -> commit/cancel -> settle",
+      "web_implementation": "Motion pointer drag with Anime.js folder lid choreography, hit testing, and numeric transition.",
+      "mobile_implementation": "SwiftUI DragGesture/drop delegate, matchedGeometryEffect tuck, numericText count, and SensoryFeedback.",
+      "token_guardrails": "Visible target and hit parity; count changes only on commit; 44x44pt targets; Reduce Motion crossfade.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "component",
+        "typography-copy"
+      ],
+      "sub_category": "drag-drop-spatial-choreography",
+      "desktop_macos_implementation": "SwiftUI `.draggable` / `.dropDestination` (or spatial `DragGesture` with `DropDelegate`) on macOS where hovering near a folder opens the front/back folder layers using `Animation.spring(duration: 0.28)` and highlights the drop ring without mutating the item count; releasing inside the target tucks the item between folder covers via `matchedGeometryEffect`, increments the `.monospacedDigit()` badge with `.contentTransition(.numericText())`, and closes the folder.",
+      "mobile_ios_implementation": "SwiftUI `DragGesture` / `.dropDestination` with proximity detection that opens the folder icon layers and triggers `.sensoryFeedback(.alignment, trigger: isHoveringFolder)`; dropping on target tucks the file card into the folder via `matchedGeometryEffect`, updates the count badge with `.contentTransition(.numericText())` and `.sensoryFeedback(.success, trigger: dropCommitted)`, or springs back to origin if cancelled.",
+      "native_guardrails": "Visual drop target boundary matches hit-test geometry 1:1; folder item count mutates strictly on commit (never during hover); `.monospacedDigit()` on count readouts; >=44x44pt drop target on iOS and >=28x28pt on macOS; >=4.5:1 contrast in Light and Dark modes; `@Environment(\\.accessibilityReduceMotion)` replaces folder-lid 3D/spring choreography with a highlight border and crossfade."
+    },
+    {
+      "id": "IP-001",
+      "name": "图表联动筛选 (Chart Cross-Filtering)",
+      "aliases": [
+        "图表联动",
+        "交叉筛选",
+        "cross-filtering"
+      ],
+      "category": "data-linkage",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "点图表里的分类，下方列表和统计数字跟着变，再点一下全部恢复。",
+      "canonical_prompt": "Click a chart category/segment to highlight it and cross-filter the list and summary metrics below; click the same category again to reset to all items.",
+      "state_machine": "all_items -> select_category(X) -> filtered_list_and_kpi(X) -> tap_same_category(X) -> all_items",
+      "web_implementation": "Derive list and KPIs from a shared activeCategory state; highlight active Recharts/Basalt segment, dim unselected segments, and toggle off on repeat click.",
+      "mobile_implementation": "SwiftUI Charts selection binding filtering the shared query state with .contentTransition(.numericText()) on summary readouts and tap-to-deselect.",
+      "token_guardrails": "tabular-nums / monospacedDigit for changing metrics; preserve active search keyword and sort order; >=4.5:1 active/inactive contrast.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "chart-dataviz",
+      "secondary_dimensions": [
+        "component",
+        "typography-copy"
+      ],
+      "sub_category": "chart-cross-filtering",
+      "desktop_macos_implementation": "Swift Charts `Chart` with `.chartAngleSelection(value:)` or `.chartXSelection(value:)` (plus direct pointer click/hover on marks) bound to an `@Observable` view model's `selectedCategory` property; selecting a mark highlights the active series, dims unselected marks via `.opacity(0.3)`, and synchronously filters the macOS `Table` / `List` and summary KPI cards (`.contentTransition(.numericText())`); clicking the same category or pressing `Esc` resets to all items.",
+      "mobile_ios_implementation": "Swift Charts interactive selection binding (`.chartXSelection` / `.chartAngleSelection`) on a touch-friendly chart mark (>=44x44pt effective selection zone) with `.sensoryFeedback(.selection, trigger: selectedCategory)`; updates the shared `@Observable` filter state to cross-filter the `List` / `LazyVStack` and animate summary metrics via `.contentTransition(.numericText())` with tap-again-to-reset.",
+      "native_guardrails": "All changing KPI numbers use `.monospacedDigit()` so layout never shifts; cross-filtering preserves any active search text and sort descriptor; active vs. dimmed chart marks and text maintain >=4.5:1 contrast in Light and Dark modes using distinct Swift Charts foreground style scales separate from semantic status colors; `@Environment(\\.accessibilityReduceMotion)` disables animated chart bar/sector morphing."
+    },
+    {
+      "id": "IP-002",
+      "name": "组合筛选与排序 (Combined Filter & Orthogonal Sort)",
+      "aliases": [
+        "组合筛选",
+        "正交排序",
+        "orthogonal sort"
+      ],
+      "category": "filter-sort-recovery",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "选好类别搜关键词，还能按数量升降序排，而且排序不会清空之前的筛选条件。",
+      "canonical_prompt": "Compose category filter, keyword search, and ascending/descending sort orthogonally; toggling sort order reorders the filtered subset without clearing active filters.",
+      "state_machine": "idle -> apply_filter(category, keyword) -> toggle_sort(asc|desc) -> reorder_subset_preserving_filters",
+      "web_implementation": "Pure derived selector: filter(items, category, keyword) then sort(field, dir); keep filter and sort controls in independent state slices.",
+      "mobile_implementation": "SwiftUIsearchable + category filter tokens + Menu/Picker sort descriptor operating on the filtered collection without resetting filter state.",
+      "token_guardrails": "Sorting never clears filter/search state; provide clear active indicators and reset options.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "component",
+      "secondary_dimensions": [
+        "layout-navigation"
+      ],
+      "sub_category": "search-filter-sort-bars",
+      "desktop_macos_implementation": "SwiftUI `.searchable` field in the window/split-view toolbar, horizontal category filter tokens/segmented `Picker`, and `Table` column `SortComparator` (or toolbar sort `Menu`) backed by independent properties on an `@Observable` state model; a pure derived computed array applies category + keyword filtering first and sorts the resulting slice without ever clearing active filter state.",
+      "mobile_ios_implementation": "Navigation-integrated `.searchable` bar, horizontal scrolling category filter capsules (`>=44pt` touch height), and a trailing toolbar `Menu` / `Picker` for ascending/descending `SortDescriptor` operating orthogonally on the filtered collection with `.sensoryFeedback(.selection, trigger: sortOrder)` and animated list reordering.",
+      "native_guardrails": "Changing sort field or direction never resets active search text or category filters; active filter count and sort direction remain visibly indicated with >=4.5:1 contrast in Light and Dark modes; hit targets >=44x44pt on iOS and >=28x28pt on macOS; `@Environment(\\.accessibilityReduceMotion)` disables row reordering animations."
+    },
+    {
+      "id": "IP-003",
+      "name": "列表联动详情 (In-Place Master-Detail Linkage)",
+      "aliases": [
+        "列表详情",
+        "主从联动",
+        "master-detail"
+      ],
+      "category": "master-detail-flow",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "点左侧记录，右侧详情直接更新，不用跳页面，列表顺序也不变。",
+      "canonical_prompt": "Select a record in the master list to update the detail pane in-place without page navigation, preserving the master list's sort order, filters, and scroll position.",
+      "state_machine": "list_ready -> select_row(id) -> detail_updated_in_place(id) [master_order_and_scroll_preserved]",
+      "web_implementation": "Two-column master-detail layout with selectedId state; render detail panel in-place and keep master list key/scroll stable.",
+      "mobile_implementation": "NavigationSplitView on iPad/macOS or in-place detail card/sheet on compact screens, preserving list scroll and ordering.",
+      "token_guardrails": "CLS = 0 on selection; master list order and scroll offset remain unchanged; clear selected row state.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "layout-navigation",
+      "secondary_dimensions": [
+        "component"
+      ],
+      "sub_category": "split-view-master-detail",
+      "desktop_macos_implementation": "Two- or three-column `NavigationSplitView` (or trailing `.inspector(isPresented:)`) where `List(selection: $selectedItemID)` updates the detail pane in-place on pointer click or up/down arrow keys without mutating the master list's sort order, active filters, or `ScrollView` offset.",
+      "mobile_ios_implementation": "Adaptive `NavigationSplitView` on regular horizontal size class (`horizontalSizeClass == .regular` on iPad / landscape) and in-place detail card or `.sheet(item: $selectedItem)` / `NavigationStack` on compact iPhone screens, preserving the master `List` scroll position, filter state, and row ordering across selection changes.",
+      "native_guardrails": "Zero layout jump (`CLS = 0`) and preserved scroll offset in the master list when selecting or switching records; selected row uses native system selection highlight with >=4.5:1 text contrast in Light and Dark modes; >=44pt minimum row height on iOS and >=28pt on macOS; respects `@Environment(\\.accessibilityReduceMotion)` and `@Environment(\\.accessibilityReduceTransparency)`."
+    },
+    {
+      "id": "IP-004",
+      "name": "无结果与局部恢复 (Scoped Empty State & Context-Preserving Recovery)",
+      "aliases": [
+        "无结果恢复",
+        "局部恢复",
+        "context-preserving recovery"
+      ],
+      "category": "filter-sort-recovery",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "搜不到时显示空状态，清空关键词后数据恢复，其他筛选条件还得保留。",
+      "canonical_prompt": "Show a contextual empty state when keyword search yields zero matches; clearing the keyword restores matching data while keeping other active filters intact.",
+      "state_machine": "filtered(category) -> keyword_no_match -> contextual_empty_state -> clear_keyword_only -> restored(category)",
+      "web_implementation": "Empty state names the active query/filter and offers a 'Clear keyword' action that resets only searchQuery while preserving category and sort state.",
+      "mobile_implementation": "ContentUnavailableView.search(text:) or contextual empty state whose reset action clears search text without wiping selected category pills.",
+      "token_guardrails": "Empty state explains why and provides a 1-click partial recovery CTA; non-keyword filters remain preserved.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "typography-copy",
+      "secondary_dimensions": [
+        "component"
+      ],
+      "sub_category": "empty-state-recovery-copy",
+      "desktop_macos_implementation": "In-place `ContentUnavailableView` inside the filtered results pane naming the unmatched `searchQuery` while showing active category filter badges; provides a prominent `Button(\"Clear Search Keyword\")` (plus `Esc` shortcut) that resets `searchQuery = \"\"` while keeping selected category filters and sort order intact.",
+      "mobile_ios_implementation": "Native `ContentUnavailableView` (customizing `ContentUnavailableView.search(text:)` with an explicit `actions` closure) containing a >=44pt-tall recovery button that clears only `searchQuery` with `.sensoryFeedback(.impact(weight: .light), trigger: searchQuery.isEmpty)` while preserving active category filter pills and sort state.",
+      "native_guardrails": "Empty state explicitly states which keyword produced zero results and offers a single-action partial recovery that never wipes non-keyword filters; >=4.5:1 contrast on empty-state iconography, title, description, and CTA button in Light and Dark modes; >=44x44pt CTA target on iOS and >=28x28pt on macOS."
+    },
+    {
+      "id": "IP-005",
+      "name": "状态联动汇总 (Live Status-to-Summary Aggregation)",
+      "aliases": [
+        "状态汇总",
+        "实时汇总",
+        "status aggregation"
+      ],
+      "category": "data-linkage",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "卡片状态一变，下方的分类数量和颜色也得跟着同步更新。",
+      "canonical_prompt": "When an item's status changes, synchronously recompute summary category counts, ratios, and semantic status colors from the same single source of truth.",
+      "state_machine": "item_status_change(old -> new) -> recompute_summary_counts_and_semantic_tokens -> UI_sync",
+      "web_implementation": "Derive summary badges, counts, and semantic color tokens directly from the items array rather than separate static counters.",
+      "mobile_implementation": "Computed properties on @Observable / SwiftData model collections driving summary badges and semantic tokens with .numericText() transition.",
+      "token_guardrails": "Single source of truth for item status and summary counters; semantic tokens calibrated for both Light and Dark mode.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "primary_dimension": "chart-dataviz",
+      "secondary_dimensions": [
+        "color-palette",
+        "typography-copy"
+      ],
+      "sub_category": "kpi-summary-aggregation",
+      "desktop_macos_implementation": "Single `@Observable` model or SwiftData `@Query` collection where summary category counts, ratios, and semantic status colors (`Color.green`, `Color.orange`, `Color.red`, `Color.secondary`) are computed properties derived directly from item statuses; mutating a row's status immediately updates top/bottom summary cards with `.monospacedDigit()` and `.contentTransition(.numericText())`.",
+      "mobile_ios_implementation": "Reactive `@Observable` / SwiftData collection driving both individual item cards and summary status badges from a single source of truth; toggling an item's status triggers `.sensoryFeedback(.selection, trigger: statusChangeCounter)` and animates summary counters in-place via `.monospacedDigit()` and `.contentTransition(.numericText())`.",
+      "native_guardrails": "Strict single source of truth (never maintain separate manual counters that can drift from item array state); `.monospacedDigit()` on all summary numbers and percentages; semantic status colors calibrated for >=4.5:1 contrast in both Light and Dark appearances and paired with SF Symbols or text labels (never color alone); `@Environment(\\.accessibilityReduceMotion)` replaces rolling numeric transitions with instant updates."
+    },
+    {
+      "id": "CL-001",
+      "name": "暗黑高能竞技荧光色板 (Kinetic Obsidian & Volt Telemetry Palette)",
+      "aliases": [
+        "暗黑荧光绿",
+        "运动色板",
+        "Spotify暗黑",
+        "Nike Volt",
+        "高能竞技"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Experience"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "color-palette",
+      "secondary_dimensions": [
+        "visual-style"
+      ],
+      "sub_category": "semantic-brand-palette",
+      "source_prompt_zh": "高对比暗黑竞技色板（灵感源自 Spotify / Nike Run Club / Hevy）：深曜石底色 #0B0D10、分层卡片 #14181F、高能荧光绿主色 #C8FF00（或电光橙）、热身琥珀色 #F59E0B、递减紫 #A855F7，保障健身房强光与暗光下 >=7:1 极高可读性。",
+      "canonical_prompt": "High-contrast obsidian dark athletic palette (#0B0D10 base, #14181F elevated surface, #C8FF00 volt accent, semantic warmup/drop-set badges) with >=7:1 metric legibility.",
+      "desktop_macos_implementation": "Asset Catalog adaptive Color Set with dark-biased `NSAppearance`, semantic `Color.primary` white text, and `AppTheme.accent` volt highlight restricted to active selection and primary CTAs.",
+      "mobile_ios_implementation": "SwiftUI adaptive Asset Catalog colors (`surfacePrimary`, `surfaceCard`, `accentVolt`) paired with `.preferredColorScheme(.dark)` option and high-contrast `.glassProminent` primary action.",
+      "native_guardrails": ">=4.5:1 WCAG AA contrast on filled volt buttons (use dark #0B0D10 ink on #C8FF00 fill, never white text on lime); semantic status colors remain fixed.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "CL-002",
+      "name": "温润瑞士纸感与深林墨色账本色板 (Warm Editorial Paper & Forest Ledger)",
+      "aliases": [
+        "暖纸感",
+        "瑞士账本",
+        "金融配色",
+        "Wise风",
+        "Apple Wallet配色"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Read",
+        "Operate"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "color-palette",
+      "secondary_dimensions": [
+        "visual-style",
+        "typography-copy"
+      ],
+      "sub_category": "semantic-brand-palette",
+      "source_prompt_zh": "温润纸感金融与阅读色板（灵感源自 Apple Wallet / Wise / Readwise）：浅色模式采用暖象牙纸底 #FAF7F2 与纯白浮卡 #FFFFFF，深色模式采用深炭墨 #121316 与 #1C1E22；主强调色为深林绿 #0F5132（暗色 #34D399）配黄铜金点缀 #D97706。",
+      "canonical_prompt": "Warm ivory editorial paper surface (#FAF7F2 light / #121316 dark) paired with deep forest ink (#0F5132 / #34D399) and brass accents for calm financial and reading workspaces.",
+      "desktop_macos_implementation": "macOS `NSWindow` background tinted with subtle warm paper luminance tiers (L0 `#FAF7F2` -> L1 `#FFFFFF` card) in Light mode and carbon slate in Dark mode.",
+      "mobile_ios_implementation": "SwiftUI semantic surface tokens in `AppTheme.swift` with `Color(uiColor: .systemGroupedBackground)` fallback and high-contrast tabular currency coloring.",
+      "native_guardrails": "Never hardcode raw RGB without Light/Dark pair; keep semantic income/expense colors distinct and accessible for red-green color blindness (pair with +/- prefix).",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "CL-003",
+      "name": "深空声波青与录音珊瑚极客色板 (Precision Acoustic Slate & Sonic Cyan)",
+      "aliases": [
+        "声波青",
+        "录音配色",
+        "极客暗色",
+        "Flighty风",
+        "Overcast风"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "color-palette",
+      "secondary_dimensions": [
+        "glass-material",
+        "motion-interaction"
+      ],
+      "sub_category": "semantic-brand-palette",
+      "source_prompt_zh": "精密声学与 AI 工具色板（灵感源自 Flighty / Linear / Overcast）：深岩灰底色 #0E1117、声波青 #38BDF8 代表 AI 转写与就绪态、录音珊瑚红 #F43F5E 代表麦克风激活态、翡翠绿 #10B981 代表任务完成。",
+      "canonical_prompt": "Precision acoustic dark slate (#0E1117) with sonic cyan (#38BDF8) for AI processing and recording coral (#F43F5E) for active voice capture.",
+      "desktop_macos_implementation": "macOS `MenuBarExtra` / `NSPopover` dark vibrancy chrome with subtle cyan `.glassEffect(.regular.tint(.cyan.opacity(0.16)))` during AI refinement.",
+      "mobile_ios_implementation": "iOS single-hand capture surface with high-visibility coral recording state and cyan AI Todo extraction pill.",
+      "native_guardrails": "Recording state must never rely on red color alone—always pair with pulsing waveform or elapsed timer (`00:12`) and SF Symbol state change.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "CL-004",
+      "name": "暖阳奶油与多巴胺贴纸生活色板 (Sunlit Cream & Tactile Sticker Palette)",
+      "aliases": [
+        "贴纸风配色",
+        "多巴胺色板",
+        "Duolingo风",
+        "CapWords风",
+        "Airbnb暖色"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "primary_dimension": "color-palette",
+      "secondary_dimensions": [
+        "visual-style",
+        "component"
+      ],
+      "sub_category": "semantic-brand-palette",
+      "source_prompt_zh": "温暖生活与语言学习贴纸色板（灵感源自 CapWords / Duolingo / Airbnb）：日光奶油底色 #FFFDF9、珊瑚粉 #FF5A5F、钴蓝 #2563EB、明黄 #FACC15，搭配柔和深褐正文 #1F2937（避免生硬纯黑）。",
+      "canonical_prompt": "Sunlit cream canvas (#FFFDF9) with warm charcoal ink (#1F2937) and joyful coral/cobalt/sunflower category accents.",
+      "desktop_macos_implementation": "Soft neutral canvas with saturated category tag pills (`color.opacity(0.15)` fill + full-saturation label).",
+      "mobile_ios_implementation": "Tactile cards with subtle bottom lip border and adaptive dark-mode desaturation so playful colors never vibrate on OLED dark backgrounds.",
+      "native_guardrails": "Desaturate pastel/neon accents by 15-20% in Dark Mode to prevent halation; verify >=4.5:1 contrast on all pill labels.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "VS-001",
+      "name": "高能运动仪表盘风格母体 (Kinetic Athletic Telemetry Archetype)",
+      "aliases": [
+        "运动风",
+        "健身房风格",
+        "Hevy风格",
+        "Nike风格",
+        "Athletic Archetype"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "typography-copy",
+        "component"
+      ],
+      "sub_category": "style-archetype",
+      "source_prompt_zh": "高能运动记录风格配方（源自 awesome-ios-design-md 的 Hevy / Strong / Nike Run Club）：零多余装饰边框，采用大字重 SF Pro Rounded 数值展示、紧凑表格行或全屏焦点大卡、5x4 定制网格键盘，配合干脆的触觉反馈。",
+      "canonical_prompt": "High-energy athletic logging archetype: borderless luminance-tiered surfaces, oversized SF Pro Rounded tabular numerals, zero decorative chrome, and instant tactile confirmation.",
+      "desktop_macos_implementation": "Dense telemetry grid with 4pt spacing scale (`AppTheme.Space`), `.monospacedDigit()` columns, and `SWActivityHeatmap` / `SWRingChart` summary widgets.",
+      "mobile_ios_implementation": "Dual-mode architecture (Tiled Table vs Focus Card) with `ConcentricRectangle` outer containers, 44x44pt independent check hit targets, and `AppPressableButtonStyle` (`scaleEffect(0.97)`).",
+      "native_guardrails": "Ban Web-style 1px gray borders (`Tell #9 Wireframe Borders`) and nested cards (`Tell #7 Everything is a Card`); keep Liquid Glass strictly on top switcher and floating rest bar.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "VS-002",
+      "name": "瑞士网格与人文账本风格母体 (Swiss Editorial & Tactile Wallet Archetype)",
+      "aliases": [
+        "瑞士风格",
+        "杂志账本",
+        "Apple Wallet风格",
+        "Cash App风格",
+        "Editorial Ledger"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Read",
+        "Operate"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "typography-copy",
+        "color-palette"
+      ],
+      "sub_category": "style-archetype",
+      "source_prompt_zh": "瑞士社论与质感卡包风格配方（源自 awesome-ios-design-md 的 Apple Wallet / Wise / Cash App）：New York 衬线大标题或高对比无衬线净值大字，列表采用干净的原生分组与微細分割线，账户卡支持叠卡展开（ShipSwift SWWallet）。",
+      "canonical_prompt": "Swiss editorial ledger archetype combining serif/sans typographic contrast, clean hairline list hierarchy, and tactile stacked wallet cards (`SWWallet`).",
+      "desktop_macos_implementation": "Two-column `NavigationSplitView` with `.unifiedCompact` toolbar, `Table` / `List` hairline rows, and `SWAreaChart` + `SWDonutChart` net-worth breakdown.",
+      "mobile_ios_implementation": "Native `List` / `Section` hierarchy (no card-in-card), hero net-worth header with `.contentTransition(.numericText())`, and `ShipSwift` `SWWallet` card stack.",
+      "native_guardrails": "Never use heavy drop shadows (`Tell #8 Shadowboxing`); rely on 3 luminance tiers (L0 canvas < L1 section < L2 focal card) and typographic scale.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "VS-003",
+      "name": "精密仪器与极客桌面工作台母体 (Precision Cockpit & Developer Workbench)",
+      "aliases": [
+        "极客工具风",
+        "精密仪器",
+        "Flighty风格",
+        "Linear风格",
+        "BAMA桌面风"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "layout-navigation",
+        "glass-material"
+      ],
+      "sub_category": "style-archetype",
+      "source_prompt_zh": "精密航空仪表与极客工具风格（源自 Flighty / Linear / BAMA mac-design）：入口优先（全局快捷键唤起浮动面板 + 菜单栏常驻）、4pt 严格网格对齐、乐观 UI（回车即刻落盘无阻断转圈）、高信息密度胶囊徽章。",
+      "canonical_prompt": "Precision instrument and Mac/iOS pro-tool archetype: entry-points-first (`MenuBarExtra` / hotkey panel), strict 4pt grid alignment, optimistic UI, and monospace telemetry.",
+      "desktop_macos_implementation": "BAMA `mac-design` rules: 380pt `NSPopover` or multi-pane `NavigationSplitView`, `28x28pt` compact controls, `13pt` body / `11pt` mono badges, `.onHover` + `.pointerStyle`, paired with `SWThinkingIndicator` and `SWKPICard`.",
+      "mobile_ios_implementation": "Compact single-hand capture bar in bottom thumb zone, instant clipboard/iCloud handoff banner, and live status pills.",
+      "native_guardrails": "Zero decorative bounce on 100+/day actions (`dampingRatio: 1.0`); never use iOS `.hoverEffect` on macOS (`@available(macOS, unavailable)`).",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "VS-004",
+      "name": "拟物贴纸与微庆典生活风格母体 (Playful Tactile Sticker & Game-Feel Archetype)",
+      "aliases": [
+        "贴纸拟物风",
+        "微庆典",
+        "CapWords风格",
+        "Duolingo风格",
+        "Game-Feel"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "motion-interaction",
+        "component"
+      ],
+      "sub_category": "style-archetype",
+      "source_prompt_zh": "实物贴纸与多感官微庆典风格（源自 CapWords / Duolingo / claude-code-apple-skills game-feel）：卡片带真实白边或微立体按压唇边，达成里程碑时协同触发 Haptics + 粒子/全息闪卡（ShipSwift SWFoil / SWConfetti / SWParticleTransition）。",
+      "canonical_prompt": "Tactile sticker and game-feel celebration archetype: die-cut sticker borders, responsive spring press (`0.94` scale), and synchronized Haptics + Metal foil/confetti milestone rewards.",
+      "desktop_macos_implementation": "Interactive canvas cards with `.visualEffect` tilt, `SWFoil` holographic shader on collectible cards, and subtle sound/motion reward on completion.",
+      "mobile_ios_implementation": "SwiftUI sticker cards with `Spring(response: 0.28, dampingRatio: 0.72)`, `SWConfetti` / `SWParticleTransition` on streak milestones, and Single-Owner `.sensoryFeedback(.success, trigger:)`.",
+      "native_guardrails": "Follow `game-feel` rarity ladder: reserve full-screen confetti/foil for rare milestones; keep everyday taps under 120ms; Single-Owner haptics (never double-fire in ViewModel and View).",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "GM-001",
+      "name": "Apple 原生双层液态玻璃导航与浮动控制栏 (Liquid Glass Functional Chrome)",
+      "aliases": [
+        "液态玻璃",
+        "Liquid Glass",
+        "GlassEffectContainer",
+        "毛玻璃导航栏",
+        "浮动玻璃条"
+      ],
+      "category": "spatial-navigation",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "glass-material",
+      "secondary_dimensions": [
+        "layout-navigation",
+        "component"
+      ],
+      "sub_category": "liquid-glass-chrome",
+      "source_prompt_zh": "Apple iOS 26 / macOS 26 原生双层液态玻璃：玻璃本身是透明光学折射材质（非黑底渐变），仅用于顶栏切换器、底部浮动条与悬浮气泡（`.glassEffect(.regular.interactive())` + `GlassEffectContainer`），通透折射下方柔和的亮色/自然内容层。",
+      "canonical_prompt": "Enforce the Two-Layer Liquid Glass rule: wrap adjacent floating controls in `GlassEffectContainer` with `.glassEffect(.regular.interactive())` applied after layout/padding modifiers, while keeping content rows/cards on solid semantic surfaces.",
+      "desktop_macos_implementation": "`GlassEffectContainer` in floating `NSPopover` headers or overlay HUDs; standard `.toolbar` and `NavigationSplitView` sidebar materials without custom opaque background overrides.",
+      "mobile_ios_implementation": "`GlassEffectContainer(spacing: 12)` with `@Namespace` and `.glassEffectID` for morphing floating pills/bars; `.buttonStyle(.glass)` for secondary actions and at most one `.buttonStyle(.glassProminent)` primary CTA.",
+      "native_guardrails": "Always place `.glassEffect(...)` AFTER `.padding()` and `.frame()`; only attach `.interactive()` to tappable/focusable controls; never apply `.glassEffect` inside `List`/`ForEach` content rows.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "GM-002",
+      "name": "ShipSwift + Genjutsu Metal 着色器玻璃与流体材质库 (Metal Shader Glass, Foil & Liquid Chrome)",
+      "aliases": [
+        "Metal着色器",
+        "色差玻璃",
+        "全息闪卡",
+        "液态金属",
+        "SWChromaticGlass",
+        "SWFoil",
+        "SWLiquidMetal",
+        "胶片噪点"
+      ],
+      "category": "3d-physics",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Persuade"
+      ],
+      "motion_tier": "M3",
+      "primary_dimension": "glass-material",
+      "secondary_dimensions": [
+        "visual-style",
+        "motion-interaction"
+      ],
+      "sub_category": "metal-shader-materials",
+      "source_prompt_zh": "SwiftUI Metal 光学材质着色器（`ShipSwift/SWMetal` + `genjutsu`）：重点是色差透镜折射 (`SWChromaticGlass`)、可拖拽玻璃球 (`SWGlassOrb`)、拉丝铝 (`SWPolishedAluminum`)、水波焦散 (`SWWater`) 等物理质感；底色搭配干净高明度或同色系弧线过渡，绝不掺杂脏黑底。",
+      "canonical_prompt": "Escalate beyond standard SwiftUI modifiers using self-contained Metal Stitchable Shaders (`.colorEffect`, `.distortionEffect`, `.layerEffect`) from `ShipSwift/SWPackage/SWAnimation/SWMetal/` and `genjutsu`.",
+      "desktop_macos_implementation": "Copy paired `.swift` + `.metal` files from `~/Development/Personal/collected-tools/repos/shipswift/ShipSwift/SWPackage/SWAnimation/SWMetal/` (e.g., `SWGrainGradient`, `SWPolishedAluminum`, `SWChromaticGlass`) for hero headers, AI active states, or badge cards.",
+      "mobile_ios_implementation": "Use `.colorEffect` / `.layerEffect(..., maxSampleOffset:)` with `TimelineView(.animation)` for 60/120fps GPU shaders (`SWGlassOrb`, `SWFoil`, `SWWater`); pause timeline when off-screen or when `accessibilityReduceMotion` is true.",
+      "native_guardrails": "Follow `genjutsu` escalation ladder (`Built-in modifiers -> .visualEffect -> Canvas -> Metal Shader`); gate continuous `TimelineView` shaders behind `@Environment(\\.accessibilityReduceMotion)` and scene phase.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "CP-002",
+      "name": "ShipSwift 源码级高阶 UI 组件库直连 (SWWallet, SWKPICard, SWThinkingIndicator, SWStepper)",
+      "aliases": [
+        "ShipSwift组件",
+        "叠卡卡包",
+        "SWWallet",
+        "SWThinkingIndicator",
+        "AI思考指示器",
+        "SWKPICard",
+        "SWStatusBadge"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "primary_dimension": "component",
+      "secondary_dimensions": [
+        "visual-style",
+        "motion-interaction"
+      ],
+      "sub_category": "shipswift-bespoke-components",
+      "source_prompt_zh": "当系统原生控件不足以表达高阶交互时，直接按需拣选 `ShipSwift/SWPackage/SWComponent/` 自包含源码组件并注入当前项目的 `AppTheme`：包括 Apple Wallet 叠卡卡包 (`SWWallet`)、AI 思考律动指示器 (`SWThinkingIndicator`)、指标卡 (`SWKPICard`)、胶囊搜索栏 (`SWSearchBar`)、步进器 (`SWStepper`)。",
+      "canonical_prompt": "Adopt self-contained SwiftUI source components from `ShipSwift/SWPackage/SWComponent/` (`SWWallet`, `SWThinkingIndicator`, `SWKPICard`, `SWStepper`, `SWStatusBadge`) restyled with the app-local `AppTheme.swift` tokens.",
+      "desktop_macos_implementation": "Copy target `.swift` file from `~/Development/Personal/collected-tools/repos/shipswift/ShipSwift/SWPackage/SWComponent/`, bind colors/radii to `AppTheme`, and add `@FocusState` / `.onHover` pointer support.",
+      "mobile_ios_implementation": "Copy target `.swift` file into product module, wire `AppTheme` semantic colors and `SensoryFeedback`, ensuring >=44x44pt hit targets and Dynamic Type scaling.",
+      "native_guardrails": "Never import a monolithic external UI wrapper dependency for 1-2 bespoke components; copy only the needed self-contained SwiftUI source file and adapt it to `AppTheme`.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "DV-003",
+      "name": "ShipSwift 高阶定制图表库 (SWActivityHeatmap, SWRadarChart, SWRingChart, SWNetworkGraph)",
+      "aliases": [
+        "热力图",
+        "雷达图",
+        "圆环进度",
+        "关系图",
+        "SWActivityHeatmap",
+        "SWRadarChart",
+        "SWRingChart"
+      ],
+      "category": "data-linkage",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Read",
+        "Operate"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "chart-dataviz",
+      "secondary_dimensions": [
+        "component",
+        "color-palette"
+      ],
+      "sub_category": "shipswift-charts",
+      "source_prompt_zh": "在原生 Swift Charts（折线/柱状/面积/扇形）之外，通过 `ShipSwift/SWPackage/SWChart/` 补齐 GitHub 风格训练/贡献热力图 (`SWActivityHeatmap`)、多维能力雷达图 (`SWRadarChart`)、三环进度 (`SWRingChart`) 与 3D 节点关系网 (`SWNetworkGraph`)。",
+      "canonical_prompt": "Complement native Swift Charts with `ShipSwift/SWPackage/SWChart/` (`SWActivityHeatmap`, `SWRadarChart`, `SWRingChart`, `SWNetworkGraph`) using `AppTheme` semantic series colors and `.monospacedDigit()` readouts.",
+      "desktop_macos_implementation": "Embed `SWActivityHeatmap` or `SWRadarChart` inside dashboard cards with pointer hover tooltips and `AppTheme.Space` 4pt grid padding.",
+      "mobile_ios_implementation": "Pair `SWRingChart` or `SWActivityHeatmap` with touch scrubbing selection and `.contentTransition(.numericText())` summary headers.",
+      "native_guardrails": "Provide VoiceOver `.accessibilityLabel` and `.accessibilityValue` summaries on every chart canvas.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "MI-006",
+      "name": "ShipSwift + Emil 物理微交互与粒子转场 (SWChangeEffect, SWParticleTransition, SWConfetti, SWShimmer)",
+      "aliases": [
+        "粒子转场",
+        "数值跳动",
+        "骨架屏闪光",
+        "撒花庆典",
+        "SWChangeEffect",
+        "SWParticleTransition",
+        "SWConfetti"
+      ],
+      "category": "micro-feedback-social",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "component",
+        "visual-style"
+      ],
+      "sub_category": "micro-feedback-haptics-symbols",
+      "source_prompt_zh": "结合 Emil Kowalski 动效频率门禁与 `ShipSwift/SWPackage/SWAnimation/`：高频操作 (>100次/天) 保持零位移临界阻尼 (`dampingRatio: 1.0`)；关键数值变更用 `SWChangeEffect` 摇晃/脉冲，加载态用 `SWShimmer` / `SWLightSweep`，删除或达成纪录用 `SWParticleTransition` / `SWConfetti`。",
+      "canonical_prompt": "Combine Emil Kowalski frequency gating (`100+/day` zero bounce, `dampingRatio: 1.0`) with `ShipSwift` micro-animations (`SWChangeEffect`, `SWShimmer`, `SWParticleTransition`, `SWConfetti`) and `game-feel` single-owner haptics.",
+      "desktop_macos_implementation": "Subtle `SWShimmer` loading placeholders and `SWChangeEffect` value pulses without full-window motion clutter.",
+      "mobile_ios_implementation": "Pair `SWChangeEffect` / `SWParticleTransition` with `.sensoryFeedback` (Single-Owner rule) and `.contentTransition(.numericText())`.",
+      "native_guardrails": "Ban waterfall entrance animations on routine screens (`Tell #14 The Grand Entrance`); fall back to instant opacity crossfade when `accessibilityReduceMotion` is enabled.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "CL-005",
+      "name": "色轮弧线渐变铁律（Instagram 暖阳弧线，严禁穿心灰黑死区）(Hue-Arc Luminous Gradient Rule)",
+      "aliases": [
+        "渐变铁律",
+        "Instagram渐变",
+        "不走直线渐变",
+        "防脏灰渐变",
+        "Hue-Arc Gradient"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read",
+        "Experience",
+        "Persuade"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "color-palette",
+      "secondary_dimensions": [
+        "visual-style",
+        "glass-material"
+      ],
+      "sub_category": "gradient-craft",
+      "source_prompt_zh": "渐变色绝不在取色板上走直线或直接混入纯黑 #000000（RGB 直线插值经过色轮中心会产生肮脏的灰黑死区 Muddy Dead Zone）。必须像 Instagram 图标一样沿色轮外圈走同明度/高饱和度『色相弧线』（如暖黄 #FEDA77 -> 珊瑚橙 #F58529 -> 品红 #DD2A7B -> 柔紫 #8134AF），或加入高明度奶白/柔光过渡点。",
+      "canonical_prompt": "Never interpolate gradients in a straight RGB line across the color wheel or fade into #000000 (which creates a muddy gray/black dead zone). Step through adjacent hues along a high-luminance arc (Instagram-style warm yellow -> coral -> rose -> violet, or sky blue -> aqua -> mint) with luminous white/pastel stops.",
+      "desktop_macos_implementation": "Use multi-stop `LinearGradient` or `MeshGradient` stepping through adjacent HSB/OKLCH hues at high brightness (`B >= 85%`), never `colors: [accent, .black]`.",
+      "mobile_ios_implementation": "SwiftUI 3-to-4 stop `LinearGradient` / `MeshGradient` along a warm or cool hue arc (e.g., `[Color(hex: 0xFEDA77), Color(hex: 0xF58529), Color(hex: 0xDD2A7B)]`), keeping luminance clean behind `.glassEffect`.",
+      "native_guardrails": "Ban 2-stop complementary RGB gradients and `to .black` fades; always insert an intermediate adjacent hue stop to curve around the gray dead zone.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "VS-005",
+      "name": "禅意留白与纸感清单跨界母体 (Things 3 / Bear / Notion × Fitness Tiled Plan)",
+      "aliases": [
+        "禅意清单风",
+        "Things3风格健身",
+        "纸感训练表",
+        "GTD训练计划",
+        "Bear留白风",
+        "Zen Paper Checklist"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "typography-copy",
+        "component"
+      ],
+      "sub_category": "cross-domain-archetype-remix",
+      "source_prompt_zh": "跨品类混搭母体 A（`Things 3 / Bear / Notion × Fitness 平铺版训中计划表`）：打破健身 App 只能用暗黑荧光绿的刻板印象，将 `Things 3` 的温润留白（`#FFFFFF` / `#F5F6F8`）、22pt 圆圈中心扩散打勾动画（`ThingsCheckbox` `scaleEffect(0.001 -> 1.0)` + `.sensoryFeedback(.impact(weight: .soft))`）、`Bear` 暖纸分组与柔和蓝 `#4F97FF` / 鼠尾草绿 `#57C98B` 嫁接到抗阻训练平铺计划表，让完成每组深蹲像勾选一张优雅的 GTD 清单。",
+      "canonical_prompt": "Cross-domain remix grafting Things 3 / Bear / Notion calm paper whitespace, center-out circular checkbox fill animations (`22pt`), and soft blue/sage semantic pills onto a tiled workout logging checklist.",
+      "desktop_macos_implementation": "macOS `NavigationSplitView` workout planner with `Things 3` airy `#F5F6F8` grouping, `13pt` SF Pro + tabular set columns, hover row highlight (`#4F97FF` at `10%` opacity), and keyboard `Space` to check sets.",
+      "mobile_ios_implementation": "SwiftUI tiled workout list with `20pt` horizontal margins, borderless luminance grouping (`#FFFFFF` canvas + `#F5F6F8` group pill), `ThingsCheckbox` center-out spring (`response: 0.3, dampingFraction: 0.6`), and `MagicPlusButton` floating action.",
+      "native_guardrails": "Zero dark-neon gym clichés or heavy 1px table grid borders; keep completed sets softly dimmed (`#8A8A8E`) rather than violently deleted so volume history stays legible.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "VS-006",
+      "name": "呼吸感正念专注跨界母体 (Calm / Headspace / Endel × Fitness Focus & Rest)",
+      "aliases": [
+        "正念专注风",
+        "Calm呼吸风健身",
+        "Headspace暖阳专注",
+        "组间恢复冥想风",
+        "Mindful Focus Recovery"
+      ],
+      "category": "core-ui-motion",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Operate"
+      ],
+      "motion_tier": "M2",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "motion-interaction",
+        "color-palette"
+      ],
+      "sub_category": "cross-domain-archetype-remix",
+      "source_prompt_zh": "跨品类混搭母体 B（`Calm / Headspace / Endel × Fitness 专注版训中大卡 & 组间休息`）：将正念冥想 App 的呼吸节律圆环（`BreatheBubble` / `BreathingSphere` 4s 吸气 - 4s 屏息 - 6s 呼气）、`Headspace` 暖杏奶油 `#FFF7E7` 与晨曦弧线渐变（`#FFB89E -> #FFD25C -> #FF6B35`）或 `Calm` 晴空蓝弧线渐变（`#38BDF8 -> #2A6FD6 -> #1E40AF`，严守 `CL-005` 零黑底铁律）引入专注版训中卡片与组间倒计时，把大重量组间恢复变成心率平稳降落的正念时刻。",
+      "canonical_prompt": "Cross-domain remix blending Calm / Headspace mindful breathing spheres, warm aurora or sky-blue hue-arc gradients (zero black dead zones per `CL-005`), and serif/rounded typographic calm into Focus-mode workout cards and rest recovery timers.",
+      "desktop_macos_implementation": "macOS focus timer widget / HUD using `SWAnimatedMeshGradient` along a luminous hue arc, soft `.glassEffect(.regular)` controls, and gentle `PhaseAnimator` breathing cadence.",
+      "mobile_ios_implementation": "Full-screen Focus-mode set card + rest recovery overlay with `BreathingSphere` radial hue-arc glow, `56pt` `.monospacedDigit()` countdown, and `.sensoryFeedback(.impact(flexibility: .soft))` breath cues.",
+      "native_guardrails": "Strictly obey `CL-005` Hue-Arc Luminous Gradient Rule—never fade rest screens into `#000000` or muddy gray; provide stationary progress ring when `accessibilityReduceMotion` is enabled.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "VS-007",
+      "name": "瑞士精密计时码表跨界母体 (Linear / Flighty / Chrono × Fitness Telemetry)",
+      "aliases": [
+        "精密码表风",
+        "Flighty航班仪表风",
+        "Linear极客健身",
+        "高密度遥测风",
+        "Swiss Chrono Telemetry"
+      ],
+      "category": "data-linkage",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "chart-dataviz",
+        "typography-copy"
+      ],
+      "sub_category": "cross-domain-archetype-remix",
+      "source_prompt_zh": "跨品类混搭母体 C（`Linear / Flighty / Chrono × Fitness 容量与 PR 遥测`）：提取 `Flighty` 登机牌级高密度信息编排、弧线进度轨迹（`FlightArc`）與语义状态胶囊（`ON PACE` `#30D158` / `DELOAD` `#FFD60A` / `PR +5KG` `#5E6AD2`），结合 `Linear` 的 `StatusGlyph` 半圆进度环、等宽编号（`SET-01` `SF Mono`）与零回弹临界阻尼（`dampingRatio: 1.0`），打造精密仪器感的训练遥测台。",
+      "canonical_prompt": "Cross-domain remix combining Flighty boarding-pass telemetry density, Linear `StatusGlyph` progress rings, `SF Mono` set identifiers (`SET-01`), and critically damped (`dampingRatio: 1.0`) micro-interactions for precision workout volume & PR tracking.",
+      "desktop_macos_implementation": "BAMA 4pt grid `NavigationSplitView` telemetry workbench with `SWKPICard`, `SWActivityHeatmap`, `SF Mono 12pt` set IDs, and instant keyboard command palette.",
+      "mobile_ios_implementation": "Compact `44pt` telemetry rows with `StatusGlyph` set completion states, `FlightArc` session volume trajectory header, and `.monospacedDigit()` e1RM / RPE readouts.",
+      "native_guardrails": "Maintain `dampingRatio: 1.0` (zero decorative bounce) on rapid set logging; keep status chips at `color.opacity(0.15)` fill with full-saturation labels.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "VS-008",
+      "name": "杂志画报与高明度大胆色块跨界母体 (Nike Run Club / Apple Music / Cash App × Fitness)",
+      "aliases": [
+        "画报大字风",
+        "杂志色块风",
+        "Nike浓缩大字",
+        "CashApp大键盘风",
+        "Editorial Poster Block"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Persuade"
+      ],
+      "motion_tier": "M2",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "typography-copy",
+        "color-palette"
+      ],
+      "sub_category": "cross-domain-archetype-remix",
+      "source_prompt_zh": "跨品类混搭母体 D（`Nike Run Club / Apple Music / Cash App × Fitness 画报大字报`）：融合 `Nike Run Club` 的 `64-88pt` 超大号浓缩字重（`.width(.condensed)`）、`Cash App` 的自适应字号大数字键盘（`AmountKeypad`）以及 `Apple Music` 的高饱和珊瑚红 `#FA2D48` + 纯白/浅灰画报底色，用纯粹的字重对比与明亮色块取代繁琐边框。",
+      "canonical_prompt": "Cross-domain remix uniting Nike Run Club oversized condensed hero numerals (`64-88pt` `.width(.condensed)`), Cash App auto-scaling numeric keypad, and Apple Music editorial color blocking on luminous surfaces.",
+      "desktop_macos_implementation": "Editorial poster summary header with condensed display numerals, `SWRingChart` hero rings, and vibrant color-blocked milestone cards.",
+      "mobile_ios_implementation": "Poster-scale live set readout (`64pt` condensed heavy `.monospacedDigit()`), `Cash App`-style responsive weight/reps keypad, and `ApplePlayButton` spring scale (`0.92`).",
+      "native_guardrails": "Auto-scale hero numerals (`96pt -> 64pt -> 52pt`) as digit count grows so zero numeric truncation (`…`) ever occurs.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "CL-006",
+      "name": "Things 3 晴空纸感与 Bear 鼠尾草绿清单色板 (Zen Paper & Sky-Sage Checklist Palette)",
+      "aliases": [
+        "Things3色板",
+        "纸感晴空蓝",
+        "鼠尾草绿清单",
+        "无压迫浅色健身色板"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "color-palette",
+      "secondary_dimensions": [
+        "visual-style",
+        "typography-copy"
+      ],
+      "sub_category": "semantic-brand-palette",
+      "source_prompt_zh": "源自 `Things 3` 与 `Bear` 的零压迫感纸感色板：纯白画布 `#FFFFFF` 配冷灰分组 `#F5F6F8`（或暖纸 `#F6F6F4`），主强调色采用 `Things` 晴空蓝 `#4F97FF`（按压态 `#3D7FE0`，选中底色 `10%` 透明），完成态采用 `Bear` 鼠尾草翡翠绿 `#57C98B`，热身组采用暖阳黄 `#FFD60A`，正文为温润深炭 `#1D1D1F`。",
+      "canonical_prompt": "Airy paper canvas (`#FFFFFF` / `#F5F6F8`) paired with Things 3 sky blue (`#4F97FF`), Bear sage emerald (`#57C98B`) for completed sets, warm today gold (`#FFD60A`) for warm-ups, and soft ink (`#1D1D1F`).",
+      "desktop_macos_implementation": "Light-first `NSWindow` paper hierarchy with subtle `#ECECEC` hairlines and `#4F97FF` 10% selection tint.",
+      "mobile_ios_implementation": "`AppTheme` tokens binding `surfacePrimary = #FFFFFF`, `surfaceCard = #F5F6F8`, `accent = #4F97FF`, and `completed = #57C98B` with zero dark-mode muddy grays.",
+      "native_guardrails": "Keep selection and tag fills at `8-12%` opacity over white/paper surfaces; maintain >=4.5:1 contrast on all pill labels.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "CL-007",
+      "name": "Headspace 晨曦暖杏与 Calm 晴空色轮弧线色板 (Mindful Aurora & Sky Hue-Arc Palette)",
+      "aliases": [
+        "Headspace配色",
+        "Calm晴空色板",
+        "正念晨曦渐变",
+        "无黑底呼吸色板"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Operate"
+      ],
+      "motion_tier": "M2",
+      "primary_dimension": "color-palette",
+      "secondary_dimensions": [
+        "visual-style",
+        "glass-material"
+      ],
+      "sub_category": "gradient-craft",
+      "source_prompt_zh": "源自 `Headspace` 与 `Calm` 的正念恢复色板（严格遵循 `CL-005` 色轮弧线渐变铁律，严禁混入 `#000000` 黑底）：暖色系采用奶油杏底 `#FFF7E7` + 晨曦三段弧线渐变（暖桃 `#FFB89E` -> 金黄 `#FFD25C` -> 万寿菊橙 `#FF6B35`）+ 深紫褐正文 `#2E1A47`；冷色系采用晴空冰蓝底 `#F0F7FF` + 天际弧线渐变（冰青 `#38BDF8` -> 晴空蓝 `#2A6FD6` -> 皇家靛蓝 `#4F46E5`）。",
+      "canonical_prompt": "Mindful recovery hue-arc palette (`CL-005` compliant, zero `#000000`): Warm Butter Cream (`#FFF7E7`) with Aurora arc (`#FFB89E -> #FFD25C -> #FF6B35`) and Ink Brown (`#2E1A47`), or Cool Sky Mist (`#F0F7FF`) with Sky-to-Indigo arc (`#38BDF8 -> #2A6FD6 -> #4F46E5`).",
+      "desktop_macos_implementation": "Multi-stop `LinearGradient` / `MeshGradient` stepping through warm aurora or cool sky hue arcs behind translucent `.glassEffect` rest overlays.",
+      "mobile_ios_implementation": "Radial/Linear 3-stop hue-arc gradients in `BreathingSphere` and Focus cards, paired with `#2E1A47` or `#0F172A` high-contrast typography.",
+      "native_guardrails": "Never fade `Calm` or `Headspace` gradients to `#000000`; curve every gradient through adjacent high-brightness stops (`B >= 80%`).",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "CL-008",
+      "name": "Linear 极光紫与 Flighty 航空语义遥测色板 (Swiss Chrono & Avionics Telemetry Palette)",
+      "aliases": [
+        "Flighty色板",
+        "Linear紫配色",
+        "精密仪表色板",
+        "航空级语义色"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "color-palette",
+      "secondary_dimensions": [
+        "chart-dataviz",
+        "visual-style"
+      ],
+      "sub_category": "semantic-brand-palette",
+      "source_prompt_zh": "源自 `Linear`、`Flighty` 与 `Apple Music` 的高对比度精密色板：浅色模式采用瑞士冷白 `#F8FAFC` 与纯白浮层 `#FFFFFF`，深色模式采用深空靛蓝灰 `#0E131F` 与 `#182032`（避免死黑）；主信号色为 `Linear` 极光紫 `#5E6AD2` 与 `Flighty` 航线蓝 `#0A84FF`，语义胶囊严格采用准点绿 `#30D158`（达标）、琥珀黄 `#F2C94C`（热身/递减）、画报珊瑚红 `#FA2D48`（极限 PR 冲击）。",
+      "canonical_prompt": "Precision telemetry palette combining Swiss cool alabaster (`#F8FAFC` / `#FFFFFF`) or deep avionics navy (`#0E131F` / `#182032`), Linear indigo (`#5E6AD2`), Flighty route blue (`#0A84FF`), and strict semantic status pills (`#30D158`, `#F2C94C`, `#FA2D48`).",
+      "desktop_macos_implementation": "Crisp tabular telemetry surfaces with `14%` opacity semantic status capsules and glowing `#0A84FF` trajectory arcs.",
+      "mobile_ios_implementation": "High-contrast `StatusChip` and `StatusGlyph` tokens with tabular monospace numerals and zero muddy black gradients.",
+      "native_guardrails": "Reserve `#FA2D48` / `#FF453A` strictly for PR breakthroughs or failure alerts; pair every semantic color with an explicit text code (`W`, `WK`, `PR`, `DROP`).",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "TC-001",
+      "name": "**说法**：别用系统术语。比如写“循环规则”，用户根本看不懂；换成大白话“每周一提醒我”，一下就明白了。",
+      "platforms": [
+        "desktop",
+        "mobile"
+      ],
+      "primary_dimension": "typography-copy",
+      "secondary_dimensions": [],
+      "sub_category": "type-scale-dynamic-hierarchy",
+      "prefix": "TC",
+      "source_prompt_zh": "**说法**：别用系统术语。比如写“循环规则”，用户根本看不懂；换成大白话“每周一提醒我”，一下就明白了。",
+      "canonical_prompt": "**说法**：别用系统术语。比如写“循环规则”，用户根本看不懂；换成大白话“每周一提醒我”，一下就明白了。",
+      "apple_native_primitives": [
+        "Font.largeTitle",
+        "Font.title",
+        "Font.headline",
+        "Font.subheadline",
+        "Font.body"
+      ],
+      "hig_routes": [
+        "typography.md",
+        "writing.md",
+        "VoiceOver.md",
+        "accessibility.md"
+      ],
+      "desktop_macos_implementation": "macOS Native (Font.largeTitle, Font.title, Font.headline): pointer/hover feedback, keyboard shortcut support, and standard window/popover materials per typography.md, writing.md.",
+      "mobile_ios_implementation": "iOS/iPadOS Native (Font.largeTitle, Font.title, Font.headline): >=44x44pt touch targets, Size Class adaptive layout, and Dynamic Type scaling per typography.md, writing.md.",
+      "native_guardrails": "Apple HIG baseline: semantic Light/Dark colors (>=4.5:1 contrast), Liquid Glass restricted to floating functional chrome, Reduce Motion & Reduce Transparency respected.",
+      "route_stage": "stage2_llm_fallback",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "LN-001",
+      "name": "**入口**：别让新用户满屏找。把选项直接放在任务发生的地方，高级设置先收起来。",
+      "platforms": [
+        "desktop",
+        "mobile"
+      ],
+      "primary_dimension": "layout-navigation",
+      "secondary_dimensions": [],
+      "sub_category": "split-view-master-detail",
+      "prefix": "LN",
+      "source_prompt_zh": "**入口**：别让新用户满屏找。把选项直接放在任务发生的地方，高级设置先收起来。",
+      "canonical_prompt": "**入口**：别让新用户满屏找。把选项直接放在任务发生的地方，高级设置先收起来。",
+      "apple_native_primitives": [
+        "NavigationSplitView",
+        "NavigationStack",
+        "TabView",
+        ".tabViewStyle(.sidebarAdaptable)",
+        ".inspector(isPresented:content:)"
+      ],
+      "hig_routes": [
+        "layout.md",
+        "spatial-layout.md",
+        "split-views.md",
+        "sidebars.md",
+        "tab-bars.md",
+        "navigation-bars.md",
+        "toolbars.md",
+        "scroll-views.md"
+      ],
+      "desktop_macos_implementation": "macOS Native (NavigationSplitView, NavigationStack, TabView): pointer/hover feedback, keyboard shortcut support, and standard window/popover materials per layout.md, spatial-layout.md.",
+      "mobile_ios_implementation": "iOS/iPadOS Native (NavigationSplitView, NavigationStack, TabView): >=44x44pt touch targets, Size Class adaptive layout, and Dynamic Type scaling per layout.md, spatial-layout.md.",
+      "native_guardrails": "Apple HIG baseline: semantic Light/Dark colors (>=4.5:1 contrast), Liquid Glass restricted to floating functional chrome, Reduce Motion & Reduce Transparency respected.",
+      "route_stage": "stage2_llm_fallback",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "MI-007",
+      "name": "**反馈**：操作完得给个准信。点保存后页面啥变化没有，新手根本不知道成没成功；直接告诉他“下次提醒周一上午9点”才行。",
+      "platforms": [
+        "desktop",
+        "mobile"
+      ],
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [],
+      "sub_category": "gesture-physical-manipulation",
+      "prefix": "MI",
+      "source_prompt_zh": "**反馈**：操作完得给个准信。点保存后页面啥变化没有，新手根本不知道成没成功；直接告诉他“下次提醒周一上午9点”才行。",
+      "canonical_prompt": "**反馈**：操作完得给个准信。点保存后页面啥变化没有，新手根本不知道成没成功；直接告诉他“下次提醒周一上午9点”才行。",
+      "apple_native_primitives": [
+        "Spring(duration:bounce:)",
+        "Animation.spring(response:dampingFraction:blendDuration:)",
+        "Animation.snappy",
+        "Animation.smooth",
+        "Animation.bouncy"
+      ],
+      "hig_routes": [
+        "motion.md",
+        "gestures.md",
+        "drag-and-drop.md",
+        "feedback.md",
+        "playing-haptics.md"
+      ],
+      "desktop_macos_implementation": "macOS Native (Spring(duration:bounce:), Animation.spring(response:dampingFraction:blendDuration:), Animation.snappy): pointer/hover feedback, keyboard shortcut support, and standard window/popover materials per motion.md, gestures.md.",
+      "mobile_ios_implementation": "iOS/iPadOS Native (Spring(duration:bounce:), Animation.spring(response:dampingFraction:blendDuration:), Animation.snappy): >=44x44pt touch targets, Size Class adaptive layout, and Dynamic Type scaling per motion.md, gestures.md.",
+      "native_guardrails": "Apple HIG baseline: semantic Light/Dark colors (>=4.5:1 contrast), Liquid Glass restricted to floating functional chrome, Reduce Motion & Reduce Transparency respected.",
+      "route_stage": "stage2_llm_fallback",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "GM-003",
+      "name": "Liquid Glass 光学透镜共享容器与窗口失焦退让 (WWDC25-219/323 & WWDC26-269)",
+      "aliases": [
+        "光学透镜",
+        "GlassEffectContainer共享采样",
+        "玻璃不采样玻璃",
+        "appearsActive",
+        "Clear三前提",
+        "interactive点击微弹"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "primary_dimension": "glass-material",
+      "secondary_dimensions": [
+        "layout-navigation",
+        "motion-interaction"
+      ],
+      "sub_category": "liquid-glass-primitives",
+      "source_prompt_zh": "WWDC25-219/323 与 WWDC26-269 Liquid Glass 物理铁律：核心机制是光学透镜折射（Lensing）而非高斯模糊，玻璃绝不能采样另一层玻璃；相邻浮动胶囊必须装入同一个 `GlassEffectContainer` 共享采样域并配 `@Namespace` + `.glassEffectID` 实现液态融合过渡；`Clear` 变体仅在满足「富媒体底图 + 暗化底衬 + 粗体亮色前景」三前提时启用；macOS 27 为自定义玻璃控件显式加 `.glassEffect(.regular.interactive())` 获得按压微弹发光，并用 `@Environment(\\.appearsActive)` 在窗口失焦时自动降色温退让。",
+      "canonical_prompt": "Group adjacent Liquid Glass controls inside a single `GlassEffectContainer` with `.glassEffectID` so glass never samples glass; reserve `Glass.clear` for media-rich dimmed backdrops; add `.interactive()` on macOS 27 custom glass controls and dim inactive window accents via `@Environment(\\.appearsActive)`.",
+      "desktop_macos_implementation": "Wrap floating toolbar/HUD pills in `GlassEffectContainer(spacing: 10)` with `.glassEffect(.regular.interactive(), in: .capsule)` on macOS 27; observe `@Environment(\\.appearsActive)` to soften accent saturation when the `NSWindow` loses key status; use `.backgroundExtensionEffect()` and `.scrollEdgeEffectStyle(.hard, for: .top)` for full-bleed split views.",
+      "mobile_ios_implementation": "Combine `GlassEffectContainer` + `@Namespace` + `.glassEffectID(_:in:)` for morphing toolbars and floating action bars; use `Glass.regular` by default and restrict `Glass.clear` to media overlays that satisfy all 3 legibility preconditions.",
+      "native_guardrails": "Glass cannot sample glass—never nest or stack `.glassEffect` without a shared `GlassEffectContainer`; at most 1 tinted `.glassProminent` primary CTA per bar; respect `@Environment(\\.accessibilityReduceTransparency)` and `@Environment(\\.accessibilityReduceMotion)`.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "LN-002",
+      "name": "OS 27 自由缩放窗口、自适应工具栏折叠与容器同心圆角 (WWDC26-269/278/289 & WWDC25-323)",
+      "aliases": [
+        "ToolbarOverflowMenu",
+        "visibilityPriority",
+        "topBarPinnedTrailing",
+        "containerConcentric",
+        "cornerConfiguration",
+        "窗口自由缩放",
+        "SizeClass自适应"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "layout-navigation",
+      "secondary_dimensions": [
+        "component",
+        "visual-style"
+      ],
+      "sub_category": "spatial-scrubbing-toolbars",
+      "source_prompt_zh": "WWDC26-269/278/289 与 WWDC25-323 窗口与工具栏自适应契约：iOS 27 与 macOS 27 iPhone 镜像支持任意比例自由拖拽窗口（此时 `idiom` 恒为 `.phone`、`orientation` 恒为 `.portrait`），严禁用 `UIScreen.main` 或设备方向分支，一律改用 `horizontalSizeClass`、`ViewThatFits` 或 `effectiveGeometry`；工具栏通过 `.visibilityPriority(.high)` 声明保留优先级，窄窗自动收进 `ToolbarOverflowMenu`，主操作钉在 `.topBarPinnedTrailing`（或底部 `Tab(role: .prominent)`），阅读流配 `.toolbarMinimizeBehavior(.onScrollDown, for: .navigationBar)`；嵌套卡片圆角用 `.rect(corner: .containerConcentric)`（AppKit 用 `NSView.cornerConfiguration`）由系统自动推算同心曲率。",
+      "canonical_prompt": "Support OS 27 free-form window resizing using `horizontalSizeClass` and `effectiveGeometry` (never `UIScreen.main`, `userInterfaceIdiom`, or `interfaceOrientation`); configure adaptive toolbars with `.visibilityPriority(.high)`, `ToolbarOverflowMenu`, `.topBarPinnedTrailing`, and `.toolbarMinimizeBehavior(.onScrollDown, for: .navigationBar)`, and use `.rect(corner: .containerConcentric)` / `NSView.cornerConfiguration` for nested concentric radii.",
+      "desktop_macos_implementation": "Use `.toolbar` with `ToolbarSpacer(.flexible)`, `.visibilityPriority(.high)` on primary actions, and `ToolbarOverflowMenu` for secondary tools; apply `.clipShape(.rect(corner: .containerConcentric))` in SwiftUI or `NSView.cornerConfiguration` in AppKit so nested tiles automatically match window/sheet bezel curvature.",
+      "mobile_ios_implementation": "Drive multi-column reflow strictly from `@Environment(\\.horizontalSizeClass)` and `ViewThatFits`; pin primary actions with `.topBarPinnedTrailing` or separated `Tab(role: .prominent)`, collapse nav chrome on scroll via `.toolbarMinimizeBehavior(.onScrollDown, for: .navigationBar)`, and replace manual radius math with `.rect(corner: .containerConcentric)`.",
+      "native_guardrails": "Never branch layout on `UIScreen.main.bounds`, `UIDevice.current.userInterfaceIdiom == .phone`, or `interfaceOrientation.isLandscape`; never place custom opaque backgrounds behind system toolbars.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    },
+    {
+      "id": "MI-008",
+      "name": "LazyStack 帧死线预取、1:1 子视图解析与视口曝光感知 (WWDC26-321 & WWDC26-269)",
+      "aliases": [
+        "LazyVStack预取",
+        "1比1子视图",
+        "onScrollTargetVisibilityChange",
+        "帧死线",
+        "State惰性初始化",
+        "滚动掉帧优化"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "mobile",
+        "shared"
+      ],
+      "platforms_v2": [
+        "desktop",
+        "mobile"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "layout-navigation",
+        "component"
+      ],
+      "sub_category": "scroll-pinning-safe-areas",
+      "source_prompt_zh": "WWDC26-321 与 WWDC26-269 120Hz 滚动性能铁律：SwiftUI 利用垂直同步帧死线（Frame Deadline）剩余空闲预算提前预取下一行，必须在数据源或 `@Query(#Predicate)` 层完成过滤，保持 `ForEach` 闭包内 1:1 固定根视图映射（严禁在 `ForEach` 顶层写 `if` 导致 0/1 动态子视图计数与离屏内存泄漏）；在视图 `init` 中直接创建 `@State` / `@Observable` 模型（配合 Macro 属性惰性监听，绝不推迟到 `.onAppear` 错过预取窗口）；用 `.onScrollTargetVisibilityChange(idType:threshold: 0.8)` 控制音视频自动启停，并用自定义 `Layout` 替代多层 `onGeometryChange` 写回 `@State` 的二次布局震荡。",
+      "canonical_prompt": "Preserve 120Hz `LazyVStack`/`LazyHStack` frame-deadline prefetching by enforcing 1:1 subview resolution inside `ForEach` (filter in `@Query(#Predicate)` or the collection, never a top-level `if` inside `ForEach`), initializing `@State`/`@Observable` models in `init` rather than `.onAppear`, and driving viewport media playback with `.onScrollTargetVisibilityChange(idType:threshold:)`.",
+      "desktop_macos_implementation": "Filter `LazyVStack` / `Table` collections upstream via `#Predicate` or computed slices; initialize lightweight `@Observable` row models in `init`; use custom `Layout` (`sizeThatFits` / `placeSubviews`) instead of chaining `onGeometryChange` -> `@State` height mutations across parent-child views.",
+      "mobile_ios_implementation": "Keep every `ForEach` element mapped 1:1 to a single root row view so iOS 27 prefetching prepares offscreen cells before VSync; attach `.onScrollTargetVisibilityChange(idType: Item.ID.self, threshold: 0.8)` to start/stop inline video or waveform animations only when >=80% visible.",
+      "native_guardrails": "Never place a top-level `if` filter inside `LazyVStack`/`LazyHStack` `ForEach` closures (`HIG-LAZY-LEAF-CONDITIONAL` / `DC-004`); never allocate heavy objects lazily inside `.onAppear` when prefetching is active.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null
+    }
+  ],
+  "patterns": [
+    {
+      "id": "MP-001",
+      "name": "卡片揭角 (Card Corner Peel)",
+      "aliases": [
+        "揭角",
+        "卡片揭角",
+        "corner peel"
+      ],
+      "category": "gesture-physical",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "做一张可揭角的卡片，右下角按住后随拖动卷起，用折线裁切正面并露出背面，折片带柔和明暗。松手沿原路回落，短距离拖动只露一角，整张卡片保持稳定。",
+      "canonical_prompt": "Drag the card's lower-right corner to peel a clipped front layer, reveal the back, then spring back along the inverse path unless committed.",
+      "state_machine": "idle -> press -> drag -> partial_peel -> release -> spring_settle",
+      "web_implementation": "Motion drag progress with CSS clip-path polygon and @nocoo/basalt tokens.",
+      "mobile_implementation": "SwiftUI DragGesture with Canvas/path clipping, StrataMotion spring, and Reduce Motion crossfade.",
+      "token_guardrails": "CLS = 0; tabular-nums where values appear; >=4.5:1 contrast; 44x44pt hit target; Reduce Motion fallback.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "MP-002",
+      "name": "滑动确认 (Slide-to-Confirm)",
+      "aliases": [
+        "滑动确认",
+        "slide confirm",
+        "confirm slider"
+      ],
+      "category": "confirmation-safety",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "做一个滑动确认按钮，圆钮与轨道填充跟随同一拖动进度。未到终点松手，阻尼回到起点且不执行；到终点松手才确认，箭头变成对勾，文字变为已完成。",
+      "canonical_prompt": "Keep thumb and track fill on one normalized drag progress; cancel below the endpoint with damped return, commit only at endpoint, then swap arrow to checkmark and copy.",
+      "state_machine": "idle -> drag -> threshold -> commit/cancel -> spring_settle",
+      "web_implementation": "Motion drag controls thumb and track; CSS/SVG icon morph; Basalt semantic success tokens.",
+      "mobile_implementation": "SwiftUI DragGesture with StrataMotion spring, contentTransition(.symbolEffect), SensoryFeedback, and numericText.",
+      "token_guardrails": "No accidental commit; 44x44pt target; explicit threshold; >=4.5:1 contrast; Reduce Motion opacity/state fallback.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "MP-003",
+      "name": "拉绳开关 (Pull-Cord Light Switch)",
+      "aliases": [
+        "拉绳",
+        "灯光开关",
+        "pull cord"
+      ],
+      "category": "gesture-physical",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "做一个拉绳灯光开关，绳头跟随竖向拖动，超过触发距离时切换灯光与玻璃暖光，每次拉动切换一次。松手收回绳子，摆幅逐渐衰减，再拉一次可以关闭。",
+      "canonical_prompt": "Track vertical cord drag; cross the trigger distance once to toggle light and warm glass glow, then return with damped swing and allow the next pull to turn it off.",
+      "state_machine": "off_idle -> pull -> threshold -> on_commit -> return_swing -> on_idle -> pull -> off_commit -> settle",
+      "web_implementation": "Motion drag transform with Anime.js damped return and tokenized warm-glow CSS.",
+      "mobile_implementation": "SwiftUI DragGesture plus KeyframeAnimator/StrataMotion, ShaderLibrary glow, and SensoryFeedback.",
+      "token_guardrails": "One toggle per pull; bounded drag; no glare-only status; 44x44pt target; Reduce Motion removes swing.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "MP-004",
+      "name": "滑动工具栏 (Magnification Scrubbing Toolbar)",
+      "aliases": [
+        "滑选工具栏",
+        "放大工具栏",
+        "scrubbing toolbar"
+      ],
+      "category": "spatial-navigation",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "做一条可滑选的工具栏，当前图标随手指靠近连续放大，相邻图标平滑让位，位置由实时宽度累加计算。显示当前名称，松手提交选择，画布同步切换工具效果。",
+      "canonical_prompt": "Scrub across a toolbar whose focused icon magnifies continuously and neighbors make room from live accumulated widths; show the name and commit the selected tool on release.",
+      "state_machine": "idle -> hover/drag -> focus_magnify -> neighbor_reflow -> release -> commit -> settle",
+      "web_implementation": "Motion layout animation with measured widths, CSS transform scale, and tokenized focus ring.",
+      "mobile_implementation": "SwiftUI DragGesture with matchedGeometryEffect, measured layout, and StrataMotion spring.",
+      "token_guardrails": "Live width accumulation, no overlap, single-line label, 44x44pt targets, Reduce Motion uses discrete focus.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "MP-005",
+      "name": "消息气泡反馈 (Long-Press Bubble Reaction)",
+      "aliases": [
+        "消息气泡",
+        "长按表情",
+        "bubble reaction"
+      ],
+      "category": "micro-feedback-social",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "长按消息后拾起当前气泡，周围消息降低亮度，三枚表情错峰展开。选中并松手后，同一表情沿弧线缩到气泡角标，菜单收回。徽标随气泡归位，再点可取消。",
+      "canonical_prompt": "Long-press and lift the message bubble, dim neighbors, stagger three reactions, then arc the selected reaction into the bubble badge on release; tap again cancels.",
+      "state_machine": "idle -> long_press -> lifted_dimmed -> reaction_menu -> select -> arc_commit/cancel -> settle",
+      "web_implementation": "Motion shared layout with Anime.js stagger and SVG arc path; Basalt reaction tokens.",
+      "mobile_implementation": "SwiftUI long press, matchedGeometryEffect, KeyframeAnimator arc, and SensoryFeedback.",
+      "token_guardrails": "Preserve message context; 44x44pt reactions; tabular-nums for counts; Reduce Motion uses fade/scale.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "MP-006",
+      "name": "文件拖入文件夹 (Spring-Loaded Folder Drop)",
+      "aliases": [
+        "文件夹拖入",
+        "文件拖放",
+        "spring-loaded folder"
+      ],
+      "category": "drag-drop-choreography",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "拖动文件靠近文件夹时，夹口张开并显示落点；悬停阶段保持原数量；松手命中后文件缩进前后盖之间，数量加一，再合上夹口；未命中则回到原位置。",
+      "canonical_prompt": "When a dragged file nears a folder, open the folder and show the drop target without changing count; on hit, tuck the file between covers, increment count, and close, otherwise return.",
+      "state_machine": "idle -> drag -> near_target -> folder_open -> hover -> commit/cancel -> settle",
+      "web_implementation": "Motion pointer drag with Anime.js folder lid choreography, hit testing, and numeric transition.",
+      "mobile_implementation": "SwiftUI DragGesture/drop delegate, matchedGeometryEffect tuck, numericText count, and SensoryFeedback.",
+      "token_guardrails": "Visible target and hit parity; count changes only on commit; 44x44pt targets; Reduce Motion crossfade.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "IP-001",
+      "name": "图表联动筛选 (Chart Cross-Filtering)",
+      "aliases": [
+        "图表联动",
+        "交叉筛选",
+        "cross-filtering"
+      ],
+      "category": "data-linkage",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "点图表里的分类，下方列表和统计数字跟着变，再点一下全部恢复。",
+      "canonical_prompt": "Click a chart category/segment to highlight it and cross-filter the list and summary metrics below; click the same category again to reset to all items.",
+      "state_machine": "all_items -> select_category(X) -> filtered_list_and_kpi(X) -> tap_same_category(X) -> all_items",
+      "web_implementation": "Derive list and KPIs from a shared activeCategory state; highlight active Recharts/Basalt segment, dim unselected segments, and toggle off on repeat click.",
+      "mobile_implementation": "SwiftUI Charts selection binding filtering the shared query state with .contentTransition(.numericText()) on summary readouts and tap-to-deselect.",
+      "token_guardrails": "tabular-nums / monospacedDigit for changing metrics; preserve active search keyword and sort order; >=4.5:1 active/inactive contrast.",
+      "usage_count": 1,
+      "rating": "liked",
+      "last_used_at": "2026-11-07",
+      "usage_history": [
+        {
+          "timestamp": "2026-11-07T18:58:11",
+          "context": "AIDash/TrendChartCardView",
+          "rating": "liked",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "IP-002",
+      "name": "组合筛选与排序 (Combined Filter & Orthogonal Sort)",
+      "aliases": [
+        "组合筛选",
+        "正交排序",
+        "orthogonal sort"
+      ],
+      "category": "filter-sort-recovery",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "选好类别搜关键词，还能按数量升降序排，而且排序不会清空之前的筛选条件。",
+      "canonical_prompt": "Compose category filter, keyword search, and ascending/descending sort orthogonally; toggling sort order reorders the filtered subset without clearing active filters.",
+      "state_machine": "idle -> apply_filter(category, keyword) -> toggle_sort(asc|desc) -> reorder_subset_preserving_filters",
+      "web_implementation": "Pure derived selector: filter(items, category, keyword) then sort(field, dir); keep filter and sort controls in independent state slices.",
+      "mobile_implementation": "SwiftUIsearchable + category filter tokens + Menu/Picker sort descriptor operating on the filtered collection without resetting filter state.",
+      "token_guardrails": "Sorting never clears filter/search state; provide clear active indicators and reset options.",
+      "usage_count": 2,
+      "rating": "liked",
+      "last_used_at": "2026-11-07",
+      "usage_history": [
+        {
+          "timestamp": "2026-11-07T18:58:11",
+          "context": "AIDash/MainDashboardToolbar+Table",
+          "rating": "liked",
+          "notes": ""
+        },
+        {
+          "timestamp": "2026-11-07T22:23:07",
+          "context": "VoxPocket/TodoAndNoteFilterBar",
+          "rating": "liked",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "IP-003",
+      "name": "列表联动详情 (In-Place Master-Detail Linkage)",
+      "aliases": [
+        "列表详情",
+        "主从联动",
+        "master-detail"
+      ],
+      "category": "master-detail-flow",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "点左侧记录，右侧详情直接更新，不用跳页面，列表顺序也不变。",
+      "canonical_prompt": "Select a record in the master list to update the detail pane in-place without page navigation, preserving the master list's sort order, filters, and scroll position.",
+      "state_machine": "list_ready -> select_row(id) -> detail_updated_in_place(id) [master_order_and_scroll_preserved]",
+      "web_implementation": "Two-column master-detail layout with selectedId state; render detail panel in-place and keep master list key/scroll stable.",
+      "mobile_implementation": "NavigationSplitView on iPad/macOS or in-place detail card/sheet on compact screens, preserving list scroll and ordering.",
+      "token_guardrails": "CLS = 0 on selection; master list order and scroll offset remain unchanged; clear selected row state.",
+      "usage_count": 2,
+      "rating": "liked",
+      "last_used_at": "2026-11-07",
+      "usage_history": [
+        {
+          "timestamp": "2026-11-07T18:58:11",
+          "context": "AIDash/RankingTableCardView",
+          "rating": "liked",
+          "notes": ""
+        },
+        {
+          "timestamp": "2026-11-07T22:23:07",
+          "context": "VoxPocket/MacWorkspaceNavigationSplitView",
+          "rating": "liked",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "IP-004",
+      "name": "无结果与局部恢复 (Scoped Empty State & Context-Preserving Recovery)",
+      "aliases": [
+        "无结果恢复",
+        "局部恢复",
+        "context-preserving recovery"
+      ],
+      "category": "filter-sort-recovery",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "搜不到时显示空状态，清空关键词后数据恢复，其他筛选条件还得保留。",
+      "canonical_prompt": "Show a contextual empty state when keyword search yields zero matches; clearing the keyword restores matching data while keeping other active filters intact.",
+      "state_machine": "filtered(category) -> keyword_no_match -> contextual_empty_state -> clear_keyword_only -> restored(category)",
+      "web_implementation": "Empty state names the active query/filter and offers a 'Clear keyword' action that resets only searchQuery while preserving category and sort state.",
+      "mobile_implementation": "ContentUnavailableView.search(text:) or custom Strata empty state whose reset action clears search text without wiping selected category pills.",
+      "token_guardrails": "Empty state explains why and provides a 1-click partial recovery CTA; non-keyword filters remain preserved.",
+      "usage_count": 2,
+      "rating": "liked",
+      "last_used_at": "2026-11-07",
+      "usage_history": [
+        {
+          "timestamp": "2026-11-07T18:58:12",
+          "context": "AIDash/WorkspaceEmptyState",
+          "rating": "liked",
+          "notes": ""
+        },
+        {
+          "timestamp": "2026-11-07T22:23:07",
+          "context": "VoxPocket/ScopedSearchEmptyState",
+          "rating": "liked",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "IP-005",
+      "name": "状态联动汇总 (Live Status-to-Summary Aggregation)",
+      "aliases": [
+        "状态汇总",
+        "实时汇总",
+        "status aggregation"
+      ],
+      "category": "data-linkage",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "卡片状态一变，下方的分类数量和颜色也得跟着同步更新。",
+      "canonical_prompt": "When an item's status changes, synchronously recompute summary category counts, ratios, and semantic status colors from the same single source of truth.",
+      "state_machine": "item_status_change(old -> new) -> recompute_summary_counts_and_semantic_tokens -> UI_sync",
+      "web_implementation": "Derive summary badges, counts, and semantic color tokens directly from the items array rather than separate static counters.",
+      "mobile_implementation": "Computed properties on @Observable / SwiftData model collections driving summary badges and semantic tokens with .numericText() transition.",
+      "token_guardrails": "Single source of truth for item status and summary counters; semantic tokens calibrated for both Light and Dark mode.",
+      "usage_count": 2,
+      "rating": "liked",
+      "last_used_at": "2026-11-07",
+      "usage_history": [
+        {
+          "timestamp": "2026-11-07T18:58:12",
+          "context": "AIDash/ActionItemsCardView+MenuBarPulse",
+          "rating": "liked",
+          "notes": ""
+        },
+        {
+          "timestamp": "2026-11-07T22:23:07",
+          "context": "VoxPocket/TodoStatusSummaryAndMenuBar",
+          "rating": "liked",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "IP-006",
+      "name": "**说法**：别用系统术语。比如写“循环规则”，用户根本看不懂；换成大白话“每周一提醒我”，一下就明白了。",
+      "aliases": [],
+      "category": "layout-craft",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "**说法**：别用系统术语。比如写“循环规则”，用户根本看不懂；换成大白话“每周一提醒我”，一下就明白了。",
+      "canonical_prompt": "**说法**：别用系统术语。比如写“循环规则”，用户根本看不懂；换成大白话“每周一提醒我”，一下就明白了。",
+      "state_machine": "ready -> container_or_content_change -> measure -> reflow -> stable",
+      "web_implementation": "Container queries and CSS grid/flex with Basalt spacing and typography tokens.",
+      "mobile_implementation": "SwiftUI Layout/ViewThatFits with DesignTokens spacing and Dynamic Type support.",
+      "token_guardrails": "Use container-driven width budgets; prevent overlap and numeric truncation. Reuse DesignTokens/StrataMotion/Basalt tokens; support Light/Dark, >=44x44pt hit targets, and prefers-reduced-motion / Reduce Motion without spatial motion.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "IP-007",
+      "name": "**入口**：别让新用户满屏找。把选项直接放在任务发生的地方，高级设置先收起来。",
+      "aliases": [],
+      "category": "layout-craft",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "**入口**：别让新用户满屏找。把选项直接放在任务发生的地方，高级设置先收起来。",
+      "canonical_prompt": "**入口**：别让新用户满屏找。把选项直接放在任务发生的地方，高级设置先收起来。",
+      "state_machine": "ready -> container_or_content_change -> measure -> reflow -> stable",
+      "web_implementation": "Container queries and CSS grid/flex with Basalt spacing and typography tokens.",
+      "mobile_implementation": "SwiftUI Layout/ViewThatFits with DesignTokens spacing and Dynamic Type support.",
+      "token_guardrails": "Use container-driven width budgets; prevent overlap and numeric truncation. Reuse DesignTokens/StrataMotion/Basalt tokens; support Light/Dark, >=44x44pt hit targets, and prefers-reduced-motion / Reduce Motion without spatial motion.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "MP-007",
+      "name": "**反馈**：操作完得给个准信。点保存后页面啥变化没有，新手根本不知道成没成功；直接告诉他“下次提醒周一上午9点”才行。",
+      "aliases": [],
+      "category": "micro-feedback-social",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "**反馈**：操作完得给个准信。点保存后页面啥变化没有，新手根本不知道成没成功；直接告诉他“下次提醒周一上午9点”才行。",
+      "canonical_prompt": "**反馈**：操作完得给个准信。点保存后页面啥变化没有，新手根本不知道成没成功；直接告诉他“下次提醒周一上午9点”才行。",
+      "state_machine": "idle -> press -> feedback_preview -> commit/cancel -> acknowledged -> idle",
+      "web_implementation": "Motion press feedback and Basalt semantic badges with accessible status announcements.",
+      "mobile_implementation": "SwiftUI SensoryFeedback and StrataMotion with numericText for changing counts.",
+      "token_guardrails": "Keep counts derived from committed state; feedback must not depend on color alone. Reuse DesignTokens/StrataMotion/Basalt tokens; support Light/Dark, >=44x44pt hit targets, and prefers-reduced-motion / Reduce Motion without spatial motion.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "MP-008",
+      "name": "Domain Warping 流体背景与时间水管 (Domain Warping Fluid Shader & Time Pipe — WWDC26-322)",
+      "aliases": [
+        "Domain Warping",
+        "流体着色器",
+        "时间水管",
+        "NoiseTexture",
+        "TimelineView shader"
+      ],
+      "category": "3d-physics",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Persuade"
+      ],
+      "motion_tier": "M3",
+      "source_prompt_zh": "WWDC26-322 流体英雄背景：对 4–5 个高饱和色块先施加 `Blur(radius: 30)` 融合成丝滑渐变基底，再用 `TimelineView(.animation)` 维护暂停安全（Pause-Safe）的累积 `elapsed` 时间水管，灌入 Metal `layerEffect` 执行两遍 `NoiseTexture` 坐标扭曲（Domain Warping：`uv -> firstWarp -> secondWarp`），实现 120Hz 零 CPU 负担的液态星云。",
+      "canonical_prompt": "Fuse 4-5 saturated color blobs with `Blur(radius: 30)`, drive a pause-safe `TimelineView(.animation)` `elapsed` time accumulator, and pipe `elapsed` into a Metal `layerEffect(..., maxSampleOffset:)` performing two-pass `NoiseTexture` Domain Warping.",
+      "state_machine": "idle_or_paused -> timeline_tick(dt) -> accumulate_elapsed -> metal_two_pass_domain_warp(uv, elapsed) -> render_frame",
+      "web_implementation": "WebGL / Three.js fragment shader with two-pass simplex/texture noise domain warping driven by a pause-aware requestAnimationFrame delta accumulator.",
+      "mobile_implementation": "SwiftUI `Blur(radius: 30)` base + `TimelineView(.animation(paused: isPaused || reduceMotion))` `elapsed` state piped into `ShaderLibrary.domainWarp(.float(elapsed), .image(noiseTexture))` via `.layerEffect`.",
+      "token_guardrails": "Obey `CL-005` hue-arc rule (never blur into `#000000` dead zones); pause `TimelineView` when offscreen, backgrounded, or when `@Environment(\\.accessibilityReduceMotion)` is true.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "IP-008",
+      "name": "图钉孔位反转零测高外挂角标 (AlignmentGuide Pin-Flip Edge Attachment — WWDC26-322)",
+      "aliases": [
+        "alignmentGuide反转",
+        "零GeometryReader外挂",
+        "气泡时间戳外挂",
+        "pin-flip alignment"
+      ],
+      "category": "layout-craft",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read"
+      ],
+      "motion_tier": "M1",
+      "source_prompt_zh": "WWDC26-322 零测高边缘外挂布局：在聊天气泡或卡片边缘外挂时间戳/状态徽标时，严禁使用 `GeometryReader` 或硬编码 `.offset(y: 20)`；直接用 `.overlay(alignment: .bottomLeading)` 配合 `.alignmentGuide(.bottom) { $0[.top] }` 将子视图顶边钉在父视图底边，天然适配一切 Dynamic Type 字号缩放。",
+      "canonical_prompt": "Attach external timestamps, reactions, or edge badges without `GeometryReader` or magic `.offset` numbers by combining `.overlay(alignment: .bottomLeading)` with `.alignmentGuide(.bottom) { $0[.top] }` (pin-flip).",
+      "state_machine": "ready -> dynamic_type_or_content_resize -> alignment_guide_pin_flip -> zero_cls_edge_anchor",
+      "web_implementation": "CSS anchor positioning or absolute top: 100% edge attachment without JS getBoundingClientRect measurement loops.",
+      "mobile_implementation": "SwiftUI `.overlay(alignment: .bottomLeading) { badge.alignmentGuide(.bottom) { $0[.top] } }` or custom `Layout` when coordinating sibling spacing.",
+      "token_guardrails": "Never hardcode `.offset(y:)` for text-bearing edge attachments; verify zero overlap under `accessibilityExtraExtraExtraLarge` Dynamic Type.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "MP-009",
+      "name": "任意容器成摞拖拽与规则验牌回弹 (Multi-Item Card Stack Drag & Drop Validation — WWDC26-269/271)",
+      "aliases": [
+        "成摞拖拽",
+        "dragPreviewsFormation",
+        "reorderContainer",
+        "swipeActionsContainer",
+        "dropConfiguration"
+      ],
+      "category": "drag-drop-choreography",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "source_prompt_zh": "WWDC26-269 与 WWDC26-271 纸牌级成摞拖拽与验牌回弹：在 `LazyVStack` 或自定义栈中组合 `.swipeActionsContainer()`、`.reorderContainer(for:in:action:)` 与 `.dragContainer(for:)`，通过 `.dragPreviewsFormation(.stack)` 将多张关联卡片收拢成真实三维牌摞；悬停落点时在 `.dropConfiguration` 中校验业务规则（合法返 `.move` + `.dropPreviewsFormation(.stack)`，非法返 `.forbidden`），松手后非法落点自动沿物理弹簧轨迹飞回原位。",
+      "canonical_prompt": "Enable multi-item card stack dragging in custom containers using `.swipeActionsContainer()`, `.reorderContainer`, `.dragContainer`, and `.dragPreviewsFormation(.stack)`, validating drop legality in `.dropConfiguration` (`.move` vs `.forbidden` spring snap-back).",
+      "state_machine": "idle -> grab_sub_pile(.stack_formation) -> hover_target -> drop_configuration_validate(.move | .forbidden) -> commit_insert_or_spring_snap_back",
+      "web_implementation": "Motion pointer drag with stacked card preview transforms, drop-target rule validation, and spring snap-back on invalid drop.",
+      "mobile_implementation": "SwiftUI `.swipeActionsContainer()`, `.reorderContainer`, `.dragContainer(for:)`, `.dragPreviewsFormation(.stack)`, `.dropPreviewsFormation(.stack)`, and `.dropConfiguration` with `SensoryFeedback`.",
+      "token_guardrails": "Keep source data unchanged until a valid `.move` drop commits; provide an accessible ContextMenu / keyboard move equivalent and respect Reduce Motion.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    }
+  ],
+  "tools": [
+    {
+      "id": "T-001",
+      "name": "Remotion",
+      "aliases": [],
+      "category": "code-to-video",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "direct-code",
+      "token_integration": "Consumes shared DesignTokens and Basalt CSS variables in compositions.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-002",
+      "name": "@remotion/transitions",
+      "aliases": [],
+      "category": "code-to-video",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "direct-code",
+      "token_integration": "Maps transition timing to shared DesignTokens and StrataMotion easings.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-003",
+      "name": "Motion",
+      "aliases": [
+        "Framer Motion"
+      ],
+      "category": "core-ui-motion",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read",
+        "Persuade",
+        "Experience"
+      ],
+      "motion_tier": "M1",
+      "automation_mode": "direct-code",
+      "token_integration": "Uses StrataMotion or Basalt token-backed spring and layout values.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-004",
+      "name": "Anime.js",
+      "aliases": [],
+      "category": "core-ui-motion",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "automation_mode": "direct-code",
+      "token_integration": "Maps authored timelines, stagger, and SVG colors to tokens.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-005",
+      "name": "Lottie",
+      "aliases": [],
+      "category": "core-ui-motion",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Read",
+        "Experience"
+      ],
+      "motion_tier": "M1",
+      "automation_mode": "direct-code",
+      "token_integration": "Exports token-colored illustrations for web and lottie-ios/SwiftUI.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-006",
+      "name": "Three.js",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "direct-code",
+      "token_integration": "Binds scene materials and camera presets to DesignTokens/Basalt.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-007",
+      "name": "Postprocessing",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "direct-code",
+      "token_integration": "Tokenizes bloom, depth-of-field, and aberration strengths.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-008",
+      "name": "Three.quarks",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "direct-code",
+      "token_integration": "Uses token-backed particle colors, rates, and sizes.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-009",
+      "name": "Jolt Physics",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "direct-code",
+      "token_integration": "Serializes stable simulation constants beside motion tokens.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-010",
+      "name": "GPU Pathtracer",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Keeps render quality, lighting, and material presets in the token contract.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-011",
+      "name": "MCP for Blender",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Exports GLTF for web and USDZ/OBJ for RealityKit/SceneKit using shared materials.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-012",
+      "name": "Tweakpane",
+      "aliases": [],
+      "category": "core-ui-motion",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "automation_mode": "dev-only",
+      "token_integration": "Tunes values in development, then serializes final constants to Basalt.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-013",
+      "name": "Manim",
+      "aliases": [],
+      "category": "code-to-video",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "direct-code",
+      "token_integration": "Matches typography, color, and spacing to the shared design contract.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-014",
+      "name": "CosyVoice",
+      "aliases": [],
+      "category": "audio-beat",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Voiceover scripts and captions use product language tokens.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-015",
+      "name": "WhisperX",
+      "aliases": [],
+      "category": "audio-beat",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Word timestamps drive tokenized, frame-aligned caption components.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-016",
+      "name": "Librosa",
+      "aliases": [
+        "Ibrosa",
+        "librosa"
+      ],
+      "category": "audio-beat",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "direct-code",
+      "token_integration": "Emits normalized beat cues consumed by tokenized transitions.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-017",
+      "name": "@ffmpeg/ffmpeg",
+      "aliases": [],
+      "category": "asset-export",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Encodes from shared size, color, and caption presets.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-018",
+      "name": "FFmpeg CLI",
+      "aliases": [],
+      "category": "asset-export",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Provides reproducible render, loudness normalization, and slicing boundaries.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-019",
+      "name": "OBS Studio",
+      "aliases": [],
+      "category": "asset-export",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "human-gui-only",
+      "token_integration": "Captures reference footage using approved palette and dimensions.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    },
+    {
+      "id": "T-020",
+      "name": "LosslessCut",
+      "aliases": [],
+      "category": "asset-export",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "human-gui-only",
+      "token_integration": "Keeps rough cuts aligned with the Remotion/FFmpeg export contract.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": []
+    }
+  ],
+  "toolchains": [
+    {
+      "id": "T-001",
+      "name": "Remotion",
+      "aliases": [],
+      "category": "code-to-video",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "direct-code",
+      "token_integration": "Consumes shared DesignTokens and Basalt CSS variables in compositions.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "Remotion is a React/DOM programmatic video composition framework running in headless Chromium (`RemotionComposition`), belonging strictly to the frozen web/video backlog.",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "visual-style",
+        "typography-copy"
+      ],
+      "sub_category": "drag-drop-spatial-choreography"
+    },
+    {
+      "id": "T-002",
+      "name": "@remotion/transitions",
+      "aliases": [],
+      "category": "code-to-video",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "direct-code",
+      "token_integration": "Maps transition timing to shared DesignTokens and StrataMotion easings.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "@remotion/transitions is a Remotion sub-package for scene transitions in React video compositions; strictly `web` backlog.",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "layout-navigation"
+      ],
+      "sub_category": "drag-drop-spatial-choreography"
+    },
+    {
+      "id": "T-003",
+      "name": "Motion",
+      "aliases": [
+        "Framer Motion"
+      ],
+      "category": "core-ui-motion",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read",
+        "Persuade",
+        "Experience"
+      ],
+      "motion_tier": "M1",
+      "automation_mode": "direct-code",
+      "token_integration": "Uses StrataMotion or Basalt token-backed spring and layout values.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "Motion (Framer Motion) is a React/DOM animation library; on Apple platforms it is replaced by native SwiftUI springs, `PhaseAnimator`, and `KeyframeAnimator`.",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "layout-navigation",
+        "component"
+      ],
+      "sub_category": "gesture-physical-manipulation"
+    },
+    {
+      "id": "T-004",
+      "name": "Anime.js",
+      "aliases": [],
+      "category": "core-ui-motion",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "automation_mode": "direct-code",
+      "token_integration": "Maps authored timelines, stagger, and SVG colors to tokens.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "Anime.js is a JavaScript DOM/SVG timeline library; on macOS/iOS it is superseded by native SwiftUI `KeyframeAnimator`, `TimelineView`, and `Canvas`.",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "visual-style",
+        "color-palette"
+      ],
+      "sub_category": "micro-feedback-haptics-symbols"
+    },
+    {
+      "id": "T-005",
+      "name": "Lottie",
+      "aliases": [],
+      "category": "core-ui-motion",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Read",
+        "Experience"
+      ],
+      "motion_tier": "M1",
+      "automation_mode": "direct-code",
+      "token_integration": "Exports token-colored illustrations for web and lottie-ios/SwiftUI.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "track": "apple-active",
+      "platform_rationale": "Lottie vector animations run natively on macOS (`desktop`) and iOS/iPadOS (`mobile`) via `lottie-spm` (`LottieView` in SwiftUI) alongside native SF Symbols `.symbolEffect`, as well as on `web`.",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "visual-style",
+        "color-palette"
+      ],
+      "sub_category": "micro-feedback-haptics-symbols"
+    },
+    {
+      "id": "T-006",
+      "name": "Three.js",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "direct-code",
+      "token_integration": "Binds scene materials and camera presets to DesignTokens/Basalt.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "Three.js is a browser WebGL/WebGPU 3D library; native Apple 3D surfaces use RealityKit, SceneKit, or Metal instead.",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "motion-interaction",
+        "glass-material"
+      ],
+      "sub_category": "hero-3d-spatial-canvas"
+    },
+    {
+      "id": "T-007",
+      "name": "Postprocessing",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "direct-code",
+      "token_integration": "Tokenizes bloom, depth-of-field, and aberration strengths.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "Postprocessing is a Three.js WebGL shader pass library; on Apple platforms post-processing uses native SwiftUI `.layerEffect`/`.colorEffect` (`ShaderLibrary`) or Metal.",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "glass-material",
+        "color-palette"
+      ],
+      "sub_category": "surface-texture-lighting"
+    },
+    {
+      "id": "T-008",
+      "name": "Three.quarks",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "direct-code",
+      "token_integration": "Uses token-backed particle colors, rates, and sizes.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "Three.quarks is a Three.js WebGL particle system; on Apple platforms particles are built with SwiftUI `TimelineView` + `Canvas`, `CAEmitterLayer`, or RealityKit.",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "motion-interaction",
+        "color-palette"
+      ],
+      "sub_category": "hero-3d-spatial-canvas"
+    },
+    {
+      "id": "T-009",
+      "name": "Jolt Physics",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "direct-code",
+      "token_integration": "Serializes stable simulation constants beside motion tokens.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "Jolt Physics in this catalog is wired for WebAssembly/Three.js scenes; native Apple physics use SpriteKit/RealityKit or SwiftUI spring dynamics.",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "visual-style"
+      ],
+      "sub_category": "gesture-physical-manipulation"
+    },
+    {
+      "id": "T-010",
+      "name": "GPU Pathtracer",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Keeps render quality, lighting, and material presets in the token contract.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "GPU Pathtracer is a Three.js WebGL path-tracing renderer for browser/offline video scenes; strictly `web-video-backlog`.",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "glass-material",
+        "color-palette"
+      ],
+      "sub_category": "surface-texture-lighting"
+    },
+    {
+      "id": "T-011",
+      "name": "MCP for Blender",
+      "aliases": [],
+      "category": "3d-physics",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Experience",
+        "Video/Offline"
+      ],
+      "motion_tier": "M3",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Exports GLTF for web and USDZ/OBJ for RealityKit/SceneKit using shared materials.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "track": "apple-active",
+      "platform_rationale": "MCP for Blender automates 3D asset authoring and exports USDZ/OBJ models directly consumable by native macOS (`desktop`) and iOS (`mobile`) RealityKit/`Model3D`/SceneKit views, plus GLTF for `web`.",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "glass-material"
+      ],
+      "sub_category": "hero-3d-spatial-canvas"
+    },
+    {
+      "id": "T-012",
+      "name": "Tweakpane",
+      "aliases": [],
+      "category": "core-ui-motion",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "automation_mode": "dev-only",
+      "token_integration": "Tunes values in development, then serializes final constants to Basalt.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "Tweakpane is a browser DOM parameter-tuning overlay; native Apple development uses SwiftUI `#Preview` inspectors and native debug sheets.",
+      "primary_dimension": "component",
+      "secondary_dimensions": [
+        "motion-interaction",
+        "color-palette"
+      ],
+      "sub_category": "action-input-controls"
+    },
+    {
+      "id": "T-013",
+      "name": "Manim",
+      "aliases": [],
+      "category": "code-to-video",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "direct-code",
+      "token_integration": "Matches typography, color, and spacing to the shared design contract.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "Manim is an offline Python mathematical animation engine for video production (`Video/Offline`), grouped under the frozen web/video backlog.",
+      "primary_dimension": "chart-dataviz",
+      "secondary_dimensions": [
+        "motion-interaction",
+        "typography-copy"
+      ],
+      "sub_category": "cartesian-series-charts"
+    },
+    {
+      "id": "T-014",
+      "name": "CosyVoice",
+      "aliases": [],
+      "category": "audio-beat",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Voiceover scripts and captions use product language tokens.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "CosyVoice is an offline TTS voiceover generator for programmatic video pipelines (`Video/Offline`), placed in `web-video-backlog`.",
+      "primary_dimension": "typography-copy",
+      "secondary_dimensions": [
+        "motion-interaction"
+      ],
+      "sub_category": "confirmation-status-microcopy"
+    },
+    {
+      "id": "T-015",
+      "name": "WhisperX",
+      "aliases": [],
+      "category": "audio-beat",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Word timestamps drive tokenized, frame-aligned caption components.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "WhisperX generates word-level timestamps for offline Remotion video captions (`Video/Offline`), placed in `web-video-backlog`.",
+      "primary_dimension": "typography-copy",
+      "secondary_dimensions": [
+        "motion-interaction",
+        "component"
+      ],
+      "sub_category": "type-scale-dynamic-hierarchy"
+    },
+    {
+      "id": "T-016",
+      "name": "Librosa",
+      "aliases": [
+        "Ibrosa",
+        "librosa"
+      ],
+      "category": "audio-beat",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "direct-code",
+      "token_integration": "Emits normalized beat cues consumed by tokenized transitions.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "Librosa extracts audio beat cues for offline video transition synchronization (`Video/Offline`), placed in `web-video-backlog`.",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "chart-dataviz"
+      ],
+      "sub_category": "micro-feedback-haptics-symbols"
+    },
+    {
+      "id": "T-017",
+      "name": "@ffmpeg/ffmpeg",
+      "aliases": [],
+      "category": "asset-export",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Encodes from shared size, color, and caption presets.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "@ffmpeg/ffmpeg is the WebAssembly browser build of FFmpeg for web/video encoding; strictly `web-video-backlog`.",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "color-palette",
+        "typography-copy"
+      ],
+      "sub_category": "aesthetic-direction-mood"
+    },
+    {
+      "id": "T-018",
+      "name": "FFmpeg CLI",
+      "aliases": [],
+      "category": "asset-export",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Provides reproducible render, loudness normalization, and slicing boundaries.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "FFmpeg CLI is used in the offline video rendering and normalization pipeline (`Video/Offline`); classified under `web-video-backlog`.",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "motion-interaction"
+      ],
+      "sub_category": "aesthetic-direction-mood"
+    },
+    {
+      "id": "T-019",
+      "name": "OBS Studio",
+      "aliases": [],
+      "category": "asset-export",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "human-gui-only",
+      "token_integration": "Captures reference footage using approved palette and dimensions.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "OBS Studio is a manual screen-capture tool for offline video production workflows (`Video/Offline`); classified under `web-video-backlog`.",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "color-palette",
+        "layout-navigation"
+      ],
+      "sub_category": "aesthetic-direction-mood"
+    },
+    {
+      "id": "T-020",
+      "name": "LosslessCut",
+      "aliases": [],
+      "category": "asset-export",
+      "platforms": [
+        "web",
+        "mobile",
+        "shared"
+      ],
+      "surface_modes": [
+        "Video/Offline"
+      ],
+      "motion_tier": "M4",
+      "automation_mode": "human-gui-only",
+      "token_integration": "Keeps rough cuts aligned with the Remotion/FFmpeg export contract.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-video-backlog",
+      "platform_rationale": "LosslessCut is a manual video trimming utility for offline Remotion/FFmpeg exports (`Video/Offline`); classified under `web-video-backlog`.",
+      "primary_dimension": "motion-interaction",
+      "secondary_dimensions": [
+        "visual-style"
+      ],
+      "sub_category": "threshold-commit-safety"
+    },
+    {
+      "id": "T-021",
+      "name": "Hallmark (50-Material Theme Dealer & Browser Sloplint)",
+      "aliases": [
+        "Hallmark",
+        "Nutlope/hallmark",
+        "usehallmark",
+        "sloplint",
+        "theme.mjs"
+      ],
+      "category": "Anti-AI-Slop Web Design & Real-Browser Linter",
+      "platforms": [
+        "web"
+      ],
+      "surface_modes": [
+        "Operate",
+        "Read",
+        "Persuade",
+        "Experience"
+      ],
+      "motion_tier": "M2",
+      "automation_mode": "mcp-cli",
+      "token_integration": "Deals 3 of 50 material themes via theme.mjs deal, draws job-driven page anatomy via theme.mjs draw, and runs multi-viewport real-browser sloplint.mjs --render against Floor/Reflex/Finish gates.",
+      "usage_count": 0,
+      "rating": "unrated",
+      "last_used_at": null,
+      "usage_history": [],
+      "platforms_v2": [
+        "web"
+      ],
+      "track": "web-active",
+      "platform_rationale": "Hallmark (~/Development/Personal/collected-tools/repos/hallmark) is Together AI's Web anti-AI-slop design skill combining 50 material themes (theme.mjs deal: 50 pick 3) with multi-breakpoint headless Chromium sloplint.mjs --render that rejects decorative eyebrow labels, oversized tracked-capital labels, single colored headline words, and fake submit forms.",
+      "primary_dimension": "visual-style",
+      "secondary_dimensions": [
+        "layout-navigation",
+        "typography-copy",
+        "component"
+      ],
+      "sub_category": "aesthetic-direction-mood"
+    }
+  ]
+}

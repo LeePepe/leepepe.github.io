@@ -8630,424 +8630,331 @@
     {
       "source_id": "apple-design-skill",
       "source_uri": "https://github.com/dickwu/apple-design-skill",
-      "local_path": "Personal/collected-tools/repos/apple-design-skill",
-      "design_integration": "collected-tools reference",
-      "learning_state": "learned",
-      "reference_links": [
-        "https://skills.sh",
-        "https://github.com/dickwu/apple-design-skill.git",
-        "https://github.com/sponsors/dickwu",
-        "https://developer.apple.com/design/human-interface-guidelines/"
-      ],
+      "local_path": "repos/apple-design-skill",
       "form": "repo",
-      "core_usage": "Apple Design Skill",
-      "learning_evidence": "README Table 1"
+      "design_integration": "verify_design_cases.py (allowed_native.apple-design-skill)",
+      "learning_state": "learned",
+      "learning_evidence": "README.md:22 · Table 1 · learning_state = learned",
+      "reconciliation": "HIG 审计与 Liquid Glass / AppKit-UIKit 现代化原理已覆盖",
+      "core_usage": "HIG 审计与 Liquid Glass / AppKit-UIKit 现代化原理已覆盖",
+      "reference_links": [
+        "https://github.com/dickwu/apple-design-skill"
+      ]
     },
     {
       "source_id": "avdlee-swiftui-skill",
       "source_uri": "https://github.com/AvdLee/SwiftUI-Agent-Skill",
-      "local_path": "Personal/collected-tools/repos/avdlee-swiftui-skill",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://img.shields.io/badge/License-MIT-green.svg",
-        "https://github.com/AvdLee/SwiftUI-Agent-Skill/blob/main/LICENSE",
-        "https://img.shields.io/badge/weekly%20installs-31.4k-brightgreen",
-        "https://skills.sh/avdlee/swiftui-agent-skill/swiftui-expert-skill",
-        "https://img.shields.io/github/v/release/AvdLee/SwiftUI-Agent-Skill",
-        "https://github.com/AvdLee/SwiftUI-Agent-Skill/releases",
-        "https://img.shields.io/github/stars/AvdLee/SwiftUI-Agent-Skill?style=flat",
-        "https://github.com/AvdLee/SwiftUI-Agent-Skill/stargazers",
-        "https://agentskills.io/home",
-        "https://agent-plugins.org",
-        "https://github.com/AvdLee/Swift-Concurrency-Agent-Skill",
-        "https://github.com/AvdLee/Core-Data-Agent-Skill"
-      ],
+      "local_path": "repos/avdlee-swiftui-skill",
       "form": "repo",
-      "core_usage": "SwiftUI Expert Skill",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (allowed_native.avdlee-swiftui-skill -> swiftui-expert-skill)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:39 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (allowed_native.avdlee-swiftui-skill -> swiftui-expert-skill)",
+      "topic_key": "swiftui-26-api-migration-scan-manifest",
+      "question": "update-swiftui-apis 如何用确定性 scan-manifest 批量扫描并迁移废弃 SwiftUI API 而不引入状态回归？",
+      "why_now": "repos/avdlee-swiftui-skill/.agents/skills/update-swiftui-apis/references/scan-manifest.md（仅路由 swiftui-expert-skill，未探索 API 迁移扫描清单）",
+      "core_usage": "update-swiftui-apis 如何用确定性 scan-manifest 批量扫描并迁移废弃 SwiftUI API 而不引入状态回归？",
+      "reference_links": [
+        "https://github.com/AvdLee/SwiftUI-Agent-Skill"
+      ]
     },
     {
       "source_id": "awesome-cjk-design-md",
       "source_uri": "https://github.com/kzhrknt/awesome-design-md-jp",
-      "local_path": "Personal/collected-tools/repos/awesome-cjk-design-md",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://stitch.withgoogle.com/docs/design-md/overview/",
-        "https://github.com/VoltAgent/awesome-design-md",
-        "https://kzhrknt.github.io/awesome-design-md-jp/gallery.html\"",
-        "https://www.apple.com/jp/",
-        "https://smarthr.jp/",
-        "https://www.freee.co.jp/",
-        "https://note.com/",
-        "https://novasell.com/",
-        "https://www.muji.com/jp/ja/store",
-        "https://www.mercari.com/jp/",
-        "https://studio.design/ja",
-        "https://toyota.jp/"
-      ],
+      "local_path": "repos/awesome-cjk-design-md",
       "form": "repo",
-      "core_usage": "<p align=\"center\">",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (web_reference_repos.awesome_cjk_design_md) + routing-index.md (TC)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:36 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (web_reference_repos.awesome_cjk_design_md) + routing-index.md (TC)",
+      "topic_key": "jp-mixed-script-line-breaking",
+      "question": "日文/CJK 与拉丁文混排中，字体回退与行首行末禁则（Kinsoku Shori）如何共同避免断行错误？",
+      "why_now": "repos/awesome-cjk-design-md/README.md:17-29（仅挂载路径，未拆解 CJK 混排禁则原理）",
+      "core_usage": "日文/CJK 与拉丁文混排中，字体回退与行首行末禁则（Kinsoku Shori）如何共同避免断行错误？",
+      "reference_links": [
+        "https://github.com/kzhrknt/awesome-design-md-jp"
+      ]
     },
     {
       "source_id": "awesome-ios-design-md",
       "source_uri": "https://github.com/Meliwat/awesome-ios-design-md",
-      "local_path": "Personal/collected-tools/repos/awesome-ios-design-md",
-      "design_integration": "collected-tools reference",
-      "learning_state": "learned",
-      "reference_links": [
-        "https://awesome.re/badge.svg",
-        "https://awesome.re",
-        "https://img.shields.io/badge/apps-200-10b981?style=flat-square",
-        "https://img.shields.io/badge/flavors-neutral%20%C2%B7%20SwiftUI%20%C2%B7%20Expo%20%C2%B7%20Compose-6E56CF?style=flat-square",
-        "https://img.shields.io/badge/live%20gallery-spectr.to-0A84FF?style=flat-square",
-        "https://www.spectr.to/gallery",
-        "https://img.shields.io/badge/PRs-welcome-22C55E?style=flat-square",
-        "https://img.shields.io/badge/license-MIT-blue?style=flat-square",
-        "https://github.com/Meliwat/awesome-ios-design-md/issues/new/choose",
-        "https://www.spectr.to",
-        "https://github.com/VoltAgent/awesome-design-md",
-        "https://www.spectr.to/gallery/spotify"
-      ],
+      "local_path": "repos/awesome-ios-design-md",
       "form": "repo",
-      "core_usage": "<div align=\"center\">",
-      "learning_evidence": "README Table 1"
+      "design_integration": "design-studio/vault/{mobile-ios,desktop-macos}.json + verify_design_cases.py",
+      "learning_state": "learned",
+      "learning_evidence": "README.md:23 · Table 1 · learning_state = learned",
+      "reconciliation": "200 款 iOS App 色板与排版令牌字典，作为按需检索字典使用，无独立未探索原理题",
+      "core_usage": "200 款 iOS App 色板与排版令牌字典，作为按需检索字典使用，无独立未探索原理题",
+      "reference_links": [
+        "https://github.com/Meliwat/awesome-ios-design-md"
+      ]
     },
     {
       "source_id": "awesome-web-design-md",
       "source_uri": "https://github.com/VoltAgent/awesome-design-md",
-      "local_path": "Personal/collected-tools/repos/awesome-web-design-md",
-      "design_integration": "collected-tools reference",
-      "learning_state": "learned",
-      "reference_links": [
-        "https://github.com/VoltAgent/voltagent\"",
-        "https://cdn.voltagent.dev/awesome-repo/logo.json.svg\"",
-        "https://awesome.re/badge.svg",
-        "https://awesome.re",
-        "https://img.shields.io/badge/DESIGN.md%20count-84-10b981?style=classic",
-        "https://img.shields.io/github/last-commit/VoltAgent/awesome-design-md?label=Last%20update&style=classic",
-        "https://github.com/VoltAgent/awesome-design-md",
-        "https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2",
-        "https://s.voltagent.dev/discord",
-        "https://img.shields.io/badge/Official-MCP%20Servers-c2410c?style=classic&logo=github&logoColor=white&labelColor=24292f",
-        "https://github.com/VoltAgent/official-mcp-servers",
-        "https://stitch.withgoogle.com/docs/design-md/overview/"
-      ],
+      "local_path": "repos/awesome-web-design-md",
       "form": "repo",
-      "core_usage": "<a href=\"https://github.com/VoltAgent/voltagent\">",
-      "learning_evidence": "README Table 1"
+      "design_integration": "my-designer/references/routing-index.md + verify_design_cases.py",
+      "learning_state": "learned",
+      "learning_evidence": "README.md:24 · Table 1 · learning_state = learned",
+      "reconciliation": "Web 站点 DESIGN.md 样式令牌字典，作为按需检索字典使用，无独立未探索原理题",
+      "core_usage": "Web 站点 DESIGN.md 样式令牌字典，作为按需检索字典使用，无独立未探索原理题",
+      "reference_links": [
+        "https://github.com/VoltAgent/awesome-design-md"
+      ]
     },
     {
       "source_id": "bama",
       "source_uri": "https://github.com/daveebbelaar/bama",
-      "local_path": "Personal/collected-tools/repos/bama",
-      "design_integration": "catalog-backed",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://img.shields.io/badge/macOS-26%2B-000000?style=flat-square&logo=apple&logoColor=white",
-        "https://img.shields.io/badge/Swift-6.2-F05138?style=flat-square&logo=swift&logoColor=white",
-        "https://img.shields.io/badge/skills-21-5E5CE6?style=flat-square",
-        "https://img.shields.io/badge/Claude_Code-plugin-D97757?style=flat-square&logo=claude&logoColor=white",
-        "https://img.shields.io/badge/Codex-plugin-10A37F?style=flat-square",
-        "https://img.shields.io/badge/license-MIT-F4C430?style=flat-square",
-        "https://github.com/daveebbelaar/bawa",
-        "https://skills.sh",
-        "https://github.com/daveebbelaar/bama.git",
-        "https://github.com/morluto/rea",
-        "https://github.com/mattpocock/skills",
-        "https://github.com/twostraws/SwiftUI-Agent-Skill"
-      ],
+      "local_path": "repos/bama",
       "form": "repo",
-      "core_usage": "<div align=\"center\">",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (allowed_native.bama_macos_only) + design_catalog.py (measure.swift)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:37 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (allowed_native.bama_macos_only) + design_catalog.py (measure.swift)",
+      "topic_key": "bama-agent-cli-story-verification",
+      "question": "BAMA 怎样把 macOS 页面清单转为免 Xcode GUI、可由 Agent CLI 逐步验收的用户故事与架构分层？",
+      "why_now": "repos/bama/README.md:42-65 & skills/code/{agent-cli,improve-architecture}/SKILL.md（仅摄取测色板，未拆解 Agent CLI 架构方法）",
+      "core_usage": "BAMA 怎样把 macOS 页面清单转为免 Xcode GUI、可由 Agent CLI 逐步验收的用户故事与架构分层？",
+      "reference_links": [
+        "https://github.com/daveebbelaar/bama"
+      ]
     },
     {
       "source_id": "claude-code-apple-skills",
       "source_uri": "https://github.com/rshankras/claude-code-apple-skills",
-      "local_path": "Personal/collected-tools/repos/claude-code-apple-skills",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://img.shields.io/badge/License-MIT-yellow.svg",
-        "https://opensource.org/licenses/MIT",
-        "https://github.com/rshankras/SwiftShip",
-        "https://github.com/rshankras/indie-app-autopilot",
-        "https://github.com/rshankras/asc-metadata-mcp",
-        "https://github.com/rshankras/claude-code-apple-skills.git",
-        "https://github.com/rshankras/claude-code-apple-skills.git`",
-        "https://claude.ai/code"
-      ],
+      "local_path": "repos/claude-code-apple-skills",
       "form": "repo",
-      "core_usage": "Claude Code Skills for Apple Platform Development",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (allowed_native.claude-code-apple-skills 5 design files) + vault/mobile-ios.json",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:41 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (allowed_native.claude-code-apple-skills 5 design files) + vault/mobile-ios.json",
+      "topic_key": "apple-game-feel-and-store-rejection-gates",
+      "question": "如何量化 Apple 原生应用的 game-feel 触觉/微反馈物理参数，并用 rejection-handler 提前拦截 App Store 审核被拒风险？",
+      "why_now": "repos/claude-code-apple-skills/skills/{design/game-feel,app-store/rejection-handler}/SKILL.md（184 个子技能中仅路由 5 个设计文件）",
+      "core_usage": "如何量化 Apple 原生应用的 game-feel 触觉/微反馈物理参数，并用 rejection-handler 提前拦截 App Store 审核被拒风险？",
+      "reference_links": [
+        "https://github.com/rshankras/claude-code-apple-skills"
+      ]
     },
     {
       "source_id": "dimillian-skills",
       "source_uri": "https://github.com/Dimillian/Skills",
-      "local_path": "Personal/collected-tools/repos/dimillian-skills",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://img.shields.io/badge/GitHub%20Pages-live-2ea44f?logo=github",
-        "https://dimillian.github.io/Skills/"
-      ],
+      "local_path": "repos/dimillian-skills",
       "form": "repo",
-      "core_usage": "!GitHub Pages(https://img.shields.io/badge/GitHub%20Pages-live-2ea44f?logo=github)(https://dimillian.github.io/Skills/)",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (allowed_native.dimillian-skills -> swiftui-liquid-glass, swiftui-ui-patterns)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:40 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (allowed_native.dimillian-skills -> swiftui-liquid-glass, swiftui-ui-patterns)",
+      "topic_key": "dimillian-spm-app-packaging-and-bug-swarm",
+      "question": "如何用纯 SwiftPM 无 .xcodeproj 打包签名 macOS MenuBar/桌面应用，并配合 bug-hunt-swarm 做多角色缺陷围剿？",
+      "why_now": "repos/dimillian-skills/{macos-spm-app-packaging,bug-hunt-swarm}/SKILL.md（工程打包与排障子技能完全未探索）",
+      "core_usage": "如何用纯 SwiftPM 无 .xcodeproj 打包签名 macOS MenuBar/桌面应用，并配合 bug-hunt-swarm 做多角色缺陷围剿？",
+      "reference_links": [
+        "https://github.com/Dimillian/Skills"
+      ]
     },
     {
       "source_id": "emilkowalski-skills",
       "source_uri": "https://github.com/emilkowalski/skills",
-      "local_path": "Personal/collected-tools/repos/emilkowalski-skills",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "http://aiforui.dev/\"",
-        "https://github.com/user-attachments/assets/84fca9a6-0b2b-4927-8f48-f3ce194a5c47\"",
-        "https://skills.sh/b/emilkowalski/skills",
-        "https://skills.sh/emilkowalski/skills",
-        "https://aiforui.dev/skills",
-        "https://emilkowal.ski/ui/7-practical-animation-tips#4.-choose-the-right-easing",
-        "https://emilkowal.ski/ui/agents-with-taste",
-        "https://sonner.emilkowal.ski"
-      ],
+      "local_path": "repos/emilkowalski-skills",
       "form": "repo",
-      "core_usage": "<a href=\"http://aiforui.dev/\">",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (allowed_native.emilkowalski-skills_native + web_reference_repos.emilkowalski)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:42 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (allowed_native.emilkowalski-skills_native + web_reference_repos.emilkowalski)",
+      "topic_key": "emil-spring-choreography-and-interruptibility",
+      "question": "Emil Kowalski 的动效工程法则：何时该主动移除动画（remove-animations），以及可打断弹簧如何维持手势速度连续？",
+      "why_now": "repos/emilkowalski-skills/skills/{remove-animations,animation-performance,choreograph}/SKILL.md",
+      "core_usage": "Emil Kowalski 的动效工程法则：何时该主动移除动画（remove-animations），以及可打断弹簧如何维持手势速度连续？",
+      "reference_links": [
+        "https://github.com/emilkowalski/skills"
+      ]
     },
     {
       "source_id": "expo-skills",
       "source_uri": "https://github.com/expo/skills",
-      "local_path": "Personal/collected-tools/repos/expo-skills",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://docs.expo.dev/skills/\"",
-        "https://skills.sh/expo/skills\"",
-        "https://skills.sh/b/expo/skills\"",
-        "https://img.shields.io/badge/Expo-official-000020\"",
-        "https://img.shields.io/badge/license-MIT-blue\"",
-        "https://skills.sh/docs/cli",
-        "https://docs.expo.dev/eas/ai/mcp/"
-      ],
+      "local_path": "repos/expo-skills",
       "form": "repo",
-      "core_usage": "<p align=\"center\">",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (allowed_native.expo-skills_anti_slop_only)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:48 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (allowed_native.expo-skills_anti_slop_only)",
+      "topic_key": "expo-visual-grader-and-web-to-native-false-friends",
+      "question": "expo-skill-eval 的 visual-grader 评分量表与 web-to-native/false-friends 如何系统性拦截把 Web CSS 习惯生搬到原生端的布局缺陷？",
+      "why_now": "repos/expo-skills/.claude/skills/expo-skill-eval/agents/visual-grader.md & plugins/expo/skills/expo-web-to-native/references/false-friends.md",
+      "core_usage": "expo-skill-eval 的 visual-grader 评分量表与 web-to-native/false-friends 如何系统性拦截把 Web CSS 习惯生搬到原生端的布局缺陷？",
+      "reference_links": [
+        "https://github.com/expo/skills"
+      ]
     },
     {
       "source_id": "genjutsu",
       "source_uri": "https://github.com/AThevon/genjutsu",
-      "local_path": "Personal/collected-tools/repos/genjutsu",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://genjutsu.athevon.dev\"",
-        "https://genjutsu.athevon.dev/docs\"",
-        "https://genjutsu.athevon.dev/docs/install\"",
-        "https://github.com/AThevon/genjutsu/discussions\"",
-        "https://github.com/AThevon/genjutsu/releases/latest\"",
-        "https://img.shields.io/github/v/release/AThevon/genjutsu?style=flat-square&color=b11523&label=release\"",
-        "https://img.shields.io/badge/license-MIT-b11523?style=flat-square\"",
-        "https://img.shields.io/badge/works%20with-Claude%20Code%20%2B%20claude.ai%20%2B%20Cowork%20%2B%20npx-b11523?style=flat-square\"",
-        "https://github.com/sponsors/AThevon\"",
-        "https://img.shields.io/badge/sponsor-b11523?style=flat-square&logo=githubsponsors&logoColor=white\"",
-        "https://raw.githubusercontent.com/AThevon/genjutsu-examples/readme-2026-11-06/readme-media/hero-site.webp\"",
-        "https://claude.ai/code"
-      ],
+      "local_path": "repos/genjutsu",
       "form": "repo",
-      "core_usage": "<p align=\"center\">",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (allowed_native.genjutsu_native_only) + vault/{mobile-ios,desktop-macos}.json (GM-003)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:38 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (allowed_native.genjutsu_native_only) + vault/{mobile-ios,desktop-macos}.json (GM-003)",
+      "topic_key": "genjutsu-three-tier-choreography-gate",
+      "question": "Genjutsu 如何通过 uchiha / kuchiyose / bunshin 区分单次交互、整套视觉与整站编排的审批粒度与评测门禁？",
+      "why_now": "repos/genjutsu/README.md:57-65 & PLATFORM-CONTRACT.md（基础 Shader 已覆盖，三级编排契约与 evals 待探索）",
+      "core_usage": "Genjutsu 如何通过 uchiha / kuchiyose / bunshin 区分单次交互、整套视觉与整站编排的审批粒度与评测门禁？",
+      "reference_links": [
+        "https://github.com/AThevon/genjutsu"
+      ]
     },
     {
       "source_id": "hallmark",
       "source_uri": "https://github.com/Nutlope/hallmark",
-      "local_path": "Personal/collected-tools/repos/hallmark",
-      "design_integration": "catalog-backed",
+      "local_path": "hallmark.md + repos/hallmark",
+      "form": "skill / plugin / real-browser anti-AI-slop linter (theme.mjs + sloplint.mjs)",
+      "design_integration": "design-studio/vault/web.json (T-021/IP-007) + my-designer (DC-009/DC-010)",
       "learning_state": "learned",
+      "learning_evidence": "README.md:21 · Table 1 · learning_state = learned",
+      "reconciliation": "顶层笔记与克隆合并为同一实体；已完成反 AI 模板感 3 步解剖设计与多视口门禁沉淀",
+      "core_usage": "顶层笔记与克隆合并为同一实体；已完成反 AI 模板感 3 步解剖设计与多视口门禁沉淀",
       "reference_links": [
-        "https://www.usehallmark.com",
-        "https://www.usehallmark.com/themes/dusk/\"",
-        "https://www.usehallmark.com/themes/cobalt/\"",
-        "https://www.usehallmark.com/themes/studio/\"",
-        "https://www.usehallmark.com/themes/atelier/\"",
-        "https://www.usehallmark.com/themes/ribbon/\"",
-        "https://www.usehallmark.com/themes/furrow/\"",
-        "https://www.usehallmark.com/themes/dose/\"",
-        "https://www.usehallmark.com/themes/refract/\"",
-        "https://www.usehallmark.com/themes/vantage/\"",
-        "https://www.usehallmark.com/themes/hedgerow/\"",
-        "https://github.com/pbakaus/impeccable"
+        "https://github.com/Nutlope/hallmark",
+        "https://www.usehallmark.com/"
       ],
-      "form": "repo",
-      "core_usage": "Hallmark",
-      "learning_evidence": "README Table 1"
+      "note_path": "hallmark.md",
+      "usage_notes": "1. 50 選 3 素材テーマ抽選 (theme.mjs deal)：内蔵された 50 種類のマテリアルテーマ（skills/hallmark/references/themes/*.md + 完成見本 .jpg）からプロンプトとカテゴリに合う 3 つを提示し、ユーザーが 1 つを選択（AI 特有の紫青グラデーションや Inter フォントの量産型テンプレート顔を排除）。\n2. 訪問者の本来の目的（Job）に基づく解剖設計 (anatomy.md + macrostructures.md)：訪問者がページですべき行動（subscribe / book / buy / try / read）と実在素材インベントリ（real / pictures / absent）からページ構造を組み立てる。架空の数値・引用・ロゴウォール・装飾カードを捏造しない。\n3. 実ブラウザ多ブレークポイント監査 (sloplint.mjs --render)：完成ページを実ブラウザの複数画面幅（8 widths）でレンダリング検査し、機械生成臭（AI Slop）の兆候——見出し上の余計な大文字小字（Eyebrow）、意図的に文字間を広げた大文字ラベル（Tracked-Capitals）、見出し内の 1 語だけ色を変える装飾、送信しても何も起きないダミーフォーム（Fake Submit Form）、ファーストビュー（1280×800）の枠外れ——を検出して差し戻す。"
     },
     {
       "source_id": "impeccable",
       "source_uri": "https://github.com/pbakaus/impeccable",
-      "local_path": "Personal/collected-tools/repos/impeccable",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://impeccable.style/docs",
-        "https://github.com/pbakaus/impeccable/raw/main/docs/images/readme-without.webp",
-        "https://github.com/pbakaus/impeccable/raw/main/docs/images/readme-with.webp",
-        "https://impeccable.style/cases/neo-mirai",
-        "https://impeccable.style/docs/new-work",
-        "https://impeccable.style/docs/context",
-        "https://impeccable.style/tutorials/iterate-live",
-        "https://impeccable.style/docs/hooks",
-        "https://example.com",
-        "http://localhost:5173`.",
-        "https://impeccable.style/docs/detector",
-        "https://impeccable.style/docs/config"
-      ],
+      "local_path": "repos/impeccable",
       "form": "repo",
-      "core_usage": "Impeccable",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (allowed_native.impeccable_native_only + web_reference_repos.impeccable) + taxonomy-v2.json",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:43 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (allowed_native.impeccable_native_only + web_reference_repos.impeccable) + taxonomy-v2.json",
+      "topic_key": "impeccable-mode-operate-vs-persuade-critique",
+      "question": "Impeccable 如何用正交审查标尺区分高密度操作台（mode-operate）与叙事说服页（mode-persuade）的排版与视觉克制边界？",
+      "why_now": "repos/impeccable/.agents/skills/impeccable/reference/{mode-operate,mode-persuade,critique}.md",
+      "core_usage": "Impeccable 如何用正交审查标尺区分高密度操作台（mode-operate）与叙事说服页（mode-persuade）的排版与视觉克制边界？",
+      "reference_links": [
+        "https://github.com/pbakaus/impeccable"
+      ]
     },
     {
       "source_id": "shipswift",
       "source_uri": "https://github.com/signerlabs/ShipSwift",
-      "local_path": "Personal/collected-tools/repos/shipswift",
-      "design_integration": "collected-tools reference",
-      "learning_state": "learned",
-      "reference_links": [
-        "https://img.shields.io/badge/Website-shipswift.app-blue.svg",
-        "https://www.shipswift.app/",
-        "https://img.shields.io/badge/App_Store-Demo_App-black.svg",
-        "https://apps.apple.com/us/app/shipswift-mcp-codebase/id6759209764",
-        "https://img.shields.io/badge/License-MIT-yellow.svg",
-        "https://opensource.org/licenses/MIT",
-        "https://img.shields.io/badge/Swift-5.0+-F05138.svg",
-        "https://swift.org",
-        "https://img.shields.io/badge/iOS-18.0+-000000.svg",
-        "https://developer.apple.com/ios/",
-        "https://img.shields.io/badge/Skills-Powered-8A2BE2.svg",
-        "https://github.com/signerlabs/shipswift-skills"
-      ],
+      "local_path": "repos/shipswift",
       "form": "repo",
-      "core_usage": "ShipSwift",
-      "learning_evidence": "README Table 1"
+      "design_integration": "design-studio/vault/{mobile-ios,desktop-macos}.json + verify_design_cases.py",
+      "learning_state": "learned",
+      "learning_evidence": "README.md:25 · Table 1 · learning_state = learned",
+      "reconciliation": "SWAnimation/SWMetal/SWChart/SWComponent 动效与 Shader 管线已被 WWDC26/27 概念卡覆盖",
+      "core_usage": "SWAnimation/SWMetal/SWChart/SWComponent 动效与 Shader 管线已被 WWDC26/27 概念卡覆盖",
+      "reference_links": [
+        "https://github.com/signerlabs/ShipSwift"
+      ]
     },
     {
       "source_id": "taste-skill",
       "source_uri": "https://github.com/Leonxlnx/taste-skill",
-      "local_path": "Personal/collected-tools/repos/taste-skill",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://tasteskill.dev\"",
-        "https://img.shields.io/badge/website-tasteskill.dev-24292f?style=flat\"",
-        "https://tastecode.dev\"",
-        "https://img.shields.io/badge/new-TasteCode-ff6b00?style=flat\"",
-        "https://img.shields.io/badge/license-MIT-24292f?style=flat&amp;logo=github&amp;logoColor=white\"",
-        "https://img.shields.io/badge/changelog-view-24292f?style=flat\"",
-        "https://interfaces.dev/?utm_source=tasteskill&utm_medium=sponsorship\"",
-        "https://github.com/jakubkrehel\"",
-        "https://reactbits.dev\"",
-        "https://img.ly/\"",
-        "https://www.sent.dm\"",
-        "https://github.com/sponsors/Leonxlnx\""
-      ],
+      "local_path": "repos/taste-skill",
       "form": "repo",
-      "core_usage": "<p align=\"center\">",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (web_reference_repos.taste_skill) + routing-index.md (CL/CP/DV/GM/LN)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:44 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (web_reference_repos.taste_skill) + routing-index.md (CL/CP/DV/GM/LN)",
+      "topic_key": "taste-skill-stop-hook-and-bento-anti-slop",
+      "question": "Taste Skill 如何通过 Stop-hook 自审回路与 Bento 卡片密度预算拦截前端 AI 模板感？",
+      "why_now": "repos/taste-skill/skills/taste-skill/SKILL.md（与 Hallmark 互补的 Stop-hook 机制与密度预算）",
+      "core_usage": "Taste Skill 如何通过 Stop-hook 自审回路与 Bento 卡片密度预算拦截前端 AI 模板感？",
+      "reference_links": [
+        "https://github.com/Leonxlnx/taste-skill"
+      ]
     },
     {
       "source_id": "tenfold",
       "source_uri": "https://github.com/adrianpartain59/tenfold",
-      "local_path": "Personal/collected-tools/repos/tenfold",
-      "design_integration": "catalog-backed",
+      "local_path": "tenfold-design-skill.md + repos/tenfold",
       "learning_state": "not_recorded",
+      "learning_evidence": "README.md registers the note but neither learning_state table classifies tenfold.",
+      "design_integration": "my-designer supports Mode A (3–5 spec-matrix concepts) or Mode B (design_catalog.py scaffold-gallery) for 1–3 offline handoff rounds, records Owner SELECT/STAR/notes, then freezes AppTheme + design.md; it never creates product-repository Prototype/ code.",
+      "core_usage": "Claude Code design skill for exploring genuinely different mobile UI directions before selecting one and iterating with feedback. The local Dual-Mode Spec-Matrix + Handoff Gallery workflow keeps product repositories clean: choose Mode A (3–5 orthogonal spec concepts) or Mode B (design_catalog.py scaffold-gallery) to generate an offline 10-variant gallery under ~/Development/handoff/<goal>/r<N>/, then record SELECT/STAR/notes and freeze AppTheme + design.md. Universal P0/folding/material laws stay separate from per-session session_anti_patterns and style_overrides.",
+      "usage_notes": "/tenfold:design-studio creates ten real phone-mockup variants, asks the Owner to pick one and add notes, then generates another ten.",
+      "form": "Claude Code plugin / design skill",
       "reference_links": [
-        "https://adrianpartain59.github.io/tenfold/tempo/today/r1/",
-        "https://github.com/adrianpartain59/tenfold.git",
-        "http://localhost:4545/<project",
-        "https://feathericons.com"
+        "https://github.com/adrianpartain59/tenfold",
+        "https://x.com/adrian_partain/status/2104702468840128656",
+        "https://x.com/adrian_partain/status/2114866338829381727",
+        "https://x.com/adrian_partain/status/2115992260949254179",
+        "https://x.com/adrian_partain/status/2116592792030106031",
+        "https://x.com/adrian_partain/status/2116593069361700887"
       ],
-      "form": "repo",
-      "core_usage": "Tenfold",
-      "learning_evidence": "README does not classify this source"
+      "note_path": "tenfold-design-skill.md",
+      "usage_state": "(まだ未使用。試したらここに追記)"
     },
     {
       "source_id": "twostraws-swiftui-skill",
       "source_uri": "https://github.com/twostraws/SwiftUI-Agent-Skill",
-      "local_path": "Personal/collected-tools/repos/twostraws-swiftui-skill",
-      "design_integration": "collected-tools reference",
-      "learning_state": "learned",
-      "reference_links": [
-        "https://img.shields.io/badge/iOS-26+-2980b9.svg\"",
-        "https://img.shields.io/badge/swift-6.4+-8e44ad.svg\"",
-        "https://twitter.com/twostraws\"",
-        "https://img.shields.io/badge/Contact-@twostraws-95a5a6.svg?style=flat\"",
-        "https://github.com/twostraws/SwiftData-Agent-Skill",
-        "https://github.com/twostraws/Swift-Concurrency-Agent-Skill",
-        "https://github.com/twostraws/Swift-Testing-Agent-Skill",
-        "https://github.com/twostraws/Swift-Agent-Skills",
-        "https://github.com/twostraws/SwiftAgents",
-        "https://agentskills.io/home",
-        "https://github.com/twostraws/swiftui-agent-skill",
-        "https://brew.sh"
-      ],
+      "local_path": "repos/twostraws-swiftui-skill",
       "form": "repo",
-      "core_usage": "<p align=\"center\">",
-      "learning_evidence": "README Table 1"
+      "design_integration": "verify_design_cases.py (allowed_native.twostraws-swiftui-skill)",
+      "learning_state": "learned",
+      "learning_evidence": "README.md:26 · Table 1 · learning_state = learned",
+      "reconciliation": "SwiftUI Pro 现代 API、布局与可访问性规范已被现有 SwiftUI 26/27 卡片覆盖",
+      "core_usage": "SwiftUI Pro 现代 API、布局与可访问性规范已被现有 SwiftUI 26/27 卡片覆盖",
+      "reference_links": [
+        "https://github.com/twostraws/SwiftUI-Agent-Skill"
+      ]
     },
     {
       "source_id": "ui-ux-pro-max-skill",
       "source_uri": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
-      "local_path": "Personal/collected-tools/repos/ui-ux-pro-max-skill",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://uupm.cc",
-        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/README.az.md\"",
-        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/README.id.md\"",
-        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/README.ja.md\"",
-        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/README.ko.md\"",
-        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/README.vi.md\"",
-        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/README.zh.md\"",
-        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/README.md\"",
-        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/README.fa.md\"",
-        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/releases\"",
-        "https://img.shields.io/github/v/release/nextlevelbuilder/ui-ux-pro-max-skill?style=for-the-badge&color=blue\"",
-        "https://img.shields.io/badge/reasoning_rules-192-green?style=for-the-badge\""
-      ],
+      "local_path": "repos/ui-ux-pro-max-skill",
       "form": "repo",
-      "core_usage": "UI UX Pro Max(https://uupm.cc)",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (web_reference_repos.ui_ux_pro_max + search.py --stack swiftui)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:45 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (web_reference_repos.ui_ux_pro_max + search.py --stack swiftui)",
+      "topic_key": "uupm-csv-faceted-design-retrieval",
+      "question": "UI UX Pro Max 如何用轻量 CSV 分面索引与 BM25 脚本实现跨技术栈色板、字体与图表类型的确定性检索？",
+      "why_now": "repos/ui-ux-pro-max-skill/src/ui-ux-pro-max/ & .claude/skills/ui-ux-pro-max/scripts/search.py",
+      "core_usage": "UI UX Pro Max 如何用轻量 CSV 分面索引与 BM25 脚本实现跨技术栈色板、字体与图表类型的确定性检索？",
+      "reference_links": [
+        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"
+      ]
     },
     {
       "source_id": "vercel-agent-skills",
       "source_uri": "https://github.com/vercel-labs/agent-skills",
-      "local_path": "Personal/collected-tools/repos/vercel-agent-skills",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://agentskills.io/",
-        "https://skills.sh/b/vercel-labs/agent-skills",
-        "https://skills.sh/vercel-labs/agent-skills",
-        "https://example.com/skills"
-      ],
+      "local_path": "repos/vercel-agent-skills",
       "form": "repo",
-      "core_usage": "Agent Skills",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (web_reference_repos.vercel_agent_skills) + routing-index.md (CP/MI/LN/TC)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:46 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (web_reference_repos.vercel_agent_skills) + routing-index.md (CP/MI/LN/TC)",
+      "topic_key": "vercel-composition-patterns-and-view-transitions",
+      "question": "Vercel Agent Skills 中的复合组件状态隔离（Composition Patterns）与声明式 React View Transitions 如何消除布尔 Props 爆炸？",
+      "why_now": "repos/vercel-agent-skills/skills/{composition-patterns,react-view-transitions}/SKILL.md",
+      "core_usage": "Vercel Agent Skills 中的复合组件状态隔离（Composition Patterns）与声明式 React View Transitions 如何消除布尔 Props 爆炸？",
+      "reference_links": [
+        "https://github.com/vercel-labs/agent-skills"
+      ]
     },
     {
       "source_id": "vibecoded-design-tells",
       "source_uri": "https://github.com/JCarterJohnson/vibecoded-design-tells",
-      "local_path": "Personal/collected-tools/repos/vibecoded-design-tells",
-      "design_integration": "collected-tools reference",
-      "learning_state": "queued",
-      "reference_links": [
-        "https://arctic-shift.photon-reddit.com"
-      ],
+      "local_path": "repos/vibecoded-design-tells",
       "form": "repo",
-      "core_usage": "What makes a site look \"vibe-coded\": the data",
-      "learning_evidence": "README Table 2"
+      "design_integration": "verify_design_cases.py (web_reference_repos.vibecoded_design_tells) + routing-index.md (VS)",
+      "learning_state": "queued",
+      "learning_evidence": "README.md:47 · Table 2 · learning_state = queued",
+      "design_routing_ref": "verify_design_cases.py (web_reference_repos.vibecoded_design_tells) + routing-index.md (VS)",
+      "topic_key": "vibecoded-reddit-empirical-slop-tells",
+      "question": "基于 Reddit 真实负评样本统计的 UI、文案与代码三大类“Vibe-Coded AI 破绽”有哪些高频特征与反制清单？",
+      "why_now": "repos/vibecoded-design-tells/skill/references/{tells,choosing-a-look}.md",
+      "core_usage": "基于 Reddit 真实负评样本统计的 UI、文案与代码三大类“Vibe-Coded AI 破绽”有哪些高频特征与反制清单？",
+      "reference_links": [
+        "https://github.com/JCarterJohnson/vibecoded-design-tells"
+      ]
     }
   ],
   "card_union_count": 40,
@@ -9056,5 +8963,22 @@
     "/Users/lee/Development/user-skills/skills/design-studio/references/vault/mobile-ios.json",
     "/Users/lee/Development/user-skills/skills/design-studio/references/vault/web.json"
   ],
-  "source_inventory_count": 20
+  "source_inventory_count": 20,
+  "source_snapshot": {
+    "inputs": [
+      {
+        "path": "Personal/collected-tools/README.md",
+        "sha256": "e79fdf590dbe726a50f1af4b66a48127c25de0b6056d7eed1645371b58751d8a"
+      },
+      {
+        "path": "Personal/collected-tools/hallmark.md",
+        "sha256": "1f92a3f19bb5c15118d6ec869d2028cbe34a0755f9992ab0b68b66b7e9d2da05"
+      },
+      {
+        "path": "Personal/collected-tools/tenfold-design-skill.md",
+        "sha256": "1cf7102ea3c7005bc6951b4eda0c422bb2a9a1048dd852f7f774cdb031f4bf13"
+      }
+    ],
+    "boundary": "Top-level tables and Hallmark/Tenfold notes only; no repo README scraping or knowledge-vault reads."
+  }
 }

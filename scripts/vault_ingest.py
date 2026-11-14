@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Portable multimodal importer for the blog asset vault."""
 from __future__ import annotations
-import argparse, json, os, re, shutil, subprocess, sys
+import argparse, hashlib, html, json, os, re, shutil, subprocess, sys
+from urllib.parse import urlsplit
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -139,7 +140,7 @@ def canonical_url(raw: str) -> str:
     if not match: raise SystemExit("--url must be an http(s) URL")
     host=match.group(1).lower(); parts=[p for p in (match.group(2) or '').split('/') if p]
     if host in {'github.com','www.github.com'} and len(parts)>=2:
-        return f"https://github.com/{parts[0]}/{re.sub(r'\\.git$','',parts[1])}"
+        return f"https://github.com/{parts[0]}/{parts[1].removesuffix('.git')}"
     if host in {'twitter.com','www.twitter.com','x.com','www.x.com'} and len(parts)>=3 and parts[1].lower()=='status':
         return f"https://x.com/{parts[0]}/status/{parts[2]}"
     path='/' + '/'.join(parts) if parts else ''
@@ -147,18 +148,21 @@ def canonical_url(raw: str) -> str:
 
 def url_import(args, data):
     canonical = canonical_url(args.url)
+    parsed = urlsplit(canonical)
+    label = args.title or parsed.netloc + parsed.path
+    source_id = slugify(label)
     existing = next((x for x in data.get("sources", []) if x.get("source_uri") == canonical or x.get("canonical_url") == canonical), None)
     if not args.no_vault_write:
-        COLLECTED.mkdir(parents=True, exist_ok=True); note = COLLECTED / f"{slugify(args.title or host + path)}.md"
-        body = f"# {args.title or host}\n\n{args.text or 'Saved source for the asset vault.'}\n\n- link: {canonical}\n- 形態: {args.kind}\n\n## 实际に使ったメモ\n_待使用。_\n"
+        COLLECTED.mkdir(parents=True, exist_ok=True); note = COLLECTED / f"{source_id}.md"
+        body = f"# {label}\n\n{args.text or 'Saved source for the asset vault.'}\n\n- link: {canonical}\n- 形態: {args.kind}\n\n## 实际に使ったメモ\n_待使用。_\n"
         if note.exists():
             previous = note.read_text(encoding="utf-8")
             if canonical not in previous:
                 note.write_text(previous.rstrip() + f"\n\n## Additional source\n- link: {canonical}\n- 形態: {args.kind}\n", encoding="utf-8")
         else:
             note.write_text(body, encoding="utf-8")
-        update_collected_readme(title=args.title or host, canonical=canonical, kind=args.kind, note=note)
-    if not existing: data.setdefault("sources", []).append({"source_id": slugify(args.title or host + path), "name": args.title or host, "source_uri": canonical, "canonical_url": canonical, "form": "url", "kind": args.kind, "design_integration": "pending catalog sync" if args.text else "not requested", "learning_state": "not_recorded", "core_usage": args.text or "Saved via vault_ingest.py", "reference_links": [canonical]})
+        update_collected_readme(title=label, canonical=canonical, kind=args.kind, note=note)
+    if not existing: data.setdefault("sources", []).append({"source_id": source_id, "name": label, "source_uri": canonical, "canonical_url": canonical, "form": "url", "kind": args.kind, "design_integration": "pending catalog sync" if args.text else "not requested", "learning_state": "not_recorded", "core_usage": args.text or "Saved via vault_ingest.py", "reference_links": [canonical]})
     if args.text:
         sync_design_catalog(args, text=args.text)
     return {"mode":"url", "url":canonical, "deduped": bool(existing)}
@@ -176,20 +180,149 @@ def text_import(args, data):
         entry["created_at"]=datetime.now(timezone.utc).isoformat(); data.setdefault(target, []).append(entry)
     return {"mode":"text", "id":created[0].get("id"), "created_count":len(created), "route_stage":payload.get("route_stage")}
 
+def source_prose(value: str) -> str:
+    value = re.sub(r"<br\s*/?>", "\n", value, flags=re.I)
+    value = re.sub(r"!\[[^]]*\]\([^)]*\)", "", value)
+    value = re.sub(r"\[([^]]+)\]\([^)]*\)", r"\1", value)
+    value = re.sub(r"</?(?:a|div|p|span|img|h[1-6]|strong|em|code|pre|ul|ol|li)\b[^>]*>", "", value, flags=re.I)
+    return html.unescape(value.replace("`", "").replace("**", "").replace(r"\|", "|")).strip()
+
+
+def source_links(text: str) -> list[str]:
+    links = []
+    text = re.sub(r"!\[[^]]*\]\([^)]*\)", "", text)
+    for match in re.findall(r"https?://[^\s<>\"'`]+", html.unescape(text)):
+        url = match.rstrip(").,;:!?]}")
+        try:
+            host = (urlsplit(url).hostname or "").lower()
+        except ValueError:
+            continue
+        if not host or host in {"localhost", "127.0.0.1", "::1", "shields.io"} or host.endswith((".localhost", ".shields.io")):
+            continue
+        if url not in links:
+            links.append(url)
+    return links
+
+
+def source_table_rows(text: str) -> dict[str, dict]:
+    """Read only the two authoritative top-level routing/state tables."""
+    rows = {}
+    headers = []
+    state = table = ""
+    for number, line in enumerate(text.splitlines(), 1):
+        if line.startswith("## "):
+            headers = []
+            heading = re.search(r"(Table [12]).*learning_state\s*=\s*(learned|queued)", line)
+            table, state = heading.groups() if heading else ("", "")
+        if not state or not line.startswith("|"):
+            continue
+        cells = [cell.strip() for cell in re.split(r"(?<!\\)\|", line.strip().strip("|"))]
+        if any("(`source_id`)" in cell for cell in cells):
+            headers = [re.search(r"`([^`]+)`", cell).group(1) if "`" in cell else cell for cell in cells]
+        elif headers and len(cells) == len(headers) and not re.fullmatch(r"[-: ]+", cells[0]):
+            row = dict(zip(headers, cells))
+            source_id = source_prose(row["source_id"])
+            if source_id in rows:
+                raise SystemExit(f"duplicate source table entry: {source_id}")
+            rows[source_id] = {**row, "learning_state": state, "table": table, "line": number}
+    if not rows:
+        raise SystemExit("no collected-tools routing/state table rows found")
+    return rows
+
+
+def refresh_source_snapshot(data, directory: Path):
+    names = ("README.md", "hallmark.md", "tenfold-design-skill.md")
+    inputs = {name: (directory / name).read_text(encoding="utf-8") for name in names}
+    rows = source_table_rows(inputs["README.md"])
+    sources = {source["source_id"]: source for source in data.get("sources", [])}
+    for source_id, row in rows.items():
+        route_key = "design_integration" if row["learning_state"] == "learned" else "design_routing_ref"
+        source = {
+            "source_id": source_id,
+            "source_uri": canonical_url(source_prose(row["source_uri"])),
+            "local_path": source_prose(row["local_path"]),
+            "form": "repo",
+            "design_integration": source_prose(row[route_key]),
+            "learning_state": row["learning_state"],
+            "learning_evidence": f"README.md:{row['line']} · {row['table']} · learning_state = {row['learning_state']}",
+        }
+        if row["learning_state"] == "queued":
+            question, _, why_now = row["question"].partition("<br>")
+            source.update(design_routing_ref=source["design_integration"], topic_key=source_prose(row["topic_key"]),
+                          question=re.sub(r"^问题[：:]\s*", "", source_prose(question)),
+                          why_now=re.sub(r"^证据[：:]\s*", "", source_prose(why_now)))
+            source["core_usage"] = source["question"]
+        else:
+            source["reconciliation"] = source_prose(row["对账结论"])
+            source["core_usage"] = source["reconciliation"]
+        source["reference_links"] = [source["source_uri"]]
+        sources[source_id] = source
+
+    def note_field(text, label):
+        match = re.search(rf"^- {re.escape(label)}[:：]\s*(.+)$", text, re.M)
+        return source_prose(match.group(1)) if match else ""
+
+    for source_id, name in (("hallmark", "hallmark.md"), ("tenfold", "tenfold-design-skill.md")):
+        text = inputs[name]
+        if source_id == "tenfold" and source_id not in rows:
+            if name not in inputs["README.md"]:
+                raise SystemExit("Tenfold note is not registered in collected-tools/README.md")
+            paragraphs = text.split("\n\n")
+            summary = next(p for p in paragraphs if p.strip() and not p.startswith("#"))
+            repo = canonical_url(note_field(text, "リポジトリ"))
+            sources[source_id] = {
+                "source_id": source_id, "source_uri": repo,
+                "local_path": name + (" + repos/tenfold" if (directory / "repos/tenfold").is_dir() else ""),
+                "learning_state": "not_recorded",
+                "learning_evidence": "README.md registers the note but neither learning_state table classifies tenfold.",
+                "design_integration": note_field(text, "本地适配"),
+                "core_usage": source_prose(summary),
+                "usage_notes": note_field(text, "外部 workflow"),
+            }
+        source = sources[source_id]
+        source["form"] = note_field(text, "形態")
+        source["reference_links"] = source_links(source["source_uri"] + "\n" + text)
+        source["note_path"] = name
+        if "## 实际に使ったメモ" in text:
+            source["usage_state"] = source_prose(text.split("## 实际に使ったメモ", 1)[1]).strip("_").strip()
+        if source_id == "hallmark":
+            workflow = text.split("## 核心 3 ステップワークフロー", 1)[1].split("\n## ", 1)[0]
+            source["usage_notes"] = source_prose(workflow.split("\n", 1)[1])
+    data["sources"] = [sources[key] for key in sorted(sources)]
+    data["source_inventory_count"] = len(data["sources"])
+    data["source_snapshot"] = {"inputs": [{"path": f"Personal/collected-tools/{name}", "sha256": hashlib.sha256(text.encode()).hexdigest()} for name, text in inputs.items()],
+                               "boundary": "Top-level tables and Hallmark/Tenfold notes only; no repo README scraping or knowledge-vault reads."}
+    return {"mode": "refresh-sources", "source_count": len(data["sources"])}
+
+
+def commit_changes():
+    allowed = {"scripts/vault_ingest.py", "scripts/README.md", "build_site.py", "index.html", "vault/manifest.json", "vault/index.html"}
+    allowed.update(str(path.relative_to(ROOT)) for path in SHOTS.glob("*") if path.is_file())
+    staged = subprocess.check_output(["git", "diff", "--cached", "--name-only", "-z"], cwd=ROOT, text=True).split("\0")
+    if set(filter(None, staged)) - allowed:
+        raise SystemExit("refusing --commit: unrelated staged paths exist")
+    changed = subprocess.check_output(["git", "diff", "HEAD", "--name-only", "-z"], cwd=ROOT, text=True).split("\0")
+    untracked = subprocess.check_output(["git", "ls-files", "--others", "--exclude-standard", "-z"], cwd=ROOT, text=True).split("\0")
+    paths = sorted(path for path in allowed & set(changed + untracked) if (ROOT / path).is_file())
+    if not paths:
+        raise SystemExit("no importer/build changes to commit")
+    subprocess.run(["git", "add", "--", *paths], cwd=ROOT, check=True)
+    subprocess.run(["git", "commit", "-m", "chore: ingest asset vault item", "-m", "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"], cwd=ROOT, check=True)
+
+
 def main():
-    p=argparse.ArgumentParser(); group=p.add_mutually_exclusive_group(); group.add_argument("--image"); group.add_argument("--url")
+    p=argparse.ArgumentParser(); group=p.add_mutually_exclusive_group(); group.add_argument("--image"); group.add_argument("--url"); group.add_argument("--refresh-sources", action="store_true", help="refresh the offline source snapshot from top-level collected-tools tables/notes (read-only)")
     p.add_argument("--title"); p.add_argument("--text", dest="text", default=None); p.add_argument("--kind", choices=["tool","inspiration","vault","pattern"], default="inspiration"); p.add_argument("--archetype-ref"); p.add_argument("--platform", default=""); p.add_argument("--measure-palette", dest="measure_palette", action="store_true", default=True); p.add_argument("--no-measure-palette", dest="measure_palette", action="store_false"); p.add_argument("--no-vault-write", action="store_true"); p.add_argument("--no-build", action="store_true"); p.add_argument("--commit", action="store_true"); p.add_argument("--push", action="store_true")
     args=p.parse_args()
-    if not args.image and not args.url and not args.text: p.error("one of --image, --url, or --text is required")
-    data=load(); result=image_import(args,data) if args.image else url_import(args,data) if args.url else text_import(args,data)
-    data["updated_at"] = datetime.now(timezone.utc).isoformat(); save(data); maybe_build(args)
+    if not args.image and not args.url and not args.text and not args.refresh_sources: p.error("one of --image, --url, --text, or --refresh-sources is required")
+    if args.refresh_sources and args.text: p.error("--refresh-sources cannot be combined with --text")
+    data=load()
+    result=refresh_source_snapshot(data, COLLECTED) if args.refresh_sources else image_import(args,data) if args.image else url_import(args,data) if args.url else text_import(args,data)
+    if not args.refresh_sources:
+        data["updated_at"] = datetime.now(timezone.utc).isoformat()
+    save(data); maybe_build(args)
     if args.commit:
-        allowed={"scripts/vault_ingest.py","scripts/README.md","build_site.py","vault/manifest.json","vault/index.html"}
-        allowed.update(str(p.relative_to(ROOT)) for p in SHOTS.glob("*") if p.is_file())
-        staged=subprocess.check_output(["git","diff","--cached","--name-only"], cwd=ROOT, text=True).splitlines()
-        if set(staged)-allowed: raise SystemExit("refusing --commit: unrelated staged paths exist")
-        subprocess.run(["git","add","--",*sorted(allowed)], cwd=ROOT, check=True)
-        subprocess.run(["git","commit","-m","chore: ingest asset vault item"], cwd=ROOT, check=True)
+        commit_changes()
     if args.push:
         publishing_branch(); subprocess.run(["git","push","origin","master"], cwd=ROOT, check=True)
     print(json.dumps(result, ensure_ascii=False))

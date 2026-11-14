@@ -247,9 +247,8 @@ pre.highlight code { font-size: 14px; }
 .prose figcaption { margin-top: var(--strata-space-2); font-size: 14px; line-height: 1.6; color: var(--strata-text-secondary); text-align: center; }
 
 .prose table { overflow-wrap: normal; word-break: normal; display: block; overflow-x: auto; border-collapse: separate; border-spacing: 0; width: max-content; max-width: 100%; font-size: 15px; line-height: 1.6; border-radius: var(--strata-radius-control); box-shadow: inset 0 0 0 1px var(--strata-surface-selected); font-variant-numeric: tabular-nums; }
-.prose th, .prose td { padding: var(--strata-space-2) var(--strata-space-4); text-align: left; border-bottom: 1px solid var(--strata-surface-selected); vertical-align: top; }
-.prose th { white-space: nowrap; }
-.prose td:first-child { white-space: nowrap; }
+.prose th, .prose td { padding: var(--strata-space-2) var(--strata-space-4); text-align: left; border-bottom: 1px solid var(--strata-surface-selected); vertical-align: top; white-space: normal; min-width: 96px; }
+.prose td.num, .prose th.num, .prose time { white-space: nowrap; }
 .prose thead th { background: var(--strata-surface-inset); font-weight: 650; font-size: 14px; color: var(--strata-text-secondary); }
 .prose thead th:first-child { border-top-left-radius: var(--strata-radius-control); }
 .prose thead th:last-child { border-top-right-radius: var(--strata-radius-control); }

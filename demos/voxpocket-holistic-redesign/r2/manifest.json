@@ -1,0 +1,152 @@
+{
+  "schema": "tenfold-gallery/v1",
+  "goal": "voxpocket-holistic-redesign",
+  "round": 2,
+  "platform": "desktop",
+  "frame": {
+    "width": 1280,
+    "height": 800
+  },
+  "session_anti_patterns": [
+    "no glass on content",
+    "no top capsule"
+  ],
+  "style_overrides": {
+    "surface": "solid",
+    "density": "regular"
+  },
+  "direction": "VS-005",
+  "screen_content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+  "variants": [
+    {
+      "id": "v01",
+      "p0": "context",
+      "axis_y": "accordion",
+      "layout": "hero-center",
+      "whitespace": "open",
+      "glass_geometry": "compact",
+      "archetype": "VS-005",
+      "content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v02",
+      "p0": "recovery",
+      "axis_y": "segmented-lens",
+      "layout": "hero-bottom",
+      "whitespace": "balanced",
+      "glass_geometry": "compact",
+      "archetype": "VS-005",
+      "content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v03",
+      "p0": "next-action",
+      "axis_y": "swwallet",
+      "layout": "hero-center",
+      "whitespace": "open",
+      "glass_geometry": "lifted",
+      "archetype": "VS-005",
+      "content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v04",
+      "p0": "timeline",
+      "axis_y": "swwallet",
+      "layout": "hero-bottom",
+      "whitespace": "tight",
+      "glass_geometry": "lifted",
+      "archetype": "VS-005",
+      "content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v05",
+      "p0": "timeline",
+      "axis_y": "segmented-lens",
+      "layout": "hero-inline",
+      "whitespace": "open",
+      "glass_geometry": "rail",
+      "archetype": "VS-005",
+      "content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v06",
+      "p0": "next-action",
+      "axis_y": "accordion",
+      "layout": "hero-inline",
+      "whitespace": "tight",
+      "glass_geometry": "compact",
+      "archetype": "VS-005",
+      "content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v07",
+      "p0": "recovery",
+      "axis_y": "swwallet",
+      "layout": "hero-inline",
+      "whitespace": "open",
+      "glass_geometry": "wide",
+      "archetype": "VS-005",
+      "content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v08",
+      "p0": "timeline",
+      "axis_y": "accordion",
+      "layout": "hero-top",
+      "whitespace": "balanced",
+      "glass_geometry": "compact",
+      "archetype": "VS-005",
+      "content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v09",
+      "p0": "next-action",
+      "axis_y": "segmented-lens",
+      "layout": "hero-top",
+      "whitespace": "balanced",
+      "glass_geometry": "wide",
+      "archetype": "VS-005",
+      "content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v10",
+      "p0": "context",
+      "axis_y": "swwallet",
+      "layout": "hero-top",
+      "whitespace": "balanced",
+      "glass_geometry": "rail",
+      "archetype": "VS-005",
+      "content": "macOS QuickRecordingPanel & FullPanelView · ⌥Space 录文字 · ⌥⇧Space 记待办 · appearsActive 失焦降级 · 28x28pt 指针标尺",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    }
+  ]
+}

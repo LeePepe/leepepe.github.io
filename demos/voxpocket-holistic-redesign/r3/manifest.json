@@ -1,0 +1,152 @@
+{
+  "schema": "tenfold-gallery/v1",
+  "goal": "voxpocket-holistic-redesign",
+  "round": 3,
+  "platform": "mobile",
+  "frame": {
+    "width": 390,
+    "height": 844
+  },
+  "session_anti_patterns": [
+    "no glass on content",
+    "no top capsule"
+  ],
+  "style_overrides": {
+    "surface": "solid",
+    "density": "airy"
+  },
+  "direction": "VS-005",
+  "screen_content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+  "variants": [
+    {
+      "id": "v01",
+      "p0": "context",
+      "axis_y": "accordion",
+      "layout": "hero-center",
+      "whitespace": "open",
+      "glass_geometry": "compact",
+      "archetype": "VS-005",
+      "content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v02",
+      "p0": "recovery",
+      "axis_y": "segmented-lens",
+      "layout": "hero-bottom",
+      "whitespace": "balanced",
+      "glass_geometry": "compact",
+      "archetype": "VS-005",
+      "content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v03",
+      "p0": "next-action",
+      "axis_y": "swwallet",
+      "layout": "hero-center",
+      "whitespace": "open",
+      "glass_geometry": "lifted",
+      "archetype": "VS-005",
+      "content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v04",
+      "p0": "timeline",
+      "axis_y": "swwallet",
+      "layout": "hero-bottom",
+      "whitespace": "tight",
+      "glass_geometry": "lifted",
+      "archetype": "VS-005",
+      "content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v05",
+      "p0": "timeline",
+      "axis_y": "segmented-lens",
+      "layout": "hero-inline",
+      "whitespace": "open",
+      "glass_geometry": "rail",
+      "archetype": "VS-005",
+      "content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v06",
+      "p0": "next-action",
+      "axis_y": "accordion",
+      "layout": "hero-inline",
+      "whitespace": "tight",
+      "glass_geometry": "compact",
+      "archetype": "VS-005",
+      "content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v07",
+      "p0": "recovery",
+      "axis_y": "swwallet",
+      "layout": "hero-inline",
+      "whitespace": "open",
+      "glass_geometry": "wide",
+      "archetype": "VS-005",
+      "content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v08",
+      "p0": "timeline",
+      "axis_y": "accordion",
+      "layout": "hero-top",
+      "whitespace": "balanced",
+      "glass_geometry": "compact",
+      "archetype": "VS-005",
+      "content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v09",
+      "p0": "next-action",
+      "axis_y": "segmented-lens",
+      "layout": "hero-top",
+      "whitespace": "balanced",
+      "glass_geometry": "wide",
+      "archetype": "VS-005",
+      "content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    },
+    {
+      "id": "v10",
+      "p0": "context",
+      "axis_y": "swwallet",
+      "layout": "hero-top",
+      "whitespace": "balanced",
+      "glass_geometry": "rail",
+      "archetype": "VS-005",
+      "content": "iOS + macOS 双平台语音待办 · P0 焦点待办 · 一句话拆解行动项 · 详情 Sheet/Inspector",
+      "selected": false,
+      "starred": false,
+      "notes": ""
+    }
+  ]
+}

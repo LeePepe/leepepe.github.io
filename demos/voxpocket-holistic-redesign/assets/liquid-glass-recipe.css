@@ -1,0 +1,331 @@
+/*!
+ * Apple Liquid Glass — Universal HTML/CSS/SVG Optical Recipe (v1.0)
+ * Pure offline CSS layer stack for iOS 26 / macOS 26 Liquid Glass.
+ *
+ * Optical Architecture (5 Layers):
+ *   Layer 0: Elevation Drop Shadow + Caustic Under-Glow
+ *   Layer 1: SVG Optical Refraction Backdrop (Snell's Law Bezel + Symmetric RGB Dispersion + Caustic Shade)
+ *            with safe WebKit/Gecko fallback (never triggers Safari's @supports url() drop bug)
+ *   Layer 2: Adaptive Translucent Surface Veil + Top Specular Reflection Arc
+ *   Layer 3: Fresnel Specular Rim Border (mask-composite: exclude 1.2px gradient ring + 0.5px crisp inset rim)
+ *   Layer 4: Interactive Pointer Glint Tracking + Tactile Spring Compression
+ */
+
+@property --lg-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 135deg;
+}
+
+:root,
+[data-theme="light"] {
+  /* Optical & Geometry Defaults */
+  --lg-radius: 28px;
+  --lg-blur: 2.5px;
+  --lg-saturate: 165%;
+  --lg-brightness: 104%;
+  --lg-contrast: 104%;
+  --lg-angle: 135deg;
+  --lg-mouse-x: 50%;
+  --lg-mouse-y: 50%;
+
+  /* Surface Veil & Scattering (Light Mode / Over Bright Media) */
+  --lg-tint-rgb: 255 255 255;
+  --lg-veil-opacity: 0.14;
+  --lg-veil-hover-opacity: 0.20;
+  --lg-veil-active-opacity: 0.26;
+  --lg-specular-arc-opacity: 0.34;
+
+  /* Fresnel Rim & Crisp Sub-pixel Edge */
+  --lg-rim-width: 1.25px;
+  --lg-rim-primary: rgba(255, 255, 255, 0.78);
+  --lg-rim-secondary: rgba(255, 255, 255, 0.36);
+  --lg-rim-ambient: rgba(255, 255, 255, 0.12);
+  --lg-hairline-light: rgba(255, 255, 255, 0.62);
+  --lg-hairline- bounce: rgba(255, 255, 255, 0.32);
+  --lg-hairline-shade: rgba(15, 23, 42, 0.14);
+
+  /* Chromatic Fringe Fallback (for non-Blink engines) */
+  --lg-fringe-red: rgba(255, 78, 106, 0.28);
+  --lg-fringe-cyan: rgba(56, 224, 255, 0.26);
+
+  /* Elevation & Caustic Shadow */
+  --lg-shadow:
+    0 14px 36px -6px rgba(12, 18, 32, 0.22),
+    0 4px 12px -2px rgba(12, 18, 32, 0.12);
+  --lg-caustic-glow: inset 0 -14px 24px -8px rgba(255, 255, 255, 0.16);
+
+  /* Foreground Typography */
+  --lg-fg: rgba(15, 18, 28, 0.92);
+  --lg-fg-muted: rgba(30, 35, 52, 0.64);
+  --lg-fg-on-dark: rgba(255, 255, 255, 0.96);
+
+  /* Spring Physics */
+  --lg-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --lg-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="dark"] {
+  --lg-tint-rgb: 24 28 38;
+  --lg-veil-opacity: 0.22;
+  --lg-veil-hover-opacity: 0.28;
+  --lg-veil-active-opacity: 0.35;
+  --lg-specular-arc-opacity: 0.22;
+
+  --lg-rim-primary: rgba(255, 255, 255, 0.64);
+  --lg-rim-secondary: rgba(255, 255, 255, 0.24);
+  --lg-rim-ambient: rgba(255, 255, 255, 0.06);
+  --lg-hairline-light: rgba(255, 255, 255, 0.45);
+  --lg-hairline-bounce: rgba(255, 255, 255, 0.20);
+  --lg-hairline-shade: rgba(0, 0, 0, 0.38);
+
+  --lg-shadow:
+    0 18px 44px -8px rgba(0, 0, 0, 0.48),
+    0 4px 14px -2px rgba(0, 0, 0, 0.30);
+  --lg-caustic-glow: inset 0 -16px 28px -10px rgba(255, 255, 255, 0.09);
+
+  --lg-fg: rgba(255, 255, 255, 0.95);
+  --lg-fg-muted: rgba(235, 235, 245, 0.62);
+}
+
+/* ============================================================================
+ * 1. Core Liquid Glass Surface (.lg-surface)
+ *    IMPORTANT: Do NOT set `isolation: isolate` or `opacity < 1` on ancestor
+ *    wrappers, or Chromium will create a local Backdrop Root and stop sampling
+ *    the page wallpaper!
+ * ========================================================================== */
+
+.lg-surface {
+  position: relative;
+  border-radius: var(--lg-radius, 28px);
+  color: var(--lg-fg);
+  -webkit-font-smoothing: antialiased;
+
+  /* Layer 2: Multi-layer surface scattering (Top Specular Arc + Diagonal Liquid Sheen) */
+  background:
+    radial-gradient(
+      130% 80% at 22% -12%,
+      rgba(255, 255, 255, var(--lg-specular-arc-opacity, 0.34)) 0%,
+      rgba(255, 255, 255, 0.06) 42%,
+      transparent 68%
+    ),
+    linear-gradient(
+      var(--lg-angle, 135deg),
+      rgb(var(--lg-tint-rgb, 255 255 255) / calc(var(--lg-veil-opacity, 0.14) * 1.35)) 0%,
+      rgb(var(--lg-tint-rgb, 255 255 255) / calc(var(--lg-veil-opacity, 0.14) * 0.65)) 48%,
+      rgb(var(--lg-tint-rgb, 255 255 255) / var(--lg-veil-opacity, 0.14)) 100%
+    );
+
+  /* Layer 1: Optical Refraction Backdrop
+     - Safari/WebKit reads `-webkit-backdrop-filter` (pure blur + saturate + brightness).
+     - Chromium/Blink reads `backdrop-filter`, upgraded via `--lg-backdrop-filter`
+       by `liquid-glass-engine.js` to `url(#lg-filter-id) blur(...) saturate(...)`. */
+  -webkit-backdrop-filter:
+    blur(var(--lg-blur, 2.5px))
+    saturate(var(--lg-saturate, 165%))
+    brightness(var(--lg-brightness, 104%));
+  backdrop-filter: var(
+    --lg-backdrop-filter,
+    blur(var(--lg-blur, 2.5px))
+    saturate(var(--lg-saturate, 165%))
+    brightness(var(--lg-brightness, 104%))
+    contrast(var(--lg-contrast, 104%))
+  );
+
+  /* Layer 0 & Layer 3A: Crisp 0.5px Sub-Pixel Inset Specular Rim + Caustic Inner Glow + Drop Shadow */
+  box-shadow:
+    inset 0 0 0 0.5px var(--lg-hairline-light),
+    inset 1.25px 1.25px 0.75px -0.25px var(--lg-rim-primary),
+    inset -1px -1px 0.75px -0.25px var(--lg-rim-secondary),
+    inset 0 -1.5px 1px 0 var(--lg-hairline-shade),
+    inset 1px 0 0 0 var(--lg-fringe-red),
+    inset -1px 0 0 0 var(--lg-fringe-cyan),
+    var(--lg-caustic-glow),
+    var(--lg-shadow);
+
+  transition:
+    transform 0.34s var(--lg-spring),
+    background-color 0.22s var(--lg-ease-out),
+    box-shadow 0.25s var(--lg-ease-out);
+}
+
+/* When real SVG chromatic aberration is active on Chromium, disable the CSS fringe fallback */
+.lg-surface[data-lg-refractive="true"] {
+  --lg-fringe-red: transparent;
+  --lg-fringe-cyan: transparent;
+}
+
+/* ============================================================================
+ * 2. Layer 3B: True Fresnel Specular Rim Border (::before)
+ *    Uses `mask-composite: exclude` (`-webkit-mask-composite: xor`) so only the
+ *    1.25px perimeter ring is painted, with grazing-angle directional highlights
+ *    at Top-Left (primary light) and Bottom-Right (internal reflection bounce).
+ * ========================================================================== */
+
+.lg-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--lg-rim-width, 1.25px);
+  pointer-events: none;
+  z-index: 2;
+
+  background: conic-gradient(
+    from calc(var(--lg-angle, 135deg) - 90deg) at 50% 50%,
+    var(--lg-rim-primary) 0deg,
+    var(--lg-rim-ambient) 72deg,
+    transparent 110deg,
+    var(--lg-rim-secondary) 175deg,
+    var(--lg-rim-ambient) 245deg,
+    transparent 290deg,
+    var(--lg-rim-primary) 360deg
+  );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+/* ============================================================================
+ * 3. Layer 4: Interactive Pointer Specular Glint (::after)
+ *    Tracks pointer coordinates (--lg-mouse-x, --lg-mouse-y) for interactive
+ *    glass glow, matching iOS 26 `.glassEffect(.regular.interactive())`.
+ * ========================================================================== */
+
+.lg-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    220px circle at var(--lg-mouse-x, 50%) var(--lg-mouse-y, 20%),
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.06) 45%,
+    transparent 75%
+  );
+  opacity: 0;
+  transition: opacity 0.24s var(--lg-ease-out);
+}
+
+.lg-surface.lg-interactive {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lg-surface.lg-interactive:hover::after,
+.lg-surface.lg-interactive:focus-visible::after {
+  opacity: 0.75;
+}
+
+.lg-surface.lg-interactive:active::after {
+  opacity: 1;
+  transition-duration: 0s;
+}
+
+.lg-surface.lg-interactive:hover {
+  transform: translateY(-1px) scale(1.012);
+}
+
+.lg-surface.lg-interactive:active {
+  transform: translateY(0) scale(0.965);
+  transition-duration: 0.12s;
+}
+
+/* Ensure child content sits cleanly above the glass specular overlays */
+.lg-surface > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* ============================================================================
+ * 4. Ready-to-Use Apple Component Archetypes
+ * ========================================================================== */
+
+/* 4.1 Floating Capsule Pill / Dynamic Toolbar (.lg-pill) */
+.lg-pill {
+  --lg-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+}
+
+/* 4.2 Interactive Glass Button (.lg-button) */
+.lg-button {
+  --lg-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: none;
+  font: 600 15px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Prominent Tinted Primary CTA (.lg-button--prominent) — max 1 per container */
+.lg-button--prominent {
+  --lg-tint-rgb: 0 136 255;
+  --lg-veil-opacity: 0.42;
+  --lg-fg: #ffffff;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 4.3 Control Center / Widget Card (.lg-card) */
+.lg-card {
+  --lg-radius: 32px;
+  --lg-blur: 3.5px;
+  padding: 24px;
+}
+
+/* 4.4 Reading / Sheet Panel (.lg-sheet) — Calm Water Rule: softer bend, higher blur */
+.lg-sheet {
+  --lg-radius: 36px;
+  --lg-blur: 10px;
+  --lg-veil-opacity: 0.28;
+  padding: 28px;
+}
+
+/* 4.5 Circular Loupe / Floating Action Orb (.lg-orb) */
+.lg-orb {
+  --lg-radius: 50%;
+  aspect-ratio: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* ============================================================================
+ * 5. Accessibility & System Guardrails (HIG Red Lines)
+ * ========================================================================== */
+
+@media (prefers-reduced-transparency: reduce) {
+  .lg-surface {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: rgb(var(--lg-tint-rgb, 245 245 247) / 0.96) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lg-surface {
+    transition: none !important;
+  }
+  .lg-surface.lg-interactive:hover,
+  .lg-surface.lg-interactive:active {
+    transform: none !important;
+  }
+}

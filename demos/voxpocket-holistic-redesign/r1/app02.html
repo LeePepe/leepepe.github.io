@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spatial Glass Deck &amp; Detached HUD</title><style>* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; font: 16px/1.4 system-ui; }
+body { background: #111827; }
+.app { background: var(--surface); color: var(--ink); width: min(100%, 390px); min-height: 100vh; margin: auto; padding: 16px var(--density) 156px; position: relative; }
+.optical-defs { position: absolute; width: 0; height: 0; pointer-events: none; }
+button { font: inherit; min-width: 44px; min-height: 44px; border: 0; border-radius: 14px; padding: 8px 10px; color: #172033; background: #fff; cursor: pointer; overflow-wrap: anywhere; }
+button:disabled { opacity: .45; cursor: default; }
+button:focus-visible { outline: 3px solid #3568d4; outline-offset: 2px; }
+button.primary { color: #fff; background: #3568d4; }
+p { margin: 8px 0; }
+h1, h2 { overflow-wrap: anywhere; line-height: 1.1; }
+h1 { font-size: 34px; margin: 12px 0; transition: font-size .15s; }
+h2 { font-size: 26px; }
+.large-title p { opacity: .7; font-size: 13px; }
+.title-collapsed h1 { font-size: 22px; }
+.content-solid { position: relative; z-index: 0; min-height: 400px; padding: 18px; border-radius: 24px; background: var(--surface); }
+.actions, .edges, .detents { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.edges button { font-size: 13px; }
+.commit-list { padding-left: 20px; font-size: 14px; }
+.secondary-actions summary { min-width: 44px; min-height: 44px; padding: 10px; cursor: pointer; }
+.secondary-actions button { margin: 4px; }
+#action-state { display: block; font-size: 14px; padding: 8px 4px; min-height: 36px; }
+.floating { position: relative; isolation: isolate; z-index: 10; background: linear-gradient(135deg, #ffffff40, #ffffff16); border: 1px solid #ffffffad; border-radius: 26px; box-shadow: 0 12px 30px #1f294826, inset .5px .5px #ffffffed, inset -.5px -.5px #92b7ff66; -webkit-backdrop-filter: blur(2.5px) saturate(155%); backdrop-filter: var(--optical-backdrop, blur(2.5px) saturate(155%)); }
+/* The refracted veil is actually filtered on WebKit; content never samples glass.
+   Blink additionally refracts the backdrop. Rims preserve chromatic/Fresnel cues
+   when WebKit cannot use SVG as a backdrop-filter. */
+.floating::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1; background: linear-gradient(135deg, #ffffff60, #88baff18 55%, #ffb0ad30); filter: url(#apple-liquid-glass); }
+.floating::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; padding: 1px; background: linear-gradient(135deg, #ffffffed, transparent 38%, #7dbeff80 65%, #ffbbb0ad); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; }
+.stack-toolbar { position: sticky; top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px; }
+#compact-title { flex: 1; font-weight: 650; font-size: 14px; }
+.safe-dock { position: fixed; left: 50%; transform: translateX(-50%); bottom: max(12px, env(safe-area-inset-bottom)); width: min(362px, calc(100% - 28px)); display: flex; justify-content: space-between; gap: 8px; padding: 10px; }
+.safe-dock .primary { flex: 1; }
+.tab-chrome { position: fixed; left: 50%; transform: translateX(-50%); bottom: max(12px, env(safe-area-inset-bottom)); width: min(370px, calc(100% - 20px)); display: flex; align-items: stretch; gap: 8px; z-index: 10; }
+.tab-pill { display: flex; flex: 1; overflow-x: auto; gap: 6px; padding: 8px; }
+.tab-pill button { flex: 1; min-width: 64px; font-size: 13px; }
+.prominent-pill { display: flex; align-items: center; padding: 8px; width: 112px; }
+.prominent-pill button { width: 100%; font-size: 13px; }
+.tab[aria-selected="true"] { background: #3568d4; color: white; }
+.lens-toolbar { position: sticky; top: 8px; display: flex; gap: 6px; align-items: center; padding: 8px; }
+.lens-tabs { display: flex; gap: 4px; flex: 1; overflow-x: auto; }
+.lens-tabs button { flex: 1; font-size: 13px; }
+.architecture-lens .content-solid { border-top: 3px solid #3568d4; }
+.deck-nav { display: flex; overflow-x: auto; padding: 8px 4px 20px; gap: 10px; }
+.deck-nav button { flex: 0 0 66%; min-height: 88px; border: 1px solid #8e9bb5; box-shadow: 4px 8px 0 #3568d426; font-size: 20px; text-align: left; }
+.inspector-toolbar { position: sticky; top: 8px; display: flex; gap: 8px; justify-content: space-between; padding: 8px; }
+.architecture-deck .content-solid { border-left: 4px solid #3568d4; }
+.overlay { position: fixed; z-index: 20; left: 50%; bottom: 0; transform: translateX(-50%); width: min(390px, 100%); padding: 12px 20px max(16px, env(safe-area-inset-bottom)); border-radius: 26px 26px 0 0; overflow-y: auto; }
+#sheet[data-detent="medium"] { height: 45vh; max-height: 45vh; }
+#sheet[data-detent="large"] { height: 80vh; max-height: 80vh; }
+.grabber { width: 40px; height: 5px; border-radius: 4px; margin: 0 auto 12px; background: #8e9bb5; }
+#overflow-menu { position: fixed; z-index: 15; right: max(12px, calc((100vw - 366px) / 2)); top: 148px; width: min(320px, calc(100% - 24px)); max-height: 65vh; padding: 12px; overflow-y: auto; }
+#overflow-menu nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+#overflow-menu > button { width: 100%; margin-bottom: 6px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (prefers-reduced-transparency: reduce) { .floating { background: #edf2fb; backdrop-filter: none; -webkit-backdrop-filter: none; } .floating::before, .floating::after { display: none; } }
+</style></head>
+<body><main class="app architecture-deck" style="--surface:#edf2fb;--ink:#172033;--density:20px" data-navigation-model="三域空间卡组与独立声波 HUD" data-session-anti-patterns="[&quot;no glass on content&quot;, &quot;no top capsule&quot;]" data-style-overrides="{&quot;surface&quot;: &quot;solid&quot;, &quot;density&quot;: &quot;airy&quot;}">
+<svg class="optical-defs" aria-hidden="true" focusable="false" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+  <filter id="apple-liquid-glass" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feImage href="data:image/png;base64,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" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="squircle-map" />
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.55" result="soft" />
+    <feColorMatrix in="soft" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1" result="opaque" />
+    <feDisplacementMap in="opaque" in2="squircle-map" scale="22.8" xChannelSelector="R" yChannelSelector="G" result="red-offset" />
+    <feDisplacementMap in="opaque" in2="squircle-map" scale="24" xChannelSelector="R" yChannelSelector="G" result="green-offset" />
+    <feDisplacementMap in="opaque" in2="squircle-map" scale="25.2" xChannelSelector="R" yChannelSelector="G" result="blue-offset" />
+    <feColorMatrix in="red-offset" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="red-channel" />
+    <feColorMatrix in="green-offset" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="green-channel" />
+    <feColorMatrix in="blue-offset" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0" result="blue-channel" />
+    <feComposite in="red-channel" in2="green-channel" operator="arithmetic" k2="1" k3="1" result="rg" />
+    <feComposite in="rg" in2="blue-channel" operator="arithmetic" k2="1" k3="1" result="rgb" />
+    <feColorMatrix in="rgb" type="saturate" values="1.35" result="saturated" />
+    <feColorMatrix in="squircle-map" values="0 0 2 0 0 0 0 2 0 0 0 0 2 0 0 0 0 0 0 1" result="transmission" />
+    <feBlend in="saturated" in2="transmission" mode="multiply" result="caustic" />
+    <feColorMatrix in="squircle-map" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 2 0 -1" result="fresnel" />
+    <feComposite in="fresnel" in2="caustic" operator="over" />
+  </filter>
+</svg>
+<header class="large-title"><p>VoxPocket：瞬时语音捕获 ⇄ 待办执行 ⇄ 历史速记 ⇄ 设置与模型。iPhone r3/v02 根录音画布冻结，macOS MenuBar / ⌥Space / ⌥⇧Space ⇄ 主工作台。所有文本为合成模拟，不记录真实语音。</p><h1 id="large-title">Spatial Glass Deck &amp; Detached HUD</h1></header>
+<nav class="deck-nav" aria-label="Journey deck"><button class="tab" data-screen="r3v02_capture">录音 · r3/v02 定稿</button><button class="tab" data-screen="todo_list">待办执行台</button><button class="tab" data-screen="voice_notes">历史速记</button></nav><nav class="inspector-toolbar"><button id="back">Back</button><button id="open-sheet">Tools</button><button id="overflow" aria-label="More actions" aria-expanded="false">⋯</button></nav><nav class="floating safe-dock"><button id="toggle-tab" class="primary" data-action-screen="r3v02_capture" data-action-index="0">按住录音 · 松手整理</button></nav>
+<section id="screen" class="content-solid" aria-live="polite"></section>
+<output id="action-state" role="status"></output>
+<section id="sheet" class="floating overlay" role="dialog" aria-modal="true" aria-label="Tools" hidden><div class="grabber" aria-hidden="true"></div><div class="detents"><button id="close-sheet">Close</button><button id="medium-sheet">Medium</button><button id="large-sheet">Large</button></div><div id="sheet-content"></div></section>
+<section id="overflow-menu" class="floating" aria-label="More actions" hidden><button data-overflow-action="true" data-action-screen="r3v02_capture" data-action-index="3">模型与设置</button><button data-overflow-action="true" data-action-screen="voice_notes" data-action-index="3">导出模拟记录</button><div id="popover-content"></div></section>
+</main><script id="page-config" type="application/json">{"id": "app02", "platform": "mobile", "schema": "navigation-page/v3", "scheme": {"architecture": {"collapse_title": false, "destinations": ["r3v02_capture", "todo_list", "voice_notes"], "kind": "deck", "overflow": [{"action": 3, "screen": "r3v02_capture"}, {"action": 3, "screen": "voice_notes"}], "primary": {"action": 0, "screen": "r3v02_capture"}, "root": "r3v02_capture", "sheet": "settings_sheet"}, "context": "VoxPocket：瞬时语音捕获 ⇄ 待办执行 ⇄ 历史速记 ⇄ 设置与模型。iPhone r3/v02 根录音画布冻结，macOS MenuBar / ⌥Space / ⌥⇧Space ⇄ 主工作台。所有文本为合成模拟，不记录真实语音。", "id": "app02", "navigation_model": "三域空间卡组与独立声波 HUD", "screens": [{"actions": [{"commit": "voice_capture", "frequency": "P0", "label": "按住录音 · 松手整理", "transition": null}, {"commit": null, "frequency": "P1", "label": "Fold · 待办执行台", "transition": {"to": "todo_list", "type": "switchTab"}}, {"commit": null, "frequency": "P2", "label": "查看最近速记", "transition": {"to": "voice_notes", "type": "pushScreen"}}, {"commit": null, "frequency": "P3", "label": "模型与设置", "transition": {"to": "settings_sheet", "type": "toggleSheet"}}], "id": "r3v02_capture", "name": "录音 · r3/v02 定稿", "p0_summary": "按住说一句，松手整理为清晰行动；底部 Fold 切入待办和设置。", "role": "screen", "transitions": []}, {"actions": [{"commit": "todo_completed", "frequency": "P0", "label": "完成焦点行动", "transition": null}, {"commit": "todo_decomposed", "frequency": "P1", "label": "语音拆解成三步", "transition": {"to": "todo_detail", "type": "pushScreen"}}, {"commit": null, "frequency": "P1", "label": "返回录音", "transition": {"to": "r3v02_capture", "type": "switchTab"}}, {"commit": null, "frequency": "P2", "label": "AI Runner 执行回执", "transition": {"to": "runner_status", "type": "togglePopover"}}], "id": "todo_list", "name": "待办执行台", "p0_summary": "只聚焦一个 P0 行动：整理会议决定。其余待办折叠收纳。", "role": "screen", "transitions": []}, {"actions": [{"commit": "runner_started", "frequency": "P0", "label": "执行三步行动", "transition": {"to": "runner_status", "type": "togglePopover"}}, {"commit": null, "frequency": "P1", "label": "返回待办列表", "transition": {"to": "todo_list", "type": "popScreen"}}], "id": "todo_detail", "name": "行动详情", "p0_summary": "确认三步行动与验收，再执行；模拟内容仅在当前 HTML 沙盒。", "role": "screen", "transitions": []}, {"actions": [{"commit": "note_to_todo", "frequency": "P0", "label": "转为行动项", "transition": {"to": "todo_detail", "type": "pushScreen"}}, {"commit": null, "frequency": "P1", "label": "新建速记", "transition": {"to": "r3v02_capture", "type": "switchTab"}}, {"commit": "notes_filtered", "frequency": "P2", "label": "筛选最近记录", "transition": null}, {"commit": "notes_exported", "frequency": "P3", "label": "导出模拟记录", "transition": null}], "id": "voice_notes", "name": "历史速记", "p0_summary": "最近记录：下周发布准备。先预览，再复用为待办。", "role": "screen", "transitions": []}, {"actions": [{"commit": "model_local", "frequency": "P1", "label": "选用本地模型", "transition": {"type": "dismissOverlay"}}, {"commit": null, "frequency": "P2", "label": "查看模型路由", "transition": {"to": "runner_status", "type": "togglePopover"}}, {"commit": null, "frequency": "P3", "label": "关闭设置", "transition": {"type": "dismissOverlay"}}], "id": "settings_sheet", "name": "设置与模型", "p0_summary": "本地模型就绪；云端模型未配置。此处为模拟状态，无真实请求。", "role": "sheet", "transitions": []}, {"actions": [{"commit": "runner_receipt", "frequency": "P1", "label": "刷新模拟回执", "transition": null}, {"commit": null, "frequency": "P3", "label": "关闭状态", "transition": {"type": "dismissOverlay"}}], "id": "runner_status", "name": "AI Runner · 模拟状态", "p0_summary": "已接收 → 执行中 → 已完成；不调用真实服务。", "role": "popover", "transitions": []}], "title": "Spatial Glass Deck & Detached HUD"}, "session_anti_patterns": ["no glass on content", "no top capsule"], "style_overrides": {"density": "airy", "surface": "solid"}}</script><script>'use strict';
+const CONFIG = JSON.parse(document.getElementById('page-config').textContent);
+const S = CONFIG.scheme;
+const A = S.architecture;
+const P = Object.fromEntries(S.screens.map(p => [p.id, p]));
+const state = {
+  activeTab: A.root,
+  tabs: Object.fromEntries(A.destinations.map(id => [id, {current: id, history: []}])),
+  overlay: null, detent: 'medium', commits: {}, feedback: ''
+};
+const screen = document.getElementById('screen');
+const sheet = document.getElementById('sheet');
+const menu = document.getElementById('overflow-menu');
+function tabState() { return state.tabs[state.activeTab]; }
+function currentScreen() { return tabState().current; }
+function node(tag, text, attributes = {}) {
+  const e = document.createElement(tag);
+  if (text !== null) e.textContent = text;
+  Object.entries(attributes).forEach(([k, v]) => e.setAttribute(k, v));
+  return e;
+}
+function clear(e) { while (e.firstChild) e.removeChild(e.firstChild); }
+function feedback(message) {
+  state.feedback = message;
+  document.getElementById('action-state').textContent = message;
+}
+function renderPage(host, id) {
+  const p = P[id];
+  clear(host);
+  host.dataset.screen = id;
+  host.append(node('h2', p.name), node('p', p.p0_summary));
+  const actions = node('div', null, {class: 'actions'});
+  const overlay = ['sheet', 'popover'].includes(p.role);
+  const actionButton = (a, i) => node('button', a.label, {
+    'data-action-screen': id, 'data-action-index': i, 'data-frequency': a.frequency
+  });
+  p.actions.forEach((a, i) => { if (overlay || ['P0', 'P1'].includes(a.frequency)) actions.append(actionButton(a, i)); });
+  host.append(actions);
+  if (!overlay && p.actions.some(a => a.frequency === 'P2')) {
+    const disclosure = node('details', null, {class: 'secondary-actions'});
+    disclosure.append(node('summary', 'More in this view'));
+    p.actions.forEach((a, i) => { if (a.frequency === 'P2') disclosure.append(actionButton(a, i)); });
+    host.append(disclosure);
+  }
+  // P3 content actions are validated into architecture.overflow, never tiled inline.
+  const edges = node('div', null, {class: 'edges'});
+  p.transitions.forEach((t, i) => edges.append(node('button', `${t.type} · ${P[t.to]?.name || 'Close'}`, {
+    'data-transition-screen': id, 'data-transition-index': i
+  })));
+  host.append(edges);
+  const saved = node('ul', null, {class: 'commit-list', 'aria-label': 'Committed domain state'});
+  Object.entries(state.commits).forEach(([key, value]) => saved.append(node('li', `${value.label} · ${value.count}`, {'data-commit': key})));
+  host.append(saved);
+}
+function render() {
+  renderPage(screen, currentScreen());
+  document.getElementById('large-title').textContent = P[currentScreen()].name;
+  const compact = document.getElementById('compact-title');
+  if (compact) compact.textContent = P[currentScreen()].name;
+  document.querySelectorAll('.tab').forEach(b => {
+    const selected = b.dataset.screen === state.activeTab;
+    b.setAttribute('aria-current', selected ? 'page' : 'false');
+    b.setAttribute('aria-selected', selected);
+  });
+  const back = document.getElementById('back');
+  back.disabled = !state.overlay && !tabState().history.length;
+  if (state.overlay) {
+    const host = state.overlay.kind === 'sheet' ? document.getElementById('sheet-content') : document.getElementById('popover-content');
+    renderPage(host, state.overlay.screen);
+  }
+  bindActions();
+}
+function pushScreen(id) {
+  if (!P[id] || ['sheet', 'popover'].includes(P[id].role)) throw new Error('Invalid push target');
+  closeOverlays();
+  if (id !== currentScreen()) tabState().history.push(currentScreen());
+  tabState().current = id;
+  render();
+}
+function popScreen() {
+  if (state.overlay) { closeOverlays(); render(); return; }
+  if (tabState().history.length) tabState().current = tabState().history.pop();
+  else feedback('At the journey root');
+  render();
+}
+function switchTab(id) {
+  if (!P[id] || ['sheet', 'popover'].includes(P[id].role)) throw new Error('Invalid tab target');
+  closeOverlays();
+  // A graph edge may enter a content root not present in visible chrome.
+  if (!state.tabs[id]) state.tabs[id] = {current: id, history: []};
+  state.activeTab = id;
+  render();
+}
+function closeOverlays() {
+  state.overlay = null;
+  sheet.hidden = true;
+  menu.hidden = true;
+  screen.removeAttribute('inert');
+  document.getElementById('overflow').setAttribute('aria-expanded', 'false');
+}
+function setDetent(value) {
+  if (!['medium', 'large'].includes(value)) throw new Error('Unknown detent');
+  state.detent = value;
+  sheet.dataset.detent = value;
+}
+function toggleSheet(id = A.sheet, value = state.detent) {
+  if (!P[id] || P[id].role !== 'sheet') throw new Error('Invalid sheet target');
+  if (state.overlay?.kind === 'sheet' && state.overlay.screen === id && state.detent === value) {
+    closeOverlays(); render(); return;
+  }
+  closeOverlays();
+  state.overlay = {kind: 'sheet', screen: id};
+  setDetent(value);
+  sheet.dataset.screen = id;
+  sheet.hidden = false;
+  screen.setAttribute('inert', '');
+  render();
+}
+function togglePopover(id) {
+  if (!P[id] || P[id].role !== 'popover') throw new Error('Invalid popover target');
+  closeOverlays();
+  state.overlay = {kind: 'popover', screen: id};
+  menu.hidden = false;
+  render();
+}
+function dispatch(t) {
+  if (!t) return;
+  const operations = {pushScreen, popScreen, switchTab, toggleSheet, togglePopover, dismissOverlay: () => {closeOverlays(); render();}};
+  if (!operations[t.type]) throw new Error('Invalid transition');
+  operations[t.type](t.to);
+}
+function performAction(id, index) {
+  const action = P[id]?.actions[index];
+  if (!action) throw new Error('Invalid action');
+  if (action.commit) {
+    const old = state.commits[action.commit];
+    state.commits[action.commit] = {label: action.label, count: (old?.count || 0) + 1};
+  }
+  feedback(action.label + (action.commit ? ' committed' : ' started'));
+  dispatch(action.transition);
+  // Feedback and domain state survive push/pop/tab and all overlay actions.
+  render();
+}
+function bindActions() {
+  document.querySelectorAll('[data-action-screen]').forEach(b => {
+    b.onclick = () => {
+      if (b.hasAttribute('data-overflow-action')) closeOverlays();
+      performAction(b.dataset.actionScreen, Number(b.dataset.actionIndex));
+    };
+  });
+  document.querySelectorAll('[data-transition-screen]').forEach(b => {
+    b.onclick = () => dispatch(P[b.dataset.transitionScreen].transitions[Number(b.dataset.transitionIndex)]);
+  });
+}
+document.querySelectorAll('.tab').forEach(b => b.onclick = () => switchTab(b.dataset.screen));
+document.getElementById('back').onclick = popScreen;
+const openSheet = document.getElementById('open-sheet');
+if (openSheet) openSheet.onclick = () => toggleSheet();
+document.getElementById('close-sheet').onclick = () => {closeOverlays(); render();};
+document.getElementById('medium-sheet').onclick = () => setDetent('medium');
+document.getElementById('large-sheet').onclick = () => setDetent('large');
+document.getElementById('overflow').onclick = () => {
+  const open = menu.hidden;
+  closeOverlays();
+  menu.hidden = !open;
+  document.getElementById('overflow').setAttribute('aria-expanded', open);
+};
+document.addEventListener('keydown', e => { if (e.key === 'Escape') {closeOverlays(); render();} });
+window.addEventListener('scroll', () => {
+  document.querySelector('.app').classList.toggle('title-collapsed', A.collapse_title && window.scrollY > 32);
+});
+// SVG backdrop filters are supported by Blink, not WebKit. WebKit still applies
+// the same signed squircle map to a caustic veil, with CSS Fresnel/chromatic rims.
+const blink = /(?:Chrome|Chromium|Edg|OPR)\//.test(navigator.userAgent) && !/(?:CriOS|EdgiOS)/.test(navigator.userAgent);
+document.querySelectorAll('.floating').forEach(e => {
+  e.dataset.opticalMode = blink ? 'backdrop-refraction' : 'webkit-caustic-fallback';
+  if (blink) e.style.setProperty('--optical-backdrop', 'url(#apple-liquid-glass) saturate(135%)');
+});
+render();
+window.navigationDemo = {state, pushScreen, popScreen, switchTab, toggleSheet, performAction, dispatch, currentScreen};
+</script></body></html>

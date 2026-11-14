@@ -1,0 +1,1032 @@
+{
+  "schema": "design-gallery/v2",
+  "mode": "app-nav",
+  "goal": "voxpocket-holistic-redesign",
+  "round": 1,
+  "platform": "mobile",
+  "app_context": "VoxPocket：瞬时语音捕获 ⇄ 待办执行 ⇄ 历史速记 ⇄ 设置与模型。iPhone r3/v02 根录音画布冻结，macOS MenuBar / ⌥Space / ⌥⇧Space ⇄ 主工作台。所有文本为合成模拟，不记录真实语音。",
+  "session_anti_patterns": [
+    "no glass on content",
+    "no top capsule"
+  ],
+  "style_overrides": {
+    "surface": "solid",
+    "density": "airy"
+  },
+  "schemes": [
+    {
+      "id": "app01",
+      "title": "Fold-Sheet Hub & MenuBar Island",
+      "navigation_model": "Fold 抽屉根画布与菜单栏灵动岛",
+      "architecture": {
+        "kind": "stack",
+        "root": "r3v02_capture",
+        "destinations": [
+          "r3v02_capture",
+          "todo_list",
+          "voice_notes"
+        ],
+        "primary": {
+          "screen": "r3v02_capture",
+          "action": 0
+        },
+        "sheet": "settings_sheet",
+        "overflow": [
+          {
+            "screen": "r3v02_capture",
+            "action": 3
+          },
+          {
+            "screen": "voice_notes",
+            "action": 3
+          }
+        ],
+        "collapse_title": true
+      },
+      "screens": [
+        {
+          "id": "r3v02_capture",
+          "name": "录音 · r3/v02 定稿",
+          "role": "screen",
+          "p0_summary": "按住说一句，松手整理为清晰行动；底部 Fold 切入待办和设置。",
+          "actions": [
+            {
+              "label": "按住录音 · 松手整理",
+              "frequency": "P0",
+              "commit": "voice_capture",
+              "transition": null
+            },
+            {
+              "label": "Fold · 待办执行台",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "pushScreen",
+                "to": "todo_list"
+              }
+            },
+            {
+              "label": "查看最近速记",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "pushScreen",
+                "to": "voice_notes"
+              }
+            },
+            {
+              "label": "模型与设置",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "toggleSheet",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "todo_list",
+          "name": "待办执行台",
+          "role": "screen",
+          "p0_summary": "只聚焦一个 P0 行动：整理会议决定。其余待办折叠收纳。",
+          "actions": [
+            {
+              "label": "完成焦点行动",
+              "frequency": "P0",
+              "commit": "todo_completed",
+              "transition": null
+            },
+            {
+              "label": "语音拆解成三步",
+              "frequency": "P1",
+              "commit": "todo_decomposed",
+              "transition": {
+                "type": "pushScreen",
+                "to": "todo_detail"
+              }
+            },
+            {
+              "label": "返回录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "AI Runner 执行回执",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "todo_detail",
+          "name": "行动详情",
+          "role": "screen",
+          "p0_summary": "确认三步行动与验收，再执行；模拟内容仅在当前 HTML 沙盒。",
+          "actions": [
+            {
+              "label": "执行三步行动",
+              "frequency": "P0",
+              "commit": "runner_started",
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            },
+            {
+              "label": "返回待办列表",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "popScreen",
+                "to": "todo_list"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "voice_notes",
+          "name": "历史速记",
+          "role": "screen",
+          "p0_summary": "最近记录：下周发布准备。先预览，再复用为待办。",
+          "actions": [
+            {
+              "label": "转为行动项",
+              "frequency": "P0",
+              "commit": "note_to_todo",
+              "transition": {
+                "type": "pushScreen",
+                "to": "todo_detail"
+              }
+            },
+            {
+              "label": "新建速记",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "筛选最近记录",
+              "frequency": "P2",
+              "commit": "notes_filtered",
+              "transition": null
+            },
+            {
+              "label": "导出模拟记录",
+              "frequency": "P3",
+              "commit": "notes_exported",
+              "transition": null
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "settings_sheet",
+          "name": "设置与模型",
+          "role": "sheet",
+          "p0_summary": "本地模型就绪；云端模型未配置。此处为模拟状态，无真实请求。",
+          "actions": [
+            {
+              "label": "选用本地模型",
+              "frequency": "P1",
+              "commit": "model_local",
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            },
+            {
+              "label": "查看模型路由",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            },
+            {
+              "label": "关闭设置",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "runner_status",
+          "name": "AI Runner · 模拟状态",
+          "role": "popover",
+          "p0_summary": "已接收 → 执行中 → 已完成；不调用真实服务。",
+          "actions": [
+            {
+              "label": "刷新模拟回执",
+              "frequency": "P1",
+              "commit": "runner_receipt",
+              "transition": null
+            },
+            {
+              "label": "关闭状态",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            }
+          ],
+          "transitions": []
+        }
+      ],
+      "context": "VoxPocket：瞬时语音捕获 ⇄ 待办执行 ⇄ 历史速记 ⇄ 设置与模型。iPhone r3/v02 根录音画布冻结，macOS MenuBar / ⌥Space / ⌥⇧Space ⇄ 主工作台。所有文本为合成模拟，不记录真实语音。"
+    },
+    {
+      "id": "app02",
+      "title": "Spatial Glass Deck & Detached HUD",
+      "navigation_model": "三域空间卡组与独立声波 HUD",
+      "architecture": {
+        "kind": "deck",
+        "root": "r3v02_capture",
+        "destinations": [
+          "r3v02_capture",
+          "todo_list",
+          "voice_notes"
+        ],
+        "primary": {
+          "screen": "r3v02_capture",
+          "action": 0
+        },
+        "sheet": "settings_sheet",
+        "overflow": [
+          {
+            "screen": "r3v02_capture",
+            "action": 3
+          },
+          {
+            "screen": "voice_notes",
+            "action": 3
+          }
+        ],
+        "collapse_title": false
+      },
+      "screens": [
+        {
+          "id": "r3v02_capture",
+          "name": "录音 · r3/v02 定稿",
+          "role": "screen",
+          "p0_summary": "按住说一句，松手整理为清晰行动；底部 Fold 切入待办和设置。",
+          "actions": [
+            {
+              "label": "按住录音 · 松手整理",
+              "frequency": "P0",
+              "commit": "voice_capture",
+              "transition": null
+            },
+            {
+              "label": "Fold · 待办执行台",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "todo_list"
+              }
+            },
+            {
+              "label": "查看最近速记",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "pushScreen",
+                "to": "voice_notes"
+              }
+            },
+            {
+              "label": "模型与设置",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "toggleSheet",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "todo_list",
+          "name": "待办执行台",
+          "role": "screen",
+          "p0_summary": "只聚焦一个 P0 行动：整理会议决定。其余待办折叠收纳。",
+          "actions": [
+            {
+              "label": "完成焦点行动",
+              "frequency": "P0",
+              "commit": "todo_completed",
+              "transition": null
+            },
+            {
+              "label": "语音拆解成三步",
+              "frequency": "P1",
+              "commit": "todo_decomposed",
+              "transition": {
+                "type": "pushScreen",
+                "to": "todo_detail"
+              }
+            },
+            {
+              "label": "返回录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "AI Runner 执行回执",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "todo_detail",
+          "name": "行动详情",
+          "role": "screen",
+          "p0_summary": "确认三步行动与验收，再执行；模拟内容仅在当前 HTML 沙盒。",
+          "actions": [
+            {
+              "label": "执行三步行动",
+              "frequency": "P0",
+              "commit": "runner_started",
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            },
+            {
+              "label": "返回待办列表",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "popScreen",
+                "to": "todo_list"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "voice_notes",
+          "name": "历史速记",
+          "role": "screen",
+          "p0_summary": "最近记录：下周发布准备。先预览，再复用为待办。",
+          "actions": [
+            {
+              "label": "转为行动项",
+              "frequency": "P0",
+              "commit": "note_to_todo",
+              "transition": {
+                "type": "pushScreen",
+                "to": "todo_detail"
+              }
+            },
+            {
+              "label": "新建速记",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "筛选最近记录",
+              "frequency": "P2",
+              "commit": "notes_filtered",
+              "transition": null
+            },
+            {
+              "label": "导出模拟记录",
+              "frequency": "P3",
+              "commit": "notes_exported",
+              "transition": null
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "settings_sheet",
+          "name": "设置与模型",
+          "role": "sheet",
+          "p0_summary": "本地模型就绪；云端模型未配置。此处为模拟状态，无真实请求。",
+          "actions": [
+            {
+              "label": "选用本地模型",
+              "frequency": "P1",
+              "commit": "model_local",
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            },
+            {
+              "label": "查看模型路由",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            },
+            {
+              "label": "关闭设置",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "runner_status",
+          "name": "AI Runner · 模拟状态",
+          "role": "popover",
+          "p0_summary": "已接收 → 执行中 → 已完成；不调用真实服务。",
+          "actions": [
+            {
+              "label": "刷新模拟回执",
+              "frequency": "P1",
+              "commit": "runner_receipt",
+              "transition": null
+            },
+            {
+              "label": "关闭状态",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            }
+          ],
+          "transitions": []
+        }
+      ],
+      "context": "VoxPocket：瞬时语音捕获 ⇄ 待办执行 ⇄ 历史速记 ⇄ 设置与模型。iPhone r3/v02 根录音画布冻结，macOS MenuBar / ⌥Space / ⌥⇧Space ⇄ 主工作台。所有文本为合成模拟，不记录真实语音。"
+    },
+    {
+      "id": "app03",
+      "title": "Dual-Mode Lens & Command Palette",
+      "navigation_model": "待办速记光学透镜与键盘命令中枢",
+      "architecture": {
+        "kind": "lens",
+        "root": "r3v02_capture",
+        "destinations": [
+          "r3v02_capture",
+          "todo_list",
+          "voice_notes"
+        ],
+        "primary": {
+          "screen": "r3v02_capture",
+          "action": 0
+        },
+        "sheet": "settings_sheet",
+        "overflow": [
+          {
+            "screen": "r3v02_capture",
+            "action": 3
+          },
+          {
+            "screen": "voice_notes",
+            "action": 3
+          }
+        ],
+        "collapse_title": true
+      },
+      "screens": [
+        {
+          "id": "r3v02_capture",
+          "name": "录音 · r3/v02 定稿",
+          "role": "screen",
+          "p0_summary": "按住说一句，松手整理为清晰行动；底部 Fold 切入待办和设置。",
+          "actions": [
+            {
+              "label": "按住录音 · 松手整理",
+              "frequency": "P0",
+              "commit": "voice_capture",
+              "transition": null
+            },
+            {
+              "label": "Fold · 待办执行台",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "pushScreen",
+                "to": "todo_list"
+              }
+            },
+            {
+              "label": "查看最近速记",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "voice_notes"
+              }
+            },
+            {
+              "label": "模型与设置",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "toggleSheet",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "todo_list",
+          "name": "待办执行台",
+          "role": "screen",
+          "p0_summary": "只聚焦一个 P0 行动：整理会议决定。其余待办折叠收纳。",
+          "actions": [
+            {
+              "label": "完成焦点行动",
+              "frequency": "P0",
+              "commit": "todo_completed",
+              "transition": null
+            },
+            {
+              "label": "语音拆解成三步",
+              "frequency": "P1",
+              "commit": "todo_decomposed",
+              "transition": {
+                "type": "pushScreen",
+                "to": "todo_detail"
+              }
+            },
+            {
+              "label": "返回录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "AI Runner 执行回执",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "todo_detail",
+          "name": "行动详情",
+          "role": "screen",
+          "p0_summary": "确认三步行动与验收，再执行；模拟内容仅在当前 HTML 沙盒。",
+          "actions": [
+            {
+              "label": "执行三步行动",
+              "frequency": "P0",
+              "commit": "runner_started",
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            },
+            {
+              "label": "返回待办列表",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "popScreen",
+                "to": "todo_list"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "voice_notes",
+          "name": "历史速记",
+          "role": "screen",
+          "p0_summary": "最近记录：下周发布准备。先预览，再复用为待办。",
+          "actions": [
+            {
+              "label": "转为行动项",
+              "frequency": "P0",
+              "commit": "note_to_todo",
+              "transition": {
+                "type": "pushScreen",
+                "to": "todo_detail"
+              }
+            },
+            {
+              "label": "新建速记",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "筛选最近记录",
+              "frequency": "P2",
+              "commit": "notes_filtered",
+              "transition": null
+            },
+            {
+              "label": "导出模拟记录",
+              "frequency": "P3",
+              "commit": "notes_exported",
+              "transition": null
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "settings_sheet",
+          "name": "设置与模型",
+          "role": "sheet",
+          "p0_summary": "本地模型就绪；云端模型未配置。此处为模拟状态，无真实请求。",
+          "actions": [
+            {
+              "label": "选用本地模型",
+              "frequency": "P1",
+              "commit": "model_local",
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            },
+            {
+              "label": "查看模型路由",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            },
+            {
+              "label": "关闭设置",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "runner_status",
+          "name": "AI Runner · 模拟状态",
+          "role": "popover",
+          "p0_summary": "已接收 → 执行中 → 已完成；不调用真实服务。",
+          "actions": [
+            {
+              "label": "刷新模拟回执",
+              "frequency": "P1",
+              "commit": "runner_receipt",
+              "transition": null
+            },
+            {
+              "label": "关闭状态",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            }
+          ],
+          "transitions": []
+        }
+      ],
+      "context": "VoxPocket：瞬时语音捕获 ⇄ 待办执行 ⇄ 历史速记 ⇄ 设置与模型。iPhone r3/v02 根录音画布冻结，macOS MenuBar / ⌥Space / ⌥⇧Space ⇄ 主工作台。所有文本为合成模拟，不记录真实语音。"
+    },
+    {
+      "id": "app04",
+      "title": "Split-Stage Action Stream & MenuPopover",
+      "navigation_model": "分域行动流与菜单栏玻璃气泡",
+      "architecture": {
+        "kind": "tabs",
+        "root": "r3v02_capture",
+        "destinations": [
+          "r3v02_capture",
+          "todo_list",
+          "voice_notes"
+        ],
+        "primary": {
+          "screen": "r3v02_capture",
+          "action": 0
+        },
+        "sheet": "settings_sheet",
+        "overflow": [
+          {
+            "screen": "r3v02_capture",
+            "action": 3
+          },
+          {
+            "screen": "voice_notes",
+            "action": 3
+          }
+        ],
+        "collapse_title": true
+      },
+      "screens": [
+        {
+          "id": "r3v02_capture",
+          "name": "录音 · r3/v02 定稿",
+          "role": "screen",
+          "p0_summary": "按住说一句，松手整理为清晰行动；底部 Fold 切入待办和设置。",
+          "actions": [
+            {
+              "label": "按住录音 · 松手整理",
+              "frequency": "P0",
+              "commit": "voice_capture",
+              "transition": null
+            },
+            {
+              "label": "Fold · 待办执行台",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "todo_list"
+              }
+            },
+            {
+              "label": "查看最近速记",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "voice_notes"
+              }
+            },
+            {
+              "label": "模型与设置",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "toggleSheet",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "todo_list",
+          "name": "待办执行台",
+          "role": "screen",
+          "p0_summary": "只聚焦一个 P0 行动：整理会议决定。其余待办折叠收纳。",
+          "actions": [
+            {
+              "label": "完成焦点行动",
+              "frequency": "P0",
+              "commit": "todo_completed",
+              "transition": null
+            },
+            {
+              "label": "语音拆解成三步",
+              "frequency": "P1",
+              "commit": "todo_decomposed",
+              "transition": {
+                "type": "pushScreen",
+                "to": "todo_detail"
+              }
+            },
+            {
+              "label": "返回录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "AI Runner 执行回执",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "todo_detail",
+          "name": "行动详情",
+          "role": "screen",
+          "p0_summary": "确认三步行动与验收，再执行；模拟内容仅在当前 HTML 沙盒。",
+          "actions": [
+            {
+              "label": "执行三步行动",
+              "frequency": "P0",
+              "commit": "runner_started",
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            },
+            {
+              "label": "返回待办列表",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "popScreen",
+                "to": "todo_list"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "voice_notes",
+          "name": "历史速记",
+          "role": "screen",
+          "p0_summary": "最近记录：下周发布准备。先预览，再复用为待办。",
+          "actions": [
+            {
+              "label": "转为行动项",
+              "frequency": "P0",
+              "commit": "note_to_todo",
+              "transition": {
+                "type": "pushScreen",
+                "to": "todo_detail"
+              }
+            },
+            {
+              "label": "新建速记",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "筛选最近记录",
+              "frequency": "P2",
+              "commit": "notes_filtered",
+              "transition": null
+            },
+            {
+              "label": "导出模拟记录",
+              "frequency": "P3",
+              "commit": "notes_exported",
+              "transition": null
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "settings_sheet",
+          "name": "设置与模型",
+          "role": "sheet",
+          "p0_summary": "本地模型就绪；云端模型未配置。此处为模拟状态，无真实请求。",
+          "actions": [
+            {
+              "label": "选用本地模型",
+              "frequency": "P1",
+              "commit": "model_local",
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            },
+            {
+              "label": "查看模型路由",
+              "frequency": "P2",
+              "commit": null,
+              "transition": {
+                "type": "togglePopover",
+                "to": "runner_status"
+              }
+            },
+            {
+              "label": "关闭设置",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        {
+          "id": "runner_status",
+          "name": "AI Runner · 模拟状态",
+          "role": "popover",
+          "p0_summary": "已接收 → 执行中 → 已完成；不调用真实服务。",
+          "actions": [
+            {
+              "label": "刷新模拟回执",
+              "frequency": "P1",
+              "commit": "runner_receipt",
+              "transition": null
+            },
+            {
+              "label": "关闭状态",
+              "frequency": "P3",
+              "commit": null,
+              "transition": {
+                "type": "dismissOverlay"
+              }
+            }
+          ],
+          "transitions": []
+        }
+      ],
+      "context": "VoxPocket：瞬时语音捕获 ⇄ 待办执行 ⇄ 历史速记 ⇄ 设置与模型。iPhone r3/v02 根录音画布冻结，macOS MenuBar / ⌥Space / ⌥⇧Space ⇄ 主工作台。所有文本为合成模拟，不记录真实语音。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "app01",
+      "title": "Fold-Sheet Hub & MenuBar Island",
+      "navigation_model": "Fold 抽屉根画布与菜单栏灵动岛",
+      "screens": [
+        "r3v02_capture",
+        "todo_list",
+        "todo_detail",
+        "voice_notes",
+        "settings_sheet",
+        "runner_status"
+      ]
+    },
+    {
+      "id": "app02",
+      "title": "Spatial Glass Deck & Detached HUD",
+      "navigation_model": "三域空间卡组与独立声波 HUD",
+      "screens": [
+        "r3v02_capture",
+        "todo_list",
+        "todo_detail",
+        "voice_notes",
+        "settings_sheet",
+        "runner_status"
+      ]
+    },
+    {
+      "id": "app03",
+      "title": "Dual-Mode Lens & Command Palette",
+      "navigation_model": "待办速记光学透镜与键盘命令中枢",
+      "screens": [
+        "r3v02_capture",
+        "todo_list",
+        "todo_detail",
+        "voice_notes",
+        "settings_sheet",
+        "runner_status"
+      ]
+    },
+    {
+      "id": "app04",
+      "title": "Split-Stage Action Stream & MenuPopover",
+      "navigation_model": "分域行动流与菜单栏玻璃气泡",
+      "screens": [
+        "r3v02_capture",
+        "todo_list",
+        "todo_detail",
+        "voice_notes",
+        "settings_sheet",
+        "runner_status"
+      ]
+    }
+  ]
+}

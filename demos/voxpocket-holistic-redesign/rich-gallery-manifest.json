@@ -1,0 +1,798 @@
+{
+  "revision": 3,
+  "goal": "voxpocket-holistic-redesign",
+  "web_approximation": true,
+  "no_winner_selected": true,
+  "galleries": {
+    "A": {
+      "variants": [
+        {
+          "id": "app01",
+          "route": "gallery-a-app-nav/app01.html",
+          "key": "hub",
+          "name": "Fold detent hub",
+          "coordinates": {
+            "p0_placement": "bottom detent",
+            "content_layout": "three-column workspace",
+            "folding": "sheet height 45/80%",
+            "functional_glass_geometry": "notch island"
+          }
+        },
+        {
+          "id": "app02",
+          "route": "gallery-a-app-nav/app02.html",
+          "key": "deck",
+          "name": "Spatial depth deck",
+          "coordinates": {
+            "p0_placement": "horizontal deck",
+            "content_layout": "two-column inspector",
+            "folding": "perspective steps",
+            "functional_glass_geometry": "corner HUD"
+          }
+        },
+        {
+          "id": "app03",
+          "route": "gallery-a-app-nav/app03.html",
+          "key": "lens",
+          "name": "Dual-mode lens",
+          "coordinates": {
+            "p0_placement": "segmented stage",
+            "content_layout": "command list",
+            "folding": "lens pane",
+            "functional_glass_geometry": "center command"
+          }
+        },
+        {
+          "id": "app04",
+          "route": "gallery-a-app-nav/app04.html",
+          "key": "stream",
+          "name": "Action split-stage",
+          "coordinates": {
+            "p0_placement": "result action stream",
+            "content_layout": "split execution",
+            "folding": "two-level timeline",
+            "functional_glass_geometry": "menu popover"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "a": "app01",
+          "b": "app02",
+          "distance": 4
+        },
+        {
+          "a": "app01",
+          "b": "app03",
+          "distance": 4
+        },
+        {
+          "a": "app01",
+          "b": "app04",
+          "distance": 4
+        },
+        {
+          "a": "app02",
+          "b": "app03",
+          "distance": 4
+        },
+        {
+          "a": "app02",
+          "b": "app04",
+          "distance": 4
+        },
+        {
+          "a": "app03",
+          "b": "app04",
+          "distance": 4
+        }
+      ],
+      "minimum_axis_distance": 4
+    },
+    "B": {
+      "variants": [
+        {
+          "id": "v01",
+          "route": "gallery-b-macos-recording/v01.html",
+          "key": "island",
+          "name": "Notch island",
+          "coordinates": {
+            "p0_placement": "top edge",
+            "content_layout": "single transcript",
+            "folding": "reveal",
+            "functional_glass_geometry": "360×78 island"
+          }
+        },
+        {
+          "id": "v02",
+          "route": "gallery-b-macos-recording/v02.html",
+          "key": "split",
+          "name": "Detached pill + split dock",
+          "coordinates": {
+            "p0_placement": "floating upper right",
+            "content_layout": "split document/notes",
+            "folding": "dock",
+            "functional_glass_geometry": "320×72 pill"
+          }
+        },
+        {
+          "id": "v03",
+          "route": "gallery-b-macos-recording/v03.html",
+          "key": "command",
+          "name": "Voice command palette",
+          "coordinates": {
+            "p0_placement": "center",
+            "content_layout": "intent command list",
+            "folding": "intent routing",
+            "functional_glass_geometry": "700×180 bar"
+          }
+        },
+        {
+          "id": "v04",
+          "route": "gallery-b-macos-recording/v04.html",
+          "key": "popover",
+          "name": "Menu-origin studio",
+          "coordinates": {
+            "p0_placement": "menu top left",
+            "content_layout": "recent three + paste",
+            "folding": "popover",
+            "functional_glass_geometry": "350×300 bubble"
+          }
+        },
+        {
+          "id": "v05",
+          "route": "gallery-b-macos-recording/v05.html",
+          "key": "orb",
+          "name": "Whisper orb",
+          "coordinates": {
+            "p0_placement": "bottom right",
+            "content_layout": "expanding ribbon",
+            "folding": "orb expansion",
+            "functional_glass_geometry": "56×56 circle"
+          }
+        },
+        {
+          "id": "v06",
+          "route": "gallery-b-macos-recording/v06.html",
+          "key": "dual",
+          "name": "Raw / refined workbench",
+          "coordinates": {
+            "p0_placement": "pane headers",
+            "content_layout": "two live columns",
+            "folding": "simultaneous output",
+            "functional_glass_geometry": "split toolbar"
+          }
+        },
+        {
+          "id": "v07",
+          "route": "gallery-b-macos-recording/v07.html",
+          "key": "dock",
+          "name": "Full-bleed dock",
+          "coordinates": {
+            "p0_placement": "bottom edge",
+            "content_layout": "large sentence canvas",
+            "folding": "dock capture",
+            "functional_glass_geometry": "full width×120"
+          }
+        },
+        {
+          "id": "v08",
+          "route": "gallery-b-macos-recording/v08.html",
+          "key": "teleprompter",
+          "name": "Document teleprompter",
+          "coordinates": {
+            "p0_placement": "document overlay",
+            "content_layout": "reading + prompter",
+            "folding": "overlay toggle",
+            "functional_glass_geometry": "460×240 pane"
+          }
+        },
+        {
+          "id": "v09",
+          "route": "gallery-b-macos-recording/v09.html",
+          "key": "hud",
+          "name": "Keyboard HUD",
+          "coordinates": {
+            "p0_placement": "upper left",
+            "content_layout": "key matrix + output",
+            "folding": "keyboard first",
+            "functional_glass_geometry": "compact matrix"
+          }
+        },
+        {
+          "id": "v10",
+          "route": "gallery-b-macos-recording/v10.html",
+          "key": "hybrid",
+          "name": "Todo capture console",
+          "coordinates": {
+            "p0_placement": "bottom console",
+            "content_layout": "actionable generated cards",
+            "folding": "capture to actions",
+            "functional_glass_geometry": "580×100 console"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "a": "v01",
+          "b": "v02",
+          "distance": 4
+        },
+        {
+          "a": "v01",
+          "b": "v03",
+          "distance": 4
+        },
+        {
+          "a": "v01",
+          "b": "v04",
+          "distance": 4
+        },
+        {
+          "a": "v01",
+          "b": "v05",
+          "distance": 4
+        },
+        {
+          "a": "v01",
+          "b": "v06",
+          "distance": 4
+        },
+        {
+          "a": "v01",
+          "b": "v07",
+          "distance": 4
+        },
+        {
+          "a": "v01",
+          "b": "v08",
+          "distance": 4
+        },
+        {
+          "a": "v01",
+          "b": "v09",
+          "distance": 4
+        },
+        {
+          "a": "v01",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v02",
+          "b": "v03",
+          "distance": 4
+        },
+        {
+          "a": "v02",
+          "b": "v04",
+          "distance": 4
+        },
+        {
+          "a": "v02",
+          "b": "v05",
+          "distance": 4
+        },
+        {
+          "a": "v02",
+          "b": "v06",
+          "distance": 4
+        },
+        {
+          "a": "v02",
+          "b": "v07",
+          "distance": 4
+        },
+        {
+          "a": "v02",
+          "b": "v08",
+          "distance": 4
+        },
+        {
+          "a": "v02",
+          "b": "v09",
+          "distance": 4
+        },
+        {
+          "a": "v02",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v03",
+          "b": "v04",
+          "distance": 4
+        },
+        {
+          "a": "v03",
+          "b": "v05",
+          "distance": 4
+        },
+        {
+          "a": "v03",
+          "b": "v06",
+          "distance": 4
+        },
+        {
+          "a": "v03",
+          "b": "v07",
+          "distance": 4
+        },
+        {
+          "a": "v03",
+          "b": "v08",
+          "distance": 4
+        },
+        {
+          "a": "v03",
+          "b": "v09",
+          "distance": 4
+        },
+        {
+          "a": "v03",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v05",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v06",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v07",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v08",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v09",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v05",
+          "b": "v06",
+          "distance": 4
+        },
+        {
+          "a": "v05",
+          "b": "v07",
+          "distance": 4
+        },
+        {
+          "a": "v05",
+          "b": "v08",
+          "distance": 4
+        },
+        {
+          "a": "v05",
+          "b": "v09",
+          "distance": 4
+        },
+        {
+          "a": "v05",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v06",
+          "b": "v07",
+          "distance": 4
+        },
+        {
+          "a": "v06",
+          "b": "v08",
+          "distance": 4
+        },
+        {
+          "a": "v06",
+          "b": "v09",
+          "distance": 4
+        },
+        {
+          "a": "v06",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v07",
+          "b": "v08",
+          "distance": 4
+        },
+        {
+          "a": "v07",
+          "b": "v09",
+          "distance": 4
+        },
+        {
+          "a": "v07",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v08",
+          "b": "v09",
+          "distance": 4
+        },
+        {
+          "a": "v08",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v09",
+          "b": "v10",
+          "distance": 4
+        }
+      ],
+      "minimum_axis_distance": 4
+    },
+    "C": {
+      "variants": [
+        {
+          "id": "v01",
+          "route": "gallery-c-dual-todo/v01.html",
+          "key": "hero",
+          "name": "Single-focus + folded inbox",
+          "coordinates": {
+            "p0_placement": "center hero",
+            "content_layout": "one + inbox",
+            "folding": "Fold disclosure",
+            "functional_glass_geometry": "shared 110px desktop / 130px phone capture bar"
+          }
+        },
+        {
+          "id": "v02",
+          "route": "gallery-c-dual-todo/v02.html",
+          "key": "luminance",
+          "name": "Luminance stream",
+          "coordinates": {
+            "p0_placement": "top river",
+            "content_layout": "borderless value bands",
+            "folding": "stream filtering",
+            "functional_glass_geometry": "shared 110px desktop / 130px phone capture bar"
+          }
+        },
+        {
+          "id": "v03",
+          "route": "gallery-c-dual-todo/v03.html",
+          "key": "tree",
+          "name": "Voice action tree",
+          "coordinates": {
+            "p0_placement": "source root",
+            "content_layout": "three-step tree",
+            "folding": "decompose tree",
+            "functional_glass_geometry": "shared 110px desktop / 130px phone capture bar"
+          }
+        },
+        {
+          "id": "v04",
+          "route": "gallery-c-dual-todo/v04.html",
+          "key": "lens",
+          "name": "Segmented status lens",
+          "coordinates": {
+            "p0_placement": "top list",
+            "content_layout": "same status stage",
+            "folding": "bottom lens",
+            "functional_glass_geometry": "142px desktop / 190px phone segmented dock"
+          }
+        },
+        {
+          "id": "v05",
+          "route": "gallery-c-dual-todo/v05.html",
+          "key": "pocket",
+          "name": "3D pocket stack",
+          "coordinates": {
+            "p0_placement": "front P0 card",
+            "content_layout": "perspective stack",
+            "folding": "unfold deck",
+            "functional_glass_geometry": "shared 110px desktop / 130px phone capture bar"
+          }
+        },
+        {
+          "id": "v06",
+          "route": "gallery-c-dual-todo/v06.html",
+          "key": "editorial",
+          "name": "Editorial checklist",
+          "coordinates": {
+            "p0_placement": "large numbered type",
+            "content_layout": "text-only checklist",
+            "folding": "side detail",
+            "functional_glass_geometry": "shared 110px desktop / 130px phone capture bar"
+          }
+        },
+        {
+          "id": "v07",
+          "route": "gallery-c-dual-todo/v07.html",
+          "key": "matrix",
+          "name": "Project execution matrix",
+          "coordinates": {
+            "p0_placement": "VP column",
+            "content_layout": "project lanes",
+            "folding": "route groups",
+            "functional_glass_geometry": "shared 110px desktop / 130px phone capture bar"
+          }
+        },
+        {
+          "id": "v08",
+          "route": "gallery-c-dual-todo/v08.html",
+          "key": "horizon",
+          "name": "Time-horizon briefing",
+          "coordinates": {
+            "p0_placement": "now group",
+            "content_layout": "now/today/week",
+            "folding": "collapse groups",
+            "functional_glass_geometry": "shared 110px desktop / 130px phone capture bar"
+          }
+        },
+        {
+          "id": "v09",
+          "route": "gallery-c-dual-todo/v09.html",
+          "key": "inspector",
+          "name": "Master / inspector",
+          "coordinates": {
+            "p0_placement": "master list",
+            "content_layout": "persistent right panel",
+            "folding": "synchronized detail",
+            "functional_glass_geometry": "shared 110px desktop / 130px phone capture bar"
+          }
+        },
+        {
+          "id": "v10",
+          "route": "gallery-c-dual-todo/v10.html",
+          "key": "sister",
+          "name": "r3/v02 sister canvas",
+          "coordinates": {
+            "p0_placement": "open 78% canvas",
+            "content_layout": "sparse P0 + subactions",
+            "folding": "Fold recorder",
+            "functional_glass_geometry": "148px full-width pedestal"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "a": "v01",
+          "b": "v02",
+          "distance": 3
+        },
+        {
+          "a": "v01",
+          "b": "v03",
+          "distance": 3
+        },
+        {
+          "a": "v01",
+          "b": "v04",
+          "distance": 4
+        },
+        {
+          "a": "v01",
+          "b": "v05",
+          "distance": 3
+        },
+        {
+          "a": "v01",
+          "b": "v06",
+          "distance": 3
+        },
+        {
+          "a": "v01",
+          "b": "v07",
+          "distance": 3
+        },
+        {
+          "a": "v01",
+          "b": "v08",
+          "distance": 3
+        },
+        {
+          "a": "v01",
+          "b": "v09",
+          "distance": 3
+        },
+        {
+          "a": "v01",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v02",
+          "b": "v03",
+          "distance": 3
+        },
+        {
+          "a": "v02",
+          "b": "v04",
+          "distance": 4
+        },
+        {
+          "a": "v02",
+          "b": "v05",
+          "distance": 3
+        },
+        {
+          "a": "v02",
+          "b": "v06",
+          "distance": 3
+        },
+        {
+          "a": "v02",
+          "b": "v07",
+          "distance": 3
+        },
+        {
+          "a": "v02",
+          "b": "v08",
+          "distance": 3
+        },
+        {
+          "a": "v02",
+          "b": "v09",
+          "distance": 3
+        },
+        {
+          "a": "v02",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v03",
+          "b": "v04",
+          "distance": 4
+        },
+        {
+          "a": "v03",
+          "b": "v05",
+          "distance": 3
+        },
+        {
+          "a": "v03",
+          "b": "v06",
+          "distance": 3
+        },
+        {
+          "a": "v03",
+          "b": "v07",
+          "distance": 3
+        },
+        {
+          "a": "v03",
+          "b": "v08",
+          "distance": 3
+        },
+        {
+          "a": "v03",
+          "b": "v09",
+          "distance": 3
+        },
+        {
+          "a": "v03",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v05",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v06",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v07",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v08",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v09",
+          "distance": 4
+        },
+        {
+          "a": "v04",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v05",
+          "b": "v06",
+          "distance": 3
+        },
+        {
+          "a": "v05",
+          "b": "v07",
+          "distance": 3
+        },
+        {
+          "a": "v05",
+          "b": "v08",
+          "distance": 3
+        },
+        {
+          "a": "v05",
+          "b": "v09",
+          "distance": 3
+        },
+        {
+          "a": "v05",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v06",
+          "b": "v07",
+          "distance": 3
+        },
+        {
+          "a": "v06",
+          "b": "v08",
+          "distance": 3
+        },
+        {
+          "a": "v06",
+          "b": "v09",
+          "distance": 3
+        },
+        {
+          "a": "v06",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v07",
+          "b": "v08",
+          "distance": 3
+        },
+        {
+          "a": "v07",
+          "b": "v09",
+          "distance": 3
+        },
+        {
+          "a": "v07",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v08",
+          "b": "v09",
+          "distance": 3
+        },
+        {
+          "a": "v08",
+          "b": "v10",
+          "distance": 4
+        },
+        {
+          "a": "v09",
+          "b": "v10",
+          "distance": 4
+        }
+      ],
+      "minimum_axis_distance": 3
+    }
+  },
+  "baseline_adapter": "original bytes archived unchanged; interactive sibling uses original body/CSS plus explicit hold, Fold and optical adapters inside iframe"
+}

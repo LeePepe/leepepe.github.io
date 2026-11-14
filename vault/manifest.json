@@ -3582,5 +3582,147 @@
       ],
       "sub_category": "aesthetic-direction-mood"
     }
+  ],
+  "sources": [
+    {
+      "source_id": "apple-design-skill",
+      "source_uri": "https://github.com/dickwu/apple-design-skill",
+      "local_path": "Personal/collected-tools/repos/apple-design-skill",
+      "design_integration": "collected-tools reference",
+      "learning_state": "learned"
+    },
+    {
+      "source_id": "avdlee-swiftui-skill",
+      "source_uri": "https://github.com/AvdLee/SwiftUI-Agent-Skill",
+      "local_path": "Personal/collected-tools/repos/avdlee-swiftui-skill",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "awesome-cjk-design-md",
+      "source_uri": "https://github.com/kzhrknt/awesome-design-md-jp",
+      "local_path": "Personal/collected-tools/repos/awesome-cjk-design-md",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "awesome-ios-design-md",
+      "source_uri": "https://github.com/Meliwat/awesome-ios-design-md",
+      "local_path": "Personal/collected-tools/repos/awesome-ios-design-md",
+      "design_integration": "collected-tools reference",
+      "learning_state": "learned"
+    },
+    {
+      "source_id": "awesome-web-design-md",
+      "source_uri": "https://github.com/VoltAgent/awesome-design-md",
+      "local_path": "Personal/collected-tools/repos/awesome-web-design-md",
+      "design_integration": "collected-tools reference",
+      "learning_state": "learned"
+    },
+    {
+      "source_id": "bama",
+      "source_uri": "https://github.com/daveebbelaar/bama",
+      "local_path": "Personal/collected-tools/repos/bama",
+      "design_integration": "catalog-backed",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "claude-code-apple-skills",
+      "source_uri": "https://github.com/rshankras/claude-code-apple-skills",
+      "local_path": "Personal/collected-tools/repos/claude-code-apple-skills",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "dimillian-skills",
+      "source_uri": "https://github.com/Dimillian/Skills",
+      "local_path": "Personal/collected-tools/repos/dimillian-skills",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "emilkowalski-skills",
+      "source_uri": "https://github.com/emilkowalski/skills",
+      "local_path": "Personal/collected-tools/repos/emilkowalski-skills",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "expo-skills",
+      "source_uri": "https://github.com/expo/skills",
+      "local_path": "Personal/collected-tools/repos/expo-skills",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "genjutsu",
+      "source_uri": "https://github.com/AThevon/genjutsu",
+      "local_path": "Personal/collected-tools/repos/genjutsu",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "hallmark",
+      "source_uri": "https://github.com/Nutlope/hallmark",
+      "local_path": "Personal/collected-tools/repos/hallmark",
+      "design_integration": "catalog-backed",
+      "learning_state": "learned"
+    },
+    {
+      "source_id": "impeccable",
+      "source_uri": "https://github.com/pbakaus/impeccable",
+      "local_path": "Personal/collected-tools/repos/impeccable",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "shipswift",
+      "source_uri": "https://github.com/signerlabs/ShipSwift",
+      "local_path": "Personal/collected-tools/repos/shipswift",
+      "design_integration": "collected-tools reference",
+      "learning_state": "learned"
+    },
+    {
+      "source_id": "taste-skill",
+      "source_uri": "https://github.com/Leonxlnx/taste-skill",
+      "local_path": "Personal/collected-tools/repos/taste-skill",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "tenfold",
+      "source_uri": "https://github.com/adrianpartain59/tenfold",
+      "local_path": "Personal/collected-tools/repos/tenfold",
+      "design_integration": "catalog-backed",
+      "learning_state": "not_recorded"
+    },
+    {
+      "source_id": "twostraws-swiftui-skill",
+      "source_uri": "https://github.com/twostraws/SwiftUI-Agent-Skill",
+      "local_path": "Personal/collected-tools/repos/twostraws-swiftui-skill",
+      "design_integration": "collected-tools reference",
+      "learning_state": "learned"
+    },
+    {
+      "source_id": "ui-ux-pro-max-skill",
+      "source_uri": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "local_path": "Personal/collected-tools/repos/ui-ux-pro-max-skill",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "vercel-agent-skills",
+      "source_uri": "https://github.com/vercel-labs/agent-skills",
+      "local_path": "Personal/collected-tools/repos/vercel-agent-skills",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    },
+    {
+      "source_id": "vibecoded-design-tells",
+      "source_uri": "https://github.com/JCarterJohnson/vibecoded-design-tells",
+      "local_path": "Personal/collected-tools/repos/vibecoded-design-tells",
+      "design_integration": "collected-tools reference",
+      "learning_state": "queued"
+    }
   ]
 }

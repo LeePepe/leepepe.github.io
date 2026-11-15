@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1440">
+  <rect width="1080" height="1440" fill="#F4F1EA"/>
+  <rect x="440" y="140" width="480" height="680" fill="#E2ECE5" stroke="#2C4C38" stroke-width="16"/>
+  <path d="M680 140 V820 M440 480 H920" stroke="#2C4C38" stroke-width="12"/>
+  <path d="M880 140 C860 380 720 580 560 760 L660 880 C840 680 960 440 940 140 Z" fill="#FDFBF7" opacity="0.85"/>
+  <path d="M780 300 C620 320 480 240 320 280 M840 440 C640 480 460 360 220 420 M700 580 C540 600 420 520 280 560" fill="none" stroke="#9AB8A4" stroke-width="8" stroke-linecap="round"/>
+  <path d="M540 370 C570 350 610 380 580 400 C550 420 510 390 540 370 Z" fill="#688F74"/>
+  <path d="M360 490 C390 470 420 510 390 530 C360 550 330 510 360 490 Z" fill="#688F74"/>
+  <path d="M160 920 H980 L1040 1040 H100 Z" fill="#D5DEC9"/>
+  <rect x="100" y="1040" width="940" height="40" fill="#4A6B53"/>
+  <path d="M180 1080 V1380 M960 1080 V1380" stroke="#2C4C38" stroke-width="24" stroke-linecap="round"/>
+  <path d="M240 980 L220 820 H340 L320 980 Z" fill="#4A6B53"/>
+  <path d="M280 820 C240 720 120 700 100 760 C160 780 220 780 280 820 Z M280 820 C260 700 160 620 120 660 C180 700 240 740 280 820 Z M280 820 C300 720 240 600 200 620 C240 680 260 740 280 820 Z" fill="#2C4C38"/>
+  <path d="M450 960 Q540 940 610 970 L650 1000 Q560 970 470 990 Z" fill="#FDFBF7" stroke="#688F74" stroke-width="6"/>
+  <path d="M470 955 C520 880 580 880 620 965 C570 940 520 940 470 955 Z" fill="#FDFBF7" stroke="#688F74" stroke-width="6"/>
+  <ellipse cx="780" cy="990" rx="76" ry="38" fill="#2C4C38"/>
+  <ellipse cx="780" cy="978" rx="76" ry="38" fill="#9AB8A4"/>
+  <ellipse cx="780" cy="972" rx="52" ry="26" fill="#FDFBF7"/>
+  <ellipse cx="780" cy="966" rx="16" ry="8" fill="#688F74"/>
+  <path d="M710 920 A80 40 0 0 1 850 920 M680 885 A110 55 0 0 1 880 885 M650 850 A140 70 0 0 1 910 850" fill="none" stroke="#4A6B53" stroke-width="10" stroke-linecap="round"/>
+</svg>

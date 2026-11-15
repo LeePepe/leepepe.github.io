@@ -6,344 +6,7 @@
     "motion_catalog": "/Users/lee/.copilot/skills/design-studio/references/catalog.json",
     "screenshots": "approved handoff source paths; committed snapshots"
   },
-  "screenshots": [
-    {
-      "id": "voxpocket-r3-v02",
-      "title": "Voxpocket R3 V02",
-      "image": "/assets/vault/shots/voxpocket-r3-v02.png",
-      "thumbnail": "/assets/vault/shots/voxpocket-r3-v02-thumb.png",
-      "width": 390,
-      "height": 844,
-      "measured_palette": [
-        {
-          "hex": "#FCFCFC",
-          "pct": 18.7
-        },
-        {
-          "hex": "#DCE8F4",
-          "pct": 16.4
-        },
-        {
-          "hex": "#E0ECF4",
-          "pct": 10.3
-        },
-        {
-          "hex": "#E8F0F8",
-          "pct": 3.7
-        },
-        {
-          "hex": "#E4ECF4",
-          "pct": 3.5
-        },
-        {
-          "hex": "#F8FCFC",
-          "pct": 3.4
-        }
-      ],
-      "ocr_text": "H6ftssJJ.",
-      "archetype_ref": "VS-005",
-      "notes": "VoxPocket minimal whitespace with a bottom Liquid Glass control layer.",
-      "ocr_status": "recognized_text",
-      "ocr_method": "macOS Vision VNRecognizeTextRequest",
-      "palette_method": "BAMA measure.swift palette (validated macOS run)",
-      "palette_provenance": "Committed snapshot derived from approved handoff source; Top 6 measured from full-resolution source.",
-      "ocr_error": ""
-    },
-    {
-      "id": "voxpocket-r3-v06",
-      "title": "Voxpocket R3 V06",
-      "image": "/assets/vault/shots/voxpocket-r3-v06.png",
-      "thumbnail": "/assets/vault/shots/voxpocket-r3-v06-thumb.png",
-      "width": 390,
-      "height": 844,
-      "measured_palette": [
-        {
-          "hex": "#FCFCFC",
-          "pct": 18.7
-        },
-        {
-          "hex": "#DCE8F4",
-          "pct": 16.6
-        },
-        {
-          "hex": "#E0ECF4",
-          "pct": 11.9
-        },
-        {
-          "hex": "#E4F0F4",
-          "pct": 4.4
-        },
-        {
-          "hex": "#E4ECF4",
-          "pct": 4.0
-        },
-        {
-          "hex": "#E8F0F8",
-          "pct": 3.7
-        }
-      ],
-      "ocr_text": "H6ftssJJ.",
-      "archetype_ref": "GM-003",
-      "notes": "VoxPocket dynamic sound-wave glass treatment; relation is material-first.",
-      "ocr_status": "recognized_text",
-      "ocr_method": "macOS Vision VNRecognizeTextRequest",
-      "palette_method": "BAMA measure.swift palette (validated macOS run)",
-      "palette_provenance": "Committed snapshot derived from approved handoff source; Top 6 measured from full-resolution source.",
-      "ocr_error": ""
-    },
-    {
-      "id": "voxpocket-tenfold-sheet",
-      "title": "Voxpocket Tenfold Sheet",
-      "image": "/assets/vault/shots/voxpocket-tenfold-sheet.png",
-      "thumbnail": "/assets/vault/shots/voxpocket-tenfold-sheet-thumb.png",
-      "width": 1440,
-      "height": 3192,
-      "measured_palette": [
-        {
-          "hex": "#ECF0F4",
-          "pct": 30.1
-        },
-        {
-          "hex": "#FCFCFC",
-          "pct": 13.9
-        },
-        {
-          "hex": "#DCE8F4",
-          "pct": 6.5
-        },
-        {
-          "hex": "#E0ECF4",
-          "pct": 4.7
-        },
-        {
-          "hex": "#101014",
-          "pct": 4.6
-        },
-        {
-          "hex": "#F4F4F8",
-          "pct": 4.0
-        }
-      ],
-      "ocr_text": "Voxpocket l Tenfold. Round 3. X*X4 Glass, Round 2 Tenfold aiiribuiion . MIT License F& Round 3 £# Round4 o tthi6 Round 2 v04 baseline 01 Pure Glass Sphere 02 Full-Bleed Frosted Sheet 03 Floating Glass Slab Byte-for-byte ￿SelIne from r2lvO4. Distinct bottoffl pure-glass geometry with one focused sentence. Distinct bottoffl pure-glass geometry with one focused sentence. Distinct bottom pure-glass geometry with one focused sentence. * star Select * star Select * star Select * star Select Round 3 Round 3 1 fi%*JlEE._ Round 3 1 fi%*JlEE._ Round 3 1 fi%*JlEE._ 04 Recessed Glass Well 06 Du81-Layer Stacked Panes 06 Prism Edge Acoustic Bar 07 Nocturne Obsidian Distinct bottom pure-glass geometry with one focused sentence. Distinct bottom pure-glass geometry with one focused sentence. Distinct bottom pure-glass geometry with one focused sentence. Distinct bottom pure-glass geometry with one focused sentence. * star Select * star Select * star Select * star Select Round 3 Round 3 1 fi%*JlEE._ Round 3 1 fi%*JlEE._ Round 3 1 fi%*JlEE._ 08 Whisp8r-Quiet Pedestal 09 Split-plane Footer 10 Breathable H810 Stsge Distinct bottom pure-glas5 geometry with one focused sentence. Distinct bottom pure-glas5 geometry with one focused sentence. Distinct bottom pure-glas5 geometry with one focused sentence. * star Select * star Select * star Select Round 3 1 1% Round 3 1 fi%&¥IEE._ Round 3 1 fi%*JlEE._ Round 3 offline handoff . upstream Tenfold MIT",
-      "archetype_ref": "VS-004",
-      "notes": "Tenfold contact sheet documenting ten mobile direction variants, retained as an exploration overview.",
-      "ocr_status": "recognized_text",
-      "ocr_method": "macOS Vision VNRecognizeTextRequest",
-      "palette_method": "BAMA measure.swift palette (validated macOS run)",
-      "palette_provenance": "Committed snapshot derived from approved handoff source; Top 6 measured from full-resolution source.",
-      "ocr_error": ""
-    },
-    {
-      "id": "vitalstride-exercise-picker",
-      "title": "Vitalstride Exercise Picker",
-      "image": "/assets/vault/shots/vitalstride-exercise-picker.png",
-      "thumbnail": "/assets/vault/shots/vitalstride-exercise-picker-thumb.png",
-      "width": 1179,
-      "height": 2556,
-      "measured_palette": [
-        {
-          "hex": "#FCFCFC",
-          "pct": 33.5
-        },
-        {
-          "hex": "#F8F8F8",
-          "pct": 27.4
-        },
-        {
-          "hex": "#F4F4F4",
-          "pct": 14.0
-        },
-        {
-          "hex": "#F0F0F0",
-          "pct": 5.0
-        },
-        {
-          "hex": "#E0ECEC",
-          "pct": 2.1
-        },
-        {
-          "hex": "#C4C4C4",
-          "pct": 2.0
-        }
-      ],
-      "ocr_text": "82 3t** 5)JlÈ BJJ2S*k 41)] FF 314 IID 45°1Sfj,IIJF ¥È EgR*B&A iJ*%itsn Q 1£*5)JlF",
-      "archetype_ref": "VS-005",
-      "notes": "VitalStride exercise picker; dense selection and clear hierarchy.",
-      "ocr_status": "recognized_text",
-      "ocr_method": "macOS Vision VNRecognizeTextRequest",
-      "palette_method": "BAMA measure.swift palette (validated macOS run)",
-      "palette_provenance": "Committed snapshot derived from approved handoff source; Top 6 measured from full-resolution source.",
-      "ocr_error": ""
-    },
-    {
-      "id": "vitalstride-workout-rest",
-      "title": "Vitalstride Workout Rest",
-      "image": "/assets/vault/shots/vitalstride-workout-rest.png",
-      "thumbnail": "/assets/vault/shots/vitalstride-workout-rest-thumb.png",
-      "width": 786,
-      "height": 1704,
-      "measured_palette": [
-        {
-          "hex": "#FCFCFC",
-          "pct": 43.0
-        },
-        {
-          "hex": "#F8F8F8",
-          "pct": 31.1
-        },
-        {
-          "hex": "#F0F0F0",
-          "pct": 12.5
-        },
-        {
-          "hex": "#D0F4F0",
-          "pct": 1.6
-        },
-        {
-          "hex": "#F4F4F8",
-          "pct": 1.5
-        },
-        {
-          "hex": "#F4F4F4",
-          "pct": 0.9
-        }
-      ],
-      "ocr_text": "illl4,* 0 0:00:36 V *iSlx ) 215 820 kg it5)JfF 1114 g¥)J FFIKJ& 114 111 ¥ 40 kg 10 IA RPE8 ¥ 35 kg 12 IA + kYJllsJJeF",
-      "archetype_ref": "VS-006",
-      "notes": "VitalStride workout/rest state with paper-like light surface and timer focus.",
-      "ocr_status": "recognized_text",
-      "ocr_method": "macOS Vision VNRecognizeTextRequest",
-      "palette_method": "BAMA measure.swift palette (validated macOS run)",
-      "palette_provenance": "Committed snapshot derived from approved handoff source; Top 6 measured from full-resolution source.",
-      "ocr_error": ""
-    },
-    {
-      "id": "vitalstride-workout-dark",
-      "title": "Vitalstride Workout Dark",
-      "image": "/assets/vault/shots/vitalstride-workout-dark.png",
-      "thumbnail": "/assets/vault/shots/vitalstride-workout-dark-thumb.png",
-      "width": 786,
-      "height": 2264,
-      "measured_palette": [
-        {
-          "hex": "#101010",
-          "pct": 40.3
-        },
-        {
-          "hex": "#28282C",
-          "pct": 23.3
-        },
-        {
-          "hex": "#181818",
-          "pct": 22.2
-        },
-        {
-          "hex": "#2CD4BC",
-          "pct": 1.7
-        },
-        {
-          "hex": "#1C2C2C",
-          "pct": 1.2
-        },
-        {
-          "hex": "#343438",
-          "pct": 0.7
-        }
-      ],
-      "ocr_text": "0 0:00:43 V *iSl% 0 215 820 kg 1114 g•)J FFIKJ 114 111 ¥ 40 kg 10 IA RPE8 £*¢**1J￿ 111 # 35 kg 12 IA ji** kgllb",
-      "archetype_ref": "VS-001",
-      "notes": "VitalStride workout keyboard state; dark athletic telemetry and 5x4 input grid.",
-      "ocr_status": "recognized_text",
-      "ocr_method": "macOS Vision VNRecognizeTextRequest",
-      "palette_method": "BAMA measure.swift palette (validated macOS run)",
-      "palette_provenance": "Committed snapshot derived from approved handoff source; Top 6 measured from full-resolution source.",
-      "ocr_error": ""
-    },
-    {
-      "id": "hallmark-atelier",
-      "title": "Hallmark Atelier",
-      "image": "/assets/vault/shots/hallmark-atelier.jpg",
-      "thumbnail": "/assets/vault/shots/hallmark-atelier-thumb.jpg",
-      "width": 1200,
-      "height": 750,
-      "measured_palette": [
-        {
-          "hex": "#ECE4DC",
-          "pct": 14.5
-        },
-        {
-          "hex": "#ECE0D8",
-          "pct": 9.9
-        },
-        {
-          "hex": "#F0E0D8",
-          "pct": 8.5
-        },
-        {
-          "hex": "#ECE8E0",
-          "pct": 8.2
-        },
-        {
-          "hex": "#F0E8E0",
-          "pct": 6.3
-        },
-        {
-          "hex": "#ECE0DC",
-          "pct": 4.3
-        }
-      ],
-      "ocr_text": "Th@four Th8TOOrn Maison Orla Book a wsit Four scents, made in Ghent. Each made in batches of 300 bottles, and smelled by appointment. Book a vlsit Tuesdayto Saturd 1300 M4is<)n Otla. Ghent",
-      "archetype_ref": "VS-002",
-      "notes": "Hallmark atelier screenshot; warm anti-template editorial workspace.",
-      "ocr_status": "recognized_text",
-      "ocr_method": "macOS Vision VNRecognizeTextRequest",
-      "palette_method": "BAMA measure.swift palette (validated macOS run)",
-      "palette_provenance": "Committed snapshot derived from approved handoff source; Top 6 measured from full-resolution source.",
-      "ocr_error": ""
-    },
-    {
-      "id": "hallmark-refract",
-      "title": "Hallmark Refract",
-      "image": "/assets/vault/shots/hallmark-refract.jpg",
-      "thumbnail": "/assets/vault/shots/hallmark-refract-thumb.jpg",
-      "width": 1200,
-      "height": 750,
-      "measured_palette": [
-        {
-          "hex": "#F8F8F4",
-          "pct": 40.4
-        },
-        {
-          "hex": "#F8FCFC",
-          "pct": 5.7
-        },
-        {
-          "hex": "#F4FCFC",
-          "pct": 5.6
-        },
-        {
-          "hex": "#F0F8FC",
-          "pct": 4.1
-        },
-        {
-          "hex": "#FCFCFC",
-          "pct": 2.1
-        },
-        {
-          "hex": "#F0FCFC",
-          "pct": 1.8
-        }
-      ],
-      "ocr_text": "88llwater L Se$$ions Qulet hour$ Book È swlm Swim outside, all year. Today T￿&&daY 27 O¢tobar 24.0°C 13°C Lunch l&nè8 F&sl. medjum, slo 12..30 15..30 Famllyswim 3Olqft A heated fifty metre pool under open sky, booked by the session. 17..30 evenlng lanes F>Sl, Me¢ium. slow 19..30 Latè swim 141eft Medium. slow Book a swirn See prices Open evÈryday. 06..30 to21..00 £6.50 Book 12..30 One&￿rn.45 minute$",
-      "archetype_ref": "GM-003",
-      "notes": "Hallmark refract screenshot; optical refraction material study.",
-      "ocr_status": "recognized_text",
-      "ocr_method": "macOS Vision VNRecognizeTextRequest",
-      "palette_method": "BAMA measure.swift palette (validated macOS run)",
-      "palette_provenance": "Committed snapshot derived from approved handoff source; Top 6 measured from full-resolution source.",
-      "ocr_error": ""
-    }
-  ],
+  "screenshots": [],
   "cards": [
     {
       "id": "CL-001",
@@ -3450,7 +3113,7 @@
     },
     {
       "id": "IP-006",
-      "name": "安静杂志双栏流与右侧无框目录 (Quiet Editorial Stream & Borderless Sticky TOC)",
+      "name": "零术语人话表达 (Plain-Language Microcopy)",
       "aliases": [
         "安静杂志排版",
         "右侧无框目录",
@@ -3494,7 +3157,7 @@
       "platform_variants": {
         "web": {
           "id": "IP-006",
-          "name": "安静杂志双栏流与右侧无框目录 (Quiet Editorial Stream & Borderless Sticky TOC)",
+          "name": "零术语人话表达 (Plain-Language Microcopy)",
           "aliases": [
             "安静杂志排版",
             "右侧无框目录",
@@ -3550,8 +3213,7 @@
     },
     {
       "id": "IP-007",
-      "name": "Hallmark 三步反模板工作流 (3-Deal Theme → Job Anatomy → Multi-Viewport Sloplint)",
-      "title": "Hallmark 三步反模板工作流 (3-Deal Theme → Job Anatomy → Multi-Viewport Sloplint)",
+      "name": "就地渐进式入口 (In-Place Progressive Entry)",
       "aliases": [
         "Hallmark",
         "sloplint",
@@ -3600,8 +3262,7 @@
       "platform_variants": {
         "web": {
           "id": "IP-007",
-          "name": "Hallmark 三步反模板工作流 (3-Deal Theme → Job Anatomy → Multi-Viewport Sloplint)",
-          "title": "Hallmark 三步反模板工作流 (3-Deal Theme → Job Anatomy → Multi-Viewport Sloplint)",
+          "name": "就地渐进式入口 (In-Place Progressive Entry)",
           "aliases": [
             "Hallmark",
             "sloplint",
@@ -3663,7 +3324,7 @@
     },
     {
       "id": "LN-001",
-      "name": "**入口**：别让新用户满屏找。把选项直接放在任务发生的地方，高级设置先收起来。",
+      "name": "就地渐进式入口 (In-Place Progressive Entry)",
       "platforms": [
         "desktop",
         "mobile"
@@ -3699,7 +3360,7 @@
       "platform_variants": {
         "desktop-macos": {
           "id": "LN-001",
-          "name": "**入口**：别让新用户满屏找。把选项直接放在任务发生的地方，高级设置先收起来。",
+          "name": "就地渐进式入口 (In-Place Progressive Entry)",
           "platforms": [
             "desktop",
             "mobile"
@@ -3737,7 +3398,7 @@
         },
         "mobile-ios": {
           "id": "LN-001",
-          "name": "**入口**：别让新用户满屏找。把选项直接放在任务发生的地方，高级设置先收起来。",
+          "name": "就地渐进式入口 (In-Place Progressive Entry)",
           "platforms": [
             "desktop",
             "mobile"
@@ -4091,7 +3752,7 @@
     },
     {
       "id": "MI-007",
-      "name": "**反馈**：操作完得给个准信。点保存后页面啥变化没有，新手根本不知道成没成功；直接告诉他“下次提醒周一上午9点”才行。",
+      "name": "即时确定性结果回执 (Deterministic Action Receipt)",
       "platforms": [
         "desktop",
         "mobile"
@@ -4124,7 +3785,7 @@
       "platform_variants": {
         "desktop-macos": {
           "id": "MI-007",
-          "name": "**反馈**：操作完得给个准信。点保存后页面啥变化没有，新手根本不知道成没成功；直接告诉他“下次提醒周一上午9点”才行。",
+          "name": "即时确定性结果回执 (Deterministic Action Receipt)",
           "platforms": [
             "desktop",
             "mobile"
@@ -4159,7 +3820,7 @@
         },
         "mobile-ios": {
           "id": "MI-007",
-          "name": "**反馈**：操作完得给个准信。点保存后页面啥变化没有，新手根本不知道成没成功；直接告诉他“下次提醒周一上午9点”才行。",
+          "name": "即时确定性结果回执 (Deterministic Action Receipt)",
           "platforms": [
             "desktop",
             "mobile"
@@ -5638,7 +5299,7 @@
     },
     {
       "id": "TC-001",
-      "name": "**说法**：别用系统术语。比如写“循环规则”，用户根本看不懂；换成大白话“每周一提醒我”，一下就明白了。",
+      "name": "零术语人话表达 (Plain-Language Microcopy)",
       "platforms": [
         "desktop",
         "mobile"
@@ -5670,7 +5331,7 @@
       "platform_variants": {
         "desktop-macos": {
           "id": "TC-001",
-          "name": "**说法**：别用系统术语。比如写“循环规则”，用户根本看不懂；换成大白话“每周一提醒我”，一下就明白了。",
+          "name": "零术语人话表达 (Plain-Language Microcopy)",
           "platforms": [
             "desktop",
             "mobile"
@@ -5704,7 +5365,7 @@
         },
         "mobile-ios": {
           "id": "TC-001",
-          "name": "**说法**：别用系统术语。比如写“循环规则”，用户根本看不懂；换成大白话“每周一提醒我”，一下就明白了。",
+          "name": "零术语人话表达 (Plain-Language Microcopy)",
           "platforms": [
             "desktop",
             "mobile"
@@ -7345,7 +7006,7 @@
     },
     {
       "id": "IP-006",
-      "name": "**说法**：别用系统术语。比如写“循环规则”，用户根本看不懂；换成大白话“每周一提醒我”，一下就明白了。",
+      "name": "零术语人话表达 (Plain-Language Microcopy)",
       "aliases": [],
       "category": "layout-craft",
       "platforms": [
@@ -7371,7 +7032,7 @@
     },
     {
       "id": "IP-007",
-      "name": "**入口**：别让新用户满屏找。把选项直接放在任务发生的地方，高级设置先收起来。",
+      "name": "就地渐进式入口 (In-Place Progressive Entry)",
       "aliases": [],
       "category": "layout-craft",
       "platforms": [
@@ -7397,7 +7058,7 @@
     },
     {
       "id": "MP-007",
-      "name": "**反馈**：操作完得给个准信。点保存后页面啥变化没有，新手根本不知道成没成功；直接告诉他“下次提醒周一上午9点”才行。",
+      "name": "即时确定性结果回执 (Deterministic Action Receipt)",
       "aliases": [],
       "category": "micro-feedback-social",
       "platforms": [

@@ -4,6 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Skills 效能与上下文 ROI · Focused Bezier Stage</title>
+<script>
+(() => {
+  const root=document.documentElement, media=window.matchMedia('(prefers-color-scheme: dark)');
+  let preference='system';
+  const renderTheme=()=>{root.dataset.theme=preference==='system'?(media.matches?'dark':'light'):preference;};
+  window.addEventListener('message',event=>{
+    const data=event.data;
+    if(data && typeof data==='object' && data.type && !['aidash-demo-theme','design-gallery-theme'].includes(data.type)) return;
+    const value=typeof data==='string'?data:data?.theme??data?.mode;
+    if(!['light','dark','system'].includes(value)) return;
+    preference=value;renderTheme();
+  });
+  media.addEventListener('change',()=>{if(preference==='system') renderTheme();});
+  renderTheme();
+})();
+</script>
 <style>
 :root{color-scheme:light;--b6p-bg:#eef2f5;--b6p-glass:rgba(255,255,255,.72);--b6p-glass-strong:rgba(255,255,255,.9);--b6p-ink:#18242d;--b6p-muted:#60707a;--b6p-line:rgba(43,65,78,.18);--b6p-accent:#237f8a;--b6p-accent-soft:#d9eff0;--b6p-warn:#8b5510;--b6p-danger:#a74454;--b6p-good:#227b5d;--b6p-shadow:0 18px 42px rgba(27,48,59,.12)}
 :root[data-theme=dark]{color-scheme:dark;--b6p-bg:#162027;--b6p-glass:rgba(30,44,52,.82);--b6p-glass-strong:rgba(33,49,58,.96);--b6p-ink:#edf5f5;--b6p-muted:#aabdc3;--b6p-line:rgba(201,226,230,.2);--b6p-accent:#73ccd0;--b6p-accent-soft:rgba(65,145,151,.25);--b6p-warn:#edbd79;--b6p-danger:#f08d9d;--b6p-good:#76d3ac;--b6p-shadow:0 18px 42px rgba(0,0,0,.28)}
@@ -70,9 +86,6 @@
   function setLens(next, focus){lens=next;tabs.forEach(tab=>{const active=tab.dataset.lens===next;tab.setAttribute('aria-selected',String(active));});routePanel.dataset.active=String(next==='route');effectsPanel.dataset.active=String(next==='effects');routePanel.setAttribute('aria-hidden',String(next!=='route'));effectsPanel.setAttribute('aria-hidden',String(next!=='effects'));effectsPanel.toggleAttribute('inert',next!=='effects');if(focus) document.querySelector(`[data-lens="${next}"]`).focus();}
   rows.forEach(row=>{const trigger=row.querySelector('[data-skill-trigger]');trigger.addEventListener('click',()=>selectSkill(row.dataset.skill));trigger.addEventListener('pointerenter',()=>brief.textContent=records[row.dataset.skill].brief);trigger.addEventListener('focus',()=>brief.textContent=records[row.dataset.skill].brief);});
   tabs.forEach(tab=>{tab.addEventListener('click',()=>setLens(tab.dataset.lens,false));tab.addEventListener('keydown',event=>{if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();const next=event.key==='ArrowRight'?'effects':'route';setLens(next,true);}if(event.key==='Enter'||event.key===' '){event.preventDefault();setLens(tab.dataset.lens,false);}});});
-  function applyTheme(value){if(value==='light'||value==='dark')root.dataset.theme=value;else if(value==='system')delete root.dataset.theme;}
-  window.addEventListener('message',event=>{const value=typeof event.data==='string'?event.data:event.data?.theme;if(value==='light'||value==='dark'||value==='system')applyTheme(value);});
-  const media=window.matchMedia('(prefers-color-scheme: dark)');media.addEventListener?.('change',()=>{if(!root.dataset.theme) root.style.colorScheme=media.matches?'dark':'light';});
   selectSkill(selected);setLens(lens,false);
 })();
 </script>

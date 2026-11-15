@@ -11,6 +11,9 @@ markdown: kramdown
 theme: null
 plugins: []
 
+include:
+  - demos/_sync_notes.html
+
 exclude:
   - Gemfile
   - Gemfile.lock

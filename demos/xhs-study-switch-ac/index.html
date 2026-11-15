@@ -8,7 +8,7 @@
 </style></head>
 <body><header class="site-header shell"><div class="site-header__bar"><a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span><span>LeePepe</span></a><nav class="nav" aria-label="主导航"><a href="/">首页</a><a href="/learn/">求知</a><a href="/thoughts/">思考</a><a href="/demos/" aria-current="page">Demos</a></nav><div class="theme-toggle" aria-label="主题"><button type="button" data-theme-choice="light" aria-pressed="false">浅色</button><button type="button" data-theme-choice="dark" aria-pressed="false">深色</button><button type="button" data-theme-choice="system" aria-pressed="false">系统</button></div></div></header><main class="xhs-shell">
 <nav class="crumbs" aria-label="面包屑"><a href="/">← 返回 Blog 首页</a><span aria-hidden="true">·</span><a href="/demos/">返回 Demos 总目录</a></nav>
-<header class="hero"><p class="eyebrow">TIA-457 · XHS STUDY SWITCH</p><h1>长按开空调，少一道选择题</h1><p>把一篇真实的智能家居生活记录，拆成三套真正不同的 3:4 小红书研究样张。这里展示的是离线制图与研究证据，不是已发布内容。</p></header>
+<header class="hero"><p class="eyebrow">TIA-457 · XHS STUDY SWITCH</p><h1>长按开空调，少一道选择题</h1><p>把一篇真实的智能家居生活记录，拆成三套真正不同的 3:4 小红书研究样张（每套 5 张，共 15 张）。故事已补全装修搁置、2025 年 AI 起步、睡前买多的测试键和闲置长按。这里展示的是离线制图与研究证据，不是小红书已发布内容。</p><p><a href="/thoughts/study-switch-long-press-ac/">阅读完整更新后的 Blog 故事 →</a> · T2 故事更新；T1 制图与工具实测保留，未重新生成 AI 底图。</p></header>
 <section class="section" aria-labelledby="research"><h2 id="research">先看结论</h2><div class="summary-grid"><article class="panel"><h3>内容链路</h3><p>原始文章 → HTML/CSS/SVG 排版 → Playwright 截图 → 人工检查 → 用户在官方平台手动发布。</p><p><strong>长按 = 打开空调</strong>，不是 toggle；24℃只作示意，99%是原文修辞。</p></article><article class="panel"><h3>当前推荐</h3><p>离线生成原创 PNG，人工检查事实、素材与 AI 标识，再由用户在官方创作者平台完成操作。没有登录、上传、保存草稿或发布。</p></article><article class="panel"><h3>安全边界</h3><p>不采集 Cookie，不开远程调试，不绕过验证码，不做签名/API 规避。Bridge/Playwright 草稿流仅是未来在获授权后评估的条件选项。</p></article></div></section>
 <section class="section"><h2>能力实测与版本 caveat</h2><div class="matrix"><article class="panel"><h3>可复现成功</h3><ul><li>Magpie <code>/v1/models</code>：HTTP 200。</li><li>Raven local GPT-5.3-codex SVG：HTTP 200，10.24s。</li><li>GPT-4.1 vision：HTTP 200，4.27s。</li><li>Gemini 4 Argon bounded SVG：HTTP 200，20.5s，valid XML。</li><li>Copilot builtin image_generation：两张 1024×1536 原创背景，模型未披露。</li></ul></article><article class="panel"><h3>不可用或需谨慎</h3><ul><li>初始 Gemini 长 SVG 曾截断；展示 bounded iteration，不抹掉迭代事实。</li><li>Cursor Claude Opus 4.8 / Fable 5.2：HTTP 429 quota，未购买 credits。</li><li>GPT image endpoints：HTTP 404；authenticated Raven models HTTP 200，但 image endpoint 仍 404。</li><li><code>gpt-image-2.5-flare</code> 出现在 models，但 responses HTTP 400 model_not_supported。</li></ul></article></div><p class="source-list">证据：Goal handoff 的 source-verified research findings 与本地探针摘要（未将私有工作文件路径发布）；公开页仅保留已脱敏结论。证据置信度最高为 MEDIUM，版本与平台条款需独立复核。</p></section>
 <section class="section"><h2>工具链与风险矩阵</h2><div class="matrix"><article class="panel"><h3>公开源码观察</h3><ul><li><a href="https://github.com/bozhouDev/xhs-article-to-images">bozhouDev/xhs-article-to-images</a>：HTML/Playwright，版式建议不是平台规则。</li><li><a href="https://github.com/Ming-H/xhs-image-generator">Ming-H/xhs-image-generator</a>：frontmatter 边界错误时，前两个 <code>---</code> 可能吞掉内容。</li><li><a href="https://github.com/chang-zy/xiaohongshu-skill">chang-zy/xiaohongshu-skill</a> / <a href="https://github.com/autoclaw-cc/xiaohongshu-skills">autoclaw</a>：Bridge 草稿操作不等于 live draft 或授权。</li><li><a href="https://github.com/xpzouying/xiaohongshu-mcp">xpzouying MCP</a>、<a href="https://github.com/jobsonlook/xhs-mcp">jobsonlook MCP</a>：能力边界不同，热度不是安全证据。</li></ul></article><article class="panel"><h3>编辑建议 ≠ 官方规则</h3><p>≤40% 文字、≤3 行、无首行缩进是编辑/风险控制建议，没有独立官方证据证明是强制规则；没有 safe daily posting guarantee。AI 内容创作不等同于无人值守账号操作。当前推荐人工在官方平台操作并按要求标识 AI 内容。</p><p><strong>Genjutsu</strong> 是本机 native SwiftUI UI/动效设计 skill，不是 Web 栅格生图模型。离开书房、睡眠与离家关停是原文描述的家庭 cleanup 行为，本页不提供可部署自动化。</p></article></div></section><section class="section"><h2>三套样张画廊</h2><div id="suites"></div></section>
@@ -16,12 +16,33 @@
 <section class="section"><h2>发布与风控说明</h2><div class="panel"><p>当前推荐手动使用官方创作者平台。研究发现对第三方工具的判断来自固定版本的公开源码静态检查，不能等同于 live draft 成功或平台授权。任何未来半自动 Bridge 流程都应使用专用受保护 profile、获得明确授权、人工复核草稿内容后再决定；保存草稿不自动证明合规。AI 生成背景应按适用规定与平台要求主动标识。</p><p>Ming-H 的分页器需要正确的 frontmatter 边界；否则前两个 <code>---</code> 可能吞掉中间内容，不能宣传为可靠的普通 Markdown 自动分页。官方创作者协议<a href="https://agree.xiaohongshu.com/h5/terms/ZXXY20260422001/-1">入口</a>目前只是前端壳，未将索引片段当作已核实原文。AI 内容创作不等同于无人值守账号操作。</p><p>来源：<a href="https://www.gov.cn/zhengce/zhengceku/202503/content_7014286.htm">中国政府网·生成合成内容标识办法</a>；<a href="https://playwright.dev/docs/api/class-browsertype#browser-type-launch-persistent-context">Playwright persistent context</a>；以及 research findings 中列出的 pinned GitHub source URLs（访问日 2026-11-15，版本 caveat 见上）。</p></div></section>
 <footer class="footer"><p>原创研究样张 · 仅供事实核对、设计比较与手动发布前检查。未执行自动发帖。</p></footer></main>
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="原图预览"><button class="btn close" type="button" data-close>关闭</button><img id="lightbox-image" alt=""></div>
-<script id="gallery-config" type="application/json">{"active":true,"goal":"xhs-study-switch-ac","platform":"web","categories":["style-a","style-b","style-c"],"cards":[{"category":"xhs","round":1,"id":"style-a","platform":"web"},{"category":"xhs","round":1,"id":"style-b","platform":"web"},{"category":"xhs","round":1,"id":"style-c","platform":"web"}]}</script>
+<script id="gallery-config" type="application/json">{"active":true,"goal":"xhs-study-switch-ac","platform":"web","categories":["style-a","style-b","style-c"],"cards":[{"category":"xhs","round":1,"id":"style-a","platform":"web","slideCount":5},{"category":"xhs","round":1,"id":"style-b","platform":"web","slideCount":5},{"category":"xhs","round":1,"id":"style-c","platform":"web","slideCount":5}],"storyVersion":2}</script>
 <script>
 const suites=[
-{id:'style-a',name:'Style A · 指尖减法',summary:'暖纸杂志五页：非对称 Bento 拆解分心，再把复杂规则折成指尖一个「开」。',title:'遥控器丢了，我给书房做减法',body:'空调遥控器丢了一个，想吹个风还得先找。\n我把书房空调绑到手边已有的无线按键上：\n长按一下，只负责开。\n\n没加单击调温、双击切模式。\n每次坐下来，其实只需要打开。\n\n好工具不是让我多做选择题，\n而是把复杂度藏起来，让这一下更确定。\n\n#智能家居 #减法设计 #书房 #HomeAssistant',count:5},
-{id:'style-b',name:'Style B · 手边的一点暖光',summary:'暖光微缩场景四页：AI底图只负责氛围，清楚的中文把「绕路」收束成一个长按。',title:'长按开空调，少一道选择题',body:'书房空调遥控器少了一个，找它总让我分心。\n后来我把空调绑到手边已有的无线按键上。\n长按，打开，就够了。\n\n常用温度和模式，不用每次重新选。\n我也没加一堆单击、双击的组合。\n\n舒服的不是规则有多复杂，\n而是不用低头看屏幕，就能把这件事结束。\n\n#智能家居 #书房日常 #减法设计 #生活小改动',count:4},
-{id:'style-c',name:'Style C · 找东西的小迷宫',summary:'奶油手绘四页：从找遥控器的错位分镜，穿过手机五步小迷宫，落到「长按，滴——」。',title:'我只想吹风，不想找遥控器',body:'想开书房空调，先找遥控器，再拿手机绕一圈。\n遥控器少了一个，我索性把空调绑到手边的按键。\n长按，只负责打开。\n\n不用单击调温，也不用双击切模式。\n每次坐下来，其实只需要开。\n\n手伸过去，听见「滴」，事情就结束了。\n原来做一点减法，也能让日常舒服一点。\n\n#智能家居 #书房日常 #减法设计 #生活小改动',count:4}
+  {
+    "id": "style-a",
+    "name": "Style A · 指尖减法",
+    "summary": "暖纸杂志五页：从装修搁置与 AI 起步，到睡前买多的测试键，再把米家五步收束成一个长按。",
+    "title": "买多的开关，替我做了减法",
+    "body": "最顺手的空调改动，来自买多的一颗开关。\n它先当书房测试键，后来才接住了找遥控器的痛点。\n\n装修时想装 NAS，HA、Node-RED 门槛高，一直搁置。\n2025 年，AI 帮我生成 YAML 和初步 Node-RED 骨架。\n实机测试、微调，还是得我自己来。\n\n为了睡前关灯、拉窗帘，我把无线开关买多了。\n一颗放书房桌上，连进 Node-RED 当测试键。\n\n夏天只剩一个共用遥控器，米家也总打断思路。\n掏手机→解锁→打开米家→找书房→点开机。\n在 Node-RED 里，把闲置长按接上了书房空调。\n\n常用温度和模式固定，关停由睡眠、离家场景收尾。\n每次坐下只需要「开」，长按，只负责打开。\nAI 让我能开始，减法让手边这一下更确定。\n\n#智能家居 #减法设计 #书房 #NodeRED",
+    "count": 5
+  },
+  {
+    "id": "style-b",
+    "name": "Style B · 手边的一点暖光",
+    "summary": "暖光微缩五页：旧 AI 场景陪着完整因果故事，讲清 AI 骨架、人工微调、睡前剩余开关与闲置长按。",
+    "title": "一颗测试键，后来管了空调",
+    "body": "这颗书房开关，本来不是为空调买的。\n绕了一圈才发现，买多的东西也能让日常更顺手。\n\n装修想装 NAS，但 HA 和 Node-RED 太难，我先搁置。\n到了 2025 年，AI 能生成 YAML、搭初步 Node-RED 骨架。\n设备上的实机测试和微调，没有省，仍然是我自己来。\n\n睡前想关灯、拉窗帘，就买了无线开关，结果买多。\n多的一颗落在书房桌上，在 Node-RED 里当测试键。\n\n夏天只剩一个共用遥控器，不想总去找。\n掏手机→解锁→打开米家→找书房→点开机，也挺分心。\n于是就在 Node-RED，把闲着的长按接上书房空调。\n\n温度、模式固定，睡眠和离家会收尾关停。\n长按，只负责打开，听见「滴」就结束。\nAI 帮我起步，好设计帮我少做选择。\n\n#智能家居 #书房日常 #减法设计 #生活小改动",
+    "count": 5
+  },
+  {
+    "id": "style-c",
+    "name": "Style C · 找东西的小迷宫",
+    "summary": "奶油手绘五页：画出装修高台阶、AI 文档与人工扳手、睡前到书房的分岔，再走完米家五步和长按出风。",
+    "title": "多买一颗，少绕一圈",
+    "body": "我只想吹个风，不想先找遥控器。\n后来解决这件事的，是桌边买多的一颗测试开关。\n\n装修那会儿想装 NAS，HA、Node-RED 门槛高，只好搁置。\n2025 年有了 AI，YAML 和初步 Node-RED 骨架先搭起来。\n剩下的实机测试、微调，是我自己一点点做的。\n\n为了睡前关灯、拉窗帘，无线开关不小心买多了。\n一颗留在书房桌上，接进 Node-RED 做测试键。\n\n夏天只剩一个共用遥控器，找它烦，用米家也绕。\n掏手机→解锁→打开米家→找书房→点开机。\n在 Node-RED 里，让闲置长按接上书房空调。\n\n常用温度、模式固定，睡眠／离家场景收尾关停。\n长按，只负责打开，不是开关切换。\nAI 降低了起步门槛，减法把复杂留在了背后。\n\n#智能家居 #书房日常 #减法设计 #NodeRED",
+    "count": 5
+  }
 ];
 const key='design-gallery:xhs-study-switch-ac', canonical=(id)=>JSON.stringify(['xhs',1,id]); let lastFocus=null;
 function read(){try{const raw=JSON.parse(localStorage.getItem(key)||'{}');return raw&&typeof raw==='object'&&!Array.isArray(raw)?raw:{};}catch{return {};}}

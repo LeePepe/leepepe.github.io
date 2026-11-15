@@ -4,22 +4,31 @@ const { createHash } = require('node:crypto');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const { buildCards } = require('./cards.cjs');
 const { prepareCard, platformFonts } = require('./card_geometry.cjs');
+const { assertFullStory } = require('./story_checks.cjs');
 
 async function render() {
-  const browser = await chromium.launch({ headless: true });
   const output = process.env.CARD_OUTPUT_DIR || path.join(__dirname, 'assets');
   const receipt = process.env.CARD_GEOMETRY_PATH || path.join(__dirname, 'card-geometry.json');
+  const blogFile = path.resolve(__dirname, '../../thoughts/study-switch-long-press-ac/index.html');
+  const blog = fs.readFileSync(blogFile);
+  assertFullStory(blog.toString('utf8').replace(/<[^>]+>/g, ''), 'Blog before card export');
+  const source = process.env.STORY_SOURCE_PATH ? fs.readFileSync(process.env.STORY_SOURCE_PATH) : null;
+  if (source) assertFullStory(source.toString('utf8'), 'canonical before export');
   const cards = buildCards();
+  const browser = await chromium.launch({ headless: true });
   const pages = [];
   const geometry = [];
   try {
-    // Validate the whole batch before overwriting any of the thirteen published exports.
+    // Validate the whole batch before overwriting any published exports.
     for (const card of cards) {
       const page = await browser.newPage({ viewport: { width: 1080, height: 1440 }, deviceScaleFactor: 1 });
       pages.push(page);
       const measured = await prepareCard(page, card);
       await platformFonts(page, measured);
       geometry.push(measured);
+    }
+    for (const style of ['a', 'b', 'c']) {
+      assertFullStory(geometry.filter(g => g.style === style).flatMap(g => g.children.map(t => t.text)).join('\n'), `visible suite ${style}`);
     }
     for (let i = 0; i < cards.length; i++) {
       const card = cards[i];
@@ -35,6 +44,9 @@ async function render() {
     }
     const document = {
       viewportWidth: 1080, viewportHeight: 1440, cardCount: cards.length,
+      storyVersion: 2,
+      sourceSha256: source ? createHash('sha256').update(source).digest('hex') : null,
+      blogSha256: createHash('sha256').update(blog).digest('hex'),
       overlapPolicy: 'Every pair of separate text blocks, across all parent groups, is checked using actual glyph Range rectangles AND DOM frames. Ranges within one paragraph are not separate blocks. Decorative SVG/image backgrounds are recorded as metadata, not sibling text.',
       children: geometry.map(card => ({
         id: card.id, topology: card.topology,

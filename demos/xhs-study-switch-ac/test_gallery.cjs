@@ -1,6 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { assertPostCopy } = require('./story_checks.cjs');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const base = process.argv[2] || process.env.GALLERY_URL || 'http://127.0.0.1:8769/demos/xhs-study-switch-ac/';
 const receiptDirectory = process.env.GALLERY_RECEIPT_DIR || __dirname;
@@ -9,11 +10,12 @@ async function ready(page) {
   const sizes = await page.evaluate(async () => {
     await document.fonts.ready;
     const images = [...document.querySelectorAll('.thumb img')];
-    images.forEach(image => { image.loading = 'eager'; });
-    await Promise.all(images.map(image => image.decode()));
+    const assets = [...document.querySelectorAll('img[src]')].filter(image => image.getAttribute('src'));
+    assets.forEach(image => { image.loading = 'eager'; });
+    await Promise.all(assets.map(image => image.decode()));
     return images.map(image => [image.naturalWidth, image.naturalHeight]);
   });
-  assert.equal(sizes.length, 13);
+  assert.equal(sizes.length, 15);
   assert.ok(sizes.every(([width, height]) => width === 1080 && height === 1440));
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'horizontal body overflow');
 }
@@ -28,6 +30,13 @@ async function ready(page) {
     page.on('pageerror', e => errors.push(e.message));
     await page.goto(base);
     await ready(page);
+    const copiedSuites = await page.evaluate(() => suites);
+    for (const suite of copiedSuites) {
+      assert.equal(suite.count, 5);
+      const body = await page.locator(`[data-suite="${suite.id}"] pre`).textContent();
+      assertPostCopy(suite.title, body, suite.id);
+    }
+    assert.equal(await page.locator('a[href="/thoughts/study-switch-long-press-ac/"]').count(), 1);
     await page.screenshot({ path: path.join(receiptDirectory, 'receipt-mobile.png'), fullPage: true });
     const notes = { 'style-a': 'A note <script> & 保留', 'style-b': 'B note 完整保留\n第二行' };
     for (const [id, note] of Object.entries(notes)) {
@@ -123,7 +132,7 @@ async function ready(page) {
     await ready(desktop);
     await desktop.screenshot({ path: path.join(receiptDirectory, 'receipt-desktop.png') });
     assert.deepEqual(errors, []);
-    console.log('Gallery: 375/1280px, decoded 13 PNGs, canonical hub/select/stars/notes, corrupt/denied storage, both copy paths, modal Tab/Escape/backdrop/focus passed.');
+    console.log('Gallery: 375/1280px, decoded 15 PNGs, canonical hub/select/stars/notes, corrupt/denied storage, both copy paths, modal Tab/Escape/backdrop/focus passed.');
   } finally {
     await browser.close();
   }

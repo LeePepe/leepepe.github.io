@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
 <title>为什么我给书房按键加了「长按开空调」 · Lee Pepe</title>
-<meta name="description" content="折腾智能家居最舒服的时刻，往往不是写出了多复杂的自动化规则，而是当家里的空调遥控器丢了一个，你顺手把空调连进去，给手边的书房按键加了一个「长按开空调」——因为每次坐下来，其实只需要开就行。">
+<meta name="description" content="装修想装 NAS，却因 HA / Node-RED 门槛高搁置；2025 年 AI 帮我生成 YAML 和初步骨架，实机测试、微调仍得自己来。为睡前关灯、拉窗帘买多的一颗无线开关，先放书房当 Node-RED 测试键；夏天只剩一个共用遥控器，米家又让人分心，于是在 Node-RED 把闲置长按接上空调。AI 让我能开始，减法让每次坐下只需一个确定的「开」。">
 <link rel="alternate" type="application/atom+xml" title="Lee Pepe · RSS 订阅" href="/feed.xml">
 <script src="/assets/theme.js"></script>
 <link rel="stylesheet" href="/assets/colors.css">
@@ -31,23 +31,36 @@
           <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t19">智能家居</a></li><li><a class="tag" href="/tags/#t13">书房</a></li><li><a class="tag" href="/tags/#t15">减法设计</a></li><li><a class="tag" href="/tags/#t7">Home Assistant</a></li></ul>
           <h1>为什么我给书房按键加了「长按开空调」</h1>
           <p class="lede">少一个遥控器，多一次顺手的肌肉记忆</p>
-          <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>约 900 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 3 分钟</span></div>
+          <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>约 1,600 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 4 分钟</span></div>
         </header>
         <div class="prose">
-<blockquote><p><strong>一句话结论</strong>：折腾智能家居最舒服的时刻，往往不是写出了多复杂的自动化规则，而是当家里的空调遥控器丢了一个，你顺手把空调连进去，给手边的书房按键加了一个「长按开空调」——因为每次坐下来，其实只需要开就行。</p></blockquote>
-<p>很多人问我智能家居到底有什么用的时候，脑子里想的往往是满屋子的传感器、复杂的判断条件，或者是走进房间灯光自动变色的炫技场景。</p>
-<p>但回头看我在家里真正每天都在用、而且觉得最值的一条改动，起因其实特别朴素：<strong>家里的空调遥控器丢了一个</strong>。</p>
-<h2 id="sec-1">一、从「找遥控器」到「顺手连上」<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
-<p>书房平时是我待得最久的地方。以前想开书房空调，得先在桌面上、沙发缝里或者卧室床头找那个共用的实体遥控器；要是实在找不到，就得拿起手机、解锁、点进 App、找到书房、再点开机。明明只是想吹个风，前戏却长到让人分心。</p>
-<p>因为少了一个遥控器，又实在需要开空调，我干脆把书房空调连进了家里的智能家居系统，顺手绑在了书房手边原本就有的那个无线按键上：</p>
+<blockquote><p><strong>一句话结论</strong>：装修想装 NAS，却因 HA / Node-RED 门槛高搁置；2025 年 AI 帮我生成 YAML 和初步骨架，实机测试、微调仍得自己来。为睡前关灯、拉窗帘买多的一颗无线开关，先放书房当 Node-RED 测试键；夏天只剩一个共用遥控器，米家又让人分心，于是在 Node-RED 把闲置长按接上空调。AI 让我能开始，减法让每次坐下只需一个确定的「开」。</p></blockquote>
+<p>现在坐进书房，想开空调时，我只要把手伸向桌边的无线按键，长按一下，听见「滴」的一声出风就行。</p>
+<p>这颗开关不是专门为了空调买的。它先是一颗买多了的开关，后来当了测试键，最后才接住了一个很小、但每天都会碰到的生活痛点。往前倒一倒，事情还得从装修时说起。</p>
+<h2 id="sec-1">一、装修时搁置的想法，到了 2025 年才开始动手<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
+<p>装修那会儿，我就想装台 NAS，顺便折腾一下全屋智能家居。可真去看 Home Assistant（HA）和 Node-RED，发现要弄懂的东西不少。想法很热闹，上手门槛也确实高，于是一直搁置着。</p>
+<p>后来有了 AI，最明显的变化不是家里突然全自动了，而是我终于有办法先迈出第一步：<strong>让 AI 帮我生成 YAML 配置和 Node-RED 流。</strong></p>
+<p>不过，2025 年那会儿，AI 还不算完全成熟。它能帮我搭出初步的 Node-RED 骨架，但离在家里真正用起来，还隔着不少实际问题。把设备接上后，实机测试、检查动作对不对、再一点点微调，还是得我自己动手。</p>
+<p>对我来说，AI 降低的是 NAS、HA、Node-RED 的折腾门槛，不是把测试和判断都替我做完。先有一份能改的骨架，比盯着空白配置不知道从哪儿开始，已经轻松很多。</p>
+<h2 id="sec-2">二、为了睡前关灯、拉窗帘，结果买多了一颗开关<a class="anchor" href="#sec-2" aria-label="本节链接">#</a></h2>
+<p>当时我想做一个睡前「一键入眠」的动作：顺手关灯、拉窗帘，别躺下了还得再起身折腾。所以买了无线开关，结果不小心买多了。</p>
+<p>多出来的那一颗，我就随手放在书房桌上，连进 Node-RED，当平时调试用的测试键。改了流，手边按一按，看看实际设备有没有按预期动作，挺方便。</p>
+<p>所以，它一开始的工作是<strong>书房测试键</strong>，不是空调遥控器的替代品。只是碰巧多出来，又碰巧一直放在我手边，后面的改动才有了一个顺手的落点。</p>
+<h2 id="sec-3">三、夏天只剩一个共用遥控器，闲着的长按正好派上用场<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
+<p>到了夏天，书房待久了总想开空调。偏偏家里的空调遥控器丢了一个，只剩一个共用的。想吹个风，得先在桌面、沙发缝或者卧室床头找它。</p>
+<p>我也试过用米家 App 开。手机当然能做到，但每次都得走完这几步：</p>
+<blockquote><p><strong>掏手机 → 解锁 → 打开米家 → 找书房 → 点开机。</strong></p></blockquote>
+<p>明明只是想让书房凉快一点，注意力却先被这串操作带走了。前戏不是什么大麻烦，但确实很打断思路。</p>
+<p>后来我看着桌边那颗多出来的测试开关，发现它的<strong>「长按」动作正好闲着</strong>。既然开关已经连在 Node-RED 里，干脆就在那里把这个闲置长按接上书房空调。</p>
 <blockquote><p><strong>长按一下书房按键，直接把空调打开。</strong></p></blockquote>
-<h2 id="sec-2">二、「而且每次只需要开就行」<a class="anchor" href="#sec-2" aria-label="本节链接">#</a></h2>
-<p>在绑这个按键的时候，我也没给它设计什么「单击调温、双击切模式、长按开关切换」的复杂组合拳，就只做了一件事：<strong>长按 = 开空调</strong>。</p>
-<p>原因很简单：<strong>我每次坐进书房按它的时候，其实只需要「开」就行。</strong></p>
-<ul><li>书房常用的温度和模式本来就是固定的，根本不需要每次坐下都重新调一遍 24℃ 还是 25℃；</li><li>至于「关空调」，人离开书房、或者全屋睡眠/离家关停的时候自然会一起收尾，平时在书房里几乎没有「专门长按一下去关它」的场景；</li><li>一旦确定「每次只需要开」，这个按键就变成了一个零心智负担的纯正反馈动作：不用看屏幕、不用猜当前是什么状态，手伸过去长按一下，听到空调「滴」的一声出风，事情就结束了。</li></ul>
-<h2 id="sec-3">三、一点感悟：好工具是用来消灭「找东西」的<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
-<p>这件事让我对做工具和做设计多了一层体会：</p>
-<ol><li><strong>真痛点往往长在最不起眼的生活裂缝里</strong>：不是为了“全屋智能化”才去写规则，而是因为“遥控器丢了一个，但我现在就要开空调”。</li><li><strong>最高频的操作，应该砍掉一切分支选项</strong>：如果一个动作 99% 的时候都只是为了「打开」，那就不要逼自己在操作的那一秒去做选择题。</li><li><strong>把复杂度藏在背后，把确定性留在指尖</strong>：不管背后连的是绿联 NAS、Home Assistant 还是 Node-RED，最后落在书房桌边的，就只是那一下不用低头看的「长按」。</li></ol>
+<p>这样每次坐下，不用低头看屏幕，也不用先去找遥控器。手伸过去长按，听到空调「滴」的一声，风出来，事情就结束了。用的还是原先桌边那颗测试开关，并不是为了空调再买一颗。</p>
+<h2 id="sec-4">四、每次只需要「开」，就别让这一秒变成选择题<a class="anchor" href="#sec-4" aria-label="本节链接">#</a></h2>
+<p>给这个动作收尾时，我没有加上单击调温、双击切模式之类的组合。也没有把长按做成开关切换。最后只保留了一件事：<strong>长按 = 开空调。</strong></p>
+<p>因为每次坐进书房按它，我其实只需要「开」就行。书房常用的温度和模式本来就固定，不必每次重新选择；以前提到的 24℃ 或 25℃只是举例，不是这里公开的一套实际温度配置。</p>
+<p>至于关空调，人离开书房，或者已有的睡眠、离家关停场景，会一起收尾。这是在描述我家的使用方式，不是附上一份可以直接部署的自动化配置。</p>
+<p>这一路折腾下来，我反而更确定了三件事：</p>
+<ol><li><strong>AI 让我能开始，但实际设备还是得自己测。</strong> 它给了我 YAML 和初步流骨架，后面的实机测试、微调不能省。</li><li><strong>真痛点长在生活裂缝里，多余的东西也能接住它。</strong> 一颗为睡前场景买多的测试开关，最后解决的是「现在就想开空调，可遥控器又得找」。</li><li><strong>最高频的意图，应该砍掉分支选项。</strong> 原来用「99%」形容只想打开，是口语修辞，不是测量数据。既然常常只是想开，就没必要在按下去的那一秒再做一道选择题。</li></ol>
+<p>不管背后是 NAS、Home Assistant 还是 Node-RED，舒服的不是规则有多复杂，而是复杂度留在背后，确定性落在手边那颗多出来的开关上。少一个遥控器，多一次顺手的肌肉记忆。</p>
         </div>
         
         <div class="post-end"><a class="btn btn--secondary" href="/thoughts/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回思考与感悟</a></div>
@@ -55,7 +68,7 @@
     </div>
     <aside class="toc" aria-label="本文目录">
       <p class="section-label">目录</p>
-      <ol><li class="l2"><a href="#sec-1" aria-current="true">一、从「找遥控器」到「顺手连上」</a></li><li class="l2"><a href="#sec-2">二、「而且每次只需要开就行」</a></li><li class="l2"><a href="#sec-3">三、一点感悟：好工具是用来消灭「找东西」的</a></li></ol>
+      <ol><li class="l2"><a href="#sec-1" aria-current="true">一、装修时搁置的想法，到了 2025 年才开始动手</a></li><li class="l2"><a href="#sec-2">二、为了睡前关灯、拉窗帘，结果买多了一颗开关</a></li><li class="l2"><a href="#sec-3">三、夏天只剩一个共用遥控器，闲着的长按正好派上用场</a></li><li class="l2"><a href="#sec-4">四、每次只需要「开」，就别让这一秒变成选择题</a></li></ol>
     </aside>
   </div>
 </main>

@@ -24,13 +24,76 @@
       "whitespace": "open",
       "glass_geometry": "compact",
       "archetype": "VS-008",
-      "content": "voxpocket-holistic-redesign key screen · context",
+      "content": "Borderless Luminance Stream + Inline Spring Drawer",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "58cf437a665b24106ba3084d0bcbb5749d881274a6c28eefb97b15d7e0ecb3a8",
-      "summary": "用单焦点 Hero 待办突出当前行动，其余收件箱折叠到次级区域，减少初始决策噪音，用于双待办执行场景。"
+      "prompt_sha256": "78c3889dd458f501a9973117a1937e4ccc585eee3477eecb88075d629ffe918b",
+      "title": "Borderless Luminance Stream + Inline Spring Drawer",
+      "summary": "以无边框亮度流承载连续待办，行内弹簧抽屉把预览、子项和编辑动作留在同一条执行河流。",
+      "palette": {
+        "light": {
+          "bg": "#F2F6F7",
+          "surface": "#F8FAFB",
+          "focus": "#FFFFFF",
+          "ink": "#203840",
+          "muted": "#52656D",
+          "accent": "#176F89",
+          "statusTodo": "#176F89",
+          "statusInprogress": "#875409",
+          "statusDone": "#226847",
+          "priorityP0": "#AC3D36",
+          "priorityP1": "#875409",
+          "priorityP2": "#52656D"
+        },
+        "dark": {
+          "bg": "#14232B",
+          "surface": "#21343F",
+          "focus": "#2D4552",
+          "ink": "#F0F7FA",
+          "muted": "#B5C8D0",
+          "accent": "#91D9ED",
+          "statusTodo": "#91D9ED",
+          "statusInprogress": "#F5C879",
+          "statusDone": "#9AD9B6",
+          "priorityP0": "#FFA49C",
+          "priorityP1": "#F5C879",
+          "priorityP2": "#B5C8D0"
+        }
+      },
+      "geometry": {
+        "mobile_reference": [
+          390,
+          844
+        ],
+        "desktop_reference": [
+          1280,
+          800
+        ],
+        "mobile_gutter_px": 24,
+        "summary_min_px": 112,
+        "row_padding_px": 16,
+        "row_gap_px": 12,
+        "atom_gap_px": 6,
+        "desktop_breakpoint_px": 900,
+        "desktop_reading_max_px": 760,
+        "capsule_mobile_width_px": 342,
+        "capsule_desktop_max_px": 600,
+        "single_scroll_region": "main",
+        "drawer_indents_px": {
+          "mobile": 44,
+          "desktop": 32,
+          "narrow": 0
+        }
+      },
+      "normalized_substantive_axes": {
+        "grouping": "ungrouped-fixture-order",
+        "hierarchy": "modest-first-P0-no-hero",
+        "folding": "indented-single-stream-grid-track",
+        "spatial_layout": "one-centered-borderless-reading-river",
+        "content_topology": "ordered-record-list-with-preview-and-drawer"
+      }
     },
     {
       "id": "v02",
@@ -40,13 +103,77 @@
       "whitespace": "balanced",
       "glass_geometry": "compact",
       "archetype": "VS-007",
-      "content": "voxpocket-holistic-redesign key screen · recovery",
+      "content": "P0 Hero Focus Card + Priority Lanes",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "a1ecc752d0f46d093ad89275f48b261556cc68720161e94d6110d65f195aa77b",
-      "summary": "以无边框亮度流展示任务进展，底部玻璃捕获单沿屏幕边缘随时接收新待办，用于双待办执行场景。"
+      "prompt_sha256": "e14a937a9764a86d1a4f8b5e96bb24322f96ac2c0084861608f75f5d97ea933a",
+      "title": "P0 Hero Focus Card + Priority Lanes",
+      "summary": "以 P0 Hero 聚焦最高优先级，再把真实任务分入 P0、P1、P2 优先级泳道，保持每条记录可展开。",
+      "palette": {
+        "light": {
+          "bg": "#F5F0E7",
+          "surface": "#FCF8F0",
+          "focus": "#FFFDF7",
+          "ink": "#392F2A",
+          "muted": "#756253",
+          "accent": "#8E4D2B",
+          "statusTodo": "#365E88",
+          "statusInprogress": "#8C5718",
+          "statusDone": "#376747",
+          "priorityP0": "#AD3C35",
+          "priorityP1": "#8C5718",
+          "priorityP2": "#756253"
+        },
+        "dark": {
+          "bg": "#171513",
+          "surface": "#24201C",
+          "focus": "#332B25",
+          "ink": "#FAF2E7",
+          "muted": "#D1BBA5",
+          "accent": "#FFC39B",
+          "statusTodo": "#AECFFF",
+          "statusInprogress": "#F5CB86",
+          "statusDone": "#A9DDB2",
+          "priorityP0": "#FFA89E",
+          "priorityP1": "#F5CB86",
+          "priorityP2": "#D1BBA5"
+        }
+      },
+      "geometry": {
+        "mobile_reference": [
+          390,
+          844
+        ],
+        "desktop_reference": [
+          1280,
+          800
+        ],
+        "mobile_gutter_px": 20,
+        "hero_min_px": 208,
+        "hero_padding_px": 24,
+        "hero_radius_px": 24,
+        "summary_min_px": 120,
+        "row_padding_px": 16,
+        "row_gap_px": 12,
+        "group_gap_px": 32,
+        "desktop_breakpoint_px": 1000,
+        "desktop_board_max_px": 1120,
+        "desktop_lane_gap_px": 24,
+        "hero_interior_column_min_px": 280,
+        "hero_interior_gap_px": 32,
+        "capsule_mobile_width_px": 350,
+        "capsule_desktop_max_px": 560,
+        "single_scroll_region": "main"
+      },
+      "normalized_substantive_axes": {
+        "grouping": "actual-priority-P0-P1-P2",
+        "hierarchy": "unique-serif-P0-hero-in-own-group",
+        "folding": "hero-lower-edge-and-lane-card-interior",
+        "spatial_layout": "spanning-hero-top-and-three-lower-lanes",
+        "content_topology": "priority-groups-own-record-articles-and-preview-footers"
+      }
     },
     {
       "id": "v03",
@@ -56,13 +183,79 @@
       "whitespace": "open",
       "glass_geometry": "lifted",
       "archetype": "VS-008",
-      "content": "voxpocket-holistic-redesign key screen · next-action",
+      "content": "#VoxPocket/#AI/#iOS Swimlane Matrix + Action Tree",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "91a815ab02e20f8ef9c83b858cd97da85983e722c8111608f6a99567cb1f59a0",
-      "summary": "把语音拆解成可展开的行动树，父任务与子步骤在同一条结构中逐层确认，用于双待办执行场景。"
+      "prompt_sha256": "bb277f87b8bbc4879b376d5cf3f57128dc7422e6f00b8fa98ec4f0536e556537",
+      "title": "#VoxPocket/#AI/#iOS Swimlane Matrix + Action Tree",
+      "summary": "按 #VoxPocket、#AI、#iOS 三个真实区域组织泳道，任务在稳定的行动树中逐层展开与导出。",
+      "palette": {
+        "light": {
+          "bg": "#EDF6F2",
+          "surface": "#F6FCF9",
+          "focus": "#FFFFFF",
+          "ink": "#183D35",
+          "muted": "#486D63",
+          "accent": "#006F58",
+          "statusTodo": "#28638D",
+          "statusInprogress": "#88530D",
+          "statusDone": "#166A49",
+          "priorityP0": "#AA3A43",
+          "priorityP1": "#88530D",
+          "priorityP2": "#486D63"
+        },
+        "dark": {
+          "bg": "#151C33",
+          "surface": "#202C45",
+          "focus": "#2D3E59",
+          "ink": "#F1F7FF",
+          "muted": "#BBCCE2",
+          "accent": "#80E0C6",
+          "statusTodo": "#AFD5FF",
+          "statusInprogress": "#F6CA82",
+          "statusDone": "#97E0BA",
+          "priorityP0": "#FFA7B4",
+          "priorityP1": "#F6CA82",
+          "priorityP2": "#BBCCE2"
+        }
+      },
+      "geometry": {
+        "mobile_reference": [
+          390,
+          844
+        ],
+        "desktop_reference": [
+          1280,
+          800
+        ],
+        "mobile_gutter_px": 18,
+        "summary_min_px": 128,
+        "row_padding_px": 16,
+        "row_gap_px": 16,
+        "atom_gap_px": 6,
+        "selector_min_height_px": 44,
+        "selector_to_lane_gap_px": 24,
+        "branch_indent_px": 24,
+        "narrow_branch_indent_px": 12,
+        "guide_width_px": 1,
+        "elbow_px": 12,
+        "child_row_min_px": 56,
+        "desktop_breakpoint_px": 1040,
+        "desktop_matrix_max_px": 1120,
+        "desktop_lane_gap_px": 24,
+        "capsule_mobile_width_px": 354,
+        "capsule_desktop_max_px": 680,
+        "single_scroll_region": "main"
+      },
+      "normalized_substantive_axes": {
+        "grouping": "first-recognized-area-VoxPocket-AI-iOS",
+        "hierarchy": "one-focused-root-among-equal-area-lanes",
+        "folding": "nested-downward-action-tree-with-preview-branch",
+        "spatial_layout": "three-area-grid-or-mobile-active-lane",
+        "content_topology": "area-headings-and-stable-record-bank-with-nested-children"
+      }
     },
     {
       "id": "v04",
@@ -72,114 +265,93 @@
       "whitespace": "tight",
       "glass_geometry": "lifted",
       "archetype": "VS-007",
-      "content": "voxpocket-holistic-redesign key screen · timeline",
+      "content": "r3/v02 Airy Sister Canvas + Floating Glass Subtask Pod",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "6a113439316886ada3ba294bd61340ce7559f084be0cfe7b066be85df1fd2990",
-      "summary": "用分段玻璃镜头切换任务视图，让项目、优先级和完成状态共享一块可筛选画布，用于双待办执行场景。"
-    },
-    {
-      "id": "v05",
-      "p0": "timeline",
-      "axis_y": "segmented-lens",
-      "layout": "hero-inline",
-      "whitespace": "open",
-      "glass_geometry": "rail",
-      "archetype": "VS-006",
-      "content": "voxpocket-holistic-redesign key screen · timeline",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v05-prompt.md",
-      "prompt_sha256": "7fe5ff6a82d9c5bad68d3c4c931dd852bceeb38d5d64c6f40beb207045929d3c",
-      "summary": "将待办堆叠成可滑动的口袋卡片，卡片层级同时表达紧急度与后续处理顺序，用于双待办执行场景。"
-    },
-    {
-      "id": "v06",
-      "p0": "next-action",
-      "axis_y": "accordion",
-      "layout": "hero-inline",
-      "whitespace": "tight",
-      "glass_geometry": "compact",
-      "archetype": "VS-006",
-      "content": "voxpocket-holistic-redesign key screen · next-action",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v06-prompt.md",
-      "prompt_sha256": "12251723eee0f76ca86b783f32e914f603f5b67cf47286d4db8f12346a99d42c",
-      "summary": "采用编辑风格的大字清单，把任务标题和少量元数据排成易扫读的纵向节奏，用于双待办执行场景。"
-    },
-    {
-      "id": "v07",
-      "p0": "recovery",
-      "axis_y": "swwallet",
-      "layout": "hero-inline",
-      "whitespace": "open",
-      "glass_geometry": "wide",
-      "archetype": "VS-006",
-      "content": "voxpocket-holistic-redesign key screen · recovery",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v07-prompt.md",
-      "prompt_sha256": "be816debba0de9c397ffb8fc04dd15b251e797619098d8ac9c6027863a767a6d",
-      "summary": "按项目路由组织 AI 执行矩阵，让每条任务都带着目标、负责人和下一步动作进入处理流，用于双待办执行场景。"
-    },
-    {
-      "id": "v08",
-      "p0": "timeline",
-      "axis_y": "accordion",
-      "layout": "hero-top",
-      "whitespace": "balanced",
-      "glass_geometry": "compact",
-      "archetype": "VS-005",
-      "content": "voxpocket-holistic-redesign key screen · timeline",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v08-prompt.md",
-      "prompt_sha256": "dd02e302cc8f1671bd62650d9115037bb408f6ba3653f427c09bd6519b2f98aa",
-      "summary": "把任务按今晨与今晚的时间视野分组，帮助用户用简短 briefing 安排一天的执行顺序，用于双待办执行场景。"
-    },
-    {
-      "id": "v09",
-      "p0": "next-action",
-      "axis_y": "segmented-lens",
-      "layout": "hero-top",
-      "whitespace": "balanced",
-      "glass_geometry": "wide",
-      "archetype": "VS-005",
-      "content": "voxpocket-holistic-redesign key screen · next-action",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v09-prompt.md",
-      "prompt_sha256": "4b1882a713495cef905ff6b9fa3e87817f848046a265ebd59e2859b14c5945f2",
-      "summary": "以主列表和右侧检查器组成双栏同步画布，选中任务即可在旁边查看并编辑完整细节，用于双待办执行场景。"
-    },
-    {
-      "id": "v10",
-      "p0": "context",
-      "axis_y": "swwallet",
-      "layout": "hero-top",
-      "whitespace": "balanced",
-      "glass_geometry": "rail",
-      "archetype": "VS-005",
-      "content": "voxpocket-holistic-redesign key screen · context",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v10-prompt.md",
-      "prompt_sha256": "6f50e5fe919e246f797f5ddd74a491b67e3e59127c3f410b728a96238940e42c",
-      "summary": "延续 r3/v02 的姐妹舞台，用更宽的捕获区和分层待办区把录音输入快速落成行动项，用于双待办执行场景。"
+      "prompt_sha256": "160f028fcff734490a375bc7ba4d49b0771f3ed155565f7672b7ffe273eca37e",
+      "title": "r3/v02 Airy Sister Canvas + Floating Glass Subtask Pod",
+      "summary": "用宽松留白的姐妹画布承载每行任务，在行内保留悬浮玻璃子任务舱而不复制录音页面。",
+      "palette": {
+        "light": {
+          "bg": "#F0F7FA",
+          "surface": "#F8FCFD",
+          "focus": "#FFFFFF",
+          "ink": "#173143",
+          "muted": "#4D6679",
+          "accent": "#096D88",
+          "statusTodo": "#096D88",
+          "statusInprogress": "#865209",
+          "statusDone": "#246B48",
+          "priorityP0": "#AC3A42",
+          "priorityP1": "#865209",
+          "priorityP2": "#4D6679"
+        },
+        "dark": {
+          "bg": "#102634",
+          "surface": "#193B4C",
+          "focus": "#255064",
+          "ink": "#EFFAFF",
+          "muted": "#B5D4E2",
+          "accent": "#8DDFEC",
+          "statusTodo": "#8DDFEC",
+          "statusInprogress": "#FFCE88",
+          "statusDone": "#A2E2BC",
+          "priorityP0": "#FFA7B0",
+          "priorityP1": "#FFCE88",
+          "priorityP2": "#B5D4E2"
+        }
+      },
+      "geometry": {
+        "mobile_reference": [
+          390,
+          844
+        ],
+        "desktop_reference": [
+          1280,
+          800
+        ],
+        "mobile_gutter_px": 24,
+        "summary_min_px": 156,
+        "first_summary_air_px": 32,
+        "article_gap_px": 32,
+        "metadata_gap_px": 8,
+        "pod_radius_px": 28,
+        "pod_rim_margin_px": 10,
+        "narrow_rim_margin_px": 6,
+        "pod_content_padding_px": 16,
+        "pod_top_reserved_px": 10,
+        "pod_bottom_reserved_px": 16,
+        "next_summary_clearance_min_px": 20,
+        "pod_lift_max_px": 4,
+        "desktop_breakpoint_px": 1000,
+        "desktop_canvas_max_px": 960,
+        "desktop_sentence_and_pod_max_px": 800,
+        "desktop_article_gap_px": 40,
+        "pod_column_min_px": [
+          300,
+          280
+        ],
+        "pod_column_gap_px": 24,
+        "capsule_mobile_width_px": 342,
+        "capsule_desktop_max_px": 640,
+        "single_scroll_region": "main",
+        "no_fixed_or_body_portaled_pod": true
+      },
+      "normalized_substantive_axes": {
+        "grouping": "ungrouped-fixture-order",
+        "hierarchy": "broad-native-sentence-rhythm-no-card",
+        "folding": "reserved-row-owned-lifted-functional-pod",
+        "spatial_layout": "wide-airy-canvas-with-centered-row-local-pod",
+        "content_topology": "sibling-articles-own-preview-and-shell-solid-island-cradles"
+      }
     }
   ],
   "prompt_contract": {
     "schema": "design-prompts/v1",
     "source": "provided",
-    "count": 10
-  }
+    "count": 4
+  },
+  "candidate_count": 4
 }

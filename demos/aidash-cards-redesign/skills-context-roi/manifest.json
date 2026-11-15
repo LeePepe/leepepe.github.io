@@ -6,7 +6,7 @@
   "platform": "desktop",
   "frame_mode": "macos",
   "category": "skills-context-roi",
-  "category_title": "📐 Skills 效能与上下文 ROI Card (10套)",
+  "category_title": "📐 Skills 效能与上下文 ROI Card (4套)",
   "frame": {
     "width": 1280,
     "height": 800
@@ -18,63 +18,67 @@
   "variants": [
     {
       "id": "v01",
-      "p0": "context",
-      "axis_y": "accordion",
+      "p0": "inline-bifurcation-pockets",
+      "axis_y": "hover-brief+click-drawer",
       "layout": "hero-center",
       "whitespace": "open",
       "glass_geometry": "compact",
-      "archetype": "VS-008",
-      "content": "aidash-cards-redesign key screen · context",
+      "archetype": "VS-002",
+      "content": "瑞士米白/岩灰 6 层 Skill 抽屉卡（0 S编号 · 5大真实指标），Hover 浮现诊断与高频 Reference 快览，点击在行下直接拉开三次贝塞尔分岔流。",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "62dcd96f38f0118349d3eefb91bfceaf9cdf6dacb1ffa75462c07dd0136f156d"
+      "prompt_sha256": "62dcd96f38f0118349d3eefb91bfceaf9cdf6dacb1ffa75462c07dd0136f156d",
+      "title": "瑞士行内拉出分岔袋 · Inline Pull-Out Bifurcation Pockets"
     },
     {
       "id": "v02",
-      "p0": "recovery",
-      "axis_y": "segmented-lens",
+      "p0": "sankey-studio-split",
+      "axis_y": "hover-brief+click-drawer",
       "layout": "hero-bottom",
       "whitespace": "balanced",
       "glass_geometry": "compact",
       "archetype": "VS-007",
-      "content": "aidash-cards-redesign key screen · recovery",
+      "content": "左侧 38% 紧凑色彩状态 Skill 抽屉轨（Hover 显诊断摘要），右侧 62% 全高交互式流光三次贝塞尔桑基画布 + 脚本 P95 与 Eval 拦截明细表。",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "05d72357df7b118f20bdff5e7a4db49e0ab6cbe4d47af548b97f27c62bfc0b83"
+      "prompt_sha256": "05d72357df7b118f20bdff5e7a4db49e0ab6cbe4d47af548b97f27c62bfc0b83",
+      "title": "38%/62% 桑基分岔演播室 · Master-Detail Sankey Studio"
     },
     {
       "id": "v03",
-      "p0": "next-action",
-      "axis_y": "swwallet",
+      "p0": "top-flow-bento-drawers",
+      "axis_y": "hover-brief+click-drawer",
       "layout": "hero-center",
       "whitespace": "open",
       "glass_geometry": "lifted",
-      "archetype": "VS-008",
-      "content": "aidash-cards-redesign key screen · next-action",
+      "archetype": "VS-005",
+      "content": "上半屏全仓 Prompt→SKILL.md→L1 References/Scripts 贝塞尔流向总览舞台，下半屏 2×3 状态抽屉方卡，Hover 显简介并联动高亮上方流带。",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "06e585ee7480a1baebbf459ca7b9ea6813e38e6356e97a003300c380fd8921b1"
+      "prompt_sha256": "06e585ee7480a1baebbf459ca7b9ea6813e38e6356e97a003300c380fd8921b1",
+      "title": "顶部全仓分岔舞台 + 2×3 磁贴 · Top Flow + Bento Drawers"
     },
     {
       "id": "v04",
-      "p0": "timeline",
-      "axis_y": "swwallet",
+      "p0": "governance-triage-drawers",
+      "axis_y": "hover-brief+click-drawer",
       "layout": "hero-bottom",
       "whitespace": "tight",
       "glass_geometry": "lifted",
-      "archetype": "VS-007",
-      "content": "aidash-cards-redesign key screen · timeline",
+      "archetype": "VS-008",
+      "content": "顶部半开告警抽屉置顶「30d 零调用僵尸 Skill」与「remotion-video.md 0 命中冗余」，下方双栏排列高 ROI 主力 Skill 抽屉卡与底部贝塞尔分岔舱。",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "29490102f0545e2245bf8ed2928f0f10bf0449ad071b82ccbae8f176a2410b2b"
+      "prompt_sha256": "29490102f0545e2245bf8ed2928f0f10bf0449ad071b82ccbae8f176a2410b2b",
+      "title": "红黑榜治理优先看板 · Governance-First Triage Drawers"
     }
   ],
   "prompt_contract": {

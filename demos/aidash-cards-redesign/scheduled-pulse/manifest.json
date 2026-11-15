@@ -6,7 +6,7 @@
   "platform": "desktop",
   "frame_mode": "macos",
   "category": "scheduled-pulse",
-  "category_title": "⏱️ 定时脉搏 Card (10套)",
+  "category_title": "⏱️ 定时脉搏 Card (4套)",
   "frame": {
     "width": 1280,
     "height": 800
@@ -18,63 +18,67 @@
   "variants": [
     {
       "id": "v01",
-      "p0": "context",
-      "axis_y": "accordion",
+      "p0": "stacked-paper-pockets",
+      "axis_y": "hover-brief+click-drawer",
       "layout": "hero-center",
       "whitespace": "open",
       "glass_geometry": "compact",
-      "archetype": "VS-008",
-      "content": "aidash-cards-redesign key screen · context",
+      "archetype": "VS-002",
+      "content": "暖白矿物纸感 6 层档案袋 + 左侧 6px 发光状态色脊，Hover 向上微抽 6px 浮现一句话执行摘要，点击拉开双栏内胆详情抽屉。",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "011c7fd71ad1db9e496f401cee3453ed628fe1d062ebde5e22e46ece0856e51a"
+      "prompt_sha256": "011c7fd71ad1db9e496f401cee3453ed628fe1d062ebde5e22e46ece0856e51a",
+      "title": "矿纸叠袋抽屉 · Stacked Paper-Pocket Drawers"
     },
     {
       "id": "v02",
-      "p0": "recovery",
-      "axis_y": "segmented-lens",
+      "p0": "bento-glass-pods",
+      "axis_y": "hover-brief+click-drawer",
       "layout": "hero-bottom",
       "whitespace": "balanced",
       "glass_geometry": "compact",
-      "archetype": "VS-007",
-      "content": "aidash-cards-redesign key screen · recovery",
+      "archetype": "VS-004",
+      "content": "2 列 × 3 行通透毛玻璃方舱网格（带状态色环境光晕），Hover 在舱内展开简介浮层，点击在底部拉开全宽深度汇报抽屉舱。",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "1c28af6cba34ba633ef0c08fca839b831ea8c6bf46a718496385a48a38a00d19"
+      "prompt_sha256": "1c28af6cba34ba633ef0c08fca839b831ea8c6bf46a718496385a48a38a00d19",
+      "title": "2×3 极光毛玻璃舱 · Bento Glass Pods + Bottom Stage"
     },
     {
       "id": "v03",
-      "p0": "next-action",
-      "axis_y": "swwallet",
+      "p0": "split-drawer-workbench",
+      "axis_y": "hover-brief+click-drawer",
       "layout": "hero-center",
       "whitespace": "open",
       "glass_geometry": "lifted",
-      "archetype": "VS-008",
-      "content": "aidash-cards-redesign key screen · next-action",
+      "archetype": "VS-007",
+      "content": "左侧 42% 固定 6 卡状态渐变抽屉轨（Hover 即显一句话结论），点击平滑切换右侧 58% 常驻时间轴、五阶段瀑布与终端日志舞台。",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "019b0a32e665d823efcd83220943b21a08dc10dbcdf1ac3437baa3855afc4e81"
+      "prompt_sha256": "019b0a32e665d823efcd83220943b21a08dc10dbcdf1ac3437baa3855afc4e81",
+      "title": "42%/58% 主从石墨工作台 · Split Drawer Workbench"
     },
     {
       "id": "v04",
-      "p0": "timeline",
-      "axis_y": "swwallet",
+      "p0": "exception-cadence-lanes",
+      "axis_y": "hover-brief+click-drawer",
       "layout": "hero-bottom",
       "whitespace": "tight",
       "glass_geometry": "lifted",
-      "archetype": "VS-007",
-      "content": "aidash-cards-redesign key screen · timeline",
+      "archetype": "VS-003",
+      "content": "顶部将失败/慢任务（珊瑚红/琥珀橙）置顶半开预警，下方分「高频分钟级守护」与「每日定时批处理」双栏排列健康抽屉卡。",
       "selected": false,
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "8d7d1c18c8eef4cf09207a3ce5b2ae0c2426ba01069fa704956008a97e83a80a"
+      "prompt_sha256": "8d7d1c18c8eef4cf09207a3ce5b2ae0c2426ba01069fa704956008a97e83a80a",
+      "title": "异常置顶预警 + 快慢双频分栏 · Exception Hero + Cadence Lanes"
     }
   ],
   "prompt_contract": {

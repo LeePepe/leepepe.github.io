@@ -867,7 +867,7 @@ def build_home_page(
       </section>
       <section class="card">
         <h2>专栏</h2>
-        <p>「求知」用生活教具拆穿技术原理（{len(learn_items)} 篇）；「思考」记录日常工具与生活随笔（{len(thought_items)} 篇）；「素材库」汇总 40 张设计卡与 8 张实测截图。</p>
+        <p>「求知」用生活教具拆穿技术原理（{len(learn_items)} 篇）；「思考」记录日常工具与生活随笔（{len(thought_items)} 篇）；「素材库」汇总 40 张设计卡、8 组色彩样板与 17 个交互舞台。</p>
         <div class="links">
           <a class="btn btn--secondary" href="/learn/">求知笔记 ({len(learn_items)})</a>
           <a class="btn btn--secondary" href="/thoughts/">思考与感悟 ({len(thought_items)})</a>

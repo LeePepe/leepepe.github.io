@@ -14,6 +14,16 @@ import build_site
 
 
 class DemoTests(unittest.TestCase):
+    def test_home_sidebar_describes_live_vault_without_retired_screenshots(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with patch.object(build_site, 'REPO_ROOT', root):
+                build_site.build_home_page([], [], [], [], {})
+            source = (root / 'index.html').read_text()
+            self.assertNotIn('实测截图', source)
+            self.assertIn('色彩样板', source)
+            self.assertIn('交互舞台', source)
+
     def test_scans_active_gallery_metadata_not_helpers_or_nested_rounds(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

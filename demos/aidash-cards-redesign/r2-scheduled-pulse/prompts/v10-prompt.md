@@ -1,0 +1,32 @@
+# v10 — 一键工作台 · Command-focus stage
+
+Status: Designer-approved for Stage 2; this fresh R2 command-stage candidate authorizes only existing local card interactions.
+Target: desktop/macOS 1280×800 in the framed Scheduled Pulse gallery, not a terminal or new application route.
+Coordinates: VS-003 / CL-008 / X:choose-then-commit / Y:command-stage-replacement / Z:functional-command-rim / AppTheme:R2RunCommand.
+
+## Visual metaphor
+A keyboard-ready worktable makes one action feel inevitable while keeping the job inventory visible. Put a 1096×544 surface at (92,128), radius 26, padding 24. Header 1048×40 and 24px clearance precede a 1048×432 work area: a 272px job command register, 24px gutter and 752px action stage. Register rows are five 80px entries with four 8px gaps. The stage uses 28px inset; its 696×64 primary-command line begins after a 48px status area. Below, 24px air leads to a 696×236 lower allocation: a 36px detail toolbar, a 32px feedback line and a 168px evidence slot. These fit the 432px stage including its 28px insets. SF Pro sizes are 40px primary command, 20px header, 15px inventory and 13px evidence; no code-font console output is part of the product language.
+
+## Single P0 focal point
+The dominant element is the selected review job's 立即运行 button, a 296×64 solid commit surface with a 40px label. PR 自动审查 appears only in its selected register entry, accompanied by 每 5 分钟 and its 04:10 completion. The anonymous right-hand stage says 上次完成 04:10 above the command, without repeating the job title. A labelled check glyph is the compact status visualization; no fictional output log or running terminal is fabricated.
+
+## P1/P2 folding
+Register entries are Linear @bot 桥接 / 每 1 分钟, 我的 PR / 每 5 分钟, PR 自动审查 / 每 5 分钟, 个人数仓晨报 / 每日 04:00 and 每日学习推荐 / 每日 04:15. Choosing an entry updates the one action stage while keeping names stationary. 查看回执 replaces the lower slot with evidence for that selected command. For digest selection, 阶段详情 puts a five-node horizontally wrapped route in that slot: ① 个人源采集 → ② L2-L3 入仓 → ③ Retro-ROI → ④ 学习寻题 → ⑤ Brief 投递; layout three nodes then two with their complete names. Learning's evidence is 每日 3 题直投 Linear and its three-delivery result, not a five-node route. Evidence modes are mutually exclusive and fold back through 收起详情.
+
+## Color and surface polarity
+Command tokens Light / Dark: surrounding #F0F3F9 / #0E1422; card #FFFFFF / #192339; stage #EEF2FB / #273650; register #F6F8FC / #202C44; primary-ink #1E2C44 / #F1F5FF; secondary-ink #566980 / #BACDE9; commit #3E55A1 / #B6C8FF; commit-ink #FFFFFF / #1D2C52; completed #286C50 / #98DEB9; failed #AD354D / #FFB5C8; keyboard-focus #355CC0 / #D1DDFF. Reserve the strongest fill for the commit, not every inventory item. The selected register entry gets a thin leading marker and text weight, while all unselected entries remain neutral. Failure text includes its explicit state instead of turning the command red.
+
+## Liquid Glass optical parameters
+A 240×36 functional detail toolbar sits above the evidence slot; only this chrome may use blur 5px, saturation 110%, 94% surface tint, 3px bevel and maximum 1px displacement. No chromatic separation is required. Radius 12 and a 1px top highlight at 12% make the detail controls distinct from solid results. It samples the opaque stage, never a translucent sibling. Safari and Reduce Transparency get a fully opaque register-colored toolbar with a 0 3px 10px shadow at 5% Light / 22% Dark. The large run button is solid in all browsers and appearances.
+
+## Inline SVG iconography
+The table's 24×24 glyph is an open command bracket with a small forward arrow, 1.7px currentColor rounded strokes; it must not suggest a shell. Register glyphs encode bridge, branch, review, digest and learning. The primary button has a 24px play arrow with no keyboard-symbol decoration; status uses a check or open arc plus text. Detail toolbar controls are 108×32 or larger. A 3px keyboard outline surrounds the selected command and is never replaced by a color-only hover cue.
+
+## Explicit anti-patterns
+Do not invent a command search palette, free-text shell, dispatch approval, scheduler settings or real command execution. Enter on a register entry selects only; it must not unexpectedly trigger the large action. Reject duplicate names above the action stage, identical large run buttons for all five jobs, logs with invented paths and a floating bottom action island. No debug bars, zebra refraction, raw localization keys or internal state dropdown. Keep the run label fully readable in the measured 296px width without ellipsis.
+
+## Interaction and states
+Start with pr-auto-review selected using ../../domain.md's 04:10 success at the 04:15 clock. Tab moves through the five selection entries before the primary command; Space/Enter select a register entry, and a separately focused run button commits. Clicking 立即运行 changes that button to 已排队 and disables it, then the status reads 运行中, then the evidence slot receives 刚刚完成 · 耗时 14s and the command is available again. If selection changes while busy, associate feedback with the original register entry and show only the new selection's evidence in the stage. Digest details expose all five real stages; learning shows only three questions. A missing record shows 暂无回执 in the lower slot, and a failed run shows 运行失败 with the same reachable run action. Escape closes detail mode; Reduced Motion removes button press travel and arc rotation but not state announcements.
+
+## Stage 2 handoff
+Under main.topology-run-command-stage → direct section.content, keep header and div[group:command-worktable] as siblings. The worktable parents menu[job-register] with five li→button→span/time/span entries, beside section[command-stage]. That stage parents p[latest], div[primary-command] containing button, div[role=toolbar:detail-mode], output[run-feedback] and section[evidence-slot] containing figure[stage-route] or dl[receipt]. This menu/stage/toolbar hierarchy is intentionally different from a capsule dl and from the grid's row/cell tree. Assert selection alone never runs a job, a single focused action owns commit, run feedback cannot leak to another selected job, and all five exact names remain visible once. Downstream acceptance includes both color polarities, digest disclosure and keyboard focus screenshots; no HTML, scheduler service or publishing work is requested of the Designer.

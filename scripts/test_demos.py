@@ -42,7 +42,7 @@ class DemoTests(unittest.TestCase):
             'broken': '<script id="gallery-config">{invalid</script>',
             'empty': '<script id="gallery-config">{"cards":[]}</script>',
             'nonobject': '<script id="gallery-config">null</script>',
-            'unusable': '<script id="gallery-config">{"cards":[null,{"id":"x"}]}</script>',
+            'unusable': '<script id="gallery-config">{"cards":[null,{"id":"x"},{"category":"pulse","id":"v02","round":[]},{"category":"","id":"v03"}]}</script>',
         }
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

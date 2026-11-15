@@ -1304,9 +1304,12 @@ def scan_demo_projects() -> list[dict[str, Any]]:
                     continue
                 category = card.get("category") or card.get("group")
                 identifier = card.get("id") or card.get("variant")
-                if not isinstance(category, str) or not isinstance(identifier, str) or identifier == "current":
+                round_value = card.get("round")
+                if not isinstance(category, str) or not category or not isinstance(identifier, str) or not identifier or identifier == "current":
                     continue
-                unique.setdefault((category, card.get("round"), identifier), {**card, "category": category, "id": identifier})
+                if round_value is not None and not isinstance(round_value, (int, str)):
+                    continue
+                unique.setdefault((category, round_value, identifier), {**card, "category": category, "id": identifier})
             return list(unique.values())
         cards = normalize(config.get("cards")) or normalize(parser.cards)
         if not cards:

@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VoxPocket · 画廊 A：整体 App 导航流转</title><style>:root {
+<title>voxpocket-holistic-redesign · Round 1</title><style>:root {
   --ink: #172033;
   --muted: #596476;
   --focus: #3568d4;
@@ -138,11 +138,23 @@ summary{cursor:pointer;font-weight:650;min-height:32px;padding:6px 0}
 .variant-card header{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;overflow-wrap:anywhere;min-height:90px}
 .variant-card header strong{min-height:0}
 .variant-card header a{margin-left:auto;color:var(--action);font-size:12px}
+.variant-summary{margin:8px 0 12px;font-size:13px;line-height:1.5;color:var(--muted);min-height:38px}
 .variant-badge,.coordinate-pill{padding:3px 7px;border-radius:999px;background:var(--border);color:var(--ink);font-size:11px;max-width:100%;overflow-wrap:anywhere}
 .variant-card .controls{display:flex;gap:12px;margin-top:8px}
 .variant-card textarea{background:var(--paper);color:var(--ink)}
 .reference-label{font-size:13px}
 .empty-state{padding:24px;border:1px dashed var(--border-strong);border-radius:14px}
+.content>.bento-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.bento-grid article{padding:14px;border:1px solid var(--border);border-radius:14px}
+.content>.timeline-rail{display:flex;gap:12px;margin:0;padding:12px 0;list-style:none;border-left:3px solid var(--action)}.timeline-rail li{padding-left:10px}
+.content>.pulse-matrix{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.pulse-matrix span{padding:12px;background:var(--border);border-radius:10px;text-align:center}
+.content>.ring-gauge{display:grid;place-items:center;width:108px;height:108px;flex-shrink:0;border:10px solid var(--action);border-radius:50%;font-weight:700}
+.content>.master-detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:12px}.master-detail nav,.master-detail article{padding:12px;background:var(--border);border-radius:10px}
+.content>.split-workbench{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.split-workbench aside,.split-workbench section{padding:14px;min-height:70px;border:1px solid var(--border);border-radius:10px}
+.content>.floating-island{display:flex;justify-content:center;padding:18px}.floating-island button{box-shadow:0 10px 24px var(--shadow-soft)}
+.content>.pocket-deck{display:flex;gap:8px;padding-bottom:8px}.pocket-deck div{flex:1;min-width:0;padding:16px;border-radius:12px;background:var(--border)}.pocket-deck div+div{transform:translateY(8px)}
+.content>.command-stage{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px;border:1px solid var(--border-strong);border-radius:12px}.content>.editorial-poster{margin:0;padding:20px;border-left:6px solid var(--action);font-size:20px}
+@media(max-width:520px){.content>.master-detail,.content>.split-workbench{grid-template-columns:1fr}.content>.timeline-rail{display:block}.content>.pulse-matrix{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-height:700px){.mockup{padding:12px;gap:8px}.content{overflow:auto}.preview h1{font-size:30px}}
 body[data-theme=dark]{background:var(--paper-dark);color:var(--ink-inverse)}
 body[data-theme=dark] .variant-card,body[data-theme=dark] .portal-actions button,body[data-theme=dark] .group-tabs button{background:var(--paper-dark);color:var(--ink-inverse)}
 body.preview[data-theme=dark]{background:var(--paper-dark);color:var(--ink-inverse)}
@@ -150,44 +162,51 @@ body.preview[data-theme=dark] .content{background:var(--paper-dark);color:var(--
 body.preview[data-theme=dark] .content p,body.preview[data-theme=dark] .secondary{color:var(--muted-inverse)}
 body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:var(--ink-inverse)}
 @media(max-width:700px){.gallery{padding:16px}}
-
-.viewport-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}.viewport-controls button{min-height:44px;padding:9px 12px;border:1px solid var(--border-strong);border-radius:10px;background:var(--white);color:var(--ink)}.viewport-controls button[aria-pressed=true]{outline:2px solid var(--focus)}.viewport-controls .locked{font-size:13px;color:var(--muted);padding:9px 0}.variant-card[hidden]{display:none!important}.device-bezel[data-frame-mode=macos] .device-island,.device-bezel[data-frame-mode=macos] .device-home{display:none}.device-bezel[data-frame-mode=mobile] .device-titlebar{display:none}
+.variant-card[hidden],.variant-card[aria-hidden="true"]{display:none!important}
+.gallery-breadcrumbs{display:flex;gap:8px;align-items:center;margin-bottom:16px}.gallery-breadcrumbs a{min-height:28px;display:inline-flex;align-items:center}
+.selection-telemetry{font-weight:650}
+@media(max-width:480px){.gallery-breadcrumbs a{min-height:44px}}
 </style></head>
 <body class="gallery-page"><main class="gallery">
-<h1>VoxPocket · 画廊 A：整体 App 导航流转</h1><p id="session">Session anti-patterns: none</p>
-<div class="portal-actions"><button data-theme="light">Light</button><button data-theme="dark">Dark</button></div><div class="viewport-controls" aria-label="预览视口"><span>预览视口</span><button data-viewport="mobile" aria-pressed="true">iPhone 390×844</button><button data-viewport="desktop" aria-pressed="false">macOS 1280×800</button></div>
+<nav class="gallery-breadcrumbs" aria-label="Breadcrumb"><a href="/">← Blog</a><span>·</span><a href="/demos/">Demos 总目录</a><span>·</span><a href="../index.html">Goal Portal (../)</a></nav><h1>voxpocket-holistic-redesign · Round 1</h1><p id="session">Session anti-patterns: none</p>
+<div class="portal-actions"><button data-theme="light">Light</button><button data-theme="dark">Dark</button></div>
 <div id="variants"><article class="variant-card current-card" data-group="app-nav" data-round="1" data-variant="current" data-platform="mobile">
 <header><span class="variant-badge">current</span><strong>Current reference</strong><span class="coordinate-pill">Reference</span>
 <a target="_blank" rel="noopener" href="current.html">↗ 全屏打开</a></header>
+<p class="variant-summary">当前基线参照视图（当前项目的现有布局与交互对照基线）</p>
 <div class="device-bezel" data-frame-mode="mobile" style="--frame-width:390px;--frame-height:844px;--preview-scale:0.8">
 <div class="device-window"><div class="device-island" aria-hidden="true"></div><iframe loading="eager" src="current.html" title="Current reference"></iframe><div class="device-home" aria-hidden="true"></div></div></div>
 <p class="reference-label">Reference only · not a candidate</p></article><article class="variant-card" data-group="app-nav" data-round="1" data-variant="app01" data-platform="mobile">
-<header><span class="variant-badge">app01</span><strong>A01 · 左下 Fold 展开 + 上滑玻璃抽屉</strong><span class="coordinate-pill">录音 ⇄ Todo ⇄ 设置</span><span class="coordinate-pill">stack</span>
+<header><span class="variant-badge">app01</span><strong>A01 · 左下 Fold 展开 + 上滑玻璃抽屉</strong><span class="coordinate-pill">stack</span><span class="coordinate-pill">stack</span>
 <a target="_blank" rel="noopener" href="app01.html">↗ 全屏打开</a><a class="prompt-link" target="_blank" rel="noopener" href="prompts/app01-prompt.md">Design prompt</a></header>
+<p class="variant-summary">以左下角 Fold 作为主入口，向上展开玻璃抽屉，在同一层级切换录音、待办与设置。</p>
 <div class="device-bezel" data-frame-mode="mobile" style="--frame-width:390px;--frame-height:844px;--preview-scale:0.8">
 <div class="device-window"><div class="device-island" aria-hidden="true"></div><iframe loading="eager" src="app01.html" title="A01 · 左下 Fold 展开 + 上滑玻璃抽屉"></iframe><div class="device-home" aria-hidden="true"></div></div></div>
 <div class="controls">
 <label><input type="radio" name="primary-app-nav" value="app01" data-select> SELECT</label>
 <label><input type="checkbox" data-star="app01"> STAR</label></div>
 <textarea data-note="app01" aria-label="app01 Notes" placeholder="Notes"></textarea></article><article class="variant-card" data-group="app-nav" data-round="1" data-variant="app02" data-platform="mobile">
-<header><span class="variant-badge">app02</span><strong>A02 · 前后景 3D 叠卡翻转</strong><span class="coordinate-pill">Z 轴景深前后切换</span><span class="coordinate-pill">deck</span>
+<header><span class="variant-badge">app02</span><strong>A02 · 前后景 3D 叠卡翻转</strong><span class="coordinate-pill">deck</span><span class="coordinate-pill">deck</span>
 <a target="_blank" rel="noopener" href="app02.html">↗ 全屏打开</a><a class="prompt-link" target="_blank" rel="noopener" href="prompts/app02-prompt.md">Design prompt</a></header>
+<p class="variant-summary">用前后景 3D 叠卡承载三个真实页面，翻转卡片即可在录音、待办和设置之间切换。</p>
 <div class="device-bezel" data-frame-mode="mobile" style="--frame-width:390px;--frame-height:844px;--preview-scale:0.8">
 <div class="device-window"><div class="device-island" aria-hidden="true"></div><iframe loading="eager" src="app02.html" title="A02 · 前后景 3D 叠卡翻转"></iframe><div class="device-home" aria-hidden="true"></div></div></div>
 <div class="controls">
 <label><input type="radio" name="primary-app-nav" value="app02" data-select> SELECT</label>
 <label><input type="checkbox" data-star="app02"> STAR</label></div>
 <textarea data-note="app02" aria-label="app02 Notes" placeholder="Notes"></textarea></article><article class="variant-card" data-group="app-nav" data-round="1" data-variant="app03" data-platform="mobile">
-<header><span class="variant-badge">app03</span><strong>A03 · 底部玻璃坞原地生长变形</strong><span class="coordinate-pill">148pt 玻璃坞原地上推展开</span><span class="coordinate-pill">lens</span>
+<header><span class="variant-badge">app03</span><strong>A03 · 底部玻璃坞原地生长变形</strong><span class="coordinate-pill">lens</span><span class="coordinate-pill">lens</span>
 <a target="_blank" rel="noopener" href="app03.html">↗ 全屏打开</a><a class="prompt-link" target="_blank" rel="noopener" href="prompts/app03-prompt.md">Design prompt</a></header>
+<p class="variant-summary">底部玻璃坞会从当前页面原地生长变形，把常用导航和设置动作收纳在一处。</p>
 <div class="device-bezel" data-frame-mode="mobile" style="--frame-width:390px;--frame-height:844px;--preview-scale:0.8">
 <div class="device-window"><div class="device-island" aria-hidden="true"></div><iframe loading="eager" src="app03.html" title="A03 · 底部玻璃坞原地生长变形"></iframe><div class="device-home" aria-hidden="true"></div></div></div>
 <div class="controls">
 <label><input type="radio" name="primary-app-nav" value="app03" data-select> SELECT</label>
 <label><input type="checkbox" data-star="app03"> STAR</label></div>
 <textarea data-note="app03" aria-label="app03 Notes" placeholder="Notes"></textarea></article><article class="variant-card" data-group="app-nav" data-round="1" data-variant="app04" data-platform="mobile">
-<header><span class="variant-badge">app04</span><strong>A04 · 左右丝滑横滑双画布</strong><span class="coordinate-pill">底坞固定 · 画布左右横滑</span><span class="coordinate-pill">split</span>
+<header><span class="variant-badge">app04</span><strong>A04 · 左右丝滑横滑双画布</strong><span class="coordinate-pill">split</span><span class="coordinate-pill">tabs</span>
 <a target="_blank" rel="noopener" href="app04.html">↗ 全屏打开</a><a class="prompt-link" target="_blank" rel="noopener" href="prompts/app04-prompt.md">Design prompt</a></header>
+<p class="variant-summary">以左右横滑双画布组织页面，手势切换录音、待办与设置，并保留连续的空间方向感。</p>
 <div class="device-bezel" data-frame-mode="mobile" style="--frame-width:390px;--frame-height:844px;--preview-scale:0.8">
 <div class="device-window"><div class="device-island" aria-hidden="true"></div><iframe loading="eager" src="app04.html" title="A04 · 左右丝滑横滑双画布"></iframe><div class="device-home" aria-hidden="true"></div></div></div>
 <div class="controls">
@@ -195,199 +214,65 @@ body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:v
 <label><input type="checkbox" data-star="app04"> STAR</label></div>
 <textarea data-note="app04" aria-label="app04 Notes" placeholder="Notes"></textarea></article></div>
 <p id="empty-state" class="empty-state" hidden>No previews match these filters.</p>
+<p id="selection-telemetry" class="selection-telemetry" aria-live="polite">已记录 0 条观察 · 0 个收藏 · 0 个选择</p>
 <button id="copy-summary">Copy Selection Summary</button><output id="status" aria-live="polite"></output>
 <textarea id="summary-text" class="manual-copy" aria-label="Selection summary" hidden readonly></textarea>
-</main><script id="gallery-config" type="application/json">{"goal": "voxpocket-holistic-redesign", "portal": false, "cards": [{"category": "app-nav", "round": 1, "platform": "mobile", "id": "current", "title": "Current reference", "pills": ["Reference"], "src": "current.html", "reference": true}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app01", "title": "A01 · 左下 Fold 展开 + 上滑玻璃抽屉", "pills": ["录音 ⇄ Todo ⇄ 设置", "stack"], "src": "app01.html", "reference": false, "prompt": "prompts/app01-prompt.md"}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app02", "title": "A02 · 前后景 3D 叠卡翻转", "pills": ["Z 轴景深前后切换", "deck"], "src": "app02.html", "reference": false, "prompt": "prompts/app02-prompt.md"}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app03", "title": "A03 · 底部玻璃坞原地生长变形", "pills": ["148pt 玻璃坞原地上推展开", "lens"], "src": "app03.html", "reference": false, "prompt": "prompts/app03-prompt.md"}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app04", "title": "A04 · 左右丝滑横滑双画布", "pills": ["底坞固定 · 画布左右横滑", "split"], "src": "app04.html", "reference": false, "prompt": "prompts/app04-prompt.md"}]}</script><script>/* Shared round/portal storage and DOM behavior. No HTML is built from saved text. */
+</main><script id="gallery-config" type="application/json">{"goal": "voxpocket-holistic-redesign", "portal": false, "firstGroup": "app-nav", "cards": [{"category": "app-nav", "round": 1, "platform": "mobile", "id": "current", "title": "Current reference", "pills": ["Reference"], "src": "current.html", "reference": true, "summary": "当前基线参照视图（voxpocket-holistic-redesign 的现有布局与交互对照基线）"}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app01", "title": "A01 · 左下 Fold 展开 + 上滑玻璃抽屉", "pills": ["stack", "stack"], "src": "app01.html", "reference": false, "prompt": "prompts/app01-prompt.md", "summary": "以左下角 Fold 作为主入口，向上展开玻璃抽屉，在同一层级切换录音、待办与设置。"}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app02", "title": "A02 · 前后景 3D 叠卡翻转", "pills": ["deck", "deck"], "src": "app02.html", "reference": false, "prompt": "prompts/app02-prompt.md", "summary": "用前后景 3D 叠卡承载三个真实页面，翻转卡片即可在录音、待办和设置之间切换。"}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app03", "title": "A03 · 底部玻璃坞原地生长变形", "pills": ["lens", "lens"], "src": "app03.html", "reference": false, "prompt": "prompts/app03-prompt.md", "summary": "app03 采用lens导航，以settings_sheet为起点串联r3v02_capture、todo_list，并用无浮层保持操作路径清晰。"}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app04", "title": "A04 · 左右丝滑横滑双画布", "pills": ["split", "tabs"], "src": "app04.html", "reference": false, "prompt": "prompts/app04-prompt.md", "summary": "app04 采用tabs导航，以settings_sheet为起点串联r3v02_capture、todo_list，并用无浮层保持操作路径清晰。"}]}</script><script>/* Shared round/portal storage and DOM behavior. */
 (function () {
   'use strict';
   function readState(storage, goal) {
+    if (!storage) return {};
     try {
       const state = JSON.parse(storage.getItem(`design-gallery:${goal}`) || '{}');
-      return state && typeof state === 'object' && !Array.isArray(state) ? state : {};
+      if (!state || typeof state !== 'object' || Array.isArray(state)) return {};
+      return Object.fromEntries(Object.entries(state).filter(([, value]) => value && typeof value === 'object' && !Array.isArray(value)));
     } catch { return {}; }
   }
   const entryKey = card => JSON.stringify([card.category, card.round, card.id]);
   function updateState(state, card, field, value) {
-    const next = Object.assign({}, state);
-    if (field === 'selected' && value) {
-      Object.entries(next).forEach(([key, old]) => {
-        if (old.category === card.category) next[key] = {...old, selected: false};
-      });
-    }
-    const key = entryKey(card);
-    next[key] = {...next[key], category: card.category, round: card.round, id: card.id, [field]: value};
-    return next;
+    const next = Object.fromEntries(Object.entries(state || {}).filter(([, item]) => item && typeof item === 'object'));
+    if (field === 'selected' && value) Object.entries(next).forEach(([key, old]) => { if (old.category === card.category) next[key] = {...old, selected: false}; });
+    const key = entryKey(card); next[key] = {...next[key], category: card.category, round: card.round, id: card.id, [field]: value}; return next;
   }
-  function selectionSummary(goal, state) {
-    const lines = [`Goal: ${goal}`];
-    const categories = [...new Set(Object.values(state).map(s => s.category))].sort();
-    categories.forEach(category => {
-      const entries = Object.values(state).filter(s => s.category === category);
-      const label = s => `r${s.round}/${s.id}`;
-      lines.push(`Category: ${category}`, `SELECT: ${entries.filter(s => s.selected).map(label).join(', ') || 'none'}`,
-        `STAR: ${entries.filter(s => s.starred).map(label).join(', ') || 'none'}`);
-      entries.filter(s => s.notes).forEach(s => lines.push(`${label(s)}: ${s.notes}`));
+  function selectionSummary(goal, state, root) {
+    const byKey = new Map(Object.entries(state || {}).filter(([, item]) => item && typeof item === 'object').map(([key, item]) => [key, {...item}]));
+    if (root) root.querySelectorAll('.variant-card').forEach(node => {
+      const card = node.__galleryCard; if (!card || card.reference) return;
+      const key = entryKey(card), value = {...(byKey.get(key) || {}), category: card.category, round: card.round, id: card.id};
+      const select = node.querySelector('[data-select]'), star = node.querySelector('[data-star]'), note = node.querySelector('[data-note]');
+      if (select) value.selected = !!select.checked;
+      if (star) value.starred = !!star.checked;
+      if (note) value.notes = note.value.trim();
+      byKey.set(key, value);
     });
-    return lines.join('\n');
+    const all = [...byKey.values()], label = s => `r${s.round}/${s.id}`, categories = [...new Set(all.map(s => s.category).filter(Boolean))].sort();
+    const lines = [`Goal: ${goal}`];
+    categories.forEach(category => { const scoped = all.filter(s => s.category === category); lines.push(`Category: ${category}`, `SELECT: ${scoped.filter(s => s.selected === true).map(label).join(', ') || 'none'}`, `STAR: ${scoped.filter(s => s.starred === true).map(label).join(', ') || 'none'}`); });
+    if (!categories.length) lines.push('SELECT: none', 'STAR: none');
+    lines.push('NOTES:'); all.filter(s => typeof s.notes === 'string' && s.notes.trim()).forEach(s => lines.push(`${label(s)}: ${s.notes.trim()}`)); return lines.join('\n');
   }
-  function frameMetrics(mode, mobileWeb, cardWidth) {
-    const compact = mode === 'mobile' || (mobileWeb && mode === 'web');
-    const width = compact ? 390 : 1280, height = compact ? 844 : 800;
-    const padding = mode === 'mobile' ? 12 : 10;
-    const scale = Math.max(.05, Math.min(compact ? .8 : .46, (cardWidth - 24 - padding * 2) / width));
-    return {width, height, padding, scale, chrome: mode === 'mobile' ? 0 : 28};
-  }
-  // Pure helpers are executable by the dependency-free Node regression runner.
+  function frameMetrics(mode, mobileWeb, cardWidth) { const compact = mode === 'mobile' || (mobileWeb && mode === 'web'); const width = compact ? 390 : 1280, height = compact ? 844 : 800, padding = mode === 'mobile' ? 12 : 10; return {width, height, padding, scale: Math.max(.05, Math.min(compact ? .8 : .46, (cardWidth - 24 - padding * 2) / width)), chrome: mode === 'mobile' ? 0 : 28}; }
   if (typeof module !== 'undefined') module.exports = {readState, entryKey, updateState, selectionSummary, frameMetrics};
   if (typeof document === 'undefined') return;
-
-  const config = JSON.parse(document.getElementById('gallery-config').textContent);
-  const root = document.getElementById(config.portal ? 'portal-grid' : 'variants');
-  const articles = [...root.children];
-  const cards = new Map(articles.map((node, i) => [node, config.cards[i]]));
-  const status = document.getElementById('status');
-  let group = 'all', platform = 'all', theme = 'light', mobileWeb = false;
-  let viewportMode = 'mobile';
-  const isPortal = !!config.portal;
-  const canSwitchViewport = isPortal || config.cards.some(card => card.category === 'app-nav' || card.category === 'dual-todo');
-  function cardFor(node) { return cards.get(node); }
-  function ensureChrome(bezel, mode) {
-    const win = bezel.querySelector('.device-window');
-    if (!win) return;
-    if (mode === 'macos') {
-      bezel.dataset.frameMode = 'macos';
-      if (!win.querySelector('.device-titlebar')) {
-        const bar = document.createElement('div'); bar.className = 'device-titlebar'; bar.setAttribute('aria-hidden', 'true');
-        bar.innerHTML = '<i></i><i></i><i></i><span>macOS preview</span>'; win.prepend(bar);
-      }
-      if (!win.querySelector('iframe')) return;
-      win.querySelector('.device-island')?.remove(); win.querySelector('.device-home')?.remove();
-    } else {
-      bezel.dataset.frameMode = 'mobile';
-      win.querySelector('.device-titlebar')?.remove();
-      if (!win.querySelector('.device-island')) { const island=document.createElement('div'); island.className='device-island'; island.setAttribute('aria-hidden','true'); win.prepend(island); }
-      if (!win.querySelector('.device-home')) { const home=document.createElement('div'); home.className='device-home'; home.setAttribute('aria-hidden','true'); win.append(home); }
-    }
-  }
-  function applyViewport(value) {
-    viewportMode = value === 'desktop' ? 'desktop' : 'mobile';
-    document.querySelectorAll('[data-viewport]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.viewport === viewportMode)));
-    articles.forEach(node => {
-      const card = cardFor(node); const bezel = node.querySelector('.device-bezel'); if (!bezel) return;
-      const mode = card?.platform === 'macos' || (!canSwitchViewport && card?.platform !== 'mobile') ? 'macos' : viewportMode === 'desktop' ? 'macos' : 'mobile';
-      ensureChrome(bezel, mode);
-    });
-    fitFrames(); applyTheme(theme);
-  }
+  const config = JSON.parse(document.getElementById('gallery-config').textContent), root = document.getElementById(config.portal ? 'portal-grid' : 'variants');
+  const articles = [...root.children], cards = new Map(articles.map((node, i) => { node.__galleryCard = config.cards[i]; return [node, config.cards[i]]; }));
+  const status = document.getElementById('status'), telemetry = document.getElementById('selection-telemetry'); let group = config.portal ? config.firstGroup : 'all', platform = 'all', theme = 'light', mobileWeb = false, memoryState = {};
   function storage() { try { return window.localStorage; } catch { return null; } }
-  function currentState() { return readState(storage(), config.goal); }
-  function restoreControls() {
-    const state = currentState();
-    cards.forEach((card, node) => {
-      if (card.reference) return;
-      const value = state[entryKey(card)] || {};
-      node.querySelector('[data-select]').checked = !!value.selected;
-      node.querySelector('[data-star]').checked = !!value.starred;
-      node.querySelector('[data-note]').value = value.notes || '';
-    });
-  }
-  root.addEventListener('input', persist);
-  root.addEventListener('change', persist);
-  function persist(event) {
-    const node = event.target.closest('.variant-card');
-    const card = cards.get(node);
-    if (!card || card.reference) return;
-    const input = event.target;
-    const field = input.hasAttribute('data-select') ? 'selected' : input.hasAttribute('data-star') ? 'starred' : input.hasAttribute('data-note') ? 'notes' : null;
-    if (!field) return;
-    const value = field === 'notes' ? input.value : input.checked;
-    const state = updateState(currentState(), card, field, value);
-    try {
-      if (!storage()) throw new Error('Storage unavailable');
-      storage().setItem(`design-gallery:${config.goal}`, JSON.stringify(state));
-      restoreControls();
-    } catch { status.textContent = 'Local storage unavailable — changes cannot persist in this browser context.'; }
-  }
-  function applyFrame(frame) {
-    try {
-      const doc = frame.contentDocument;
-      if (!doc?.body) return;
-      doc.documentElement.dataset.theme = theme;
-      doc.body.dataset.theme = theme;
-      const platform = frame.closest('.device-bezel')?.dataset.frameMode === 'macos' ? 'macos' : 'mobile';
-      doc.documentElement.dataset.platform = platform;
-      doc.body.dataset.platform = platform;
-      frame.contentWindow?.postMessage({ theme, platform }, location.origin);
-      const fullscreen = frame.closest('.variant-card')?.querySelector('header a[target="_blank"]:not(.prompt-link)');
-      if (fullscreen) {
-        const url = new URL(fullscreen.href, location.href);
-        url.searchParams.set('theme', theme);
-        url.searchParams.set('platform', platform);
-        fullscreen.href = url.href;
-      }
-    } catch { status.textContent = 'Preview appearance unavailable across origins; open via a same-origin HTTP server.'; }
-  }
+  function currentState() { const stored = readState(storage(), config.goal); return Object.keys(stored).length ? {...memoryState, ...stored} : {...memoryState}; }
+  function updateTelemetry(state) { if (!telemetry) return; const values = Object.values(state || {}); telemetry.textContent = `已记录 ${values.filter(s => typeof s.notes === 'string' && s.notes.trim()).length} 条观察 · ${values.filter(s => s.starred === true).length} 个收藏 · ${values.filter(s => s.selected === true).length} 个选择`; }
+  function restoreControls() { const state = currentState(); memoryState = {...state}; cards.forEach((card, node) => { if (card.reference) return; const value = state[entryKey(card)] || {}; node.querySelector('[data-select]').checked = !!value.selected; node.querySelector('[data-star]').checked = !!value.starred; node.querySelector('[data-note]').value = value.notes || ''; }); updateTelemetry(state); filter(); }
+  root.addEventListener('input', persist); root.addEventListener('change', persist);
+  function persist(event) { const node = event.target.closest('.variant-card'), card = cards.get(node), input = event.target; if (!card || card.reference) return; const field = input.hasAttribute('data-select') ? 'selected' : input.hasAttribute('data-star') ? 'starred' : input.hasAttribute('data-note') ? 'notes' : null; if (!field) return; const state = updateState(currentState(), card, field, field === 'notes' ? input.value : input.checked); memoryState = state; try { const store = storage(); if (!store) throw new Error('Storage unavailable'); store.setItem(`design-gallery:${config.goal}`, JSON.stringify(state)); } catch { status.textContent = 'Local storage unavailable — changes cannot persist in this browser context.'; } restoreControls(); }
+  function applyFrame(frame) { try { const doc = frame.contentDocument; if (!doc?.body) return; doc.documentElement.dataset.theme = theme; doc.body.dataset.theme = theme; } catch { status.textContent = 'Preview appearance unavailable across origins; open via a same-origin HTTP server.'; } }
+  function applyTheme(value) { theme = value; document.body.dataset.theme = theme; root.querySelectorAll('iframe').forEach(applyFrame); }
+  function fitFrames() { root.querySelectorAll('.device-bezel').forEach(bezel => { const card = bezel.closest('.variant-card'), m = frameMetrics(bezel.dataset.frameMode, mobileWeb, card.clientWidth); bezel.style.setProperty('--frame-width', `${m.width}px`); bezel.style.setProperty('--frame-height', `${m.height}px`); bezel.style.setProperty('--preview-scale', m.scale); }); }
+  function filter() { let visible = 0; articles.forEach(node => { const matches = (group === 'all' || node.dataset.group === group) && (platform === 'all' || node.dataset.platform === platform); node.hidden = !matches; node.setAttribute('aria-hidden', String(!matches)); if (matches) visible++; }); document.getElementById('empty-state').hidden = visible > 0; updateTelemetry(currentState()); fitFrames(); applyTheme(theme); }
+  function bindFilter(selector, update) { const buttons = [...document.querySelectorAll(selector)]; buttons.forEach(button => button.addEventListener('click', () => { buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button))); update(button); filter(); })); }
+  bindFilter('[data-group-filter]', b => { group = b.dataset.groupFilter; }); bindFilter('[data-portal-platform]', b => { platform = b.dataset.portalPlatform; });
+  document.querySelectorAll('button[data-theme],button[data-portal-theme]').forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.portalTheme || button.dataset.theme)));
+  document.getElementById('responsive-toggle')?.addEventListener('click', event => { mobileWeb = !mobileWeb; event.currentTarget.setAttribute('aria-pressed', String(mobileWeb)); fitFrames(); });
+  document.getElementById('copy-summary').addEventListener('click', async () => { const text = selectionSummary(config.goal, currentState(), root), area = document.getElementById('summary-text'); area.value = text; try { await navigator.clipboard.writeText(text); area.hidden = true; status.textContent = 'Summary copied'; } catch { area.hidden = false; area.focus(); area.select(); status.textContent = 'Clipboard unavailable — copy the summary below.'; } });
   articles.forEach(node => node.querySelector('iframe').addEventListener('load', event => applyFrame(event.target)));
-  function applyTheme(value) {
-    theme = value;
-    document.body.dataset.theme = theme;
-    root.querySelectorAll('iframe').forEach(applyFrame);
-  }
-  function fitFrames() {
-    root.querySelectorAll('.device-bezel').forEach(bezel => {
-      const card = bezel.closest('.variant-card');
-      const {width, height, scale} = frameMetrics(bezel.dataset.frameMode, mobileWeb, card.clientWidth);
-      bezel.style.setProperty('--frame-width', `${width}px`);
-      bezel.style.setProperty('--frame-height', `${height}px`);
-      bezel.style.setProperty('--preview-scale', scale);
-    });
-  }
-  function filter() {
-    const visible = articles.filter(node => (group === 'all' || node.dataset.group === group) &&
-      (platform === 'all' || node.dataset.platform === platform));
-    articles.forEach(node => { node.hidden = !visible.includes(node); });
-    document.getElementById('empty-state').hidden = visible.length > 0;
-    restoreControls();
-    fitFrames();
-    applyTheme(theme);
-  }
-  function bindFilter(selector, update) {
-    const buttons = [...document.querySelectorAll(selector)];
-    buttons.forEach(button => button.addEventListener('click', () => {
-      buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
-      update(button); filter();
-    }));
-  }
-  bindFilter('[data-group-filter]', b => { group = b.dataset.groupFilter; });
-  bindFilter('[data-portal-platform]', b => { platform = b.dataset.portalPlatform; });
-  document.querySelectorAll('button[data-theme],button[data-portal-theme]').forEach(button => {
-    button.addEventListener('click', () => applyTheme(button.dataset.portalTheme || button.dataset.theme));
-  });
-  document.getElementById('responsive-toggle')?.addEventListener('click', event => {
-    mobileWeb = !mobileWeb;
-    event.currentTarget.setAttribute('aria-pressed', String(mobileWeb));
-    fitFrames();
-  });
-  document.querySelectorAll('[data-viewport]').forEach(button => button.addEventListener('click', () => applyViewport(button.dataset.viewport)));
-  document.getElementById('copy-summary').addEventListener('click', async () => {
-    const text = selectionSummary(config.goal, currentState());
-    const area = document.getElementById('summary-text');
-    area.value = text;
-    try {
-      await navigator.clipboard.writeText(text);
-      area.hidden = true;
-      status.textContent = 'Summary copied';
-    } catch {
-      area.hidden = false;
-      area.focus(); area.select();
-      status.textContent = 'Clipboard unavailable — copy the summary below.';
-    }
-  });
-  window.addEventListener('storage', restoreControls);
-  window.addEventListener('pageshow', restoreControls);
-  window.addEventListener('resize', fitFrames);
-  const observer = new ResizeObserver(fitFrames);
-  observer.observe(root);
-  restoreControls(); fitFrames(); applyTheme('light'); applyViewport(config.cards.some(card => card.platform === 'macos' && !card.category.includes('app')) && !canSwitchViewport ? 'desktop' : 'mobile');
+  window.addEventListener('storage', restoreControls); window.addEventListener('pageshow', restoreControls); window.addEventListener('resize', fitFrames); const observer = new ResizeObserver(fitFrames); observer.observe(root); restoreControls(); filter();
 })();
 </script></body></html>

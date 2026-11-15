@@ -29,7 +29,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "e8c7f65de114d02c2a76a10681b13fa09557e8a28efcd8153582d21ce78a6cc7"
+      "prompt_sha256": "e8c7f65de114d02c2a76a10681b13fa09557e8a28efcd8153582d21ce78a6cc7",
+      "summary": "让灵动岛紧贴顶部缺口，录音状态和即时转写在一条可展开的玻璃岛中持续可见，用于录音桌面场景。"
     },
     {
       "id": "v02",
@@ -44,7 +45,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "056e557fe53c11997ad6ba47eecad95194dd019d56cd7bdd90b24fe74e68c277"
+      "prompt_sha256": "056e557fe53c11997ad6ba47eecad95194dd019d56cd7bdd90b24fe74e68c277",
+      "summary": "用悬浮玻璃胶囊连接工作区与分屏 Dock，把录音控制和待办入口保持在桌面边缘，用于录音桌面场景。"
     },
     {
       "id": "v03",
@@ -59,7 +61,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "d1340a51fdbf84db123bf34b93d40201414f2e025c0f3510aee8126599e730a1"
+      "prompt_sha256": "d1340a51fdbf84db123bf34b93d40201414f2e025c0f3510aee8126599e730a1",
+      "summary": "把语音操作集中到 Spotlight 式命令栏，键入或说出下一步即可触发录音后的动作，用于录音桌面场景。"
     },
     {
       "id": "v04",
@@ -74,7 +77,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "6e8021206f517ba2baa8771c6975fb38e5dc09de8340bb29d6f11361336ad06d"
+      "prompt_sha256": "6e8021206f517ba2baa8771c6975fb38e5dc09de8340bb29d6f11361336ad06d",
+      "summary": "将控制台收进菜单栏 Popover，点击顶部图标展开一块紧凑的玻璃录音工作室，用于录音桌面场景。"
     },
     {
       "id": "v05",
@@ -89,7 +93,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v05-prompt.md",
-      "prompt_sha256": "879ff5f1959e988be6984afe01f68a9f50ed960692c27127464e9d88feda9458"
+      "prompt_sha256": "879ff5f1959e988be6984afe01f68a9f50ed960692c27127464e9d88feda9458",
+      "summary": "把低调的 Whisper 球固定在角落，展开后沿横向带出逐字稿和录音状态，用于录音桌面场景。"
     },
     {
       "id": "v06",
@@ -104,7 +109,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v06-prompt.md",
-      "prompt_sha256": "475a2651b2cd956832135c357461e7f56a32525d73133b5916b88d2f52015652"
+      "prompt_sha256": "475a2651b2cd956832135c357461e7f56a32525d73133b5916b88d2f52015652",
+      "summary": "用原声与 AI 精修双栏工作台并排呈现，用户可在同一视野中核对和修订转写，用于录音桌面场景。"
     },
     {
       "id": "v07",
@@ -119,7 +125,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v07-prompt.md",
-      "prompt_sha256": "38f17cf3a5047ea171c4006a92dcff304f89ba55a241e39aab69f47f102a5fd5"
+      "prompt_sha256": "38f17cf3a5047ea171c4006a92dcff304f89ba55a241e39aab69f47f102a5fd5",
+      "summary": "将录音工具铺成贴近屏幕底边的全宽玻璃 Dock，操作区随窗口宽度伸展，用于录音桌面场景。"
     },
     {
       "id": "v08",
@@ -134,7 +141,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v08-prompt.md",
-      "prompt_sha256": "f830f0f669240f6e24e74ef02854120072bb5bc66a6e33abbdbfb6f48773c47d"
+      "prompt_sha256": "f830f0f669240f6e24e74ef02854120072bb5bc66a6e33abbdbfb6f48773c47d",
+      "summary": "以独立提词器玻璃浮层承载滚动文本，让录音者无需离开主画面也能跟读，用于录音桌面场景。"
     },
     {
       "id": "v09",
@@ -149,7 +157,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v09-prompt.md",
-      "prompt_sha256": "e8f99518f08b2b17e5d831aa6f101edd1ffaaaaa40d26ac405a48814fa29a849"
+      "prompt_sha256": "e8f99518f08b2b17e5d831aa6f101edd1ffaaaaa40d26ac405a48814fa29a849",
+      "summary": "采用键盘优先的极简 HUD，只保留快捷键可达的录音状态、计时和下一步提示，用于录音桌面场景。"
     },
     {
       "id": "v10",
@@ -164,7 +173,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v10-prompt.md",
-      "prompt_sha256": "2b9ba7cf066ce79f36221aba23125ca8e9d831484211fb2da84a5fb3e7cf13e7"
+      "prompt_sha256": "2b9ba7cf066ce79f36221aba23125ca8e9d831484211fb2da84a5fb3e7cf13e7",
+      "summary": "把待办捕获与录音控制合成一座玻璃控制台，结束录音后直接把语音转成行动项，用于录音桌面场景。"
     }
   ],
   "prompt_contract": {

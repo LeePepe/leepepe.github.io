@@ -1,0 +1,645 @@
+{
+  "schema": "voxpocket-app-flows/v4",
+  "goal": "voxpocket-holistic-redesign",
+  "mode": "app-nav",
+  "canonical_routes": [
+    "r3v02_capture",
+    "todo_list",
+    "settings_sheet"
+  ],
+  "schemes": [
+    {
+      "id": "app01",
+      "title": "A01 · 左下 Fold 展开 + 上滑玻璃抽屉",
+      "navigation_model": "stack",
+      "architecture": {
+        "kind": "stack",
+        "root": "r3v02_capture",
+        "destinations": [
+          "r3v02_capture",
+          "todo_list",
+          "settings_sheet"
+        ],
+        "primary": {
+          "screen": "todo_list",
+          "action": 0
+        },
+        "sheet": null,
+        "overflow": [],
+        "collapse_title": true,
+        "initial_state": {
+          "active_screen": "settings_sheet",
+          "history": [],
+          "overlay": null,
+          "detent": null,
+          "overflow_open": false,
+          "title_collapsed": false
+        }
+      },
+      "screens": [
+        {
+          "id": "r3v02_capture",
+          "name": "录音",
+          "role": "screen",
+          "p0_summary": "按住录音",
+          "actions": [
+            {
+              "label": "按住录音",
+              "frequency": "P0",
+              "commit": "voice_capture",
+              "transition": null
+            },
+            {
+              "label": "Todo",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "todo_list"
+              }
+            },
+            {
+              "label": "设置",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "todo_list"
+            },
+            {
+              "type": "switchTab",
+              "to": "settings_sheet"
+            }
+          ]
+        },
+        {
+          "id": "todo_list",
+          "name": "Todo",
+          "role": "screen",
+          "p0_summary": "按住补充待办",
+          "actions": [
+            {
+              "label": "按住补充待办",
+              "frequency": "P0",
+              "commit": "voice_append",
+              "transition": null
+            },
+            {
+              "label": "录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "设置",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "r3v02_capture"
+            },
+            {
+              "type": "switchTab",
+              "to": "settings_sheet"
+            }
+          ]
+        },
+        {
+          "id": "settings_sheet",
+          "name": "设置",
+          "role": "screen",
+          "p0_summary": "配置下一段录音",
+          "actions": [
+            {
+              "label": "配置模型、默认去向与透明度",
+              "frequency": "P1",
+              "commit": "configure",
+              "transition": null
+            },
+            {
+              "label": "录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "Todo",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "todo_list"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "r3v02_capture"
+            },
+            {
+              "type": "switchTab",
+              "to": "todo_list"
+            }
+          ]
+        }
+      ],
+      "context": "VoxPocket 三屏导航"
+    },
+    {
+      "id": "app02",
+      "title": "A02 · 前后景 3D 叠卡翻转",
+      "navigation_model": "deck",
+      "architecture": {
+        "kind": "deck",
+        "root": "r3v02_capture",
+        "destinations": [
+          "r3v02_capture",
+          "todo_list",
+          "settings_sheet"
+        ],
+        "primary": {
+          "screen": "todo_list",
+          "action": 0
+        },
+        "sheet": null,
+        "overflow": [],
+        "collapse_title": true,
+        "initial_state": {
+          "active_screen": "r3v02_capture",
+          "history": [],
+          "overlay": null,
+          "detent": null,
+          "overflow_open": false,
+          "title_collapsed": true
+        }
+      },
+      "screens": [
+        {
+          "id": "r3v02_capture",
+          "name": "录音",
+          "role": "screen",
+          "p0_summary": "按住录音",
+          "actions": [
+            {
+              "label": "按住录音",
+              "frequency": "P0",
+              "commit": "voice_capture",
+              "transition": null
+            },
+            {
+              "label": "Todo",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "todo_list"
+              }
+            },
+            {
+              "label": "设置",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "todo_list"
+            },
+            {
+              "type": "switchTab",
+              "to": "settings_sheet"
+            }
+          ]
+        },
+        {
+          "id": "todo_list",
+          "name": "Todo",
+          "role": "screen",
+          "p0_summary": "按住补充待办",
+          "actions": [
+            {
+              "label": "按住补充待办",
+              "frequency": "P0",
+              "commit": "voice_append",
+              "transition": null
+            },
+            {
+              "label": "录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "设置",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "r3v02_capture"
+            },
+            {
+              "type": "switchTab",
+              "to": "settings_sheet"
+            }
+          ]
+        },
+        {
+          "id": "settings_sheet",
+          "name": "设置",
+          "role": "screen",
+          "p0_summary": "配置下一段录音",
+          "actions": [
+            {
+              "label": "配置模型、默认去向与透明度",
+              "frequency": "P1",
+              "commit": "configure",
+              "transition": null
+            },
+            {
+              "label": "录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "Todo",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "todo_list"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "r3v02_capture"
+            },
+            {
+              "type": "switchTab",
+              "to": "todo_list"
+            }
+          ]
+        }
+      ],
+      "context": "VoxPocket 三屏导航"
+    },
+    {
+      "id": "app03",
+      "title": "A03 · 底部玻璃坞原地生长变形",
+      "navigation_model": "lens",
+      "architecture": {
+        "kind": "lens",
+        "root": "r3v02_capture",
+        "destinations": [
+          "r3v02_capture",
+          "todo_list",
+          "settings_sheet"
+        ],
+        "primary": {
+          "screen": "todo_list",
+          "action": 0
+        },
+        "sheet": null,
+        "overflow": [],
+        "collapse_title": true,
+        "initial_state": {
+          "active_screen": "settings_sheet",
+          "history": [],
+          "overlay": null,
+          "detent": null,
+          "overflow_open": false,
+          "title_collapsed": true
+        }
+      },
+      "screens": [
+        {
+          "id": "r3v02_capture",
+          "name": "录音",
+          "role": "screen",
+          "p0_summary": "按住录音",
+          "actions": [
+            {
+              "label": "按住录音",
+              "frequency": "P0",
+              "commit": "voice_capture",
+              "transition": null
+            },
+            {
+              "label": "Todo",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "todo_list"
+              }
+            },
+            {
+              "label": "设置",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "todo_list"
+            },
+            {
+              "type": "switchTab",
+              "to": "settings_sheet"
+            }
+          ]
+        },
+        {
+          "id": "todo_list",
+          "name": "Todo",
+          "role": "screen",
+          "p0_summary": "按住补充待办",
+          "actions": [
+            {
+              "label": "按住补充待办",
+              "frequency": "P0",
+              "commit": "voice_append",
+              "transition": null
+            },
+            {
+              "label": "录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "设置",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "r3v02_capture"
+            },
+            {
+              "type": "switchTab",
+              "to": "settings_sheet"
+            }
+          ]
+        },
+        {
+          "id": "settings_sheet",
+          "name": "设置",
+          "role": "screen",
+          "p0_summary": "配置下一段录音",
+          "actions": [
+            {
+              "label": "配置模型、默认去向与透明度",
+              "frequency": "P1",
+              "commit": "configure",
+              "transition": null
+            },
+            {
+              "label": "录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "Todo",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "todo_list"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "r3v02_capture"
+            },
+            {
+              "type": "switchTab",
+              "to": "todo_list"
+            }
+          ]
+        }
+      ],
+      "context": "VoxPocket 三屏导航"
+    },
+    {
+      "id": "app04",
+      "title": "A04 · 左右丝滑横滑双画布",
+      "navigation_model": "split",
+      "architecture": {
+        "kind": "tabs",
+        "root": "r3v02_capture",
+        "destinations": [
+          "r3v02_capture",
+          "todo_list",
+          "settings_sheet"
+        ],
+        "primary": {
+          "screen": "todo_list",
+          "action": 0
+        },
+        "sheet": null,
+        "overflow": [],
+        "collapse_title": true,
+        "initial_state": {
+          "active_screen": "settings_sheet",
+          "history": [],
+          "overlay": null,
+          "detent": null,
+          "overflow_open": false,
+          "title_collapsed": false
+        }
+      },
+      "screens": [
+        {
+          "id": "r3v02_capture",
+          "name": "录音",
+          "role": "screen",
+          "p0_summary": "按住录音",
+          "actions": [
+            {
+              "label": "按住录音",
+              "frequency": "P0",
+              "commit": "voice_capture",
+              "transition": null
+            },
+            {
+              "label": "Todo",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "todo_list"
+              }
+            },
+            {
+              "label": "设置",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "todo_list"
+            },
+            {
+              "type": "switchTab",
+              "to": "settings_sheet"
+            }
+          ]
+        },
+        {
+          "id": "todo_list",
+          "name": "Todo",
+          "role": "screen",
+          "p0_summary": "按住补充待办",
+          "actions": [
+            {
+              "label": "按住补充待办",
+              "frequency": "P0",
+              "commit": "voice_append",
+              "transition": null
+            },
+            {
+              "label": "录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "设置",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "settings_sheet"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "r3v02_capture"
+            },
+            {
+              "type": "switchTab",
+              "to": "settings_sheet"
+            }
+          ]
+        },
+        {
+          "id": "settings_sheet",
+          "name": "设置",
+          "role": "screen",
+          "p0_summary": "配置下一段录音",
+          "actions": [
+            {
+              "label": "配置模型、默认去向与透明度",
+              "frequency": "P1",
+              "commit": "configure",
+              "transition": null
+            },
+            {
+              "label": "录音",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "r3v02_capture"
+              }
+            },
+            {
+              "label": "Todo",
+              "frequency": "P1",
+              "commit": null,
+              "transition": {
+                "type": "switchTab",
+                "to": "todo_list"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "type": "switchTab",
+              "to": "r3v02_capture"
+            },
+            {
+              "type": "switchTab",
+              "to": "todo_list"
+            }
+          ]
+        }
+      ],
+      "context": "VoxPocket 三屏导航"
+    }
+  ],
+  "app_context": "VoxPocket 三屏导航"
+}

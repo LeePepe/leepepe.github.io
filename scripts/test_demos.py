@@ -37,6 +37,60 @@ class DemoTests(unittest.TestCase):
             self.assertEqual(projects[1]['categories'], ['pulse'])
             self.assertEqual(projects[1]['platforms'], ['macos'])
 
+    def test_group_id_fallback_malformed_config_and_round_deduplication(self):
+        cases = {
+            'broken': '<script id="gallery-config">{invalid</script>',
+            'empty': '<script id="gallery-config">{"cards":[]}</script>',
+            'nonobject': '<script id="gallery-config">null</script>',
+            'unusable': '<script id="gallery-config">{"cards":[null,{"id":"x"}]}</script>',
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for goal, prefix in cases.items():
+                target = root / 'demos' / goal / 'index.html'
+                target.parent.mkdir(parents=True)
+                target.write_text(prefix + '<article data-group="pulse" data-id="v01" data-round="5"></article>' * 2 + '<article data-group="pulse" data-id="v01" data-round="4"></article><article data-group="pulse" data-id="current"></article>')
+            target = root / 'demos' / 'config' / 'index.html'
+            target.parent.mkdir(parents=True)
+            target.write_text('<script id="gallery-config">{"cards":[{"group":"roi","variant":"v02","round":5,"platform":"macos"},{"group":"roi","variant":"v02","round":5},{"group":"roi","variant":"current","reference":true}]}</script>')
+            with patch.object(build_site, 'REPO_ROOT', root):
+                projects = {p['goal']: p for p in build_site.scan_demo_projects()}
+            for goal in cases:
+                self.assertEqual([(c['category'], c['id'], c['round']) for c in projects[goal]['cards']], [('pulse', 'v01', '5'), ('pulse', 'v01', '4')])
+            self.assertEqual(len(projects['config']['cards']), 1)
+            self.assertEqual(projects['config']['cards'][0]['id'], 'v02')
+
+    def test_legacy_hyphenated_state_and_throwing_storage_are_read_only(self):
+        javascript = build_site.DEMOS_SCRIPT + r'''
+const value = JSON.stringify({a:{category:'pulse',id:'v01',selected:true,notes:'完整\\n笔记'}});
+const storage = {getItem:key => key === 'design-gallery-legacy' ? value : null};
+const denied = {getItem:() => {throw new Error('denied')}, get length(){throw new Error('denied')}};
+console.log(JSON.stringify({legacy:module.exports.readEntries({goal:'legacy'},storage), denied:module.exports.readEntries({goal:'aidash-cards-redesign'},denied)}));
+'''
+        result = json.loads(subprocess.check_output(['node', '-e', javascript], text=True))
+        self.assertTrue(result['legacy'][0]['selected'])
+        self.assertEqual(result['legacy'][0]['notes'], '完整\\n笔记')
+        self.assertEqual(result['denied'], [])
+
+    def test_reimported_markdown_titles_and_unsafe_palette_render_safely(self):
+        manifest = json.loads((build_site.REPO_ROOT / 'vault/manifest.json').read_text())
+        for collection in ('cards', 'patterns'):
+            for item in manifest[collection]:
+                if item['id'] in ('IP-006', 'IP-007', 'MP-007', 'TC-001', 'LN-001', 'MI-007'):
+                    item['name'] = '**说法**：CRON <script>bad</script>'
+        manifest['cards'][0]['semantic_palette'] = [{'hex':'red;\" onmouseover=\"alert(1)', 'role':'unsafe'}]
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'vault').mkdir()
+            (root / 'vault/manifest.json').write_text(json.dumps(manifest))
+            with patch.object(build_site, 'REPO_ROOT', root):
+                build_site.build_vault_page()
+            source = (root / 'vault/index.html').read_text()
+            self.assertNotIn('<h3>**说法**', source)
+            self.assertIn('<h3>零术语人话表达 (Plain-Language Microcopy)</h3>', source)
+            self.assertNotIn('style="--swatch:red;', source)
+            self.assertNotIn('id="vault-shots"', source)
+
     def test_reads_both_storage_formats_and_keeps_every_full_note(self):
         saved = {
             'aidash-cards-r2:selection:select-scheduled-pulse': 'v02',

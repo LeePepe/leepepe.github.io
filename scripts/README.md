@@ -1,5 +1,13 @@
 # Vault importer
 
+## Live vault and Demos regression gates
+
+`python3 build_site.py` generates the vault and Demos hub and idempotently adapts only the two root gallery shells. Candidate content and nested gallery pages remain upstream-owned. The eight CL maps explicitly assign light/dark semantic roles; contrast-safe accent shades retain each source hue. Palette bars use an intentional UI-area allocation (50% canvas, 20% surface, 15% accents, 15% text/border), not a measured screenshot distribution. Theme and CTA state are local to each specimen; gallery telemetry on the hub is read-only.
+
+Run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts -p 'test_*.py'` for importer, metadata fallback/deduplication, title normalization and storage regressions. Run `node scripts/test_vault_browser.mjs --output /absolute/handoff/receipts/browser` for actual drag/touch/cancel, reaction, sorting, context, ring, disclosure, anchor, clipboard, contrast and portal-storage tests, plus viewport/stage PNGs and containment-aware geometry. Evidence paths must stay outside this published repository. The runner owns an ephemeral loopback server and closes it and the browser in `finally`.
+
+The existing Playwright runtime defaults to `/tmp/tia-pw/node_modules/playwright/index.mjs`; override `PLAYWRIGHT_MODULE` only if that runtime is unavailable. `DEMO_BASELINE` defaults to `origin/master`: browser tests compare complete current remote summary markup, iframe sources and candidate metadata, not historical candidate counts. No dependency files or test screenshots are published. Reduced motion disables autoplay; all stages retain keyboard/click alternatives, and checkbox labels supply real 44px hit regions. Geometry records only active hits and their real containing DOM boxes; deliberately overlapping, noninteractive visual layers are separately recorded in `noninteractiveVisuals`.
+
 `scripts/vault_ingest.py` updates the committed `vault/manifest.json`, invokes the installed `design_catalog.py` by default, and rebuilds the site unless `--no-build` is supplied. `--no-vault-write` is the explicit opt-out for design-studio writes (useful for isolated tests).
 
 ## Runtime dependencies

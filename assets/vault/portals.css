@@ -1,0 +1,10 @@
+/* The outer portal follows Strata; iframe documents retain their own design coordinates. */
+.gallery-page { --ink:var(--strata-text-primary); --muted:var(--strata-text-secondary); --canvas:var(--strata-surface-page); --gallery-canvas:var(--strata-surface-page); --paper:var(--strata-surface-card); --white:var(--strata-surface-card); --paper-dark:var(--strata-surface-card); --ink-inverse:var(--strata-text-primary); --muted-inverse:var(--strata-text-secondary); --border:var(--strata-border); --border-strong:var(--strata-border); --action:var(--strata-brand-text); --focus:var(--strata-brand-text); background:var(--strata-surface-page); color:var(--strata-text-primary); margin:0; }
+.gallery-page .gallery { padding:28px 24px; max-width:1440px; margin:auto; }
+.gallery-page .gallery-breadcrumbs { flex-wrap:wrap; }
+.gallery-page .gallery-breadcrumbs a { min-height:44px; align-items:center; }
+.gallery-page .variant-card { background:var(--strata-surface-card); color:var(--strata-text-primary); box-shadow:0 6px 22px var(--strata-shadow-color); }
+.gallery-page .variant-summary { color:var(--strata-text-secondary); }
+.gallery-page .variant-card label { min-height:44px; min-width:44px; }
+.gallery-page .manual-copy { color:var(--strata-text-primary); background:var(--strata-surface-card); }
+@media(max-width:520px) { .gallery-page .gallery { padding:20px 16px; } }

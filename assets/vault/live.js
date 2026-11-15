@@ -151,8 +151,8 @@
     'IP-007'(stage, say, index) {
       const button = stage.querySelector('[data-advanced]'), panel = stage.querySelector('.stage-advanced'), reminder = stage.querySelector('[role=switch]');
       panel.id = `vault-advanced-${index}`; button.setAttribute('aria-controls', panel.id);
-      button.addEventListener('click', () => {panel.hidden = !panel.hidden; button.setAttribute('aria-expanded', !panel.hidden);});
-      const render = () => say(`${reminder.checked ? '提醒已开启' : '提醒已关闭'} · ${panel.querySelector('select').value} · ${panel.querySelector('input').value} 静音`);
+      button.addEventListener('click', () => {panel.hidden = !panel.hidden; button.setAttribute('aria-expanded', !panel.hidden); render();});
+      const render = () => {stage.querySelector('output').hidden = panel.hidden; say(`${reminder.checked ? '提醒已开启' : '提醒已关闭'} · ${panel.querySelector('select').value} · ${panel.querySelector('input').value} 静音`);};
       stage.querySelectorAll('input,select').forEach(i => i.addEventListener('change', render)); render();
     },
     'IP-008'(stage, say) {

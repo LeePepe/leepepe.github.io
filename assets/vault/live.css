@@ -59,7 +59,7 @@
 .stage-drop-zone { display:flex; align-items:center; justify-content:space-between; gap:16px; height:70px; }
 .stage-file { touch-action:none; position:relative; z-index:2; transition:transform .4s,opacity .4s; }
 .is-dragging .stage-file { transition:none; }
-.stage-folder { position:relative; min-width:120px!important; background:color-mix(in srgb,var(--strata-brand-primary) 25%,var(--strata-surface-card))!important; }
+.stage-folder { position:relative; min-width:120px!important; background:color-mix(in srgb,var(--strata-brand-primary) 25%,transparent)!important; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
 .folder-lid { position:absolute; left:0; right:0; top:-8px; height:14px; border-radius:8px; background:var(--strata-brand-primary); transform-origin:bottom; transition:transform .4s cubic-bezier(.2,1.5,.4,1); }
 .stage-folder.is-open .folder-lid { transform:perspective(150px) rotateX(-65deg); }
 .is-dropped .stage-file { animation:file-ingest .55s; }

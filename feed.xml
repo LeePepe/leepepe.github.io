@@ -5,11 +5,41 @@
   <link href="https://leepepe.github.io/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://leepepe.github.io/" rel="alternate" type="text/html"/>
   <id>https://leepepe.github.io/</id>
-  <updated>2026-11-09T08:00:00+08:00</updated>
+  <updated>2026-11-15T08:00:00+08:00</updated>
   <author>
     <name>Lee Pepe</name>
     <email>1105208297@qq.com</email>
   </author>
+  <entry>
+    <title>BAMA：预算感知多智能体路由、Agent CLI 与免 GUI 故事验收架构</title>
+    <link href="https://leepepe.github.io/learn/bama-budget-aware-multi-agent/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/bama-budget-aware-multi-agent/</id>
+    <published>2026-11-15T08:00:00+08:00</published>
+    <updated>2026-11-15T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="BAMA"/><category term="多智能体路由"/><category term="架构分层"/>
+    <summary type="html">BAMA 不是让大模型盲猜整个 macOS 工程，而是用「按需技能路由（0 上下文闲置开销）+ 应用内建 Socket CLI + 1 Story = 1 Commit 快照门禁」把 GUI 开发拆成确定性流水线 —— 21 个分阶段微技能与 --help 即时发现机制让日常上下文 Token 预算降低 80% 以上，并通过单写者 Socket 保证 CLI 与窗口 100% 状态同步。</summary>
+  </entry>
+  <entry>
+    <title>Genjutsu：三尺度视觉编排（cast/paint/bunshin）、风格化视觉生成控制与跨平台契约门禁</title>
+    <link href="https://leepepe.github.io/learn/genjutsu-styled-image-generation/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/genjutsu-styled-image-generation/</id>
+    <published>2026-11-15T08:00:00+08:00</published>
+    <updated>2026-11-15T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="Genjutsu"/><category term="视觉编排"/><category term="评测门禁"/>
+    <summary type="html">Genjutsu 管住 AI 视觉与动效不翻车的核心，不是写更长的形容词 Prompt，而是按「单交互（cast）→ 整套风格（paint）→ 整站多代理（bunshin）」三级尺度锁定审批粒度，并用字节级共享块校验 + 真实渲染截图回执（shoot.mjs）替代「只读代码不看画面」的盲审。</summary>
+  </entry>
+  <entry>
+    <title>SwiftUI 26+ 导航与 API 演进：TabView / Sidebar / SplitView 液态玻璃自适应架构与确定性迁移扫描</title>
+    <link href="https://leepepe.github.io/learn/swiftui-26-tabview-sidebar-splitview/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/swiftui-26-tabview-sidebar-splitview/</id>
+    <published>2026-11-15T08:00:00+08:00</published>
+    <updated>2026-11-15T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="SwiftUI"/><category term="Liquid Glass"/><category term="TabView"/>
+    <summary type="html">iOS 26 / macOS 26 的导航架构升级，本质是把 TabView、Sidebar 与 NavigationSplitView 统一为「悬浮在全画幅内容流之上的自适应液态玻璃胶囊（.sidebarAdaptable + GlassEffectContainer）」，同时配合 scan-manifest 确定性扫描清单淘汰布尔弹窗与旧导航状态。</summary>
+  </entry>
   <entry>
     <title>为什么我给书房按键加了「长按开空调」</title>
     <link href="https://leepepe.github.io/thoughts/study-switch-long-press-ac/" rel="alternate" type="text/html"/>

@@ -29,7 +29,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "fb049b3c0f0f02c1f293bd2bdae89271be9477edb407af9816e1335b05a556fe"
+      "prompt_sha256": "fb049b3c0f0f02c1f293bd2bdae89271be9477edb407af9816e1335b05a556fe",
+      "summary": "以内嵌航路账展开技能链路，每个折叠段同时解释上下文来源、调用关系和产出，用于技能上下文收益场景。"
     },
     {
       "id": "v02",
@@ -44,7 +45,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "28ff1c2a6286d618fc1bad3dca8d01237d5050e56fe95b6264a48168f578f133"
+      "prompt_sha256": "28ff1c2a6286d618fc1bad3dca8d01237d5050e56fe95b6264a48168f578f133",
+      "summary": "用双栏分岔总账对照技能输入与 ROI 结果，左右两侧保持可同步核对的路线结构，用于技能上下文收益场景。"
     },
     {
       "id": "v03",
@@ -59,7 +61,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "b96378e29ba20be37711c2d9da3df73972aca8439a8551626c532570624ea3de"
+      "prompt_sha256": "b96378e29ba20be37711c2d9da3df73972aca8439a8551626c532570624ea3de",
+      "summary": "以浮光丝带工作台连接技能、上下文和收益，横向带状模块支持逐段展开与回看，用于技能上下文收益场景。"
     },
     {
       "id": "v04",
@@ -74,7 +77,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "e1477d04c0ad5be7b8cb22a756b2787554fe3b5e7979522b506e874671609b5c"
+      "prompt_sha256": "e1477d04c0ad5be7b8cb22a756b2787554fe3b5e7979522b506e874671609b5c",
+      "summary": "把技能成本与收益绘成钱夹式流向纸签，沿路径即可看见资源从输入到结果的去向，用于技能上下文收益场景。"
     },
     {
       "id": "v05",
@@ -89,7 +93,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v05-prompt.md",
-      "prompt_sha256": "a2aab4259c6f87148c5baf6c59b8adce86983c5ce050774881b922998c192407"
+      "prompt_sha256": "a2aab4259c6f87148c5baf6c59b8adce86983c5ce050774881b922998c192407",
+      "summary": "用专业矩阵和底部抽屉承载技能指标，主表负责比较，抽屉负责查看单条证据，用于技能上下文收益场景。"
     },
     {
       "id": "v06",
@@ -104,7 +109,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v06-prompt.md",
-      "prompt_sha256": "3e7b21064a9214482cfc5cd5b7e817ca27a3f827b569a241c52a403e24271eaf"
+      "prompt_sha256": "3e7b21064a9214482cfc5cd5b7e817ca27a3f827b569a241c52a403e24271eaf",
+      "summary": "以双页航路存折记录技能调用和回报，翻页式布局把每段上下文保留为可追溯账目，用于技能上下文收益场景。"
     },
     {
       "id": "v07",
@@ -119,7 +125,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v07-prompt.md",
-      "prompt_sha256": "7758f289e54b04862508c9709aca7647dac078fbede19775edbfeed30c036a12"
+      "prompt_sha256": "7758f289e54b04862508c9709aca7647dac078fbede19775edbfeed30c036a12",
+      "summary": "将技能分成六舱精密导流架，入口、处理、输出和成本各自占据清晰的操作舱位，用于技能上下文收益场景。"
     },
     {
       "id": "v08",
@@ -134,7 +141,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v08-prompt.md",
-      "prompt_sha256": "59c8a97ff523c1585c7632a42c3da6b394c58ac3a7211d5ad72f20e5b00fd2d2"
+      "prompt_sha256": "59c8a97ff523c1585c7632a42c3da6b394c58ac3a7211d5ad72f20e5b00fd2d2",
+      "summary": "用可伸缩抽屉组成导流井，按需展开单个技能的上下文、消耗和收益细节，用于技能上下文收益场景。"
     },
     {
       "id": "v09",
@@ -149,7 +157,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v09-prompt.md",
-      "prompt_sha256": "5c80fb3736121cf0f2ee12f1516c3f6c27a3eb2d01cc899f19385ba0e6b9a165"
+      "prompt_sha256": "5c80fb3736121cf0f2ee12f1516c3f6c27a3eb2d01cc899f19385ba0e6b9a165",
+      "summary": "采用画报式凭单和分岔桥，把复杂的技能 ROI 拆成可浏览的视觉票据与关系路径，用于技能上下文收益场景。"
     },
     {
       "id": "v10",
@@ -164,7 +173,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v10-prompt.md",
-      "prompt_sha256": "4e30fee2a485d11374caebd1b9b92cfa1d0d2958921bbe7d5a0b1039160f69c6"
+      "prompt_sha256": "4e30fee2a485d11374caebd1b9b92cfa1d0d2958921bbe7d5a0b1039160f69c6",
+      "summary": "以同心导流控制台汇总技能流向，中心展示当前链路，外围提供上下文和收益的层层钻取，用于技能上下文收益场景。"
     }
   ],
   "prompt_contract": {

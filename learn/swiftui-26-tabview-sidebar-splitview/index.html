@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>SwiftUI 26+ 导航与 API 演进：TabView / Sidebar / SplitView 液态玻璃自适应架构与确定性迁移扫描 · Lee Pepe</title>
+<meta name="description" content="iOS 26 / macOS 26 的导航架构升级，本质是把 TabView、Sidebar 与 NavigationSplitView 统一为「悬浮在全画幅内容流之上的自适应液态玻璃胶囊（.sidebarAdaptable + GlassEffectContainer）」，同时配合 scan-manifest 确定性扫描清单淘汰布尔弹窗与旧导航状态。">
+<link rel="alternate" type="application/atom+xml" title="Lee Pepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+<header class="site-header shell">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
+    <nav class="nav" aria-label="主导航"><a href="/">首页</a><a href="/learn/" aria-current="page">求知</a><a href="/thoughts/">思考</a><a href="/vault/">素材库</a><a href="/demos/">Demos</a><a href="/archive/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav>
+    <div class="theme-toggle" role="group" aria-label="外观"><button type="button" data-theme-choice="light" aria-pressed="false" title="浅色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span class="label">浅色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="dark" aria-pressed="false" title="深色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg><span class="label">深色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="system" aria-pressed="true" title="系统"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11.5V14"/></svg><span class="label">系统</span><span class="visually-hidden">主题</span></button></div>
+  </div>
+</header>
+<main id="main" class="shell">
+  <div class="post-layout">
+    <div>
+      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <article class="card article">
+        <header class="article-header">
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t10">TabView</a></li></ul>
+          <h1>SwiftUI 26+ 导航与 API 演进：TabView / Sidebar / SplitView 液态玻璃自适应架构与确定性迁移扫描</h1>
+          <p class="lede">iOS 26 / macOS 26 的导航架构升级，本质是把 TabView、Sidebar 与 NavigationSplitView 统一为「悬浮在全画幅内容流之上的自适应液态玻璃胶囊（.sidebarAdaptable + GlassEffectContainer）」，同时配合 scan-manifest 确定性扫描清单淘汰布尔弹窗与旧导航状态。</p>
+          <div class="post-meta"><time datetime="2026-11-15">2026 年 11 月 15 日</time><span class="dot" aria-hidden="true">·</span><span>约 3,900 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 9 分钟</span></div>
+        </header>
+        <div class="prose">
+<blockquote><p><strong>一句话结论</strong>：<strong>iOS 26 / macOS 26 的导航架构升级，本质是把 <code>TabView</code>、<code>Sidebar</code> 与 <code>NavigationSplitView</code> 统一为「悬浮在全画幅内容流之上的自适应液态玻璃胶囊（<code>.sidebarAdaptable</code> + <code>GlassEffectContainer</code>）」，同时配合 <code>scan-manifest</code> 确定性扫描清单淘汰布尔弹窗与旧导航状态</strong> —— 用 <strong>1 个 <code>Identifiable</code> 枚举状态</strong>替代 <strong>N 个布尔属性</strong>，彻底消除多弹窗状态冲突与跨端导航割裂。</p></blockquote>
+<h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
+<table><thead><tr><th>抽象概念 / 参数</th><th>关键数字</th><th>生活教具 / 直观参照</th><th>物理/工程效果</th></tr></thead><tbody><tr><td>自适应导航容器（<code>TabView</code> + <code>.tabViewStyle(.sidebarAdaptable)</code>）</td><td><strong>1 套声明代码</strong>横跨 iPhone 底部胶囊、iPad 顶栏/侧栏与 Mac 侧边栏</td><td>变形金刚模块化底盘（随空间自动折叠或展开）</td><td>导航栏自动获得原生 Liquid Glass 光学折射与滚动最小化（Minimize on Scroll），底部内容全画幅穿透</td></tr><tr><td>玻璃共享采样容器（<code>GlassEffectContainer(spacing:)</code>）</td><td>容器 <code>spacing</code> 与 <code>HStack</code> 间距 <strong>1:1 严格对齐</strong>；仅提供 <strong>3 种原生 Glass 枚举</strong>（<code>.regular</code> / <code>.clear</code> / <code>.identity</code>）</td><td>共用同一块光学镜片底板的连体护目镜</td><td>解决「玻璃不能采样玻璃」导致的相邻按钮折射撕裂，并支持 <code>@Namespace</code> + <code>glassEffectID</code> 流体融合</td></tr><tr><td>确定性 API 扫描清单（<code>scan-manifest.md</code> + Item-Driven State）</td><td>覆盖 <strong>7 大 API 领域</strong>；将 <strong>N 个 <code>@State Bool</code></strong> 压缩为 <strong>1 个 <code>Sheet?</code> 枚举</strong></td><td>飞机起飞前的分项机械检查单 + 单钥匙总控锁</td><td>批量扫描废弃 API（<code>NavigationView</code> / <code>ObservableObject</code> / <code>foregroundColor</code> / 布尔 Sheet），零状态回归完成迁移</td></tr></tbody></table>
+<h2 id="sec-2">核心痛点问答<a class="anchor" href="#sec-2" aria-label="本节链接">#</a></h2>
+<h3 id="sec-2-1">Q1. 在 iOS 26 / macOS 26 中，<code>TabView</code>、侧边栏（<code>Sidebar</code>）与 <code>NavigationSplitView</code> 如何配合 Liquid Glass 实现跨端自适应，为什么不要手写底部毛玻璃条？<a class="anchor" href="#sec-2-1" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：系统原生的 <code>TabView</code>（配合 <code>Tab</code> 结构体与 <code>.tabViewStyle(.sidebarAdaptable)</code>）和 <code>NavigationSplitView</code> 已经自带<strong>顶层液态玻璃悬浮 + 底层内容边缘到边缘（Edge-to-Edge）穿透</strong>；手写底部 <code>.ultraThinMaterial</code> 背景条会导致「玻璃叠玻璃」的双重边框与采样撕裂。</li><li><strong>原理与教具</strong>：可以把 iOS 26 / macOS 26 的导航层想象成<strong>悬浮在画布上方的无框光学放大镜</strong>：<ul><li>在 iPhone 上，<code>TabView</code> 自动渲染为底部悬浮液态玻璃胶囊，配合滚动行为自动收缩让位给内容；</li><li>在 iPad 与 Mac 上，加上 <code>.tabViewStyle(.sidebarAdaptable)</code> 后，同一套 <code>Tab(&quot;训练&quot;, systemImage: &quot;figure.run&quot;, value: .workout)</code> 代码会自动在顶部胶囊栏与浮动玻璃侧边栏（<code>Sidebar</code>）之间平滑变形，且与 <code>NavigationSplitView</code> 的多列主从容器共享同心圆角与过渡动效。</li></ul></li></ul>
+<h3 id="sec-2-2">Q2. 自定义浮动工具条或侧边折叠按钮时，为什么相邻两个 <code>.glassEffect()</code> 按钮看起来折射不一致、甚至无法做展开融合动画？<a class="anchor" href="#sec-2-2" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：因为 <strong>Liquid Glass 无法直接采样另一块玻璃</strong>；多个相邻玻璃元素必须包裹在同一个 <code>GlassEffectContainer(spacing:)</code> 中共享底层采样区，并搭配 <code>@Namespace</code> 与 <code>.glassEffectID</code> 实现流体展开。</li><li><strong>原理与教具</strong>：每块液态玻璃都会向四周扩张采样下方内容来计算边缘折射。如果两个按钮各自独立采样，就像<strong>两面紧挨着的哈哈镜互相照对方</strong>，边缘就会失真打架。用 <code>GlassEffectContainer(spacing: 24)</code> 把它们装进同一个光学底座，并且只对真正可点击的控件加 <code>.glassEffect(.regular.interactive())</code>（注意：原生只有 <code>.regular</code>、<code>.clear</code>、<code>.identity</code>，<strong>不存在 <code>.prominent</code> 属性</strong>，强调色应使用 <code>.tint(.blue.opacity(0.3))</code> 或 <code>.buttonStyle(.glassProminent)</code>）。</li></ul>
+<div class="language-swift highlighter-rouge"><span class="code-label" aria-hidden="true">SWIFT</span><div class="highlight"><pre class="highlight"><code><span class="kd">@Namespace</span> <span class="kd">private</span> <span class="kd">var</span> navGlassNamespace
+
+<span class="kt">GlassEffectContainer</span>(spacing: <span class="mi">12</span>) {
+    <span class="kt">HStack</span>(spacing: <span class="mi">12</span>) {
+        <span class="kt">Button</span>(<span class="s">&quot;待办&quot;</span>, systemImage: <span class="s">&quot;checklist&quot;</span>) { <span class="nf">select</span>(.<span class="nf">todos</span>) }
+            .<span class="nf">glassEffect</span>(.<span class="nf">regular</span>.<span class="nf">interactive</span>())
+            .<span class="nf">glassEffectID</span>(<span class="s">&quot;todos&quot;</span>, <span class="kd">in</span>: navGlassNamespace)
+
+        <span class="kd">if</span> isExpanded {
+            <span class="kt">Button</span>(<span class="s">&quot;设置&quot;</span>, systemImage: <span class="s">&quot;gearshape&quot;</span>) { <span class="nf">select</span>(.<span class="nf">settings</span>) }
+                .<span class="nf">glassEffect</span>(.<span class="nf">regular</span>.<span class="nf">interactive</span>())
+                .<span class="nf">glassEffectID</span>(<span class="s">&quot;settings&quot;</span>, <span class="kd">in</span>: navGlassNamespace)
+        }
+    }
+}</code></pre></div></div>
+<h3 id="sec-2-3">Q3. <code>update-swiftui-apis</code> 是如何通过 <code>scan-manifest.md</code> 批量扫描并迁移废弃 SwiftUI API 而不引入状态回归的？<a class="anchor" href="#sec-2-3" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：不靠大模型凭印象乱改，而是将 SwiftUI 拆成 <strong>7 个正交扫描域（Navigation / Appearance / State / Presentation / Text Input / Layout / Gestures）</strong>，按固定文档路径核对 Availability，并按目标最低版本（iOS 15+ / 16+ / 17+ / 18+ / 26+）分段替换。</li><li><strong>原理与教具</strong>：大模型凭记忆升级 API 常犯两类错：要么编造不存在的修饰符（如 <code>.glassEffect(.prominent)</code>），要么改了声明却弄丢状态绑定。<code>scan-manifest.md</code> 像<strong>海关 X 光分拣线</strong>，逐项把历史包袱映射到确定性现代范式：<ul><li><strong>状态层</strong>：<code>ObservableObject</code> + <code>@StateObject</code> + <code>@Published</code> → <code>@Observable</code> 宏 + <code>@State</code> + <code>@Bindable</code>（及 <code>@Entry</code> 环境值宏）；</li><li><strong>导航与弹窗层</strong>：多布尔变量 <code>.sheet(isPresented:)</code> → 单一 <code>Identifiable</code> 枚举 <code>.sheet(item:)</code>，且 Sheet 内部用 <code>@Environment(\.dismiss)</code> 自管理关闭，消除回调层层透传；</li><li><strong>样式与布局层</strong>：<code>foregroundColor</code> → <code>foregroundStyle</code>，<code>GeometryReader</code> 测宽高 → <code>containerRelativeFrame</code> / <code>visualEffect</code>。</li></ul></li></ul>
+<h3 id="sec-2-4">Q4. 向 iOS 26+ 迁移导航与玻璃样式时，如何确保修饰符顺序（Modifier Order）与旧系统回退（Fallback）万无一失？<a class="anchor" href="#sec-2-4" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：严格遵守<strong>「先布局与内容外观（<code>padding</code>/<code>frame</code>/<code>font</code>）→ 最后挂 <code>.glassEffect()</code>」</strong>的修饰符顺序，并用 <code>#available(iOS 26, macOS 26, *)</code> 包裹，回退分支使用 <code>.ultraThinMaterial</code> + <code>RoundedRectangle</code>。</li><li><strong>原理与教具</strong>：<code>.glassEffect()</code> 就像给做好的标本<strong>最后封上一层液态树脂</strong>——如果你先封树脂再改尺寸（把 <code>padding</code> 写在 <code>glassEffect</code> 外面），玻璃透镜的折射曲率就会按错误的内缩尺寸计算，导致点击高亮区域与视觉边界脱节。</li></ul>
+<h2 id="sec-3">立即可用清单<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
+<ul><li><strong>跨端导航首选 <code>TabView</code> + <code>.sidebarAdaptable</code> 与 <code>NavigationSplitView</code></strong>：让系统接管顶部/底部/侧边栏的液态玻璃悬浮与滚动避让，主画布不加多余的外层卡片边框。</li><li><strong>多玻璃按钮必进 <code>GlassEffectContainer</code> 并严守修饰符顺序</strong>：相邻玻璃控件必须放进同一个 <code>GlassEffectContainer(spacing:)</code>，<code>.glassEffect(.regular.interactive())</code> 永远写在 <code>padding</code>/<code>frame</code>/<code>font</code> 之后。</li><li><strong>用 <code>Identifiable</code> 枚举 <code>.sheet(item:)</code> 统一收敛弹窗状态</strong>：按 <code>scan-manifest.md</code> 排查页面中的多个 <code>@State private var showXXX = false</code>，合并为单个枚举状态机，消除状态竞争。</li></ul>
+        </div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/genjutsu-styled-image-generation/"><span class="dir">← 上一篇</span><span class="t">Genjutsu：三尺度视觉编排（cast/paint/bunshin）、风格化视觉生成控制与跨平台契约门禁</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+      </article>
+    </div>
+    <aside class="toc" aria-label="本文目录">
+      <p class="section-label">目录</p>
+      <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">核心痛点问答</a></li><li class="l3"><a href="#sec-2-1">Q1. 在 iOS 26 / macOS 26 中…</a></li><li class="l3"><a href="#sec-2-2">Q2. 自定义浮动工具条或侧边折叠按钮时，为什么相…</a></li><li class="l3"><a href="#sec-2-3">Q3. update-swiftui-apis 是…</a></li><li class="l3"><a href="#sec-2-4">Q4. 向 iOS 26+ 迁移导航与玻璃样式时，…</a></li><li class="l2"><a href="#sec-3">立即可用清单</a></li></ol>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>© 2026 Lee Pepe · 写代码，也写生活</span>
+    <nav aria-label="页脚"><a href="/feed.xml">RSS 订阅</a><a href="https://github.com/LeePepe">GitHub</a><a href="#main">回到顶部</a></nav>
+  </div>
+</footer>
+</body>
+</html>

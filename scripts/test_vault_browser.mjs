@@ -30,7 +30,17 @@ async function dragMouse(page,node,fraction) {
   await page.mouse.move(track.x+22+(track.width-44)*fraction,r.y+r.height/2,{steps:12});
   await page.mouse.up();
 }
-async function screenshot(page,name,locator) {if (output) {await locator?.scrollIntoViewIfNeeded(); await (locator || page).screenshot({path:resolve(output,name),animations:'disabled'});}}
+async function screenshot(page,name,locator) {
+  if (!output) return;
+  await locator?.scrollIntoViewIfNeeded();
+  const options={path:resolve(output,name),animations:'disabled'};
+  if (locator) {
+    // Capture the real surrounding gutter as well, so panel rims are not cropped at PNG edges.
+    const box=await locator.evaluate(n=>{const r=n.getBoundingClientRect();return {x:r.x+scrollX,y:r.y+scrollY,width:r.width,height:r.height};});
+    options.clip={x:Math.max(0,box.x-8),y:Math.max(0,box.y-8),width:box.width+16,height:box.height+16};
+  }
+  await page.screenshot(options);
+}
 async function contrastRead(specimen) {
   return specimen.evaluate(el => {
     const rgb = s => s.match(/[\d.]+/g).map(Number);
@@ -116,13 +126,16 @@ try {
   await check('MP-001 folded corner hover/click/keyboard settles',async()=>{
     const s=stage('MP-001'),b=s.locator('button');await b.hover();await page.waitForTimeout(520);
     const transformed=await s.locator('.peel-corner').evaluate(n=>getComputedStyle(n).transform);assert.notEqual(transformed,'none');assert.equal(await b.getAttribute('aria-pressed'),'true');
+    assert.notEqual(await b.evaluate(n=>getComputedStyle(n).clipPath),'none');
+    const revealed=await s.locator('.peel-meta').evaluate(n=>{const r=n.getBoundingClientRect();const top=document.elementFromPoint(r.right-3,r.top+5);return top===n||n.contains(top);});assert.ok(revealed,'fold reveals the actual underlying metadata');
+    await screenshot(page,'MP-001-peeled-390.png',s);
     await page.mouse.move(0,0);assert.equal(await b.getAttribute('aria-pressed'),'false');
     await b.focus();await page.keyboard.press('Space');assert.equal(await b.getAttribute('aria-pressed'),'true');await page.keyboard.press('Space');assert.equal(await b.getAttribute('aria-pressed'),'false');
   });
   await check('MP-002 actual threshold commit, early cancel, pointer cancel, reset and keyboard alternate',async()=>{
     const s=stage('MP-002'),thumb=s.locator('.stage-thumb');
     await dragMouse(page,thumb,.6);assert.equal(await thumb.getAttribute('aria-valuenow'),'0');assert.match(await s.locator('output').textContent(),/取消/);
-    await dragMouse(page,thumb,.9);assert.equal(await thumb.getAttribute('aria-valuenow'),'100');assert.match(await s.locator('output').textContent(),/已确认执行/);
+    await dragMouse(page,thumb,.9);assert.equal(await thumb.getAttribute('aria-valuenow'),'100');assert.match(await s.locator('output').textContent(),/已确认执行/);await screenshot(page,'MP-002-confirmed-390.png',s);
     await s.locator('[data-reset-confirm]').click(); assert.equal(await thumb.getAttribute('aria-valuenow'),'0');
     await thumb.scrollIntoViewIfNeeded();const r=await thumb.boundingBox();const cdp=await context.newCDPSession(page);
     await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:r.x+22,y:r.y+22}]});
@@ -146,7 +159,7 @@ try {
   });
   await check('MP-005 five real reactions, long press, no count on open, Escape',async()=>{
     const s=stage('MP-005'),bubble=s.locator('.stage-bubble');await bubble.click();assert.equal(await bubble.locator('b').textContent(),'0');
-    assert.equal(await s.locator('.stage-reactions button:visible').count(),5);await s.locator('.stage-reactions button').nth(1).click();assert.equal(await bubble.locator('b').textContent(),'1');
+    assert.equal(await s.locator('.stage-reactions button:visible').count(),5);await screenshot(page,'MP-005-reactions-390.png',s);await s.locator('.stage-reactions button').nth(1).click();assert.equal(await bubble.locator('b').textContent(),'1');
     await bubble.scrollIntoViewIfNeeded();const r=await bubble.boundingBox();await page.mouse.move(r.x+20,r.y+20);await page.mouse.down();await page.waitForTimeout(500);await page.mouse.up();assert.equal(await bubble.getAttribute('aria-expanded'),'true');
     await page.keyboard.press('Escape');assert.equal(await bubble.getAttribute('aria-expanded'),'false');assert.equal(await bubble.locator('b').textContent(),'1');
   });
@@ -173,13 +186,13 @@ try {
     await s.locator('[data-stack=legal]').click();assert.notDeepEqual(await stack.locator('span').allTextContents(),before);
     await stack.scrollIntoViewIfNeeded();const r=await stack.boundingBox();await page.mouse.move(r.x+50,r.y+20);await page.mouse.down();await page.mouse.move(r.x+90,r.y+20,{steps:8});await page.mouse.up();assert.match(await s.locator('output').textContent(),/合法重排/);
   });
-  await check('IP-001 real segment cross-filter, KPI and repeat reset',async()=>{const s=stage('IP-001');assert.equal((await visibleRows(s)).length,3);await s.locator('[data-segment="力量"]').click();assert.deepEqual(await visibleRows(s),['力量 · 24 分钟']);assert.match(await s.locator('output').textContent(),/1 项 · 24 分钟/);await s.locator('[data-segment="力量"]').click();assert.equal((await visibleRows(s)).length,3);assert.match(await s.locator('output').textContent(),/74 分钟/);});
+  await check('IP-001 real segment cross-filter, KPI and repeat reset',async()=>{const s=stage('IP-001');assert.equal((await visibleRows(s)).length,3);await s.locator('[data-segment="力量"]').click();assert.deepEqual(await visibleRows(s),['力量 · 24 分钟']);assert.match(await s.locator('output').textContent(),/1 项 · 24 分钟/);await screenshot(page,'IP-001-filtered-390.png',s);await s.locator('[data-segment="力量"]').click();assert.equal((await visibleRows(s)).length,3);assert.match(await s.locator('output').textContent(),/74 分钟/);});
   await check('IP-002 orthogonal filter and numeric sorting preserve both choices',async()=>{const s=stage('IP-002');assert.deepEqual(await visibleRows(s),['复盘 · 8m','写作 · 12m','测试 · 20m']);await s.locator('[data-filter=doing]').click();await s.locator('[data-sort]').click();assert.deepEqual(await visibleRows(s),['测试 · 20m','写作 · 12m']);await s.locator('[data-filter=all]').click();assert.deepEqual(await visibleRows(s),['测试 · 20m','写作 · 12m','复盘 · 8m']);await s.locator('[data-sort]').click();assert.deepEqual(await visibleRows(s),['复盘 · 8m','写作 · 12m','测试 · 20m']);});
   await check('IP-003 stable master order and actual inspector selection/parameters',async()=>{const s=stage('IP-003'),list=s.locator('ol'),before=await list.textContent();await s.locator('[data-detail="提醒规则"]').click();assert.match(await s.locator('.stage-inspector').textContent(),/提醒规则.*18 分钟.*每周一/);await s.locator('[data-detail="周报摘要"]').click();assert.match(await s.locator('.stage-inspector').textContent(),/周报摘要.*12 分钟.*最近 7 天/);assert.equal(await list.textContent(),before);assert.equal(await s.locator('[data-detail][aria-pressed=true]').count(),1);});
-  await check('IP-004 empty/relax restores real contextual rows without clearing other filter',async()=>{const s=stage('IP-004');await s.locator('select').selectOption('cardio');assert.deepEqual(await visibleRows(s),['慢跑 · 强度 2']);await s.locator('[data-empty]').click();assert.deepEqual(await visibleRows(s),[]);assert.match(await s.locator('output').textContent(),/没有匹配结果.*有氧训练/);await s.locator('[data-relax]').click();assert.equal(await s.locator('select').inputValue(),'cardio');assert.deepEqual(await visibleRows(s),['慢跑 · 强度 2']);});
+  await check('IP-004 empty/relax restores real contextual rows without clearing other filter',async()=>{const s=stage('IP-004');await s.locator('select').selectOption('cardio');assert.deepEqual(await visibleRows(s),['慢跑 · 强度 2']);await s.locator('[data-empty]').click();assert.deepEqual(await visibleRows(s),[]);assert.match(await s.locator('output').textContent(),/没有匹配结果.*有氧训练/);await screenshot(page,'IP-004-empty-context-390.png',s);await s.locator('[data-relax]').click();assert.equal(await s.locator('select').inputValue(),'cardio');assert.deepEqual(await visibleRows(s),['慢跑 · 强度 2']);});
   await check('IP-005 real checkbox hit labels update SVG ring and numbers both directions',async()=>{const s=stage('IP-005');await s.locator('label').nth(0).click();assert.match(await s.locator('output').textContent(),/1\/3.*33%/);await page.waitForTimeout(450);assert.ok(Math.abs(Number(await s.locator('.ring-value').evaluate(n=>getComputedStyle(n).strokeDashoffset.replace('px','')))-66.6667)<.01);await s.locator('label').nth(0).click();assert.match(await s.locator('output').textContent(),/0\/3.*0%/);await page.waitForTimeout(450);assert.equal(await s.locator('svg').getAttribute('aria-label'),'完成 0%');});
   await check('IP-006 accessible jargon/plain language comparison',async()=>{const s=stage('IP-006'),b=s.locator('button');await b.click();assert.match(await s.locator('.stage-copy').textContent(),/每周一上午 9:00/);assert.equal(await b.getAttribute('aria-pressed'),'true');await b.click();assert.match(await s.locator('.stage-copy').textContent(),/CRON/);});
-  await check('IP-007 independent reminder, disclosed quiet time/repeat controls and instance IDs',async()=>{const s=stage('IP-007');await s.locator('.stage-switch').click();await s.locator('[data-advanced]').click();assert.equal(await s.locator('[role=switch]').isChecked(),true);await s.locator('input[type=time]').fill('23:30');await s.locator('select').selectOption({label:'工作日'});assert.match(await s.locator('output').textContent(),/已开启.*工作日.*23:30/);await s.locator('[data-advanced]').click();assert.equal(await s.locator('[role=switch]').isChecked(),true);await s.locator('[data-advanced]').click();await geometry(page,'geometry-mobile-disclosed.json');await s.locator('[data-advanced]').click();});
+  await check('IP-007 independent reminder, disclosed quiet time/repeat controls and instance IDs',async()=>{const s=stage('IP-007');await s.locator('.stage-switch').click();await s.locator('[data-advanced]').click();assert.equal(await s.locator('[role=switch]').isChecked(),true);await s.locator('input[type=time]').fill('23:30');await s.locator('select').selectOption({label:'工作日'});assert.match(await s.locator('output').textContent(),/已开启.*工作日.*23:30/);await s.locator('[data-advanced]').click();assert.equal(await s.locator('[role=switch]').isChecked(),true);await s.locator('[data-advanced]').click();await page.waitForTimeout(350);await screenshot(page,'IP-007-disclosed-390.png',s);await geometry(page,'geometry-mobile-disclosed.json');await s.locator('[data-advanced]').click();});
   await check('IP-008 actual edge anchoring independent of font size',async()=>{const s=stage('IP-008'),badge=s.locator('.stage-badge b');const initial=await badge.evaluate(n=>({top:getComputedStyle(n).top,right:getComputedStyle(n).right,size:getComputedStyle(n).fontSize}));await s.locator('[data-flip]').click();assert.equal(await badge.evaluate(n=>getComputedStyle(n).left),'0px');await s.locator('input').focus();await page.keyboard.press('End');const after=await badge.evaluate(n=>({left:getComputedStyle(n).left,bottom:getComputedStyle(n).bottom,size:getComputedStyle(n).fontSize}));assert.equal(after.left,'0px');assert.equal(after.bottom,'0px');assert.notEqual(after.size,initial.size);await s.locator('[data-flip]').click();});
   await check('Duplicate design and pattern instances stay isolated with no duplicated IDs',async()=>{
     for (const id of ['MP-005','IP-002','IP-007']) {const designs=page.locator(`.vault-design [data-stage-id="${id}"]`),design=designs.first(),pattern=stage(id);assert.ok(await designs.count()>=1);
@@ -216,12 +229,21 @@ try {
   });
   await check('Malformed and denied storage plus clipboard fallback do not break hub',async()=>{
     const blocked=await browser.newContext({viewport:{width:390,height:844}});await blocked.addInitScript(()=>{Object.defineProperty(window,'localStorage',{get(){throw new Error('denied');}});Object.defineProperty(navigator,'clipboard',{value:{writeText(){return Promise.reject(new Error('denied'));}}});});
-    const p=await blocked.newPage();p.on('pageerror',e=>errors.push(e.message));await p.goto(base+'/demos/');await p.locator('#copy-all-demos-summary').click();assert.match(await p.locator('#copy-result').textContent(),/手动复制/);assert.match(await p.locator('.summary-preview').inputValue(),/Goal:/);await blocked.close();
+    const p=await blocked.newPage();p.on('pageerror',e=>errors.push(e.message));await p.goto(base+'/demos/');await p.locator('#copy-all-demos-summary').click();assert.match(await p.locator('#copy-result').textContent(),/手动复制/);assert.match(await p.locator('.summary-preview').inputValue(),/Goal:/);
+    for (const goal of ['aidash-cards-redesign','voxpocket-holistic-redesign']) {
+      await p.goto(base+`/demos/${goal}/`);const card=p.locator('#portal-grid .variant-card:visible').first();
+      await card.locator('[data-select]').check();await card.locator('[data-star]').check();await card.locator('[data-note]').fill('存储被拒绝时保留本次完整观察');
+      await p.locator('#copy-summary').click();assert.match(await p.locator('#summary-text').inputValue(),/存储被拒绝时保留本次完整观察/);assert.equal(await card.locator('[data-select]').isChecked(),true);assert.equal(await card.locator('[data-star]').isChecked(),true);
+    }
+    await blocked.close();
     await page.evaluate(()=>localStorage.setItem('design-gallery:aidash-cards-redesign','{invalid'));await page.reload();assert.match(await page.locator('[data-goal-telemetry="aidash-cards-redesign"]').textContent(),/已记录/);
   });
   for (const width of [390,1280]) for (const appearance of ['light','dark']) for (const motion of ['no-preference','reduce']) await check(`Real viewport/section evidence ${width} ${appearance} ${motion}`,async()=>{
     await page.setViewportSize({width,height:width===390?844:900});await page.emulateMedia({colorScheme:appearance,reducedMotion:motion});await page.evaluate(mode=>localStorage.setItem('lp-theme',mode),appearance);await page.goto(base+'/vault/');await screenshot(page,`vault-${width}-${appearance}-${motion}.png`);
     for(const id of ['MP-001','MP-002','MP-003','MP-004','MP-005','MP-006','MP-007','MP-008','MP-009','IP-001','IP-002','IP-003','IP-004','IP-005','IP-006','IP-007','IP-008']) await screenshot(page,`${id}-${width}-${appearance}-${motion}.png`,stage(id));
+    for (const preview of await page.locator('.vault-material-preview').all()) await screenshot(page,`${await preview.getAttribute('data-preview-id')}-${width}-${appearance}-${motion}.png`,preview);
+    for (const goal of ['aidash-cards-redesign','voxpocket-holistic-redesign']) {await page.goto(base+`/demos/${goal}/`);await screenshot(page,`${goal}-${width}-${appearance}-${motion}.png`);}
+    await page.goto(base+'/vault/');
     await geometry(page,`geometry-${width}-${appearance}-${motion}.json`);
     if(motion==='reduce') {const s=stage('MP-008');assert.equal(await s.locator('.stage-play').textContent(),'播放流体');assert.equal(await s.locator('.stage-fluid i').first().evaluate(n=>getComputedStyle(n).animationName),'none');}
     await page.goto(base+'/demos/');assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await screenshot(page,`demos-${width}-${appearance}-${motion}.png`);

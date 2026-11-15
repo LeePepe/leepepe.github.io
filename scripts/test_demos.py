@@ -78,7 +78,7 @@ console.log(JSON.stringify({legacy:module.exports.readEntries({goal:'legacy'},st
             for item in manifest[collection]:
                 if item['id'] in ('IP-006', 'IP-007', 'MP-007', 'TC-001', 'LN-001', 'MI-007'):
                     item['name'] = '**说法**：CRON <script>bad</script>'
-        manifest['cards'][0]['semantic_palette'] = [{'hex':'red;\" onmouseover=\"alert(1)', 'role':'unsafe'}]
+        next(card for card in manifest['cards'] if card['id'] == 'VS-005')['semantic_palette'] = [{'hex':'red;\" onmouseover=\"alert(1)', 'role':'unsafe'}]
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / 'vault').mkdir()

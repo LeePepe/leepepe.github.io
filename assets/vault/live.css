@@ -12,6 +12,7 @@
 .vault-mini-specimen .vault-swatch { color:var(--spec-ink); background:var(--spec-surface); }
 .vault-mini-specimen .vault-swatch small { color:var(--spec-muted); }
 .vault-swatch { min-height:44px; min-width:44px; }
+.vault-controls { position:static; }
 .vault-axis { min-height:44px; min-width:44px; padding:8px 12px; border:1px solid var(--strata-border); border-radius:20px; color:var(--strata-text-primary); background:var(--strata-surface-card); cursor:pointer; font:inherit; }
 .vault-axis.is-active { color:var(--strata-brand-on-accent); background:var(--strata-brand-primary); }
 .vault-card summary { min-height:44px; min-width:44px; display:flex; align-items:center; }
@@ -30,9 +31,9 @@
 .stage-controls label { display:flex; align-items:center; gap:4px; }
 .stage-controls input { width:100%; }
 .peel-card { position:relative; min-height:90px; background:radial-gradient(ellipse at right top,var(--strata-brand-primary),var(--strata-surface-card)); border-radius:12px; perspective:500px; }
-.peel-meta { padding:16px; font-size:11px; }
+.peel-meta { position:absolute; top:6px; right:5px; font-size:10px; text-align:right; }
 .stage-peel { position:absolute; inset:0; width:100%; overflow:hidden; text-align:left; padding:20px!important; }
-.peel-corner { position:absolute; right:0; top:0; width:58px; height:58px; clip-path:polygon(0 0,100% 0,100% 100%); background:linear-gradient(135deg,var(--strata-surface-selected),var(--strata-brand-primary)); transform-origin:100% 0; transition:transform .5s cubic-bezier(.2,1.5,.4,1); box-shadow:-4px 4px 14px var(--strata-shadow-color); }
+.peel-corner { position:absolute; right:0; top:0; pointer-events:none; z-index:3; width:58px; height:58px; clip-path:polygon(0 0,100% 0,100% 100%); background:linear-gradient(135deg,var(--strata-surface-selected),var(--strata-brand-primary)); transform-origin:100% 0; transition:transform .5s cubic-bezier(.2,1.5,.4,1); box-shadow:-4px 4px 14px var(--strata-shadow-color); }
 .is-peeled .peel-corner { transform:rotate3d(1,-1,0,155deg); }
 .is-peeled .stage-peel { clip-path:polygon(0 0,calc(100% - 58px) 0,100% 58px,100% 100%,0 100%); }
 .stage-track { position:relative; height:44px; border-radius:24px; background:var(--strata-surface-selected); }

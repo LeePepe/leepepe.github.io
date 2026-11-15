@@ -18,7 +18,7 @@ def build_live_stage(item):
     ident = ALIASES.get(item.get("id"), item.get("id"))
     tools = [("⌂", "主页"), ("✦", "收藏"), ("◒", "统计"), ("▣", "文件"), ("⌁", "连接"), ("⚙", "设置")]
     stages = {
-        "MP-001": ("揭角卡片", '<div class="peel-card"><div class="peel-meta">更新于周一 · 版本 3</div><button class="stage-peel" aria-pressed="false">揭开右上角<span class="peel-corner" aria-hidden="true"></span></button></div>'),
+        "MP-001": ("揭角卡片", '<div class="peel-card"><div class="peel-meta">版本 3<br>周一更新</div><button class="stage-peel" aria-pressed="false">揭开右上角</button><span class="peel-corner" aria-hidden="true"></span></div>'),
         "MP-002": ("滑动确认", '<div class="stage-track"><button class="stage-thumb" role="slider" aria-label="滑动确认" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">↠</button></div><div class="stage-controls"><input class="stage-range" type="range" min="0" max="100" value="0" aria-label="确认进度"><button data-reset-confirm>重置</button></div>'),
         "MP-003": ("拉绳灯光", '<div class="cord-visual"><svg viewBox="0 0 260 65" aria-hidden="true"><path class="cord-path" d="M130 0 Q130 20 130 46"></path><ellipse cx="130" cy="4" rx="55" ry="9"></ellipse></svg><button class="stage-cord" aria-pressed="false">● 拉动绳球</button></div>'),
         "MP-004": ("放大工具栏", '<nav class="stage-tools" aria-label="工具栏">' + ''.join(f'<button aria-label="{name}" data-tool="{name}"><span>{icon}</span></button>' for icon, name in tools) + '</nav>'),

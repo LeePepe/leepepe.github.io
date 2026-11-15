@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>voxpocket-holistic-redesign · Master Portal</title><style>:root {
   --ink: #172033;
   --muted: #596476;
@@ -47,10 +47,10 @@
 
 /* feDisplacementMap lives in each preview's inline SVG; only Blink opts into the optical backdrop. */
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font:16px/1.4 system-ui;color:var(--ink,var(--ink))}
-button,textarea{font:inherit}
-button{cursor:pointer}
-button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.gallery-page{margin:0;min-height:100%}
+.gallery button,.gallery textarea{font:inherit}
+.gallery button{cursor:pointer}
+.gallery button:focus-visible,.gallery summary:focus-visible,.gallery textarea:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
 [hidden]{display:none!important}
 .preview{width:100vw;height:100vh;overflow:hidden;background:radial-gradient(ellipse at 15% 90%,var(--wallpaper-warm),transparent 58%),radial-gradient(ellipse at 80% 75%,var(--wallpaper-cool),transparent 62%),var(--canvas)}
 .mockup{width:var(--frame-width);height:var(--frame-height);max-width:100%;margin:auto;padding:24px;display:grid;grid-template-rows:auto minmax(0,1fr) 72px;gap:var(--space,16px);overflow:hidden}
@@ -61,10 +61,10 @@ button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px so
 .hero{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
 .metric{font-size:clamp(48px,9vw,80px);font-weight:750;line-height:1.05;letter-spacing:-.04em;color:var(--variant-accent)}
 .hero strong{font-size:18px;margin-top:8px}
-p{margin:8px 0;color:var(--content-muted,var(--muted))}
+.gallery p{margin:8px 0;color:var(--content-muted,var(--muted))}
 .fold-panel{font-size:14px;border-top:1px solid var(--divider);padding-top:12px}
-details+details{margin-top:8px}
-summary{cursor:pointer;font-weight:650;min-height:32px;padding:6px 0}
+.gallery details+details{margin-top:8px}
+.gallery summary{cursor:pointer;font-weight:650;min-height:32px;padding:6px 0}
 .lens{display:flex;gap:8px;margin-bottom:12px}
 .lens button,#next-pocket{border:1px solid var(--border-control);border-radius:10px;padding:8px 12px;color:inherit;background:transparent}
 .lens [aria-selected=true]{background:var(--variant-accent);color:white;border-color:transparent}
@@ -166,8 +166,19 @@ body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:v
 .gallery-breadcrumbs{display:flex;gap:8px;align-items:center;margin-bottom:16px}.gallery-breadcrumbs a{min-height:28px;display:inline-flex;align-items:center}
 .selection-telemetry{font-weight:650}
 @media(max-width:480px){.gallery-breadcrumbs a{min-height:44px}}
-</style></head>
-<body class="gallery-page"><main class="gallery portal">
+</style><link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+<link rel="stylesheet" href="/assets/vault/portals.css">
+<script src="/assets/theme.js"></script>
+</head>
+<body class="gallery-page"><header class="site-header shell">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
+    <nav class="nav" aria-label="主导航"><a href="/">首页</a><a href="/learn/">求知</a><a href="/thoughts/">思考</a><a href="/vault/">素材库</a><a href="/demos/" aria-current="page">Demos</a><a href="/archive/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav>
+    <div class="theme-toggle" role="group" aria-label="外观"><button type="button" data-theme-choice="light" aria-pressed="false" title="浅色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span class="label">浅色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="dark" aria-pressed="false" title="深色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg><span class="label">深色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="system" aria-pressed="true" title="系统"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11.5V14"/></svg><span class="label">系统</span><span class="visually-hidden">主题</span></button></div>
+  </div>
+</header><main class="gallery portal">
 <nav class="gallery-breadcrumbs" aria-label="Breadcrumb"><a href="/">← Blog</a><span>·</span><a href="/demos/">Demos 总目录</a></nav><h1>voxpocket-holistic-redesign · Master Portal</h1><p id="session">Session anti-patterns: none</p>
 <nav class="group-tabs" aria-label="Categories"><button data-group-filter="app-nav" aria-pressed="true">🧭 画廊 A：整体 App 导航流转 (4 · mobile)</button><button data-group-filter="macos-recording" aria-pressed="false">🎙️ 画廊 B：macOS 桌面录音 (10 · macos)</button><button data-group-filter="dual-todo" aria-pressed="false">☑️ 画廊 C：双端 Todo 页面 (4 · mobile)</button><button data-group-filter="all" aria-pressed="false">全部方案 (18)</button></nav><div class="portal-actions"><button data-portal-platform="all" aria-pressed="true">All</button><button data-portal-platform="mobile" aria-pressed="false">Mobile</button><button data-portal-platform="macos" aria-pressed="false">Macos</button><button data-portal-platform="web" aria-pressed="false">Web</button><button data-portal-theme="light">Light</button><button data-portal-theme="dark">Dark</button></div>
 <div id="portal-grid"><article class="variant-card" data-group="app-nav" data-round="1" data-variant="app01" data-platform="mobile">

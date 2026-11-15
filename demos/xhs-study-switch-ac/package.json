@@ -1,0 +1,12 @@
+{
+  "name": "xhs-study-switch-ac-gallery",
+  "private": true,
+  "scripts": {
+    "render": "node render_gallery.cjs",
+    "test": "node test_renderer.cjs && node test_gallery.cjs",
+    "test:cards": "node test_renderer.cjs",
+    "test:gallery": "node test_gallery.cjs"
+  },
+  "engines": {"node": ">=18"},
+  "peerDependencies": {"playwright": ">=1.63 <2"}
+}

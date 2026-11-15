@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1440">
+  <defs>
+    <linearGradient id="wallGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f9f4e8"/>
+      <stop offset="100%" stop-color="#efe7d6"/>
+    </linearGradient>
+    <linearGradient id="deskGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d8e7cf"/>
+      <stop offset="100%" stop-color="#c3d9b8"/>
+    </linearGradient>
+    <radialGradient id="buttonTop" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#fefaf1"/>
+      <stop offset="100%" stop-color="#e7ddca"/>
+    </radialGradient>
+    <linearGradient id="buttonSide" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d8ccb5"/>
+      <stop offset="100%" stop-color="#b9ac92"/>
+    </linearGradient>
+    <linearGradient id="breeze" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#9fc59a" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#8fb98a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#9fc59a" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#7f9a79" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="1080" height="1440" fill="url(#wallGrad)"/>
+
+  <rect x="0" y="980" width="1080" height="460" fill="url(#deskGrad)"/>
+
+  <ellipse cx="540" cy="1040" rx="380" ry="34" fill="#89a983" opacity="0.18" filter="url(#softBlur)"/>
+
+  <g opacity="0.7">
+    <path d="M120 430 C280 360, 460 500, 640 430 C760 382, 890 390, 1020 460" fill="none" stroke="url(#breeze)" stroke-width="18" stroke-linecap="round"/>
+    <path d="M80 560 C250 500, 420 620, 600 560 C760 505, 900 520, 1030 590" fill="none" stroke="url(#breeze)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M150 700 C320 650, 480 760, 670 710 C810 675, 920 690, 1020 740" fill="none" stroke="url(#breeze)" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <ellipse cx="540" cy="1065" rx="120" ry="32" fill="#6f8e69" opacity="0.28"/>
+    <ellipse cx="540" cy="1015" rx="112" ry="28" fill="url(#buttonSide)"/>
+    <ellipse cx="540" cy="998" rx="112" ry="34" fill="url(#buttonTop)"/>
+    <ellipse cx="508" cy="988" rx="34" ry="10" fill="#fffdf7" opacity="0.52"/>
+    <circle cx="540" cy="998" r="8" fill="#b7d0ac" opacity="0.8"/>
+  </g>
+
+  <g opacity="0.45" filter="url(#softBlur)">
+    <path d="M300 930 C380 900, 460 960, 560 930" fill="none" stroke="#9dc197" stroke-width="10" stroke-linecap="round"/>
+    <path d="M600 920 C690 885, 760 955, 850 920" fill="none" stroke="#9dc197" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -3,8 +3,8 @@
   "goal": "voxpocket-holistic-redesign",
   "mode": "app-nav",
   "canonical_routes": [
-    "r3v02_capture",
     "todo_list",
+    "r3v02_capture",
     "settings_sheet"
   ],
   "schemes": [
@@ -14,10 +14,10 @@
       "navigation_model": "stack",
       "architecture": {
         "kind": "stack",
-        "root": "r3v02_capture",
+        "root": "todo_list",
         "destinations": [
-          "r3v02_capture",
           "todo_list",
+          "r3v02_capture",
           "settings_sheet"
         ],
         "primary": {
@@ -28,12 +28,9 @@
         "overflow": [],
         "collapse_title": true,
         "initial_state": {
-          "active_screen": "settings_sheet",
+          "active_screen": "todo_list",
           "history": [],
-          "overlay": null,
-          "detent": null,
-          "overflow_open": false,
-          "title_collapsed": false
+          "overlay": null
         }
       },
       "screens": [
@@ -164,7 +161,7 @@
           ]
         }
       ],
-      "context": "VoxPocket 三屏导航"
+      "context": "VoxPocket Todo-first A04 navigation"
     },
     {
       "id": "app02",
@@ -172,10 +169,10 @@
       "navigation_model": "deck",
       "architecture": {
         "kind": "deck",
-        "root": "r3v02_capture",
+        "root": "todo_list",
         "destinations": [
-          "r3v02_capture",
           "todo_list",
+          "r3v02_capture",
           "settings_sheet"
         ],
         "primary": {
@@ -186,12 +183,9 @@
         "overflow": [],
         "collapse_title": true,
         "initial_state": {
-          "active_screen": "r3v02_capture",
+          "active_screen": "todo_list",
           "history": [],
-          "overlay": null,
-          "detent": null,
-          "overflow_open": false,
-          "title_collapsed": true
+          "overlay": null
         }
       },
       "screens": [
@@ -322,7 +316,7 @@
           ]
         }
       ],
-      "context": "VoxPocket 三屏导航"
+      "context": "VoxPocket Todo-first A04 navigation"
     },
     {
       "id": "app03",
@@ -330,10 +324,10 @@
       "navigation_model": "lens",
       "architecture": {
         "kind": "lens",
-        "root": "r3v02_capture",
+        "root": "todo_list",
         "destinations": [
-          "r3v02_capture",
           "todo_list",
+          "r3v02_capture",
           "settings_sheet"
         ],
         "primary": {
@@ -344,12 +338,9 @@
         "overflow": [],
         "collapse_title": true,
         "initial_state": {
-          "active_screen": "settings_sheet",
+          "active_screen": "todo_list",
           "history": [],
-          "overlay": null,
-          "detent": null,
-          "overflow_open": false,
-          "title_collapsed": true
+          "overlay": null
         }
       },
       "screens": [
@@ -480,7 +471,7 @@
           ]
         }
       ],
-      "context": "VoxPocket 三屏导航"
+      "context": "VoxPocket Todo-first A04 navigation"
     },
     {
       "id": "app04",
@@ -488,10 +479,10 @@
       "navigation_model": "split",
       "architecture": {
         "kind": "tabs",
-        "root": "r3v02_capture",
+        "root": "todo_list",
         "destinations": [
-          "r3v02_capture",
           "todo_list",
+          "r3v02_capture",
           "settings_sheet"
         ],
         "primary": {
@@ -502,12 +493,9 @@
         "overflow": [],
         "collapse_title": true,
         "initial_state": {
-          "active_screen": "settings_sheet",
+          "active_screen": "todo_list",
           "history": [],
-          "overlay": null,
-          "detent": null,
-          "overflow_open": false,
-          "title_collapsed": false
+          "overlay": null
         }
       },
       "screens": [
@@ -638,7 +626,7 @@
           ]
         }
       ],
-      "context": "VoxPocket 三屏导航"
+      "context": "VoxPocket Todo-first A04 navigation"
     }
   ],
   "app_context": "VoxPocket 三屏导航"

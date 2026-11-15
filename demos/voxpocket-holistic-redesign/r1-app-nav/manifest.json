@@ -12,8 +12,8 @@
     "height": 844
   },
   "canonical_routes": [
-    "r3v02_capture",
     "todo_list",
+    "r3v02_capture",
     "settings_sheet"
   ],
   "schemes": [
@@ -23,10 +23,10 @@
       "navigation_model": "stack",
       "architecture": {
         "kind": "stack",
-        "root": "r3v02_capture",
+        "root": "todo_list",
         "destinations": [
-          "r3v02_capture",
           "todo_list",
+          "r3v02_capture",
           "settings_sheet"
         ],
         "primary": {
@@ -37,12 +37,9 @@
         "overflow": [],
         "collapse_title": true,
         "initial_state": {
-          "active_screen": "settings_sheet",
+          "active_screen": "todo_list",
           "history": [],
-          "overlay": null,
-          "detent": null,
-          "overflow_open": false,
-          "title_collapsed": false
+          "overlay": null
         }
       },
       "screens": [
@@ -174,7 +171,9 @@
         }
       ],
       "context": "VoxPocket 三屏导航",
-      "summary": "以左下角 Fold 作为主入口，向上展开玻璃抽屉，在同一层级切换录音、待办与设置。"
+      "summary": "A01 · 顶栏单键横滑 + 半高玻璃设置抽屉",
+      "prompt_file": "prompts/app01-prompt.md",
+      "prompt_sha256": "2eba7abdba41588f8d910bc0e4495be1169d3abf7f65987d47cf8acc693f826b"
     },
     {
       "id": "app02",
@@ -182,10 +181,10 @@
       "navigation_model": "deck",
       "architecture": {
         "kind": "deck",
-        "root": "r3v02_capture",
+        "root": "todo_list",
         "destinations": [
-          "r3v02_capture",
           "todo_list",
+          "r3v02_capture",
           "settings_sheet"
         ],
         "primary": {
@@ -196,12 +195,9 @@
         "overflow": [],
         "collapse_title": true,
         "initial_state": {
-          "active_screen": "r3v02_capture",
+          "active_screen": "todo_list",
           "history": [],
-          "overlay": null,
-          "detent": null,
-          "overflow_open": false,
-          "title_collapsed": true
+          "overlay": null
         }
       },
       "screens": [
@@ -333,7 +329,9 @@
         }
       ],
       "context": "VoxPocket 三屏导航",
-      "summary": "用前后景 3D 叠卡承载三个真实页面，翻转卡片即可在录音、待办和设置之间切换。"
+      "summary": "A02 · 拇指坞单键横滑 + 景深模态设置卡",
+      "prompt_file": "prompts/app02-prompt.md",
+      "prompt_sha256": "edc470c4d5180d29ee14cc7533098e3b37d95f4adb2e0dc35981167d74aede97"
     },
     {
       "id": "app03",
@@ -341,10 +339,10 @@
       "navigation_model": "lens",
       "architecture": {
         "kind": "lens",
-        "root": "r3v02_capture",
+        "root": "todo_list",
         "destinations": [
-          "r3v02_capture",
           "todo_list",
+          "r3v02_capture",
           "settings_sheet"
         ],
         "primary": {
@@ -355,12 +353,9 @@
         "overflow": [],
         "collapse_title": true,
         "initial_state": {
-          "active_screen": "settings_sheet",
+          "active_screen": "todo_list",
           "history": [],
-          "overlay": null,
-          "detent": null,
-          "overflow_open": false,
-          "title_collapsed": true
+          "overlay": null
         }
       },
       "screens": [
@@ -492,7 +487,9 @@
         }
       ],
       "context": "VoxPocket 三屏导航",
-      "summary": "底部玻璃坞会从当前页面原地生长变形，把常用导航和设置动作收纳在一处。"
+      "summary": "A03 · 微露边缘视差双画布 + 顶栏内联设置页",
+      "prompt_file": "prompts/app03-prompt.md",
+      "prompt_sha256": "79dc93ca0a4c4b8b98f4d76130e47046b3f1b751faff39ecc4da6f0c2cf0e1ad"
     },
     {
       "id": "app04",
@@ -500,10 +497,10 @@
       "navigation_model": "split",
       "architecture": {
         "kind": "tabs",
-        "root": "r3v02_capture",
+        "root": "todo_list",
         "destinations": [
-          "r3v02_capture",
           "todo_list",
+          "r3v02_capture",
           "settings_sheet"
         ],
         "primary": {
@@ -514,12 +511,9 @@
         "overflow": [],
         "collapse_title": true,
         "initial_state": {
-          "active_screen": "settings_sheet",
+          "active_screen": "todo_list",
           "history": [],
-          "overlay": null,
-          "detent": null,
-          "overflow_open": false,
-          "title_collapsed": false
+          "overlay": null
         }
       },
       "screens": [
@@ -651,7 +645,9 @@
         }
       ],
       "context": "VoxPocket 三屏导航",
-      "summary": "以左右横滑双画布组织页面，手势切换录音、待办与设置，并保留连续的空间方向感。"
+      "summary": "A04 · 紧凑胶囊双画布指示器 + 镜面浮层设置",
+      "prompt_file": "prompts/app04-prompt.md",
+      "prompt_sha256": "53e3d0bbceabf98f7d6da0d2b087f6941328b7eb1579befd85273804d83c717b"
     }
   ],
   "app_context": "VoxPocket 三屏导航",
@@ -715,5 +711,12 @@
     "source": "provided",
     "approved_receipt": "t5-designer-a",
     "immutable": true
+  },
+  "initial_route": "todo_list",
+  "prompt_bindings": {
+    "app01": "prompts/app01-prompt.md",
+    "app02": "prompts/app02-prompt.md",
+    "app03": "prompts/app03-prompt.md",
+    "app04": "prompts/app04-prompt.md"
   }
 }

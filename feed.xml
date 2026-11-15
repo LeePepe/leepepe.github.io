@@ -48,7 +48,7 @@
     <updated>2026-11-09T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
     <category term="智能家居"/><category term="书房"/><category term="减法设计"/><category term="Home Assistant"/>
-    <summary type="html">装修想装 NAS，却因 HA / Node-RED 门槛高搁置；2025 年 AI 帮我生成 YAML 和初步骨架，实机测试、微调仍得自己来。为睡前关灯、拉窗帘买多的一颗无线开关，先放书房当 Node-RED 测试键；夏天只剩一个共用遥控器，米家又让人分心，于是在 Node-RED 把闲置长按接上空调。AI 让我能开始，减法让每次坐下只需一个确定的「开」。</summary>
+    <summary type="html">装修时想装 NAS 玩全屋智能，被 HA 和 Node-RED 七七八八的配置劝退搁置；25 年有了 AI 帮写 YAML、搭 Node-RED 初步流，实测和微调再自己动手。为睡前「一键入眠」买多的一颗无线开关随手放在书房当测试键，到了夏天只剩一个空调遥控器、米家 App 开机又太繁琐，干脆在 Node-RED 里把闲置的「长按」接上书房空调——因为每次坐进书房，其实只需要「开」就行。</summary>
   </entry>
   <entry>
     <title>WWDC25/26 (OS 26 → OS 27) Liquid Glass 与动效 8 节课全景导读地图</title>

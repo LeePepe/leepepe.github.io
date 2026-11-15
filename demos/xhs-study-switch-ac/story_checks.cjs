@@ -1,11 +1,11 @@
 const assert = require('node:assert/strict');
 
 const checkpoints = [
-  ['renovation/NAS', /装修/, /NAS/, /HA|Home Assistant/, /Node-RED/, /搁置/],
-  ['2025 AI skeleton, manual testing', /2025/, /AI/, /YAML/, /初步[\s\S]{0,24}骨架/, /实机测试/, /微调/, /我|自己/],
-  ['bedtime surplus study test key', /睡前/, /关灯/, /拉窗帘/, /买多|多买/, /书房/, /测试键/],
-  ['summer Mijia idle long press', /夏天/, /(?:只剩一个|一个共用)/, /遥控器/, /掏手机/, /解锁/, /打开米家/, /找书房/, /点开机/, /闲置|闲着/, /Node-RED[\s\S]{0,40}长按/, /空调/],
-  ['ON lesson and household cleanup', /只负责打开|只负责开|只需要「开」|每次只想开|长按\s*=\s*开空调/, /固定/, /睡眠/, /离家/],
+  ['renovation/NAS', /装修/, /NAS/, /HA|Home Assistant/, /Node-RED/, /这七七八八的东西也太多了/, /搁置/],
+  ['25 AI skeleton, manual testing', /25\s*年\s*AI\s*破局：搭好骨架，实测自己抠/, /AI/, /YAML/, /初步[\s\S]{0,24}Node-RED\s*流/, /实机测试/, /延迟调节/, /排障/, /自己/],
+  ['bedtime surplus study test key', /买多了的无线开关：随手放书房当测试键/, /一键入眠/, /关灯/, /关窗帘/, /买多/, /书房/, /测试键/],
+  ['summer Mijia idle long press', /夏天/, /只剩一个/, /空调遥控器/, /掏手机\s*→\s*解锁\s*→\s*打开米家\s*App\s*→\s*找到书房\s*→\s*点开空调/, /闲置长按\s*(?:->|→)\s*盲开空调/, /Node-RED[\s\S]{0,40}长按/, /空调/],
+  ['ON lesson and zero mental burden', /只需要「开」/, /听见「滴」声出风/, /零心智负担/],
 ];
 
 function assertFullStory(text, label) {

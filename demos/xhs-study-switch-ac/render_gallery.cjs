@@ -6,6 +6,14 @@ const { buildCards } = require('./cards.cjs');
 const { prepareCard, platformFonts } = require('./card_geometry.cjs');
 const { assertFullStory } = require('./story_checks.cjs');
 
+const CANONICAL_FOUR_ACTS = [
+  '这七七八八的东西也太多了',
+  '25 年 AI 破局：搭好骨架，实测自己抠',
+  '买多了的无线开关：随手放书房当测试键',
+  '掏手机 → 解锁 → 打开米家 App → 找到书房 → 点开空调',
+  '闲置长按 -> 盲开空调',
+];
+
 async function render() {
   const output = process.env.CARD_OUTPUT_DIR || path.join(__dirname, 'assets');
   const receipt = process.env.CARD_GEOMETRY_PATH || path.join(__dirname, 'card-geometry.json');
@@ -28,7 +36,11 @@ async function render() {
       geometry.push(measured);
     }
     for (const style of ['a', 'b', 'c']) {
-      assertFullStory(geometry.filter(g => g.style === style).flatMap(g => g.children.map(t => t.text)).join('\n'), `visible suite ${style}`);
+      const suiteCopy = geometry.filter(g => g.style === style).flatMap(g => g.children.map(t => t.text)).join('\n');
+      assertFullStory(suiteCopy, `visible suite ${style}`);
+      for (const actPhrase of CANONICAL_FOUR_ACTS) {
+        if (!suiteCopy.includes(actPhrase)) throw new Error(`visible suite ${style}: missing canonical phrase "${actPhrase}"`);
+      }
     }
     for (let i = 0; i < cards.length; i++) {
       const card = cards[i];

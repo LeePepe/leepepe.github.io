@@ -28,13 +28,11 @@ const { assertMarkup, prepareCard, measureCard, assertCard, platformFonts } = re
     if (process.env.STORY_SOURCE_PATH) {
       const source = fs.readFileSync(process.env.STORY_SOURCE_PATH, 'utf8');
       assertFullStory(source, 'canonical source');
-      assert.match(source, /24℃[\s\S]*只是举例/);
-      assert.match(source, /99%[\s\S]*修辞，不是测量数据/);
       if (process.env.STORY_INDEX_PATH) {
         const rows = fs.readFileSync(process.env.STORY_INDEX_PATH, 'utf8').split('\n').filter(line => line.includes('](thoughts/study-switch-long-press-ac.md)'));
         assert.equal(rows.length, 1);
         assertFullStory(rows[0] + source, 'canonical index and source');
-        for (const phrase of ['装修', 'NAS', '搁置', '2025', 'AI', 'YAML', '初步骨架', '实机测试', '微调', '睡前', '关灯', '拉窗帘', '买多', '测试键', '夏天', '共用遥控器', '米家', '闲置长按', '开', '2026-11-15']) {
+        for (const phrase of ['装修', 'NAS', '七七八八', '搁置', '25 年', 'AI', 'YAML', '初步流', '实测', '微调', '一键入眠', '买多', '测试键', '夏天', '空调遥控器', '米家 App', '长按', '开']) {
           assert.ok(rows[0].includes(phrase), `index insight missing ${phrase}`);
         }
       }
@@ -45,11 +43,11 @@ const { assertMarkup, prepareCard, measureCard, assertCard, platformFonts } = re
     assert.throws(() => assertFullStory(baselineStory.replace(/测试键/g, ''), 'missing spare origin'), /study test key/);
     for (const id of ['a-04', 'b-04', 'c-03']) {
       const measured = results.get(id);
-      assert.deepEqual([1, 2, 3, 4, 5].map(n => measured.children.find(t => t.id === `step-${n}`).text.replace(/^\d+\s+/, '')), ['掏手机', '解锁', '打开米家', '找书房', '点开机']);
+      assert.deepEqual([1, 2, 3, 4, 5].map(n => measured.children.find(t => t.id === `step-${n}`).text.replace(/^\d+\s+/, '')), ['掏手机', '解锁', '打开米家 App', '找到书房', '点开空调']);
     }
     const principles = results.get('a-05').children;
     assert.deepEqual(principles.filter(t => t.id.startsWith('principle-number')).map(t => t.text), ['01', '02', '03']);
-    assert.deepEqual(principles.filter(t => t.id.startsWith('principle-heading')).map(t => t.text), ['AI 让我能开始', '多余的东西，接住真实痛点', '最高频的意图，砍掉选择']);
+    assert.deepEqual(principles.filter(t => t.id.startsWith('principle-heading')).map(t => t.text), ['搭好骨架，实测自己抠', '买多了的无线开关当测试键', '每次坐进书房，其实只需要「开」']);
     const copy = id => results.get(id).children.map(t => t.text).join('\n');
     assert.match(copy('a-05'), /睡眠／离家[\s\S]*不提供自动化配置/);
     assert.match(copy('c-04'), /不是开关切换/);

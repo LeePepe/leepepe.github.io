@@ -53,7 +53,7 @@ function buildCards(root = __dirname) {
   const bg2 = bg('press-button.png');
   const cards = [];
   const add = (style, n, topology, body) => cards.push({ id: `${style}-${String(n).padStart(2, '0')}`, style, number: n, topology, html: shell(style, topology, body) });
-  const steps = ['掏手机', '解锁', '打开米家', '找书房', '点开机'];
+  const steps = ['掏手机', '解锁', '打开米家 App', '找到书房', '点开空调'];
   const moonCurtain = `<path d="M72 20 C24 40 30 116 92 122 C52 98 42 62 72 20 Z M180 20 H316 M188 26 V136 Q208 126 224 136 V26 M308 26 V136 Q286 126 270 136 V26 M224 32 Q246 54 270 32"/><path d="M122 70 Q136 48 150 70 V90 H122 Z M136 92 V128 M118 132 H154"/>`;
   const deskButton = `<path d="M16 132 H360 M40 134 V206 M336 134 V206"/><g transform="translate(104 -4) scale(.58)">${aButton}</g>`;
   const nasBox = `<rect x="28" y="18" width="120" height="112" rx="12"/><path d="M44 50 H132 M44 76 H132 M44 102 H104 M174 130 V88 H206 V50 H236 V18"/>`;
@@ -61,64 +61,64 @@ function buildCards(root = __dirname) {
   const hand = `<path d="M6 208 L84 124 C98 109 116 100 140 94 L292 30 Q312 20 331 22 Q348 23 348 35 Q350 46 332 52 L236 89 Q244 96 252 105 Q262 122 246 139 Q256 159 235 174 Q241 198 216 213 L163 246 Q145 258 112 258 L6 264" fill="#FFFAEE"/><path stroke-width="3" d="M152 176 L216 124 M176 200 L238 150"/>`;
 
   add('a', 1, 'spare-button-asymmetric-cover',
-    title('多买的一颗开关，\n让我少找一个遥控器')
-    + text('subtitle', '从测试键，到长按开空调', 72, 336, 936, 60)
+    title('买多了的无线开关，\n随手放书房当测试键')
+    + text('subtitle', '闲置长按 → 盲开空调，少一个遥控器', 72, 336, 936, 60)
     + group('spare-button', panel('button-paper', 72, 416, 352, 704, '#FFFCF6')
       + art('A-button', 132, 500, 232, 264, '0 0 240 280', aButton)
-      + text('button-caption', '买多的一颗\n无线开关', 104, 920, 288, 120))
+      + text('button-caption', '睡觉一键入眠\n不小心买多了', 104, 920, 288, 120))
     + group('testing-past', panel('test-paper', 448, 416, 560, 304, '#FFFCF6')
-      + text('test-caption', '当过测试键\n放在书房桌上调试', 480, 456, 496, 120)
+      + text('test-caption', '随手放书房桌边\n连 Node-RED 当测试键', 480, 456, 496, 120)
       + art('A-fold', 848, 600, 96, 72, '0 0 240 180', aFold))
     + group('on-present', panel('air-wash', 448, 744, 560, 376, '#E5EADC')
       + art('A-air', 496, 792, 280, 180, '0 0 280 180', aAir)
-      + text('on-copy', '长按 → 开空调\n「滴」一声出风', 480, 984, 496, 120))
-    + text('closing', '不是为空调新买的开关，而是手边那颗测试键。', 72, 1184, 936, 84, 28, 42)
+      + text('on-copy', '闲置长按 -> 盲开空调\n听见「滴」声出风', 480, 984, 496, 120))
+    + text('closing', '买多了的无线开关：随手放书房当测试键。\n每次坐进书房只需要「开」就行，零心智负担。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(1, 5, 1312));
 
   add('a', 2, 'shelved-plan-and-ai-year',
-    title('装修时想折腾，\n却一直没开始')
+    title('这七七八八的东西，\n也太多了')
     + group('shelved-plan', panel('before-paper', 72, 416, 352, 704, '#FFFCF6')
-      + text('before-heading', '想法先放一边', 104, 448, 288, 60)
-      + text('renovation', '想装 NAS，\n做智能家居。\nHA、\nNode-RED，\n门槛高，搁置。', 104, 560, 288, 300)
+      + text('before-heading', '装修那会儿搁置', 104, 448, 288, 60)
+      + text('renovation', '想装 NAS，\n玩智能家居。\nHA、\nNode-RED，\n门槛高，搁置。', 104, 560, 288, 300)
       + art('A-plan-fold', 144, 920, 192, 128, '0 0 240 180', aFold))
     + group('ai-start', panel('after-paper', 448, 416, 560, 704, '#E5EADC')
-      + text('year', '2025', 480, 448, 496, 128, 96, 112, { weight: 700, color: '#355E3B' })
-      + text('ai-skeleton', 'AI 帮我生成 YAML，\n搭初步 Node-RED 骨架。', 480, 632, 496, 120)
-      + text('manual-testing', '实机测试、微调，\n还是得我自己来。', 480, 864, 496, 120))
-    + text('closing', 'AI 降低的是起步门槛，不是替我完成实机测试。', 72, 1184, 936, 84, 28, 42)
+      + text('year', '25 年', 480, 448, 496, 128, 96, 112, { weight: 700, color: '#355E3B' })
+      + text('ai-skeleton', 'AI 帮写 YAML 配置、\n搭初步 Node-RED 流程。', 480, 632, 496, 120)
+      + text('manual-testing', '实机测试、延迟调节\n和排障还得自己动手。', 480, 864, 496, 120))
+    + text('closing', '装修搁置：这七七八八的东西也太多了。\n25 年 AI 破局：搭好骨架，实测自己抠。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(2, 5, 1312));
 
   add('a', 3, 'bedtime-to-desk-journey',
-    title('睡前开关买多了，\n一颗留在书房')
+    title('买多了的无线开关：\n随手放书房当测试键')
     + art('A-moon-light-curtain', 232, 416, 616, 200, '0 0 336 160', moonCurtain)
-    + text('bedtime', '为了睡前一键入眠，\n关灯、拉窗帘。', 72, 640, 936, 120)
+    + text('bedtime', '睡觉时想一键入眠（顺手关灯、关窗帘），\n结果买开关的时候不小心买多了。', 72, 640, 936, 120)
     + art('A-surplus-connector', 72, 432, 936, 624, '0 0 936 624', '<path stroke-width="3" d="M864 160 C920 256 912 376 384 376 C344 376 324 416 312 432"/>')
     + group('study-test', art('A-desk-test-button', 104, 872, 304, 176, '0 0 376 224', deskButton)
-      + text('test-origin', '买多的一颗，放书房。\n连进 Node-RED，\n当平时调试的测试键。', 480, 848, 496, 180))
-    + text('idle-action', '当时「长按」还闲置，后来才有了新用途。', 72, 1184, 936, 84, 28, 42)
+      + text('test-origin', '多出来的一个没处安放，\n随手放在书房桌边，\n连 Node-RED 当测试键。', 480, 848, 496, 180))
+    + text('idle-action', '从 Node-RED 里随便连了一条流当平时调试用的测试键，\n「长按」动作刚好闲置。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(3, 5, 1312));
 
   add('a', 4, 'mijia-five-steps-versus-long-press',
-    title('夏天想吹风，\n先走完米家五步')
+    title('夏天的神来之笔：\n闲置长按 → 盲开空调')
     + group('remote-and-phone', art('A-shared-remote', 104, 448, 96, 128, '0 0 96 128', '<rect x="22" y="4" width="52" height="116" rx="14" stroke-dasharray="8 10"/><path d="M38 38 H58 M38 58 H58 M38 78 H58"/>')
-      + text('shared-remote', '只剩一个\n共用遥控器', 232, 448, 280, 120)
+      + text('shared-remote', '只剩一个\n空调遥控器', 232, 448, 280, 120)
       + art('A-phone-thread', 80, 652, 8, 416, '0 0 8 416', '<path stroke-width="3" opacity=".35" d="M4 4 V412"/>')
       + steps.map((step, i) => text(`step-${i + 1}`, `${i + 1}  ${step}`, 104, 640 + i * 96, 408, 60)).join(''))
     + group('idle-action-on', art('A-node-red-fold', 704, 456, 96, 80, '0 0 240 180', aFold)
-      + text('binding', '在 Node-RED 里，\n闲置长按接上\n书房空调。', 608, 592, 368, 180)
+      + text('binding', '在 Node-RED 里\n把闲置「长按」\n接上书房空调。', 608, 592, 368, 180)
       + art('A-button', 608, 816, 136, 160, '0 0 240 280', aButton)
       + art('A-air', 792, 816, 176, 144, '0 0 280 180', aAir)
-      + text('press-result', '长按 → 开空调', 608, 1008, 368, 60))
-    + text('on-semantics', '听到「滴」，风就来了。\n只负责打开，不做开关切换。', 72, 1184, 936, 84, 28, 42)
+      + text('press-result', '长按 → 盲开空调', 608, 1008, 368, 60))
+    + text('on-semantics', '掏手机 → 解锁 → 打开米家 App → 找到书房 → 点开空调，实在太麻烦。\n长按一下听见「滴」声出风，零心智负担。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(4, 5, 1312));
 
   const principles = [
-    ['AI 让我能开始', '先有一份能改的骨架，\n再自己测试、微调。'],
-    ['多余的东西，接住真实痛点', '睡前开关买多的一颗，\n从测试键变成手边的方便。'],
-    ['最高频的意图，砍掉选择', '每次坐下只需要「开」。\n长按，只负责打开空调。'],
+    ['搭好骨架，实测自己抠', 'AI 帮写 YAML、搭初步 Node-RED 流；\n实机测试、延迟调节和排障自己动手。'],
+    ['买多了的无线开关当测试键', '睡前一键入眠开关买多了，\n随手放书房当测试键。'],
+    ['每次坐进书房，其实只需要「开」', '把闲置「长按」接上书房空调，\n听见「滴」声出风，零心智负担。'],
   ];
   add('a', 5, 'open-causal-principles',
-    title('AI 让我能开始，\n减法让我用得顺手')
+    title('搭好骨架实测自己抠，\n长按一下零心智负担')
     + principles.map(([heading, body], i) => {
       const y = 416 + 248 * i;
       return group(`principle-${i + 1}`, art(`A-principle-dash-${i + 1}`, 72, y, 120, 6, '0 0 120 6', '<path d="M3 3 H117"/>')
@@ -126,118 +126,118 @@ function buildCards(root = __dirname) {
         + text(`principle-heading-${i + 1}`, heading, 232, y + 24, 744, 60, 40, 60, { weight: 600 })
         + text(`principle-body-${i + 1}`, body, 232, y + 96, 744, 120));
     }).join('')
-    + text('household-scope', '常用温度、模式固定；睡眠／离家场景收尾关停。\n这里只讲使用方式，不提供自动化配置。', 72, 1184, 936, 84, 28, 42)
+    + text('household-scope', '常用温度、模式固定；睡眠／离家场景收尾关停。\n这里只讲真实生活记录，不提供自动化配置。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(5, 5, 1312));
 
   add('b', 1, 'full-room-spare-switch-cover',
     image('study-room.png', bg1, 0, 0, 1080, 1440, 'cover', '0')
     + '<div class="mask" style="left:0;top:0;width:1080px;height:480px;background:linear-gradient(to bottom,#FFF7EC 0px,#FFF7EC 328px,transparent 480px)"></div>'
     + '<div class="mask" style="left:0;top:1040px;width:1080px;height:400px;background:linear-gradient(to bottom,transparent 0px,#FFF7EC 128px,#FFF7EC 400px)"></div>'
-    + title('原来最顺手的改动，\n来自买多的一颗开关')
-    + text('closing', '书房测试键的闲置长按，\n后来接上了空调。', 72, 1176, 936, 120)
+    + title('买多了的无线开关，\n随手放书房当测试键')
+    + text('closing', '夏天的神来之笔：闲置长按 → 盲开空调，\n长按一下听见「滴」声出风，零心智负担。', 72, 1176, 936, 120)
     + pageNumber(1, 5, 1312));
 
   add('b', 2, 'paper-origin-tall-ai-scene',
-    title('先从一份骨架，\n把想法变成动手')
+    title('25 年 AI 破局：\n搭好骨架，实测自己抠')
     + group('origin-prose', text('renovation', '装修想装 NAS，\nHA / Node-RED\n门槛高，就先搁置。', 72, 432, 456, 180)
-      + text('year', '2025 年，有了 AI。', 72, 656, 456, 60)
-      + text('ai-skeleton', '生成 YAML 配置，\n初步 Node-RED 骨架，\n终于有了改的起点。', 72, 748, 456, 180)
-      + text('manual-testing', '实机测试、微调，\n仍然是我自己来。', 72, 992, 456, 120))
+      + text('year', '25 年，有了 AI。', 72, 656, 456, 60)
+      + text('ai-skeleton', '25 年 AI 帮写 YAML，\n搭初步 Node-RED 流，\n终于把骨架先搭好。', 72, 748, 456, 180)
+      + text('manual-testing', '实机测试、延迟调节\n和排障还得自己抠。', 72, 992, 456, 120))
     + image('study-room.png', bg1, 600, 416, 408, 704, 'contain')
-    + text('closing', 'AI 帮我降低起步门槛，没有替我把家里调试完。', 72, 1184, 936, 84, 28, 42)
+    + text('closing', '装修搁置：这七七八八的东西也太多了。\n25 年 AI 破局：搭好骨架，实测自己抠。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(2, 5, 1312));
 
   add('b', 3, 'ai-hand-bedtime-desk-timeline',
-    title('睡前开关买多了，\n一颗先拿来调试')
+    title('买多了的无线开关：\n随手放书房当测试键')
     + image('press-button.png', bg2, 72, 416, 480, 696, 'contain')
     + art('B-bedtime-moon-curtain', 616, 416, 376, 160, '0 0 336 160', moonCurtain, '#34271D')
-    + text('bedtime', '睡前想一键入眠：\n关灯、拉窗帘。\n无线开关买多了。', 600, 624, 408, 180)
+    + text('bedtime', '睡觉想一键入眠：\n顺手关灯、关窗帘，\n无线开关买多了。', 600, 624, 408, 180)
     + art('B-desk-test-button', 616, 840, 368, 112, '0 0 376 224', deskButton, '#34271D')
-    + text('test-origin', '多的一颗，放书房。\nNode-RED 测试键。', 600, 992, 408, 120)
-    + text('idle-action', '不是为空调买的开关，原本是顺手调试用的。\n「长按」这一个动作，正好还闲置着。', 72, 1184, 936, 84, 28, 42)
+    + text('test-origin', '随手放书房桌边，\nNode-RED 测试键。', 600, 992, 408, 120)
+    + text('idle-action', '买多了的无线开关：随手放书房当测试键。\n从 Node-RED 连条流当调试键，「长按」动作刚好闲置。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(3, 5, 1312));
 
   add('b', 4, 'mijia-trail-opposed-oval-press',
-    title('想开空调，\n却先绕进了米家')
-    + group('summer-trail', text('shared-remote', '夏天，只剩一个\n共用的空调遥控器。', 72, 416, 456, 120)
+    title('夏天的神来之笔：\n闲置长按 → 盲开空调')
+    + group('summer-trail', text('shared-remote', '夏天书房要开空调，\n只剩一个空调遥控器。', 72, 416, 456, 120)
       + art('B-path', 72, 612, 24, 432, '0 0 24 432', '<path stroke-width="3" d="M12 8 C2 38 22 70 12 100 S2 162 12 192 S22 254 12 284 S2 346 12 376"/>', '#80512E')
       + steps.map((step, i) => text(`step-${i + 1}`, step, 120, 608 + i * 92, 408, 60)).join('')
-      + text('binding', '在 Node-RED 里绑定长按', 72, 1080, 456, 42, 28, 42))
+      + text('binding', '在 Node-RED 里绑定闲置长按', 72, 1080, 456, 42, 28, 42))
     + image('press-button.png', bg2, 600, 416, 408, 696, 'contain', '50%')
     + group('press-symbol', art('B-press', 600, 1152, 80, 80, '0 0 240 240', bPress, '#34271D')
-      + text('press-label', '长按 → 开', 704, 1172, 304, 60))
-    + text('on-semantics', '闲置长按接上书房空调。\n只负责打开，不做开关切换。', 72, 1184, 456, 84, 28, 42)
+      + text('press-label', '长按 → 盲开', 704, 1172, 304, 60))
+    + text('on-semantics', '每次坐进书房只需要「开」，\n听见「滴」声出风，零心智负担。', 72, 1184, 456, 84, 28, 42)
     + pageNumber(4, 5, 1312));
 
   add('b', 5, 'wide-room-subtraction-closing',
     image('study-room.png', bg1, 72, 96, 936, 624, 'contain')
     + art('B-breeze', 72, 352, 360, 180, '0 0 360 180', bBreeze, '#80512E')
     + '<div class="mask" style="left:72px;top:608px;width:936px;height:160px;background:linear-gradient(to bottom,transparent,#FFF7EC)"></div>'
-    + title('AI 帮我起步，\n减法让我用得顺手', 80, 96, 192, sans, 832)
-    + text('on-only', '长按，只负责打开空调。', 72, 1088, 936, 60)
-    + text('household-scope', '常用温度、模式固定，睡眠／离家场景收尾关停。\n这里只讲我的使用方式，不附部署配置。', 72, 1184, 936, 84, 28, 42)
+    + title('每次坐进书房，\n其实只需要「开」就行', 80, 96, 192, sans, 832)
+    + text('on-only', '闲置长按 -> 盲开空调，听见「滴」声出风。', 72, 1088, 936, 60)
+    + text('household-scope', '掏手机 → 解锁 → 打开米家 App → 找到书房 → 点开空调，实在太麻烦。\n常用温度、模式固定，睡眠／离家场景收尾关停，不附部署配置。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(5, 5, 1312));
 
   add('c', 1, 'renovation-ai-human-three-comics',
-    title('装修时想智能家居，\n先被门槛拦住了', 80, 96, 192, serif)
+    title('装修时想玩全屋智能，\n这七七八八也太多了', 80, 96, 192, serif)
     + group('renovation-panel', art('C-nas-frame', 72, 416, 400, 416, '0 0 400 416', '<path d="M3 3 L397 9 L393 413 L5 409 Z" fill="#FFFAEE"/>', '#493C32')
       + text('renovation', '装修想装 NAS，\nHA / Node-RED\n门槛高，搁置。', 104, 448, 336, 189, 42, 63)
       + art('C-nas-high-step', 144, 672, 240, 112, '0 0 256 144', nasBox, '#493C32'))
     + group('ai-panel', art('C-ai-frame', 504, 464, 504, 368, '0 0 504 368', '<path d="M3 7 L501 3 L496 365 L8 361 Z" fill="#FFFAEE"/>', '#493C32')
-      + text('ai-skeleton', '2025 年，有了 AI。\n生成 YAML 配置，\n初步流骨架也有了。', 536, 496, 440, 189, 42, 63)
-      + text('skeleton-label', 'Node-RED 的初步骨架', 536, 744, 304, 42, 28, 42)
+      + text('ai-skeleton', '25 年，有了 AI。\n帮写 YAML 配置，\n搭初步流程骨架。', 536, 496, 440, 189, 42, 63)
+      + text('skeleton-label', '初步 Node-RED 流', 536, 744, 304, 42, 28, 42)
       + art('C-ai-document-skeleton', 856, 720, 104, 80, '0 0 240 180', `${aFold}<path stroke-width="3" d="M48 48 H132 M48 84 H168 M48 120 H132"/>`, '#493C32'))
     + group('human-panel', art('C-human-frame', 72, 864, 936, 256, '0 0 936 256', '<path d="M3 5 L933 3 L929 253 L7 249 Z" fill="#FFFAEE"/>', '#493C32')
-      + text('manual-testing', '实机测试、微调，\n还是得我自己动手。', 104, 896, 528, 126, 42, 63)
-      + text('human-caption', 'AI 没有替我调试完。', 104, 1056, 528, 42, 28, 42)
+      + text('manual-testing', '实机测试、延迟调节\n和排障还得自己动手。', 104, 896, 528, 126, 42, 63)
+      + text('human-caption', '25 年 AI 破局：搭好骨架，实测自己抠', 104, 1056, 528, 42, 28, 42)
       + art('C-human-wrench', 720, 880, 232, 184, '0 0 240 224', wrench, '#493C32'))
-    + text('closing', '先有一份能改的骨架，终于开始动手。\n不是一份自动部署完的家庭配置。', 72, 1184, 936, 84, 28, 42)
+    + text('closing', '装修搁置：这七七八八的东西也太多了。\n25 年 AI 破局：搭好骨架，实测自己抠。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(1, 5, 1312));
 
   add('c', 2, 'bedtime-surplus-desk-fork',
-    title('睡前开关买多了，\n多的一颗去了书房', 80, 96, 192, serif)
+    title('买多了的无线开关：\n随手放书房当测试键', 80, 96, 192, serif)
     + art('C-moon-light-curtain', 72, 432, 400, 176, '0 0 336 160', moonCurtain, '#493C32')
-    + text('bedtime', '睡前一键入眠，\n关灯、拉窗帘。\n无线开关买多了。', 72, 656, 408, 189, 42, 63)
+    + text('bedtime', '睡觉一键入眠，\n顺手关灯、关窗帘。\n无线开关买多了。', 72, 656, 408, 189, 42, 63)
     + art('C-desk-test-button', 568, 432, 440, 264, '0 0 376 224', deskButton, '#493C32')
     + art('C-testing-fork', 496, 464, 48, 520, '0 0 48 520', '<path stroke-dasharray="8 10" d="M4 12 Q40 100 24 256 Q8 384 40 508"/>', '#C17460')
-    + text('test-origin', '一颗放在书房桌上，\n连进 Node-RED，\n当平时调试的测试键。', 568, 752, 440, 189, 42, 63)
-    + text('test-label', 'Node-RED 测试键，不是为了空调才买的一颗。', 72, 1040, 936, 42, 28, 42)
-    + text('closing', '长按这个动作，后来才找到新用途。', 72, 1184, 936, 84, 28, 42)
+    + text('test-origin', '随手放书房桌边，\n连进 Node-RED，\n当平时调试的测试键。', 568, 752, 440, 189, 42, 63)
+    + text('test-label', '买多了的无线开关：随手放书房当测试键。', 72, 1040, 936, 42, 28, 42)
+    + text('closing', '从 Node-RED 连了一条流当测试键，「长按」动作刚好闲置。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(2, 5, 1312));
 
   const nodes = [[252, 624], [804, 624], [804, 808], [252, 808], [252, 992]];
   add('c', 3, 'shared-remote-connected-mijia-maze',
-    title('想吹风，\n却先走了五步', 80, 96, 192, serif)
-    + text('shared-remote', '夏天，只剩一个共用遥控器。', 72, 336, 936, 42, 28, 42)
+    title('米家 App 开空调，\n每次都要走完五步', 80, 96, 192, serif)
+    + text('shared-remote', '到了夏天书房需要开空调，家里偏偏只剩一个空调遥控器了。', 72, 336, 936, 42, 28, 42)
     + art('C-search-sofa', 72, 416, 360, 126, '0 0 528 184', cSofa, '#493C32')
     + art('C-phone', 720, 416, 160, 126, '0 0 240 180', cPhone, '#493C32')
     + art('C-serpentine-path', 72, 552, 936, 568, '0 0 936 568',
       '<path stroke="#C17460" d="M180 72 C324 60 568 84 732 72 C918 64 918 262 732 256 C556 262 352 244 180 256 C6 250 6 440 180 440 C372 428 528 456 732 440"/><path stroke="#789080" d="M716 424 Q754 400 780 426 M726 444 Q762 420 794 444"/><g fill="#FFF4DE"><circle cx="180" cy="72" r="28"/><circle cx="732" cy="72" r="28"/><circle cx="732" cy="256" r="28"/><circle cx="180" cy="256" r="28"/><circle cx="180" cy="440" r="28"/></g>', '#493C32')
     + nodes.map(([x, y], i) => group(`step-node-${i + 1}`, text(`step-number-${i + 1}`, `${i + 1}`, x - 20, y - 21, 40, 42, 28, 42, { align: 'center' })
       + text(`step-${i + 1}`, steps[i], x - 148, y + 36, 296, 63, 42, 63, { align: 'center' }))).join('')
-    + text('closing', '米家当然能开，只是这一串操作总打断思路。', 72, 1184, 936, 84, 28, 42)
+    + text('closing', '掏手机 → 解锁 → 打开米家 App → 找到书房 → 点开空调，\n每次都要走完这一串，实在太麻烦了。', 72, 1184, 936, 84, 28, 42)
     + pageNumber(3, 5, 1312));
 
   add('c', 4, 'idle-long-press-quiet-on-scene',
-    title('闲着的长按，\n接上了书房空调', 80, 96, 192, serif)
-    + text('binding', '在 Node-RED 里，把闲置长按\n接上书房空调。', 72, 336, 936, 126, 42, 63)
+    title('夏天的神来之笔：\n闲置长按 → 盲开空调', 80, 96, 192, serif)
+    + text('binding', '在 Node-RED 里把闲置「长按」\n接上书房空调（闲置长按 -> 盲开空调）。', 72, 336, 936, 126, 42, 63)
     + group('single-press-scene', art('C-node-red-fold', 632, 560, 96, 64, '0 0 240 180', aFold, '#493C32')
       + art('C-button', 320, 680, 300, 264, '0 0 300 264', cButton, '#493C32')
       + art('C-pressing-hand', 128, 744, 352, 272, '0 0 352 272', hand, '#493C32')
       + art('C-contact-arcs', 432, 714, 80, 44, '0 0 80 44', '<path d="M8 30 Q26 6 42 12 M54 10 L62 2 M66 28 L78 24"/>', '#C17460')
       + art('C-wind', 720, 528, 240, 176, '0 0 240 176', cWind, '#493C32')
       + art('C-sound-highlight', 732, 752, 128, 36, '0 0 128 36', '<path stroke="#EBC778" opacity=".3" stroke-width="32" d="M18 18 L110 16"/>', '#493C32')
-      + text('sound-note', '滴——', 736, 744, 224, 60, 28, 42))
-    + text('on-semantics', '只负责打开，不是开关切换。', 72, 1184, 936, 63, 42, 63)
+      + text('sound-note', '「滴」声出风', 736, 744, 224, 60, 28, 42))
+    + text('on-semantics', '每次坐进书房只需要「开」，不是开关切换。', 72, 1184, 936, 63, 42, 63)
     + pageNumber(4, 5, 1312));
 
   add('c', 5, 'thread-to-causal-marginalia',
-    title('AI 让我开始，\n减法把线理顺了', 80, 96, 192, serif)
+    title('搭好骨架实测自己抠，\n长按一下零心智负担', 80, 96, 192, serif)
     + group('thread-to-button', art('C-thread', 72, 416, 936, 460, '0 0 936 460', '<path d="M48 204 C154 18 358 402 164 338 C12 292 296 70 332 238 C374 386 100 330 164 138 C242 4 408 324 456 234 C524 134 580 252 642 196"/>', '#493C32')
       + art('C-button', 648, 536, 280, 200, '0 0 300 264', cButton, '#493C32'))
-    + group('marginalia', text('note-ai', 'AI 给了骨架，测试微调还是我。', 72, 920, 936, 63, 42, 63)
-      + text('note-surplus', '买多的测试键，接住生活里的小痛点。', 72, 1016, 936, 63, 42, 63)
-      + text('note-on', '每次只想开，就别再加一道选择。', 72, 1112, 936, 63, 42, 63))
+    + group('marginalia', text('note-ai', '25 年 AI 破局：搭好骨架，实测自己抠。', 72, 920, 936, 63, 42, 63)
+      + text('note-surplus', '买多了的无线开关：随手放书房当测试键。', 72, 1016, 936, 63, 42, 63)
+      + text('note-on', '听见「滴」声出风，零心智负担。', 72, 1112, 936, 63, 42, 63))
     + text('household-scope', '温度、模式固定，睡眠／离家收尾关停。', 72, 1208, 936, 42, 28, 42)
     + pageNumber(5, 5, 1312));
   return cards;

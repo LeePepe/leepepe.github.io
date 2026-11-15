@@ -50,7 +50,7 @@ prefers-reduced-motion 下取消所有位移、粒子和高度过冲，状态用
 
 ## 7. Production Data Inventory (Zero S1-S12 Jargon) & Exact DOM Topology
 
-生产数据读取接口以 Snapshot 为唯一上游：L1_collect/raw → L2_normalize/clean → L3_merge/schema → L4_serve SQL → L5_apps/digest/skills_roi_snapshot.py → skills-roi.json。2026-11-15 在 /Users/lee/Development/AIDash/aidata 运行 inspect_aidata_pipeline.py --metrics skills_roi,reference_hits,script_latency,eval_effect --check-contract --json；reference_hits、script_latency、eval_effect 结果均为 needs_l1_collection。此检查没有验证任何展示数值。故 Writer 可将 Owner 指定数值作为本轮封闭展示输入，但必须在数据对象保留 provenance=owner_spec_example；不得将这些数值写入生产遥测或把旧 fact_turn.tool_calls 字符串数组当作逐文件/逐脚本事实。真正接入前需先补路径、执行时间及 Eval 事件采集，按上游 aidata-metric-extension/spec.md 的蓝图建模与导出。
+生产数据读取接口以 Snapshot 为唯一上游：L1_collect/raw → L2_normalize/clean → L3_merge/schema → L4_serve SQL → L5_apps/digest/skills_roi_snapshot.py → skills-roi.json。2026-11-15 在 ~/Development/AIDash/aidata 运行 inspect_aidata_pipeline.py --metrics skills_roi,reference_hits,script_latency,eval_effect --check-contract --json；reference_hits、script_latency、eval_effect 结果均为 needs_l1_collection。此检查没有验证任何展示数值。故 Writer 可将 Owner 指定数值作为本轮封闭展示输入，但必须在数据对象保留 provenance=owner_spec_example；不得将这些数值写入生产遥测或把旧 fact_turn.tool_calls 字符串数组当作逐文件/逐脚本事实。真正接入前需先补路径、执行时间及 Eval 事件采集，按上游 aidata-metric-extension/spec.md 的蓝图建模与导出。
 
 每个 skill 的载荷包含 calls_7d、calls_30d、active_sessions_30d、is_zombie_30d、l0_tokens、l1_avg_attached_tokens、kv_cache_hit_pct、scripts[] 的 calls/avg_duration_ms/p95_duration_ms/success_rate，以及 eval_cases_total/weekly_delta/pass_rate/intercepted_count/escaped_count/escape_breakdown。缺失、覆盖不足与实际 0 是不同状态；只有完整 30d 观察窗口和库存存在时生产端可判僵尸/冷文件。Cache 展示例 96.8% 不等同于 Reference 缓存，也不可把无调用技能的未知均值变成 0ms。快照 window、coverage_status、source_as_of 留在页脚与详情的覆盖说明，不在卡面放内部指标编号。
 

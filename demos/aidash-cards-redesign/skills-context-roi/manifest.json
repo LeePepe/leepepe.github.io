@@ -29,7 +29,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "62dcd96f38f0118349d3eefb91bfceaf9cdf6dacb1ffa75462c07dd0136f156d",
+      "prompt_sha256": "72f7c0a590b4af71fbc7ce8ad7c281dea0e23b800dc02b5f0fa9bb7c8eb38cd1",
       "title": "瑞士行内拉出分岔袋 · Inline Pull-Out Bifurcation Pockets"
     },
     {
@@ -45,7 +45,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "05d72357df7b118f20bdff5e7a4db49e0ab6cbe4d47af548b97f27c62bfc0b83",
+      "prompt_sha256": "6efe0e3306ce8ef12f5a5537265621cc1e75416ef771d6828c11eafdd82b13e8",
       "title": "38%/62% 桑基分岔演播室 · Master-Detail Sankey Studio"
     },
     {
@@ -61,7 +61,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "06e585ee7480a1baebbf459ca7b9ea6813e38e6356e97a003300c380fd8921b1",
+      "prompt_sha256": "baa4ae46a996167af3fe243a186f130d857798d7eef4efab15f348b475444ccf",
       "title": "顶部全仓分岔舞台 + 2×3 磁贴 · Top Flow + Bento Drawers"
     },
     {
@@ -77,7 +77,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "29490102f0545e2245bf8ed2928f0f10bf0449ad071b82ccbae8f176a2410b2b",
+      "prompt_sha256": "fbbd2145f884d1e6e3f20c61b2f86acdaaf827b6c36f9724d919b5692c50c2d3",
       "title": "红黑榜治理优先看板 · Governance-First Triage Drawers"
     }
   ],

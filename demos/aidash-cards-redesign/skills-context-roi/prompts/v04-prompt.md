@@ -50,7 +50,7 @@ prefers-reduced-motion下托盘瞬时到位或100ms淡显，停止全部位移�
 
 ## 7. Production Data Inventory (Zero S1-S12 Jargon) & Exact DOM Topology
 
-治理是否有依据取决于上游物理链路：L1_collect/raw保留路径与事件、L2_normalize清洗、L3_merge事实/库存、L4_serve的SQL诊断、L5_apps canonical skills_roi_snapshot.py产出JSON供AIDash读取。本次检查/Users/lee/Development/AIDash/aidata的inspect_aidata_pipeline.py返回reference_hits、script_latency、eval_effect=needs_l1_collection；所以本轮Owner提供的0命中、0调用及逃逸只是已批准展示样例，不能被当成本次查证的实时治理判决。保存标记只是本地阅读清单，不声称完成生产归档；实际采集与生产绑定留给上游aidata-metric-extension任务，leaf Designer不改代码或数据库。
+治理是否有依据取决于上游物理链路：L1_collect/raw保留路径与事件、L2_normalize清洗、L3_merge事实/库存、L4_serve的SQL诊断、L5_apps canonical skills_roi_snapshot.py产出JSON供AIDash读取。本次检查~/Development/AIDash/aidata的inspect_aidata_pipeline.py返回reference_hits、script_latency、eval_effect=needs_l1_collection；所以本轮Owner提供的0命中、0调用及逃逸只是已批准展示样例，不能被当成本次查证的实时治理判决。保存标记只是本地阅读清单，不声称完成生产归档；实际采集与生产绑定留给上游aidata-metric-extension任务，leaf Designer不改代码或数据库。
 
 数据层将Owner输入与observed值分开记录provenance，production保持coverage_status、window、source_as_of。判30d僵尸需有完整窗口+skill库存，判0命中冷Reference需有文件库存+路径采集覆盖，不能把null当0。旧fact_turn.tool_calls工具名字数组不足以证明某具体.py的P95，Eval库存总数也不等于执行通过率。cache的展示数96.8%只是规格样例，不将archive的未知cache贴成高命中；已知逃逸3不能擅自拆成1 IMPL_BUG+2 SPEC_GAP，未给分解则显示「归因待核对」。
 

@@ -50,7 +50,7 @@ Reference 分组显示 navigation-evidence-contract.md 62% · 2.4k tok、interac
 
 ## 7. Production Data Inventory (Zero S1-S12 Jargon) & Exact DOM Topology
 
-数据证据先于 UI：本次只读 inspector 对 /Users/lee/Development/AIDash/aidata 检查 L1_collect、L2_normalize、L3_merge、L4_serve/queries/retro/skill_roi_diagnostics.sql、L5_apps/digest/skills_roi_snapshot.py；细粒度 reference_hits/script_latency/eval_effect 均报告 needs_l1_collection。所以上述规格数不是实时查出的历史数据，数据适配层须标记 owner_spec_example；生产 source_as_of、coverage_status 和窗口信息只从 canonical Snapshot 保留。原 fact_turn.tool_calls 仅是工具名 JSON，不具有可用于绘图的逐脚本耗时/文件路径。依赖上游 aidata-metric-extension 的采集→建模→SQL→Snapshot 工作完成后才能发布真实监控值。
+数据证据先于 UI：本次只读 inspector 对 ~/Development/AIDash/aidata 检查 L1_collect、L2_normalize、L3_merge、L4_serve/queries/retro/skill_roi_diagnostics.sql、L5_apps/digest/skills_roi_snapshot.py；细粒度 reference_hits/script_latency/eval_effect 均报告 needs_l1_collection。所以上述规格数不是实时查出的历史数据，数据适配层须标记 owner_spec_example；生产 source_as_of、coverage_status 和窗口信息只从 canonical Snapshot 保留。原 fact_turn.tool_calls 仅是工具名 JSON，不具有可用于绘图的逐脚本耗时/文件路径。依赖上游 aidata-metric-extension 的采集→建模→SQL→Snapshot 工作完成后才能发布真实监控值。
 
 六个技能对象保持独立 scripts、references、eval、bifurcation_routes 属性，不将 my-designer 的数据填到 team-lead 或 linear-board。30d调用、活跃会话按同一窗口取值；L0文件Token与L1平均连带Token是不同粒度，Cache 96.8% 为Owner视觉样例，未知时应显示「Cache 待采集」。均值/P95缺数据就保留「待采集」而不是0ms，未完整覆盖30d不能自动贴僵尸标签，库存未确认不能用缺记录判冷门；archive 已由Owner明确给出0/0/逃逸3，展示输入必须保留该事实样例。
 

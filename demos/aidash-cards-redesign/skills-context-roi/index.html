@@ -171,113 +171,64 @@ body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:v
 <body class="gallery-page"><main class="gallery">
 <nav class="gallery-breadcrumbs" aria-label="Breadcrumb"><a href="/">← Blog</a><span>·</span><a href="/demos/">Demos 总目录</a><span>·</span><a href="../index.html">Goal Portal (../)</a></nav><h1>aidash-cards-redesign · Round 5</h1><p id="session">Session anti-patterns: none</p>
 <div class="portal-actions"><button data-theme="light">Light</button><button data-theme="dark">Dark</button></div>
-<div id="variants"><article class="variant-card current-card" data-group="skills-context-roi" data-round="5" data-variant="current" data-platform="macos">
-<header><span class="variant-badge">current</span><strong>Current reference</strong><span class="coordinate-pill">Reference</span>
-<a target="_blank" rel="noopener" href="current.html">↗ 全屏打开</a></header>
-<p class="variant-summary">当前基线参照视图（aidash-cards-redesign 的现有布局与交互对照基线）</p>
-<div class="device-bezel" data-frame-mode="macos" style="--frame-width:1280px;--frame-height:800px;--preview-scale:0.46">
-<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe loading="eager" src="current.html" title="Current reference"></iframe></div></div>
-<p class="reference-label">Reference only · not a candidate</p></article><article class="variant-card" data-group="skills-context-roi" data-round="5" data-variant="v01" data-platform="macos">
-<header><span class="variant-badge">v01</span><strong>瑞士行内拉出分岔袋 · Inline Pull-Out Bifurcation Pockets</strong><span class="coordinate-pill">inline-bifurcation-pockets</span><span class="coordinate-pill">hover-brief+click-drawer</span><span class="coordinate-pill">VS-002</span>
+<div id="variants"><article class="variant-card" data-group="skills-context-roi" data-round="6" data-variant="skills-context-roi/v01" data-platform="macos">
+<header><span class="variant-badge">skills-context-roi/v01</span><strong>瑞士行内拉出分岔袋 · Inline Pull-Out Bifurcation Pockets</strong><span class="coordinate-pill">inline-bifurcation-pockets</span><span class="coordinate-pill">hover-brief+click-drawer</span><span class="coordinate-pill">VS-002</span>
 <a target="_blank" rel="noopener" href="v01.html">↗ 全屏打开</a><a class="prompt-link" target="_blank" rel="noopener" href="prompts/v01-prompt.md">Design prompt</a></header>
-<p class="variant-summary">瑞士米白/岩灰 6 层 Skill 抽屉卡（0 S编号 · 5大真实指标），Hover 浮现诊断与高频 Reference 快览，点击在行下直接拉开三次贝塞尔分岔流。</p>
-<p class="variant-summary">v01 以Bento磁贴聚焦inline-bifurcation-pockets，通过hover-brief+click-drawer和hero-center组织信息，呈现compact的操作节奏。</p>
+<p class="variant-summary">六十五比三十五固定总览卡左侧呈现三次贝塞尔分岔流，右侧诊断脚本与冷门分支，底部列表只切换选中项。</p>
+
 <div class="device-bezel" data-frame-mode="macos" style="--frame-width:1280px;--frame-height:800px;--preview-scale:0.46">
-<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe loading="eager" src="v01.html" title="瑞士行内拉出分岔袋 · Inline Pull-Out Bifurcation Pockets"></iframe></div></div>
+<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe loading="eager" src="v01.html?v=9633f4fc" title="瑞士行内拉出分岔袋 · Inline Pull-Out Bifurcation Pockets"></iframe></div></div>
 <div class="controls">
-<label><input type="radio" name="primary-skills-context-roi" value="v01" data-select> SELECT</label>
-<label><input type="checkbox" data-star="v01"> STAR</label></div>
-<textarea data-note="v01" aria-label="v01 Notes" placeholder="Notes"></textarea></article><article class="variant-card" data-group="skills-context-roi" data-round="5" data-variant="v02" data-platform="macos">
-<header><span class="variant-badge">v02</span><strong>38%/62% 桑基分岔演播室 · Master-Detail Sankey Studio</strong><span class="coordinate-pill">sankey-studio-split</span><span class="coordinate-pill">hover-brief+click-drawer</span><span class="coordinate-pill">VS-007</span>
+<label><input type="radio" name="primary-skills-context-roi" value="skills-context-roi/v01" data-select> SELECT</label>
+<label><input type="checkbox" data-star="skills-context-roi/v01"> STAR</label></div>
+<textarea data-note="skills-context-roi/v01" aria-label="skills-context-roi/v01 Notes" placeholder="Notes"></textarea></article><article class="variant-card" data-group="skills-context-roi" data-round="6" data-variant="skills-context-roi/v02" data-platform="macos">
+<header><span class="variant-badge">skills-context-roi/v02</span><strong>38%/62% 桑基分岔演播室 · Master-Detail Sankey Studio</strong><span class="coordinate-pill">sankey-studio-split</span><span class="coordinate-pill">hover-brief+click-drawer</span><span class="coordinate-pill">VS-007</span>
 <a target="_blank" rel="noopener" href="v02.html">↗ 全屏打开</a><a class="prompt-link" target="_blank" rel="noopener" href="prompts/v02-prompt.md">Design prompt</a></header>
-<p class="variant-summary">左侧 38% 紧凑色彩状态 Skill 抽屉轨（Hover 显诊断摘要），右侧 62% 全高交互式流光三次贝塞尔桑基画布 + 脚本 P95 与 Eval 拦截明细表。</p>
-<p class="variant-summary">v02 以时间轴轨聚焦sankey-studio-split，通过hover-brief+click-drawer和hero-bottom组织信息，呈现compact的操作节奏。</p>
+<p class="variant-summary">固定总览卡用顶栏四项 KPI 串起全宽三段式贝塞尔管道，底部六行技能列表保持高度不变并刷新选中内容。</p>
+
 <div class="device-bezel" data-frame-mode="macos" style="--frame-width:1280px;--frame-height:800px;--preview-scale:0.46">
-<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe loading="eager" src="v02.html" title="38%/62% 桑基分岔演播室 · Master-Detail Sankey Studio"></iframe></div></div>
+<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe loading="eager" src="v02.html?v=9633f4fc" title="38%/62% 桑基分岔演播室 · Master-Detail Sankey Studio"></iframe></div></div>
 <div class="controls">
-<label><input type="radio" name="primary-skills-context-roi" value="v02" data-select> SELECT</label>
-<label><input type="checkbox" data-star="v02"> STAR</label></div>
-<textarea data-note="v02" aria-label="v02 Notes" placeholder="Notes"></textarea></article><article class="variant-card" data-group="skills-context-roi" data-round="5" data-variant="v03" data-platform="macos">
-<header><span class="variant-badge">v03</span><strong>顶部全仓分岔舞台 + 2×3 磁贴 · Top Flow + Bento Drawers</strong><span class="coordinate-pill">top-flow-bento-drawers</span><span class="coordinate-pill">hover-brief+click-drawer</span><span class="coordinate-pill">VS-005</span>
+<label><input type="radio" name="primary-skills-context-roi" value="skills-context-roi/v02" data-select> SELECT</label>
+<label><input type="checkbox" data-star="skills-context-roi/v02"> STAR</label></div>
+<textarea data-note="skills-context-roi/v02" aria-label="skills-context-roi/v02 Notes" placeholder="Notes"></textarea></article><article class="variant-card" data-group="skills-context-roi" data-round="6" data-variant="skills-context-roi/v03" data-platform="macos">
+<header><span class="variant-badge">skills-context-roi/v03</span><strong>顶部全仓分岔舞台 + 2×3 磁贴 · Top Flow + Bento Drawers</strong><span class="coordinate-pill">top-flow-bento-drawers</span><span class="coordinate-pill">hover-brief+click-drawer</span><span class="coordinate-pill">VS-005</span>
 <a target="_blank" rel="noopener" href="v03.html">↗ 全屏打开</a><a class="prompt-link" target="_blank" rel="noopener" href="prompts/v03-prompt.md">Design prompt</a></header>
-<p class="variant-summary">上半屏全仓 Prompt→SKILL.md→L1 References/Scripts 贝塞尔流向总览舞台，下半屏 2×3 状态抽屉方卡，Hover 显简介并联动高亮上方流带。</p>
-<p class="variant-summary">v03 以脉冲矩阵聚焦top-flow-bento-drawers，通过hover-brief+click-drawer和hero-center组织信息，呈现lifted的操作节奏。</p>
+<p class="variant-summary">固定总览卡以五五对照呈现引用分岔漏斗与脚本评测账本，底部列表只改变高亮和顶部绑定内容。</p>
+
 <div class="device-bezel" data-frame-mode="macos" style="--frame-width:1280px;--frame-height:800px;--preview-scale:0.46">
-<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe loading="eager" src="v03.html" title="顶部全仓分岔舞台 + 2×3 磁贴 · Top Flow + Bento Drawers"></iframe></div></div>
+<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe loading="eager" src="v03.html?v=9633f4fc" title="顶部全仓分岔舞台 + 2×3 磁贴 · Top Flow + Bento Drawers"></iframe></div></div>
 <div class="controls">
-<label><input type="radio" name="primary-skills-context-roi" value="v03" data-select> SELECT</label>
-<label><input type="checkbox" data-star="v03"> STAR</label></div>
-<textarea data-note="v03" aria-label="v03 Notes" placeholder="Notes"></textarea></article><article class="variant-card" data-group="skills-context-roi" data-round="5" data-variant="v04" data-platform="macos">
-<header><span class="variant-badge">v04</span><strong>红黑榜治理优先看板 · Governance-First Triage Drawers</strong><span class="coordinate-pill">governance-triage-drawers</span><span class="coordinate-pill">hover-brief+click-drawer</span><span class="coordinate-pill">VS-008</span>
+<label><input type="radio" name="primary-skills-context-roi" value="skills-context-roi/v03" data-select> SELECT</label>
+<label><input type="checkbox" data-star="skills-context-roi/v03"> STAR</label></div>
+<textarea data-note="skills-context-roi/v03" aria-label="skills-context-roi/v03 Notes" placeholder="Notes"></textarea></article><article class="variant-card" data-group="skills-context-roi" data-round="6" data-variant="skills-context-roi/v04" data-platform="macos">
+<header><span class="variant-badge">skills-context-roi/v04</span><strong>红黑榜治理优先看板 · Governance-First Triage Drawers</strong><span class="coordinate-pill">governance-triage-drawers</span><span class="coordinate-pill">hover-brief+click-drawer</span><span class="coordinate-pill">VS-008</span>
 <a target="_blank" rel="noopener" href="v04.html">↗ 全屏打开</a><a class="prompt-link" target="_blank" rel="noopener" href="prompts/v04-prompt.md">Design prompt</a></header>
-<p class="variant-summary">顶部半开告警抽屉置顶「30d 零调用僵尸 Skill」与「remotion-video.md 0 命中冗余」，下方双栏排列高 ROI 主力 Skill 抽屉卡与底部贝塞尔分岔舱。</p>
-<p class="variant-summary">v04 以环形仪表聚焦governance-triage-drawers，通过hover-brief+click-drawer和hero-bottom组织信息，呈现lifted的操作节奏。</p>
+<p class="variant-summary">固定总览卡聚焦分岔舞台并用胶囊切换脚本评测视图，治理告警与六行技能列表均保持稳定几何。</p>
+
 <div class="device-bezel" data-frame-mode="macos" style="--frame-width:1280px;--frame-height:800px;--preview-scale:0.46">
-<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe loading="eager" src="v04.html" title="红黑榜治理优先看板 · Governance-First Triage Drawers"></iframe></div></div>
+<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe loading="eager" src="v04.html?v=9633f4fc" title="红黑榜治理优先看板 · Governance-First Triage Drawers"></iframe></div></div>
 <div class="controls">
-<label><input type="radio" name="primary-skills-context-roi" value="v04" data-select> SELECT</label>
-<label><input type="checkbox" data-star="v04"> STAR</label></div>
-<textarea data-note="v04" aria-label="v04 Notes" placeholder="Notes"></textarea></article></div>
+<label><input type="radio" name="primary-skills-context-roi" value="skills-context-roi/v04" data-select> SELECT</label>
+<label><input type="checkbox" data-star="skills-context-roi/v04"> STAR</label></div>
+<textarea data-note="skills-context-roi/v04" aria-label="skills-context-roi/v04 Notes" placeholder="Notes"></textarea></article></div>
 <p id="empty-state" class="empty-state" hidden>No previews match these filters.</p>
 <p id="selection-telemetry" class="selection-telemetry" aria-live="polite">已记录 0 条观察 · 0 个收藏 · 0 个选择</p>
 <button id="copy-summary">Copy Selection Summary</button><output id="status" aria-live="polite"></output>
 <textarea id="summary-text" class="manual-copy" aria-label="Selection summary" hidden readonly></textarea>
-</main><script id="gallery-config" type="application/json">{"goal": "aidash-cards-redesign", "portal": false, "firstGroup": "skills-context-roi", "cards": [{"category": "skills-context-roi", "round": 5, "platform": "macos", "id": "current", "title": "Current reference", "pills": ["Reference"], "src": "current.html", "reference": true, "summary": "当前基线参照视图（aidash-cards-redesign 的现有布局与交互对照基线）"}, {"category": "skills-context-roi", "round": 5, "platform": "macos", "id": "v01", "title": "瑞士行内拉出分岔袋 · Inline Pull-Out Bifurcation Pockets", "pills": ["inline-bifurcation-pockets", "hover-brief+click-drawer", "VS-002"], "src": "v01.html", "reference": false, "prompt": "prompts/v01-prompt.md", "summary": "v01 以Bento磁贴聚焦inline-bifurcation-pockets，通过hover-brief+click-drawer和hero-center组织信息，呈现compact的操作节奏。"}, {"category": "skills-context-roi", "round": 5, "platform": "macos", "id": "v02", "title": "38%/62% 桑基分岔演播室 · Master-Detail Sankey Studio", "pills": ["sankey-studio-split", "hover-brief+click-drawer", "VS-007"], "src": "v02.html", "reference": false, "prompt": "prompts/v02-prompt.md", "summary": "v02 以时间轴轨聚焦sankey-studio-split，通过hover-brief+click-drawer和hero-bottom组织信息，呈现compact的操作节奏。"}, {"category": "skills-context-roi", "round": 5, "platform": "macos", "id": "v03", "title": "顶部全仓分岔舞台 + 2×3 磁贴 · Top Flow + Bento Drawers", "pills": ["top-flow-bento-drawers", "hover-brief+click-drawer", "VS-005"], "src": "v03.html", "reference": false, "prompt": "prompts/v03-prompt.md", "summary": "v03 以脉冲矩阵聚焦top-flow-bento-drawers，通过hover-brief+click-drawer和hero-center组织信息，呈现lifted的操作节奏。"}, {"category": "skills-context-roi", "round": 5, "platform": "macos", "id": "v04", "title": "红黑榜治理优先看板 · Governance-First Triage Drawers", "pills": ["governance-triage-drawers", "hover-brief+click-drawer", "VS-008"], "src": "v04.html", "reference": false, "prompt": "prompts/v04-prompt.md", "summary": "v04 以环形仪表聚焦governance-triage-drawers，通过hover-brief+click-drawer和hero-bottom组织信息，呈现lifted的操作节奏。"}]}</script><script>/* Shared round/portal storage and DOM behavior. */
-(function () {
-  'use strict';
-  function readState(storage, goal) {
-    if (!storage) return {};
-    try {
-      const state = JSON.parse(storage.getItem(`design-gallery:${goal}`) || '{}');
-      if (!state || typeof state !== 'object' || Array.isArray(state)) return {};
-      return Object.fromEntries(Object.entries(state).filter(([, value]) => value && typeof value === 'object' && !Array.isArray(value)));
-    } catch { return {}; }
-  }
-  const entryKey = card => JSON.stringify([card.category, card.round, card.id]);
-  function updateState(state, card, field, value) {
-    const next = Object.fromEntries(Object.entries(state || {}).filter(([, item]) => item && typeof item === 'object'));
-    if (field === 'selected' && value) Object.entries(next).forEach(([key, old]) => { if (old.category === card.category) next[key] = {...old, selected: false}; });
-    const key = entryKey(card); next[key] = {...next[key], category: card.category, round: card.round, id: card.id, [field]: value}; return next;
-  }
-  function selectionSummary(goal, state, root) {
-    const byKey = new Map(Object.entries(state || {}).filter(([, item]) => item && typeof item === 'object').map(([key, item]) => [key, {...item}]));
-    if (root) root.querySelectorAll('.variant-card').forEach(node => {
-      const card = node.__galleryCard; if (!card || card.reference) return;
-      const key = entryKey(card), value = {...(byKey.get(key) || {}), category: card.category, round: card.round, id: card.id};
-      const select = node.querySelector('[data-select]'), star = node.querySelector('[data-star]'), note = node.querySelector('[data-note]');
-      if (select) value.selected = !!select.checked;
-      if (star) value.starred = !!star.checked;
-      if (note) value.notes = note.value.trim();
-      byKey.set(key, value);
-    });
-    const all = [...byKey.values()], label = s => `r${s.round}/${s.id}`, categories = [...new Set(all.map(s => s.category).filter(Boolean))].sort();
-    const lines = [`Goal: ${goal}`];
-    categories.forEach(category => { const scoped = all.filter(s => s.category === category); lines.push(`Category: ${category}`, `SELECT: ${scoped.filter(s => s.selected === true).map(label).join(', ') || 'none'}`, `STAR: ${scoped.filter(s => s.starred === true).map(label).join(', ') || 'none'}`); });
-    if (!categories.length) lines.push('SELECT: none', 'STAR: none');
-    lines.push('NOTES:'); all.filter(s => typeof s.notes === 'string' && s.notes.trim()).forEach(s => lines.push(`${label(s)}: ${s.notes.trim()}`)); return lines.join('\n');
-  }
-  function frameMetrics(mode, mobileWeb, cardWidth) { const compact = mode === 'mobile' || (mobileWeb && mode === 'web'); const width = compact ? 390 : 1280, height = compact ? 844 : 800, padding = mode === 'mobile' ? 12 : 10; return {width, height, padding, scale: Math.max(.05, Math.min(compact ? .8 : .46, (cardWidth - 24 - padding * 2) / width)), chrome: mode === 'mobile' ? 0 : 28}; }
-  if (typeof module !== 'undefined') module.exports = {readState, entryKey, updateState, selectionSummary, frameMetrics};
-  if (typeof document === 'undefined') return;
-  const config = JSON.parse(document.getElementById('gallery-config').textContent), root = document.getElementById(config.portal ? 'portal-grid' : 'variants');
-  const articles = [...root.children], cards = new Map(articles.map((node, i) => { node.__galleryCard = config.cards[i]; return [node, config.cards[i]]; }));
-  const status = document.getElementById('status'), telemetry = document.getElementById('selection-telemetry'); let group = config.portal ? config.firstGroup : 'all', platform = 'all', theme = 'light', mobileWeb = false, memoryState = {};
-  function storage() { try { return window.localStorage; } catch { return null; } }
-  function currentState() { const stored = readState(storage(), config.goal); return Object.keys(stored).length ? {...memoryState, ...stored} : {...memoryState}; }
-  function updateTelemetry(state) { if (!telemetry) return; const values = Object.values(state || {}); telemetry.textContent = `已记录 ${values.filter(s => typeof s.notes === 'string' && s.notes.trim()).length} 条观察 · ${values.filter(s => s.starred === true).length} 个收藏 · ${values.filter(s => s.selected === true).length} 个选择`; }
-  function restoreControls() { const state = currentState(); memoryState = {...state}; cards.forEach((card, node) => { if (card.reference) return; const value = state[entryKey(card)] || {}; node.querySelector('[data-select]').checked = !!value.selected; node.querySelector('[data-star]').checked = !!value.starred; node.querySelector('[data-note]').value = value.notes || ''; }); updateTelemetry(state); filter(); }
-  root.addEventListener('input', persist); root.addEventListener('change', persist);
-  function persist(event) { const node = event.target.closest('.variant-card'), card = cards.get(node), input = event.target; if (!card || card.reference) return; const field = input.hasAttribute('data-select') ? 'selected' : input.hasAttribute('data-star') ? 'starred' : input.hasAttribute('data-note') ? 'notes' : null; if (!field) return; const state = updateState(currentState(), card, field, field === 'notes' ? input.value : input.checked); memoryState = state; try { const store = storage(); if (!store) throw new Error('Storage unavailable'); store.setItem(`design-gallery:${config.goal}`, JSON.stringify(state)); } catch { status.textContent = 'Local storage unavailable — changes cannot persist in this browser context.'; } restoreControls(); }
-  function applyFrame(frame) { try { const doc = frame.contentDocument; if (!doc?.body) return; doc.documentElement.dataset.theme = theme; doc.body.dataset.theme = theme; } catch { status.textContent = 'Preview appearance unavailable across origins; open via a same-origin HTTP server.'; } }
-  function applyTheme(value) { theme = value; document.body.dataset.theme = theme; root.querySelectorAll('iframe').forEach(applyFrame); }
-  function fitFrames() { root.querySelectorAll('.device-bezel').forEach(bezel => { const card = bezel.closest('.variant-card'), m = frameMetrics(bezel.dataset.frameMode, mobileWeb, card.clientWidth); bezel.style.setProperty('--frame-width', `${m.width}px`); bezel.style.setProperty('--frame-height', `${m.height}px`); bezel.style.setProperty('--preview-scale', m.scale); }); }
-  function filter() { let visible = 0; articles.forEach(node => { const matches = (group === 'all' || node.dataset.group === group) && (platform === 'all' || node.dataset.platform === platform); node.hidden = !matches; node.setAttribute('aria-hidden', String(!matches)); if (matches) visible++; }); document.getElementById('empty-state').hidden = visible > 0; updateTelemetry(currentState()); fitFrames(); applyTheme(theme); }
-  function bindFilter(selector, update) { const buttons = [...document.querySelectorAll(selector)]; buttons.forEach(button => button.addEventListener('click', () => { buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button))); update(button); filter(); })); }
-  bindFilter('[data-group-filter]', b => { group = b.dataset.groupFilter; }); bindFilter('[data-portal-platform]', b => { platform = b.dataset.portalPlatform; });
-  document.querySelectorAll('button[data-theme],button[data-portal-theme]').forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.portalTheme || button.dataset.theme)));
-  document.getElementById('responsive-toggle')?.addEventListener('click', event => { mobileWeb = !mobileWeb; event.currentTarget.setAttribute('aria-pressed', String(mobileWeb)); fitFrames(); });
-  document.getElementById('copy-summary').addEventListener('click', async () => { const text = selectionSummary(config.goal, currentState(), root), area = document.getElementById('summary-text'); area.value = text; try { await navigator.clipboard.writeText(text); area.hidden = true; status.textContent = 'Summary copied'; } catch { area.hidden = false; area.focus(); area.select(); status.textContent = 'Clipboard unavailable — copy the summary below.'; } });
-  articles.forEach(node => node.querySelector('iframe').addEventListener('load', event => applyFrame(event.target)));
-  window.addEventListener('storage', restoreControls); window.addEventListener('pageshow', restoreControls); window.addEventListener('resize', fitFrames); const observer = new ResizeObserver(fitFrames); observer.observe(root); restoreControls(); filter();
-})();
+</main><script id="gallery-config" type="application/json">{"goal": "aidash-cards-redesign", "portal": false, "firstGroup": "skills-context-roi", "cards": [{"category": "skills-context-roi", "round": 6, "platform": "macos", "id": "skills-context-roi/v01", "title": "瑞士行内拉出分岔袋 · Inline Pull-Out Bifurcation Pockets", "pills": ["inline-bifurcation-pockets", "hover-brief+click-drawer", "VS-002"], "src": "v01.html?v=9633f4fc", "prompt": "prompts/v01-prompt.md", "summary": "六十五比三十五固定总览卡左侧呈现三次贝塞尔分岔流，右侧诊断脚本与冷门分支，底部列表只切换选中项。"}, {"category": "skills-context-roi", "round": 6, "platform": "macos", "id": "skills-context-roi/v02", "title": "38%/62% 桑基分岔演播室 · Master-Detail Sankey Studio", "pills": ["sankey-studio-split", "hover-brief+click-drawer", "VS-007"], "src": "v02.html?v=9633f4fc", "prompt": "prompts/v02-prompt.md", "summary": "固定总览卡用顶栏四项 KPI 串起全宽三段式贝塞尔管道，底部六行技能列表保持高度不变并刷新选中内容。"}, {"category": "skills-context-roi", "round": 6, "platform": "macos", "id": "skills-context-roi/v03", "title": "顶部全仓分岔舞台 + 2×3 磁贴 · Top Flow + Bento Drawers", "pills": ["top-flow-bento-drawers", "hover-brief+click-drawer", "VS-005"], "src": "v03.html?v=9633f4fc", "prompt": "prompts/v03-prompt.md", "summary": "固定总览卡以五五对照呈现引用分岔漏斗与脚本评测账本，底部列表只改变高亮和顶部绑定内容。"}, {"category": "skills-context-roi", "round": 6, "platform": "macos", "id": "skills-context-roi/v04", "title": "红黑榜治理优先看板 · Governance-First Triage Drawers", "pills": ["governance-triage-drawers", "hover-brief+click-drawer", "VS-008"], "src": "v04.html?v=9633f4fc", "prompt": "prompts/v04-prompt.md", "summary": "固定总览卡聚焦分岔舞台并用胶囊切换脚本评测视图，治理告警与六行技能列表均保持稳定几何。"}]}</script><script>
+(function(){'use strict';
+const config=JSON.parse(document.getElementById('gallery-config').textContent),root=document.getElementById(config.portal?'portal-grid':'variants');
+const active=new Map(config.cards.filter(c=>c.round===6&&/^.+\/v0[1-4]$/.test(c.id)).map(c=>[c.id,c]));const key=c=>c.id;
+function readState(store){try{const raw=JSON.parse(store?.getItem(`design-gallery:r6:${config.goal}`)||'{}');if(!raw||typeof raw!=='object'||Array.isArray(raw))return {};return Object.fromEntries(Object.entries(raw).filter(([k,v])=>active.has(k)&&v&&typeof v==='object'&&v.category===active.get(k).category&&v.round===6&&v.id===k));}catch{return {};}}
+function writeState(state,card,field,value){const next={...state},k=key(card);if(field==='selected')Object.keys(next).forEach(id=>{if(next[id].category===card.category)next[id]={...next[id],selected:false};});next[k]={...(next[k]||{}),category:card.category,round:6,id:k,[field]:value};return next;}
+const storage=()=>{try{return localStorage;}catch{return null;}},articles=[...root.querySelectorAll('.variant-card')],status=document.getElementById('status'),telemetry=document.getElementById('selection-telemetry');let state=readState(storage()),group=config.portal?config.firstGroup:'all',theme='light';
+articles.forEach(n=>{const c=active.get(n.dataset.variant);n.__card=c;const v=c&&state[key(c)]||{};n.querySelector('[data-select]')&&(n.querySelector('[data-select]').checked=!!v.selected);n.querySelector('[data-star]')&&(n.querySelector('[data-star]').checked=!!v.starred);n.querySelector('[data-note]')&&(n.querySelector('[data-note]').value=v.notes||'');n.querySelector('iframe')?.addEventListener('load',e=>applyFrame(e.target));});
+function refresh(){const vals=Object.values(state);if(telemetry)telemetry.textContent=`已记录 ${vals.filter(v=>v.notes).length} 条观察 · ${vals.filter(v=>v.starred).length} 个收藏 · ${vals.filter(v=>v.selected).length} 个选择`;articles.forEach(n=>{const show=group==='all'||n.dataset.group===group;n.hidden=!show;n.setAttribute('aria-hidden',String(!show));});applyTheme(theme);}
+function persist(e){const n=e.target.closest('.variant-card'),c=n?.__card;if(!c)return;const field=e.target.matches('[data-select]')?'selected':e.target.matches('[data-star]')?'starred':e.target.matches('[data-note]')?'notes':null;if(!field)return;state=writeState(state,c,field,field==='notes'?e.target.value:e.target.checked);try{storage()?.setItem(`design-gallery:r6:${config.goal}`,JSON.stringify(state));}catch{}refresh();}
+root.addEventListener('change',persist);root.addEventListener('input',persist);
+function applyFrame(f){try{const d=f.contentDocument;if(d?.body){d.documentElement.dataset.theme=theme;d.body.dataset.theme=theme;f.contentWindow.postMessage({type:'aidash-demo-theme',theme},'*');f.contentWindow.postMessage({type:'design-gallery-theme',theme},'*');}}catch{}}
+function applyTheme(v){theme=v;document.body.dataset.theme=v;root.querySelectorAll('iframe').forEach(applyFrame);}
+function selectionSummary(){const lines=[`Goal: ${config.goal}`];for(const cat of [...new Set([...active.values()].map(c=>c.category))]){const rows=[...active.values()].filter(c=>c.category===cat).map(c=>state[key(c)]||{});lines.push(`Category: ${cat}`,`SELECT: ${rows.filter(v=>v.selected).map(v=>v.id).join(', ')||'none'}`,`STAR: ${rows.filter(v=>v.starred).map(v=>v.id).join(', ')||'none'}`);const notes=rows.filter(v=>typeof v.notes==='string'&&v.notes.trim());lines.push('NOTES:',...(notes.length?notes.flatMap(v=>{const a=v.notes.trim().split('\n');return [`  - ${v.id}: ${a[0]}`,...a.slice(1).map(x=>`    ${x}`)];}):['  - none']));}return lines.join('\\n');}
+document.querySelectorAll('[data-group-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-group-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));group=b.dataset.groupFilter;refresh();}));document.querySelectorAll('[data-portal-theme],[data-theme]').forEach(b=>b.addEventListener('click',()=>applyTheme(b.dataset.portalTheme||b.dataset.theme)));document.getElementById('copy-summary')?.addEventListener('click',async()=>{const t=selectionSummary(),a=document.getElementById('summary-text');a.value=t;a.hidden=false;try{await navigator.clipboard.writeText(t);status.textContent='Summary copied';}catch{status.textContent='Clipboard unavailable — copy the summary below.';}});window.addEventListener('storage',()=>{state=readState(storage());refresh();});if(typeof module!=='undefined')module.exports={readState,writeState,selectionSummary};refresh();})();
 </script></body></html>

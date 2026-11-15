@@ -49,7 +49,8 @@
         "Y": "exclusive Context lenses",
         "Z": "solid atlas with definition popover",
         "AppTheme": "R2.ContextAtlas"
-      }
+      },
+      "inline_js_sha256": "c0ed05ffd5391a059c77caddda2deb212866e54582a2e8f079ac7f46a1ee3ba7"
     },
     {
       "category": "skills-context-roi",
@@ -84,7 +85,8 @@
         "Y": "ordered-rank accordion",
         "Z": "paper staircase with attached suggestion leaf",
         "AppTheme": "R2.RankStair"
-      }
+      },
+      "inline_js_sha256": "c1459cf4364124598b3157436d83df2a3900e4c14cd6ba41653d70ca200f8c4b"
     },
     {
       "category": "skills-context-roi",
@@ -119,7 +121,8 @@
         "Y": "longitudinal lane with one hinged readout",
         "Z": "solid instrument bed",
         "AppTheme": "R2.PinLane"
-      }
+      },
+      "inline_js_sha256": "88044c8cef23656db0ae0495965930684547e87bdd4776cce74baa18bf387de9"
     },
     {
       "category": "skills-context-roi",
@@ -154,7 +157,8 @@
         "Y": "branch selection with definition shutter",
         "Z": "paper gate and functional lens chrome",
         "AppTheme": "R2.DisclosureGate"
-      }
+      },
+      "inline_js_sha256": "41d017e08ebdfb0ae18acc21d4b4da479ea92bf8e18e372993fef636caf7b8b1"
     },
     {
       "category": "skills-context-roi",
@@ -171,7 +175,7 @@
       "reference": false,
       "prompt": "prompts/v05-prompt.md",
       "prompt_sha256": "f6cbe052915137ec5c0e8c3be84063256d50efc9c1791f091f8eb2abd64ba095",
-      "html_sha256": "cc2319b17654532a258354dcb511d382c6b757de823e023a9758947c4fd040ef",
+      "html_sha256": "bee5db3e059926756130204185fdada3d167d11af08aee9219447013beb058c5",
       "topology_signature": "topology-cache-meter",
       "p0": "S11 KV Cache 96.8%, 96,800/100,000 eligible token requests",
       "axis_y": "Single radial Cache readout; composition and Tool burn replace the dial with a denominator placard",
@@ -189,7 +193,8 @@
         "Y": "radial readout with replaceable denominator panel",
         "Z": "opaque dial and definition popover",
         "AppTheme": "R2.CacheMeter"
-      }
+      },
+      "inline_js_sha256": "56bcf94d178d44d41694deb2bbc9e20a132af5da54a06a222ba315f8d6c520d8"
     },
     {
       "category": "skills-context-roi",
@@ -224,7 +229,8 @@
         "Y": "two count rows with tucked ROI pocket",
         "Z": "solid warm leaves",
         "AppTheme": "R2.ChurnPocket"
-      }
+      },
+      "inline_js_sha256": "e9c012adef6a7cd8874077506eb22f83db68add80fe0b5ae2dacfab3b8d5df59"
     },
     {
       "category": "skills-context-roi",
@@ -241,7 +247,7 @@
       "reference": false,
       "prompt": "prompts/v07-prompt.md",
       "prompt_sha256": "00444cd02b9ba38b62edeb56cb2663d9d970a1c537266fd301b4bf3f8f965940",
-      "html_sha256": "90ec533bb5b3c163f4b65f399457d0b4d6e20de56ae6fa85a4d42a6ad76bec9b",
+      "html_sha256": "dee23cef2ed7a91aa6de7a29bd57e85070bb0c8e3cdc3f5692d2bc29cbe5280a",
       "topology_signature": "topology-catch-bridge",
       "p0": "S2 Gate Catch Rate 8/40 = 20%",
       "axis_y": "Independent trial lanes with one central definition joint and a replaceable evidence band",
@@ -259,7 +265,8 @@
         "Y": "independent-lane comparison with central definition joint",
         "Z": "flat solid bridge",
         "AppTheme": "R2.CatchBridge"
-      }
+      },
+      "inline_js_sha256": "6670e7436db396950a4c1853b0a77e565e1b28ac0b3a00c19ab8fb14653f6709"
     },
     {
       "category": "skills-context-roi",
@@ -294,7 +301,8 @@
         "Y": "orthogonal operand split with local inspection drawer",
         "Z": "solid slate workbench",
         "AppTheme": "R2.TouchDesk"
-      }
+      },
+      "inline_js_sha256": "6d9e05be2bdbb35e3e0aa29742952721eb1ffe0cd189124e0e2915340cd568bb"
     },
     {
       "category": "skills-context-roi",
@@ -329,7 +337,8 @@
         "Y": "unit mosaic with replacement evidence register",
         "Z": "opaque cool paper",
         "AppTheme": "R2.AuditMosaic"
-      }
+      },
+      "inline_js_sha256": "459f9ab2f0b8a8912a5c7abe67d71df4bd269ece0201486a40d4886a0d0d575c"
     },
     {
       "category": "skills-context-roi",
@@ -364,7 +373,8 @@
         "Y": "two-part attribution dossier with single-open evidence leaf",
         "Z": "solid editorial block",
         "AppTheme": "R2.EscapeDossier"
-      }
+      },
+      "inline_js_sha256": "f75d3c828576a25a9b965e747333018163e3372f6fe87c2f6aad1ee44e0a69db"
     }
   ],
   "prompt_contract": {

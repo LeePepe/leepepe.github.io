@@ -97,7 +97,8 @@
         "Y": "tile-substitution",
         "Z": "solid-raised-focus",
         "AppTheme": "R2PulseMagnet"
-      }
+      },
+      "inline_js_sha256": "ae4f62d6c649915c4fe971262d8f954ceb8b86131e7d82643b630d1ea054cdce"
     },
     {
       "category": "scheduled-pulse",
@@ -179,7 +180,8 @@
         "Y": "attached-station-fold",
         "Z": "rail-action-popover",
         "AppTheme": "R2CadenceRail"
-      }
+      },
+      "inline_js_sha256": "39030c1883ec981e39d735afcc3ebd7303a23bd7c3693e3bc2387ce738ec47dd"
     },
     {
       "category": "scheduled-pulse",
@@ -292,7 +294,8 @@
         "Y": "radial-evidence-turn",
         "Z": "opaque-instrument",
         "AppTheme": "R2FivePointOrbit"
-      }
+      },
+      "inline_js_sha256": "721f4df135c319d0ed7a5f4ed7a8246ae9fd657b18bd9f976b843bfa02ebe962"
     },
     {
       "category": "scheduled-pulse",
@@ -371,7 +374,8 @@
         "Y": "one-active-accordion",
         "Z": "flat-paper-hinge",
         "AppTheme": "R2HingedRegister"
-      }
+      },
+      "inline_js_sha256": "461f807f8bab8d01393d857e777a9ab45cb2eb36bcccf3d0e1dbebba72a6d50d"
     },
     {
       "category": "scheduled-pulse",
@@ -465,7 +469,8 @@
         "Y": "owned-inline-well",
         "Z": "receipt-lid-only",
         "AppTheme": "R2TwoSpeedBench"
-      }
+      },
+      "inline_js_sha256": "f106a3db4dc3625748b33102d3e961f544c07daf17b4ea12e842902346008fd9"
     },
     {
       "category": "scheduled-pulse",
@@ -556,7 +561,8 @@
         "Y": "shared-definition-well",
         "Z": "single-action-lens",
         "AppTheme": "R2CapsuleSpine"
-      }
+      },
+      "inline_js_sha256": "e7f0969e79c4ea56465bdbbfd91b05e8f19d4cc40ef768373e9323988667f82b"
     },
     {
       "category": "scheduled-pulse",
@@ -573,7 +579,7 @@
       "reference": false,
       "prompt": "prompts/v07-prompt.md",
       "prompt_sha256": "64b156483d0d37ad91a3ebdb4281498081d0efa6897e67722255e786dae3734d",
-      "html_sha256": "1eaf5d7d4145ea32b2fdaac397309cd30ab257edcd534f9e0de4d2a3a4946667",
+      "html_sha256": "892383a6cc962ad083b9f873cb0316d44a68f1b746acde7e8c913618b8c39576",
       "topology_signature": "topology-job-evidence-matrix",
       "p0": "Digest's single selected outcome cell showing 5/5",
       "axis_y": "One enlarged result cell; stage/receipt replaces cell body with fixed shared tracks",
@@ -637,7 +643,8 @@
         "Y": "cell-replacement",
         "Z": "solid-grid-paper",
         "AppTheme": "R2EvidenceMatrix"
-      }
+      },
+      "inline_js_sha256": "d38a8d1e4bcf2671ba3491e66b6541f3d9b10c84fcec54e53fe14b6f45fbb493"
     },
     {
       "category": "scheduled-pulse",
@@ -734,7 +741,8 @@
         "Y": "under-number-shutter",
         "Z": "opaque-ink-block",
         "AppTheme": "R2DuePoster"
-      }
+      },
+      "inline_js_sha256": "849c59eb2a7c77052eaee52c328ffcfd52dd11b0564e9c813fa2b00f44b6eec2"
     },
     {
       "category": "scheduled-pulse",
@@ -825,7 +833,8 @@
         "Y": "bring-one-paper-forward",
         "Z": "opaque-stepped-deck",
         "AppTheme": "R2MorningPocket"
-      }
+      },
+      "inline_js_sha256": "f2e746e05587c0d98bc9930ece85d4c37c49e1f788ee2310a6bcad315cf725b7"
     },
     {
       "category": "scheduled-pulse",
@@ -926,7 +935,8 @@
         "Y": "command-stage-replacement",
         "Z": "functional-command-rim",
         "AppTheme": "R2RunCommand"
-      }
+      },
+      "inline_js_sha256": "e229f986c5665d4ca0a1c6b025923b68a30459b4a88642a1d33222e9fbad77d2"
     }
   ],
   "prompt_contract": {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="/assets/colors.css"><link rel="stylesheet" href="/assets/strata-theme.css"><link rel="stylesheet" href="/assets/blog.css"><script src="/assets/theme.js"></script><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>voxpocket-holistic-redesign · Master Portal</title><style>:root {
   --ink: #172033;
   --muted: #596476;
@@ -47,7 +47,7 @@
 
 /* feDisplacementMap lives in each preview's inline SVG; only Blink opts into the optical backdrop. */
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font:16px/1.4 system-ui;color:var(--ink,var(--ink))}
+html,body{background:var(--strata-surface-page)!important;color:var(--strata-text-primary)!important;margin:0;min-height:100%;font:16px/1.4 system-ui;color:var(--ink,var(--ink))}
 button,textarea{font:inherit}
 button{cursor:pointer}
 button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
@@ -167,7 +167,7 @@ body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:v
 .selection-telemetry{font-weight:650}
 @media(max-width:480px){.gallery-breadcrumbs a{min-height:44px}}
 </style></head>
-<body class="gallery-page"><main class="gallery portal">
+<body class="gallery-page"><header class="site-header shell"><div class="site-header__bar"><a class="brand" href="/"><span class="brand__mark">L</span>Lee Pepe</a><nav class="nav" aria-label="主导航"><a href="/">首页</a><a href="/demos/" aria-current="page">Demos</a><a href="/vault/">素材库</a></nav><div class="theme-toggle"><button type="button" data-theme-choice="light">浅色</button><button type="button" data-theme-choice="dark">深色</button></div></div></header><main class="gallery portal">
 <nav class="gallery-breadcrumbs" aria-label="Breadcrumb"><a href="/">← Blog</a><span>·</span><a href="/demos/">Demos 总目录</a></nav><h1>voxpocket-holistic-redesign · Master Portal</h1><p id="session">Session anti-patterns: none</p>
 <nav class="group-tabs" aria-label="Categories"><button data-group-filter="app-nav" aria-pressed="true">🧭 画廊 A：整体 App 导航流转 (4 · mobile)</button><button data-group-filter="macos-recording" aria-pressed="false">🎙️ 画廊 B：macOS 桌面录音 (10 · macos)</button><button data-group-filter="dual-todo" aria-pressed="false">☑️ 画廊 C：双端 Todo 页面 (10 · mobile)</button><button data-group-filter="all" aria-pressed="false">全部方案 (24)</button></nav><div class="portal-actions"><button data-portal-platform="all" aria-pressed="true">All</button><button data-portal-platform="mobile" aria-pressed="false">Mobile</button><button data-portal-platform="macos" aria-pressed="false">Macos</button><button data-portal-platform="web" aria-pressed="false">Web</button><button data-portal-theme="light">Light</button><button data-portal-theme="dark">Dark</button></div>
 <div id="portal-grid"><article class="variant-card" data-group="app-nav" data-round="1" data-variant="app01" data-platform="mobile">

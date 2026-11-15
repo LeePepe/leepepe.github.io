@@ -161,7 +161,10 @@
           ]
         }
       ],
-      "context": "VoxPocket Todo-first A04 navigation"
+      "context": "VoxPocket Todo-first A04 navigation",
+      "summary": "Todo-first drawer navigation with persistent recording dock.",
+      "prompt_file": "prompts-a/app01-prompt.md",
+      "prompt_sha256": "889ce0458a6b608ccbd2cf75364d46537c1d908aa7d871cd82134487ac9ba465"
     },
     {
       "id": "app02",
@@ -316,7 +319,10 @@
           ]
         }
       ],
-      "context": "VoxPocket Todo-first A04 navigation"
+      "context": "VoxPocket Todo-first A04 navigation",
+      "summary": "Todo-first deck navigation with persistent recording dock.",
+      "prompt_file": "prompts-a/app02-prompt.md",
+      "prompt_sha256": "032f37e711d5fa4c696f07665748ff067b4a34f3afe9c4ccb304e7f6756b3be1"
     },
     {
       "id": "app03",
@@ -471,7 +477,10 @@
           ]
         }
       ],
-      "context": "VoxPocket Todo-first A04 navigation"
+      "context": "VoxPocket Todo-first A04 navigation",
+      "summary": "Todo-first morphing dock navigation with persistent recording dock.",
+      "prompt_file": "prompts-a/app03-prompt.md",
+      "prompt_sha256": "37f171516c392fa15b200c23261df000f6ff2a668a4f340d4485c40d561df1b5"
     },
     {
       "id": "app04",
@@ -626,7 +635,10 @@
           ]
         }
       ],
-      "context": "VoxPocket Todo-first A04 navigation"
+      "context": "VoxPocket Todo-first A04 navigation",
+      "summary": "Todo-first horizontal canvas navigation with persistent recording dock.",
+      "prompt_file": "prompts-a/app04-prompt.md",
+      "prompt_sha256": "e713a94c2517a911cb086b51a45d4da28d5aeebf11fda5c5cbc706f478e9ba99"
     }
   ],
   "app_context": "VoxPocket 三屏导航"

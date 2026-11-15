@@ -665,7 +665,7 @@
       ],
       "prompt_file": "prompts/app01-prompt.md",
       "prompt_sha256": "889ce0458a6b608ccbd2cf75364d46537c1d908aa7d871cd82134487ac9ba465",
-      "summary": "以左下角 Fold 作为主入口，向上展开玻璃抽屉，在同一层级切换录音、待办与设置。"
+      "summary": "Todo-first drawer navigation with persistent recording dock."
     },
     {
       "id": "app02",
@@ -678,7 +678,7 @@
       ],
       "prompt_file": "prompts/app02-prompt.md",
       "prompt_sha256": "032f37e711d5fa4c696f07665748ff067b4a34f3afe9c4ccb304e7f6756b3be1",
-      "summary": "用前后景 3D 叠卡承载三个真实页面，翻转卡片即可在录音、待办和设置之间切换。"
+      "summary": "Todo-first deck navigation with persistent recording dock."
     },
     {
       "id": "app03",
@@ -691,7 +691,7 @@
       ],
       "prompt_file": "prompts/app03-prompt.md",
       "prompt_sha256": "37f171516c392fa15b200c23261df000f6ff2a668a4f340d4485c40d561df1b5",
-      "summary": "底部玻璃坞会从当前页面原地生长变形，把常用导航和设置动作收纳在一处。"
+      "summary": "Todo-first morphing dock navigation with persistent recording dock."
     },
     {
       "id": "app04",
@@ -704,7 +704,7 @@
       ],
       "prompt_file": "prompts/app04-prompt.md",
       "prompt_sha256": "e713a94c2517a911cb086b51a45d4da28d5aeebf11fda5c5cbc706f478e9ba99",
-      "summary": "以左右横滑双画布组织页面，手势切换录音、待办与设置，并保留连续的空间方向感。"
+      "summary": "Todo-first horizontal canvas navigation with persistent recording dock."
     }
   ],
   "prompt_contract": {

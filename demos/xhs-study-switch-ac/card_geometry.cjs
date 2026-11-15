@@ -72,23 +72,26 @@ async function measureCard(page, card) {
       const cellWidth = f.width / columns;
       const cellHeight = f.height / rows;
       const points = [];
+      const overlays = [...slide.querySelectorAll('*')].filter(e => {
+        if (e === element || e.contains(element) || opacity(e) === 0) return false;
+        const css = getComputedStyle(e);
+        const alpha = css.backgroundColor.match(/rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)\)/);
+        const opaque = css.backgroundColor !== 'transparent' && (!alpha || Number(alpha[1]) >= .99);
+        return opaque || css.backgroundImage !== 'none' || e.matches('.t, img, svg');
+      }).map(frame);
       if (opacity(element) > 0) {
         for (let row = 0; row < rows; row++) {
           for (let col = 0; col < columns; col++) {
-            const x = f.x + (col + .5) * cellWidth;
-            const y = f.y + (row + .5) * cellHeight;
-            if (x < painted.x || x > painted.x + painted.width || y < painted.y || y > painted.y + painted.height) continue;
-            const stack = document.elementsFromPoint(x, y);
-            const index = stack.indexOf(element);
-            if (index < 0) continue;
-            const obscured = stack.slice(0, index).some(e => {
-              if (e.contains(element) || opacity(e) === 0) return false;
-              const css = getComputedStyle(e);
-              const alpha = css.backgroundColor.match(/rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)\)/);
-              const opaque = css.backgroundColor !== 'transparent' && (!alpha || Number(alpha[1]) >= .99);
-              return opaque || css.backgroundImage !== 'none' || e.matches('.t, img, svg, svg *');
-            });
-            if (!obscured) points.push({ x, y });
+            const left = f.x + col * cellWidth;
+            const top = f.y + row * cellHeight;
+            const right = left + cellWidth;
+            const bottom = top + cellHeight;
+            if (left < painted.x || right > painted.x + painted.width || top < painted.y || bottom > painted.y + painted.height) continue;
+            if (overlays.some(r => Math.min(right, r.x + r.width) > Math.max(left, r.x) && Math.min(bottom, r.y + r.height) > Math.max(top, r.y))) continue;
+            const probes = [[left + .001, top + .001], [right - .001, top + .001], [left + .001, bottom - .001], [right - .001, bottom - .001], [(left + right) / 2, (top + bottom) / 2]];
+            if (probes.every(([x, y]) => document.elementsFromPoint(x, y).includes(element))) {
+              points.push({ x: (left + right) / 2, y: (top + bottom) / 2 });
+            }
           }
         }
       }
@@ -103,7 +106,7 @@ async function measureCard(page, card) {
         naturalWidth: nw, naturalHeight: nh, opacity: opacity(element), objectFit: c.objectFit,
         objectPosition: c.objectPosition, borderRadius: c.borderRadius, paintedFrame: painted,
         sourceCrop: crop, visibleFrame, visibleAreaLowerBound: points.length * cellWidth * cellHeight,
-        visibilityMethod: '32x40 DOM hit samples, gradients conservatively occluded',
+        visibilityMethod: '32x40 full cells inside painted image; corner+center hit tests; intersecting overlay/gradient/SVG bounds excluded',
       };
     });
     const decorations = [...slide.querySelectorAll('svg')].map(e => ({

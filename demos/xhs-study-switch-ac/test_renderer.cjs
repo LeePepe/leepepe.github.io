@@ -34,6 +34,9 @@ const { assertMarkup, prepareCard, measureCard, assertCard, platformFonts } = re
         assert.ok(g.images[0].visibleAreaLowerBound >= 10000);
         assert.equal(g.images[0].naturalWidth, 1024);
         assert.equal(g.images[0].naturalHeight, 1536);
+        const { paintedFrame: p, visibleFrame: v, visibleAreaLowerBound: area } = g.images[0];
+        assert.ok(v.x >= p.x && v.y >= p.y && v.x + v.width <= p.x + p.width + .01 && v.y + v.height <= p.y + p.height + .01, 'visibility cells must not include contain gutters or mask boundary pixels');
+        assert.ok(area <= p.width * p.height);
       }
       if (g.style === 'c') {
         assert.equal(g.images.length, 0);

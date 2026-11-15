@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>aidash-cards-redesign · Round 5</title><style>:root {
+<title>aidash-cards-redesign · Round 6</title><style>:root {
   --ink: #172033;
   --muted: #596476;
   --focus: #3568d4;
@@ -124,6 +124,7 @@ summary{cursor:pointer;font-weight:650;min-height:32px;padding:6px 0}
 .device-titlebar i{width:10px;height:10px;border-radius:50%;background:var(--traffic-red)}
 .device-titlebar i:nth-child(2){background:var(--traffic-yellow)}
 .device-titlebar i:nth-child(3){background:var(--traffic-green)}
+body[data-theme=dark] .device-bezel{background:#0d1422}body[data-theme=dark] .device-titlebar{background:#263149;color:var(--ink-inverse)}
 .device-titlebar span{margin:auto;white-space:nowrap;overflow:hidden}
 .device-bezel[data-frame-mode=mobile]{--chrome-height:0px;padding:12px;border-radius:40px}
 .device-bezel[data-frame-mode=mobile] .device-window{border-radius:30px}
@@ -133,7 +134,7 @@ summary{cursor:pointer;font-weight:650;min-height:32px;padding:6px 0}
 .gallery-actions,.portal-actions,.group-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
 .group-tabs button,.portal-actions button,.gallery-actions button{padding:9px 12px;min-height:44px;border:1px solid var(--border-strong);border-radius:10px;background:var(--white);color:var(--ink)}
 .group-tabs [aria-pressed=true],.portal-actions [aria-pressed=true]{outline:2px solid var(--focus)}
-.gallery #variants,.gallery #portal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px;overflow:visible;padding:8px 0 24px;align-items:start}
+.gallery #variants,.gallery #portal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,560px),1fr));gap:24px;overflow:visible;padding:8px 0 24px;align-items:start}
 .gallery .variant-card{width:100%;min-width:0;padding:12px}
 .variant-card header{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;overflow-wrap:anywhere;min-height:90px}
 .variant-card header strong{min-height:0}
@@ -169,7 +170,7 @@ body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:v
 .variant-summary{margin:0 0 10px;padding:8px 12px;border-radius:10px;background:var(--canvas);border:1px solid var(--border);color:var(--muted);font-size:13px;line-height:1.45}
 </style></head>
 <body class="gallery-page"><main class="gallery">
-<nav class="gallery-breadcrumbs" aria-label="Breadcrumb"><a href="/">← Blog</a><span>·</span><a href="/demos/">Demos 总目录</a><span>·</span><a href="../index.html">Goal Portal (../)</a></nav><h1>aidash-cards-redesign · Round 5</h1><p id="session">Session anti-patterns: none</p>
+<nav class="gallery-breadcrumbs" aria-label="Breadcrumb"><a href="/">← Blog</a><span>·</span><a href="/demos/">Demos 总目录</a><span>·</span><a href="../index.html">Goal Portal (../)</a></nav><h1>aidash-cards-redesign · Round 6</h1><p id="session">Session anti-patterns: none</p>
 <div class="portal-actions"><button data-theme="light">Light</button><button data-theme="dark">Dark</button></div>
 <div id="variants"><article class="card variant-card" id="card-skills-context-roi-v01" data-card-id="skills-context-roi/v01" data-group="skills-context-roi" data-round="6" data-variant="skills-context-roi/v01" data-platform="macos">
 <header><span class="variant-badge">skills-context-roi/v01</span><strong>六五分岔画布 · 65/35 Bezier Canvas + Diagnostic Rail</strong><span class="coordinate-pill">fixed-overview</span><span class="coordinate-pill">select-only-list</span><span class="coordinate-pill">VS-007</span>
@@ -177,7 +178,7 @@ body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:v
 <p class="variant-summary">六十五比三十五固定总览卡左侧呈现三次贝塞尔分岔流，右侧诊断脚本与冷门分支，底部列表只切换选中项。</p>
 
 <div class="device-bezel" data-frame-mode="macos" style="--frame-width:1280px;--frame-height:800px;--preview-scale:0.46">
-<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe class="device-iframe" loading="eager" src="v01.html?v=656bd926" title="瑞士行内拉出分岔袋 · Inline Pull-Out Bifurcation Pockets"></iframe></div></div>
+<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe class="device-iframe" loading="eager" src="v01.html?v=656bd926" title="六五分岔画布 · 65/35 Bezier Canvas + Diagnostic Rail"></iframe></div></div>
 <div class="controls">
 <label><input type="radio" name="primary-skills-context-roi" value="skills-context-roi/v01" data-select="skills-context-roi/v01" id="select-skills-context-roi-v01"> SELECT</label>
 <label><input type="checkbox" data-star="skills-context-roi/v01" id="star-skills-context-roi-v01"> STAR</label></div>
@@ -187,7 +188,7 @@ body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:v
 <p class="variant-summary">固定总览卡用顶栏四项 KPI 串起全宽三段式贝塞尔管道，底部六行技能列表保持高度不变并刷新选中内容。</p>
 
 <div class="device-bezel" data-frame-mode="macos" style="--frame-width:1280px;--frame-height:800px;--preview-scale:0.46">
-<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe class="device-iframe" loading="eager" src="v02.html?v=656bd926" title="38%/62% 桑基分岔演播室 · Master-Detail Sankey Studio"></iframe></div></div>
+<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe class="device-iframe" loading="eager" src="v02.html?v=656bd926" title="三段式贝塞尔管道 · KPI Strip + Bezier Conduit"></iframe></div></div>
 <div class="controls">
 <label><input type="radio" name="primary-skills-context-roi" value="skills-context-roi/v02" data-select="skills-context-roi/v02" id="select-skills-context-roi-v02"> SELECT</label>
 <label><input type="checkbox" data-star="skills-context-roi/v02" id="star-skills-context-roi-v02"> STAR</label></div>
@@ -197,7 +198,7 @@ body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:v
 <p class="variant-summary">固定总览卡以五五对照呈现引用分岔漏斗与脚本评测账本，底部列表只改变高亮和顶部绑定内容。</p>
 
 <div class="device-bezel" data-frame-mode="macos" style="--frame-width:1280px;--frame-height:800px;--preview-scale:0.46">
-<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe class="device-iframe" loading="eager" src="v03.html?v=656bd926" title="顶部全仓分岔舞台 + 2×3 磁贴 · Top Flow + Bento Drawers"></iframe></div></div>
+<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe class="device-iframe" loading="eager" src="v03.html?v=656bd926" title="双栏对照总览 · Disclosure Funnel + Eval Ledger"></iframe></div></div>
 <div class="controls">
 <label><input type="radio" name="primary-skills-context-roi" value="skills-context-roi/v03" data-select="skills-context-roi/v03" id="select-skills-context-roi-v03"> SELECT</label>
 <label><input type="checkbox" data-star="skills-context-roi/v03" id="star-skills-context-roi-v03"> STAR</label></div>
@@ -207,7 +208,7 @@ body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:v
 <p class="variant-summary">固定总览卡聚焦分岔舞台并用胶囊切换脚本评测视图，治理告警与六行技能列表均保持稳定几何。</p>
 
 <div class="device-bezel" data-frame-mode="macos" style="--frame-width:1280px;--frame-height:800px;--preview-scale:0.46">
-<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe class="device-iframe" loading="eager" src="v04.html?v=656bd926" title="红黑榜治理优先看板 · Governance-First Triage Drawers"></iframe></div></div>
+<div class="device-window"><div class="device-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>macOS preview</span></div><iframe class="device-iframe" loading="eager" src="v04.html?v=656bd926" title="焦点分岔舞台 · Focused Bezier Stage + Lens Pill"></iframe></div></div>
 <div class="controls">
 <label><input type="radio" name="primary-skills-context-roi" value="skills-context-roi/v04" data-select="skills-context-roi/v04" id="select-skills-context-roi-v04"> SELECT</label>
 <label><input type="checkbox" data-star="skills-context-roi/v04" id="star-skills-context-roi-v04"> STAR</label></div>
@@ -219,17 +220,18 @@ body.preview[data-theme=dark] .stack button{background:var(--paper-dark);color:v
 </main><script id="gallery-config" type="application/json">{"goal": "aidash-cards-redesign", "portal": false, "firstGroup": "skills-context-roi", "cards": [{"category": "skills-context-roi", "round": 6, "platform": "macos", "id": "skills-context-roi/v01", "title": "六五分岔画布 · 65/35 Bezier Canvas + Diagnostic Rail", "pills": ["fixed-overview", "select-only-list", "VS-007"], "src": "v01.html?v=656bd926", "summary": "六十五比三十五固定总览卡左侧呈现三次贝塞尔分岔流，右侧诊断脚本与冷门分支，底部列表只切换选中项。"}, {"category": "skills-context-roi", "round": 6, "platform": "macos", "id": "skills-context-roi/v02", "title": "三段式贝塞尔管道 · KPI Strip + Bezier Conduit", "pills": ["fixed-overview", "select-only-list", "VS-007"], "src": "v02.html?v=656bd926", "summary": "固定总览卡用顶栏四项 KPI 串起全宽三段式贝塞尔管道，底部六行技能列表保持高度不变并刷新选中内容。"}, {"category": "skills-context-roi", "round": 6, "platform": "macos", "id": "skills-context-roi/v03", "title": "双栏对照总览 · Disclosure Funnel + Eval Ledger", "pills": ["fixed-overview", "select-only-list", "VS-007"], "src": "v03.html?v=656bd926", "summary": "固定总览卡以五五对照呈现引用分岔漏斗与脚本评测账本，底部列表只改变高亮和顶部绑定内容。"}, {"category": "skills-context-roi", "round": 6, "platform": "macos", "id": "skills-context-roi/v04", "title": "焦点分岔舞台 · Focused Bezier Stage + Lens Pill", "pills": ["fixed-overview", "select-only-list", "VS-007"], "src": "v04.html?v=656bd926", "summary": "固定总览卡聚焦分岔舞台并用胶囊切换脚本评测视图，治理告警与六行技能列表均保持稳定几何。"}]}</script><script>
 (function(){'use strict';
 const config=JSON.parse(document.getElementById('gallery-config').textContent),root=document.getElementById(config.portal?'portal-grid':'variants');
-const active=new Map(config.cards.filter(c=>c.round===6&&/^.+\/v0[1-4]$/.test(c.id)).map(c=>[c.id,c]));const key=c=>c.id;
-function readState(store){try{const raw=JSON.parse(store?.getItem(`design-gallery:r6:${config.goal}`)||'{}');if(!raw||typeof raw!=='object'||Array.isArray(raw))return {};const next={};for(const [k,v] of Object.entries(raw)){const card=active.get(k);if(!card||!v||typeof v!=='object'||v.category!==card.category||v.round!==6||v.id!==k)continue;if(('selected'in v&&typeof v.selected!=='boolean')||('starred'in v&&typeof v.starred!=='boolean')||('notes'in v&&typeof v.notes!=='string'))continue;next[k]={category:card.category,round:6,id:k,selected:v.selected===true,starred:v.starred===true,notes:v.notes||''};}for(const category of new Set([...active.values()].map(c=>c.category))){const selected=Object.keys(next).filter(k=>next[k].category===category&&next[k].selected);selected.slice(1).forEach(k=>{next[k].selected=false;});}return next;}catch{return {};}}
+const active=new Map(config.cards.filter(c=>c.round===6&&/^.+\/v0[1-4]$/.test(c.id)).map(c=>[c.id,c]));const globalKeys=new Set(['scheduled-pulse/v01','scheduled-pulse/v02','scheduled-pulse/v03','scheduled-pulse/v04','skills-context-roi/v01','skills-context-roi/v02','skills-context-roi/v03','skills-context-roi/v04']);const key=c=>c.id;
+function readState(store){try{const raw=JSON.parse(store?.getItem(`design-gallery:r6:${config.goal}`)||'{}');if(!raw||typeof raw!=='object'||Array.isArray(raw))return {};const next={};for(const [k,v] of Object.entries(raw)){if(!globalKeys.has(k)||!v||typeof v!=='object'||v.category!==k.split('/')[0]||v.round!==6||v.id!==k)continue;if(('selected'in v&&typeof v.selected!=='boolean')||('starred'in v&&typeof v.starred!=='boolean')||('notes'in v&&typeof v.notes!=='string'))continue;next[k]={category:v.category,round:6,id:k,selected:v.selected===true,starred:v.starred===true,notes:v.notes||''};}for(const category of ['scheduled-pulse','skills-context-roi']){const selected=Object.keys(next).filter(k=>next[k].category===category&&next[k].selected);selected.slice(1).forEach(k=>{next[k].selected=false;});}return next;}catch{return {};}}
 function writeState(state,card,field,value){const next={...state},k=key(card);if(field==='selected')Object.keys(next).forEach(id=>{if(next[id].category===card.category)next[id]={...next[id],selected:false};});next[k]={...(next[k]||{}),category:card.category,round:6,id:k,[field]:field==='selected'||field==='starred'?value===true:String(value)};return next;}
 const storage=()=>{try{return localStorage;}catch{return null;}},articles=[...root.querySelectorAll('.variant-card')],status=document.getElementById('status'),telemetry=document.getElementById('selection-telemetry');let state=readState(storage()),group=config.portal?config.firstGroup:'all',theme='light';
 articles.forEach(n=>{const c=active.get(n.dataset.variant);n.__card=c;const v=c&&state[key(c)]||{};n.querySelector('[data-select]')&&(n.querySelector('[data-select]').checked=!!v.selected);n.querySelector('[data-star]')&&(n.querySelector('[data-star]').checked=!!v.starred);n.querySelector('[data-note]')&&(n.querySelector('[data-note]').value=v.notes||'');n.querySelector('iframe')?.addEventListener('load',e=>applyFrame(e.target));});
 function hydrateControls(){articles.forEach(n=>{const c=n.__card,v=c&&state[key(c)]||{};const select=n.querySelector('[data-select]'),star=n.querySelector('[data-star]'),note=n.querySelector('[data-note]');if(select)select.checked=v.selected===true;if(star)star.checked=v.starred===true;if(note)note.value=typeof v.notes==='string'?v.notes:'';});}
-function refresh(){hydrateControls();const vals=Object.values(state);if(telemetry)telemetry.textContent=`已记录 ${vals.filter(v=>v.notes).length} 条观察 · ${vals.filter(v=>v.starred).length} 个收藏 · ${vals.filter(v=>v.selected).length} 个选择`;articles.forEach(n=>{const show=group==='all'||n.dataset.group===group;n.hidden=!show;n.setAttribute('aria-hidden',String(!show));});applyTheme(theme);}
+function fitFrames(){root.querySelectorAll('.device-bezel').forEach(bezel=>{const card=bezel.closest('.variant-card');if(!card||card.hidden||card.clientWidth===0)return;const cs=getComputedStyle(card),bs=getComputedStyle(bezel),available=card.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight),padding=parseFloat(bs.paddingLeft)+parseFloat(bs.paddingRight),scale=Math.max(.05,Math.min(.46,(available-padding)/1280));bezel.style.setProperty('--frame-width','1280px');bezel.style.setProperty('--frame-height','800px');bezel.style.setProperty('--preview-scale',String(scale));});}
+function refresh(){hydrateControls();fitFrames();const vals=Object.values(state);if(telemetry)telemetry.textContent=`已记录 ${vals.filter(v=>v.notes).length} 条观察 · ${vals.filter(v=>v.starred).length} 个收藏 · ${vals.filter(v=>v.selected).length} 个选择`;articles.forEach(n=>{const show=group==='all'||n.dataset.group===group;n.hidden=!show;n.setAttribute('aria-hidden',String(!show));});applyTheme(theme);}
 function persist(e){const n=e.target.closest('.variant-card'),c=n?.__card;if(!c)return;const field=e.target.matches('[data-select]')?'selected':e.target.matches('[data-star]')?'starred':e.target.matches('[data-note]')?'notes':null;if(!field)return;state=writeState(state,c,field,field==='notes'?e.target.value:e.target.checked);try{storage()?.setItem(`design-gallery:r6:${config.goal}`,JSON.stringify(state));}catch{}refresh();}
 root.addEventListener('change',persist);root.addEventListener('input',persist);
 function applyFrame(f){try{const d=f.contentDocument;if(d?.body){d.documentElement.dataset.theme=theme;d.body.dataset.theme=theme;f.contentWindow.postMessage({type:'aidash-demo-theme',theme},'*');f.contentWindow.postMessage({type:'design-gallery-theme',theme},'*');}}catch{}}
 function applyTheme(v){theme=v;document.body.dataset.theme=v;root.querySelectorAll('iframe').forEach(applyFrame);}
 function selectionSummary(){const lines=[`Goal: ${config.goal}`];for(const cat of [...new Set([...active.values()].map(c=>c.category))]){const rows=[...active.values()].filter(c=>c.category===cat).map(c=>state[key(c)]||{});lines.push(`Category: ${cat}`,`SELECT: ${rows.filter(v=>v.selected).map(v=>v.id).join(', ')||'none'}`,`STAR: ${rows.filter(v=>v.starred).map(v=>v.id).join(', ')||'none'}`);const notes=rows.filter(v=>typeof v.notes==='string'&&v.notes.trim());lines.push('NOTES:',...(notes.length?notes.flatMap(v=>{const a=v.notes.trim().split('\n');return [`  - ${v.id}: ${a[0]}`,...a.slice(1).map(x=>`    ${x}`)];}):['  - none']));}return lines.join('\n');}
-document.querySelectorAll('[data-group-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-group-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));group=b.dataset.groupFilter;refresh();}));document.querySelectorAll('[data-portal-theme],[data-theme]').forEach(b=>b.addEventListener('click',()=>applyTheme(b.dataset.portalTheme||b.dataset.theme)));document.getElementById('copy-summary')?.addEventListener('click',async()=>{const t=selectionSummary(),a=document.getElementById('summary-text');a.value=t;a.hidden=false;try{await navigator.clipboard.writeText(t);status.textContent='Summary copied';}catch{status.textContent='Clipboard unavailable — copy the summary below.';}});window.addEventListener('storage',()=>{state=readState(storage());refresh();});if(typeof module!=='undefined')module.exports={readState,writeState,selectionSummary};refresh();})();
+document.querySelectorAll('[data-group-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-group-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));group=b.dataset.groupFilter;refresh();}));document.querySelectorAll('[data-portal-theme],[data-theme]').forEach(b=>b.addEventListener('click',()=>applyTheme(b.dataset.portalTheme||b.dataset.theme)));document.getElementById('copy-summary')?.addEventListener('click',async()=>{const t=selectionSummary(),a=document.getElementById('summary-text');a.value=t;a.hidden=false;try{await navigator.clipboard.writeText(t);status.textContent='Summary copied';}catch{status.textContent='Clipboard unavailable — copy the summary below.';}});window.addEventListener('storage',()=>{state=readState(storage());refresh();});window.addEventListener('resize',fitFrames);if(typeof ResizeObserver!=='undefined')new ResizeObserver(fitFrames).observe(root);if(typeof module!=='undefined')module.exports={readState,writeState,selectionSummary};refresh();})();
 </script></body></html>

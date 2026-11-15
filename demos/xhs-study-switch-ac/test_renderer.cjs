@@ -34,7 +34,9 @@ const { assertMarkup, prepareCard, measureCard, assertCard, platformFonts } = re
         const rows = fs.readFileSync(process.env.STORY_INDEX_PATH, 'utf8').split('\n').filter(line => line.includes('](thoughts/study-switch-long-press-ac.md)'));
         assert.equal(rows.length, 1);
         assertFullStory(rows[0] + source, 'canonical index and source');
-        assert.ok(rows[0].includes('2025') && rows[0].includes('测试键') && rows[0].includes('2026-11-15'));
+        for (const phrase of ['装修', 'NAS', '搁置', '2025', 'AI', 'YAML', '初步骨架', '实机测试', '微调', '睡前', '关灯', '拉窗帘', '买多', '测试键', '夏天', '共用遥控器', '米家', '闲置长按', '开', '2026-11-15']) {
+          assert.ok(rows[0].includes(phrase), `index insight missing ${phrase}`);
+        }
       }
     }
     assert.throws(() => assertFullStory('遥控器丢了，长按开空调。', 'T1 old gist'), /missing renovation/);

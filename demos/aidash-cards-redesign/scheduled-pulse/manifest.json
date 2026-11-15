@@ -2,7 +2,7 @@
   "schema": "tenfold-gallery/v1",
   "mode": "screen",
   "goal": "aidash-cards-redesign",
-  "round": 2,
+  "round": 3,
   "platform": "desktop",
   "frame_mode": "macos",
   "category": "scheduled-pulse",
@@ -17,931 +17,160 @@
   "screen_content": "",
   "variants": [
     {
-      "category": "scheduled-pulse",
-      "round": 2,
-      "platform": "macos",
       "id": "v01",
-      "title": "晨报磁场 · Unequal job magnets",
-      "pills": [
-        "pulse-magnets",
-        "VS-007",
-        "direct-job-magnets"
-      ],
-      "src": "v01.html",
-      "reference": false,
-      "prompt": "prompts/v01-prompt.md",
-      "prompt_sha256": "0683ac0037fe24085a1364d5c02a0b8adf868f18c3041c0a36c22ea47ab26a03",
-      "html_sha256": "78d5b06a3c8c0f24f748a2fd621485a3117c2f26ac809d03c887f64843fd6838",
-      "topology_signature": "topology-pulse-magnets",
-      "p0": "Selected digest 5/5 passed stages in one enlarged magnet",
-      "axis_y": "Exchange selected article with its satellite; stage/receipt replaces the lead detail region",
-      "layout": {
-        "card": {
-          "x": 120,
-          "y": 108,
-          "width": 1040,
-          "height": 584,
-          "radius": 26,
-          "padding": 24
-        },
-        "regions": [
-          {
-            "component": "header",
-            "width": 992,
-            "height": 44
-          },
-          {
-            "component": "magnet-field",
-            "width": 992,
-            "height": 468,
-            "gap_before": 24
-          },
-          {
-            "component": "selected-magnet",
-            "width": 536,
-            "height": 468
-          },
-          {
-            "component": "satellites",
-            "width": 432,
-            "height": 468,
-            "columns": 2,
-            "gap": 12
-          }
-        ],
-        "type_sizes": [
-          40,
-          20,
-          15,
-          13
-        ],
-        "breadth_axes": {
-          "composition": "unequal-bento",
-          "focus": "digest-pass",
-          "visualization": "five-stage-notch-trace",
-          "fold": "exchange-selected-item",
-          "polarity": "cool-blue-solid",
-          "type_rhythm": "40px-bento-numeral"
-        }
-      },
-      "whitespace": null,
-      "glass_geometry": null,
-      "archetype": "VS-007 Swiss Chrono, direct-manipulation bento remix",
+      "p0": "context",
+      "axis_y": "accordion",
+      "layout": "hero-center",
+      "whitespace": "open",
+      "glass_geometry": "compact",
+      "archetype": "VS-008",
+      "content": "aidash-cards-redesign key screen · context",
+      "selected": false,
+      "starred": false,
+      "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "topology_name": "topology-pulse-magnets",
-      "topology_tree_sha256": "a01eaa7289e20230e48b0be3bc0fd5027e7f24af2fc69991f77cd7d295f0b1a2",
-      "coordinates": {
-        "VS": "VS-007",
-        "CL": "CL-008",
-        "X": "direct-job-magnets",
-        "Y": "tile-substitution",
-        "Z": "solid-raised-focus",
-        "AppTheme": "R2PulseMagnet"
-      },
-      "inline_js_sha256": "ae4f62d6c649915c4fe971262d8f954ceb8b86131e7d82643b630d1ea054cdce"
+      "prompt_sha256": "7f474798b9970767b3e9e02b79291bbd9c8ed5793e15c6bb705b33ef77b6b1fc"
     },
     {
-      "category": "scheduled-pulse",
-      "round": 2,
-      "platform": "macos",
       "id": "v02",
-      "title": "节律站台 · Cadence rail",
-      "pills": [
-        "cadence-stations",
-        "VS-007",
-        "temporal-lanes"
-      ],
-      "src": "v02.html",
-      "reference": false,
-      "prompt": "prompts/v02-prompt.md",
-      "prompt_sha256": "4129342d7d934336b5b8dea30be7dfaeb587224a47bcd7e1c4fd5f897a4b9e5a",
-      "html_sha256": "719f601024bbb765c45b2ddb46cf9b95de286380a83dc3b55f10695049cf4f57",
-      "topology_signature": "topology-cadence-stations",
-      "p0": "My PR due at 04:15, latest success 04:10, expanded station",
-      "axis_y": "One attached station fold across categorical minute/daily lanes; bounded receipt popover",
-      "layout": {
-        "card": {
-          "x": 100,
-          "y": 98,
-          "width": 1080,
-          "height": 604,
-          "radius": 24,
-          "padding": 28
-        },
-        "regions": [
-          {
-            "component": "header",
-            "width": 1024,
-            "height": 48
-          },
-          {
-            "component": "temporal-diagram",
-            "width": 1024,
-            "height": 476,
-            "gap_before": 24
-          },
-          {
-            "component": "frequent-lane",
-            "width": 392,
-            "height": 476
-          },
-          {
-            "component": "daily-lane",
-            "width": 604,
-            "height": 476,
-            "gap_before": 28
-          }
-        ],
-        "type_sizes": [
-          36,
-          19,
-          15,
-          13
-        ],
-        "breadth_axes": {
-          "composition": "two-categorical-cadence-rails",
-          "focus": "due-time",
-          "visualization": "due-and-complete-station-pins",
-          "fold": "attached-station-expansion",
-          "polarity": "cool-cyan-lanes",
-          "type_rhythm": "36px-station-time"
-        }
-      },
-      "whitespace": null,
-      "glass_geometry": null,
-      "archetype": "VS-007 Swiss Chrono, categorical timetable",
+      "p0": "recovery",
+      "axis_y": "segmented-lens",
+      "layout": "hero-bottom",
+      "whitespace": "balanced",
+      "glass_geometry": "compact",
+      "archetype": "VS-007",
+      "content": "aidash-cards-redesign key screen · recovery",
+      "selected": false,
+      "starred": false,
+      "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "topology_name": "topology-cadence-stations",
-      "topology_tree_sha256": "ed181420aebe0a56cf29041edc6d48fed31cabaf8ea67134d7586c35270bb26f",
-      "coordinates": {
-        "VS": "VS-007",
-        "CL": "CL-003",
-        "X": "temporal-lanes",
-        "Y": "attached-station-fold",
-        "Z": "rail-action-popover",
-        "AppTheme": "R2CadenceRail"
-      },
-      "inline_js_sha256": "8330ef2d55a723574850bd457c8327d5e4e2922d6875c2a0b0847a43bf4ebb0e"
+      "prompt_sha256": "54b21e60e9744ea3b24e15c4e2138071c52b180576611aa977cf8fcce0c6a484"
     },
     {
-      "category": "scheduled-pulse",
-      "round": 2,
-      "platform": "macos",
       "id": "v03",
-      "title": "五点观测环 · Discrete health orbit",
-      "pills": [
-        "five-point-orbit",
-        "VS-006",
-        "orbital-job-choice"
-      ],
-      "src": "v03.html",
-      "reference": false,
-      "prompt": "prompts/v03-prompt.md",
-      "prompt_sha256": "7943a9e63465c874cbc267ae7b9cf00961fb3284c2fd77560cdb108832d24752",
-      "html_sha256": "ea655438b1f09cebbfebb984dab49f41326fd7d2bd54caa9d711e1b8b228ed51",
-      "topology_signature": "topology-five-point-orbit",
-      "p0": "Central selected-digest 5/5; no aggregate health percentage",
-      "axis_y": "Five fixed station choices; center summary is replaced by stage definitions or receipt",
-      "layout": {
-        "card": {
-          "x": 140,
-          "y": 90,
-          "width": 1000,
-          "height": 620,
-          "radius": 30,
-          "padding": 28
-        },
-        "regions": [
-          {
-            "component": "header",
-            "width": 944,
-            "height": 36
-          },
-          {
-            "component": "orbit-map",
-            "width": 944,
-            "height": 508,
-            "gap_before": 20
-          },
-          {
-            "component": "central-readout",
-            "x": 480,
-            "y": 294,
-            "width": 320,
-            "height": 250
-          },
-          {
-            "component": "stage-perimeter",
-            "x": 470,
-            "y": 284,
-            "width": 340,
-            "height": 270,
-            "radius": 34,
-            "flow": "absolute"
-          }
-        ],
-        "station_offsets": [
-          [
-            54,
-            32
-          ],
-          [
-            636,
-            32
-          ],
-          [
-            688,
-            230
-          ],
-          [
-            358,
-            416
-          ],
-          [
-            0,
-            230
-          ]
-        ],
-        "station_size": [
-          228,
-          76
-        ],
-        "type_sizes": [
-          44,
-          20,
-          15,
-          13
-        ],
-        "breadth_axes": {
-          "composition": "five-fixed-orbit-stations",
-          "focus": "digest-pass",
-          "visualization": "five-segment-rounded-stage-ring",
-          "fold": "central-readout-turn",
-          "polarity": "porcelain-violet-instrument",
-          "type_rhythm": "44px-central-instrument"
-        }
-      },
-      "whitespace": null,
-      "glass_geometry": null,
-      "archetype": "VS-006 Mindful Focus, static observatory remix without breathing animation",
+      "p0": "next-action",
+      "axis_y": "swwallet",
+      "layout": "hero-center",
+      "whitespace": "open",
+      "glass_geometry": "lifted",
+      "archetype": "VS-008",
+      "content": "aidash-cards-redesign key screen · next-action",
+      "selected": false,
+      "starred": false,
+      "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "topology_name": "topology-five-point-orbit",
-      "topology_tree_sha256": "5e181b68b824a8c242fb772543b2cce6a9b829fc097c2d13098c90942a8691a7",
-      "coordinates": {
-        "VS": "VS-006",
-        "CL": "CL-008",
-        "X": "orbital-job-choice",
-        "Y": "radial-evidence-turn",
-        "Z": "opaque-instrument",
-        "AppTheme": "R2FivePointOrbit"
-      },
-      "inline_js_sha256": "2da36576d61ca829517436c780d6d2ab1aad37fb285097fe8dc54707a7974ea9"
+      "prompt_sha256": "b8020992385b15f2cada6c40b6591fc74b5e6906ccd677fe0f104df09bdbf4c9"
     },
     {
-      "category": "scheduled-pulse",
-      "round": 2,
-      "platform": "macos",
       "id": "v04",
-      "title": "行内展开页 · Quiet hinged register",
-      "pills": [
-        "hinged-register",
-        "VS-005",
-        "single-row-ownership"
-      ],
-      "src": "v04.html",
-      "reference": false,
-      "prompt": "prompts/v04-prompt.md",
-      "prompt_sha256": "4c3dbf6c84a0428161b1c368e772ceaaf5baa13f2bb76e2c8d2b5823cec5f304",
-      "html_sha256": "03755ab783c415491b0bd8f2b63952fe8d1079c71a275bc0e648c47c25f50d8c",
-      "topology_signature": "topology-hinged-register",
-      "p0": "Learning row's delivered 3 questions, without invented question titles",
-      "axis_y": "One active accordion body; stage/receipt replaces row reading body without adding height",
-      "layout": {
-        "card": {
-          "x": 240,
-          "y": 104,
-          "width": 800,
-          "height": 616,
-          "radius": 22,
-          "padding": 24
-        },
-        "regions": [
-          {
-            "component": "header",
-            "width": 752,
-            "height": 40
-          },
-          {
-            "component": "register",
-            "width": 752,
-            "height": 504,
-            "gap_before": 24
-          }
-        ],
-        "folded_row_height": 60,
-        "selected_row_height": 240,
-        "row_gap": 6,
-        "row_body_columns": [
-          184,
-          496
-        ],
-        "row_body_column_gap": 24,
-        "type_sizes": [
-          28,
-          18,
-          15,
-          13
-        ],
-        "breadth_axes": {
-          "composition": "narrow-hinged-register",
-          "focus": "learning-delivery",
-          "visualization": "three-delivery-check-markers",
-          "fold": "single-row-accordion",
-          "polarity": "sky-blue-paper",
-          "type_rhythm": "28px-quiet-row-outcome"
-        }
-      },
-      "whitespace": null,
-      "glass_geometry": null,
-      "archetype": "VS-005 Zen Paper Checklist, owned row disclosure",
+      "p0": "timeline",
+      "axis_y": "swwallet",
+      "layout": "hero-bottom",
+      "whitespace": "tight",
+      "glass_geometry": "lifted",
+      "archetype": "VS-007",
+      "content": "aidash-cards-redesign key screen · timeline",
+      "selected": false,
+      "starred": false,
+      "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "topology_name": "topology-hinged-register",
-      "topology_tree_sha256": "ae19bebeeed4292eff0c49f47b7b755feadac3d3b0dc8889f32ec9e5b4857e8f",
-      "coordinates": {
-        "VS": "VS-005",
-        "CL": "CL-006",
-        "X": "single-row-ownership",
-        "Y": "one-active-accordion",
-        "Z": "flat-paper-hinge",
-        "AppTheme": "R2HingedRegister"
-      },
-      "inline_js_sha256": "461f807f8bab8d01393d857e777a9ab45cb2eb36bcccf3d0e1dbebba72a6d50d"
+      "prompt_sha256": "4e979e87e43c31fc81aa8b2c2c82d7a2c4563aecb17a1bbec32c691a5022f148"
     },
     {
-      "category": "scheduled-pulse",
-      "round": 2,
-      "platform": "macos",
       "id": "v05",
-      "title": "快慢双页 · Two-speed workbench",
-      "pills": [
-        "two-speed-bench",
-        "VS-007",
-        "fast-versus-daily"
-      ],
-      "src": "v05.html",
-      "reference": false,
-      "prompt": "prompts/v05-prompt.md",
-      "prompt_sha256": "55928f81312064a494b231b0de822abb48bf85e1276fbdf97c9bb515271c320a",
-      "html_sha256": "bc0a7a624fa86d8d1031eecc64d6b985658ca0f9f1bc3cb36049fb653e4697b2",
-      "topology_signature": "topology-two-speed-bench",
-      "p0": "Review's last completion at 04:10 in one owned frequent-work result well",
-      "axis_y": "Single owned well transfers between frequent stack and daily pair; receipt lid is transient",
-      "layout": {
-        "card": {
-          "x": 88,
-          "y": 112,
-          "width": 1104,
-          "height": 576,
-          "radius": 28,
-          "padding": 24
-        },
-        "regions": [
-          {
-            "component": "header",
-            "width": 1056,
-            "height": 44
-          },
-          {
-            "component": "tempo-bench",
-            "width": 1056,
-            "height": 464,
-            "gap_before": 20
-          },
-          {
-            "component": "frequent-bench",
-            "width": 424,
-            "height": 464
-          },
-          {
-            "component": "daily-bench",
-            "width": 608,
-            "height": 464,
-            "gap_before": 24
-          }
-        ],
-        "frequent_rows": {
-          "height": 88,
-          "gap": 12,
-          "selected_well_extension": 164
-        },
-        "daily_rows": {
-          "default_height": 220,
-          "default_gap": 24,
-          "selected_height": 364,
-          "other_height": 88,
-          "selected_gap": 12
-        },
-        "type_sizes": [
-          32,
-          20,
-          15,
-          13
-        ],
-        "breadth_axes": {
-          "composition": "tempo-separated-workbench",
-          "focus": "latest-completion",
-          "visualization": "check-and-completion-reading",
-          "fold": "transfer-owned-well",
-          "polarity": "warm-forest-paper",
-          "type_rhythm": "32px-workbench-result"
-        }
-      },
-      "whitespace": null,
-      "glass_geometry": null,
-      "archetype": "VS-007 Swiss Chrono mixed with CL-002 warm ledger",
+      "p0": "timeline",
+      "axis_y": "segmented-lens",
+      "layout": "hero-inline",
+      "whitespace": "open",
+      "glass_geometry": "rail",
+      "archetype": "VS-006",
+      "content": "aidash-cards-redesign key screen · timeline",
+      "selected": false,
+      "starred": false,
+      "notes": "",
       "prompt_file": "prompts/v05-prompt.md",
-      "topology_name": "topology-two-speed-bench",
-      "topology_tree_sha256": "7cb9ac9631d6b446c1b40eb2fc7d9c2bf5781b77b56ebea7439b9d79a40cb7f6",
-      "coordinates": {
-        "VS": "VS-007",
-        "CL": "CL-002",
-        "X": "fast-versus-daily",
-        "Y": "owned-inline-well",
-        "Z": "receipt-lid-only",
-        "AppTheme": "R2TwoSpeedBench"
-      },
-      "inline_js_sha256": "f106a3db4dc3625748b33102d3e961f544c07daf17b4ea12e842902346008fd9"
+      "prompt_sha256": "759548c35c45a96d16d93aff36fd0c53f612e35523be718cd645e306941682c4"
     },
     {
-      "category": "scheduled-pulse",
-      "round": 2,
-      "platform": "macos",
       "id": "v06",
-      "title": "胶囊节拍器 · Capsule spine",
-      "pills": [
-        "capsule-definition",
-        "VS-003",
-        "cadence-capsule-spine"
-      ],
-      "src": "v06.html",
-      "reference": false,
-      "prompt": "prompts/v06-prompt.md",
-      "prompt_sha256": "42f8bbc467638eb8f774c829d765b4950b60ca70c842a306744b2ad68655a049",
-      "html_sha256": "4e168ece1bcc1364821466d005a9fb331006bfd10f15cd3e356f4bf0650fe135",
-      "topology_signature": "topology-capsule-definition",
-      "p0": "Bridge next due time 04:15 beneath its only named capsule",
-      "axis_y": "Selected definition body occupies one well beneath a fixed horizontal capsule spine",
-      "layout": {
-        "card": {
-          "x": 80,
-          "y": 150,
-          "width": 1120,
-          "height": 500,
-          "radius": 28,
-          "padding": 24
-        },
-        "regions": [
-          {
-            "component": "header",
-            "width": 1072,
-            "height": 40
-          },
-          {
-            "component": "spine",
-            "width": 1072,
-            "height": 88,
-            "gap_before": 24
-          },
-          {
-            "component": "definition-well",
-            "width": 1072,
-            "height": 276,
-            "gap_before": 24
-          }
-        ],
-        "capsule_widths": [
-          210,
-          180,
-          196,
-          220,
-          218
-        ],
-        "capsule_gap": 12,
-        "well_columns": [
-          416,
-          576
-        ],
-        "well_gap": 32,
-        "well_padding": 24,
-        "type_sizes": [
-          40,
-          20,
-          15,
-          13
-        ],
-        "breadth_axes": {
-          "composition": "horizontal-definition-spine",
-          "focus": "due-time",
-          "visualization": "discrete-cadence-ticks",
-          "fold": "one-shared-definition-well",
-          "polarity": "cyan-annotation-solid",
-          "type_rhythm": "40px-horizontal-readout"
-        }
-      },
-      "whitespace": null,
-      "glass_geometry": null,
-      "archetype": "VS-003 Precision Studio, non-acoustic schedule annotation",
+      "p0": "next-action",
+      "axis_y": "accordion",
+      "layout": "hero-inline",
+      "whitespace": "tight",
+      "glass_geometry": "compact",
+      "archetype": "VS-006",
+      "content": "aidash-cards-redesign key screen · next-action",
+      "selected": false,
+      "starred": false,
+      "notes": "",
       "prompt_file": "prompts/v06-prompt.md",
-      "topology_name": "topology-capsule-definition",
-      "topology_tree_sha256": "fa49442eb917fea1671c60e23de7aa0d32edbdbb497223b2f2cd7031780ac793",
-      "coordinates": {
-        "VS": "VS-003",
-        "CL": "CL-003",
-        "X": "cadence-capsule-spine",
-        "Y": "shared-definition-well",
-        "Z": "single-action-lens",
-        "AppTheme": "R2CapsuleSpine"
-      },
-      "inline_js_sha256": "e7f0969e79c4ea56465bdbbfd91b05e8f19d4cc40ef768373e9323988667f82b"
+      "prompt_sha256": "03d8d34cd57c91e67768ad0bd47c1d25467371ff828c1f5f59cb4dfbbf3f6d88"
     },
     {
-      "category": "scheduled-pulse",
-      "round": 2,
-      "platform": "macos",
       "id": "v07",
-      "title": "脉冲坐标纸 · Evidence matrix",
-      "pills": [
-        "job-evidence-matrix",
-        "VS-007",
-        "job-by-evidence-grid"
-      ],
-      "src": "v07.html",
-      "reference": false,
-      "prompt": "prompts/v07-prompt.md",
-      "prompt_sha256": "64b156483d0d37ad91a3ebdb4281498081d0efa6897e67722255e786dae3734d",
-      "html_sha256": "508f9fbcf25fd3c201f1ac0df7661cf14002d4bf226a7c646c52266e3398e7a9",
-      "topology_signature": "topology-job-evidence-matrix",
-      "p0": "Digest's single selected outcome cell showing 5/5",
-      "axis_y": "One enlarged result cell; stage/receipt replaces cell body with fixed shared tracks",
-      "layout": {
-        "card": {
-          "x": 100,
-          "y": 116,
-          "width": 1080,
-          "height": 568,
-          "radius": 24,
-          "padding": 24
-        },
-        "regions": [
-          {
-            "component": "header",
-            "width": 1032,
-            "height": 36
-          },
-          {
-            "component": "matrix",
-            "width": 1032,
-            "height": 464,
-            "gap_before": 20
-          }
-        ],
-        "column_widths": [
-          248,
-          176,
-          560
-        ],
-        "column_gap": 24,
-        "column_labels_height": 32,
-        "ordinary_row_height": 52,
-        "selected_row_height": 176,
-        "row_gap": 12,
-        "type_sizes": [
-          34,
-          19,
-          15,
-          13
-        ],
-        "breadth_axes": {
-          "composition": "role-parented-evidence-matrix",
-          "focus": "digest-pass",
-          "visualization": "five-stage-notch-trace",
-          "fold": "single-result-cell-replacement",
-          "polarity": "blue-neutral-matrix",
-          "type_rhythm": "34px-tabular-cell-outcome"
-        }
-      },
-      "whitespace": null,
-      "glass_geometry": null,
-      "archetype": "VS-007 Swiss Chrono, semantic evidence grid",
+      "p0": "recovery",
+      "axis_y": "swwallet",
+      "layout": "hero-inline",
+      "whitespace": "open",
+      "glass_geometry": "wide",
+      "archetype": "VS-006",
+      "content": "aidash-cards-redesign key screen · recovery",
+      "selected": false,
+      "starred": false,
+      "notes": "",
       "prompt_file": "prompts/v07-prompt.md",
-      "topology_name": "topology-job-evidence-matrix",
-      "topology_tree_sha256": "ca2cacfd73f3149158fea393e27ba113a2875a1d0ada302a8958f65d415af5e0",
-      "coordinates": {
-        "VS": "VS-007",
-        "CL": "CL-006",
-        "X": "job-by-evidence-grid",
-        "Y": "cell-replacement",
-        "Z": "solid-grid-paper",
-        "AppTheme": "R2EvidenceMatrix"
-      },
-      "inline_js_sha256": "d34e875cde12d2f00d7d7e74a5a55cd001751d7224be72d6f26b3877f8914822"
+      "prompt_sha256": "03db5c91922655957afd97f6bc2d1e7faf82a7e481fb8a12f5ba0fa9197afbbe"
     },
     {
-      "category": "scheduled-pulse",
-      "round": 2,
-      "platform": "macos",
       "id": "v08",
-      "title": "到点画报 · Editorial due moment",
-      "pills": [
-        "editorial-due-poster",
-        "VS-008",
-        "due-time-poster"
-      ],
-      "src": "v08.html",
-      "reference": false,
-      "prompt": "prompts/v08-prompt.md",
-      "prompt_sha256": "fadfffc767395e5e139338ecc873a067241077a600b464d47851d5334f4b4af1",
-      "html_sha256": "b3a9b67e823f247338fcd82b142e3fc49bc29aa7cfa87cafd9f1766e9743b6fb",
-      "topology_signature": "topology-editorial-due-poster",
-      "p0": "Bridge due-now 00:00 counter derived from the 04:15 clock, not a fake future timer",
-      "axis_y": "Poster/sibling exchange; opaque receipt shutter keeps all evidence under the number",
-      "layout": {
-        "card": {
-          "x": 112,
-          "y": 100,
-          "width": 1056,
-          "height": 600,
-          "radius": 28,
-          "padding": 28
-        },
-        "regions": [
-          {
-            "component": "header",
-            "width": 1000,
-            "height": 40
-          },
-          {
-            "component": "body",
-            "width": 1000,
-            "height": 480,
-            "gap_before": 24
-          },
-          {
-            "component": "poster",
-            "width": 640,
-            "height": 480,
-            "padding": 28
-          },
-          {
-            "component": "sibling-register",
-            "width": 328,
-            "height": 480,
-            "gap_before": 32
-          }
-        ],
-        "side_row_height": 108,
-        "side_gap": 16,
-        "poster_reading_width": 584,
-        "shutter_height": 176,
-        "poster_vertical_allocation": [
-          56,
-          12,
-          88,
-          20,
-          16,
-          36,
-          16,
-          176
-        ],
-        "type_sizes": [
-          64,
-          24,
-          15,
-          13
-        ],
-        "breadth_axes": {
-          "composition": "large-number-editorial-poster",
-          "focus": "due-time",
-          "visualization": "due-now-clock-arc",
-          "fold": "exchange-selected-item",
-          "polarity": "violet-editorial-ink",
-          "type_rhythm": "64px-poster-number"
-        }
-      },
-      "whitespace": null,
-      "glass_geometry": null,
-      "archetype": "VS-008 Editorial Poster Block with restrained solid ink",
+      "p0": "timeline",
+      "axis_y": "accordion",
+      "layout": "hero-top",
+      "whitespace": "balanced",
+      "glass_geometry": "compact",
+      "archetype": "VS-005",
+      "content": "aidash-cards-redesign key screen · timeline",
+      "selected": false,
+      "starred": false,
+      "notes": "",
       "prompt_file": "prompts/v08-prompt.md",
-      "topology_name": "topology-editorial-due-poster",
-      "topology_tree_sha256": "7464fe3742fa95a7d3905682f6c4f971c19261923a645cef63a0158cde47b5c9",
-      "coordinates": {
-        "VS": "VS-008",
-        "CL": "CL-008",
-        "X": "due-time-poster",
-        "Y": "under-number-shutter",
-        "Z": "opaque-ink-block",
-        "AppTheme": "R2DuePoster"
-      },
-      "inline_js_sha256": "849c59eb2a7c77052eaee52c328ffcfd52dd11b0564e9c813fa2b00f44b6eec2"
+      "prompt_sha256": "11d521bd895ed5e556449b36da22f5e2390799cfa8d634ddd1a74e871ff2b726"
     },
     {
-      "category": "scheduled-pulse",
-      "round": 2,
-      "platform": "macos",
       "id": "v09",
-      "title": "晨间纸袋 · Pocketed result deck",
-      "pills": [
-        "paper-pocket-deck",
-        "VS-002",
-        "job-header-pockets"
-      ],
-      "src": "v09.html",
-      "reference": false,
-      "prompt": "prompts/v09-prompt.md",
-      "prompt_sha256": "77f2942c75e673b1e68046c8ccd0ad68e410fc3f8815532c30673df7b7f5e44d",
-      "html_sha256": "3d2855fdc44c3f7f20731ff318f1403d7c0160989ffd647fdb557d08db8182c2",
-      "topology_signature": "topology-paper-pocket-deck",
-      "p0": "Front digest paper's 5/5 completed result, all four rear titles exposed",
-      "axis_y": "Bring original paper forward in a stepped Z-deck; replace its outcome with inset evidence",
-      "layout": {
-        "card": {
-          "x": 120,
-          "y": 82,
-          "width": 1040,
-          "height": 636,
-          "radius": 28,
-          "padding": 24
-        },
-        "regions": [
-          {
-            "component": "header",
-            "width": 992,
-            "height": 40
-          },
-          {
-            "component": "paper-pocket",
-            "width": 992,
-            "height": 528,
-            "gap_before": 20
-          }
-        ],
-        "paper_widths": [
-          864,
-          880,
-          896,
-          912,
-          928
-        ],
-        "paper_y_offsets": [
-          0,
-          44,
-          88,
-          132,
-          176
-        ],
-        "exposed_header_height": 44,
-        "front_height": 336,
-        "paper_radius": 18,
-        "front_padding": 24,
-        "front_reading_width": 880,
-        "inset_evidence_height": 168,
-        "type_sizes": [
-          36,
-          20,
-          15,
-          13
-        ],
-        "breadth_axes": {
-          "composition": "stepped-opaque-paper-deck",
-          "focus": "digest-pass",
-          "visualization": "five-checked-paper-folds",
-          "fold": "z-pocket-promotion",
-          "polarity": "warm-forest-paper",
-          "type_rhythm": "36px-tactile-front-result"
-        }
-      },
-      "whitespace": null,
-      "glass_geometry": null,
-      "archetype": "VS-002 Warm Editorial, spatial pocket signature preserved",
+      "p0": "next-action",
+      "axis_y": "segmented-lens",
+      "layout": "hero-top",
+      "whitespace": "balanced",
+      "glass_geometry": "wide",
+      "archetype": "VS-005",
+      "content": "aidash-cards-redesign key screen · next-action",
+      "selected": false,
+      "starred": false,
+      "notes": "",
       "prompt_file": "prompts/v09-prompt.md",
-      "topology_name": "topology-paper-pocket-deck",
-      "topology_tree_sha256": "361876050e5921ab4dda7b75335f0ebae91547130e367ce6b4bc5b863887baf9",
-      "coordinates": {
-        "VS": "VS-002",
-        "CL": "CL-002",
-        "X": "job-header-pockets",
-        "Y": "bring-one-paper-forward",
-        "Z": "opaque-stepped-deck",
-        "AppTheme": "R2MorningPocket"
-      },
-      "inline_js_sha256": "65d7c9bff16bafada50ddbee5e597dae685f3a4a9f839dc60173e561f68383f6"
+      "prompt_sha256": "508f61f3da6c83196a262cfde88c37abf96c9d4a96ed2c7194ba0eb524fd4028"
     },
     {
-      "category": "scheduled-pulse",
-      "round": 2,
-      "platform": "macos",
       "id": "v10",
-      "title": "一键工作台 · Command-focus stage",
-      "pills": [
-        "run-command-stage",
-        "VS-003",
-        "choose-then-commit"
-      ],
-      "src": "v10.html",
-      "reference": false,
-      "prompt": "prompts/v10-prompt.md",
-      "prompt_sha256": "57f022337f4e494f56726d3b0b95584f1f73758d013c830933a26a3b72ba5391",
-      "html_sha256": "23633735d6f6339ad60874c52ef3ccaeaa8f8d9edc6d1d33f2076f64d4384eca",
-      "topology_signature": "topology-run-command-stage",
-      "p0": "One selected review command: 立即运行, not selection-triggered execution",
-      "axis_y": "Stationary command register feeds one stage with mutually exclusive evidence modes",
-      "layout": {
-        "card": {
-          "x": 92,
-          "y": 128,
-          "width": 1096,
-          "height": 544,
-          "radius": 26,
-          "padding": 24
-        },
-        "regions": [
-          {
-            "component": "header",
-            "width": 1048,
-            "height": 40
-          },
-          {
-            "component": "command-worktable",
-            "width": 1048,
-            "height": 432,
-            "gap_before": 24
-          },
-          {
-            "component": "job-register",
-            "width": 272,
-            "height": 432
-          },
-          {
-            "component": "command-stage",
-            "width": 752,
-            "height": 432,
-            "gap_before": 24,
-            "padding": 28
-          }
-        ],
-        "register_row_height": 80,
-        "register_gap": 8,
-        "primary_button": [
-          296,
-          64
-        ],
-        "stage_vertical_allocation": [
-          48,
-          64,
-          24,
-          36,
-          32,
-          168
-        ],
-        "detail_toolbar": [
-          240,
-          36
-        ],
-        "type_sizes": [
-          40,
-          20,
-          15,
-          13
-        ],
-        "breadth_axes": {
-          "composition": "menu-and-command-worktable",
-          "focus": "run-action",
-          "visualization": "labelled-completion-check",
-          "fold": "command-evidence-replacement",
-          "polarity": "indigo-command-solid",
-          "type_rhythm": "40px-primary-verb"
-        }
-      },
-      "whitespace": null,
-      "glass_geometry": null,
-      "archetype": "VS-003 Precision Studio, real job selection and commit",
+      "p0": "context",
+      "axis_y": "swwallet",
+      "layout": "hero-top",
+      "whitespace": "balanced",
+      "glass_geometry": "rail",
+      "archetype": "VS-005",
+      "content": "aidash-cards-redesign key screen · context",
+      "selected": false,
+      "starred": false,
+      "notes": "",
       "prompt_file": "prompts/v10-prompt.md",
-      "topology_name": "topology-run-command-stage",
-      "topology_tree_sha256": "97cdcdc092fcf41369d21509984f610147e98e2f674a5221067053cf966b1f79",
-      "coordinates": {
-        "VS": "VS-003",
-        "CL": "CL-008",
-        "X": "choose-then-commit",
-        "Y": "command-stage-replacement",
-        "Z": "functional-command-rim",
-        "AppTheme": "R2RunCommand"
-      },
-      "inline_js_sha256": "e229f986c5665d4ca0a1c6b025923b68a30459b4a88642a1d33222e9fbad77d2"
+      "prompt_sha256": "a454c0bfe282166605912a25a664cc67ff2cdbeeb297f0edbd02b4c78682f643"
     }
   ],
   "prompt_contract": {
     "schema": "design-prompts/v1",
     "source": "provided",
     "count": 10
-  }
+  },
+  "blog_demo_url": "https://leepepe.github.io/demos/aidash-cards-redesign/scheduled-pulse/"
 }

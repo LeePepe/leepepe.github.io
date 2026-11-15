@@ -1,32 +1,47 @@
-# v08 — 到点画报 · Editorial due moment
+# v08 · 两层五签药柜 (topology-apothecaries-five-slips)
 
-Status: Designer-approved Stage 2 editorial candidate, independently authored for R2 rather than recoloring a table.
-Target: desktop/macOS 1280×800; one operating card in the existing framed chooser.
-Coordinates: VS-008 / CL-008 / X:due-time-poster / Y:under-number-shutter / Z:opaque-ink-block / AppTheme:R2DuePoster.
+## 1. Visual Metaphor & Archetype Lock
+把五个作业放进两层窄抽屉胸柜：上层三只分钟纸抽、下层两只日批纸抽，右边只设一个验看井，容纳分段环和展开的结果账。这一变体强调「逐抽屉挑选」与右侧检视，既不是五点星图也不是五块平铺仪表。VS-002触感账册、CL-002象牙/森林，CP-002提供纸袋层而非灰底table，DV-003提供精密环，MI-006保证独立抽屉过渡。X=两层抽签同一selection，Y=右验看井收纳详情，Z=每签前唇与内纸真实相扣。参考SWWallet的厚度、Things3的名称清晰、CleanShot X的单工具焦点、Alcove的唇口；候选R3-ApothecarySlips面向Native macOS26。
 
-## Visual metaphor
-Compose a punctuality poster with large numerals and a narrow job register on its side. At (112,100), a 1056×600 parent uses radius 28 and 28px insets. A 1000×40 header leads into a 1000×480 body after 24px. Split that body into a 640px poster, 32px gutter and 328px secondary register. The poster has 28px padding and a 584px reading width: reserve 56px for title/cadence, a 12px gap, an 88px number line, a 20px clock caption, a 16px gap, a 36px action row, another 16px gap and a 176px shutter region. These consume 476px including insets. The register fits four 328×108 sibling selectors separated by 16px. Typography is 64px monospaced due counter, 24px selected title, 15px actions and 13px factual annotation. Large type has no tracking tricks or decorative all-caps eyebrow.
+## 2. Single P0 Focus & Initial Showcase State
+默认下层晨报抽屉抽出24px，个人数仓晨报标题与04:01完成只留在这只抽签上，它是唯一P0。右验看井的圆印5/5与「晨报阶段」说明响应此记录，上三抽分别露04:14/04:10/04:10；另一下层抽显示每日学习推荐04:15已送3题。右receipt-ledger-box默认缩为40px入口，stage/question正文未暴露。时钟11月15日04:15。右井从不复制selected job name成第二标题，action-strip只提供已有操作「立即运行 / 执行回执」。
 
-## Single P0 focal point
-The default focus is the bridge's due-now 00:00 counter, not a fictional countdown to a future run. Its latest success is 04:14 and its next scheduled moment is 04:15 at the shared clock; show 到点了 beside the counter. The poster alone owns Linear @bot 桥接 and 每 1 分钟. 立即运行 is the only accented action below it. Do not also place the selected name in the side register or a header subtitle. A short clock arc has an explicit due-now caption, not invented recent-run history.
+## 3. P1 / P2 Progressive Folding & Permanent DOM Contract
+五只slip全部横向单行排列，但物理上分为fast一层与daily一层，不是同权五个模块；共同占一组胸柜。P1是纸头频率与验看井环，P2是抽签正文及receipt。tier-fast-group初始三job、tier-daily-group初始两job，二者就是永久快慢pages；五环segment、五stage和三question的结构账也初始存在。点击改selectedJobId和--slip-extract，抽签既有button/内容保持对象身份；关账用CSS类和inert收正文，不移除，杜绝innerHTML、outerHTML、replaceChildren、insertAdjacentHTML。所有选择单拥有者，若开账则左侧选中抽签正文回收，只留标题状态，右账成为明细唯一展示处。Esc收账并还焦点，再归抽签；环stage选择与账行data-stage绑定，不生成另一个列表。
 
-## P1/P2 folding
-The side register carries 我的 PR — 每 5 分钟, PR 自动审查 — 每 5 分钟, 个人数仓晨报 — 每日 04:00, and 每日学习推荐 — 每日 04:15. Choosing one exchanges it with the poster object; the previous focus moves into its vacated side slot. Below the big number, 查看回执 lifts an opaque shutter within the poster's existing 176px space. When digest becomes selected, the focal number is 5/5, and 阶段详情 changes that shutter into five labelled steps: ① 个人源采集, ② L2-L3 入仓, ③ Retro-ROI, ④ 学习寻题, ⑤ Brief 投递. For learning, use a single 3 题 headline and 每日 3 题直投 Linear, never the digest shutter sequence. Retain the same poster footprint for every object.
+## 4. Measured Layout & 1280x800 Viewport Geometry
+在1280x800安排1120x624px胸柜、(80,88)，外围留白31.75%，>=22%。padding24使content1072x576，横向tiered-drawer-chest672px +gap24+inspection-well376px。左内距20px，fast组244px、组间24px、daily组268px，合536px；fast题头32、三只56px抽签+2×12px缝=224，余20px留呼吸；daily题头32、两只88px抽签+12px缝=220，余48px供选中24px抽取。右well内20px，ring box160px、gap16、receipt ledger264px、gap16、action strip80px=536px，运行按钮32px+状态行24px不形成卡外底栏。receipt开时固定264px不推高卡：五stage左144px与三question右168px、gap12，stage26px/题48px，标题与内距共72px，能容纳264px。左屉沿x方向抽取最大24px已计入672px范围；凹唇r10px/depth10px，签角14px、胸柜角26px。文本13/15/20/32px，数据槽76px，hit默认32px、签button56px，>=28x28px。ring有效按钮32方。所有动画超调再留8px井内空气，0px unintended scroll overflow是实际WebKit检查项，不能通过ellipsis或隐藏滚动达成。
 
-## Color and surface polarity
-Light / Dark pairs: backdrop #F2F3F7 / #121625; parent #FFFFFF / #1D243B; poster #EEF0FC / #2B3354; primary-text #242745 / #F2F1FF; secondary-text #5F647F / #BEC4E1; primary-action #6541A1 / #D3BCFF; action-text #FFFFFF / #30204E; successful #2B6B4E / #9DE0BC; failed #AA354E / #FFB2C5; focus-ring #7751B7 / #E2D1FF. Ink, not saturated background, carries the editorial weight. Keep the poster pastel in Light and deep desaturated violet in Dark, with one violet action. The 00:00 counter uses primary-text even though it is due, not alert red.
+## 5. Dual-Theme Surface Polarity & Liquid Glass / Paper-Pocket Craft
+纸签柜的Light色为desk #F3F1EB、chest #E9E5DB、slip #FFFEF8、ink #30372F、muted #596355、accent #405F46、passed #2D6748、warning #875A0B、focus #086BC9。Dark选择#121A16、#233129、#324438、#F3F6EE、#C2D0BE、#B8D8B7、#A3E0B7、#EFCB88、#90C2FF。五屉使用同样实面，仅当前纸签更亮并带4px插纸错位；相同数据显示不涂五色。每屉有concave semicircle lip而非平直按钮矩形，0.5px inner highlight分别#FFFFFFD2/#FFFFFF2B；浅色多停ambient depth shadow为0 1px 2px #2A38260A, 0 6px 14px #2A382610, 0 18px 32px #2A382616，深色用#00000018/#00000024/#00000032。右井上方只给阶段命中控制玻璃：IOR1.5、bevel8px、blur6px、saturation135%、0.5px specular，Safari与reduced-transparency换chest不透明面，不让图表或receipt成为glass。tabular-nums用于所有时间、5/5、3/3、14s；深色主按钮亮accent配desk字。
 
-## Liquid Glass optical parameters
-Choose an opaque editorial block: numberforms cannot tolerate refractive jitter. All blur/displacement values are zero, and the shutter is a solid poster-colored region. Parent elevation is 0 12px 36px at 7% Light / 29% Dark; side selectors have radius 16 and no shadow. The shutter gets one 0.5px inset highlight at 6%, never a gradient veil. Reduced Transparency and Safari therefore render the same deliberate ink surface; Reduce Motion turns its 180ms reveal into an instant replacement.
+## 6. Apple Native Spring Physics & Micro-Interactions
+每抽屉只对自己的纸签执行translateX(24px)，440ms cubic-bezier(0.22, 1.35, 0.36, 1)，底屉回收与上屉抽取同时而非新节点换位；hover纸签translateY(-6px) peek，mouseleave归位。右账由248px内井自下向上抽80px，用同曲线500ms，边缘高光随着class加亮。环viewBox160x160、center80/r56、stroke6，五circle以pathLength100和stroke-dasharray="16 84"、offset0/-20/-40/-60/-80精确分段，stroke-linecap="round"、起点-90°。hover高亮一弧但不改selection，click/Enter固定stage并打开原账；中心5/5不被换成5job健康分母。运行从右action-strip对选中的job执行内存反馈：已排队→运行中→刚刚完成 · 耗时14s，running禁重复，回调绑定job ID，换抽屉也不串写。没有实际调度器、CloudKit或Linear连接。prefers-reduced-motion: reduce取消抽取/peek的位移与超调、保留100ms opacity，所有记录照常可读与可操作。
 
-## Inline SVG iconography
-Draw a 24×24 open clock arc with a single terminal tick, 1.8px rounded stroke; its caption says 到点了 in the bridge poster. The side selector glyphs are outlined forks, review check, digest tray and learning book. In completion mode substitute a check circle instead of implying a live timer. The receipt shutter control combines a 24px document outline with 查看回执; all side entries expose their entire 328×108 hit area. Focus outlines must remain visible against the violet poster without a glowing halo.
+## 7. Production Data Inventory & Exact DOM Topology
+上层抽签原始资料是：linear-bot-bridge / Linear @bot 桥接 / 每 1 分钟 / 04:14完成；my-pr-supervisor / 我的 PR / 每 5 分钟 / 04:10完成；pr-auto-review / PR 自动审查 / 每 5 分钟 / 04:10完成。下层资料是aidata-digest / 个人数仓晨报 / 每日 04:00 / 04:01完成且5/5通过，以及daily-learning / 每日学习推荐 / 每日 04:15 / 04:15已投3题。不要把每日3题写成5stage成功。
 
-## Explicit anti-patterns
-No imaginary 05:00 countdown at launch, giant fake efficiency percentage or auto-advancing slideshow. The large counter must never claim elapsed run duration before a run. Reject decorative poster text that displaces actual job names, repeated selected titles, saturated full-card purple, caustic stripes and internal appearance toggles. Side entries are existing job choices, not navigation to new product screens. Never shrink or ellipsize the headline to fit; this measured 584px line accommodates 00:00, 5/5 and 3 题.
+右账的data-stage依次collect:① 个人源采集、normalize_merge:② L2-L3 入仓、retro_roi:③ Retro-ROI、learning_topics:④ 学习寻题、digest_push:⑤ Brief 投递，状态均通过；不提供未来源证实的每stage时间。学习投递栏「Linear TIA · 已送达3/3」列三题：如何让增量入仓保持幂等？；怎样区分 Cache 命中率与上下文占比？；如何用证据区分实现缺陷与规格缺口？。这是固定代表性问题输入，不是已检索线上issue，不补假TIA编号/链接或写入操作，交接说明不展示在卡面。
 
-## Interaction and states
-At 11月15日 04:15, select linear-bot-bridge with the shared due moment and resolve sibling records from ../../domain.md. Clicking the digest swaps its article into the poster, showing 5/5 from 04:01; learning produces the recorded three deliveries at 04:15. Escape lowers the shutter without undoing job selection. Run activation replaces the counter with 已排队, then 运行中, then 刚刚完成 · 耗时 14s; do not continue a made-up ticking timer underneath that result. Bind pending feedback to the chosen job even after a swap. 暂无回执 occupies only the shutter when evidence is absent; a failed run shows 运行失败 and the same 立即运行 action becomes usable. The announcement is a short factual line, not a proof essay or a silent color change.
+左tier和右well是content下两个直接父节点，不塞成book spread。SVG图标24x24、currentColor、round joins/stroke1.6，命中圈与可访问名称独立于细小的绘制弧。
 
-## Stage 2 handoff
-The shape is main.topology-editorial-due-poster → direct section.content with header, article[poster] and aside[sibling-register]. The poster parents h2, p[cadence], output[due-or-result], figure[clock-state], div[action-row] and details[receipt-shutter] whose body contains ol[stage-route]. Aside parents nav with four buttons, each parenting span[label], time and span[latest]. This direct article/aside split must not be wrapped in a sole hero or transplanted into the orbit's nav/center tree. Assert initial counter equals 00:00 from real cadence inputs, every job name stays single after swapping, and digest and learning outcomes have different denominators. Downstream snapshots must include the large-number Dark appearance and the open five-stage shutter with full CJK labels.
+```html
+<main class="slip-chest-card topology-apothecaries-five-slips">
+  <section class="content">
+    <div class="tiered-drawer-chest">
+      <section class="tier-fast-group"><h2></h2><article class="horizontal-drawer" data-job="linear-bot-bridge"></article><article class="horizontal-drawer" data-job="my-pr-supervisor"></article><article class="horizontal-drawer" data-job="pr-auto-review"></article></section>
+      <section class="tier-daily-group"><h2></h2><article class="horizontal-drawer" data-job="aidata-digest"></article><article class="horizontal-drawer" data-job="daily-learning"></article></section>
+    </div>
+    <aside class="inspection-well">
+      <figure class="ring-gauge-box"><svg></svg><output></output><figcaption></figcaption></figure>
+      <article class="receipt-ledger-box"><button class="ledger-pull"></button><div class="ledger-paper"><ol class="inspection-stage-proof"></ol><ol class="inspection-question-proof"></ol></div></article>
+      <footer class="action-strip"><button class="run-selected-slip"></button><p aria-live="polite"></p><time></time></footer>
+    </aside>
+  </section>
+</main>
+```
+
+## 8. Explicit Anti-Patterns & Verification Targets
+药柜不允许.caustic-veil、.ruler、Active/Matte bars、<select>测试开关、沙盒免责copy、五点orbital星图或innerHTML替换对象。禁将五签做五个大号equal KPI、右井重复左侧选中标题、卡外固定bottom CTA。画廊、viewport、theme均归外层chooser，右井只是业务回执检视。
+
+四态为首屏下层晨报抽24/环5/5/账闭，换上层桥接并让其他4签归位，开账选④完整看到5stage+3question并Esc收账，最后当前job立即运行经过排队→运行→完成且能跨层保留状态。交付时每态Light/Dark共8张实际WebKit1280x800截图与持久DOM对象记录；五job、两tier page、五circle和账必须同一批Element。验证28px命中、keyboard、Reduce Motion、>=4.5:1文字、0px意外横纵scroll、零数字…与raw localization key。Stage1不生成HTML，以上像素门禁留给Stage2，不虚报PASS。

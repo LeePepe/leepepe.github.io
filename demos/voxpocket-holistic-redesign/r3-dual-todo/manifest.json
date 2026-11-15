@@ -29,7 +29,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "58cf437a665b24106ba3084d0bcbb5749d881274a6c28eefb97b15d7e0ecb3a8"
+      "prompt_sha256": "58cf437a665b24106ba3084d0bcbb5749d881274a6c28eefb97b15d7e0ecb3a8",
+      "summary": "用单焦点 Hero 待办突出当前行动，其余收件箱折叠到次级区域，减少初始决策噪音，用于双待办执行场景。"
     },
     {
       "id": "v02",
@@ -44,7 +45,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "a1ecc752d0f46d093ad89275f48b261556cc68720161e94d6110d65f195aa77b"
+      "prompt_sha256": "a1ecc752d0f46d093ad89275f48b261556cc68720161e94d6110d65f195aa77b",
+      "summary": "以无边框亮度流展示任务进展，底部玻璃捕获单沿屏幕边缘随时接收新待办，用于双待办执行场景。"
     },
     {
       "id": "v03",
@@ -59,7 +61,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "91a815ab02e20f8ef9c83b858cd97da85983e722c8111608f6a99567cb1f59a0"
+      "prompt_sha256": "91a815ab02e20f8ef9c83b858cd97da85983e722c8111608f6a99567cb1f59a0",
+      "summary": "把语音拆解成可展开的行动树，父任务与子步骤在同一条结构中逐层确认，用于双待办执行场景。"
     },
     {
       "id": "v04",
@@ -74,7 +77,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "6a113439316886ada3ba294bd61340ce7559f084be0cfe7b066be85df1fd2990"
+      "prompt_sha256": "6a113439316886ada3ba294bd61340ce7559f084be0cfe7b066be85df1fd2990",
+      "summary": "用分段玻璃镜头切换任务视图，让项目、优先级和完成状态共享一块可筛选画布，用于双待办执行场景。"
     },
     {
       "id": "v05",
@@ -89,7 +93,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v05-prompt.md",
-      "prompt_sha256": "7fe5ff6a82d9c5bad68d3c4c931dd852bceeb38d5d64c6f40beb207045929d3c"
+      "prompt_sha256": "7fe5ff6a82d9c5bad68d3c4c931dd852bceeb38d5d64c6f40beb207045929d3c",
+      "summary": "将待办堆叠成可滑动的口袋卡片，卡片层级同时表达紧急度与后续处理顺序，用于双待办执行场景。"
     },
     {
       "id": "v06",
@@ -104,7 +109,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v06-prompt.md",
-      "prompt_sha256": "12251723eee0f76ca86b783f32e914f603f5b67cf47286d4db8f12346a99d42c"
+      "prompt_sha256": "12251723eee0f76ca86b783f32e914f603f5b67cf47286d4db8f12346a99d42c",
+      "summary": "采用编辑风格的大字清单，把任务标题和少量元数据排成易扫读的纵向节奏，用于双待办执行场景。"
     },
     {
       "id": "v07",
@@ -119,7 +125,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v07-prompt.md",
-      "prompt_sha256": "be816debba0de9c397ffb8fc04dd15b251e797619098d8ac9c6027863a767a6d"
+      "prompt_sha256": "be816debba0de9c397ffb8fc04dd15b251e797619098d8ac9c6027863a767a6d",
+      "summary": "按项目路由组织 AI 执行矩阵，让每条任务都带着目标、负责人和下一步动作进入处理流，用于双待办执行场景。"
     },
     {
       "id": "v08",
@@ -134,7 +141,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v08-prompt.md",
-      "prompt_sha256": "dd02e302cc8f1671bd62650d9115037bb408f6ba3653f427c09bd6519b2f98aa"
+      "prompt_sha256": "dd02e302cc8f1671bd62650d9115037bb408f6ba3653f427c09bd6519b2f98aa",
+      "summary": "把任务按今晨与今晚的时间视野分组，帮助用户用简短 briefing 安排一天的执行顺序，用于双待办执行场景。"
     },
     {
       "id": "v09",
@@ -149,7 +157,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v09-prompt.md",
-      "prompt_sha256": "4b1882a713495cef905ff6b9fa3e87817f848046a265ebd59e2859b14c5945f2"
+      "prompt_sha256": "4b1882a713495cef905ff6b9fa3e87817f848046a265ebd59e2859b14c5945f2",
+      "summary": "以主列表和右侧检查器组成双栏同步画布，选中任务即可在旁边查看并编辑完整细节，用于双待办执行场景。"
     },
     {
       "id": "v10",
@@ -164,7 +173,8 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v10-prompt.md",
-      "prompt_sha256": "6f50e5fe919e246f797f5ddd74a491b67e3e59127c3f410b728a96238940e42c"
+      "prompt_sha256": "6f50e5fe919e246f797f5ddd74a491b67e3e59127c3f410b728a96238940e42c",
+      "summary": "延续 r3/v02 的姐妹舞台，用更宽的捕获区和分层待办区把录音输入快速落成行动项，用于双待办执行场景。"
     }
   ],
   "prompt_contract": {

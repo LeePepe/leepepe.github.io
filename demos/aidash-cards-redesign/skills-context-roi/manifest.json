@@ -2,7 +2,7 @@
   "schema": "tenfold-gallery/v1",
   "mode": "screen",
   "goal": "aidash-cards-redesign",
-  "round": 4,
+  "round": 5,
   "platform": "desktop",
   "frame_mode": "macos",
   "category": "skills-context-roi",
@@ -29,7 +29,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "fb049b3c0f0f02c1f293bd2bdae89271be9477edb407af9816e1335b05a556fe"
+      "prompt_sha256": "62dcd96f38f0118349d3eefb91bfceaf9cdf6dacb1ffa75462c07dd0136f156d"
     },
     {
       "id": "v02",
@@ -44,7 +44,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "28ff1c2a6286d618fc1bad3dca8d01237d5050e56fe95b6264a48168f578f133"
+      "prompt_sha256": "05d72357df7b118f20bdff5e7a4db49e0ab6cbe4d47af548b97f27c62bfc0b83"
     },
     {
       "id": "v03",
@@ -59,7 +59,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "b96378e29ba20be37711c2d9da3df73972aca8439a8551626c532570624ea3de"
+      "prompt_sha256": "06e585ee7480a1baebbf459ca7b9ea6813e38e6356e97a003300c380fd8921b1"
     },
     {
       "id": "v04",
@@ -74,103 +74,13 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "e1477d04c0ad5be7b8cb22a756b2787554fe3b5e7979522b506e874671609b5c"
-    },
-    {
-      "id": "v05",
-      "p0": "timeline",
-      "axis_y": "segmented-lens",
-      "layout": "hero-inline",
-      "whitespace": "open",
-      "glass_geometry": "rail",
-      "archetype": "VS-006",
-      "content": "aidash-cards-redesign key screen · timeline",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v05-prompt.md",
-      "prompt_sha256": "a2aab4259c6f87148c5baf6c59b8adce86983c5ce050774881b922998c192407"
-    },
-    {
-      "id": "v06",
-      "p0": "next-action",
-      "axis_y": "accordion",
-      "layout": "hero-inline",
-      "whitespace": "tight",
-      "glass_geometry": "compact",
-      "archetype": "VS-006",
-      "content": "aidash-cards-redesign key screen · next-action",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v06-prompt.md",
-      "prompt_sha256": "3e7b21064a9214482cfc5cd5b7e817ca27a3f827b569a241c52a403e24271eaf"
-    },
-    {
-      "id": "v07",
-      "p0": "recovery",
-      "axis_y": "swwallet",
-      "layout": "hero-inline",
-      "whitespace": "open",
-      "glass_geometry": "wide",
-      "archetype": "VS-006",
-      "content": "aidash-cards-redesign key screen · recovery",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v07-prompt.md",
-      "prompt_sha256": "7758f289e54b04862508c9709aca7647dac078fbede19775edbfeed30c036a12"
-    },
-    {
-      "id": "v08",
-      "p0": "timeline",
-      "axis_y": "accordion",
-      "layout": "hero-top",
-      "whitespace": "balanced",
-      "glass_geometry": "compact",
-      "archetype": "VS-005",
-      "content": "aidash-cards-redesign key screen · timeline",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v08-prompt.md",
-      "prompt_sha256": "59c8a97ff523c1585c7632a42c3da6b394c58ac3a7211d5ad72f20e5b00fd2d2"
-    },
-    {
-      "id": "v09",
-      "p0": "next-action",
-      "axis_y": "segmented-lens",
-      "layout": "hero-top",
-      "whitespace": "balanced",
-      "glass_geometry": "wide",
-      "archetype": "VS-005",
-      "content": "aidash-cards-redesign key screen · next-action",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v09-prompt.md",
-      "prompt_sha256": "5c80fb3736121cf0f2ee12f1516c3f6c27a3eb2d01cc899f19385ba0e6b9a165"
-    },
-    {
-      "id": "v10",
-      "p0": "context",
-      "axis_y": "swwallet",
-      "layout": "hero-top",
-      "whitespace": "balanced",
-      "glass_geometry": "rail",
-      "archetype": "VS-005",
-      "content": "aidash-cards-redesign key screen · context",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v10-prompt.md",
-      "prompt_sha256": "4e30fee2a485d11374caebd1b9b92cfa1d0d2958921bbe7d5a0b1039160f69c6"
+      "prompt_sha256": "29490102f0545e2245bf8ed2928f0f10bf0449ad071b82ccbae8f176a2410b2b"
     }
   ],
   "prompt_contract": {
     "schema": "design-prompts/v1",
     "source": "provided",
-    "count": 10
+    "count": 4
   },
   "blog_demo_url": "https://leepepe.github.io/demos/aidash-cards-redesign/skills-context-roi/"
 }

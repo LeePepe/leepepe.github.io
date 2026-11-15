@@ -1,89 +1,100 @@
-# v01 · 青岚内嵌清单 (topology-inset-grouped-list)
+# v01 · 晨间矿纸卷宗 (topology-stacked-paper-pockets)
 
-## 1. Visual Metaphor & Archetype Lock
+## 1. Visual Metaphor, Palette & Anti-Clone Spatial Lock
 
-以 Apple System Settings 的 Inset Grouped List 为形态参考：一张连续的浅色列表，六条任务只用细分隔线组织；打开的汇报像原本嵌在列表背后的凹槽，而非新开窗口。锁定 macOS 桌面、VS-005 × CL-006 sage remix、X=五列直接操作 / Y=单行汇报折叠 / Z=实心列表与下沉报告，AppTheme 名为 QinglanInset。设计维度为 component、visual-style、motion-interaction、typography-copy。本稿只交付 Stage 1 决策，不写产品代码、不发布，也不替 Owner 选定最终方案。
+把定时任务做成可以亲手抽出回执的矿物纸档案袋，而非把圆角表格重新上色。参考 Things 的安静清单与 Wallet 的袋口层次：六个横贯工作面的纸袋垂直排列，前袋唇压住后方报告纸，左侧亮起一条窄而清楚的状态书脊。单个 Coding Writer 只手写 scheduled-pulse/v01.html；不写其他候选、不派下级、不用 Python/Node 模板生成 HTML/CSS。此候选的真正差异是「报告就在原袋下面」，没有侧栏、磁贴或全屏浮层。
 
-视觉主次来自 1px leading-indented hairline、16px 分组圆角和墨色退让。Title 用 SF Pro / PingFang SC 14px 600；周期、次数用 13px；报告日志用 SF Mono 12px；面板标题 20px。24×24 inline SVG 用 1.5px currentColor 描边画暂停双竖线、回转箭头、垃圾桶，图形实占 16px，旁有可读按钮文字，绝不引入图标字体。
+锁定 web 呈现的 macOS 工作面；候选坐标为 VS-002 暖色编辑档案、CL-002 Mineral、X=阅读任务及可逆操作、Y=单活跃行内卷宗、Z=袋底/报告纸/前袋唇三层。AppTheme 在这里仅为候选令牌，不能冒充 Owner 已冻结的生产主题。底色 Light #FAF7F2、Dark #161513；纸面 Light #FFFDF8、Dark #25221D；正文 #29251F / #F1EAE0，次要字 #696055 / #BDB2A4，极少量黄铜 #8A6D3B 仅用于卷宗装订细节。所有选择描边服从任务状态色，不拿品牌金替代失败红。
 
-## 2. Single P0 Focus & Initial Showcase State
+空间反克隆锁：section.content 的直接子节点只有矿纸页眉、pocket-stack-well、恢复栏，袋井只有一列六件 paper-pocket-unit。每件必须有 6px 左脊、顶部内凹拇指缺口、向下打开的双栏内胆。不能挪成 v02 的两列舱体，不能接 v03 的右侧常驻舞台，不能把异常重排成 v04 的置顶英雄。候选专属 CSS 用 mineral-/pocket-/folio- 命名，除规定语义钩子外不得抄其他候选布局；最终跨候选 CSS 类/规则重合率应小于 15%。
 
-P0 是“看清每日简报的最后一次结果”，初次加载只展开 daily-brief 的「最后一次执行汇报 (Execution Report)」。其余五个汇报收起，但每条任务和三个尾按钮均可见；不在标题栏再复制一次任务卡或大数字。标题为「定时任务」，一句次要提示「点击任务查看最后一次汇报」即可。
+## 2. Single P0 Focus, Semantic Status Colors & Initial Showcase State
 
-初始徽章按显示顺序固定：每日简报 05:00 为 ● 成功 (1.8s)，每日学习推荐 04:15 为 ● 成功 (2.4s)，AIData 数仓脉搏 04:00 为 ▲ 耗时偏高 (14.2s)，Linear @bot 桥接为 ● 运行中，我的 PR 巡检为 ● 成功 (0.9s)，特定人 PR 审查为 ✕ 失败 (exit 1)。六条任务都未暂停、未删除，首个操作文字均为「暂停」，不能把失败误当作暂停。
+唯一 P0 是「读懂本次晨间投递是否完成并取走回执」，开场选中每日简报 05:00，完整报告纸已抽出。其余五袋只呈现任务正面，属于同一袋井的同级记录，不另造 KPI 横排、总成功率或执行历史页。P1 永久保留周期、累计/今日次数及三键；P2 是悬停一句话；P3 日志与五段耗时只在对应内胆中展开。三枚绿色结果的完成值遵守 R5 的 1.8s，而不是旧 R4 2.4s/0.9s。
 
-## 3. P1 / P2 Progressive Folding & Permanent DOM Contract
+状态不是装饰渐变：#10B981 的 ● 成功 (1.8s) 用于每日简报、每日学习推荐与我的 PR 巡检；#F59E0B 的 ▲ 耗时偏高 (14.2s) 对应 AIData 数仓脉搏；#F43F5E 的 ✕ 失败 (exit 1) 对应特定人 PR 审查；#06B6D4 的 ● 运行中给 Linear @bot 桥接；暂停切换后整条色脊改 #64748B、徽章改 ⏸ 已暂停。色脊用原始色值，文字用同色系可读深墨/浅墨，符号和汉字始终伴随颜色，不能只凭红绿区分。
 
-P1 保留每行的五项字段；P2 只有该行之下的四块报告内容。六个 job-row-unit、六个 row-report-drawer、restore-status-bar 和所有静态 SVG、链接、日志文本节点在 initial HTML 中一次挂载。drawer 用 grid-template-rows: 0fr/1fr 配合内部 min-height:0 和裁切壳，不动态造节点；选中行由 aria-expanded 和 data-expanded 表示。单展开策略：打开另一行时关闭前一行，重新点击当前行即收回，不重排任务。
+初始六袋顺序为简报、学习、数仓、桥接、我的巡检、特定人审查；不自动排序。任何一次状态变化都不改变袋顺序。桥接青光仅呼吸于 6px 脊内，失败袋不抖动也不闪烁。截图中的亮绿色成功与下方红色失败必须能同时辨认，选中简报的白纸不能把别的状态变成低对比灰字。
 
-删除设置 data-deleted 并折叠整条 unit 的布局高度、清除其可聚焦状态；节点仍留在原列表顺序。底栏常驻，为每个 job 预置一个恢复按钮，仅激活最近一次删除的按钮；文案为「已删除 每日简报 05:00 · 撤销删除」等。恢复保持次数、暂停标记和既有汇报内容，保持其他当前展开行不变，被恢复行默认收起；若删除了当前展开行则 P0 退回纯列表。全流程 removedElements = 0，零 innerHTML rebuild；状态与数字只改已有 Text.data / 属性，禁止以元素级 textContent 替换 SVG 或子节点。
+## 3. Hover Brief Preview ([data-hover-brief]) & Click-to-Pull-Out Drawer ([data-report-panel]) Contract
 
-## 4. Measured Layout & 1280x800 Viewport Geometry
+每个 article[data-job-row] 都预先带一条 [data-hover-brief]，置于正面下沿预留的 18px 纸缝；pointerenter 或 :focus-within 把袋面上提 4px，后方短纸再上提 2px，产生合计 6px 的抽纸错层。袋井和相邻行坐标不变。短纸从 opacity 0 到 1、translateY(6px) 到 0；pointerleave 180ms 后回落，移进短纸不能立即关闭。六句短文分别为「晨间五阶段全绿 · 3 题直投 → TIA-448」「题单匹配完成 · 推荐已送达 → TIA-431」「入仓 9.1s 偏高 · 全轮 14.2s → TIA-448」「本轮桥接提交中 · 上次产出 → TIA-448」「巡检结论已归档 → PR #311」「审查退出 1 · 未提交新评审 → PR #308」。仅短纸可显简句，完整摘要留在报告里；一行不塞全部日志。
 
-WebKit viewport 精确为 1280x800；外层 chooser 负责 macOS 画框，子页不再画交通灯。main 位于 x32/y24，1216×752，padding24，border-box；边界用 inset shadow 不占尺寸。content 为 1168×704：titlebar56 + 间隙16 + group-card592（6×64 行 + 一个208px报告）+ 间隙12 + restore-bar28 = 704。第一张截图全部六行及完整汇报落在 y48..752 内，0px unintended overflow，不能用 body overflow:hidden 掩盖溢出。
+正文点击入口为独立原生 button[data-row-trigger]，覆盖标题、周期、次数、状态四区；尾部 action nav 是其兄弟，不允许 button 包 button。点击已选袋收起，点击另一袋先收起旧内胆再抽出新内胆，始终最多一个完整报告。所有六个 [data-report-panel] 自首次载入起存在，收起用 grid 行高/opacity/inert，绝不替换 HTML、拆卸节点或重建 span。报告的可见高度为 208px，上下透明裁切层只裁报告纸，不裁卡面按钮或 focus ring。
 
-row-five-cols 两端各留16px，内部可用1136px；统一 CSS grid 为 240 / 220 / 210 / 180 / 222px，四处 gap16，合计1136。前四列左对齐、数字 tabular-nums；最后一列 justify-self:end。三枚胶囊宽60/72/58、高32、gap8，总206px。行主体①–④的点击区域连续覆盖至少898×64，按钮与报告链接均 >= 28x28px，恢复按钮高28；报告链接用32px高。周期和次数保持完整一行，不出现数字省略号。
+内胆有两栏：左栏「执行结论摘要」与可点 TIA-448、TIA-431、PR #311、PR #308 胶囊；右栏五段彩色计时与高亮日志尾部。产出标签依任务实际关联显示，不给每袋重复全部链接。未知外部 URL 不能编造：胶囊链接到本袋预先存在的 #folio-<job>-<output> 产出说明，展开并聚焦同一报告里的来源文字；不请求真实 Linear 或 GitHub。点击胶囊、三个按钮、撤销都阻止事件冒泡，不切换袋。
 
-208px 报告井内 padding16，先放24px标题与8px间距；其余144px为左480px（结论36、间距8、链接32）与右624px（五条阶段读数及三行日志）的两列工作区，间隔32。五阶段采用一个92px高的纵向紧凑条列，每行16px、3px间距；日志在独立48px带内。报告文字只在各自容器自然折行，不横跨任务列；内容增多时限定井内可滚动，初始给定内容无需滚动。
+## 4. Measured 1280x800 Viewport Geometry & Spatial Bounding Boxes
 
-## 5. Dual-Theme Surface Polarity & Material Craft
+以 CSS px、border-box、1280×800 内层 viewport 为准，不把外部画廊 bezel 算进页面。内容横界 x=64..1216，净宽 1152；页眉 x64 y40 w1152 h48，袋井 x64 y104 w1152 h632，恢复栏 x64 y752 w1152 h32。main 高 800，不添加自己的主题或屏幕尺寸开关。井内左右各 12px，袋面 x76 w1128；上下余量至少 12px，保护负向提起与内凹袋口的阴影。
 
-QinglanInset Light：canvas #F4F6F3，group #FFFFFF，ink #17241C，secondary #526157，hairline #E0E6DF，hover #F0F5EF，expanded #F5FAF3，report-well #EAF0E7，focus #236846。Dark 对应 canvas #141A17，group #202924，ink #F0F6EF，secondary #A9B8AD，hairline #39453C，hover #2A372E，expanded #29392D，well #17221B，focus #9AD6AC。浅色井 inset 0 1px 3px #19351F14，深色井 inset 0 1px 4px #07100966；列表没有整排浮起阴影。
+六个正面每张 h56、相邻间隔 8；单活跃报告 h208，面与报告间距 8。总占高算式 6×56 + 5×8 + 208 + 8 + 2×12 = 616 ≤ 632。默认展开第一袋：六张 face 的 y 分别 116、396、460、524、588、652，各自高 56；简报的报告从 y180 到388。最后一面到708，井底保留 28px。换到最末袋后其面为y436..492、报告为y500..708，仍在736 的井底内；不采用所有报告同时撑开的超高滚动平面。
 
-状态以低彩度药丸承载，不只靠圆点辨义。Light 的 success fg/bg=#23623B/#E6F2E7，running=#185B86/#E6F0F8，warning=#805316/#FFF2D9，failed=#A12E37/#FBE9EA，paused=#526157/#E9EDE9；Dark 为 #9CD7AC/#243C2B、#A7D6FA/#223B4D、#F2CC88/#45351E、#FFAAB3/#46282D、#BBC6BD/#343F36。paused 仍清晰，不能把整条任务降到不可读透明度。
+面内水平净宽 1096（左右16），用五区 228 / 212 / 198 / 164 / 230，加四个16px 间隔，和为1096。四区整体触发面 w866；右尾宽230，三个键为64/72/58×30、间隔8，总210，靠右20px 空气。面中上层内容高30、下层短纸18，外围纵向各4px；最宽标题和「累计 4,280 次 · 今日 184 次」不省略。标题14px/600，周期与计数12px，章名20px，日志11px monospace；数字启用 tabular-nums。点击目标至少28×28，胶囊高度30。
 
-此案不使用 backdrop-filter，也不做折射；Liquid Glass optical parameters 明确为 blur0、displacement0、透明度0，内容为不透明纸面。外观响应 data-theme=light|dark，未指定时随 prefers-color-scheme；主题变化只替换变量，不重挂列表。按钮 hover 加 #2368460D / #9AD6AC14 的局部底色，expanded 的底色不是第二个玻璃层。
+内胆 x92 w1096，左右列宽452与628，中缝16。标题与结论区高40；胶囊行32；右侧五条高20的刻度行共100，下面日志48，纵向8px呼吸。右侧每条给 158px 标签、剩余轨道与52px数值，不用颜色条代替数字。若用户字体放大导致内胆内容超208，则只给内胆开启纵向滚动并预留 scrollbar-gutter，不缩到不可读、也不把标题横向截成 …。
 
-## 6. Apple Native Spring Physics & Row/Button Micro-Interactions
+## 5. Dual-Theme Surface Polarity & Tactile Drawer Lip Craft
 
-报告开合采用 460ms cubic-bezier(0.22, 1.35, 0.36, 1)，展开时内页 translateY(-6px)->0，外壳高度保持同一时间曲线，关闭不先 hidden。文字 opacity 用180ms ease-out，避免弹性越界导致字形伸缩。尾按钮按下仅 scale(.97) 90ms，松开140ms；行 hover 只染色，不抬升整张列表。prefers-reduced-motion:reduce 时所有位移/弹性为0、开合1ms，running 点不循环呼吸。
+浅色的袋底是 #EEE7DA，抽出的报告是更亮的 #FFFDF8；深色的袋底 #1B1814，前袋面 #25221D，报告 #302B23，用亮度递进说明前后关系。Light 阴影用暖黑 alpha .06/.04 的 1px 接触层与 10px 环境层；Dark 接触影 .26，加白 alpha .07 的 inset 0 1px 0 顶沿。边框只在口沿和脊根各一根半透明发丝，不给四字段分别画盒子。最外井是一个整体容器，六件是里面的档案记录。
 
-[data-action="toggle-pause"]、[data-action="rerun"]、[data-action="delete"] 都先 event.stopPropagation()；恢复及报告链接也阻止冒泡。暂停记录 previousStatus，显示 ⏸ 已暂停 / 继续；继续恢复该任务原先状态而非统一写成功。Rerun 立即显示 ● 运行中，完成后累计和今日各+1、更新耗时；每任务只容许一次在途重跑，重复点击禁用至完成，不新增第六字段。暂停中可重跑一次，但完成仍显示 ⏸ 已暂停，耗时写入报告；删除发生在重跑期间则失效旧回调，恢复不凭空增加次数。
+拇指缺口位于袋顶中心，宽36、高8，以两枚曲线或局部 mask 做凹弧；缺口只能作用于装饰袋唇，不 cut 掉命中区域或汉字。前唇厚2px，后纸向内缩8px，两侧露1px暖纸边；悬停时露出短纸而不是把整篇报告提前显示。长内容下层可实色裁切，选中纸以层级和左脊亮度表现，不用夸张旋转或拟真牛皮贴图。
 
-inset-summary-trigger 上用 role=button、tabindex=0、aria-controls 与 aria-expanded，row-five-cols 自身只为 role=group，Enter/Space 仅在 event.target 等于行触发器时响应，按钮键盘事件不得被行劫持。隐藏报告的内部内容 inert 且 aria-hidden=true，展开后解除；删除前焦点转至对应恢复按钮，恢复后回该任务行。报告 link 的可见标签与 aria-label 对应真实单据，焦点环2px、offset2。
+矿纸候选不使用内容玻璃或折射滤镜，文字下层为实色。动作图标是24×24 viewBox、1.5px圆端的本地 inline SVG，显示16px并保留暂停、Rerun、删除文字；无图标字体、外部图片请求或装饰 emoji。正文对比至少4.5:1，图标/焦点至少3:1；原始 #10B981 等只用于书脊、色点和轨道，浅色徽章字另用深色同系墨，不把低对比艳绿直接当小字。
 
-为避免可交互控件嵌在另一个button角色内，inset-summary-trigger跨外grid第1–4列（grid-column:1/5），内部继承这四列的subgrid，三枚原生键位于第5列兄弟节点；不支持subgrid时用§4前四个固定宽度和同gap。焦点返回均指此trigger而非group壳。重跑的本页结算延迟明确为1000ms，六任务的新耗时依次1.6s、2.1s、12.8s、0.6s、0.8s、1.0s；第三项仍耗时偏高、第六项仍exit 1，其余成功。已完成阶段按新总时长/旧总时长同比缩放，桥接五阶段则0.1/0.1/0.2/0.1/0.1s并更新结论为提交确认完成；失败行最后两阶段仍未执行。每次结算刷新既有摘要/日志及latestResult，失败尝试也计一次；暂停只遮盖排程badge，继续必须读最新结果，不恢复过时缓存。
+## 6. Apple Native Spring Physics & 3-Button Permanent DOM Micro-Interactions
+
+纸袋的运动曲线固定 cubic-bezier(0.22, 1.35, 0.36, 1)：hover 240ms、内胆抽出460ms、旧内胆收起420ms；只给 transform 一点超调，测量高度用单调 ease-out，避免高度弹出井底。按键压下 scale(.97) 100ms，弹回180ms，不让数字 bounce。prefers-reduced-motion 下提纸位移归零、变更在不超过80ms淡入完成，桥接色脊不再循环脉冲；页面失焦也停止呼吸。
+
+[data-action="toggle-pause"] 保存 enabled 排程状态和 lastResult 两个维度。暂停后按钮变继续、脊灰，最近一次报告照常保留；继续恢复最近结算的成功/耗时偏高/失败结果，不能把所有恢复都写成成功。若暂停发生于重跑中，该单次重跑可完成但不重新启用排程，面上最终仍是 ⏸ 已暂停，报告记录真实单次结果。
+
+[data-action="rerun"] 在浏览器候选内立即给青色运行反馈、阻止重复在途点击；同一 job 使用递增 runToken，结算一次才把累计及今日各加1，仅更新既有 Text.data/nodeValue（不得设置父 Element.textContent）。脚本反馈仅驱动当前文档，不启动本机任务，不触达数仓、XPC、Linear 或 GitHub。已失败的审查重跑仍按声明的 exit 1 分支反馈，不能因为点击 Rerun 就凭空修好故障；数仓保持14.2s的慢结果，三个健康任务为1.8s。
+
+[data-action="delete"] 首次激活在本袋已挂载的确认条中询问「删除此任务？」并提供确认/取消，第二次确认后只折叠该 article 的空间并设 inert，不 remove。恢复栏的 [data-action="restore"] 可从预挂载的六个恢复入口分别撤销，不是只支持最近一件；撤销恢复原序与原计数。删除令未结算 token 作废，不让晚到回调改计数。操作之后 focus 留在当前键，删除后移至对应撤销；撤销后回到原触发面。所有按钮对 click 与 keyboard 事件隔离，原生按钮提供 Enter/Space，Esc 收报告回触发面，隐藏内容不参与 Tab 序列。
 
 ## 7. Production Data Inventory & Exact DOM Topology
 
-必须原样展示以下库存；每条 [data-job-row] 包含以下五列，表内最后一列不是菜单，也不能以悬停才出现的图标代替：
+本轮数据边界是 Stage 1 handoff：R5 spec §6、briefs/T5 与 r5/domain 决定结构/状态；累计、今日、周期沿用 r4/domain §2 的声明快照。下面的报告分段是明确的候选内容合同，不宣称查过 live L1–L5，日志是摘要化展示文本而非采集证据。aidash-metrics 的 inspector 当前不支持 scheduled_pulse，不能用它的 Skills ROI 结论证明这些数值。没有新增指标、遥测或生产绑定；将来接入数据前须由上游提供覆盖率、窗口、时间戳和真实报告，缺失用「暂无回执」而非0。当前页面不渲染沙盒免责声明，也不虚构更细故障原因。
 
-| data-job | Title | 运行时间 / 周期 | 运行次数 | 最后一次状态 | 尾操作 |
-|---|---|---|---|---|---|
-| daily-brief | 每日简报 05:00 | 每天 05:00 · 下次 12h 后 | 累计 142 次 · 今日 1 次 | ● 成功 (1.8s) | 暂停 / Rerun / 删除 |
-| daily-learning | 每日学习推荐 04:15 | 每天 04:15 · 下次 11h 后 | 累计 98 次 · 今日 1 次 | ● 成功 (2.4s) | 暂停 / Rerun / 删除 |
-| aidata-pulse | AIData 数仓脉搏 04:00 | 每天 04:00 · 下次 11h 后 | 累计 186 次 · 今日 1 次 | ▲ 耗时偏高 (14.2s) | 暂停 / Rerun / 删除 |
-| linear-bot-bridge | Linear @bot 桥接 | 每 1m · 刚刚 16:45 | 累计 4,280 次 · 今日 184 次 | ● 运行中 | 暂停 / Rerun / 删除 |
-| my-pr-patrol | 我的 PR 巡检 | 每 5m · 2m 前 | 累计 860 次 · 今日 36 次 | ● 成功 (0.9s) | 暂停 / Rerun / 删除 |
-| target-pr-review | 特定人 PR 审查 | 每 5m · 4m 前 | 累计 312 次 · 今日 12 次 | ✕ 失败 (exit 1) | 暂停 / Rerun / 删除 |
+| 矿纸袋 id | 正面任务 | 周期文字 | 次数文字 | R5 首次状态 |
+|---|---|---|---|---|
+| daily-brief | 每日简报 05:00 | 每天 05:00 · 下次 12h 后 | 累计 142 次 · 今日 1 次 | 成功，1.8s，翡翠 |
+| daily-learning | 每日学习推荐 04:15 | 每天 04:15 · 下次 11h 后 | 累计 98 次 · 今日 1 次 | 成功，1.8s，翡翠 |
+| aidata-pulse | AIData 数仓脉搏 04:00 | 每天 04:00 · 下次 11h 后 | 累计 186 次 · 今日 1 次 | 耗时偏高，14.2s，琥珀 |
+| linear-bot-bridge | Linear @bot 桥接 | 每 1m · 刚刚 16:45 | 累计 4,280 次 · 今日 184 次 | 运行中，电光青 |
+| my-pr-patrol | 我的 PR 巡检 | 每 5m · 2m 前 | 累计 860 次 · 今日 36 次 | 成功，1.8s，翡翠 |
+| target-pr-review | 特定人 PR 审查 | 每 5m · 4m 前 | 累计 312 次 · 今日 12 次 | 失败，exit 1，珊瑚 |
 
-每个井具备四个 data-report-block：summary、outputs、stages、logs。daily-brief 的摘要为「05:00 简报已投递，采集与入仓完成，学习候选已进入收件箱。」；产出标签 TIA-448、TIA-431；五条完整名称为 ① 个人源采集 0.3s、② L2-L3 入仓 0.5s、③ Retro-ROI 0.4s、④ 学习寻题 0.3s、⑤ Brief 投递 0.3s，条长按耗时/0.5s映射，旁有文字值；日志三行为 `[05:00:00] INFO collect complete`、`[05:00:01] INFO warehouse committed`、`[05:00:01.8] INFO brief delivered TIA-448`。
+每份报告保留五个可读计时槽位「① 个人源采集」「② L2-L3 入仓」「③ Retro-ROI」「④ 学习寻题」「⑤ Brief 投递」；非晨间任务在同一槽旁明确自己的子阶段名称，不冒充执行了数仓或学习步骤。阶段本色依次青/靛/紫/金/绿；失败覆盖该阶段红，进行中青，未开始/未执行灰且无实心完成条。已完成条按本报告最大已完成秒数归一，数字不可藏；运行中只给已知阶段计时，不给总耗时终值。
 
-其余五井也必须有完整四块而非占位：daily-learning「04:15 已整理三道学习题并投递。」/ TIA-431 / 候选读取0.4s、去重0.3s、难度匹配0.7s、题单整理0.5s、投递0.5s / `[04:15:01] INFO candidates=3` 与 `[04:15:02.4] INFO learning delivered`。aidata-pulse「入仓完成；L2-L3 阶段耗时偏高，需要关注。」/ TIA-448 / ① 个人源采集1.2s、② L2-L3 入仓9.1s、③ Retro-ROI1.8s、④ 学习寻题1.3s、⑤ Brief 投递0.8s / `[04:00:10.3] WARN warehouse slow` 与 `[04:00:14.2] INFO pulse complete`。linear-bot-bridge「正在处理本轮 @bot 消息，输出待提交。」/ TIA-448（最近已提交单据）/ 消息读取0.1s、去重0.1s、路由0.2s、桥接提交进行中、确认未开始 / `[16:45:00] INFO inbox read` 与 `[16:45:00.4] INFO bridge in progress`。my-pr-patrol「巡检完成，PR #311 的检查结果已更新。」/ PR #311 / PR读取0.2s、检查读取0.2s、对比0.1s、归档0.2s、通知0.2s / `[16:43:00] INFO pull=311` 与 `[16:43:00.9] INFO patrol complete`。target-pr-review「PR #308 审查退出码为1，未提交新评审。」/ PR #308 / PR读取0.2s、diff读取0.3s、审查执行0.6s失败、评审提交未执行、通知未执行 / `[16:41:00] INFO pull=308` 与 `[16:41:01.1] ERROR review exit=1`。非该任务执行的阶段不伪写完成；所有报告保持生产语气。
+卷宗正文逐袋写实：简报结论「晨间五阶段已结束，三题已进入投递回执」，产出 TIA-448、TIA-431，五耗时0.3/0.5/0.4/0.3/0.3s；学习结论「三题完成筛选与推荐投递」，TIA-431，子阶段候选/去重/匹配/整理/投递对应0.3/0.2/0.5/0.4/0.4s；数仓「入仓耗时9.1s偏高，本轮仍已完成」，TIA-448，1.2/9.1/1.8/1.3/0.8s。健康结果合计1.8s，数仓合计14.2s，严禁出现面上1.8而报告2.4的冲突。
 
-TIA 与 PR 链接使用 brief 给出的标识作为可点标签。未提供已核实的外部 URL 时，href 指向本井永久挂载的对应产出说明 id（如 #v01-daily-brief-tia-448），点击聚焦说明，不请求真实 Linear/GitHub、不编造仓库 URL、不导航到新页面。Stage 2 只驱动本页状态，不接真实调度器。
+余下报告也不能留占位：桥接「消息已路由，提交仍在进行」，TIA-448标注上次产出，读取0.1s/去重0.1s/路由0.2s/提交进行中/确认未开始；巡检「PR #311 检查结果已归档」，PR #311，读取/检查/对比/归档/通知为0.4/0.3/0.4/0.3/0.4s；审查「PR #308 审查进程退出1，未提交新评审」，PR #308，读取0.2s/diff0.3s/执行0.6s失败/提交未执行/通知未执行。失败原因仅到退出码，不编造权限、网络或仓库故障。
 
-```html
-<main class="qinglan-panel topology-inset-grouped-list">
-  <section class="content">
-    <header class="panel-titlebar"><h1></h1><p></p></header>
-    <div class="inset-group-card">
-      <article class="job-row-unit" data-job="daily-brief" data-job-row>
-        <div class="row-five-cols" role="group">
-          <div class="inset-summary-trigger" role="button"><span data-col="title"></span><time data-col="schedule"></time><span data-col="counts"></span><span data-col="status"></span></div>
-          <div data-col="actions"><button data-action="toggle-pause"></button><button data-action="rerun"></button><button data-action="delete"></button></div>
-        </div>
-        <section class="row-report-drawer"><div class="recess-clip"><h2></h2><div class="recess-body"><section data-report-block="summary"></section><nav data-report-block="outputs"></nav><ol data-report-block="stages"></ol><pre data-report-block="logs"></pre></div></div></section>
-      </article>
-      <!-- 依次静态写入 daily-learning / aidata-pulse / linear-bot-bridge / my-pr-patrol / target-pr-review，同样五列与四块井；不得运行时克隆。 -->
-    </div>
-    <footer class="restore-status-bar" aria-live="polite"><span></span><button data-action="restore" data-job="daily-brief"></button><!-- 另五个按任务绑定的常驻恢复按钮 --></footer>
-  </section>
-</main>
+终端尾部每袋2–3行固定 text spans：简报 `[05:00:01.8] INFO brief delivered TIA-448`；学习 `[04:15:01.8] INFO recommendations=3 delivered`；数仓 `[04:00:10.3] WARN warehouse=9.1s` 与 `[04:00:14.2] INFO pulse finished`；桥接 `[16:45:00.4] INFO awaiting commit`；巡检 `[16:43:01.8] INFO checks saved PR311`；审查 `[16:41:01.1] ERROR review exit=1`。timestamp灰、INFO青绿、WARN琥珀、ERROR珊瑚，命令/标识中性亮墨；不靠 innerHTML 语法着色。
+
+```text
+main.topology-stacked-paper-pockets
+└─ section.content
+   ├─ header.mineral-folio-header
+   ├─ div.pocket-stack-well
+   │  ├─ article.paper-pocket-unit[data-job-row][data-job="daily-brief"]
+   │  │  ├─ div.pocket-face-layer
+   │  │  │  ├─ button.pocket-reading-face[data-row-trigger][aria-controls="folio-daily-brief-report"]
+   │  │  │  ├─ nav.pocket-tail-tools (toggle-pause / rerun / delete)
+   │  │  │  └─ p.pocket-preview-slip[data-hover-brief]
+   │  │  ├─ div.pocket-confirm-line (永久确认/取消按钮)
+   │  │  └─ section.folio-dossier[data-report-panel]#folio-daily-brief-report
+   │  │     ├─ div.folio-conclusion-column (summary / outputs / 对应产出说明)
+   │  │     └─ div.folio-timing-column (stages / logs)
+   │  └─ article.paper-pocket-unit[data-job-row] ×5，分别手写其他任务与独立报告
+   └─ footer.mineral-restore-bar (六个持久 restore 入口及 aria-live 文本)
 ```
 
 ## 8. Explicit Anti-Patterns & Verification Targets
 
-青岚绝不使用两页/双栏任务分组、5-segment ring gauge、orbital layout；阶段读数只能是直线耗时条。禁 .caustic-veil、.ruler、Active-Matte 调试栏、<select> 测试开关、sandbox disclaimers、额外页面和 hero/fold-panel/secondary 直子类。不要将 System Settings 参考误译成七个套盒，五列名单不得被日志挤变形；innerHTML replacement、replaceChildren、remove、卸载再挂载一律禁用。
+不要把矿纸工艺偷换成旧 R4 的六行表格和一张套用报告；必须能从缺口、前唇、亮脊和抽出内胆认出袋。不要复制 aurora、workbench 或 command 的结构/CSS；不能增 v05..v10、选项测试 select、内层主题切换器、Active/Matte 条、标尺框、条纹 caustic 或无数据依据的统计面板。本文的旧 R4 数据只是库存来源，旧强制五列外观与旧成功耗时不再作为 R5 视觉断言。
 
-交付 Coding 后须在 WebKit 1280x800 的 Light/Dark 抓取完整首屏：验6个 [data-job-row]、每行5个 data-col、3个动作；展开/收起六行，逐一检查四报告块。MutationObserver 统计整个交互周期 removedElements = 0；点击暂停、继续、Rerun不改变该行 aria-expanded；删除只收起被删行并清空其选中，不展开任何其他行，撤销恢复原节点 identity。验证运行完成只增一次、暂停中的重跑不改变排程状态、键盘可达、报告链接 >=28px、无文字截断和0px外溢。本文件是候选设计，不声称这些像素测试已执行。
+Stage 2 以 WebKit 1280×800 检验两主题的初始展开、每袋 hover 与点击；短纸 opacity>0且18px可见，hover不改其他行的 bounding box，六袋报告依次可达且四块齐备，缺口不盖字。用全 main MutationObserver 累积 removedElements = 0，包含文本节点；记录初始节点引用，在暂停/继续、连续Rerun、确认删除、多个撤销和快速换袋后仍相同。检查按键不触发抽屉、计数只结算一次、删除旧回调无效、paused 单次运行后仍paused。
+
+提供真实 PNG 与几何记录，而非把这份 Prompt 的算式当截图：全页无意外横溢出、所有目标≥28px、数值无 …/裁切、状态文字和主题对比通过，键盘能读报告并回原袋。日志不泄露 token、绝对私有路径或原始个人消息。Stage 1 只能验收文件和规格独立性；Owner 选择、实现、视觉回溯、发布由上游后续阶段完成，此叶子不声称已执行。

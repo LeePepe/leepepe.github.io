@@ -2,7 +2,7 @@
   "schema": "tenfold-gallery/v1",
   "mode": "screen",
   "goal": "aidash-cards-redesign",
-  "round": 4,
+  "round": 5,
   "platform": "desktop",
   "frame_mode": "macos",
   "category": "scheduled-pulse",
@@ -29,7 +29,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "e7439997788be7d9f9c5e076e8f143dc26783eed534b3e360b4e5457b0f0134b"
+      "prompt_sha256": "011c7fd71ad1db9e496f401cee3453ed628fe1d062ebde5e22e46ece0856e51a"
     },
     {
       "id": "v02",
@@ -44,7 +44,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "b821c59d307ad040337c2622a52e028d71976d6f42c259069c2e02025651a6a9"
+      "prompt_sha256": "1c28af6cba34ba633ef0c08fca839b831ea8c6bf46a718496385a48a38a00d19"
     },
     {
       "id": "v03",
@@ -59,7 +59,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "476d4918fae76492c6979efeedf1be89df4d0628ec082f1f558405ad83691fc5"
+      "prompt_sha256": "019b0a32e665d823efcd83220943b21a08dc10dbcdf1ac3437baa3855afc4e81"
     },
     {
       "id": "v04",
@@ -74,103 +74,13 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "1bc3242611fdc5bfd9505900e298ca3a78899602282d4cccb745655452214c3e"
-    },
-    {
-      "id": "v05",
-      "p0": "timeline",
-      "axis_y": "segmented-lens",
-      "layout": "hero-inline",
-      "whitespace": "open",
-      "glass_geometry": "rail",
-      "archetype": "VS-006",
-      "content": "aidash-cards-redesign key screen · timeline",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v05-prompt.md",
-      "prompt_sha256": "d82b513d7924eacb87c124162ba063e880a0a1595a275cfc8ee2ecdcadd41a69"
-    },
-    {
-      "id": "v06",
-      "p0": "next-action",
-      "axis_y": "accordion",
-      "layout": "hero-inline",
-      "whitespace": "tight",
-      "glass_geometry": "compact",
-      "archetype": "VS-006",
-      "content": "aidash-cards-redesign key screen · next-action",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v06-prompt.md",
-      "prompt_sha256": "001be57bc30b1bf23e43fcdbc522e2db83e82accea3b2fcedf0b93ccb5c3d852"
-    },
-    {
-      "id": "v07",
-      "p0": "recovery",
-      "axis_y": "swwallet",
-      "layout": "hero-inline",
-      "whitespace": "open",
-      "glass_geometry": "wide",
-      "archetype": "VS-006",
-      "content": "aidash-cards-redesign key screen · recovery",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v07-prompt.md",
-      "prompt_sha256": "4e1188afafc3af83f0abd0c2b0f33ba998acaf0cf4669e1f314a5716cda2a422"
-    },
-    {
-      "id": "v08",
-      "p0": "timeline",
-      "axis_y": "accordion",
-      "layout": "hero-top",
-      "whitespace": "balanced",
-      "glass_geometry": "compact",
-      "archetype": "VS-005",
-      "content": "aidash-cards-redesign key screen · timeline",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v08-prompt.md",
-      "prompt_sha256": "c621aab2ba9427b4bcc35df1fec15cafb7f9063bfc5e532770d8692fbc71bb2b"
-    },
-    {
-      "id": "v09",
-      "p0": "next-action",
-      "axis_y": "segmented-lens",
-      "layout": "hero-top",
-      "whitespace": "balanced",
-      "glass_geometry": "wide",
-      "archetype": "VS-005",
-      "content": "aidash-cards-redesign key screen · next-action",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v09-prompt.md",
-      "prompt_sha256": "466fed0b206b3780205d8c9dbf9fda5ccb2275a69109cf7b7bb3f57d31f8d601"
-    },
-    {
-      "id": "v10",
-      "p0": "context",
-      "axis_y": "swwallet",
-      "layout": "hero-top",
-      "whitespace": "balanced",
-      "glass_geometry": "rail",
-      "archetype": "VS-005",
-      "content": "aidash-cards-redesign key screen · context",
-      "selected": false,
-      "starred": false,
-      "notes": "",
-      "prompt_file": "prompts/v10-prompt.md",
-      "prompt_sha256": "0a7bc56013c7b92962f92e5f4c1f80399b4758fd39a66d11ec1e2cba755a8c01"
+      "prompt_sha256": "8d7d1c18c8eef4cf09207a3ce5b2ae0c2426ba01069fa704956008a97e83a80a"
     }
   ],
   "prompt_contract": {
     "schema": "design-prompts/v1",
     "source": "provided",
-    "count": 10
+    "count": 4
   },
   "blog_demo_url": "https://leepepe.github.io/demos/aidash-cards-redesign/scheduled-pulse/"
 }

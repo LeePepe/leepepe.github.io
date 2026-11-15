@@ -1,4 +1,7 @@
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const { assertFullStory } = require('./story_checks.cjs');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const { buildCards, text, shell } = require('./cards.cjs');
 const { assertMarkup, prepareCard, measureCard, assertCard, platformFonts } = require('./card_geometry.cjs');
@@ -14,21 +17,42 @@ const { assertMarkup, prepareCard, measureCard, assertCard, platformFonts } = re
       await platformFonts(page, measured);
       results.set(card.id, measured);
     }
-    assert.equal(results.size, 13);
-    for (const id of ['a-02', 'b-02', 'c-02']) {
+    assert.equal(results.size, 15);
+    for (const style of ['a', 'b', 'c']) {
+      const visible = [...results.values()].filter(g => g.style === style);
+      assert.equal(visible.length, 5);
+      assertFullStory(visible.flatMap(g => g.children.map(t => t.text)).join('\n'), `visible suite ${style}`);
+    }
+    const blog = fs.readFileSync(path.resolve(__dirname, '../../thoughts/study-switch-long-press-ac/index.html'), 'utf8').replace(/<[^>]+>/g, '');
+    assertFullStory(blog, 'generated Blog');
+    if (process.env.STORY_SOURCE_PATH) {
+      const source = fs.readFileSync(process.env.STORY_SOURCE_PATH, 'utf8');
+      assertFullStory(source, 'canonical source');
+      assert.match(source, /24℃[\s\S]*只是举例/);
+      assert.match(source, /99%[\s\S]*修辞，不是测量数据/);
+      if (process.env.STORY_INDEX_PATH) {
+        const rows = fs.readFileSync(process.env.STORY_INDEX_PATH, 'utf8').split('\n').filter(line => line.includes('](thoughts/study-switch-long-press-ac.md)'));
+        assert.equal(rows.length, 1);
+        assertFullStory(rows[0] + source, 'canonical index and source');
+        assert.ok(rows[0].includes('2025') && rows[0].includes('测试键') && rows[0].includes('2026-11-15'));
+      }
+    }
+    assert.throws(() => assertFullStory('遥控器丢了，长按开空调。', 'T1 old gist'), /missing renovation/);
+    const baselineStory = [...results.values()].filter(g => g.style === 'a').flatMap(g => g.children.map(t => t.text)).join('\n');
+    assert.throws(() => assertFullStory(baselineStory.replace(/实机测试/g, ''), 'missing manual work'), /manual testing/);
+    assert.throws(() => assertFullStory(baselineStory.replace(/测试键/g, ''), 'missing spare origin'), /study test key/);
+    for (const id of ['a-04', 'b-04', 'c-03']) {
       const measured = results.get(id);
-      assert.deepEqual([1, 2, 3, 4, 5].map(n => measured.children.find(t => t.id === `step-${n}`).text.replace(/^\d+\s+/, '')), ['拿手机', '解锁', '进 App', '找书房', '点开机']);
+      assert.deepEqual([1, 2, 3, 4, 5].map(n => measured.children.find(t => t.id === `step-${n}`).text.replace(/^\d+\s+/, '')), ['掏手机', '解锁', '打开米家', '找书房', '点开机']);
     }
     const principles = results.get('a-05').children;
     assert.deepEqual(principles.filter(t => t.id.startsWith('principle-number')).map(t => t.text), ['01', '02', '03']);
-    assert.deepEqual(principles.filter(t => t.id.startsWith('principle-heading')).map(t => t.text), ['痛点长在生活裂缝里', '最高频的动作，砍掉分支', '复杂留在背后，确定留在指尖']);
+    assert.deepEqual(principles.filter(t => t.id.startsWith('principle-heading')).map(t => t.text), ['AI 让我能开始', '多余的东西，接住真实痛点', '最高频的意图，砍掉选择']);
     const copy = id => results.get(id).children.map(t => t.text).join('\n');
-    assert.match(copy('a-01'), /温度示意，不是作者配置/);
-    assert.match(copy('a-03'), /99%[\s\S]*修辞，不是测量数据/);
-    assert.match(copy('a-04'), /离开书房、睡眠／离家[\s\S]*不提供自动化配置/);
-    assert.match(copy('c-03'), /不是开关切换/);
+    assert.match(copy('a-05'), /睡眠／离家[\s\S]*不提供自动化配置/);
+    assert.match(copy('c-04'), /不是开关切换/);
     for (const g of results.values()) {
-      assert.doesNotMatch(copy(g.id), /等反馈|等待反馈/);
+      assert.doesNotMatch(copy(g.id), /等反馈|等待反馈|\d+℃|\d+%/);
       if (g.style === 'b') {
         assert.equal(g.images.length, 1);
         assert.ok(g.images[0].visibleAreaLowerBound >= 10000);
@@ -43,12 +67,12 @@ const { assertMarkup, prepareCard, measureCard, assertCard, platformFonts } = re
         assert.ok(g.children.find(t => t.id === 'title').platformFonts.some(f => f.familyName.includes('Songti') && f.glyphCount > 0), 'C headings must really render in Songti');
       }
     }
-    const points = [[252, 440], [804, 440], [804, 664], [252, 664], [252, 888]];
+    const points = [[252, 624], [804, 624], [804, 808], [252, 808], [252, 992]];
     points.forEach(([x, y], i) => {
-      const label = results.get('c-02').children.find(t => t.id === `step-${i + 1}`);
+      const label = results.get('c-03').children.find(t => t.id === `step-${i + 1}`);
       assert.deepEqual(label.frame, { x: x - 148, y: y + 36, width: 296, height: 63 });
     });
-    const motifs = { 'c-01': ['C-search-sofa', 'C-phone'], 'c-02': ['C-serpentine-path'], 'c-03': ['C-pressing-hand', 'C-button', 'C-wind'], 'c-04': ['C-thread', 'C-button'] };
+    const motifs = { 'c-01': ['C-nas-high-step', 'C-ai-document-skeleton', 'C-human-wrench'], 'c-02': ['C-moon-light-curtain', 'C-desk-test-button'], 'c-03': ['C-search-sofa', 'C-phone', 'C-serpentine-path'], 'c-04': ['C-pressing-hand', 'C-button', 'C-node-red-fold', 'C-wind'], 'c-05': ['C-thread', 'C-button'] };
     for (const [id, required] of Object.entries(motifs)) {
       for (const motif of required) assert.ok(results.get(id).decorations.some(d => d.id === motif && d.pathCount > 0));
     }
@@ -57,7 +81,7 @@ const { assertMarkup, prepareCard, measureCard, assertCard, platformFonts } = re
       imageFrames: g.images.map(i => [i.frame, i.borderRadius]),
       artFrames: g.decorations.map(d => [d.frame, d.pathCount]),
     }));
-    assert.equal(new Set(signatures).size, 13, 'independent real compositions, not merely different topology labels');
+    assert.equal(new Set(signatures).size, 15, 'independent real compositions, not merely different topology labels');
 
     const sample = cards.find(c => c.id === 'b-03');
     const mutate = async (change, error) => {
@@ -96,14 +120,14 @@ const { assertMarkup, prepareCard, measureCard, assertCard, platformFonts } = re
     const glyphGeometry = await measureCard(page, glyphOnly);
     assert.equal(glyphGeometry.children[0].frame.y + glyphGeometry.children[0].frame.height, glyphGeometry.children[1].frame.y);
     assert.throws(() => assertCard(glyphGeometry), /GLYPH_OVERLAP/, 'real Range overhang collision even when CSS frames do not intersect');
-    for (const [card, role, size, lineHeight] of [['a-01', 'title', 68, 84], ['a-03', 'open-hero', 192, 208], ['b-03', 'fixed-settings', 42, 63], ['c-03', 'title', 88, 106]]) {
+    for (const [card, role, size, lineHeight] of [['a-01', 'title', 80, 96], ['a-02', 'year', 96, 112], ['b-02', 'manual-testing', 40, 60], ['c-04', 'binding', 42, 63]]) {
       const t = results.get(card).children.find(t => t.id === role);
       assert.deepEqual([t.fontSize, t.lineHeight], [size, lineHeight], 'broad theme rules must not override role metrics');
     }
-    const paragraph = results.get('a-03').children.find(t => t.id === 'on-semantics');
+    const paragraph = results.get('b-02').children.find(t => t.id === 'ai-skeleton');
     assert.ok(paragraph.lines.length >= 3 && paragraph.glyphs.length > 30);
-    assertCard(results.get('a-03')); // Same-paragraph ranges and decorative backgrounds are not separate blocks.
-    console.log('All 13 real card compositions/source/font/image checks and 12 failing regression mutations passed.');
+    assertCard(results.get('b-02')); // Same-paragraph ranges and decorative backgrounds are not separate blocks.
+    console.log('All 15 real card compositions/full-story/source/font/image checks and 12 failing regression mutations passed.');
   } finally {
     await browser.close();
   }

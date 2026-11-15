@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>BAMA：预算感知多智能体路由、Agent CLI 与免 GUI 故事验收架构 · Lee Pepe</title>
+<meta name="description" content="BAMA 不是让大模型盲猜整个 macOS 工程，而是用「按需技能路由（0 上下文闲置开销）+ 应用内建 Socket CLI + 1 Story = 1 Commit 快照门禁」把 GUI 开发拆成确定性流水线 —— 21 个分阶段微技能与 --help 即时发现机制让日常上下文 Token 预算降低 80% 以上，并通过单写者 Socket 保证 CLI 与窗口 100% 状态同步。">
+<link rel="alternate" type="application/atom+xml" title="Lee Pepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+<header class="site-header shell">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
+    <nav class="nav" aria-label="主导航"><a href="/">首页</a><a href="/learn/" aria-current="page">求知</a><a href="/thoughts/">思考</a><a href="/vault/">素材库</a><a href="/demos/">Demos</a><a href="/archive/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav>
+    <div class="theme-toggle" role="group" aria-label="外观"><button type="button" data-theme-choice="light" aria-pressed="false" title="浅色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span class="label">浅色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="dark" aria-pressed="false" title="深色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg><span class="label">深色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="system" aria-pressed="true" title="系统"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11.5V14"/></svg><span class="label">系统</span><span class="visually-hidden">主题</span></button></div>
+  </div>
+</header>
+<main id="main" class="shell">
+  <div class="post-layout">
+    <div>
+      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <article class="card article">
+        <header class="article-header">
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t5">BAMA</a></li><li><a class="tag" href="/tags/#t17">多智能体路由</a></li><li><a class="tag" href="/tags/#t20">架构分层</a></li></ul>
+          <h1>BAMA：预算感知多智能体路由、Agent CLI 与免 GUI 故事验收架构</h1>
+          <p class="lede">BAMA 不是让大模型盲猜整个 macOS 工程，而是用「按需技能路由（0 上下文闲置开销）+ 应用内建 Socket CLI + 1 Story = 1 Commit 快照门禁」把 GUI 开发拆成确定性流水线 —— 21 个分阶段微技能与 --help 即时发现机制让日常上下文 Token 预算降低 80% 以上，并通过单写者 Socket 保证 CLI 与窗口 100% 状态同步。</p>
+          <div class="post-meta"><time datetime="2026-11-15">2026 年 11 月 15 日</time><span class="dot" aria-hidden="true">·</span><span>约 2,700 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
+        </header>
+        <div class="prose">
+<blockquote><p><strong>一句话结论</strong>：<strong>BAMA 不是让大模型盲猜整个 macOS 工程，而是用「按需技能路由（0 上下文闲置开销）+ 应用内建 Socket CLI + 1 Story = 1 Commit 快照门禁」把 GUI 开发拆成确定性流水线</strong> —— 21 个分阶段微技能与 <code>--help</code> 即时发现机制让日常上下文 Token 预算降低 <strong>80% 以上</strong>，并通过单写者 Socket 保证 CLI 与窗口 <strong>100%</strong> 状态同步。</p></blockquote>
+<h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
+<table><thead><tr><th>抽象概念 / 参数</th><th>关键数字</th><th>生活教具 / 直观参照</th><th>物理/工程效果</th></tr></thead><tbody><tr><td>预算感知技能路由（<code>/bama</code> 5 阶段 × 21 技能）</td><td>未调用时 <strong>0 Token</strong> 驻留；文件超 <strong>600 行</strong>预警、<strong>1,000 行</strong>强制拆分</td><td>手术室按步骤递器械的分层托盘</td><td>避免把 21 套规范一次性塞爆上下文，只在对应阶段（Start/Plan/Code/Design/Ship）加载最小切片</td></tr><tr><td>单写者私有 Socket CLI（<code>Agent CLI</code>）</td><td>8 位 UUID 短码前缀 + <code>--limit/--offset</code> 小 JSON</td><td>餐厅前台收银机与后厨共享同一张电子订单屏</td><td>严禁 CLI 绕过 App 直写 SQLite/SwiftData，CLI 命令走 Socket 像按钮点击一样触发校验并实时刷新窗口</td></tr><tr><td>可检视故事验收（<code>1 Story = 1 Commit</code>）</td><td>M1 核心闭环严格限 <strong>5–10 个 Story</strong>，总上限 <strong>60 个</strong></td><td>闯关游戏每关带明文通关条件（<code>[snap]</code> / <code>[unit]</code> / <code>[self]</code>）</td><td>消灭“Works well”模糊验收；每次提交前自动跑浅/深双色模式页面快照与自检</td></tr></tbody></table>
+<h2 id="sec-2">核心痛点问答<a class="anchor" href="#sec-2" aria-label="本节链接">#</a></h2>
+<h3 id="sec-2-1">Q1. 为什么多智能体写 macOS 应用越写越贵、上下文越跑越偏，BAMA 如何实现预算感知路由？<a class="anchor" href="#sec-2-1" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：把全流程拆成 <strong>5 个阶段（Start → Plan → Code → Design → Ship）共 21 个正交微技能</strong>，由顶层 <code>/bama</code> 路由器按当前磁盘产物（如是否存在 <code>docs/BRIEF.md</code>、<code>docs/STORIES.md</code>）单步派发，且应用交互通过 <code>--help</code> 零驻留 CLI 驱动。</li><li><strong>原理与教具</strong>：传统做法像背着 <strong>20 公斤全套修理箱</strong>去拧一颗螺丝，每次对话都要重读几万字规范；BAMA 像<strong>胶囊咖啡机</strong>——平时外部 CLI 和非当前阶段技能占 <strong>0 Token</strong>，只有轮到 <code>research</code> 时才扇出并行子代理（市场/用户/功能/设计/macOS API），轮到日常操作时 Agent 只需执行 <code>&lt;cli-name&gt; --help</code> 即可按需获知参数。</li></ul>
+<h3 id="sec-2-2">Q2. BAMA 怎样把静态「页面截图清单」变成免 Xcode GUI、可由 Agent CLI 逐步验收的用户故事？<a class="anchor" href="#sec-2-2" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：先用 <code>clone</code> 生成页面索引 <code>docs/screens/INDEX.md</code>，再用 <code>user-stories</code> 将每个画面映射为「单动作 + 四类强制验证前缀（<code>[snap]</code> / <code>[unit]</code> / <code>[self]</code> / <code>[manual]</code>）」的故事卡，并内建 <code>--snapshot</code> 快照模式与 <code>agent-cli</code> 调试桥。</li><li><strong>原理与教具</strong>：屏幕截图只告诉你“长什么样”，故事才定义“人做什么”。就像把建筑效果图拆成<strong>带验收标准的施工水电单</strong>：<ul><li><code>[snap]</code>：启动无头快照模式渲染浅色/深色 PNG，并用 <code>measure.swift</code> / <code>compare.swift</code> 做 4pt 网格与像素级比对；</li><li><code>[self]</code>：通过应用内建自检桥验证交互（如“5 秒内显示 Undo 横幅，按 <code>Cmd-Z</code> 可撤销”）；</li><li><code>[unit]</code>：纯逻辑抽离 <code>@MainActor</code> Store，用 Swift Testing 独立秒级验证。</li></ul></li></ul>
+<h3 id="sec-2-3">Q3. 为什么 Agent CLI 严禁直接读写应用的 SQLite / SwiftData 数据库文件，而必须通过私有 Socket 转发给运行中的 App？<a class="anchor" href="#sec-2-3" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：双写者直接改库会绕过业务校验、破坏 SwiftData 内存上下文缓存，并导致已打开的 macOS 窗口无法实时刷新；走私有 Socket 能保证 <strong>唯一写者（Single Writer）</strong> 与 UI 零延迟同步。</li><li><strong>原理与教具</strong>：直接改数据库文件就像<strong>半夜翻窗进仓库改账本</strong>——前台店员（正在运行的 App 窗口）毫不知情，手里的旧账本一保存就会互相覆盖报错。而 BAMA 的 <code>agent-cli</code> 把命令发给 App 内部监听的 Socket，直接调用和窗口按钮<strong>完全相同</strong>的 Model 函数，还会将操作分级为 <code>read</code>、<code>write</code> 和必须带 <code>--yes</code> 才真正执行的 <code>destructive</code>（否则只預览影响范围）。</li></ul>
+<h3 id="sec-2-4">Q4. 当业务迭代导致文件膨胀、状态高频抖动时，<code>improve-architecture</code> 用什么量化指标触发重构？<a class="anchor" href="#sec-2-4" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：设定了 <strong>6 条硬性触发红线</strong>与 <strong>「删除测试（Deletion Test）」</strong>，每次重构严格限制在 <strong>1 个 Commit 证明行为不变（≤10 个文件）</strong>。</li><li><strong>原理与教具</strong>：不必等代码腐化到无法维护才重构，只要命中以下任意一条即刻启动体检：<ol><li>单 Swift 文件超过 <strong>600 行</strong>（<strong>1,000 行</strong>强制拆分）或单个类型超过 <strong>400 行</strong>；</li><li>单个功能改动跨越 <strong>&gt;6 个文件</strong>或 <strong>&gt;2 个 Target</strong>；</li><li>同一区域在 <code>FIXLOG.md</code> 重复出现 <strong>3 次</strong>，或状态每秒变化 <strong>&gt;10 次</strong>却挂在全局观察对象上。</li></ol>
+<p>判断模块该不该留只需做「删除测试」：删掉它后，如果复杂度集中在 1 处就保留该深模块（Deep Module），如果只是传声筒（Pass-through）则立即内联消除。</p></li></ul>
+<h2 id="sec-3">立即可用清单<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
+<ul><li><strong>给用户故事加上四类可检验前缀</strong>：编写 <code>spec.md</code> 或 <code>STORIES.md</code> 时，强制每条验收标准以 <code>[snap]</code>（浅/深色快照）、<code>[unit]</code>（纯值单测）或 <code>[self]</code>（CLI/自检桥）开头，淘汰一切“体验流畅/正常工作”的模糊描述。</li><li><strong>用单写者 Socket CLI 替代脚本直改数据库</strong>：为本地 macOS 工具提供 Agent 接口时，复用窗口按钮同源函数暴露 <code>read</code> / <code>write</code> / <code>destructive (--yes)</code> 三级命令，返回精简 JSON 与 8 位短 ID。</li><li><strong>设置 600 行与 10 Hz 状态刷新架构门禁</strong>：在里程碑收口时扫描 <code>wc -l</code> 超 600 行的热点文件，将 <code>@MainActor</code> Store 中的纯计算逻辑剥离为不依赖 UI 的纯值 Struct（Deep Module）。</li></ul>
+        </div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/wifi-invisible-light/"><span class="dir">← 上一篇</span><span class="t">如果能看见 WiFi：看不见的光、室内信号破案与科普脚本技法</span></a><a class="next" href="/learn/genjutsu-styled-image-generation/"><span class="dir">下一篇 →</span><span class="t">Genjutsu：三尺度视觉编排（cast/paint/bunshin）、风格化视觉生成控制与跨平台契约门禁</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+      </article>
+    </div>
+    <aside class="toc" aria-label="本文目录">
+      <p class="section-label">目录</p>
+      <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">核心痛点问答</a></li><li class="l3"><a href="#sec-2-1">Q1. 为什么多智能体写 macOS 应用越写越贵…</a></li><li class="l3"><a href="#sec-2-2">Q2. BAMA 怎样把静态「页面截图清单」变成免…</a></li><li class="l3"><a href="#sec-2-3">Q3. 为什么 Agent CLI 严禁直接读写应…</a></li><li class="l3"><a href="#sec-2-4">Q4. 当业务迭代导致文件膨胀、状态高频抖动时，i…</a></li><li class="l2"><a href="#sec-3">立即可用清单</a></li></ol>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>© 2026 Lee Pepe · 写代码，也写生活</span>
+    <nav aria-label="页脚"><a href="/feed.xml">RSS 订阅</a><a href="https://github.com/LeePepe">GitHub</a><a href="#main">回到顶部</a></nav>
+  </div>
+</footer>
+</body>
+</html>

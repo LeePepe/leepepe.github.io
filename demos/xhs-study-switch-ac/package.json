@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "render": "node render_gallery.cjs",
-    "test": "node test_gallery.cjs http://127.0.0.1:8765/demos/xhs-study-switch-ac/"
+    "test": "node test_renderer.cjs && node test_gallery.cjs",
+    "test:cards": "node test_renderer.cjs",
+    "test:gallery": "node test_gallery.cjs"
   },
   "engines": {"node": ">=18"},
   "peerDependencies": {"playwright": ">=1.63 <2"}

@@ -43,3 +43,15 @@
 ## Genjutsu 与素材说明
 
 Genjutsu 在本机证据中是 native SwiftUI UI/动效设计 skill 路由，不是 Web 栅格生图 API，也不是本组 PNG 的生成模型。Style B 的两个原始背景是通用无字书房/按键意象；最终 PNG 由 HTML/CSS/SVG + Playwright 叠字导出。Style A 与 Style C 使用原创 inline SVG 和 HTML 字形，不使用 AI 图。
+
+## 可复现的十三卡导出
+
+在此目录运行 `npm run render`、`npm run test:cards`；已有本地静态服务器时运行 `npm run test:gallery -- http://127.0.0.1:8769/demos/xhs-study-switch-ac/`。Playwright 通过普通模块解析或 `PLAYWRIGHT_MODULE` / `NODE_PATH` 指定的已有安装加载，不要求额外订阅。
+
+- `cards.cjs` 独立定义 A5 / B4 / C4 的构图；每块文字在创建时指定坐标、宽高、字体、字号与行高。原始图片由脚本按字节编码为 data URI，不依赖浏览器相对 URL。
+- 导出先等待字体、所有图片 decode 和两帧稳定布局，再检查整批卡片。任一卡失败，不开始覆盖 PNG；截图目标是固定 1080×1440、scale 1 的 `.slide`。
+- `card_geometry.cjs` 检查所有真实文字框、逐字 DOM Range 边界、安全区、字号、scroll 裁剪与跨段落重叠。CJK 字体的 ascent / negative leading 可以超出 CSS 行盒；这些实际 Range 仍必须在安全区，不能与别的文字块重叠。标题额外保留 16px 字体下降部空间，不改变字号、行高或文字起点。同段落的行/字 Range 不被错误视作独立段落；背景 SVG 与图片单独记录，不豁免文字碰撞。
+- B 的每页必须有已解码且可见的原图。可见面积用实际 DOM 命中采样给出保守下界（渐变区域也按遮挡计算），不是仅检查一个可能为空的 `every()`。B2/B3/B4 使用 contain 保护完整场景，B3保留椭圆窗口；B4的宽舞台有纸色留边。椭圆、圆角与遮罩仍可能遮住边缘，必须另看像素。
+- `card-geometry.json` 默认记录全部十三卡的实际框、逐字 Range、计算字体、浏览器实际平台字体、图片自然尺寸、裁切与可见区域。`CARD_GEOMETRY_PATH` 可改到私有回执；`CARD_OUTPUT_DIR` 可改 PNG 输出目录；`GALLERY_RECEIPT_DIR` 可改画廊截图目录；`GALLERY_URL` 可改测试服务器。
+
+自动几何、尺寸与回归测试不能证明审美质量，也不能代替独立逐图视觉核对；本地导出不表示已向小红书上传或完成网站发布。

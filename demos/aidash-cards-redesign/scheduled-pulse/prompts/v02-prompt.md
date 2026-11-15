@@ -1,91 +1,32 @@
-# v02 — 待办工单 · One Open Work Order
-Status: Designer-approved for Stage 2 demo implementation; Owner selection pending.
-Target: desktop/macOS; 1280x800; scheduled-pulse.
-Coordinates: VS-005 / CL-006 / X-ReceiptDecision Y-TicketFlap Z-SolidPaper / AppTheme-PulseWorkOrder
+# v02 — 节律站台 · Cadence rail
 
-Candidate only: this is open-direction exploration, NOT final AppTheme selection or production approval. Active route: desktop × visual-style, layout-navigation, chart-dataviz, motion-interaction. VS/CL are reference-family IDs; X/Y/Z and AppTheme names here are explicit candidate-local coordinates, not new global taxonomy IDs. The 1280×800 is **iframe content**, excluding all outer portal window chrome. Do not add a second macOS frame.
+Status: Designer-approved Stage 2 direction for the new R2 rail; awaiting comparative Owner selection.
+Target: desktop/macOS at 1280×800, Scheduled Pulse card rather than an application navigation screen.
+Coordinates: VS-007 / CL-003 / X:temporal-lanes / Y:attached-station-fold / Z:rail-action-popover / AppTheme:R2CadenceRail.
 
 ## Visual metaphor
-五张待处理工单只有一张放在书写垫上，其余是四张可读的侧签。把“需要你核对什么”作为纸面中心，不把所有输出拼成仪表盘。没有仿真胶带、污渍、手写字体或装饰邮戳。
-
-外边距 32px；(32,28) 标题区高 48px。左纸面 (32,104) 760×632，右侧唯一签条组 (824,104) 424×632，中缝 32px。左内边距 32px，右内边距 20px。左任务名所在纸页标头高 52px；P0 问题区高 200px、最多三行 30px 半粗字；说明 15px、标签 13px，系统等宽只用于时间。右侧四条各 128px、间距 16px、组内上下 36px。每条名称/节奏/文字状态充分换行，不再套嵌套卡。纸页角 6px，内项间距 12px，原子 4px。
+Treat recurring work like a compact station timetable without inventing travel destinations. A 1080×604 surface begins at (100,98); use 24px corner curvature and 28px interior padding. Below a 48px title row and 24px separation, a 1024×476 temporal diagram contains a 392×476 frequent-work lane, a 28px breathing gutter and a 604×476 daily-work lane. Each lane is an ordered sequence, not a table with headers. A narrow vertical cadence rail joins only the frequent jobs; the daily entries attach to their own labelled 04:00 and 04:15 markers. Type is 36px focal time, 19px title, 15px controls and 13px schedule copy. Station padding is 16px against 8px internal spacing.
 
 ## Single P0 focal point
-B 的一项演示决策：核对 14m20s 前的旧回执；大字问题而非 KPI。
-
-No competing KPI tiles, repeated task strip or second prominent CTA. P0 is a display/decision in the selected record, P1 its single next contextual control, P2 evidence/stages on demand, P3 advanced context omitted from this public demo. One collection of five records is one visual group, not five unrelated modules; cap the overall screen at two content groups plus at most one transient in-context intent surface. P0 显示“这份旧回执，需要再核对吗？”；14m20s 作为 15px 说明，不另造数字 hero。右签的告警全部用次级文字而非四个强调色。尚未核对，证据页关闭。
+The due 我的 PR station is the only expanded stop. Its 04:15 time is the 36px anchor with the factual state 待运行; latest success remains 04:10. Treat the cadence as due timing, not a claim of failure. Place the 立即运行 affordance within this stop's 344×148 expansion; it must not be mirrored in a global toolbar. Other station times retreat to 13px.
 
 ## P1/P2 folding
-默认 B 在左，其名字只出现于左工单标头。右侧按 A、C、D、E 排序。P1 的“已核对（模拟）”为问题下方唯一填色提交按钮；Run Now 始终轮廓样式且位于“更多操作”展开后同一纸面右上角。P2“翻看证据”把左侧问题正文替换为证据页，页内可返回；不要再造右侧 inspector。D 的五阶段或 E 的三个候选只在其成为左页时出现。
-
-Default uniqueness invariant: five distinct selectable job records, each with its display name **once**, not the same name repeated on a summary chip and again in a list and inspector. Selected context is a continuation or replacement projection of that same record, never another named job card or second five-job dataset. Leave job IDs in data bindings, not as UI headings. When a role moves between regions, remove its old occurrence before presenting the new one; accessible names reference the existing visible name rather than duplicating visible labels.
+Arrange the left lane as Linear @bot 桥接 · 每 1 分钟, 我的 PR · 每 5 分钟, PR 自动审查 · 每 5 分钟. The right lane has 个人数仓晨报 · 每日 04:00 followed by 每日学习推荐 · 每日 04:15. A selected stop grows a daughter details region below its existing title, while the formerly selected stop folds to a 64px line. Digest expansion owns a horizontal five-stop path labelled ① 个人源采集, ② L2-L3 入仓, ③ Retro-ROI, ④ 学习寻题, ⑤ Brief 投递; its wrapped two-line labels are still fully visible. Learning expands to 已投递 3 题 and 每日 3 题直投 Linear, not this path. Evidence is a station-local popover reached through 查看回执. Escape dismisses it without moving the schedule.
 
 ## Color and surface polarity
-Mint archive paper / forest-night paper; dark green ink and restrained sage accent.
-
-平面薄荷纸主角；活动纸面与签条用亮度而非阴影隔离。暗色仍是有色档案纸，不是黑字纸张套在黑底上。
-
-| Semantic role | Light | Dark |
-|---|---|---|
-| canvas / L0 | #EAF1ED | #101E18 |
-| group / L1 | #F5F9F5 | #192A22 |
-| focus surface / L2 | #FFFFFF | #22372B |
-| ink | #17382B | #EDF6E9 |
-| secondary ink | #496253 | #B3C9B6 |
-| accent / focus ring | #236044 | #B4D8A5 |
-| on-accent | #FFFFFF | #172C1C |
-| separator (not text) | #C6D9CD | #425B49 |
-
-Status ink pairs (Light / Dark, on normal L0/L1 surfaces only): success #166534 / #86EFAC; warning #92400E / #FCD34D; failure #9F1239 / #FDA4AF. Neutral/unknown uses secondary ink and explicit words; coalesced is neutral. Reserve at least 90% of the viewport for neutral solid surfaces; chromatic accent is for selection/P0 and keyboard focus, never all five jobs. Use text + distinct SVG shapes as well as color. Target normal-text contrast ≥4.5:1 and control/focus boundary contrast ≥3:1; decorative separators may be quieter, never the only affordance. Verify these pairs in rendered light and dark states rather than reducing opacity on text. Use system UI (-apple-system/BlinkMacSystemFont/system-ui) and local system serif/monospace where explicitly specified. No imported fonts. Use tabular numerals for time and ratios. Container padding is never less than internal gap. At most four font sizes per viewport; all non-display text remains ≥13px. Keep evidence within the declared region; do not shrink the entire layout to fit.
+Use Light / Dark tokens: canvas #EDF4F7 / #0D171D; station-surface #FFFFFF / #18272F; selected-stop #E6F3F6 / #213B46; primary-ink #16303B / #E8F7FC; secondary-ink #506873 / #AEC8D2; action #16657A / #87D8EB; action-ink #FFFFFF / #102C37; pass #236B50 / #8BDDB8; failure #AF3949 / #FFB3BF; keyboard-ring #126B91 / #A3E4FF. Neutral lanes remain borderless. Cyan appears on the due station's time pin and action; connecting rails use secondary ink at 22% alpha and have no status semantics. A checkmarked green pin denotes completed evidence, not route ownership.
 
 ## Liquid Glass optical parameters
-Explicitly NO Liquid Glass. This design reads receipts, schedules and evidence; a refractive substrate would compete with its chosen visual metaphor and harm small-text legibility. All content and functional controls are opaque semantic surfaces. Optical parameters: blur 0px, saturation 100%, IOR 1.0, refraction/displacement 0px, no backdrop-filter and no faux specular shader. Safari fallback is therefore the exact same opaque treatment, not a degraded screenshot. Reduced transparency is identical; reduced motion removes the nonessential 120ms opacity change. No content-on-glass and no glass-on-glass.
+Only the 320×180 receipt popover may use glass; its radius is 18, nominal blur 10px, saturation 112%, refractive displacement at most 2px, zero chromatic fringe and a 1px top rim at 18% white. It samples the solid station lane, never another overlay. Text sits on an 88% opaque surface tint. Safari receives a completely opaque station-surface popover with the same 0 12px 32px shadow at 12% Light / 32% Dark; Reduce Transparency chooses this path too. The vertical rails and station bodies themselves have no optical filters.
 
 ## Inline SVG iconography
-Use this bespoke 24×24 currentColor stroke semantic icon for 含一个核对动作的折角工单, only once near the relevant region heading:
-
-```svg
-<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l3 3v15H6z M14 3v5h4 M9 12l2 2 4-4 M9 18h6"/></svg>
-```
-
-Other action icons use the same 24×24 viewBox / 1.75px rounded stroke: play triangle for Run Now, simple chevron for disclosure, outlined clock for stale, check for passed, warning triangle for warning, x-in-circle for failed, open circle + question text for unknown. SVGs inherit semantic ink, no gradients/external <use>/external assets. Decorative SVGs are aria-hidden; icon-only buttons receive an explicit readable aria-label and ≥28px target, with adjacent text for consequential actions. Never use emoji as UI substitutes, and do not download an icon set.
+Draw a 24×24 schedule glyph with three differently spaced ticks, using 1.6px round-cap strokes. Each station has an explicit check, clock or rotating open arc matched to its state. The daily path uses small numbered stage pins, never generic 1..5 placeholder copy. Put any tiny pin inside its parent 344×64 or 556×64 button, so the diagram's visible geometry does not shrink the hit area. Receipt controls use an outlined document glyph with a readable 查看回执 label.
 
 ## Explicit anti-patterns
-Ban .caustic-veil and repeating-linear-gradient zebra stripes; no striped filters, ruler/debug bars (including 28×28 dashed ruler boxes), inner web topbars, inner traffic lights, Active/Matte pills, decorative tracked-capital eyebrows, duplicate gallery/theme/viewport/selection controls, or bottom floating macOS action bar. Legitimate job selection and in-context evidence lenses are product controls, not forbidden gallery controls. No shared grey boilerplate, rainbow card grid, boxed KPI summary, fake live ticker, numeric truncation, raw localization keys, decorative emoji, stock imagery, external fonts/assets, glass content cards, glass-on-glass or opaque imitation system toolbar. No repeated task in a top summary + list + inspector. Never manufacture operational capabilities from this demo or interpret a sample warning as a real incident. Share only resets/state helpers across variants; build each layout, proportions, typography and color system independently, not one dashboard with alternate CSS colors.
+Do not build a chronological history library or a misleading minute-scale plot that compresses daily and one-minute intervals onto a single axis. Cadence lanes are categorical schedules, not measured latency traces. Ban invented train names, extra destination screens and shared fixed-width table headers. No disclaimer text, internal state dropdown, zebra overlay or Active/Matte bar belongs to this surface. Retain readable Chinese stage labels instead of rotating them vertically.
 
 ## Interaction and states
-选择右侧签条时，所选工单与左工单交换位置；右侧四个位置固定，保留原点击位置以便返回，屏幕仍只有五个命名对象。“已核对（模拟）”先在原位要求确认，确认后该处显示“已在本页标记；未提交到任何服务”，可撤销。翻页只是内容交叉淡化，不旋转纸张。
-
-### Safe action state machine and supporting evidence states
-Run Now is a **pure in-memory simulation** for the selected record: idle → intent → committing → settled. The idle control reads “Run Now · 模拟” (minimum 120×32px, permit two-line label if needed). Clicking opens an in-context intent panel saying “仅在本页模拟，不启动任务、不发送内容”, with “确认模拟” and “取消”. Cancel or Escape returns unchanged to idle and restores focus. Confirm immediately sets aria-busy, disables duplicate submission and job switching for a bounded 800ms, then settles to “已生成本页模拟回执 · 未发送到外部服务”. Nothing invokes launchd, shell commands, a network endpoint, file access or real job execution. Use a timer only for this simulation, not as evidence of actual runtime. A second click while committing must not enqueue anything. Settled feedback persists in the selected surface until “返回” or selecting another job; do not rely on an ephemeral toast. No undo claim for a real operation: only reset the local sample.
-
-In the selected evidence fold, a small “证据示例” selector may expose ready / failed / empty / stale locally. These are **evidence** states, not alternate Run Now outcomes: failure shows “演示证据不可用” + “重试示例”; empty shows “暂无演示回执，不等于失败”; stale shows a full timestamp and “旧回执，不能推断当前状态”. Ready restores the fixture. Retry changes only the sample evidence. Show no five-job second dashboard; no credentials, account names, machine paths, real PR titles or user content.
-
-### Keyboard, appearance and accessibility
-Every job name is visible without hover and each job has one selection owner. Use real buttons, aria-expanded/aria-controls on disclosures and aria-pressed or aria-current for selection; no nested button elements. Tab follows the declared visual flow, Enter/Space activate, Escape cancels intent/closes the current fold, and focus returns to its opener. On committing, move focus into the retained inline status rather than losing it to a disabled button; on settle, focus the local return control. Use a 2px focus ring with 2px offset in the accent role; no hover-only functions or single-letter global shortcuts. Changes use aria-live=polite and never announce a ticking clock every second.
-
-Support data-theme="light" and data-theme="dark" at the document root; an explicit value overrides prefers-color-scheme, and an absent value follows the system, including changes. There is NO inner appearance toggle. If Coding later supplies a parent appearance-message protocol, validate the documented origin and payload, allow only light/dark, and update the same root attribute; do not invent an incompatible message schema or send external telemetry. The outer chooser owns appearance, viewport and gallery navigation. With prefers-reduced-motion, all transitions become immediate and no spinner/orbit/paper movement is essential; with reduced transparency use the declared opaque fallback. All normal UI text, including metadata, is at least 13px with 1.4 line-height (display lines may use 1.15–1.2). All pointer targets ≥28×28px, default 32px high. Never truncate numbers, timestamps or CJK names with ellipsis; wrap prose, keep numeric tokens intact, and scroll only the bounded selected detail region if necessary. At 1280×800, all five names must remain visible with no page scroll. At 200% zoom use accessible internal scroll rather than clipping, hiding jobs or shrinking fonts.
-
+At the domain clock, focus my-pr-supervisor and derive its due pin from the 04:10 success plus the five-minute cadence. Bridge and auto-review are also due by 04:15 but remain subordinate; morning digest is completed 04:01 and learning is completed 04:15. Selecting the daily digest transfers the expanded stop to the right lane; the 我的 PR name stays only in its folded original station. Open a stage to see its source-backed passed state, or open the receipt for the selected job's latest completion. Running immediately replaces the selected station pin with 已排队, then 运行中, then a check and 刚刚完成 · 耗时 14s. Keep a busy station identifiable if selection changes; its update belongs to that stop, not the newly selected one. An unavailable receipt reads 暂无回执 in the popover. Failure recovery uses the same job's 立即运行 button. Disable translation of the rail under Reduce Motion.
 
 ## Stage 2 handoff
-### Canonical five-job fixture (public, simulated; A–E are design references, not UI labels)
-Use this exact five-record dataset. Frozen demo clock: **2026-03-16 03:59:20 CST (UTC+08:00)**, not the current time. Every displayed status, timestamp, output and action receipt must be visibly scoped by “演示数据 · 非实时”; no live/online indicators. Keep “模拟” on any subsequently generated receipt. Cadence is a schedule, not proof of actual successful execution.
-
-| Ref | Stable binding ID | Display name, exactly once per default viewport | Cadence | Synthetic last receipt / initial state | Next planned time |
-|---|---|---|---|---|---|
-| A | linear-bot-bridge | Linear @bot 桥接 | Every 1 min / 每 1 分钟 | 2026-03-16 03:59:00; 示意正常 | 2026-03-16 04:00:00 CST |
-| B | my-pr-supervisor | 我的 PR | Every 5 min / 每 5 分钟 | 2026-03-16 03:45:00; 回执较旧，非已证实失败 | 2026-03-16 04:00:00 CST |
-| C | pr-auto-review | 特定人 PR | Every 5 min / 每 5 分钟 | 2026-03-16 03:55:00; 合并跳过，非成功/失败证明 | 2026-03-16 04:00:00 CST |
-| D | aidata-digest | 每日简报 | Daily 04:00 CST / 每日 04:00 | 2026-03-15 04:00:00; 示例 4/5、阶段 5 警告 | 2026-03-16 04:00:00 CST |
-| E | daily-learning | 每日学习推荐 | Daily 04:15 CST / 每日 04:15 | 尚无状态产出；不是失败；每天 3 题候选 → Linear & AIDash | 2026-03-16 04:15:00 CST |
-
-Only D has the five-stage demo. Use **“示意阶段 1” through “示意阶段 5”**, not claims about production stage names; stages 1–4 passed, 5 warning are invented sample data. E has three candidate slots, not five stages. A/B/C have receipt/evidence details, not a copied five-stage template. D source-as-of, if exposed, is synthetic 2026-03-15 03:50 CST; distinguish it from last-run/receipt time. B's age is 14m20s; A's next tick is 00:40; E's next window is 15m40s away. Do not silently sort by unsupported health scores.
-
-
-### Concrete implementation and acceptance
-- Implement the measurements and region ownership above directly as this candidate's self-contained demo; this Stage 1 deliverable contains no executable product/HTML implementation. No production code, package installation, backend changes, service configuration or real-data access is authorized. Owner selection is still pending.
-- 默认 B 仅在左纸面命名、四个不同 sibling 在右；执行两次交换和返回后仍五项无重复。模拟核对可撤销；打开 Run Now 后仅运行选中工单，不同时确认核对。
-- Required initial state: P0 显示“这份旧回执，需要再核对吗？”；14m20s 作为 15px 说明，不另造数字 hero。右签的告警全部用次级文字而非四个强调色。尚未核对，证据页关闭。
-- Treat the canonical table as the single data model. It is not a request to render another table beside the bespoke design. The stable IDs bind the one visible representation per record. Selection never drops any of the five registered jobs from the default view, and none becomes a duplicate summary card. Need-actions remain inside the selected record, never a global second dashboard.
-- Exercise default light, default dark, selected evidence-empty/stale/failed, intent cancel, committing double-click and settled return. Assert five unique job selection owners; five display names visible once; only one selected detail/intent surface; no page-level horizontal overflow; zero numeric truncation and no raw localization keys. Inspect actual pixels at 1280×800, keyboard focus order and both accessibility fallbacks; prompt approval does not certify rendered quality.
-- No fetch/XHR/WebSocket/EventSource, real issue links, telemetry, local filesystem reads or account data. All evidence is synthesized in memory. Respect a parent appearance message if a validated protocol is later supplied; do not add theme buttons inside the page. Outer portal provides traffic lights, window border and chooser controls. Stop at demo implementation; do not imply this candidate has been selected for the final product.
+Use main.topology-cadence-stations with a direct section.content whose children are header and figure[temporal-diagram]. The figure parents a visually hidden accessible figcaption and two section[lane] siblings; each lane parents a heading and ol, each li contains a button and one hidden-or-expanded div[station-detail]. This nested figure/section/ordered-stop structure must remain distinct from a bento field. Required assertions: all five labels are visible once before and after station changes; opening digest exposes the exact five route labels; the two daily cadences never inherit five-minute timing; the receipt popover stays bounded inside the 1280×800 frame; the active due time is not styled as a red error. Read ../../domain.md for source IDs and shared execution limits, and preserve the station identity throughout run feedback.

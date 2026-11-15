@@ -1,121 +1,937 @@
 {
-  "schema": "aidash-cards-redesign/chooser-manifest-v1",
+  "schema": "tenfold-gallery/v1",
+  "mode": "screen",
+  "goal": "aidash-cards-redesign",
+  "round": 2,
+  "platform": "desktop",
+  "frame_mode": "macos",
   "category": "scheduled-pulse",
   "category_title": "⏱️ 定时脉搏 Card (10套)",
   "frame": {
     "width": 1280,
     "height": 800
   },
+  "session_anti_patterns": [],
+  "style_overrides": {},
+  "direction": "",
+  "screen_content": "",
   "variants": [
     {
+      "category": "scheduled-pulse",
+      "round": 2,
+      "platform": "macos",
       "id": "v01",
-      "title": "离站时刻 · Departure Board",
-      "p0": "A 的下一次计划触发还有 00:40；唯一大号时间信号，不把等待时间伪装成健康分。",
-      "axis_y": "单活动行 accordion：任意时刻只有一行可容纳结果、阶段或证据；其余四个任务的命名行始终可见。",
-      "layout": "单块横向离站板：五行共用列网格，A 默认行内展开；没有侧栏、顶部任务摘要或独立详情列表。",
-      "archetype": "Swiss Chrono departure instrument; VS-007 的对齐数字、紧凑时刻与无弹跳操作。",
+      "title": "晨报磁场 · Unequal job magnets",
+      "pills": [
+        "pulse-magnets",
+        "VS-007",
+        "direct-job-magnets"
+      ],
+      "src": "v01.html",
+      "reference": false,
+      "prompt": "prompts/v01-prompt.md",
+      "prompt_sha256": "0683ac0037fe24085a1364d5c02a0b8adf868f18c3041c0a36c22ea47ab26a03",
+      "html_sha256": "98537530eaa3e20ac4524fffd95d1ed002d228625a1fa55e648ad32495604b30",
+      "topology_signature": "topology-pulse-magnets",
+      "p0": "Selected digest 5/5 passed stages in one enlarged magnet",
+      "axis_y": "Exchange selected article with its satellite; stage/receipt replaces the lead detail region",
+      "layout": {
+        "card": {
+          "x": 120,
+          "y": 108,
+          "width": 1040,
+          "height": 584,
+          "radius": 26,
+          "padding": 24
+        },
+        "regions": [
+          {
+            "component": "header",
+            "width": 992,
+            "height": 44
+          },
+          {
+            "component": "magnet-field",
+            "width": 992,
+            "height": 468,
+            "gap_before": 24
+          },
+          {
+            "component": "selected-magnet",
+            "width": 536,
+            "height": 468
+          },
+          {
+            "component": "satellites",
+            "width": 432,
+            "height": 468,
+            "columns": 2,
+            "gap": 12
+          }
+        ],
+        "type_sizes": [
+          40,
+          20,
+          15,
+          13
+        ],
+        "breadth_axes": {
+          "composition": "unequal-bento",
+          "focus": "digest-pass",
+          "visualization": "five-stage-notch-trace",
+          "fold": "exchange-selected-item",
+          "polarity": "cool-blue-solid",
+          "type_rhythm": "40px-bento-numeral"
+        }
+      },
+      "whitespace": null,
+      "glass_geometry": null,
+      "archetype": "VS-007 Swiss Chrono, direct-manipulation bento remix",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "98114e09c10a84bdb761f926bc706d6d96550b463771608c5ab5551d6e5e6a29",
-      "html_sha256": "016fc39dcb51e7514f05aa8bbb4921d419ebf61fa5fc31e61f060c7b443f31cb"
+      "topology_name": "topology-pulse-magnets",
+      "topology_tree_sha256": "a01eaa7289e20230e48b0be3bc0fd5027e7f24af2fc69991f77cd7d295f0b1a2",
+      "coordinates": {
+        "VS": "VS-007",
+        "CL": "CL-008",
+        "X": "direct-job-magnets",
+        "Y": "tile-substitution",
+        "Z": "solid-raised-focus",
+        "AppTheme": "R2PulseMagnet"
+      }
     },
     {
+      "category": "scheduled-pulse",
+      "round": 2,
+      "platform": "macos",
       "id": "v02",
-      "title": "待办工单 · One Open Work Order",
-      "p0": "B 的一项演示决策：核对 14m20s 前的旧回执；大字问题而非 KPI。",
-      "axis_y": "工单折页：证据翻开为左纸面内部替换页；同一时间只有一张工单展开，四张侧签保持完整命名。",
-      "layout": "左侧一张展开工单 + 右侧四条收起工单的非对称 1+4 托盘；被选中对象从右托盘迁入左工单而不是复制。",
-      "archetype": "Zen Paper Checklist; VS-005 的一件事、一张纸、明确小动作，采用薄荷色档案纸而非通用灰卡。",
+      "title": "节律站台 · Cadence rail",
+      "pills": [
+        "cadence-stations",
+        "VS-007",
+        "temporal-lanes"
+      ],
+      "src": "v02.html",
+      "reference": false,
+      "prompt": "prompts/v02-prompt.md",
+      "prompt_sha256": "4129342d7d934336b5b8dea30be7dfaeb587224a47bcd7e1c4fd5f897a4b9e5a",
+      "html_sha256": "5f5c9c92f4234c203b7bcdec02d3705f1adfec873f54b1eabd657a9d3d816cf1",
+      "topology_signature": "topology-cadence-stations",
+      "p0": "My PR due at 04:15, latest success 04:10, expanded station",
+      "axis_y": "One attached station fold across categorical minute/daily lanes; bounded receipt popover",
+      "layout": {
+        "card": {
+          "x": 100,
+          "y": 98,
+          "width": 1080,
+          "height": 604,
+          "radius": 24,
+          "padding": 28
+        },
+        "regions": [
+          {
+            "component": "header",
+            "width": 1024,
+            "height": 48
+          },
+          {
+            "component": "temporal-diagram",
+            "width": 1024,
+            "height": 476,
+            "gap_before": 24
+          },
+          {
+            "component": "frequent-lane",
+            "width": 392,
+            "height": 476
+          },
+          {
+            "component": "daily-lane",
+            "width": 604,
+            "height": 476,
+            "gap_before": 28
+          }
+        ],
+        "type_sizes": [
+          36,
+          19,
+          15,
+          13
+        ],
+        "breadth_axes": {
+          "composition": "two-categorical-cadence-rails",
+          "focus": "due-time",
+          "visualization": "due-and-complete-station-pins",
+          "fold": "attached-station-expansion",
+          "polarity": "cool-cyan-lanes",
+          "type_rhythm": "36px-station-time"
+        }
+      },
+      "whitespace": null,
+      "glass_geometry": null,
+      "archetype": "VS-007 Swiss Chrono, categorical timetable",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "1a21a845417d3cdbc7ba3ef0d9b624062d2a9bf94848bfc1640bba8d95ea5f56",
-      "html_sha256": "09a72d87c1416865fafdf7f994b9eff98047151ad93fa22c92163adadf0a7b78"
+      "topology_name": "topology-cadence-stations",
+      "topology_tree_sha256": "ed181420aebe0a56cf29041edc6d48fed31cabaf8ea67134d7586c35270bb26f",
+      "coordinates": {
+        "VS": "VS-007",
+        "CL": "CL-003",
+        "X": "temporal-lanes",
+        "Y": "attached-station-fold",
+        "Z": "rail-action-popover",
+        "AppTheme": "R2CadenceRail"
+      }
     },
     {
+      "category": "scheduled-pulse",
+      "round": 2,
+      "platform": "macos",
       "id": "v03",
-      "title": "阶段航道 · Stage Lock Chamber",
-      "p0": "D 的五阶段中第 5 段尚待核对；唯一焦点是阶段连续性，不是五个健康分。",
-      "axis_y": "阶段门式局部 reveal：选中一个阶段，五段共用一个下方解释位；整个右舞台又可被“证据”透镜替换。",
-      "layout": "左窄任务 spine + 右横向五段闸室；唯一命名任务集在 spine，选中阶段的内容就地向下揭开。",
-      "archetype": "Precision Swiss telemetry remixed with CL-003 cyan; engineering section, not sci-fi cockpit decoration.",
+      "title": "五点观测环 · Discrete health orbit",
+      "pills": [
+        "five-point-orbit",
+        "VS-006",
+        "orbital-job-choice"
+      ],
+      "src": "v03.html",
+      "reference": false,
+      "prompt": "prompts/v03-prompt.md",
+      "prompt_sha256": "7943a9e63465c874cbc267ae7b9cf00961fb3284c2fd77560cdb108832d24752",
+      "html_sha256": "60f321fb5406f21a1c55fc7851b67de5c3977ebfd7fa1bb97dd3cf9488cb8254",
+      "topology_signature": "topology-five-point-orbit",
+      "p0": "Central selected-digest 5/5; no aggregate health percentage",
+      "axis_y": "Five fixed station choices; center summary is replaced by stage definitions or receipt",
+      "layout": {
+        "card": {
+          "x": 140,
+          "y": 90,
+          "width": 1000,
+          "height": 620,
+          "radius": 30,
+          "padding": 28
+        },
+        "regions": [
+          {
+            "component": "header",
+            "width": 944,
+            "height": 36
+          },
+          {
+            "component": "orbit-map",
+            "width": 944,
+            "height": 508,
+            "gap_before": 20
+          },
+          {
+            "component": "central-readout",
+            "x": 480,
+            "y": 294,
+            "width": 320,
+            "height": 250
+          },
+          {
+            "component": "stage-perimeter",
+            "x": 470,
+            "y": 284,
+            "width": 340,
+            "height": 270,
+            "radius": 34,
+            "flow": "absolute"
+          }
+        ],
+        "station_offsets": [
+          [
+            54,
+            32
+          ],
+          [
+            636,
+            32
+          ],
+          [
+            688,
+            230
+          ],
+          [
+            358,
+            416
+          ],
+          [
+            0,
+            230
+          ]
+        ],
+        "station_size": [
+          228,
+          76
+        ],
+        "type_sizes": [
+          44,
+          20,
+          15,
+          13
+        ],
+        "breadth_axes": {
+          "composition": "five-fixed-orbit-stations",
+          "focus": "digest-pass",
+          "visualization": "five-segment-rounded-stage-ring",
+          "fold": "central-readout-turn",
+          "polarity": "porcelain-violet-instrument",
+          "type_rhythm": "44px-central-instrument"
+        }
+      },
+      "whitespace": null,
+      "glass_geometry": null,
+      "archetype": "VS-006 Mindful Focus, static observatory remix without breathing animation",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "3102b519f622fe29ca2d29eab0f720b3cbf0c278bde95b8b505e21bba572884b",
-      "html_sha256": "3b0ba7091e38dfe95fefa711e374cb6e829e6551ddb54a8aafa8d91ddeae91ff"
+      "topology_name": "topology-five-point-orbit",
+      "topology_tree_sha256": "d87e0a4df186f16461b13bbd8333a783ec8ffe3ba4d94eafb58a82dfccd2da8d",
+      "coordinates": {
+        "VS": "VS-006",
+        "CL": "CL-008",
+        "X": "orbital-job-choice",
+        "Y": "radial-evidence-turn",
+        "Z": "opaque-instrument",
+        "AppTheme": "R2FivePointOrbit"
+      }
     },
     {
+      "category": "scheduled-pulse",
+      "round": 2,
+      "platform": "macos",
       "id": "v04",
-      "title": "节奏星盘 · Quiet Cadence Dial",
-      "p0": "E 的下一个日更窗口 04:15 CST；中央只展示该时刻，星盘位置不代表真实时间比例。",
-      "axis_y": "固定节点 + inspector 单透镜；选中节点不旋转，结果/证据替换右侧同一内容位。",
-      "layout": "五个唯一命名节点围绕一只无刻度静态星盘，右侧单选 inspector；没有额外任务列表或图例。",
-      "archetype": "Mindful Focus Recovery; VS-006 的静态呼吸空间，不使用呼吸动画或占星装饰。",
+      "title": "行内展开页 · Quiet hinged register",
+      "pills": [
+        "hinged-register",
+        "VS-005",
+        "single-row-ownership"
+      ],
+      "src": "v04.html",
+      "reference": false,
+      "prompt": "prompts/v04-prompt.md",
+      "prompt_sha256": "4c3dbf6c84a0428161b1c368e772ceaaf5baa13f2bb76e2c8d2b5823cec5f304",
+      "html_sha256": "03755ab783c415491b0bd8f2b63952fe8d1079c71a275bc0e648c47c25f50d8c",
+      "topology_signature": "topology-hinged-register",
+      "p0": "Learning row's delivered 3 questions, without invented question titles",
+      "axis_y": "One active accordion body; stage/receipt replaces row reading body without adding height",
+      "layout": {
+        "card": {
+          "x": 240,
+          "y": 104,
+          "width": 800,
+          "height": 616,
+          "radius": 22,
+          "padding": 24
+        },
+        "regions": [
+          {
+            "component": "header",
+            "width": 752,
+            "height": 40
+          },
+          {
+            "component": "register",
+            "width": 752,
+            "height": 504,
+            "gap_before": 24
+          }
+        ],
+        "folded_row_height": 60,
+        "selected_row_height": 240,
+        "row_gap": 6,
+        "row_body_columns": [
+          184,
+          496
+        ],
+        "row_body_column_gap": 24,
+        "type_sizes": [
+          28,
+          18,
+          15,
+          13
+        ],
+        "breadth_axes": {
+          "composition": "narrow-hinged-register",
+          "focus": "learning-delivery",
+          "visualization": "three-delivery-check-markers",
+          "fold": "single-row-accordion",
+          "polarity": "sky-blue-paper",
+          "type_rhythm": "28px-quiet-row-outcome"
+        }
+      },
+      "whitespace": null,
+      "glass_geometry": null,
+      "archetype": "VS-005 Zen Paper Checklist, owned row disclosure",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "a206f538d11c3f7b45897c26faa5197a932d8279e27e7b47596dde88f11be27a",
-      "html_sha256": "1949b5fc651917323e124e2e4c768ba59c9d52dafe362c15ed1f93bbe6628870"
+      "topology_name": "topology-hinged-register",
+      "topology_tree_sha256": "ae19bebeeed4292eff0c49f47b7b755feadac3d3b0dc8889f32ec9e5b4857e8f",
+      "coordinates": {
+        "VS": "VS-005",
+        "CL": "CL-006",
+        "X": "single-row-ownership",
+        "Y": "one-active-accordion",
+        "Z": "flat-paper-hinge",
+        "AppTheme": "R2HingedRegister"
+      }
     },
     {
+      "category": "scheduled-pulse",
+      "round": 2,
+      "platform": "macos",
       "id": "v05",
-      "title": "脉冲总谱 · Receipt Score",
-      "p0": "B 的 03:45 旧回执到演示时钟之间的 14m20s 空档；突出缺口，不做整体成功率。",
-      "axis_y": "选中泳道双透镜：时间/证据互斥替换该行的同一绘图区；其他行的命名锚点永远可见。",
-      "layout": "五行共用 03:40–04:20 时间轴的一张总谱；每个 Job 只有一个行首名字，选中行的图带可替换为证据。",
-      "archetype": "Precision Acoustic telemetry; VS-003 的静态音轨秩序，用在运行回执而非虚构波形。",
+      "title": "快慢双页 · Two-speed workbench",
+      "pills": [
+        "two-speed-bench",
+        "VS-007",
+        "fast-versus-daily"
+      ],
+      "src": "v05.html",
+      "reference": false,
+      "prompt": "prompts/v05-prompt.md",
+      "prompt_sha256": "55928f81312064a494b231b0de822abb48bf85e1276fbdf97c9bb515271c320a",
+      "html_sha256": "bc0a7a624fa86d8d1031eecc64d6b985658ca0f9f1bc3cb36049fb653e4697b2",
+      "topology_signature": "topology-two-speed-bench",
+      "p0": "Review's last completion at 04:10 in one owned frequent-work result well",
+      "axis_y": "Single owned well transfers between frequent stack and daily pair; receipt lid is transient",
+      "layout": {
+        "card": {
+          "x": 88,
+          "y": 112,
+          "width": 1104,
+          "height": 576,
+          "radius": 28,
+          "padding": 24
+        },
+        "regions": [
+          {
+            "component": "header",
+            "width": 1056,
+            "height": 44
+          },
+          {
+            "component": "tempo-bench",
+            "width": 1056,
+            "height": 464,
+            "gap_before": 20
+          },
+          {
+            "component": "frequent-bench",
+            "width": 424,
+            "height": 464
+          },
+          {
+            "component": "daily-bench",
+            "width": 608,
+            "height": 464,
+            "gap_before": 24
+          }
+        ],
+        "frequent_rows": {
+          "height": 88,
+          "gap": 12,
+          "selected_well_extension": 164
+        },
+        "daily_rows": {
+          "default_height": 220,
+          "default_gap": 24,
+          "selected_height": 364,
+          "other_height": 88,
+          "selected_gap": 12
+        },
+        "type_sizes": [
+          32,
+          20,
+          15,
+          13
+        ],
+        "breadth_axes": {
+          "composition": "tempo-separated-workbench",
+          "focus": "latest-completion",
+          "visualization": "check-and-completion-reading",
+          "fold": "transfer-owned-well",
+          "polarity": "warm-forest-paper",
+          "type_rhythm": "32px-workbench-result"
+        }
+      },
+      "whitespace": null,
+      "glass_geometry": null,
+      "archetype": "VS-007 Swiss Chrono mixed with CL-002 warm ledger",
       "prompt_file": "prompts/v05-prompt.md",
-      "prompt_sha256": "41c863c9c9fb2f9a3568eec8917f401ac802050247eb3e28bf32825220892546",
-      "html_sha256": "38120ca5d2175e0987e1e37f63a623ef4e27fa1fcebf11627efdce53e0122236"
+      "topology_name": "topology-two-speed-bench",
+      "topology_tree_sha256": "7cb9ac9631d6b446c1b40eb2fc7d9c2bf5781b77b56ebea7439b9d79a40cb7f6",
+      "coordinates": {
+        "VS": "VS-007",
+        "CL": "CL-002",
+        "X": "fast-versus-daily",
+        "Y": "owned-inline-well",
+        "Z": "receipt-lid-only",
+        "AppTheme": "R2TwoSpeedBench"
+      }
     },
     {
+      "category": "scheduled-pulse",
+      "round": 2,
+      "platform": "macos",
       "id": "v06",
-      "title": "回执账簿 · The Coalesced Receipt",
-      "p0": "C 的合并跳过不是失败；单张大回执解释这个结果，不制造未证实的重试需求。",
-      "axis_y": "回执页折签：摘要/证据共用右页；需要处理与阶段作为页内 disclosure，任一时刻只打开一个。",
-      "layout": "左页五行对齐账簿 + 右页一张反相实体回执；只在左页命名五任务，右页是选中对象的字段投影而非重复摘要。",
-      "archetype": "Warm Editorial Swiss Ledger; VS-002 的借阅账页与明确回执语义，不做金融金额拟物。",
+      "title": "胶囊节拍器 · Capsule spine",
+      "pills": [
+        "capsule-definition",
+        "VS-003",
+        "cadence-capsule-spine"
+      ],
+      "src": "v06.html",
+      "reference": false,
+      "prompt": "prompts/v06-prompt.md",
+      "prompt_sha256": "42f8bbc467638eb8f774c829d765b4950b60ca70c842a306744b2ad68655a049",
+      "html_sha256": "4e168ece1bcc1364821466d005a9fb331006bfd10f15cd3e356f4bf0650fe135",
+      "topology_signature": "topology-capsule-definition",
+      "p0": "Bridge next due time 04:15 beneath its only named capsule",
+      "axis_y": "Selected definition body occupies one well beneath a fixed horizontal capsule spine",
+      "layout": {
+        "card": {
+          "x": 80,
+          "y": 150,
+          "width": 1120,
+          "height": 500,
+          "radius": 28,
+          "padding": 24
+        },
+        "regions": [
+          {
+            "component": "header",
+            "width": 1072,
+            "height": 40
+          },
+          {
+            "component": "spine",
+            "width": 1072,
+            "height": 88,
+            "gap_before": 24
+          },
+          {
+            "component": "definition-well",
+            "width": 1072,
+            "height": 276,
+            "gap_before": 24
+          }
+        ],
+        "capsule_widths": [
+          210,
+          180,
+          196,
+          220,
+          218
+        ],
+        "capsule_gap": 12,
+        "well_columns": [
+          416,
+          576
+        ],
+        "well_gap": 32,
+        "well_padding": 24,
+        "type_sizes": [
+          40,
+          20,
+          15,
+          13
+        ],
+        "breadth_axes": {
+          "composition": "horizontal-definition-spine",
+          "focus": "due-time",
+          "visualization": "discrete-cadence-ticks",
+          "fold": "one-shared-definition-well",
+          "polarity": "cyan-annotation-solid",
+          "type_rhythm": "40px-horizontal-readout"
+        }
+      },
+      "whitespace": null,
+      "glass_geometry": null,
+      "archetype": "VS-003 Precision Studio, non-acoustic schedule annotation",
       "prompt_file": "prompts/v06-prompt.md",
-      "prompt_sha256": "c17d0bf75be1a13a28c3cce81eb4d566ad81d39fc745ca3913e6c7c30b5d4c65",
-      "html_sha256": "9f05fa32ef2d3ef179a5af7b985ec71f0cb3304e4b7dc62d4c2c40e5340e19d7"
+      "topology_name": "topology-capsule-definition",
+      "topology_tree_sha256": "fa49442eb917fea1671c60e23de7aa0d32edbdbb497223b2f2cd7031780ac793",
+      "coordinates": {
+        "VS": "VS-003",
+        "CL": "CL-003",
+        "X": "cadence-capsule-spine",
+        "Y": "shared-definition-well",
+        "Z": "single-action-lens",
+        "AppTheme": "R2CapsuleSpine"
+      }
     },
     {
+      "category": "scheduled-pulse",
+      "round": 2,
+      "platform": "macos",
       "id": "v07",
-      "title": "候选信封 · Three Questions, Two Destinations",
-      "p0": "E 的 3 题候选将交给 Linear & AIDash；目前尚无回执，所以呈“等待候选”而非伪造完成数。",
-      "axis_y": "Z-stack 文件夹口袋：名签固定在五个不重叠槽位，选择只把对应内容页带到前景；证据是内页替换。",
-      "layout": "五个错层但全部完整可见的文件夹名签 + 一块共用展开内页；仅所选文件夹承载内容，非五列相同卡片。",
-      "archetype": "Ambient Tactile utility; VS-004 借用文件夹的空间层次，拒绝五张平铺灰卡与装饰性儿童贴纸。",
+      "title": "脉冲坐标纸 · Evidence matrix",
+      "pills": [
+        "job-evidence-matrix",
+        "VS-007",
+        "job-by-evidence-grid"
+      ],
+      "src": "v07.html",
+      "reference": false,
+      "prompt": "prompts/v07-prompt.md",
+      "prompt_sha256": "64b156483d0d37ad91a3ebdb4281498081d0efa6897e67722255e786dae3734d",
+      "html_sha256": "1eaf5d7d4145ea32b2fdaac397309cd30ab257edcd534f9e0de4d2a3a4946667",
+      "topology_signature": "topology-job-evidence-matrix",
+      "p0": "Digest's single selected outcome cell showing 5/5",
+      "axis_y": "One enlarged result cell; stage/receipt replaces cell body with fixed shared tracks",
+      "layout": {
+        "card": {
+          "x": 100,
+          "y": 116,
+          "width": 1080,
+          "height": 568,
+          "radius": 24,
+          "padding": 24
+        },
+        "regions": [
+          {
+            "component": "header",
+            "width": 1032,
+            "height": 36
+          },
+          {
+            "component": "matrix",
+            "width": 1032,
+            "height": 464,
+            "gap_before": 20
+          }
+        ],
+        "column_widths": [
+          248,
+          176,
+          560
+        ],
+        "column_gap": 24,
+        "column_labels_height": 32,
+        "ordinary_row_height": 52,
+        "selected_row_height": 176,
+        "row_gap": 12,
+        "type_sizes": [
+          34,
+          19,
+          15,
+          13
+        ],
+        "breadth_axes": {
+          "composition": "role-parented-evidence-matrix",
+          "focus": "digest-pass",
+          "visualization": "five-stage-notch-trace",
+          "fold": "single-result-cell-replacement",
+          "polarity": "blue-neutral-matrix",
+          "type_rhythm": "34px-tabular-cell-outcome"
+        }
+      },
+      "whitespace": null,
+      "glass_geometry": null,
+      "archetype": "VS-007 Swiss Chrono, semantic evidence grid",
       "prompt_file": "prompts/v07-prompt.md",
-      "prompt_sha256": "536a3f398933715a91cb336e0349a70b2dc2aa7e886c840c9b0cab2de8cf2ab4",
-      "html_sha256": "bc1baae7bcbc9065548fc6da245d1d7f646fd8976ede27cb9a015a469198bdd5"
+      "topology_name": "topology-job-evidence-matrix",
+      "topology_tree_sha256": "ca2cacfd73f3149158fea393e27ba113a2875a1d0ada302a8958f65d415af5e0",
+      "coordinates": {
+        "VS": "VS-007",
+        "CL": "CL-006",
+        "X": "job-by-evidence-grid",
+        "Y": "cell-replacement",
+        "Z": "solid-grid-paper",
+        "AppTheme": "R2EvidenceMatrix"
+      }
     },
     {
+      "category": "scheduled-pulse",
+      "round": 2,
+      "platform": "macos",
       "id": "v08",
-      "title": "晨间副刊 · The Unfinished Edition",
-      "p0": "D 的“已有产出，不代表完整交付”一句结果叙事；不再用红绿 KPI 掩盖 partial。",
-      "axis_y": "脚注式行内展开：主文的证据/五阶段在同一文本栏替换正文，点返回恢复，不开第三列。",
-      "layout": "一篇左侧主文 + 右侧四条简讯目录；主文任务与目录四项互斥迁移，没有第五条重复目录项。",
-      "archetype": "Editorial Poster Block restrained to a text-led edition; VS-008 的强标题与不对称版心，不用亮色贴片墙。",
+      "title": "到点画报 · Editorial due moment",
+      "pills": [
+        "editorial-due-poster",
+        "VS-008",
+        "due-time-poster"
+      ],
+      "src": "v08.html",
+      "reference": false,
+      "prompt": "prompts/v08-prompt.md",
+      "prompt_sha256": "fadfffc767395e5e139338ecc873a067241077a600b464d47851d5334f4b4af1",
+      "html_sha256": "b3a9b67e823f247338fcd82b142e3fc49bc29aa7cfa87cafd9f1766e9743b6fb",
+      "topology_signature": "topology-editorial-due-poster",
+      "p0": "Bridge due-now 00:00 counter derived from the 04:15 clock, not a fake future timer",
+      "axis_y": "Poster/sibling exchange; opaque receipt shutter keeps all evidence under the number",
+      "layout": {
+        "card": {
+          "x": 112,
+          "y": 100,
+          "width": 1056,
+          "height": 600,
+          "radius": 28,
+          "padding": 28
+        },
+        "regions": [
+          {
+            "component": "header",
+            "width": 1000,
+            "height": 40
+          },
+          {
+            "component": "body",
+            "width": 1000,
+            "height": 480,
+            "gap_before": 24
+          },
+          {
+            "component": "poster",
+            "width": 640,
+            "height": 480,
+            "padding": 28
+          },
+          {
+            "component": "sibling-register",
+            "width": 328,
+            "height": 480,
+            "gap_before": 32
+          }
+        ],
+        "side_row_height": 108,
+        "side_gap": 16,
+        "poster_reading_width": 584,
+        "shutter_height": 176,
+        "poster_vertical_allocation": [
+          56,
+          12,
+          88,
+          20,
+          16,
+          36,
+          16,
+          176
+        ],
+        "type_sizes": [
+          64,
+          24,
+          15,
+          13
+        ],
+        "breadth_axes": {
+          "composition": "large-number-editorial-poster",
+          "focus": "due-time",
+          "visualization": "due-now-clock-arc",
+          "fold": "exchange-selected-item",
+          "polarity": "violet-editorial-ink",
+          "type_rhythm": "64px-poster-number"
+        }
+      },
+      "whitespace": null,
+      "glass_geometry": null,
+      "archetype": "VS-008 Editorial Poster Block with restrained solid ink",
       "prompt_file": "prompts/v08-prompt.md",
-      "prompt_sha256": "695bd602a5adcd8e47fd4a0b174bb84f3d0a1f9d2db92b007d228d98f20b49a9",
-      "html_sha256": "3520a226a7ec3bbf910b20452f7bb550b03252ef5535bba2037cd6a36978ce4a"
+      "topology_name": "topology-editorial-due-poster",
+      "topology_tree_sha256": "7464fe3742fa95a7d3905682f6c4f971c19261923a645cef63a0158cde47b5c9",
+      "coordinates": {
+        "VS": "VS-008",
+        "CL": "CL-008",
+        "X": "due-time-poster",
+        "Y": "under-number-shutter",
+        "Z": "opaque-ink-block",
+        "AppTheme": "R2DuePoster"
+      }
     },
     {
+      "category": "scheduled-pulse",
+      "round": 2,
+      "platform": "macos",
       "id": "v09",
-      "title": "回执地平线 · Receipt Age Silhouette",
-      "p0": "B 的回执年龄约为节奏的 2.87×；这是演示用比值，不是健康结论或真实 SLO。",
-      "axis_y": "柱体内挖式 detail cavity：证据取代所选柱的视觉填充，五个基座不动；回到比值模式恢复。",
-      "layout": "一张五列年龄轮廓图，五个命名基座各一次；选中柱下部变成唯一证据腔体，不再另造 legend/list。",
-      "archetype": "Precision instrument remixed with restrained CL-001 volt; technical silhouette, not fitness rings or a five-KPI bento.",
+      "title": "晨间纸袋 · Pocketed result deck",
+      "pills": [
+        "paper-pocket-deck",
+        "VS-002",
+        "job-header-pockets"
+      ],
+      "src": "v09.html",
+      "reference": false,
+      "prompt": "prompts/v09-prompt.md",
+      "prompt_sha256": "77f2942c75e673b1e68046c8ccd0ad68e410fc3f8815532c30673df7b7f5e44d",
+      "html_sha256": "aef3a9969edc1532436a58dbf6caa6f0fe5c99b465d8fe25a2491767408de785",
+      "topology_signature": "topology-paper-pocket-deck",
+      "p0": "Front digest paper's 5/5 completed result, all four rear titles exposed",
+      "axis_y": "Bring original paper forward in a stepped Z-deck; replace its outcome with inset evidence",
+      "layout": {
+        "card": {
+          "x": 120,
+          "y": 82,
+          "width": 1040,
+          "height": 636,
+          "radius": 28,
+          "padding": 24
+        },
+        "regions": [
+          {
+            "component": "header",
+            "width": 992,
+            "height": 40
+          },
+          {
+            "component": "paper-pocket",
+            "width": 992,
+            "height": 528,
+            "gap_before": 20
+          }
+        ],
+        "paper_widths": [
+          864,
+          880,
+          896,
+          912,
+          928
+        ],
+        "paper_y_offsets": [
+          0,
+          44,
+          88,
+          132,
+          176
+        ],
+        "exposed_header_height": 44,
+        "front_height": 336,
+        "paper_radius": 18,
+        "front_padding": 24,
+        "front_reading_width": 880,
+        "inset_evidence_height": 168,
+        "type_sizes": [
+          36,
+          20,
+          15,
+          13
+        ],
+        "breadth_axes": {
+          "composition": "stepped-opaque-paper-deck",
+          "focus": "digest-pass",
+          "visualization": "five-checked-paper-folds",
+          "fold": "z-pocket-promotion",
+          "polarity": "warm-forest-paper",
+          "type_rhythm": "36px-tactile-front-result"
+        }
+      },
+      "whitespace": null,
+      "glass_geometry": null,
+      "archetype": "VS-002 Warm Editorial, spatial pocket signature preserved",
       "prompt_file": "prompts/v09-prompt.md",
-      "prompt_sha256": "7606b63d12e3cbdc59d6c7311f0da6047b938523b53d9b016f472215a2b73cef",
-      "html_sha256": "b9728d4ec6cc954071e24f160f87526fc7e9ebede857bf3b23472043341797e7"
+      "topology_name": "topology-paper-pocket-deck",
+      "topology_tree_sha256": "361876050e5921ab4dda7b75335f0ebae91547130e367ce6b4bc5b863887baf9",
+      "coordinates": {
+        "VS": "VS-002",
+        "CL": "CL-002",
+        "X": "job-header-pockets",
+        "Y": "bring-one-paper-forward",
+        "Z": "opaque-stepped-deck",
+        "AppTheme": "R2MorningPocket"
+      }
     },
     {
+      "category": "scheduled-pulse",
+      "round": 2,
+      "platform": "macos",
       "id": "v10",
-      "title": "双速晨历 · Fast Watch, Slow Edition",
-      "p0": "下一个日更预约 04:00 CST（D）；把快轮询与慢日更分开，不显示五个竞争倒计时。",
-      "axis_y": "日历页横向揭页：选中日更的预约体内切换计划/回执；选择快巡检时右部主体替换为其详情，同时两日更命名页签仍可见。",
-      "layout": "左侧三条周期巡检索引 + 右侧仅两项的纵向晨历；五任务跨两域唯一分配，不再汇总复制。",
-      "archetype": "Editorial Swiss calendar; VS-002 的安静纸页 + CL-007 的丁香晨光，不使用网页月历和移动底部导航。",
+      "title": "一键工作台 · Command-focus stage",
+      "pills": [
+        "run-command-stage",
+        "VS-003",
+        "choose-then-commit"
+      ],
+      "src": "v10.html",
+      "reference": false,
+      "prompt": "prompts/v10-prompt.md",
+      "prompt_sha256": "57f022337f4e494f56726d3b0b95584f1f73758d013c830933a26a3b72ba5391",
+      "html_sha256": "23633735d6f6339ad60874c52ef3ccaeaa8f8d9edc6d1d33f2076f64d4384eca",
+      "topology_signature": "topology-run-command-stage",
+      "p0": "One selected review command: 立即运行, not selection-triggered execution",
+      "axis_y": "Stationary command register feeds one stage with mutually exclusive evidence modes",
+      "layout": {
+        "card": {
+          "x": 92,
+          "y": 128,
+          "width": 1096,
+          "height": 544,
+          "radius": 26,
+          "padding": 24
+        },
+        "regions": [
+          {
+            "component": "header",
+            "width": 1048,
+            "height": 40
+          },
+          {
+            "component": "command-worktable",
+            "width": 1048,
+            "height": 432,
+            "gap_before": 24
+          },
+          {
+            "component": "job-register",
+            "width": 272,
+            "height": 432
+          },
+          {
+            "component": "command-stage",
+            "width": 752,
+            "height": 432,
+            "gap_before": 24,
+            "padding": 28
+          }
+        ],
+        "register_row_height": 80,
+        "register_gap": 8,
+        "primary_button": [
+          296,
+          64
+        ],
+        "stage_vertical_allocation": [
+          48,
+          64,
+          24,
+          36,
+          32,
+          168
+        ],
+        "detail_toolbar": [
+          240,
+          36
+        ],
+        "type_sizes": [
+          40,
+          20,
+          15,
+          13
+        ],
+        "breadth_axes": {
+          "composition": "menu-and-command-worktable",
+          "focus": "run-action",
+          "visualization": "labelled-completion-check",
+          "fold": "command-evidence-replacement",
+          "polarity": "indigo-command-solid",
+          "type_rhythm": "40px-primary-verb"
+        }
+      },
+      "whitespace": null,
+      "glass_geometry": null,
+      "archetype": "VS-003 Precision Studio, real job selection and commit",
       "prompt_file": "prompts/v10-prompt.md",
-      "prompt_sha256": "05c8032088b9bf6dc81e14c6b9e93be1e37f81125356cf81df02d438d538d0a1",
-      "html_sha256": "be10f0d98ce5a2ff589de627109a2759551b3636d03f87bc4f29e6c89bf25ca3"
+      "topology_name": "topology-run-command-stage",
+      "topology_tree_sha256": "97cdcdc092fcf41369d21509984f610147e98e2f674a5221067053cf966b1f79",
+      "coordinates": {
+        "VS": "VS-003",
+        "CL": "CL-008",
+        "X": "choose-then-commit",
+        "Y": "command-stage-replacement",
+        "Z": "functional-command-rim",
+        "AppTheme": "R2RunCommand"
+      }
     }
-  ]
+  ],
+  "prompt_contract": {
+    "schema": "design-prompts/v1",
+    "source": "provided",
+    "count": 10
+  }
 }

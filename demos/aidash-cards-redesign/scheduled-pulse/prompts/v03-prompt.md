@@ -1,50 +1,89 @@
-# v03 · 檐下脉搏匣 (topology-alcove-tray-console)
+# v03 · 象牙值守账页 (topology-swiss-ledger-strips)
 
 ## 1. Visual Metaphor & Archetype Lock
-以 Alcove 式短檐作入口，下面不是星图，而是一座有纸袋的桌面工作匣。短檐里嵌小环与快慢袋的切换，左列承载任务纸，窄中列显示当前阶段释义，右列是一张横向侧滑的回执票。选 VS-007 Swiss Chrono、CL-008 Alabaster/Navy；CP-002 控制纸袋厚度，DV-003 提供五分段仪表语义，MI-006 管抽取过渡。坐标 X＝单任务就地选择，Y＝fast/slow共享纸列占地并留出另一页纸头，Z＝檐口压住后纸、前纸从中抽出。SWWallet 是叠卡来源、Things 3 是文案留白来源、CleanShot X 是短工具栏来源，Alcove 只供内凹收口观察。候选 R3-AlcoveConsole 不改变 AIDash 其他页面；目标外形为 Native macOS 26。
+
+将 scheduled-pulse 解释为一张瑞士排版的工作账页：标题、列题、六条ledger strip和末尾印记构成同一张纸。选择 macOS / VS-002 Warm Editorial & Swiss Ledger / CL-002，AppTheme=IvoryDuty；X是固定五列账项，Y是插入本行下方的纸页汇报，Z只允许实体纸面与薄纸袋阴影。参考优先级 Swiss ledger、Apple Wallet纸面、Readwise安静文字；不借它们的金融功能。设计探索限于版面、字形、状态与报告口袋。
+
+任务文字用 SF Pro 14px 500，New York / Georgia仅用于22px masthead，数字为 SF Mono 12px tabular；其他说明13px。状态前导为6px方形beacon，但旁边仍印完整●/▲/✕文案。三个操作是有细边界的矩形ledger keys，radius5，不是药丸。inline SVG 24×24画直线暂停、回转箭头和桶，stroke1.4，保持16px光学尺寸，不画印章emoji。
 
 ## 2. Single P0 Focus & Initial Showcase State
-首屏檐口选「高频脉搏 3」，左纸列的 PR 自动审查成为唯一选中条，04:10完成、每5分钟；下方慢页纸头仍露晨报与学习的独立标题，五名字没有重复。檐内环中心5/5，caption「晨报阶段 · 04:01」负责解释独立digest记录。中列默认仅写「全部阶段通过」，不摊开五站。右票券收为一条48px纸边，露「执行回执」，未显示问题正文。时间固定11月15日04:15，不能把04:10的PR记录假装刚运行完成；只有用户手动触发后才出现新反馈。
+
+P0 聚焦“PR审查为什么没交付”，初始第六条 target-pr-review 的纸袋滑出，标题仍为「定时任务」。六行全部在页内；不在masthead加另一个失败summary，不将失败任务移到第一位。初始仅一页汇报可读，别把“五阶段”拆成第二页。
+
+逐条badge初值：每日简报 05:00＝● 成功 (1.8s)；每日学习推荐 04:15＝● 成功 (2.4s)；AIData 数仓脉搏 04:00＝▲ 耗时偏高 (14.2s)；Linear @bot 桥接＝● 运行中；我的 PR 巡检＝● 成功 (0.9s)；特定人 PR 审查＝✕ 失败 (exit 1)。所有累计/今日数以库存为准，六个首按钮均印「暂停」，没有任何初始删除项。
 
 ## 3. P1 / P2 Progressive Folding & Permanent DOM Contract
-檐上的快慢按钮是两页的展示优先级，不是新导航路由。P1为未激活页的可读纸头与五段caption，P2为选中行操作、段释义和侧票。job-pocket-column内两页在初始DOM就有全部5 job rows；ticket-slide-vault中的5阶段记录和3个学习问题同样常驻，SVG五段也不能点击才生成。层叠用 transform/opacity、class 与--page-lift，隐藏正文 inert，保持可点击露出的标题独立不被inert祖先包住。禁止 innerHTML、outerHTML、replaceChildren、insertAdjacentHTML；文本叶和aria状态可以更新。page切换选其已存在的上次任务，卡中只有一个selectedJobId；点击环段把currentStageId绑定到原有dl条目及票上对应行。Esc先收票、再清除段高亮，选择保持，返回原命中按钮。
+
+整页的P1层是一组列标题与六项账行，P2层为收在该条之下的paper-pocket slip。initial HTML就拥有6个 ledger-entry，每个内含完整四块slip；colophon中的6个恢复键亦常驻。用data-expanded和aria-expanded对应单展开逻辑，grid rows0fr/1fr控制袋高度；每次开另一行同时收上一行，点击当前账行则收其纸页。
+
+不可用innerHTML rebuild、replaceChildren、HTML模板重建、节点remove实现任何过渡；removedElements = 0是整页观察器合同。文字改预留Text节点data，inline SVG与link element保留identity。删除用data-deleted归零该entry的高度与分隔线、不卸载；colophon显示「删除了一项 · 撤销删除」并激活最后删除项的恢复键。撤销回原账位，保留状态与计数且默认袋关闭，不打断别行的展开。删除当前袋时先把焦点交给恢复键，随后解除选中。
 
 ## 4. Measured Layout & 1280x800 Viewport Geometry
-此匣固定1088x608px，位置(96,96)，视口空闲35.40%满足>=22% whitespace。24px padding后content1040x560，alcove-lip-dock高80，间隔24，workspace-split高456。split网格为job-pocket-column 560px、stage-ring-column 168px、ticket-slide-vault 264px，中间两段24px；环在dock用104x104预留重叠，仅向匣内伸24px，不向视口出界。左列顶部64px留页控距离，快页三条48px，选中增为120px，慢页双标题各44px，总不超过400px；选慢页时逆转这两种展开量。票展开占右264px宽，不横跨任务字；5阶段行28px、3题两行40px，标题与留白总420px。stage列只显示一条释义和阶段按钮，不复制完整回执。凹檐半径18px、深12px，纸口r=12px、depth12px，外框r=24px。字阶13/15/20/28px，列内左右padding16px，数值独立最少64px宽；控制32px、环按钮32x32px，底线>=28x28px。票的x位移只能在自身vault内，阴影与focus outline算入安全区；预期所有操作后0px unintended scroll overflow，不能通过缩成11px小字躲避长CJK。
 
-## 5. Dual-Theme Surface Polarity & Liquid Glass / Paper-Pocket Craft
-檐匣 Light：canvas #F0F3F8、tray #E7ECF3、sheet #FFFFFF、text #253049、subtext #5A6680、tint #4C59BE、ok #27684D、warn #88580F、focus #086ACC；Dark：#0E131F、#1C273A、#2C3A50、#EFF4FF、#B8C6DC、#B7C2FF、#9DDEBF、#EBC989、#85BFFF。这套CL-008取纸白/海军蓝极性，不让任务内容成为毛玻璃。檐唇前层用真实concave cut-out与一层0.5px inner highlight（Light #FFFFFFE6，Dark #FFFFFF30），下面环境影从0 1px 2px #2234550A、0 7px 16px #22345512 到0 20px 36px #22345518；暗影的alpha为18/28/38 hex。纸头背层错4px与8px，看见厚度但没有装饰条纹。仅dock中的page switch允许玻璃，IOR1.5、bevel8px、blur10px、saturation145%、薄边0.5px；Safari与减弱透明使用tray实底，不叠折射层。tabular-nums锁定时刻、5/5、3/3与14s宽度；深色按钮采用亮tint+深canvas字以维持对比。
+1280x800窗内账页main为x40/y24、1200×752，四周padding24；content1152×704。垂直精算：masthead48 + 空12 + column-head28 + strip-body564（6×60 + 一个204px纸袋）+ 空20 + colophon32 = 704。纸袋位于第六账行正下方也不能落出底边；chooser拥有系统画框，账页不复制浏览器导航或交通灯。初始0px unintended overflow，不能靠clip整页隐藏多余内容。
 
-## 6. Apple Native Spring Physics & Micro-Interactions
-檐口切页以440ms cubic-bezier(0.22, 1.35, 0.36, 1)改变已有纸页的translateY，侧票使用同曲线520ms translateX从216px到0，打开时反射边先亮、票身后移，没有独立加载遮罩。纸头hover peek固定translateY(-6px)，票把手可同样上抬但不自动展开。小环采用120x120 SVG、center60、r40、stroke5；五个circle以pathLength100、stroke-dasharray="16 84"与offset0/-20/-40/-60/-80围成一圈，stroke-linecap="round"，-90°统一起点。环段hover亮起并更新既有释义文本，pointerleave回选中段；click/Enter固定选择并开票。立即运行在对应行的常驻live output依次显示已排队、运行中、刚刚完成 · 耗时14s，运行阶段保留按钮但禁用，离线计时回调按job ID写入内存，不请求宿主服务。prefers-reduced-motion: reduce将这些抽页/抽票变成100ms无位移淡入，关闭peek及环亮度脉动，不丢失状态或恢复入口。
+ledger-column-head与每条entry-face共享一份grid变量：行内左右12px，内容1128，列宽236/222/210/176/236，四个gap12=48，总1128。账名、周期、次数、状态均靠左，尾键组合向右。键宽64/74/58、高30、gap6，总208，末端不漂移；body trigger覆盖①–④的整块连续区域。报告单据链接高30、最小宽44，恢复键32高，行60高，所有动作/链接点击面积>= 28x28px。数列不折数字、不省4,280；周期中文保持13px正文。
+
+204px slip设padding16，报告标题24+间距8+正文140；四块布局为上方两栏摘要与产出60px、下方两栏阶段与日志72px，间距8。阶段为五个并排小条槽，总宽680、各126.4、gap12，每槽文字容许两行、数值独立一行；余下报告日志在392px栏，gap48，总内宽1120。不要画五段圆环；五个小槽是一组阶段模块，不是五张卡。
+
+## 5. Dual-Theme Surface Polarity & Material Craft
+
+IvoryDuty Light用canvas #EEEAE2、paper #FAF7F2、ink #25251F、muted #625E53、rule #DCD5C8、hover #F3EEE4、expanded #F7F1E5、pocket #EFE7D7、focus #0F5132；Dark用canvas #121316、paper #20211F、ink #F3F0E8、muted #B8B3A8、rule #45443D、hover #2B2D28、expanded #2E3028、pocket #191B17、focus #A3D3B6。纸页外侧无粗框；袋缝是1px dotted #BAAD91 / #6D6B59，只在报告顶部出现。
+
+方beacon与状态文字采用Light success #0F5132 on #E4ECE3、running #204D78 on #E5ECF4、warning #785516 on #F4EAD0、failed #922F2F on #F6E4DF、paused #615E55 on #EAE6DD；Dark对应 #AAD4B5/#293A2C、#ACCDF0/#293647、#E9CD8E/#403821、#F2B0A5/#432C28、#C5BFB1/#373830。每组字与背景必须达到正文4.5:1；不让brass装饰占满状态栏。
+
+这里的 Liquid Glass 参数为无折射、无backdrop、IOR不适用、blur0、displacement0、opacity1。实体纸口袋用0 2px 4px #4F3D1912（dark #05060340）与顶部浅rim，不加载纸纹图片或网络字体。hover增加局部纸色，expanded加内凹而非发光框；Light/Dark经data-theme替换全套变量，系统prefers-color-scheme仅为未指定主题的默认。
+
+## 6. Apple Native Spring Physics & Row/Button Micro-Interactions
+
+纸页从袋口向下露出，clip壳开合480ms cubic-bezier(0.22, 1.35, 0.36, 1)，内部translateY(-5px)到0；标题和键位不弹跳，不使用纸片rotate3d造成字形透视。袋缝跟随高度，滑页opaque渐变只160ms。按ledger key时inset shadow加强90ms，hover120ms；prefers-reduced-motion把纸位移和高度过渡归1ms、所有闪光停用。
+
+三个键的事件在首行调用event.stopPropagation()：暂停保存originalStatus并显示⏸ 已暂停/继续，恢复排程后返回原徽章；Rerun立即进入● 运行中，完成总数和今日数各+1，duration按新报告更新，不展开纸页；删除只折掉账项并在colophon提供撤销。每任务pending flag与generation token防重复run与删除后的晚回调；暂停期间手工重跑可完成，但排程标记仍暂停，不能因重跑重启周期。
+
+ledger-summary-trigger role=button、tabindex0，aria-controls=本条slip；entry-face只用role=group，Space/Enter限定到自身；native buttons的键盘及report links的点击都不冒泡。关闭纸袋inert、aria-hidden，避免在不可见单据上落焦点；恢复后焦点回原face。产出点击只聚焦当前slip中的说明锚，不展开兄弟账项，无宿主或真实调度器副作用。
+
+ledger-summary-trigger作为一个连续可点区域跨第1–4列，采用grid-column:1/5与subgrid；action keys仅占兄弟第5列。fallback使用236/222/210/176px和12px gap，任何焦点回账行均指trigger，避免role嵌套吞掉真实button。账页Rerun结算时间为1000ms；六账项新秒数分别1.6、2.1、12.8、0.6、0.8、1.0，成功/成功/耗时偏高/成功/成功/失败exit 1为明确结果。阶段秒数按新旧总数比例更新，桥接改0.1+0.1+0.2+0.1+0.1s且摘要写确认完成，审查提交/通知仍未执行。用已有行文更新摘要与日志，失败执行也计一次；lastResult保存本轮结果，paused是排程遮罩，继续展示最新lastResult而不是暂停前的旧值。
 
 ## 7. Production Data Inventory & Exact DOM Topology
-檐匣字段如下，两个节律组不可混为五个同频任务：
 
-- 快页① linear-bot-bridge → Linear @bot 桥接 / 每 1 分钟 / 04:14 完成。
-- 快页② my-pr-supervisor → 我的 PR / 每 5 分钟 / 04:10 完成。
-- 快页③ pr-auto-review → PR 自动审查 / 每 5 分钟 / 04:10 完成（初始选中）。
-- 慢页① aidata-digest → 个人数仓晨报 / 每日 04:00 / 04:01 完成、5/5。
-- 慢页② daily-learning → 每日学习推荐 / 每日 04:15 / 04:15 投递3题。
+账页六项的每行栏目必须按①至⑤写入，禁止用某条缺省值替补：
 
-侧票第一部分的真实stage_id序列为 collect [① 个人源采集]、normalize_merge [② L2-L3 入仓]、retro_roi [③ Retro-ROI]、learning_topics [④ 学习寻题]、digest_push [⑤ Brief 投递]，五项通过，环的每段与此对应。第二部分「Linear TIA · 学习送达3/3」列：如何用证据区分实现缺陷与规格缺口？；如何让增量入仓保持幂等？；怎样区分 Cache 命中率与上下文占比？。问题属于固定代表性选型输入，并非查询到的线上issue；不写假issue编号、虚构链接或未经来源提供的阶段耗时。daily-learning只负责三题交付。
+| 账项身份 | ① 任务名称 | ② 运行周期 | ③ 累计/今日次数 | ④ 最近状态 | ⑤ 操作键 |
+| --- | --- | --- | --- | --- | --- |
+| daily-brief | 每日简报 05:00 | 每天 05:00 · 下次 12h 后 | 累计 142 次 · 今日 1 次 | ● 成功 (1.8s) | 暂停 · Rerun · 删除 |
+| daily-learning | 每日学习推荐 04:15 | 每天 04:15 · 下次 11h 后 | 累计 98 次 · 今日 1 次 | ● 成功 (2.4s) | 暂停 · Rerun · 删除 |
+| aidata-pulse | AIData 数仓脉搏 04:00 | 每天 04:00 · 下次 11h 后 | 累计 186 次 · 今日 1 次 | ▲ 耗时偏高 (14.2s) | 暂停 · Rerun · 删除 |
+| linear-bot-bridge | Linear @bot 桥接 | 每 1m · 刚刚 16:45 | 累计 4,280 次 · 今日 184 次 | ● 运行中 | 暂停 · Rerun · 删除 |
+| my-pr-patrol | 我的 PR 巡检 | 每 5m · 2m 前 | 累计 860 次 · 今日 36 次 | ● 成功 (0.9s) | 暂停 · Rerun · 删除 |
+| target-pr-review | 特定人 PR 审查 | 每 5m · 4m 前 | 累计 312 次 · 今日 12 次 | ✕ 失败 (exit 1) | 暂停 · Rerun · 删除 |
 
-按以下html骨架补足语义button与dl，不把三列压进一个generic wrapper。24x24 inline SVG用currentColor、1.6px圆笔，环本身有摘要label，五个effective hit区有各自名称。
+六张slip标题都叫「最后一次执行汇报 (Execution Report)」，内部四模块严格是结论摘要、产出单据/PR链接、子阶段耗时条、关键日志尾部。简报slip印「晨间聚合完成，简报与学习题单已送达」；链接TIA-448、TIA-431；阶段① 个人源采集0.3s、② L2-L3 入仓0.5s、③ Retro-ROI0.4s、④ 学习寻题0.3s、⑤ Brief 投递0.3s；日志 `[05:00:01] INFO aggregation done` / `[05:00:01.8] INFO delivery acknowledged`。
+
+学习slip印「三题推荐去重后投递完成」/ TIA-431 / 读取候选0.4s、去重0.3s、匹配0.7s、题单0.5s、投递0.5s / `[04:15:01] INFO unique=3` / `[04:15:02.4] INFO learning receipt saved`。数仓slip印「本輪脉搏已完成，入仓9.1s偏高」/ TIA-448 / ① 个人源采集1.2s、② L2-L3 入仓9.1s、③ Retro-ROI1.8s、④ 学习寻题1.3s、⑤ Brief 投递0.8s / `[04:00:10.3] WARN warehouse took=9.1s` / `[04:00:14.2] INFO pulse stored`。
+
+桥接slip印「消息已读取，@bot提交正在执行」/ TIA-448（上次已交付）/ inbox0.1s、去重0.1s、路由0.2s、提交进行中、确认未开始 / `[16:45:00] INFO bridge inbox ready` / `[16:45:00.4] INFO commit pending`。巡检slip印「PR #311 检查结果已记录」/ PR #311 / 读取0.2s、checks0.2s、比较0.1s、记录0.2s、通知0.2s / `[16:43:00] INFO checks fetched` / `[16:43:00.9] INFO patrol receipt written`。初始展开的审查slip印「PR #308 的审查进程退出码1，未提交评审」/ PR #308 / 读取PR0.2s、读取diff0.3s、审查0.6s失败、提交未执行、通知未执行 / `[16:41:00.5] INFO reviewer invoked` / `[16:41:01.1] ERROR reviewer exit=1`。各条宽度相对该报告最大已完成耗时；失败条为砖红，未执行为空槽而非0s成功。
+
+提供给Coding的单据标识不是外部地址证明。没有核实URL则link href=#v03-{job}-output-{identifier}，指向同slip的永久说明标签；可点可聚焦，无新屏、不访问Linear/GitHub。不要为PR #308猜owner/repo。每条outline需静态按库存展开六份：
 
 ```html
-<main class="alcove-card topology-alcove-tray-console">
+<main class="ivory-duty-page topology-swiss-ledger-strips">
   <section class="content">
-    <section class="alcove-lip-dock"><h1></h1><nav class="pocket-switch"></nav><svg class="alcove-segment-ring"></svg><output></output><time></time></section>
-    <div class="workspace-split">
-      <div class="job-pocket-column"><section class="fast-pocket-page"><article data-job="linear-bot-bridge"></article><article data-job="my-pr-supervisor"></article><article data-job="pr-auto-review"></article></section><section class="slow-pocket-page"><article data-job="aidata-digest"></article><article data-job="daily-learning"></article></section></div>
-      <dl class="stage-ring-column"><dt class="selected-stage-label"></dt><dd class="selected-stage-note"></dd></dl>
-      <article class="ticket-slide-vault"><button class="ticket-grip"></button><section class="ticket-body"><ol class="ticket-stages"></ol><ol class="ticket-questions"></ol></section></article>
+    <header class="ledger-masthead"><h1></h1><p></p></header>
+    <section class="ledger-column-head"><span>任务名称</span><span>运行周期</span><span>累计/今日次数</span><span>最近状态</span><span>操作</span></section>
+    <div class="ledger-strip-body">
+      <section class="ledger-entry" data-job-row data-job="daily-brief">
+        <div class="ledger-entry-face" role="group"><div class="ledger-summary-trigger" role="button"><strong data-col="title"></strong><time data-col="schedule"></time><span data-col="counts"></span><span data-col="status"></span></div><div data-col="actions"><button data-action="toggle-pause"></button><button data-action="rerun"></button><button data-action="delete"></button></div></div>
+        <aside class="stitched-paper-slip"><div class="slip-height-clip"><h2></h2><div class="slip-upper-register"><p data-report-block="summary"></p><nav data-report-block="outputs"></nav></div><div class="slip-lower-register"><ol data-report-block="stages"></ol><pre data-report-block="logs"></pre></div></div></aside>
+      </section>
+      <!-- 同纸面六个静态ledger-entry，按02..06填入其完整报告 -->
     </div>
+    <footer class="ledger-colophon"><small aria-live="polite"></small><div class="reversal-keys"><button data-action="restore" data-job="daily-brief"></button><!-- 五个其他任务的键常驻 --></div></footer>
   </section>
 </main>
 ```
 
 ## 8. Explicit Anti-Patterns & Verification Targets
-不能重演R2 v03的五点orbital布局：这里只保留精细SVG分段环，任务绝不环绕摆放。禁 .caustic-veil、.ruler、Active/Matte bars、<select>内部测试状态、沙盒说明上屏与innerHTML重建。不要给短檐加完整第二标题栏，也不要让收起票的inert覆盖可点击把手；主题和画廊选择交给外层chooser。
 
-四项状态证据为A 首屏快页/PR审查/晨报5/5/侧票闭；B 切慢页并选学习，三张快页标题仍独立可见；C 点环④使侧票完整滑出，五段与三题均能读并Esc回收；D 选中行手动运行，在排队和运行中切页，完成反馈仍属于原job。全部状态要做双主题WebKit1280x800测量和对象身份对照，确认初始节点没有换批、无numeric ellipsis、无l10n key、横纵scroll delta均为0px。再用键盘与Reduce Motion走相同链路；Stage 2实际截图负责证明这些要求，而非本设计文件预宣称通过。
+账页不能退回R1–R3 two-page split、5-segment ring gauge或orbital layout；不要虚构历史账库、配置页或附加字段。禁用 .caustic-veil、.ruler、Active-Matte、<select>状态测试、sandbox disclaimers以及innerHTML replacement；content直子树不得叫hero、fold-panel、secondary。边线仅为纸条分隔与action keys，不能给每数字建灰盒。
+
+验收须记录Light/Dark在1280x800所有六账项和初始失败报告均完整：5列共用grid、每行3键独立响应、六袋各含四块、阶段名称与耗时不截断。全根MutationObserver removedElements=0，轮流展开后按下三键不意外翻袋；删除后撤销节点仍为同对象。键盘可展开与恢复、链接/动作>=28×28、零未预期overflow。这里写的是测试目标，Designer只执行prompt结构与独立性校验，不伪报浏览器测试PASS。

@@ -1,45 +1,89 @@
-# v07 · 悬桌双抽屉 (topology-floating-dock-drawers)
+# v07 · 静音值守机架 (topology-tactile-ops-rack)
 
 ## 1. Visual Metaphor & Archetype Lock
-CleanShot式紧凑utility card在桌上轻浮，下面两只纸袋左右并列，中央一枚小环印章把两种节律接起来，整宽的结果抽屉从底部推出。目标是可抓住的纸工具，不是dock应用启动器。VS-005 Zen Paper与CL-006 Sky/Sage候选色，CP-002保留SWWallet纸层，DV-003用于可选分段环，MI-006用于双抽屉滑动。X=左右两袋内一次只选一条，Y=下方满宽回执折叠，Z=utility control→纸头→袋盖→实底四层。参考Things3留白、Alcove圆凹切口和CleanShot X细小工具栏，R3-FloatingDrawers属于macOS26单卡探索坐标，不能生成新的dock或导航页。
+
+参考 CleanShot 的克制utility panel与音频机架的recessed LED，做六个横向slot，不做音频仪表或旋钮。macOS / VS-003 Precision Studio / CL-003 desaturated metal，AppTheme=SilentRack；X五列工位、Y单个铰链汇报bay、Z金属面板和凹入舱。路线Top3为CleanShot快捷面板、Audio-Rack触觉键、Raycast可读状态；不继承这些工具的业务按钮。维度限material、component、motion、typography。
+
+金属质感用垂直很浅的双色渐变与细内缘，绝不使用拉丝图片。SF Pro14px任务名、13px内容、SF Mono12px日志、20px面板标题；status LED是6px凹点加完整文字。右侧三键为tactile segmented-style cluster，各键仍是真实button、各有间隙，24×24 inline SVG以1.6px描边画pause/rerun/trash，16px图形旁保留文字。不是一个不可区分的三段toggle。
 
 ## 2. Single P0 Focus & Initial Showcase State
-第一眼是右袋的每日学习推荐：其行内显示3题已送达、04:15完成，是唯一展开的作业。同袋的个人数仓晨报摘要04:01完成，左袋三分钟job只显示紧凑纸头。桥心ring为5/5，caption「晨报阶段」避免把它当学习的五阶段；时钟11月15日04:15。receipt-drawer-shell采用永久section，默认只有40px拉手「执行回执」，没有初始化就摊开的八行。左右页始终存在，两组标题「高频脉搏 3」「每日批处理 2」都可读；任务名只留在自己的纸头，不放到utility-bar或drawer标题。
+
+初始打开第三slot aidata-pulse，P0解释耗时偏高而非制造警报墙。bezel只写「定时任务」和「点击任务查看执行汇报」，六条任务正常依域顺序排列；不把实时桥接LED做循环心跳抢注意力，也不重复顶部故障卡。
+
+六slot初值完整为每日简报 05:00 ● 成功 (1.8s)、每日学习推荐 04:15 ● 成功 (2.4s)、AIData 数仓脉搏 04:00 ▲ 耗时偏高 (14.2s)、Linear @bot 桥接 ● 运行中、我的 PR 巡检 ● 成功 (0.9s)、特定人 PR 审查 ✕ 失败 (exit 1)。全部active未删除，首键暂停；暂停态⏸ 已暂停由交互到达，不用失败状态替代。
 
 ## 3. P1 / P2 Progressive Folding & Permanent DOM Contract
-这里用满宽回单而不是两袋各塞一份细节。P1为cadence、最近时间和桥心摘要；P2为当前行操作和底层五阶段/三题清单。所有minute-pocket三条、daily-pocket两条、两页节点、五个SVG段以及整个receipt-drawer-shell正文初始就挂载。open class驱动--drawer-depth与原纸层transform，不能用innerHTML、outerHTML、replaceChildren、insertAdjacentHTML替换Element，也不在展开时create新的receipt。不可见正文设inert/aria-hidden，露出的选中按钮不被inert祖先封死。状态只由一个selectedJobId统管；打开回单时收当前行正文而不重复任务名，ring segment以stage ID联动原有行。receipt button具有aria-controls/expanded，Esc关屉并focus回它，纸袋选择保留。
+
+P1六块slot-face不隐藏，P2为本slot的bay加相邻log strip组成的完整报告。initial HTML已含6个rack-slot、6个slot-report-bay、6个slot-log-strip以及restore dock中6枚undo；每报告的四内容块已就位。bay与log作为同一逻辑Execution Report两段，用同一个data-open同步高度及aria-controls的两个id，report bay以aria-owns关联log footer；只允许一个slot开，点同slot关闭。
+
+bay壳grid0fr/1fr，日志footer也有常驻clip，closed时两者inert/aria-hidden；open时共同占238px。删slot只切data-deleted、高度与行gap归零而不remove，dock亮起「已删除… · 撤销删除」。Undo按job id回原位、保留计数与暂停，report默认关闭、不抢现有选中；删除选中slot后选择为空。全根removedElements = 0，zero innerHTML rebuild；更新状态只写预置Text.data/attributes，禁止替换LED、按钮或日志节点。
 
 ## 4. Measured Layout & 1280x800 Viewport Geometry
-1280x800中主卡1040x608px、x120/y96，桌面留白38.25%达到>=22%。卡padding24，content992x560，由utility-bar40、gap20、twin-pockets-bridge356、gap20、receipt-shell124组成。桥区三列420/112/420px，两个20pxgap；左右袋padding16，左3纸头48px且最多一行展开136px，右2纸头56px且最多一行展开176px，均在324px内。底抽屉打开时桥高212、shell268，其余不变；两袋只露左3×48与右2×56摘要。回单内容left440+gap24+right440px，五段28px行、三题40px行，标题与padding56px可容纳。主卡r28px、纸角16px，唇中央凹口r14/depth14px。正常目标32px，grabber40px高，ring按钮32x32px，最小>=28x28px；字号13/15/20/32px。底屉不是position:fixed bar，所有抽取都在卡内分配的终态矩形内，超调与-6px peek预留8px安全空位。要求0px unintended scroll overflow、完整focus描边，禁止隐藏body滚动来掩饰外溢。
 
-## 5. Dual-Theme Surface Polarity & Liquid Glass / Paper-Pocket Craft
-R3-FloatingDrawers Light tokens：desk #F2F4F6、pocket #E7ECF0、insert #FFFFFF、ink #293446、secondary #5E697A、accent #285EAA、done #276A4D、attention #86540C、focus #0869CE；Dark分别#111922、#202D3B、#314255、#F3F7FE、#C1CEE0、#ADCFFF、#A2DFBD、#F2C985、#8BBEFF。实纸是高亮L2、内袋为较暗L1，状态色只在文本/细环，不涂满袋。唇用两段圆角边接内凹圆口，独立front-lip层带0.5px内高光Light #FFFFFFD8 / Dark #FFFFFF2A；环境影0 2px 4px #1A2A420A, 0 10px 24px #1A2A4212, 0 28px 44px #1A2A4214，暗影#00000018/#00000028/#00000034。utility-bar仅小范围按钮chrome可玻璃：IOR1.5、bevel8px、blur8px、saturation140%、specular0.5px；Safari/reduced-transparency回退pocket实色，不采样另一层glass。5/5、3题、时间与14s使用tabular numerals，dark亮accent的CTA上用深desk字保障对比。
+1280x800窗内main x40/y24、1200×752、padding24，content1152×704。bezel40 + gap12 + bays616（6×58+5×6+238）+ gap8 + restore28 = 704。报告插在选中slot正下，后续slot顺延，初始六slot与完整bay/log都可见；restore dock最少28高。0px unintended overflow，不准用整页clip吞掉机架底部，外层chooser画系统chrome。
 
-## 6. Apple Native Spring Physics & Micro-Interactions
-双袋纸抽动为460ms、全宽结果屉为520ms，都用cubic-bezier(0.22, 1.35, 0.36, 1)，只移动已有对象的transform与CSS变量。hover只给当前纸头translateY(-6px) peek，不把另一袋拖起；打开receipt把当前纸操作收回并升起144px结果纸，卡边界完全静止。中央SVG ring的viewBox144、center72/r48、stroke5.5，每circle pathLength100、stroke-dasharray="16 84"、offset0/-20/-40/-60/-80、stroke-linecap="round"，以-90°开圈。局部弧highlight在hover/focus出现，点击或Enter选段并滚动零距离地照亮底屉该行，不出现orbital job。立即运行在所属row的aria-live按已排队→运行中→刚刚完成 · 耗时14s推进；running期间button disabled，切到另一袋依然按原job ID落回状态。仅使用离线内存计时，绝不发真实scheduler/Linear调用。prefers-reduced-motion: reduce不移动纸、不开弹性或peek，使用120ms淡入及终态尺寸；所有明细与操作保持可用。
+slot-face左右16px后1120；grid宽234/216/206/172/228，gap16×4，总1120。首四左齐，tail右齐；分段键宽64/74/58、高32、gap4，总204，hit targets全>=28×28。整块①–④触发面至少876×58，不用LED作为唯一入口。report链接30px高最小44宽，restore28高；完整14.2s、exit 1、4,280与184不截断，数值tabular。
+
+238px报告分为bay190与log-strip48。bay含padding16上下、h2=24、gap8、上区52、gap10、下区64，合计190；内宽1120，上区summary560/outputs536/gap24。下区五并排stage槽，各214.4宽gap12，槽中文字可两行和独立数字。footer48含顶部gap8及40px日志内容（两行20px），左右16px；这两段在视觉/ARIA上属于同一报告，关闭时日志不能独自露在summary外。
+
+## 5. Dual-Theme Surface Polarity & Material Craft
+
+SilentRack Light canvas #E8ECEF、metal #F1F4F6、ink #202A33、secondary #55636E、rim #FFFFFF、seam #CDD6DD、hover #E7EFF5、open #E0EAF2、bay #DCE4EA、log #D3DEE5、focus #245F89；Dark canvas #111820、metal #25323D、ink #F2F6FA、secondary #B9C7D2、rim #DCEEFF26、seam #465866、hover #2E4353、open #345063、bay #182833、log #13212C、focus #A6D8FA。金属面仅metal->hover 8%混合的垂直光线，bay用inset 0 2px 5px #15283820 / #050D1466，radius8。
+
+五态LED与文字Light success #245D3B/#DFEFE5、running #1D5B8B/#E0EEF9、warning #7E5418/#F9EBCF、failed #A1313D/#F8E4E9、paused #536475/#E1E9F0；Dark success #A7DDB9/#234231、running #ACD9FF/#24475F、warning #EACD91/#453A23、failed #FFB7C0/#4B2E39、paused #C0CFDA/#3A4F5F。LED仅短程box-shadow 0 0 0 2px内凹，禁止霓虹散射盖住正文。
+
+本案不是Liquid Glass：blur0、displacement0、IOR不适用、金属opacity1；tactile键由双色solid背景与inset shadow形成。Light/Dark用data-theme，缺省prefers-color-scheme，reduced transparency无变化。expanded的铰链感来自顶部1pxrim，不在文字上施加透视，不在bay外再包一层glass。
+
+## 6. Apple Native Spring Physics & Row/Button Micro-Interactions
+
+逻辑report共用440ms cubic-bezier(0.22, 1.35, 0.36, 1)开合bay与footer的grid高度，内容translateY(-4px)->0；“hinged”仅指上缘装饰lip展开，不rotateX正文。文字opacity160ms，分段键press inset加强90ms/释放130ms，hover120ms金属边缘变亮。prefers-reduced-motion:reduce关闭LED呼吸和位移，bay/log用1ms高度切换，running语义仍可读。
+
+三个真实button先event.stopPropagation()再操作，restore和link同样隔离。暂停存prePauseStatus、显示⏸ 已暂停并将键改继续；继续回存储状态。Rerun立即● 运行中，结算一轮才累计/今日+1、更新duration；pending防重复触发。paused手动run后保持paused，仅报告更新；delete invalidate run token，迟到结算不可修改被删slot，restore不重放副作用。不上网、不接宿主scheduler或实际PR评审。
+
+rack-summary-trigger role=button、tabindex0，Enter/Space仅自身target响应；slot-face仅role=group，aria-expanded准确并controls两个报告片段。native分段键键盘事件不冒泡到行；bay与log收起均inert。删slot焦点移恢复dock，恢复回face，focus-ring2px offset2不被clip遮掉；链接激活只聚焦本报告产出说明，不能导致收bay。
+
+rack-summary-trigger横跨grid-column:1/5，用subgrid继承234/216/206/172px和16px gap；不支持时显式复制这些四列。分段三键在兄弟第5列，绝不落在另一button语义内；返回face的焦点均落trigger。Rerun反馈延迟1000ms，六slot新耗时为1.6s、2.1s、12.8s、0.6s、0.8s、1.0s；第三依然warning，第六仍exit 1，其余success。已完成阶段按新总/旧总等比变化，bridge更新0.1/0.1/0.2/0.1/0.1s并注明提交确认完成，review后两项仍未执行。摘要与log strip原节点内容同步刷新，失败尝试也增一次。latestResult持续更新，而paused仅改变排程可见状态，继续不得复活旧running值。
 
 ## 7. Production Data Inventory & Exact DOM Topology
-左右纸袋分工严格按原产品五作业，不额外添第六项：minute-pocket装linear-bot-bridge（Linear @bot 桥接；每 1 分钟；04:14完成）、my-pr-supervisor（我的 PR；每 5 分钟；04:10完成）、pr-auto-review（PR 自动审查；每 5 分钟；04:10完成）。daily-pocket装aidata-digest（个人数仓晨报；每日 04:00；04:01完成/五段通过）与daily-learning（每日学习推荐；每日 04:15；04:15完成/三题送达）。
 
-全宽屉中的「晨报阶段 · 5/5」区域按collect → ① 个人源采集，normalize_merge → ② L2-L3 入仓，retro_roi → ③ Retro-ROI，learning_topics → ④ 学习寻题，digest_push → ⑤ Brief 投递依次通过。另一边「学习投递 · Linear TIA · 3/3」的问题按怎样区分 Cache 命中率与上下文占比？、如何让增量入仓保持幂等？、如何用证据区分实现缺陷与规格缺口？排列。三题是本轮代表性选型文案，不提供编造的线上issue ID/链接或每阶段duration；不把学习任务当digest的复本。
+机架固定六slot五列；此表的job id只用于data-job，不显示为编号列：
 
-下列section版本避免details的原生瞬时display切换中断弹性；button语义负责open与close。内联工具SVG24x24/currentColor/1.6px round stroke，ring必须含5常驻circle及命名点击目标。
+| slot | ①任务 | ②时间/周期 | ③次数 | ④状态读数 | ⑤独立键 |
+| -- | -- | -- | -- | -- | -- |
+| daily-brief | 每日简报 05:00 | 每天 05:00 · 下次 12h 后 | 累计 142 次 · 今日 1 次 | ● 成功 (1.8s) | 暂停 · Rerun · 删除 |
+| daily-learning | 每日学习推荐 04:15 | 每天 04:15 · 下次 11h 后 | 累计 98 次 · 今日 1 次 | ● 成功 (2.4s) | 暂停 · Rerun · 删除 |
+| aidata-pulse | AIData 数仓脉搏 04:00 | 每天 04:00 · 下次 11h 后 | 累计 186 次 · 今日 1 次 | ▲ 耗时偏高 (14.2s) | 暂停 · Rerun · 删除 |
+| linear-bot-bridge | Linear @bot 桥接 | 每 1m · 刚刚 16:45 | 累计 4,280 次 · 今日 184 次 | ● 运行中 | 暂停 · Rerun · 删除 |
+| my-pr-patrol | 我的 PR 巡检 | 每 5m · 2m 前 | 累计 860 次 · 今日 36 次 | ● 成功 (0.9s) | 暂停 · Rerun · 删除 |
+| target-pr-review | 特定人 PR 审查 | 每 5m · 4m 前 | 累计 312 次 · 今日 12 次 | ✕ 失败 (exit 1) | 暂停 · Rerun · 删除 |
+
+每个bay标「最后一次执行汇报 (Execution Report)」，包含summary、outputs、stages及footer logs四元素。简报数据为「晨间五阶段执行已通过，简报送达」/ TIA-448、TIA-431 / ① 个人源采集0.3s、② L2-L3 入仓0.5s、③ Retro-ROI0.4s、④ 学习寻题0.3s、⑤ Brief 投递0.3s / `[05:00:01] INFO stages completed`与`[05:00:01.8] INFO briefing acknowledged`。学习为「三道学习题已匹配投递」/ TIA-431 / 收集0.4s、去重0.3s、匹配0.7s、整理0.5s、发送0.5s / `[04:15:01] INFO selected questions=3`与`[04:15:02.4] INFO recommendation delivered`。
+
+默认脉搏bay为「本轮耗时14.2s，其中入仓9.1s偏高」/ TIA-448 / ① 个人源采集1.2s、② L2-L3 入仓9.1s、③ Retro-ROI1.8s、④ 学习寻题1.3s、⑤ Brief 投递0.8s / `[04:00:10.3] WARN warehouse latency high`与`[04:00:14.2] INFO pulse completed`。桥接为「正在执行消息提交，当前轮尚未结束」/ TIA-448说明为最近产出 / inbox0.1s、去重0.1s、路由0.2s、提交进行中、确认未开始 / `[16:45:00] INFO bridge inbox`与`[16:45:00.4] INFO commit active`。
+
+巡检为「PR #311 checks已读并记录」/ PR #311 / PR0.2s、checks0.2s、比对0.1s、保存0.2s、通知0.2s / `[16:43:00] INFO checks inspected`与`[16:43:00.9] INFO patrol completed`。审查为「PR #308 执行exit 1，评审未提交」/ PR #308 / PR0.2s、diff0.3s、执行审查0.6s失败、提交未执行、通知未执行 / `[16:41:00.5] INFO review task`与`[16:41:01.1] ERROR review exit=1`。每阶段bar按本报告最大完成秒数映射，未完成不伪填百分百，log四元素不能因footer分离而遗漏。
+
+产出label链接本页永久说明 #v07-bay-{job}-{id}，本brief不提供真实外部URL所以不能猜PR repo或伪写已核实地址；点击定位/聚焦说明，不加屏、不请求Linear。DOM必须为六个静态slot，彼此报告与logs id独立：
 
 ```html
-<main class="utility-card topology-floating-dock-drawers">
+<main class="silent-rack-panel topology-tactile-ops-rack">
   <section class="content">
-    <header class="utility-bar"><h1></h1><time></time><span class="utility-feedback" aria-live="polite"></span></header>
-    <div class="twin-pockets-bridge">
-      <section class="minute-pocket"><h2></h2><ul class="minute-paper-list"><li data-job="linear-bot-bridge"></li><li data-job="my-pr-supervisor"></li><li data-job="pr-auto-review"></li></ul></section>
-      <div class="medallion-column"><svg class="bridge-ring"></svg><output></output><p class="bridge-caption"></p></div>
-      <section class="daily-pocket"><h2></h2><ul class="daily-paper-list"><li data-job="aidata-digest"></li><li data-job="daily-learning"></li></ul></section>
+    <section class="rack-top-bezel"><h1></h1><p></p></section>
+    <div class="rack-bay-collection">
+      <article class="rack-slot" data-job-row data-job="daily-brief">
+        <div class="slot-face" role="group"><div class="rack-summary-trigger" role="button"><span data-col="title"></span><time data-col="schedule"></time><span data-col="counts"></span><span data-col="status"></span></div><div data-col="actions"><button data-action="toggle-pause"></button><button data-action="rerun"></button><button data-action="delete"></button></div></div>
+        <div class="slot-report-bay" id="v07-report-daily-brief" aria-owns="v07-log-daily-brief"><div class="bay-clip"><h2></h2><div class="bay-upper"><p data-report-block="summary"></p><nav data-report-block="outputs"></nav></div><ol data-report-block="stages"></ol></div></div>
+        <footer class="slot-log-strip" id="v07-log-daily-brief"><div class="log-height-clip"><pre data-report-block="logs"></pre></div></footer>
+      </article>
+      <!-- 六slot静态展开书写，全部bay与log-footer同时开合 -->
     </div>
-    <section class="receipt-drawer-shell"><button class="wide-drawer-handle"></button><div class="wide-receipt-paper"><ol class="drawer-digest-list"></ol><ol class="drawer-question-list"></ol></div></section>
+    <aside class="rack-restore-dock"><span aria-live="polite"></span><div class="rack-undo-keys"><button data-action="restore" data-job="daily-brief"></button><!-- 另五常驻键 --></div></aside>
   </section>
 </main>
 ```
 
 ## 8. Explicit Anti-Patterns & Verification Targets
-实纸双袋禁.caustic-veil、.ruler、Active/Matte bars、<select>测试器、沙盒免责声明、五点orbital排列以及innerHTML式重建。桥心不能画粗巨环抢右袋3题的P0；不能用bottom-dock隐喻增加一条macOS浮动操作栏；不要让工具bar复制外层theme/gallery/viewport controls。
 
-四态取证：A初始右学习行/3题、bridge5/5、底屉闭；B换到左侧我的PR，两袋只此一行展开；C把满宽回执展开，点环③，五stage与三question完整且Esc归位；D对当前job运行，排队/运行/完成均反馈，跨袋不丢任务状态。Writer需交4×2主题WebKit1280x800截图、Element持久性快照和键盘/Reduce Motion结果。截图应实证0px unintended scroll、无数值ellipsis、无raw localization keys、文本4.5:1与命中28px底线；Stage1没有HTML，不能宣称这类rendering门禁已经通过。
+静音机架不用two-page split、5-segment ring gauge、orbital layout；严禁装饰音量旋钮、虚构runner页面、LED频闪。不得.caustic-veil、.ruler、Active-Matte、<select>测试开关、sandbox disclaimers和innerHTML replacement；content直子不得hero/fold-panel/secondary。bay-log是一份报告，不能让日志在关闭时泄漏可见。
+
+交给Coding的验证：WebKit1280x800两外观全六slot、第三bay/log初始展开、每行五列及三个分段button；六报告四内容块完整，键盘/鼠标切换只单开；三键不触发开合，暂停/续、rerun恰+1、delete/undo复用Element。全根removedElements=0、点击目标>=28×28、0px意外溢出、无遮挡焦点和无数字截断。此Stage 1完成不包含截图PASS或实机执行声明。

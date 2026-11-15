@@ -1,56 +1,71 @@
-# v03 · 纸沿观测舱 (topology-alcove-ribbon-console)
+# v03 · 浮光丝带工作台 (topology-glass-ribbon-workbench)
 
 ## 1. Visual Metaphor & Archetype Lock
 
-收敛为一个纸沿观测舱：顶唇是状态夹，左侧柔软流带与右侧五步回溯并列，底袋只有两个诊断方向。VS-005 + CL-006 + CP-002 + IP-001/IP-003；X坐标=选流与选站，Y坐标=manifold/stepper分栏再进入双tab口袋，Z坐标=纸唇2、实体台面0、抽纸3。Things 3 的朴素间距和 SWWallet 的凹口是已命中vault依据；Alcove只借用 brief 的纸唇意象，Alcove/CleanShot X/Sankey未获vault条目，不据此宣称实现能力。macOS desktop 单卡，R2分岔和全链路回溯仅提取核心，不保留粗管与动态生成。
+设计一张有清晰操作冠部的macOS工作台：玻璃只是一道浮在顶部的功能唇，六行数据是实心底板，下面宽幅曲带是展开的工作图纸。不是把透明效果抹在每条Skill上。desktop四维component/chart-dataviz/glass-material/motion-interaction；VS-003精密工作台 × CL-003 cyan remix，X=整排选取 / Y=下方宽剧场 / Z=单层玻璃冠与固体图纸。候选主题PrismRibbonBench，参考CleanShot X的轻量工具唇而非复刻其界面。
+
+SF Pro20px标题、13px行名、12px数据与文件、11px图注；PingFang中文，数字tabular。24×24 SVG细描边画分岔、箭头和折叠符，所有图标都有可读名字，不用emoji装饰标题。六行deck严禁变六张同权bento。
 
 ## 2. Single P0 Focus & Initial Showcase State
 
-把“越界全量深读 15%”独立旗带设为唯一P0，activeBranch=violation，selectedStage=2（S7）。顶唇展示小号50,000 tok、96.8%缓存、S5 暂无统计，不参与抢焦点。底袋默认tab=friction/open=true，上抽48px，显示18返工、6重试和3/5逃逸；这是全局摩擦摘要，不声称由越界造成。切换L0/L1正常支只换定义，S7旗仍独立；双tab分别“摩擦诊断 S8/S9”和“提案转化 S10”。
+开场的my-designer已选，宽剧场展开；P0是L0后reference/script双出口，而不是顶部Cache大数字。默认appearance-ledger.md高亮，详情为19%/1.4k tok；三类意图、四reference、三script全部已在首屏。冠部写「Skills 上下文工作台」和可操作「收起流向」按钮，脚下Eval strip附完整两次逃逸归因。
 
 ## 3. P1 / P2 Progressive Folding & Permanent DOM Contract
 
-P1保留五步列表和顶唇，P2被双tab口袋接纳，统计口径以已有口袋内抽页容纳。首载即永久拥有全部SVG <path> ribbons、所有5 trace stage nodes、S1..S12 metric readouts与每个pocket drawer；标签和完整正文也必须预先存在。通过class、dataset和CSS custom properties管理选中/展开/平移，禁止innerHTML、outerHTML、replaceChildren、insertAdjacentHTML和卸载重建。两tab panel只切transform/opacity，非当前面inert且aria-hidden，不能用display:none打断抽取。hover由临时preview字段控制，click/Enter/Space才提交，stepper以aria-current=step表达，Esc关闭抽页并回到当前tab。隐藏指标并非删除数据。
+P1六行每行四组指标横向齐读；P2在wide-alluvial-theater内六个scene静态叠置，仅当前scene开放。点其他Skill同时换剧场内容、冠部selected标签和Eval条；点同一行或冠部折叠键收图，再开保留该Skill点击的分支。剧场收起只影响图高，六行不作离场动画，绝不能让选择变成数据过滤。
+
+所有li、svg、endpoint按钮、六个Eval归因段在initial HTML出现；removedElements = 0、零innerHTML rebuild。用dataset、CSS自定义属性和原有Text.data更新选择，关闭scene inert且aria-hidden；新scene只解除自身限制。按最新版请求取消过时transitionend工作。hover.preview只点亮一带和明细，点击.pin保存，pointerleave复位到pin，Escape回行。原生button配aria-controls/aria-expanded，scene标签外置HTML避免SVG文字被缩成小字。
 
 ## 4. Measured Layout & 1280x800 Viewport Geometry
 
-1280x800内 main x88/y76/1104x648，padding28，content1048x592。外空白30.1375%=308,608px²，满足>=22%；上下左右余量76/76/88/88。纵向dock64+gap16+split320+gap16+pocket176=592。split用692px图域、24px沟、332px stepper；5行56px加4×10px=320。图的SVG viewBox="0 0 692 280"，下40px留分母注；口袋全开正文146px加30px tab，不改变176px总高度。任何peek也只能进入预留16px沟，0px unintended scroll overflow。32x32px代理标签保障8px/3.2px窄带可选，控制绝不小于28x28px；正文13px且CJK换行，数值不截断。
+1280x800桌面frame x32/y24、1216×752、padding24。content1168×704依次crown44/gap12/deck336/gap12/theater260/gap12/escape28。deck六行56，内部宽1136列156/196/216/266/254，gap12×4=48，总1136；所有行与隐藏语义header共享列模板。三个读数文本行各14px，上下7px。较长脚本可断在下划线/连字符，不能截断次数和成功率。
 
-dual-tab下的全表是分页口径夹：32px分组签，余144px固定正文。质量面S1-S3、实践面S4/S6、摩擦面S8/S9、披露面S7/S5、提案面S10；context分五slice面与cache/P95面，五片各20px行高。每组面保持mounted，只transform换位与inert互斥；长说明最多两行20px，不能把完整十二项清单叠在176px口袋里。默认全表打开质量面，tab依然承担原摩擦/提案选择。
-
-用T=100px局部单位绘S7：d="M 230,64 C 320,64 382,30 482,30 L 482,85 C 382,85 320,119 230,119 Z"为55px；d="M 230,119 C 320,119 382,148 482,148 L 482,193 C 382,193 320,164 230,164 Z"为45px。独立15px旗 d="M 244,236 C 320,236 408,218 490,218 L 490,233 C 408,233 320,251 244,251 Z"。S11五片厚12/8/16/40/24，总100；cache单独尺100输出96.8与3.2。所有其他带按闭合式 M x0,y0 C x0+36,y0 x1-36,y1 x1,y1 L x1,y1+h C x1-36,y1+h x0+36,y0+h x0,y0+h Z，具体h取各自分母；跨站门禁和返工线只是细导航边，不推导未知数量分配。
+剧场padding8后的1152×244：Prompt x0..172，L0 x340..484，右出口x736..1152；出口七项在y8..204，每个28px，参考四项和脚本三项用浅背景分组而非另占heading高度。branch detail y212..240。C带示例 d="M 484,88 C 572,88 650,148 736,148 L 736,160 C 650,160 572,102 484,102 Z"，stroke-width <= 24（实际1），完整渐变填充闭合；入口分别连接同一SKILL.md hub。label全名用HTML，按钮至少 >= 28x28px，带本体薄于14px却有透明28px靶区，不能用stroke-width32的透明粗管伪充视觉带。
 
 ## 5. Dual-Theme Surface Polarity & Alluvial / Paper-Pocket Craft
 
-Light指定desk #F3F5F4、paper #FFFFFF、lip #EAF0EC、ink #1D3028、muted #52665B、l0 #356E50、l1 #426B96、flag #95502F、focus #245EB2；Dark逐项为#151E1B、#21302A、#2B3C33、#EEF8F0、#B7CDBD、#A5DDB9、#ADCEEF、#EDB694、#ACD0FF。linearGradient fill沿带从0%/.22到100%/.58，每条有1px #FFFFFF高光（.52/.20），旗用铜色不装红色告警成功漏斗。纸唇中间凹9px，两端收12px圆角，0.5px inner highlight用白.6/.15，投影0 6px 16px #18302512。正文SF Pro13、标签14、P0 32，数字tabular-nums；24×24 currentColor内联icon的线宽1.6px。表面opacity1，内容无glass/blur/位移折射；仅功能popover可有玻璃且Safari及Reduce Transparency用同色不透明替代。正文对比>=4.5:1，大字>=3:1，不靠低透明度文字做层级。
+PrismRibbonBench light底#F2F6FA、板#FFFFFF、图纸#EAF2F8、墨#102D40、次字#486675、焦点#096C94；dark为#0E1821/#1B2A36/#13222D/#EDF8FF/#A9C4D2/#8EDBFA。reference cyan→indigo、scripts cyan→sage，冷门灰蓝无pulse。光学冠只有功能控件：regular玻璃白alpha.72 light、slate alpha.78 dark，IOR1.5、bevel12px、displacement16px、blur2.5px、saturation140%，仅采样实心画布。WebKit无法折射时同色不透明浮唇+0.5px高光，不上斑纹滤镜。
+
+六行deck与theater一律不使用backdrop-filter。减少透明度也将crown变#FFFFFF/#223443，主题切换不重挂载。阴影只冠部0 8px 20px #15324F12，其他纸边靠2%–4%亮度阶；文字至少4.5:1，焦点3:1。此案玻璃层只有一个，禁止glass采样glass。
 
 ## 6. Apple Native Spring Physics & Flow Animation
 
-舱底纸页用440ms cubic-bezier(0.22, 1.35, 0.36, 1)从+48px进入0，tab hover peek translateY(-6px)可叠加；tab选择不让dock随之跳动。旗带激活时沿中心曲线播放1.5px dashed pulse，dasharray2 18、dashoffset0→-80/2200ms，其他支只留细rim。鼠标和键盘focus同亮支，结束hover回原选取。prefers-reduced-motion: reduce 禁连续dash流动、overshoot和peek位移，保留80ms opacity与实色选中态；快速tab连点续接当前位移，不能销毁或复制纸页。
+剧场展开500ms cubic-bezier(0.22, 1.35, 0.36, 1)，固体图纸translateY(-6px)归零；scene交接时上层离场opacity120ms，下层入场180ms，壳高最多260。选择波纹仅在相应行下缘点到为止。沿曲带的薄白pulse取中心C路径1900ms匀速移动，ref与script相位不同，hover让该pulse停在终点而非加速假造活跃性。
+
+prefers-reduced-motion禁止位移、pulse、spring，收展1ms并以静态箭头明确方向。鼠标或键盘选出口即时更新详情；focus ring2px。收图前如果焦点在scene内移回选中行，外层chooser保留主题/视口/STAR/SELECT权限，子页不生重复控制栏。
 
 ## 7. Production Data Inventory & Exact DOM Topology
 
-stepper的五步为全链路回溯：Stage1 S11 上下文构成（50,000 tok / 96.8%缓存）→ Stage2 S7 渐进披露分流（L0 55% / L1 45% / 越界15%）→ Stage3 S1/S2/S3 触发与门禁（命中2/8、拦截8/40、误报4/40、审计9/12）→ Stage4 S8/S9 返工与逃逸摩擦（返工18次、重试6次、逃逸3+5）→ Stage5 S10 提案转化与健康度（my-designer0.4、code-review1.2、team-lead1.8 proposals/100 runs）。Stage3旁口径明确S1 Pin Drift 2/8 behind，短标“命中”不等于健康成功。该链接是operational/data lineage，不能以观察相关性讲因果美元收益。
+浮光方案的每一行仍保留真实四组账目，流向交互构成第五组；其中L0记录SKILL.md Token，L1标references/*.md平均连带Token，Cache说明为KV Cache命中率，频次旁的会话数是活跃会话数。表内的—是未给的avg，不是计算失败替代：
 
-manifold的S11页完整五片：System / AGENTS=6,000 tok (12%)；Skills=4,000 tok (8%)；Tool schemas=8,000 tok (16%)；Tool results=20,000 tok (40%)；Conversation=12,000 tok (24%)，总50,000 tok=100%。Cache读数单独命中96.8%=96,800/100,000 eligible requests，未命中重算3.2%=3,200/100,000。S7分别L0 索引浅读55%、L1 局部深读45%和越界全量深读15%独立重叠旗，不能编绝对次数。双tab常驻内容存S8 20会话内18次编辑/返工、6次重试，各自计数；S9 [IMPL_BUG]3、[SPEC_GAP]5；S10三注册技能报告读数及查看建议/收藏/稍后/撤销本地动作。提案tab内统计抽页提供S1落后2/8、S2拦截8/40=20%及独立误报4/40=10%、S3审计9/12与48 eval cases/本周+6、S4 my-designer40次加载与R1 review证据入口、S6同技能12脚本执行和触达8/40=20%、S5 暂无统计、S12 Search P95 18,400 tok/120次/7天。脚本12不是触达12，S4/S6摘要“40次加载 · 12脚本 · 触达8/40”不得改口径。
+| 工作台 Skill | 周/月/会话 | Token与缓存开销 | scripts/*.py 数量/效率 | eval-cases.json 评测效果 |
+|---|---|---|---|---|
+| my-designer | 7d 42 次 · 30d 156 次 · 28 会话 | L0 1.8k tok · L1 +3.4k tok · Cache 96.8% | design_evidence.py 46次 · 均值 140ms · P95 310ms · 成功率 99.1% | 24 用例 (+4 本周) · 100% 通过 · 拦截 19 / 逃逸 2 |
+| team-lead | 7d 68 次 · 30d 240 次 · 41 会话 | L0 2.1k tok · L1 +2.8k tok · Cache 97.4% | goal-queue.py 64次 · ci-monitor.py 38次 · 均值 — · P95 420ms · 成功率 99.5% | 32 用例 (+6 本周) · 100% 通过 · 拦截 27 / 逃逸 1 |
+| design-studio | 7d 19 次 · 30d 74 次 · 16 会话 | L0 1.5k tok · L1 +2.2k tok · Cache 95.9% | design_catalog.py 39次 · 均值 — · P95 480ms · 成功率 100% | 18 用例 (+2 本周) · 100% 通过 · 拦截 11 / 逃逸 0 |
+| m2-dispatcher | 7d 51 次 · 30d 188 次 · 35 会话 | L0 1.6k tok · L1 +1.9k tok · Cache 97.1% | herdr-dispatch.sh 52次 · 均值 — · P95 260ms · 成功率 99.2% | 20 用例 (+3 本周) · 100% 通过 · 拦截 15 / 逃逸 1 |
+| linear-board | 7d 33 次 · 30d 112 次 · 22 会话 | L0 1.4k tok · L1 +1.5k tok · Cache 96.5% | linear-bot-bridge.py 44次 · 均值 — · P95 350ms · 成功率 98.8% | 16 用例 (+2 本周) · 100% 通过 · 拦截 9 / 逃逸 0 |
+| archive-deck-helper | 7d 0 次 · 30d 0 次 · 0 会话 · 30d 零调用 · 建议归档 | L0 2.6k tok · L1 +4.8k tok · Cache 0.0% | render_legacy.py 0次 · 均值 — · P95 0ms · 成功率 — | 4 用例 (+0 本周) · 75% 通过 · 拦截 0 / 逃逸 3 |
+
+剧场起点是UI 探索画廊48%、实现后截图回溯34%、规范审计18%，汇入SKILL.md (L0 入口 · 1.8k tok)；reference层具体为navigation-evidence-contract.md（62% · 2.4k tok）、interaction-layering.md（28% · 1.6k tok）、appearance-ledger.md（19% · 1.4k tok）、remotion-video.md（0 命中 · 冷门冗余告警 · 3.1k tok）。scripts层为design_evidence.py（46次 · P95 310ms · 98.5%）、design_catalog.py（39次 · P95 480ms · 100%）、verify_design_cases.py（18次 · P95 190ms · 100%）。my-designer脚下需「拦截 19 次 · 逃逸 2 次 [1 IMPL_BUG / 1 SPEC_GAP]」。行99.1%注明汇总，分支98.5%注明单脚本，不合并。
+
+hit百分比是可重叠的调用命中，不能画为和为100的reference饼图；三类意图才是48/34/18的分配。references带宽按组内命中，scripts按组内次数，仅视觉方向有关联，不跨组守恒。remotion节点采用2px灰库存关联闭合带，无流量脉冲。切别的Skill换到本人L0 token及已知脚本；未知意图/refs用「意图分类未记录」「引用明细未记录」，不嫁接my-designer文件。零调用页展示无读取路径，保留P95 0ms并说明未运行，不假造100%成功。
 
 ```html
-<main class="aidash-card topology-alcove-ribbon-console">
+<main class="prism-ribbon-bench topology-glass-ribbon-workbench">
   <section class="content">
-    <section class="alcove-kpi-lip"></section>
-    <div class="manifold-and-stepper">
-      <figure class="bezier-manifold"><svg viewBox="0 0 692 280"><defs></defs><g class="alcove-context-bands"></g><g class="alcove-disclosure-bands"></g><g class="alcove-cache-bands"></g><g class="alcove-independent-flag"></g></svg><figcaption class="alcove-branch-keys"></figcaption></figure>
-      <ol class="trace-stepper-list"><li data-stage="1"></li><li data-stage="2"></li><li data-stage="3"></li><li data-stage="4"></li><li data-stage="5"></li></ol>
-    </div>
-    <article class="dual-tab-pocket"><div role="tablist" class="diagnostic-tabs"></div><section class="friction-tab-panel"></section><section class="proposal-tab-panel"><div class="coverage-insert"><dl class="alcove-all-metrics"></dl></div></section></article>
+    <section class="glass-kpi-crown"><h1></h1><button class="theater-fold-trigger"></button></section>
+    <ol class="glass-skill-deck"><li data-skill-row data-skill="my-designer"><button data-skill-trigger><span class="deck-name"></span><span class="deck-frequency"></span><span class="deck-context"></span><span class="deck-scripts"></span><span class="deck-evals"></span></button></li><li data-skill-row data-skill="team-lead"></li><li data-skill-row data-skill="design-studio"></li><li data-skill-row data-skill="m2-dispatcher"></li><li data-skill-row data-skill="linear-board"></li><li data-skill-row data-skill="archive-deck-helper"></li></ol>
+    <figure class="wide-alluvial-theater"><div class="theater-scenes"><section class="ribbon-scene" data-bifurcation-panel data-skill="my-designer"><svg></svg><nav class="theater-file-targets"></nav></section></div><figcaption class="theater-branch-strip"></figcaption></figure>
+    <footer class="eval-escape-strip"><p></p></footer>
   </section>
 </main>
 ```
 
-初始源码展开每个g的闭合path、每个li的按钮和全量panel读数，以上是父子架构而不是运行时空槽。禁止用hero、fold-panel或secondary替代content直接孩子。
+Writer把另五个li及五个scene各自静态补齐，上述骨架不授权运行时克隆、不需要第三方脚本资源。只是Stage 1候选，不实现产品、不会发布或执行磁盘脚本。
 
 ## 8. Explicit Anti-Patterns & Verification Targets
 
-反例一律拦下：stroke-width > 24管（132/74/58），55+45+15归一化，cache96.8%作为第六片，宣称因果美元收益，.caustic-veil/.ruler/Active-Matte、<select>测试开关、沙盒免责词、innerHTML换节点。纸唇不能膨胀成另一个导航页面，动作不能触达真实scheduler、Linear或私有遥测。
+浮光禁S1–S12及S1/S2/S3/S4/S5/S6/S7/S8/S9/S10/S11/S12旧编号上屏；禁stroke-width > 24、innerHTML replacement、remove与replaceChildren、.caustic-veil、.ruler、Active-Matte、<select>测试switch、sandbox disclaimers。拒绝玻璃数据行、冠部大总分、hero/fold-panel/secondary直子类和另开效果debug栏。
 
-验证4状态并各取Light/Dark：①越界旗/S7/摩擦tab抽出首态；②hover L0后Enter选择55%，独立旗和分母未丢；③选择第三站打开统计抽页、再第四站核对逃逸归因；④第五站提案tab收藏、稍后、撤销，再Esc回tab。检查节点身份常驻、鼠标/键盘等价、0px溢出、两tab互斥可聚焦、数字完整、reduced-motion静止。写完成回执前运行全部可用R3 prompts的非标题段落<=20%重叠门禁。
+后续测WebKit1280x800两个appearance与reduce-motion：初始宽剧场七个文件全可读，四metric六行齐全；每Skill切换保持removedElements = 0、同一scene node identity。连续hover与点击切换详情正确，非选中scene禁止focus，所有target>=28px，文件名不numeric truncation。玻璃失效fallback不能遮住标题；冷带静态、Eval两个归因都出现。这些是Writer/Reviewer待验要求而不是本稿宣称已过的像素结果。

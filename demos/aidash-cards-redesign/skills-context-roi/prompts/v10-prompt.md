@@ -1,57 +1,74 @@
-# v10 · 精密流向证据工作台 (topology-workbench-lineage-dock)
+# v10 · 同心导流控制台 (topology-concentric-flow-console)
 
 ## 1. Visual Metaphor & Archetype Lock
 
-用左右纸袋夹住中央全链路流场，像开发者把一张证据单放在精密桌台而非开启新后台。VS-007精密遥测、CL-008靛蓝海军、IP-001交叉高亮、IP-003原位证据、CP-002抽页；X=中场分支与stage，Y=左slice袋/中央trace/右摩擦提案drawer三域，Z=工作台0/纸背1/抽页2/袋唇3。Linear/Flighty提供精确标签参考，SWWallet与Things 3在vault有依据；Alcove、CleanShot X、Sankey无vault结果，不能虚构组件源码。R2 B-v04/v06加A-v09只提取Owner认可的流带、回溯和凹口，desktop单卡且不冻结生产主题。
+借macOS 26同心容器与Linear inspector的空间逻辑，整台浮起但内容固体：左六Skill选择账、中三阶段Bezier图、右评测/脚本/冷文件诊断dock。所谓同心是嵌套圆角半径递减，不画圆环轨道或新地图。desktop四维component/chart-dataviz/glass-material/layout-navigation；VS-007 × CL-008 navy-blue；X=左表select / Y=右诊断lens / Z=外唇功能玻璃与实心三列。AppTheme候选ConcentricRouteConsole。
+
+20px顶部题、13px行名、12px数值/路径、11px诊断副字；SF Pro/PingFang及SF Mono，24×24 inline SVG1.5px画split与paper-file。顶部只有「Skills 效能与上下文」，没有重复六Skill摘要和旧编号导航。
 
 ## 2. Single P0 Focus & Initial Showcase State
 
-初始branch=slice-tool-results，selectedStage=1/S11，leftPocket=context/open=true；唯一P0是“Tool results 20,000 tok · 40%”，24px，中心对应40px切片亮起。rightDrawer=friction/open=false，露36px“摩擦与提案”把手，提案正文常驻收起。中间五stage节点均可见，只有第一站选中。选S7切为L0，选第五站把右drawer切为proposals/open=true；context大数不能与0.4 ROI并列竞争。hover cache miss只暂亮细支及口径，离开还原Tool results。
+首屏my-designer选择账已展开其中央canvas，默认pin design_evidence.py，右dock active lens「脚本」。唯一P0是该Skill的Prompt→L0→两类文件分岔；右dock给46次/P95 310ms/98.5%和行汇总均值140ms。六Skill常驻左账、0调用行明显，中央七终点完整，评测与冷文件lens也能点击到达不需新页面。
 
 ## 3. P1 / P2 Progressive Folding & Permanent DOM Contract
 
-中央canvas是P0操作域，P1为top rail与左切片标注，P2为右抽屉的摩擦/提案/全诊断及左袋缓存口径插页。initial load时所有SVG <path> ribbons、5 trace stage nodes、全S1..S12 metric readouts及所有pocket drawers必须永久挂载。选择仅用class、CSS变量、transform、dataset、aria和已有叶子textContent；innerHTML/outerHTML/replaceChildren/insertAdjacentHTML或卸载重建全部不准。inactive面inert/aria-hidden，袋签和stage保留32px命中。hover是可恢复preview，click/Enter/Space才commit；Esc先收右插页并回开启把手，focus-visible必须亮同条带。三域共用一套branch/stage/drawer状态，不能各自改数。
+左P1四组指标按Skill行五列排列；中央P2六张console-map已挂载，右P2三lens×六Skill的dl也静态存在。选择别行同时更换中图和右lens所属Skill；重复点收中央canvas但仍保留选中行与dock摘要。dock只读检查与选分支，无真实归档、重跑或新建任务能力。「评测 / 脚本 / 冷门文件」是本图明细lens，不是新增产品screen。
+
+规定removedElements = 0、零innerHTML rebuild。button[data-skill-trigger]内纯文本，dock及endpoint独立原生button；未活跃map/lens-panel inert/aria-hidden，选择只改class/dataset、Text.data与aria。hover reference同步dock临时亮对应说明，click固定pin并转对应lens，mouseleave恢复pin/lens。keyboard Enter/Space等效，Escape收图回左行，切行前若focus在旧图要移回新行。latest selection校验阻止过时动画切错dock。
 
 ## 4. Measured Layout & 1280x800 Viewport Geometry
 
-1280x800 viewport中 main x88/y76/w1104/h648，padding28，content1048x592。主框外308,608px²=30.1375%净空，>=22%。toprail48 + gap12 + trizone488 + gap12 + bottomlip32=592。trizone列宽212/576/212，中沟各24px。左右袋各212x488、内padding16；长slice/skill名允许两行13px，数值/units整体不ellipsis。中心SVG viewBox="0 0 576 340"，下148px五stage trace（5×104px+4×14px=576），每stage内容48px短标+定义入口，其长口径转已有drawer。所有最大抽取在原488px域内完成，0px unintended scroll overflow，不靠遮掉数据解决。细slice与3.2%分支用32x32px外部代理标签；任何target>=28x28px。
+1280x800 frame x32/y24、1216×752、padding24，content1168×704：top48 + gap12 + tri604 + gap12 + bottom28。tri三列420/508/216、两gap12，总1168。左表padding8后404px，五列96/72/78/92/50、gap4×4=16，合404；六行98px和上下8px共604。窄脚本与Eval列用11px/12px，92px脚本列最多七行84px加上下5px=94px；50px Eval列最多六行72px加上下5px=82px。名称、调用与Token仍为12px/14px，可在连字符和短单位之间自然换行；不得以仅名称的selector偷藏指标。
 
-212px右袋不能承载一张未折的十二项全表。诊断面内32px口径签、400px数据区、24px安全边；质量/实践/摩擦/披露/提案为常驻data-face，每面最多三项、每项最多三行20px，S11五片与cache/P95分两面。名称可自然换行，已有dl readouts只在对应面显示，其他面inert，选全诊断先进入质量面。左五片与右S11口径不能同时重复一份图例：读右context面时左面折为签，仍保持原node。
-
-中心S7用T100：L0 d="M 210,96 C 276,96 320,58 408,58 L 408,113 C 320,113 276,151 210,151 Z"；L1 d="M 210,151 C 276,151 320,182 408,182 L 408,227 C 320,227 276,196 210,196 Z"，各55/45px。旗d="M 242,282 C 300,282 338,262 418,262 L 418,277 C 338,277 300,297 242,297 Z"独立15px，不侵入100px母尺。S11五片100尺厚12/8/16/40/24，cache另100尺96.8/3.2；按 M x0,y0 C x0+36,y0 x1-36,y1 x1,y1 L x1,y1+h C x1-36,y1+h x0+36,y0+h x0,y0+h Z生成closed faces。context与disclosure之间是聚合导航，不猜条件分配；stage3/4/5只有1.5px中性连接线，不把异分母数据画成同一流量。
+中figure内484×580。Prompt88、hub90、出口标签250、两gap28，合484；中心三类入口沿左列y120/184/248，L0中列y240，七出口56px高从y48到440，底branch-strip y468..564。例带 d="M 206,252 C 216,252 224,120 234,120 L 234,132 C 224,132 216,266 206,266 Z"，closed fill用M C L C Z、linearGradient，stroke-width <= 24（实际0.6）。端口56px、250px宽支持长名两行13px和值一行，不把SVG文本scale小。右dock216×604，lens三button各64×32/gap4，content padding12可用192px，脚本/归因可自然多行。全部端口、lens、左行以及图的辅助靶 >= 28x28px。
 
 ## 5. Dual-Theme Surface Polarity & Alluvial / Paper-Pocket Craft
 
-Light tokens：desk #F8FAFC、surface #FFFFFF、pocket #EDF1F8、ink #202A3E、muted #53617A、slice/l0 #4E5DAB、cache/l1 #28738D、flag #996034、focus #2F5FB8。Dark tokens：#0E131F/#1D283A/#2C3B52/#F1F5FC/#BDCAE0/#B6C0FF/#A0D8E9/#EDC398/#B7D2FF。带fill为linearGradient 0% stop-opacity.22→100%.58，加1px白specular rim .55/.20。左右纸袋凹口深8px、18px圆角、0.5px inner-white highlight，抽纸投影0 4px 12px #15254214；中央图域不用边框再套框。SF Pro13/16/22，P0 24，全部数量tabular numerals；inline24x24 currentColor SVG icon笔画1.6px附标签。实体内容opacity1/blur0/refraction0，glass只能功能popover，Safari与Reduce Transparency用同色不透明回退；正文4.5:1及大字3:1对比均要核验。
+ConcentricRouteConsole light#F4F7FC canvas/#FFFFFF left/#EDF3FA center/#F8FAFD dock/#1A2B42 ink/#53677F muted/#265CAD accent；dark#0E131F/#202C3E/#162436/#243248/#F3F7FE/#BACADF/#9DC8FF。外frame radius28，tri panes16，内按钮8，保持28−12=16的同心padding逻辑。选中行只是淡蓝底与侧墨线，dock没有第四层卡框。
+
+外top-bar为唯一功能玻璃：IOR1.5、bevel10px、displacement14px、blur2.5px、saturation145%，light白alpha.76/dark蓝黑alpha.8，仅采样solid canvas。WebKit fallback及reduce-transparency用#FFFFFF/#29394F实心唇和0.5px高光，不叠glass。三列内容绝不backdrop-filter。reference蓝→靛、script蓝→青，cold灰色库存关系且无pulse；text4.5:1、focus3:1，dark不残留白dock。outer chooser仍独占theme/viewport/SELECT/STAR控制。
 
 ## 6. Apple Native Spring Physics & Flow Animation
 
-右paper drawer和左口径插页520ms cubic-bezier(0.22, 1.35, 0.36, 1)，hover把手peek translateY(-6px)，用offset变量叠加，不新增高度。active ribbon沿其中心C路径播放2px animateMotion粒子/2600ms，非选支只有静态高光，不让发光粗stroke变成流量。键盘focus、hover和click联动同条闭合带和对应drawer，连点从当前transform继续。prefers-reduced-motion: reduce取消particle、overshoot与peek，90ms opacity保留选择与全部读数，Esc焦点恢复不变；无需任何测试状态<select>才能看见动作。
+中央map换页460ms cubic-bezier(0.22, 1.35, 0.36, 1)，横移5px归零，右dock仅opacity160ms更新；收图保持整个604px tri外壳不变，让canvas内部0fr而非抹掉figure。端点pin色90ms响应，微光粒子沿真实C中心1950ms单向走，冷库存无光，drawer-like dock纸口只动2px不挥舞。
+
+prefers-reduced-motion取消位移、光粒与弹性，map/lens即时切换，静态箭头与selected-outline维持理解；功能玻璃fallback仍是单层。focus-visible2px/offset2，Tab先六行后七branch再三lens；Escape回选择表，不弹新窗口。脉冲只表方向、不能当运行状态或改calls数字。
 
 ## 7. Production Data Inventory & Exact DOM Topology
 
-中心trace五站为全链路回溯：Stage1 S11上下文构成(50,000 tok / 96.8%缓存)→Stage2 S7渐进披露分流(L0 55% / L1 45% / 越界15%)→Stage3 S1/S2/S3触发与门禁(命中2/8 · 拦截8/40 · 误报4/40 · 审计9/12)→Stage4 S8/S9返工与逃逸摩擦(返工18次 / 重试6次 / 逃逸3+5)→Stage5 S10提案转化与健康度(my-designer0.4 · code-review1.2 · team-lead1.8 proposals/100 runs)。门禁口径明确S1 Pin Drift 2/8 behind，“命中”短标不作触发成功；operational/data lineage不声称观察相关性证明因果或美元收益。
+同心控制台保留五真实指标：左账四项调用/上下文/scripts/Eval，中央交互路线为第五项；控制台明确L0为SKILL.md Token、L1为references/*.md平均连带Token，Cache为KV Cache命中率；会话列写活跃会话数。eval-cases.json与KV Cache要写清来源名字，不生成收益评分：
 
-左slice袋完整50,000 tok=100%：System / AGENTS 6,000 tok (12%)、Skills 4,000 tok (8%)、Tool schemas 8,000 tok (16%)、Tool results 20,000 tok (40%)、Conversation 12,000 tok (24%)。左cache插页单独命中96.8%（96,800/100,000 eligible requests）、未命中重算3.2%（3,200/100,000）。中心S7 L0索引浅读55%和L1局部深读45%，越界全量深读15%是独立重叠标志，无绝对次数不编。右摩擦面S8 20会话/18次编辑返工/6次重试各自计数，S9 [IMPL_BUG]3/[SPEC_GAP]5；右提案面S10三报告读数及查看建议、收藏、稍后、撤销本地状态，不造货币算法或真实治理操作。右诊断面全部S1..S12：S1落后2/8，S2拦截8/40=20%/误报4/40=10%，S3审计9/12、48 eval cases、本周+6，S4 my-designer40次加载与R1审查证据指向，S6 12脚本执行/触达8/40=20%（12不是触达次数），S5 暂无统计，S12 Search P95 18,400 tok/120次/7天。诊断bottomlip只是打开已有面入口，不再全量重复切片图或造证据正文。
+| 控制台 Skill | 周月调用与会话 | L0/L1与缓存开销 | 执行脚本效率 | eval-cases.json效果 |
+|---|---|---|---|---|
+| my-designer | 7d 42 次 · 30d 156 次 · 28 会话 | L0 1.8k tok · L1 +3.4k tok · Cache 96.8% | design_evidence.py 46次 · 均值 140ms · P95 310ms · 成功率 99.1% | 24 用例 (+4 本周) · 100% 通过 · 拦截 19 / 逃逸 2 |
+| team-lead | 7d 68 次 · 30d 240 次 · 41 会话 | L0 2.1k tok · L1 +2.8k tok · Cache 97.4% | goal-queue.py 64次 · ci-monitor.py 38次 · 均值 — · P95 420ms · 成功率 99.5% | 32 用例 (+6 本周) · 100% 通过 · 拦截 27 / 逃逸 1 |
+| design-studio | 7d 19 次 · 30d 74 次 · 16 会话 | L0 1.5k tok · L1 +2.2k tok · Cache 95.9% | design_catalog.py 39次 · 均值 — · P95 480ms · 成功率 100% | 18 用例 (+2 本周) · 100% 通过 · 拦截 11 / 逃逸 0 |
+| m2-dispatcher | 7d 51 次 · 30d 188 次 · 35 会话 | L0 1.6k tok · L1 +1.9k tok · Cache 97.1% | herdr-dispatch.sh 52次 · 均值 — · P95 260ms · 成功率 99.2% | 20 用例 (+3 本周) · 100% 通过 · 拦截 15 / 逃逸 1 |
+| linear-board | 7d 33 次 · 30d 112 次 · 22 会话 | L0 1.4k tok · L1 +1.5k tok · Cache 96.5% | linear-bot-bridge.py 44次 · 均值 — · P95 350ms · 成功率 98.8% | 16 用例 (+2 本周) · 100% 通过 · 拦截 9 / 逃逸 0 |
+| archive-deck-helper | 7d 0 次 · 30d 0 次 · 0 会话 · 30d 零调用 · 建议归档 | L0 2.6k tok · L1 +4.8k tok · Cache 0.0% | render_legacy.py 0次 · 均值 — · P95 0ms · 成功率 — | 4 用例 (+0 本周) · 75% 通过 · 拦截 0 / 逃逸 3 |
+
+中央my-designer完整路由标签：UI 探索画廊48%、实现后截图回溯34%、规范审计18%归入SKILL.md (L0 入口 · 1.8k tok)。references/*.md出口navigation-evidence-contract.md（62% · 2.4k tok）、interaction-layering.md（28% · 1.6k tok）、appearance-ledger.md（19% · 1.4k tok）、remotion-video.md（0 命中 · 冷门冗余告警 · 3.1k tok）；scripts/*.py出口design_evidence.py（46次 · P95 310ms · 98.5%）、design_catalog.py（39次 · P95 480ms · 100%）、verify_design_cases.py（18次 · P95 190ms · 100%）。dock评测lens全文「拦截 19 次 · 逃逸 2 次 [1 IMPL_BUG / 1 SPEC_GAP]」。脚本lens同时标「Skill汇总成功率 99.1%」及「此脚本成功率 98.5%」，两种口径不偷偷统一。
+
+refs hit按调用命中可以同时读取，62+28+19非100%守恒；scripts按次数独立编码，token/ms不拿来画同单位流量。cold节点2px灰库存关联不能发pulse。其余Skill的map用本人L0和已给脚本，缺失左Prompt/右reference为「意图分类未记录」「引用明细未记录」，没有source就不猜均值或逃逸分类。archive保持P95 0ms但说明未运行、0会话没有读取/执行路线。dock建议归档仅说明无真实操作，所有数据来自approved domain而非live遥测请求。
 
 ```html
-<main class="aidash-card topology-workbench-lineage-dock">
+<main class="concentric-route-console topology-concentric-flow-console">
   <section class="content">
-    <header class="workbench-top-rail"></header>
-    <div class="tri-zone-workbench">
-      <aside class="left-slice-pocket"><button class="slice-pocket-tab"></button><dl class="five-slice-readouts"></dl><div class="cache-denominator-slip"></div></aside>
-      <figure class="center-alluvial-trace"><svg viewBox="0 0 576 340"><defs></defs><g class="workbench-context-ribbons"></g><g class="workbench-cache-ribbons"></g><g class="workbench-disclosure-ribbons"></g><g class="workbench-overlap-flag"></g><g class="workbench-flow-particle"></g></svg><div class="workbench-branch-proxies"></div><ol class="workbench-five-stage-trace"><li data-stage="1"></li><li data-stage="2"></li><li data-stage="3"></li><li data-stage="4"></li><li data-stage="5"></li></ol></figure>
-      <aside class="right-roi-drawer"><button class="roi-drawer-pull"></button><div class="workbench-friction-face"></div><div class="workbench-proposal-face"></div><dl class="workbench-diagnostic-face"></dl></aside>
+    <header class="console-top-bar"><h1></h1><span></span></header>
+    <div class="tri-column-console">
+      <aside class="skill-list-pane"><ol class="console-skill-records"><li data-skill-row data-skill="my-designer"><button data-skill-trigger></button></li><li data-skill-row data-skill="team-lead"></li><li data-skill-row data-skill="design-studio"></li><li data-skill-row data-skill="m2-dispatcher"></li><li data-skill-row data-skill="linear-board"></li><li data-skill-row data-skill="archive-deck-helper"></li></ol></aside>
+      <figure class="center-bezier-canvas"><div class="console-map-stack"><section class="console-map" data-bifurcation-panel data-skill="my-designer"><svg></svg><nav class="console-endpoints"></nav></section></div><figcaption class="console-path-strip"></figcaption></figure>
+      <aside class="right-diagnostics-dock"><nav class="diagnostic-lenses"><button data-lens="eval">评测</button><button data-lens="script">脚本</button><button data-lens="cold">冷门文件</button></nav><div class="console-diagnostic-records"><dl data-skill-note="my-designer"></dl></div></aside>
     </div>
-    <footer class="diagnostic-bottom-lip"></footer>
+    <footer class="console-bottom-lip"><p></p></footer>
   </section>
 </main>
 ```
 
-初始HTML展开g内所有真实闭合paths、li内32pxstage按钮、dl完整指标和提案actions。此大纲不是等待JS填充的空槽，content不能改成hero/fold-panel/secondary三块模板。
+补五li完整五列button、五console-map、每Skill三lens明细；不得将generic空壳实现当完成。Designer只交候选，不造新功能、不生产实现、不发布或替Owner冻结主题。
 
 ## 8. Explicit Anti-Patterns & Verification Targets
 
-禁stroke-width >24粗管（132/74/58旧法）、55+45+15=100、cache96.8%第六slice、因果美元收益、.caustic-veil、.ruler、Active-Matte、<select>测试开关、沙盒免责copy和innerHTML替换节点。工作台不新增LLM操作/管理页、不连接真实scheduler、Linear、CloudKit或私有遥测。
+控制台严禁S1–S12以及S1/S2/S3/S4/S5/S6/S7/S8/S9/S10/S11/S12上屏；禁stroke-width > 24、.caustic-veil、.ruler、Active-Matte、<select>test switches、sandbox disclaimers、innerHTML replacement及remove/replaceChildren。content不许hero/fold-panel/secondary直子类，不能画同心轨道仪表、虚构archive action或六行只保留名字。
 
-核验四态×Light/Dark：A首载Tool results40%/Stage1/左袋开右袋收；B hover cache-miss后Enter提交3.2%并打开独立分母，再选L0读55%；C第三站门禁再第四站摩擦，拦截/误报和18/6、3/5保持真实独立口径；D第五站提案收藏、稍后、撤销、抽全诊断、Esc回右把手。测试0pxoverflow、数字完整、三个域节点identity、细带32px代理、focus与hover等价以及Reduce Motion停流；交接前全部现有R3 prompts的normalized non-heading paragraph overlap<=20%。
+后续WebKit1280x800双主题检查420/508/216三列真实读数与长文件全名、≥28px靶区、无numeric truncation/外溢。六Skill点选收展，七branch hover/click/keyboard，三lens切换皆需正确scope、MutationObserver removedElements = 0、隐藏内容无focus；cold不发光，行级/脚本成功率同时可读，Escape回行。再验glass fallback与reduced-motion可读性，此稿不声明真实渲染通过。

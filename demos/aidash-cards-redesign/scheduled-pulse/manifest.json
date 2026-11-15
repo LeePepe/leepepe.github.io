@@ -2,7 +2,7 @@
   "schema": "tenfold-gallery/v1",
   "mode": "screen",
   "goal": "aidash-cards-redesign",
-  "round": 3,
+  "round": 4,
   "platform": "desktop",
   "frame_mode": "macos",
   "category": "scheduled-pulse",
@@ -29,7 +29,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v01-prompt.md",
-      "prompt_sha256": "7f474798b9970767b3e9e02b79291bbd9c8ed5793e15c6bb705b33ef77b6b1fc"
+      "prompt_sha256": "e7439997788be7d9f9c5e076e8f143dc26783eed534b3e360b4e5457b0f0134b"
     },
     {
       "id": "v02",
@@ -44,7 +44,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v02-prompt.md",
-      "prompt_sha256": "54b21e60e9744ea3b24e15c4e2138071c52b180576611aa977cf8fcce0c6a484"
+      "prompt_sha256": "b821c59d307ad040337c2622a52e028d71976d6f42c259069c2e02025651a6a9"
     },
     {
       "id": "v03",
@@ -59,7 +59,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v03-prompt.md",
-      "prompt_sha256": "b8020992385b15f2cada6c40b6591fc74b5e6906ccd677fe0f104df09bdbf4c9"
+      "prompt_sha256": "476d4918fae76492c6979efeedf1be89df4d0628ec082f1f558405ad83691fc5"
     },
     {
       "id": "v04",
@@ -74,7 +74,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v04-prompt.md",
-      "prompt_sha256": "4e979e87e43c31fc81aa8b2c2c82d7a2c4563aecb17a1bbec32c691a5022f148"
+      "prompt_sha256": "1bc3242611fdc5bfd9505900e298ca3a78899602282d4cccb745655452214c3e"
     },
     {
       "id": "v05",
@@ -89,7 +89,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v05-prompt.md",
-      "prompt_sha256": "759548c35c45a96d16d93aff36fd0c53f612e35523be718cd645e306941682c4"
+      "prompt_sha256": "d82b513d7924eacb87c124162ba063e880a0a1595a275cfc8ee2ecdcadd41a69"
     },
     {
       "id": "v06",
@@ -104,7 +104,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v06-prompt.md",
-      "prompt_sha256": "03d8d34cd57c91e67768ad0bd47c1d25467371ff828c1f5f59cb4dfbbf3f6d88"
+      "prompt_sha256": "001be57bc30b1bf23e43fcdbc522e2db83e82accea3b2fcedf0b93ccb5c3d852"
     },
     {
       "id": "v07",
@@ -119,7 +119,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v07-prompt.md",
-      "prompt_sha256": "03db5c91922655957afd97f6bc2d1e7faf82a7e481fb8a12f5ba0fa9197afbbe"
+      "prompt_sha256": "4e1188afafc3af83f0abd0c2b0f33ba998acaf0cf4669e1f314a5716cda2a422"
     },
     {
       "id": "v08",
@@ -134,7 +134,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v08-prompt.md",
-      "prompt_sha256": "11d521bd895ed5e556449b36da22f5e2390799cfa8d634ddd1a74e871ff2b726"
+      "prompt_sha256": "c621aab2ba9427b4bcc35df1fec15cafb7f9063bfc5e532770d8692fbc71bb2b"
     },
     {
       "id": "v09",
@@ -149,7 +149,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v09-prompt.md",
-      "prompt_sha256": "508f61f3da6c83196a262cfde88c37abf96c9d4a96ed2c7194ba0eb524fd4028"
+      "prompt_sha256": "466fed0b206b3780205d8c9dbf9fda5ccb2275a69109cf7b7bb3f57d31f8d601"
     },
     {
       "id": "v10",
@@ -164,7 +164,7 @@
       "starred": false,
       "notes": "",
       "prompt_file": "prompts/v10-prompt.md",
-      "prompt_sha256": "a454c0bfe282166605912a25a664cc67ff2cdbeeb297f0edbd02b4c78682f643"
+      "prompt_sha256": "0a7bc56013c7b92962f92e5f4c1f80399b4758fd39a66d11ec1e2cba755a8c01"
     }
   ],
   "prompt_contract": {

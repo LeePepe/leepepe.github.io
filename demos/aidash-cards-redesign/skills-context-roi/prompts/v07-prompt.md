@@ -1,54 +1,71 @@
-# v07 · 双层歧流档案袋 (topology-dual-manifold-pockets)
+# v07 · 六舱精密导流架 (topology-tactile-rack-conduit)
 
 ## 1. Visual Metaphor & Archetype Lock
 
-把两套不能混合分母的观测流分为上下manifold，并套进开凹口的Manila纸袋：上层context/disclosure，下层cache/gates，口袋收住五站回溯证据。锁VS-002人文档案、CL-002暖纸及CP-002、IP-001；X=上下流域选取，Y=双层图与档案夹内折面，Z=流域0/纸背1/袋沿3/证据抽页2。参考SWWallet三维口袋与Things 3安静标签，Owner的R2分岔和回溯同属一个family。Vault找到SWWallet/Things相关条目，未找到Alcove/CleanShot X/Sankey，几何不借虚构库。desktop/macOS选型提示，绝不是新档案管理产品。
+参考Flighty的精密信息分舱和SWWallet浅托盘层次，把六Skill做成2×3可读工作舱。每舱拉手指向下方共同的conduit inspector；不是太空飞船控制面板，不发明运行服务。desktop四维component/chart-dataviz/layout-navigation/motion-interaction；VS-003 × CL-003 slate-cyan；X=舱button / Y=拉出共用导流托盘 / Z=浅凹舱与实心托盘。主题候选PrecisionConduitRack。
+
+标题20px、舱名13px、指标12px、脚本及小注11px，使用SF Pro/PingFang和SF Mono。24×24 SVG用1.5px刻画三孔拉手与分叉，不把状态变为无字灯珠。舱内四metric形成一块读数面，不额外制造四盒套盒。
 
 ## 2. Single P0 Focus & Initial Showcase State
 
-默认亮下层cache-miss细支，activeBranch=cache-miss，selectedStage=1/S11；P0只放“未命中重算3.2%”24px读数及3,200/100,000旁注。上层manifold静态退亮，manila pocket=context/open=true，上抽52px；摩擦、提案和全表折面仍在袋内。点击上层L1选Stage2并换披露证据，点第三/四/五站切袋内对应面，不让选上层自动改下层统计。顶menu是产品“上下文与披露 / 缓存与门禁”lens，不是内部测试状态控件。
+初始my-designer舱拉手伸出6px，conduit-inspector-bay完整打开，默认design_catalog.py路径高亮。P0为「my-designer读取和执行走向」，不是最大调用舱。六舱全露四项证据，archive-deck-helper保留在右下、带30d 零调用徽章；filter-bar只给「全部 / 30d 零调用」真实筛选，不加隐藏测试状态。
 
 ## 3. P1 / P2 Progressive Folding & Permanent DOM Contract
 
-P1包含两个真实流域和五stage标签，P2归入Manila夹的已存在证据面。初始load必须永久挂载所有SVG <path> ribbons、5 trace stage nodes、S1..S12 metric readouts和所有pocket drawers，两个流域无论是否active都保持原Element。切lens/branch/sheet只改CSS classes、variables、transforms、dataset、aria与已有叶子textContent；innerHTML/outerHTML/replaceChildren/insertAdjacentHTML和删除重建均禁止。未选正文以opacity/transform归袋，inert/aria-hidden排出焦点序列，菜单与纸签32px。hover/focus临时照带，click或Enter/Space提交，Esc逐层归袋回原标签。只有一套全局选择状态，不复制两套相互矛盾的stage。
+P1舱内四读区不折叠；P2托盘的六份route-face和右dl明细。点击舱拉出本人托盘，click已选舱退托盘，选另舱只替换活跃route-face。全部/零调用筛选改变CSS可见高度、inert及aria-hidden，不移走任何舱，切回恢复同一对象；默认全部，首次图仍完整。筛选若隐藏所选舱则收托盘，不自动选新舱、不能显示旧图归到新Skill。
+
+所有bay、route-face、静态读数和输出按钮自初HTML常驻：removedElements = 0，零innerHTML rebuild。改变class、dataset、Text.data与aria即可；不以重排DOM实现筛选。hover branch点亮对应路径和明细，click.pin固定，离开恢复pin；Escape退托盘并回bay。动画回调带最新selection校验。原生button容纳舱文本与拉手，分支按钮在托盘独立，不嵌套交互角色。
 
 ## 4. Measured Layout & 1280x800 Viewport Geometry
 
-1280x800固定内窗，main88/76/1104/648、padding28，content1048x592；外留白308,608px²=30.1375%>=22%。纵向menu36、deck260、manila232、footer28，三个12pxgap，总592。deck上下各124px中间12px；每图viewBox="0 0 1048 124"，长标签放HTML figcaption边栏而非压成小于13px的SVG文字。纸袋内五站rail40px、证据面160px及凹沿32px共232；最大抽页不超预留面，footer不浮动。0px unintended scroll overflow，数量与units永不省略，controls>=28x28px/默认32，窄miss借32x32px外部标签命中。
+1280x800下main x32/y24、1216×752、padding24；content1168×704为filter40+gap16+rack304+gap16+inspector296+gap12+foot20。rack列576×2/gap16，行96×3/gap8；bay padding12后552×72，名20px，metric横排四个132px区/gap8，读数最多4行12px。长脚本自然在连字符和下划线断，不能让P95或成功率消失。
 
-Manila的160px证据区容纳32px口径签和128px正文，不容纳同时展开的十二指标表。data-face按质量S1-S3、实践S4/S6、摩擦S8/S9、披露S7/S5、提案S10拆组，context五片与cache/P95另两面；五片每行20px，其余每组最多三项、每项两行20px。所有分组预挂载，换组只移动既有纸面并互斥inert，选全审计默认质量组，不能追加新记录或隐藏数字来凑空间。
-
-上层T=60：S11五片厚7.2/4.8/9.6/24/14.4；S7正常两支33/27。L0 d="M 384,38 C 484,38 576,18 700,18 L 700,51 C 576,51 484,71 384,71 Z"，L1 d="M 384,71 C 484,71 576,72 700,72 L 700,99 C 576,99 484,98 384,98 Z"。独立旗9px=15%×60，于x768起单独走带。下层cache T60：58.08/1.92px；用 M x0,y0 C x0+48,y0 x1-48,y1 x1,y1 L x1,y1+h C x1-48,y1+h x0+48,y0+h x0,y0+h Z 生成所有闭合支（两图都必须有自己的defs/linearGradient）。context到S7中间只做aggregate junction，不制造各slice与L0/L1交叉样本；gate→friction→S10为1.5px导航连接，厚度不声称跨分母守恒。
+inspector是figure880 + gap16 + dl240，padding16后实际内部1136需figure880/gap16/dl240正好。figure图区880×264，Prompt x0..128、hub x260..374、右标签x562..880；七个端口32px高从y16至240，文件名12px加值11px可两行。C带例如 d="M 374,110 C 434,110 494,30 562,30 L 562,42 C 494,42 434,124 374,124 Z"，closed fill遵M C L C Z，stroke-width <= 24，实描边0.75。dl240×264内pad12，分支全名允许三行而不是ellipsis。所有bay拉手、筛选键、端口button与路径辅助命中 >= 28x28px，架外无horizontal overflow。
 
 ## 5. Dual-Theme Surface Polarity & Alluvial / Paper-Pocket Craft
 
-Light材料desk #F8F5ED、paper #FFFEFA、manila #EFE8D9、ink #2C332B、muted #606B5B、l0/hit #3E6B47、l1/miss #526DA0、flag #986039、focus #315DA4；Dark对应#181E1A、#253129、#354237、#F1F5E9、#C1CFB8、#B6D9AC、#B5CDF4、#E8BE9B、#BAD3FF。每带gradient 0% .22→100% .58填充自己closed path，1px白高光rim .55/.20。Manila口中央凹11px、角18px，0.5px inner-white亮边与0 6px 16px #26302412软影建立深度，不加纸纹噪声。SF Pro13/17/22、tabular numerals，24x24 currentColor icon1.6px。内容全实体opacity1/blur0/displacement0，玻璃最多功能popover而且Safari与Reduce Transparency替换paper实体；正文4.5:1、较大文字3:1两主题都守住。
+PrecisionConduitRack light底#EEF3F6、舱#F9FCFE、井#E4EDF2、字#172D3B、副字#506877、cyan#176B85；dark#111C25/#22323F/#172630/#F0F8FC/#AFC5D3/#9AD9EA。凹舱顶缘inset 0 1px 3px #15364B14，托盘前缘1px#FFFFFF66高光，背垫translateY(4px)。拉手只是小垫片，不能是全排粗边框或网格刻度。
+
+Liquid Glass光学不启用：blur0、refraction0、displacement0，架与数据固体。有效refs带blue→cyan，scripts带blue→sage，冷文件连接灰青且静态。状态文字4.5:1，focus边3:1；reduced-transparency同实心舱，data-theme变化只换变量。警告不是泛红整舱，归档为读数建议，不是真实删除命令。
 
 ## 6. Apple Native Spring Physics & Flow Animation
 
-档案纸用500ms cubic-bezier(0.22, 1.35, 0.36, 1)从+52px到0；hover签peek translateY(-6px)作为变量加到current offset，不跳回起点。当前流域的当前branch附1.5px dashed pulse，dash3 17、offset0→-80/2400ms，另一图无活动粒子。focus与hover同亮闭合支，选择不改变其厚度。prefers-reduced-motion: reduce 停持续pulse、取消弹性/peek，以90ms opacity定位新证据，所有lens、stage与Esc仍工作。快速换lens不重建defs或paths。
+托盘296px展收为470ms cubic-bezier(0.22, 1.35, 0.36, 1)，内部route-face向前translateY(-5px)归位，拉手伸6px；切舱只移动选择底片，不拆下整架。C中心1px柔光粒子用2000ms单向运动，脚本端点arrival轻亮90ms，不改变数值。冷门relation无粒子。hover明细100ms高亮，同高dl不随内容推架。
+
+prefers-reduced-motion取消伸拉、粒子与弹性，CSS只静态切选中outline及route显示；滤镜按钮32px高。Tab次序按舱DOM自然顺序、再branch、再明细可读项。focus2px，Escape不清除已点branch记忆；screen reader能听到selected Skill与具体path名。
 
 ## 7. Production Data Inventory & Exact DOM Topology
 
-袋内五站固定“全链路回溯”：Stage1 S11上下文构成(50,000 tok / 96.8%缓存)→Stage2 S7渐进披露分流(L0 55% / L1 45% / 越界15%)→Stage3 S1/S2/S3触发与门禁(命中2/8 · 拦截8/40 · 误报4/40 · 审计9/12)→Stage4 S8/S9返工与逃逸摩擦(返工18次 / 重试6次 / 逃逸3+5)→Stage5 S10提案转化与健康度(my-designer0.4 · code-review1.2 · team-lead1.8 proposals/100 runs)。该链只是operational/data lineage；Stage3的S1短标命中2/8指Pin Drift落后2/8，不伪装健康触发。
+六舱四读数的真实领域分别是7d/30d与会话/僵尸、L0/L1 Token与KV Cache、具体scripts调用和avg/P95/成功率、eval-cases.json用例/周增/通过/拦逃。L0标题解读为SKILL.md Token，L1为references/*.md平均连带Token，Cache是KV Cache命中率，舱内会话数标为活跃会话数。拉出的Prompt→L0→L1/Scripts是第五项，不新增设备状态字段：
 
-上图S11五片共50,000 tok=100%：System / AGENTS6,000 tok(12%)、Skills4,000 tok(8%)、Tool schemas8,000 tok(16%)、Tool results20,000 tok(40%)、Conversation12,000 tok(24%)。上图S7 L0索引浅读55%/L1局部深读45%，越界全量深读15%独立重叠旗，未知绝对样本量不造次数。下图cache独立100,000 eligible requests，命中96.8%=96,800/100,000，未命中重算3.2%=3,200/100,000；门禁证据S1 2/8 behind、S2 8/40=20%拦截与4/40=10%独立误报、S3 9/12审计、48 eval cases及本周+6。摩擦折面S8 20会话/18次编辑返工/6次重试不合算，S9 [IMPL_BUG]3/[SPEC_GAP]5。提案折面S10三注册skill报告读数及查看建议、收藏、稍后、撤销，只改本地状态不造美元算法。诊断折面補S4 my-designer40次加载和R1审查证据入口、S6 12脚本执行/触达8/40=20%（12与触达8不可混淆）、S12 Search P95 18,400 tok/120次/7天；S5 暂无统计在footer入口，完整S1..S12读数皆常驻袋内，缺失不写为0。
+| 工作舱 Skill | 频次与活跃证据 | 上下文载入证据 | 脚本性能证据 | eval-cases.json成效 |
+|---|---|---|---|---|
+| my-designer | 7d 42 次 · 30d 156 次 · 28 会话 | L0 1.8k tok · L1 +3.4k tok · Cache 96.8% | design_evidence.py 46次 · 均值 140ms · P95 310ms · 成功率 99.1% | 24 用例 (+4 本周) · 100% 通过 · 拦截 19 / 逃逸 2 |
+| team-lead | 7d 68 次 · 30d 240 次 · 41 会话 | L0 2.1k tok · L1 +2.8k tok · Cache 97.4% | goal-queue.py 64次 · ci-monitor.py 38次 · 均值 — · P95 420ms · 成功率 99.5% | 32 用例 (+6 本周) · 100% 通过 · 拦截 27 / 逃逸 1 |
+| design-studio | 7d 19 次 · 30d 74 次 · 16 会话 | L0 1.5k tok · L1 +2.2k tok · Cache 95.9% | design_catalog.py 39次 · 均值 — · P95 480ms · 成功率 100% | 18 用例 (+2 本周) · 100% 通过 · 拦截 11 / 逃逸 0 |
+| m2-dispatcher | 7d 51 次 · 30d 188 次 · 35 会话 | L0 1.6k tok · L1 +1.9k tok · Cache 97.1% | herdr-dispatch.sh 52次 · 均值 — · P95 260ms · 成功率 99.2% | 20 用例 (+3 本周) · 100% 通过 · 拦截 15 / 逃逸 1 |
+| linear-board | 7d 33 次 · 30d 112 次 · 22 会话 | L0 1.4k tok · L1 +1.5k tok · Cache 96.5% | linear-bot-bridge.py 44次 · 均值 — · P95 350ms · 成功率 98.8% | 16 用例 (+2 本周) · 100% 通过 · 拦截 9 / 逃逸 0 |
+| archive-deck-helper | 7d 0 次 · 30d 0 次 · 0 会话 · 30d 零调用 · 建议归档 | L0 2.6k tok · L1 +4.8k tok · Cache 0.0% | render_legacy.py 0次 · 均值 — · P95 0ms · 成功率 — | 4 用例 (+0 本周) · 75% 通过 · 拦截 0 / 逃逸 3 |
+
+my-designer的托盘先出现三个Prompt意图：UI 探索画廊48%、实现后截图回溯34%、规范审计18%，再是SKILL.md (L0 入口 · 1.8k tok)。reference四端口navigation-evidence-contract.md 62%·2.4k tok、interaction-layering.md 28%·1.6k tok、appearance-ledger.md 19%·1.4k tok、remotion-video.md 0 命中 · 冷门冗余告警·3.1k tok。script三端口design_evidence.py 46次·P95 310ms·98.5%、design_catalog.py 39次·P95 480ms·100%、verify_design_cases.py 18次·P95 190ms·100%。dl中全文「拦截 19 次 · 逃逸 2 次 [1 IMPL_BUG / 1 SPEC_GAP]」，明确行级99.1%与单脚本98.5%两个作用域。
+
+refs hit的分母为Skill调用，多个reference可同读，不能归一化成100%分配；scripts的宽度按组内calls另映，不以P95改变带宽。remotion保留2px灰库存线而不假装非零。其他舱托盘只有已知本人L0/script，未知意图/refs显示「意图分类未记录」「引用明细未记录」；avg —与未给的逃逸分类不臆造。零调用舱P95 0ms说明未运行，无实际读取/执行流，不可删掉。此处采用批准的可视库存，不宣称核实磁盘目录。
 
 ```html
-<main class="aidash-card topology-dual-manifold-pockets">
+<main class="precision-conduit-rack topology-tactile-rack-conduit">
   <section class="content">
-    <menu class="manifold-lens-bar"><li><button data-lens="upper"></button></li><li><button data-lens="lower"></button></li></menu>
-    <div class="twin-manifold-deck"><figure class="context-manifold"><svg viewBox="0 0 1048 124"><defs></defs><g class="upper-five-slices"></g><g class="upper-disclosure"></g><g class="upper-overlap-flag"></g></svg><figcaption class="upper-branch-keys"></figcaption></figure><figure class="gate-manifold"><svg viewBox="0 0 1048 124"><defs></defs><g class="lower-cache-streams"></g><g class="lower-lineage-connectors"></g></svg><figcaption class="lower-branch-keys"></figcaption></figure></div>
-    <section class="manila-trace-pocket"><nav class="manila-five-stage-rail"></nav><div class="manila-context-face"></div><div class="manila-gate-face"></div><div class="manila-friction-face"></div><div class="manila-proposal-face"></div><dl class="manila-full-audit-face"></dl></section>
-    <footer class="honest-s5-strip"></footer>
+    <menu class="rack-filter-bar"><li><button data-rack-filter="all">全部</button></li><li><button data-rack-filter="zero">30d 零调用</button></li></menu>
+    <div class="six-bay-rack"><article data-skill-row data-skill="my-designer"><button data-skill-trigger><strong></strong><span class="bay-four-readouts"></span><i class="bay-pull-tab"></i></button></article><article data-skill-row data-skill="team-lead"></article><article data-skill-row data-skill="design-studio"></article><article data-skill-row data-skill="m2-dispatcher"></article><article data-skill-row data-skill="linear-board"></article><article data-skill-row data-skill="archive-deck-helper"></article></div>
+    <section class="conduit-inspector-bay"><figure class="conduit-route-view"><div class="rack-route-faces"><section data-bifurcation-panel data-skill="my-designer"><svg></svg><nav class="rack-route-ports"></nav></section></div></figure><dl class="conduit-file-spec"></dl></section>
+    <footer class="rack-audit-foot"><p></p></footer>
   </section>
 </main>
 ```
 
-所有g初始展开闭合paths和motion光轨，nav初始五个按钮，dl完整读数与actions，不用空壳动态填充。content direct child禁hero、fold-panel、secondary。
+补齐其余五article中的button/四读数，以及五份route-face；pull-tab是无交互装饰，按钮本体才触发。Stage 1只写候选，不执行shell脚本、不发布、不修改监控服务。
 
 ## 8. Explicit Anti-Patterns & Verification Targets
 
-禁stroke-width >24粗管及132/74/58旧样，禁55+45+15=100，禁把96.8%cache归第六slice，禁因果美元收益。.caustic-veil、.ruler、Active-Matte、<select>测试下拉、沙盒免责copy、innerHTML换节点同属失败。不把lens编成新页面，不连接真实遥测/Linear/CloudKit或调度。
+导流架禁旧S1–S12和S1/S2/S3/S4/S5/S6/S7/S8/S9/S10/S11/S12 visible code，禁stroke-width > 24、.caustic-veil、.ruler、Active-Matte、<select>test switch、sandbox disclaimers、innerHTML replacement及remove/replaceChildren。content不许hero/fold-panel/secondary直子类，也不许设备健康、开机按钮等虚构功能。
 
-验4态×Light/Dark：①cache-miss/Stage1/context档案纸首态；②hover再键盘提交上图L1/Stage2，cache分母仍独立；③点击门禁第三站再摩擦第四站，正文中的误报4/40和逃逸3/5各自可读；④第五站提案收藏、稍后、撤销并Esc归袋。记录path/5stage/panel identity、0pxscroll、窄miss代理目标、无数字省略及Reduce Motion停止pulse；complete前对所有到位R3 prompt运行<=20% normalized non-heading paragraph overlap。
+后续WebKit1280x800 light/dark验六舱四读数、完整托盘路径与至少28px按钮。交互包括全部/零调用往返、六舱开合、七分支hover/click与keyboard，MutationObserver严格removedElements = 0；筛掉选中时不得误归到另一Skill，unknown不是空白死图。检查avg缺失、75%通过、冷带无pulse、脚本成功率范围及文件无截断。此设计稿不冒充浏览器结果。

@@ -1,55 +1,72 @@
-# v08 · 五层伸缩回溯抽屉 (topology-telescopic-trace-drawers)
+# v08 · 伸缩抽屉导流井 (topology-telescopic-skill-drawers)
 
 ## 1. Visual Metaphor & Archetype Lock
 
-将五站链折成五层伸缩纸抽屉，左边弯曲流脊给方向，右边凭条检查器给口径；一次仅一层抽开，不把所有指标堆进长表。坐标锁VS-005、CL-006、CP-002、IP-003：X=抽屉stage选择，Y=五层单开accordion+右凭条，Z=槽0/左流带1/纸抽屉2/凹唇3。Things 3给安静列表，SWWallet给实体袋层，R2 B-v06给全链路回溯；R2 B-v04的粗stroke彻底不用。Vault已命中Things/SWWallet，Alcove/CleanShot X/Sankey无条目，不能声称引用可用组件。desktop范围，仅真实AIDash诊断动作。
+以Alcove的浅层抽出感和纸档案柜为参考，六条水平Skill抽屉在左，右井采用先竖向汇入再横向分岔的C曲带；最后一窄列是一张script/Eval明细纸。不是六层全屏sheet，也不是普通左右表格换皮。desktop四维component/chart-dataviz/layout-navigation/motion-interaction；VS-005 × CL-006 warm-indigo remix；X=抽屉button / Y=固定高右井 / Z=抽屉伸6px与凹井。候选AppTheme=TelescopicConduitFile。
+
+13px抽屉名、12px主要数据、11px细项、20px井标题。SF Pro/PingFang中文，文件SF Mono。24×24 inline SVG画抽屉拉槽与竖转横分叉，1.5px currentColor；不使用ruler刻度。标题和说明直接落在frame里，不额外做hero盒。
 
 ## 2. Single P0 Focus & Initial Showcase State
 
-默认branch=l0、selectedStage=3/S1-S2-S3，drawer3 open=true，其他四层收成72px纸签。P0是第三层“拦截8/40 · 20%”，24px；L0 55%只是当前流脊选择，不能说它造成拦截。右voucher默认为S2定义，正文含独立误报4/40=10%。点流脊L1选第二层披露，点第四层改voucher看返工/逃逸，第五层才看建议。所有层号的次序固定，不拖拽排序或创造档案记录。
+首抽屉my-designer伸出6px，中央井永久打开，L0之后reference与script两组清楚分开，默认navigation-evidence-contract.md为pinnedBranch。单P0是从Prompt到具体文件的上下文去向；最右纸片展示该分支62%/2.4k tok与本Skill Eval归因，而非另一份六Skill总账。所有六抽屉和僵尸建议同时可见。
 
 ## 3. P1 / P2 Progressive Folding & Permanent DOM Contract
 
-五层题签是P1，层内证据和voucher二级口径是P2，S1..S12全表是voucher内可抽slip。初始DOM永久挂载全部SVG <path> ribbons、全部5 trace stage nodes、所有S1..S12 metric readouts及pocket drawers。单开只是class/dataset/CSS变量/transform/opacity/aria的改变，不允许innerHTML、outerHTML、replaceChildren、insertAdjacentHTML或delete/recreate元素；已有叶子textContent可变但不生成整面模板。inactive layer正文inert且aria-hidden，layer tab保持可聚焦。hover临时亮带，Enter/Space和click提交；Esc先收voucher slip再收当前层，焦点回该层tab，读屏得到正确展开状态。
+左抽屉P1四组账目排2×2，每条button包含标题及所有四组纯文本；P2中央井的六份route-map和右纸片六份detail-note。click不同Skill切两者到本人节点，重复click retract流井，仅保留选中标签；再click恢复pin。抽屉伸缩只transform、不改变列宽，避免右图跳动。
+
+六li、六route-map、六detail-note以及所有paths和branch按钮都在initial HTML；removedElements = 0、零innerHTML rebuild，单用data-open/class、Text.data、aria。隐藏panel inert且aria-hidden，右note也跟随隐藏，不能留上一Skill数据。hover临时聚焦分支，click/Enter/Space锁定，leave退到pin；Escape让focus回已选抽屉。分支变化只改existing text，不创建一份新的detail；快速多点以latest intent覆盖过时timer。
 
 ## 4. Measured Layout & 1280x800 Viewport Geometry
 
-总画框1280x800，main(88,76)1104x648、padding28，content1048x592；外留白30.1375%=308,608px²>=22%。telescopic-layout三列144 / 552 / 320px，中间两沟16px，共1048。drawer list单开层256px、四收层各72px、4gap12px，合592；切层用grid-track transition，宽高总预算始终不变。inspector320x592，24px内padding，顶部48px/主体384px/审计slip112px；审计slip最大112px，不盖主体按钮。左SVG viewBox="0 0 144 592"，不在144px宽内硬塞长标签，按钮文本放layer/voucher，左边32x32px代理保障小支命中。所有controls>=28x28px、正文13px、数字完整，全部四态0px unintended scroll overflow。
+1280x800窗内main x32/y24宽1216高752、padding24后content1168×704。唯一直接孩子telescopic-roi-frame为三列460/456/220、gap16两次，合1168。左列上下8px：六抽屉108px/gap8共688，8+688+8=704；每抽屉内部padding8，可用444×92，标题16、gap2、两排metric各37px。每排两格216px/gap12，读数11px/12px且最多三行，脚本两文件占两行、均值/P95/成功率占第三行；全部16+2+74=92px，不挤下条抽屉。脚本长名在连字符断行，右宽220px也允许自然断名不截数据。
 
-voucher审计slip112px严格分配32px口径签+80px内容：质量、实践、摩擦、披露、提案各为多张常驻data-face，每面不超过两指标、每指标至多两行20px；context五切片专面五行16px，cache与P95另面。全部S1..S12可由口径签走到，却不得同时挤入112px。dl的分组div只以opacity/transform/inert切换，首开质量组，数字不裁不缩到13px以下，不能新增测试开关。
-
-左脊局部沿x展开的T80 split：L0 44px d="M 16,180 C 42,180 68,152 104,152 L 104,196 C 68,196 42,224 16,224 Z"；L1 36px d="M 16,224 C 42,224 68,242 104,242 L 104,278 C 68,278 42,260 16,260 Z"。15%旗独立厚12px摆在y304，不插入80px母带。第一层附近S11五片厚9.6/6.4/12.8/32/19.2，共80；cache另80尺77.44/2.56放y70局部区。所有带的closed cubic公式 M x0,y0 C x0+26,y0 x1-26,y1 x1,y1 L x1,y1+h C x1-26,y1+h x0+26,y0+h x0,y0+h Z；层间连接只1.5px曲线语义边，门禁8/40等不同分母不能假装继承token流量。
+中央井padding8后440×688。三个Prompt节点各128×40并排不放得下，因此竖排在x12/y36、88、140，再向y228的L0 hub x12..156汇合，出口位于x180..440。七个出口56px高，y232起至624；终点全名两行13px和值一行13px。输入先竖向C合流，如 d="M 40,76 C 40,146 80,158 80,228 L 92,228 C 92,158 52,146 52,76 Z"；输出如 d="M 156,242 C 164,242 170,244 180,244 L 180,256 C 170,256 164,254 156,254 Z"，closed filled cubic-Bezier、gradient fill，stroke-width <= 24（实际0.5）。中央线路短也要C不是折线。视觉光带不撑宽列，label是HTML1:1覆盖。button、抽屉拉手和路径辅助靶 >= 28x28px。
 
 ## 5. Dual-Theme Surface Polarity & Alluvial / Paper-Pocket Craft
 
-Light用desk #F5F6F8、surface #FFFFFF、drawer #ECF1EE、ink #22332B、muted #58675F、l0/hit #356C50、l1/miss #4C6F9A、flag #956037、focus #2A61AA。Dark相应#151D22、#23312C、#304037、#F0F7EF、#BED0C1、#ACDDBD、#B6D1EF、#ECC39D、#BCD7FF。每branch linearGradient在0% stop-opacity.22、100%.58，closed fill外添1px白rim .5/.2。抽屉纸唇中心凹6px、18px角、0.5px inner-white highlight，阴影0 3px 10px #23332B14；层签只一条细折影，不画全柜边网。SF Pro13/16/22及tabular numerals，inline24x24 currentColor图标1.5px有可见名称。实体content opacity1，无玻璃blur/refraction；功能tooltip如玻璃化需Safari/Reduce Transparency实体回退且正文4.5:1、大字3:1。
+TelescopicConduitFile light canvas#F3F1EC、drawer#FFFCF6、well#EAEAF4、note#F9F7F0、ink#303044、secondary#686879、accent#5955AA；dark#181922/#2B2B39/#202131/#32313D/#F5F1FA/#C4C0D1/#C2BCFA。抽屉外圆角12、内纸6、井圆角20；纸口shadow inset 0 1px 2px #15132314、外纸层y3，所有文字前景与阴影脱离。
+
+Liquid Glass显式关闭：blur0、displacement0、refraction0，不能把抽屉半透明叠成六层玻璃。refs紫→蓝、scripts紫→青，冷reference灰色2px库存关联，禁发光。读数90%中性色，选中拉手才用品牌色；正文4.5:1、focus3:1。减少透明度无信息损失，主题随外层data-theme，不加inner theme switch。
 
 ## 6. Apple Native Spring Physics & Flow Animation
 
-单层伸展和凭条抽取420ms cubic-bezier(0.22, 1.35, 0.36, 1)，layer tab hover peek translateY(-6px)，位移容纳在12px层沟。高度轨道合计固定，内部纸面用transform沿轨移动，不能一个新层突然撑开窗。选中branch中心加1.5px虚线光轨dash2 22/offset0→-96/2800ms；焦点与hover同支高亮，不改变宽度。prefers-reduced-motion: reduce停dash与overshoot/peek，只80ms opacity和瞬时固定轨道更新；连点层签沿当前animation value接续，旧节点原位不销毁。
+左抽屉translateX(6px)，中央井内页translateY(-5px)→0，两者450ms cubic-bezier(0.22, 1.35, 0.36, 1)；井收展不裁最右明细字，note固定在220px列。C曲中心流珠2400ms，输入竖弯与输出横弯均按自己path animateMotion，不能用直线从顶扫到底；cold关系无珠。hover改变路径fill-alpha和右纸标题150ms，脉冲不改变实际数值。
+
+prefers-reduced-motion停流珠、取消伸移与spring，静态箭头让竖转横路线仍可理解；收展1ms。focus-visible2px，隐藏图不进Tab，routeOpen=false仍可重新点本抽屉。selection announce只读Skill名一次，不每帧aria-live刷屏。
 
 ## 7. Production Data Inventory & Exact DOM Topology
 
-五drawer依次Stage1 S11上下文构成(50,000 tok / 96.8%缓存)、Stage2 S7渐进披露分流(L0 55% / L1 45% / 越界15%)、Stage3 S1/S2/S3触发与门禁(命中2/8 · 拦截8/40 · 误报4/40 · 审计9/12)、Stage4 S8/S9返工与逃逸摩擦(返工18次 / 重试6次 / 逃逸3+5)、Stage5 S10提案转化与健康度(my-designer0.4/code-review1.2/team-lead1.8 proposals/100 runs)。右voucher标题全链路回溯，定义operational/data lineage；S1 Pin Drift落后2/8是“命中”短标真实口径，不等于成功触发。
+抽屉四组数据及井中路线第五组全部属于批准范围，脚本均值缺失时用—，L0是SKILL.md入口Token而L1是references/*.md平均连带Token；Cache解读为KV Cache命中率，抽屉会话数是活跃会话数。eval-cases.json清楚列出周增、通过与拦逃：
 
-层1收S11 50,000 tok=100%的System / AGENTS6,000 tok(12%)、Skills4,000 tok(8%)、Tool schemas8,000 tok(16%)、Tool results20,000 tok(40%)、Conversation12,000 tok(24%)；cache独立eligible requests100,000：命中96.8%（96,800/100,000）、未命中重算3.2%（3,200/100,000）。层2写S7 L0索引浅读55%、L1局部深读45%、越界全量深读15%独立重叠旗，无绝对样本数。层3包含S1落后2/8、S2拦截8/40=20%/误报4/40=10%、S3审计9/12/48 eval cases/本周+6；voucher补S4 my-designer40次加载与R1审查证据入口、S6 12脚本执行和触达8/40=20%（不是12/40）。层4含S8 20会话中18次编辑返工、6次重试（独立计数），S9 [IMPL_BUG]3、[SPEC_GAP]5。层5含S10三技能报告读数与查看建议、收藏、稍后、撤销本地操作，不计算货币公式。voucher全审计slip含全部S1..S12、S5 暂无统计及S12 Search P95 18,400 tok/120次/7天，不能以0冒充缺失或造证据正文。
+| 抽屉所属 Skill | 调用与会话读区 | L0/L1/cache读区 | scripts读区 | eval-cases.json读区 |
+|---|---|---|---|---|
+| my-designer | 7d 42 次 · 30d 156 次 · 28 会话 | L0 1.8k tok · L1 +3.4k tok · Cache 96.8% | design_evidence.py 46次 · 均值 140ms · P95 310ms · 成功率 99.1% | 24 用例 (+4 本周) · 100% 通过 · 拦截 19 / 逃逸 2 |
+| team-lead | 7d 68 次 · 30d 240 次 · 41 会话 | L0 2.1k tok · L1 +2.8k tok · Cache 97.4% | goal-queue.py 64次 · ci-monitor.py 38次 · 均值 — · P95 420ms · 成功率 99.5% | 32 用例 (+6 本周) · 100% 通过 · 拦截 27 / 逃逸 1 |
+| design-studio | 7d 19 次 · 30d 74 次 · 16 会话 | L0 1.5k tok · L1 +2.2k tok · Cache 95.9% | design_catalog.py 39次 · 均值 — · P95 480ms · 成功率 100% | 18 用例 (+2 本周) · 100% 通过 · 拦截 11 / 逃逸 0 |
+| m2-dispatcher | 7d 51 次 · 30d 188 次 · 35 会话 | L0 1.6k tok · L1 +1.9k tok · Cache 97.1% | herdr-dispatch.sh 52次 · 均值 — · P95 260ms · 成功率 99.2% | 20 用例 (+3 本周) · 100% 通过 · 拦截 15 / 逃逸 1 |
+| linear-board | 7d 33 次 · 30d 112 次 · 22 会话 | L0 1.4k tok · L1 +1.5k tok · Cache 96.5% | linear-bot-bridge.py 44次 · 均值 — · P95 350ms · 成功率 98.8% | 16 用例 (+2 本周) · 100% 通过 · 拦截 9 / 逃逸 0 |
+| archive-deck-helper | 7d 0 次 · 30d 0 次 · 0 会话 · 30d 零调用 · 建议归档 | L0 2.6k tok · L1 +4.8k tok · Cache 0.0% | render_legacy.py 0次 · 均值 — · P95 0ms · 成功率 — | 4 用例 (+0 本周) · 75% 通过 · 拦截 0 / 逃逸 3 |
+
+my-designer井的实际标签为UI 探索画廊48%、实现后截图回溯34%、规范审计18%→SKILL.md (L0 入口 · 1.8k tok)。右A references/*.md：navigation-evidence-contract.md（62% · 2.4k tok）、interaction-layering.md（28% · 1.6k tok）、appearance-ledger.md（19% · 1.4k tok）、remotion-video.md（0 命中 · 冷门冗余告警 · 3.1k tok）；右B scripts/*.py：design_evidence.py（46次 · P95 310ms · 98.5%）、design_catalog.py（39次 · P95 480ms · 100%）、verify_design_cases.py（18次 · P95 190ms · 100%）。note内全文「拦截 19 次 · 逃逸 2 次 [1 IMPL_BUG / 1 SPEC_GAP]」。抽屉汇总99.1%与script分支98.5%分别标scope，不强行校正批准库存。
+
+reference命中率以Skill调用为分母、可多读，所以不可归一化62/28/19；script次数独立，不跨token/ms做守恒宽带。remotion虽常驻但0命中关系是库存线而不是实际读取。非my-designer井使用本人L0与已知script，左未知Prompt写「意图分类未记录」，右未知reference写「引用明细未记录」；没有给avg/文件不猜测。archive井说明P95 0ms未运行、无读取路径，不补假pulse。建议归档只读，禁止连接宿主或外部数据服务。
 
 ```html
-<main class="aidash-card topology-telescopic-trace-drawers">
+<main class="telescopic-conduit-file topology-telescopic-skill-drawers">
   <section class="content">
-    <div class="telescopic-layout">
-      <figure class="vertical-bezier-spine"><svg viewBox="0 0 144 592"><defs></defs><g class="telescopic-context-bands"></g><g class="telescopic-cache-bands"></g><g class="telescopic-disclosure-bands"></g><g class="telescopic-flag"></g><g class="telescopic-pulse"></g></svg><figcaption class="spine-hit-proxies"></figcaption></figure>
-      <ol class="telescopic-drawer-list"><li class="telescopic-paper-drawer" data-stage="1"></li><li class="telescopic-paper-drawer" data-stage="2"></li><li class="telescopic-paper-drawer" data-stage="3"></li><li class="telescopic-paper-drawer" data-stage="4"></li><li class="telescopic-paper-drawer" data-stage="5"></li></ol>
-      <aside class="voucher-inspector"><header class="voucher-heading"></header><div class="voucher-definition-faces"></div><div class="voucher-audit-slip"><dl class="telescopic-metric-readouts"></dl></div></aside>
+    <div class="telescopic-roi-frame">
+      <ol class="skill-drawer-column"><li data-skill-row data-skill="my-designer"><button data-skill-trigger><strong></strong><span class="drawer-metric-pairs"></span><i class="drawer-finger-lip"></i></button></li><li data-skill-row data-skill="team-lead"></li><li data-skill-row data-skill="design-studio"></li><li data-skill-row data-skill="m2-dispatcher"></li><li data-skill-row data-skill="linear-board"></li><li data-skill-row data-skill="archive-deck-helper"></li></ol>
+      <figure class="bezier-conduit-well"><figcaption></figcaption><div class="vertical-route-maps"><section data-bifurcation-panel data-skill="my-designer"><svg></svg><nav class="conduit-well-ends"></nav></section></div></figure>
+      <aside class="script-eval-ledger"><div class="telescopic-detail-notes"><dl data-skill-note="my-designer"></dl></div></aside>
     </div>
   </section>
 </main>
 ```
 
-初始HTML展开li的32px层签/正文、所有closed paths与S1..S12 dl，outline不是空壳JS模板。content直接孩子不许hero、fold-panel、secondary。
+其余五li补齐metric-pairs与button，中央、右侧静态补本人map/note，保持三列同一frame树。禁止用共享模板把别案变抽屉壳。Stage 1无HTML实现、无部署或winner冻结。
 
 ## 8. Explicit Anti-Patterns & Verification Targets
 
-必须拒绝stroke-width >24流管（132/74/58旧法）、55+45+15归100、cache96.8%第六slice、因果美元收益，以及.caustic-veil、.ruler、Active-Matte、<select>测试状态、沙盒免责copy、innerHTML替换。伸缩层不能变成历史记录页，也不能接真实Linear/CloudKit/遥测或scheduler。
+伸缩柜禁S1–S12及S1/S2/S3/S4/S5/S6/S7/S8/S9/S10/S11/S12旧词，禁stroke-width > 24、innerHTML replacement、remove/replaceChildren、.caustic-veil、.ruler、Active-Matte、<select>测试state、sandbox disclaimers，禁hero/fold-panel/secondary直子类。不能用箭头折线代替C、不能把竖向Prompt层捏成新Skill类别。
 
-四态×Light/Dark：一首载L0/Stage3/S2凭条；二hover L1后键盘选中，层2展开45%与独立15%；三层4读18/6和3/5，再抽S1..S12凭条；四层5收藏→稍后→撤销→Esc，焦点回第五层签。测list高度592恒定、0px溢出、所有节点identity、32px细带代理、数字无截断、Reduce Motion无连续流动。所有可用R3提示<=20%非标题段落重叠后才能落完成标记。
+Writer待验WebKit1280x800两主题六抽屉全露，440px图区所有端口全名和值可读；伸6px不挤右列，至少28px靶与focus边不裁。逐行收展、hover/click/keyboard branch、Escape回抽屉，MutationObserver严格removedElements = 0。unknown与零调用是数据缺口不是成功路径；0命中无运动、双scope成功率不被混写，页无横向外溢。本稿不声称已过rendered gates。

@@ -1,58 +1,77 @@
-# v01 · 分流纸袋账 (topology-alluvial-pocket-ledger)
+# v01 · 内嵌航路账 (topology-skill-accordion-manifold)
 
 ## 1. Visual Metaphor & Archetype Lock
 
-把流向看成铺在桌面的半透明账带，纸袋不是另一张仪表盘，而是沿账带找到证据的收纳口。锁定 desktop / macOS 画框，VS-005 纸感留白、CL-006 晴空与鼠尾草、CP-002 立体钱包和 IP-001 图表联动；X＝分岔选取，Y＝横向五站加底部抽取，Z＝实体纸面 0、袋口 2、抽出纸页 3。参考 Things 3 的安静选中态、SWWallet 的前后纸层及 R2 B-v04/B-v06、A-v09，不复用它们的粗管或重建脚本。Vault 命中 CP-002、VS-005、CL-006；Alcove、CleanShot X、Sankey 检索无条目，不冒称已有组件源码。设计维度仅限组件、数据图、折叠与动效，十套仍属于同一 AIDash 家族，不冻结生产 AppTheme。
+从 macOS System Settings 的 inset grouped list 提取连续账面，从 Things 3 提取选中项的安静层次：六条 Skill 共享一张纸，展开的流图是纸面里原有的折页，不是第七张卡。平台锁定 desktop，维度 component / chart-dataviz / motion-interaction / layout-navigation；VS-005、CL-006 冷纸 remix、X=整行选取 / Y=单开手风琴 / Z=下沉流图。候选 AppTheme=InsetRouteBook；不是最终产品主题冻结。
+
+标题20px，Skill13px semibold，指标12px/14px，文件名用 SF Mono12px，中文 PingFang SC。只用这四级。24×24 inline SVG 以1.5px currentColor画分岔箭头和档案盒；提示为「点击 Skill 查看意图与文件去向」。不画仪表环，不给每列再套小卡。
 
 ## 2. Single P0 Focus & Initial Showcase State
 
-唯一 P0 是 L0 索引浅读 55% 的上支账带；初始 activeBranch=l0，selectedStage=2（S7），pocket=evidence-disclosure，open=true。55% 用 32px 数字贴在带尾，其他读数维持 13px，禁止把 50,000 tok 再做并列大数。五站按钮只有 S7 着色。底袋已抽出披露证据纸页 72px，另两页仅露 36px 标签：摩擦、提案。点 L1 将 P0 转为 45%，点越界旗只选独立 15% 读数，不改正常分流合计；五站点击导航到已有对应证据，不过滤出伪造的分支级 ROI。
+唯一 P0 是 my-designer 行与紧贴其下的完整意图→入口→文件/脚本流。首屏第一行 aria-expanded=true，另外五行折页关闭；六个名称、四组读数和僵尸徽章同时可见。初次选中 navigation-evidence-contract.md，详情带显示「命中 62% · 2.4k tok」。标题「Skills 效能与上下文」不额外复制总分或调用排行榜。
 
 ## 3. P1 / P2 Progressive Folding & Permanent DOM Contract
 
-P1 是五站轨道及各分母的简短说明，P2 收入三页共享纸袋，诊断全表作为提案页的页内口径抽页。初次 HTML 解析就挂载所有 SVG <path> 流带、全部 5 个 trace stage 节点、S1..S12 的完整 metric readouts 和所有 pocket drawers，包括暂不展示的页内诊断。点击只能修改 class、dataset、CSS 变量、aria 状态和已有叶子 textContent；零 innerHTML / outerHTML / replaceChildren / insertAdjacentHTML，也不能 remove、clone 或重新创建交互节点。折入的区域保持对象身份，通过 transform 与 opacity 退出视野，设置 inert 和 aria-hidden，不能让透明按钮留在 Tab 顺序。单一 state 记录 branch/stage/sheet；hover 只是暂亮，mouseleave 恢复选择，Enter/Space 提交，Esc 收页并将焦点交回打开它的按钮。
+每个 skill-row-unit 由一个跨五列的原生 button 与一个 manifold-sheet 组成，button 的子项为 span、code 和数字，不嵌套其他控件。P1四组指标始终在行上；P2是本行的流图及分支详情。六个折页、全部路径和文本从初始 HTML 常驻。点击另一行先取消前行选中再展开目标，点击本行收回；折页高度使用固定260px壳的 grid 0fr/1fr，单开稳定后总高度不超过600px。切换时用两壳同步占用同一个260px预算，而非旧260加新260。
+
+必须 removedElements = 0、零 innerHTML rebuild；更新已有 Text.data、class、dataset、aria 属性即可，不能用元素 textContent 清掉子节点。关闭的内页在动效结束后 inert/aria-hidden，打开前解除；快速反复点击只跟随最新 selectedSkill，取消过时结算。Enter/Space与点击相同，Escape收页且焦点回触发器。路径hover为临时预览，离开恢复已点击的分支；点击或键盘确认固定选择，aria-pressed同步，详情不是只能hover看见。
 
 ## 4. Measured Layout & 1280x800 Viewport Geometry
 
-预算以 1280x800 CSS px 内窗计，外 chooser 提供 macOS 窗口和主题。main 位于 (88,76)，1104x648，padding 28，content 1048x592；外部净留白 308,608px²＝30.1375%，超过 >=22%。content 四行 64 / 300 / 172 / 20px，间隔 12px 共 36px；合计 592px。rail 五格各 200px，四个 12px 间隔；袋中三页宽 1000px、固定共用 172px well，只上移不增加高度。图域 1048x300，SVG viewBox="0 0 1048 300"，绘图与标注分区，文字不能压带。
+在1280x800内 main x32/y24、1216×752、padding24，content1168×704。垂直为 masthead48 + gap12 + accordion600 + gap12 + governance32 =704；accordion六行56px共336，单个展开页260，剩余4px内边缘。首屏最下方僵尸行不能被展开页挤出。表内左右16px后1136px；五列宽160/192/220/258/258，四个gap12，合计1136。header与六行复用同一列变量。每列最多三行14px行高，数字不省略。
 
-诊断抽页采用常驻分组而非把十二行塞入172px袋井：顶部32px口径签，正文最多108px；质量、实践、披露、上下文各有独立data-face，实践每面至多两项、上下文分五片面与cache/P95面。五片面采用五行20px内联名称/数量，无第二份可见切片条图；其余面每项最多两行20px。各面永久存在，单面可见且其余inert，以页签切换，不生成新DOM。选择全表入口时先呈质量面，Esc回提案纸签。
-
-S7 比例尺 T=100 SVG px：L0 55px，L1 45px。L0 d="M 380,100 C 490,100 550,42 680,42 L 680,97 C 550,97 490,155 380,155 Z"；L1 d="M 380,155 C 490,155 550,164 680,164 L 680,209 C 550,209 490,200 380,200 Z"。越界旗另起带 d="M 400,242 C 480,242 530,226 610,226 L 610,241 C 530,241 480,257 400,257 Z"，15px 仅对独立旗尺 T 映射。左上 S11 五切片厚度 12/8/16/40/24px 共 100；左下 cache 自己的 100px 尺生成 96.8/3.2px。其余闭合支流统一用 M x0,y0 C x0+40,y0 x1-40,y1 x1,y1 L x1,y1+h C x1-40,y1+h x0+40,y0+h x0,y0+h Z；切片边与小缓存未命中不得放大伪造比例。窄带用外置 32x32px 按钮代理命中，所有交互 >=28x28px。袋页动作 32px 高，最大展开和 -6px peek 已纳入 well，任何状态 0px unintended scroll overflow；CJK 可两行、数字与单位不省略，正文 >=13px。
+折页横向使用1136×260画布：Prompt区x0..180、L0枢纽x316..452、右侧标签x728..1136；七个出口各28px高，y24起按28px排列，末端到220，详情y228..256。文件名字允许在连字符处换行，标签由HTML覆盖SVG，不随viewBox缩字。曲带必须是closed cubic-Bezier：如 d="M 452,106 C 556,106 640,28 728,28 L 728,38 C 640,38 556,120 452,120 Z"，渐变填充、描边0.75px，stroke-width <= 24。输入三条从Prompt到L0；输出四条reference及三条script分组，不用直角折线。每个28px出口按钮和路径辅助命中区均 >= 28x28px，薄带的视觉宽度不等于鼠标靶宽。
 
 ## 5. Dual-Theme Surface Polarity & Alluvial / Paper-Pocket Craft
 
-Light tokens：desk #F5F6F8，surface #FFFFFF，pocket #EDF2EE，ink #182D24，muted #53665B，l0 #2D704C，l1 #426792，flag #956024，focus #245EA8。Dark tokens：desk #141C21，surface #202B31，pocket #2B3935，ink #EFF8F1，muted #B5C8BB，l0 #A2D6B6，l1 #A9C9F2，flag #EAC48F，focus #B7D7FF。每条 <linearGradient> 沿 x 方向使用对应 branch 色，0% stop-opacity=.22、100%=.58；填充闭合 path，rim 为 1px 白色高光（Light .55 / Dark .22），不用线宽画体积。纸袋口中心下凹 10px，嘴沿高度 20px、两端圆角 12px，inset 0 0.5px 0 白色 .6/.16，投影 0 5px 14px #182D2414 / #00000032。全卡 24px 圆角，抽页 16px；SF Pro 13/17/24px 搭配 font-variant-numeric: tabular-nums。图标为 inline 24x24 currentColor 分岔符号、stroke 1.6px，并有文字名称。这里不使用内容玻璃：blur/displacement=0、opacity=1；任何功能 popover 若采用玻璃，必须提供不透明 Safari/Reduce Transparency 回退，文字对比 >=4.5:1，大字 >=3:1。
+InsetRouteBook light：canvas #F5F7FA、paper #FFFFFF、well #EDF2F8、ink #172333、muted #526174、accent #2857A4；dark：#111923 / #1D2938 / #15202D / #F3F6FB / #B5C2D4 / #9DBFFF。纸面无backdrop-filter，Liquid Glass参数明确 blur0、IOR不启用、displacement0；图的半透明渐变是墨色而非玻璃。井边 inset 0 1px 3px #16345812，选中行只加2px左侧色标。光色占比低于10%，正文4.5:1、焦点边3:1。
+
+reference带用蓝→靛，script带用蓝→青；选择提高fill-opacity .22→.52而不改变宽度或暗示次数变化。零命中文件保持灰色库存关联、无脉冲，徽章「0 命中 · 冷门冗余告警」。归档建议为只读说明，无真实删除/归档按钮。主题由外层data-theme提供，否则随系统；减透明模式保持同样的实心纸层。
 
 ## 6. Apple Native Spring Physics & Flow Animation
 
-纸页 transform 和 shadow 以 480ms cubic-bezier(0.22, 1.35, 0.36, 1) 抽出或归袋，标签 hover peek translateY(-6px)，在同一变换中叠加 open 偏移而非覆盖。已选带上叠 1.5px 中心虚线脉冲，dasharray 3 21，stroke-dashoffset 0→-96，2400ms linear infinite；它只是光轨，不是带宽编码。hover 提升 fill 强度但不会改变分母、路径厚度或永久选择；focus-visible 同样提供 2px 外圈。快速连点从当前 transform 继续，不能排队动画。prefers-reduced-motion: reduce 下取消流动、overshoot 与 hover 位移，纸页用 100ms opacity 切换，保持全部数据、键盘操作和焦点恢复。
+内折页以460ms cubic-bezier(0.22, 1.35, 0.36, 1)开合，内纸translateY(-4px)→0，禁止拉伸文字。曲线中心轨配置1.25px圆点沿C路径1800ms移动，三条输入错开160ms；分支光点只是读取方向提示，不表达实时任务。隐藏折页暂停动画。hover选中在100ms内响应，详情opacity150ms退进但节点不变。
+
+prefers-reduced-motion时折页1ms结算、位移取消、所有flow pulse停住，仍保留静态方向箭头和选中色。焦点环2px/offset2。大图不获得自动焦点，用户可以Tab到七个出口，再Shift+Tab回行；Escape不触发任何宿主App命令。
 
 ## 7. Production Data Inventory & Exact DOM Topology
 
-轨道按全链路回溯命名且严格依次为 Stage 1: S11 上下文构成 (50,000 tok / 96.8% 缓存) → Stage 2: S7 渐进披露分流 (L0 55% / L1 45% / 越界 15%) → Stage 3: S1/S2/S3 触发与门禁 (命中 2/8 · 拦截 8/40 · 误报 4/40 · 审计 9/12) → Stage 4: S8/S9 返工与逃逸摩擦 (返工 18次 / 重试 6次 / 逃逸 3+5) → Stage 5: S10 提案转化与健康度 (my-designer 0.4 · code-review 1.2 · team-lead 1.8 proposals/100 runs)。Stage 3 的“命中 2/8”保留输入短标，定义抽页说明 S1 Pin Drift 是落后 2/8，不是触发成功率。跨站连线只表示数据与诊断导航，不表示这些不同人群数量守恒。
+内嵌账只消费r4/domain.md的六行库存，列的解释依次为调用频次与僵尸识别、上下文Token开销、脚本调用效率、Eval效果；第五个真实指标是选取后展示的Prompt→L0→L1与Scripts路线。L0注明SKILL.md入口Token，L1是references/*.md平均连带Token；Cache读作KV Cache命中率，会话列为活跃会话数。以下每个单元格都需可见，不以抽象评分替代：
 
-披露纸页承载 S7 L0 索引浅读 55%、L1 局部深读 45%、越界全量深读 15%（独立重叠标志，无绝对计数）；S11 50,000 tok =100%，System / AGENTS 6,000 tok (12%)、Skills 4,000 tok (8%)、Tool schemas 8,000 tok (16%)、Tool results 20,000 tok (40%)、Conversation 12,000 tok (24%)；缓存命中 96.8%=96,800/100,000 eligible requests，未命中重算 3.2%=3,200/100,000，单独分母。摩擦纸页列 S8 20 个会话、18 次返工/编辑、6 次重试（两计数不相加）；S9 [IMPL_BUG] 3、[SPEC_GAP] 5。提案纸页列 S10 上述三技能报告读数，不定义货币算法，my-designer 建议可查看/收藏/稍后/撤销，动作只改变本地视图状态。页内常驻诊断读数为 S1 2/8 behind；S2 拦截 8/40=20%、独立误报 4/40=10%；S3 审计 9/12、48 eval cases、本周 +6；S4 my-designer 40 次加载并留 R1 审查证据入口、不编造证据正文；S6 同技能 12 次脚本执行、触达 8/40=20%，12 不是触达次数；S5 暂无统计；S12 Search P95 18,400 tok、120 次 / 7 天。S4/S6 的摘要合写为“40次加载 · 12脚本 · 触达 8/40”，每项仍有独立标签。
+| 账页 Skill | ① 调用与会话 | ② 上下文 | ③ scripts/*.py 效率 | ④ Eval · eval-cases.json 账目 |
+|---|---|---|---|---|
+| my-designer | 7d 42 次 · 30d 156 次 · 28 会话 | L0 1.8k tok · L1 +3.4k tok · Cache 96.8% | design_evidence.py 46次 · 均值 140ms · P95 310ms · 成功率 99.1% | 24 用例 (+4 本周) · 100% 通过 · 拦截 19 / 逃逸 2 |
+| team-lead | 7d 68 次 · 30d 240 次 · 41 会话 | L0 2.1k tok · L1 +2.8k tok · Cache 97.4% | goal-queue.py 64次 · ci-monitor.py 38次 · 均值 — · P95 420ms · 成功率 99.5% | 32 用例 (+6 本周) · 100% 通过 · 拦截 27 / 逃逸 1 |
+| design-studio | 7d 19 次 · 30d 74 次 · 16 会话 | L0 1.5k tok · L1 +2.2k tok · Cache 95.9% | design_catalog.py 39次 · 均值 — · P95 480ms · 成功率 100% | 18 用例 (+2 本周) · 100% 通过 · 拦截 11 / 逃逸 0 |
+| m2-dispatcher | 7d 51 次 · 30d 188 次 · 35 会话 | L0 1.6k tok · L1 +1.9k tok · Cache 97.1% | herdr-dispatch.sh 52次 · 均值 — · P95 260ms · 成功率 99.2% | 20 用例 (+3 本周) · 100% 通过 · 拦截 15 / 逃逸 1 |
+| linear-board | 7d 33 次 · 30d 112 次 · 22 会话 | L0 1.4k tok · L1 +1.5k tok · Cache 96.5% | linear-bot-bridge.py 44次 · 均值 — · P95 350ms · 成功率 98.8% | 16 用例 (+2 本周) · 100% 通过 · 拦截 9 / 逃逸 0 |
+| archive-deck-helper | 7d 0 次 · 30d 0 次 · 0 会话 · 30d 零调用 · 建议归档 | L0 2.6k tok · L1 +4.8k tok · Cache 0.0% | render_legacy.py 0次 · 均值 — · P95 0ms · 成功率 — | 4 用例 (+0 本周) · 75% 通过 · 拦截 0 / 逃逸 3 |
+
+my-designer路线必须全文：Prompt「UI 探索画廊 48%」「实现后截图回溯 34%」「规范审计 18%」→「SKILL.md (L0 入口 · 1.8k tok)」→reference组 navigation-evidence-contract.md（62% · 2.4k tok）、interaction-layering.md（28% · 1.6k tok）、appearance-ledger.md（19% · 1.4k tok）、remotion-video.md（0 命中 · 冷门冗余告警 · 3.1k tok）；script组 design_evidence.py（46次 · P95 310ms · 98.5%）、design_catalog.py（39次 · P95 480ms · 100%）、verify_design_cases.py（18次 · P95 190ms · 100%）。详情还显示均值140ms这一已给出的行级读数及「拦截 19 次 · 逃逸 2 次 [1 IMPL_BUG / 1 SPEC_GAP]」。99.1%是批准的行汇总，98.5%是分支脚本读数，明确标注不同范围，不互相覆盖。
+
+命中率的分母为该Skill调用，references可同时读取，不把62+28+19归一化到100；Token与调用次数也不做守恒。未提供其余Skill的意图比例、文件清单和均值，不猜测：其永久折页保留本人SKILL.md、已知脚本节点及「意图分类未记录」「引用明细未记录」。已知脚本用同样闭合C曲带连接；无意图来源数值时入口引导为无权重关联线。僵尸页为「30d 零调用 · 无读取路径」，P95 0ms保留库存展示、详情说明「未运行」，不画成功脉冲。
 
 ```html
-<main class="aidash-card topology-alluvial-pocket-ledger" data-p0="l0" data-stage="2">
+<main class="inset-route-book topology-skill-accordion-manifold">
   <section class="content">
-    <nav class="lineage-stage-rail" aria-label="全链路回溯"><button data-stage="1"></button><button data-stage="2"></button><button data-stage="3"></button><button data-stage="4"></button><button data-stage="5"></button></nav>
-    <figure class="alluvial-ribbon-stage"><svg viewBox="0 0 1048 300"><defs></defs><g class="context-ribbons"></g><g class="cache-ribbons"></g><g class="disclosure-ribbons"></g><g class="violation-flag"></g><g class="flow-pulses"></g></svg><figcaption class="branch-hit-labels"></figcaption></figure>
-    <div class="pocket-evidence-well">
-      <article class="trace-pocket-sheet" data-sheet="disclosure"><button class="sheet-tab"></button><div class="sheet-readouts"></div></article>
-      <article class="trace-pocket-sheet" data-sheet="friction"><button class="sheet-tab"></button><div class="sheet-readouts"></div></article>
-      <article class="trace-pocket-sheet" data-sheet="proposals"><button class="sheet-tab"></button><div class="sheet-readouts"></div><div class="diagnostics-slip"><dl class="s1-s12-readouts"></dl></div></article>
+    <header class="roi-masthead"><h1></h1><p></p></header>
+    <div class="skill-accordion-card">
+      <article class="skill-row-unit" data-skill-row data-skill="my-designer"><button data-skill-trigger aria-controls="v01-my-designer-route"><span class="skill-name"></span><span class="call-cell"></span><span class="context-cell"></span><span class="script-cell"></span><span class="eval-cell"></span></button><section id="v01-my-designer-route" class="manifold-sheet" data-bifurcation-panel><figure class="inset-flow-map"><svg></svg><nav class="route-endpoints"></nav></figure><dl class="branch-detail-strip"></dl></section></article>
+      <article class="skill-row-unit" data-skill-row data-skill="team-lead"></article>
+      <article class="skill-row-unit" data-skill-row data-skill="design-studio"></article>
+      <article class="skill-row-unit" data-skill-row data-skill="m2-dispatcher"></article>
+      <article class="skill-row-unit" data-skill-row data-skill="linear-board"></article>
+      <article class="skill-row-unit" data-skill-row data-skill="archive-deck-helper"></article>
     </div>
-    <footer class="metric-footnote-bar"></footer>
+    <footer class="zombie-governance-bar"><span></span></footer>
   </section>
 </main>
 ```
 
-大纲中的 g、readouts、button 不是运行时模板槽：交付 HTML 必须在初始源码展开真实闭合 paths、标签、所有指标及 actions。不得引入 content 直下的 hero、fold-panel、secondary 通用类。
+代码骨架省略的五个article必须各自静态写齐五列button、不同id的折页与本行已知数据，不得运行时复制my-designer流。本文件仅Stage 1候选，Writer负责具体HTML；不连接私有遥测或磁盘归档。
 
 ## 8. Explicit Anti-Patterns & Verification Targets
 
-明确拒绝 stroke-width > 24 的粗管（包括 R2 132/74/58）、把 55+45+15 当作 100%、把 96.8% cache 当第六切片、把全链路回溯说成因果美元节省，以及 .caustic-veil、.ruler、Active-Matte、<select> 测试开关和沙盒免责文案。innerHTML 节点替换同样是失败。不能连接真实调度器、私有遥测、CloudKit 或 Linear；不得伪造补救执行、对话或管理新页面。
+内嵌版禁旧S1–S12代码及S1、S2、S3、S4、S5、S6、S7、S8、S9、S10、S11、S12上屏；禁stroke-width > 24的大管、innerHTML replacement、replaceChildren、remove、.caustic-veil、.ruler、Active-Matte、<select>测试开关和sandbox disclaimers。content直子类禁止hero、fold-panel、secondary。标题中的参考风格不许可复制另案DOM或把图做成静态插画。
 
-Stage 2 核验四个真实交互状态 × Light/Dark：① 首载 L0/S7/披露袋开启；② hover 并键盘提交 L1，纸页解释改为 45% 且五站依旧存在；③ 点击第三站并抽出门禁全表，再选第四站看 18/6 和 3/5，记录对象 identity 不变；④ 第五站收藏后稍后再撤销，Esc 归袋并恢复焦点。每态 1280x800 截图检查 0px 溢出、无数值省略、32px 代理窄带命中区、reduce-motion 停流及相同节点集合；设计提示还须接受所有现有 R3 文件的 <=20% 非标题段落重叠检查。
+后续WebKit须查1280x800双主题首屏、六行完整读数和28px靶区；逐行展开并重新收回，记录同一DOM identity及removedElements = 0。七个出口逐一hover/点击/键盘验证详情，冷门项不发光，逃逸归因完整，无numeric truncation或页级横向溢出。以各文件prompt SHA绑定实现；此处未执行像素测试，不能把设计约束当作已通过证据。

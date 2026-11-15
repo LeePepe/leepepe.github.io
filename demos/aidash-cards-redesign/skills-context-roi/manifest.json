@@ -31,7 +31,7 @@
       "reference": false,
       "prompt": "prompts/v01-prompt.md",
       "prompt_sha256": "735a94fa6275c2e2f9e1ce682cd3799a87f3d2c7ff2a3c0af69b8ac62a3825b4",
-      "html_sha256": "c89cd0ecb3c17d1585c87d24cbf7ecd578ba8bb5af6b72b74deaadc195f84570",
+      "html_sha256": "82223e93cf396d4de160f269058f3990b7e3bd8e71be7b11039dbf2808f450c0",
       "topology_signature": "topology-context-atlas",
       "p0": "S11 Tool results 20,000tok · 40% of 50,000tok",
       "axis_y": "Exclusive Context/Quality/Practice/Disclosure lenses; selected-slice reading margin with one open definition",
@@ -41,7 +41,7 @@
       "archetype": "VS-007",
       "prompt_file": "prompts/v01-prompt.md",
       "topology_name": "topology-context-atlas",
-      "topology_tree_sha256": "fc2d4de32197634b0b7b7bfaae004449048d282bd874f49acce28c29d5d400ae",
+      "topology_tree_sha256": "000031389e37e23914088e044dfdf3b03cdabb3bfe96e1b219a5c028957a904e",
       "coordinates": {
         "VS": "VS-007",
         "CL": "CL-008",
@@ -50,7 +50,7 @@
         "Z": "solid atlas with definition popover",
         "AppTheme": "R2.ContextAtlas"
       },
-      "inline_js_sha256": "c0ed05ffd5391a059c77caddda2deb212866e54582a2e8f079ac7f46a1ee3ba7"
+      "inline_js_sha256": "2281800c4b6deda72c0dc5f5012fcd27aaa551297265373f0f1c918d25a26e83"
     },
     {
       "category": "skills-context-roi",
@@ -67,7 +67,7 @@
       "reference": false,
       "prompt": "prompts/v02-prompt.md",
       "prompt_sha256": "a1d1e891535d9af60ad7714b69ea288470d012b44ee11fd473d2081a8ee7395e",
-      "html_sha256": "7be2fcc7833580cdb581d96395b681052383352327284de3ab9af2a30cf6552c",
+      "html_sha256": "b5eaf0a581729ec06c7df5dafe60af47f3057d4f39e18b3a87104560efa3da17",
       "topology_signature": "topology-rank-stair",
       "p0": "S10 my-designer reported ROI 0.4",
       "axis_y": "Ascending score steps with one attached suggestion leaf; alternate lenses replace the rank field",
@@ -77,7 +77,7 @@
       "archetype": "VS-002",
       "prompt_file": "prompts/v02-prompt.md",
       "topology_name": "topology-rank-stair",
-      "topology_tree_sha256": "04081d9469c9c6225f1ad5269860adfadd45cbbd30ee4f959f005714b6e78058",
+      "topology_tree_sha256": "59f52b9fbf595f2a4785aa9789dca5ed500c73d9deb535539cfde741506e6173",
       "coordinates": {
         "VS": "VS-002",
         "CL": "CL-002",
@@ -86,7 +86,7 @@
         "Z": "paper staircase with attached suggestion leaf",
         "AppTheme": "R2.RankStair"
       },
-      "inline_js_sha256": "c1459cf4364124598b3157436d83df2a3900e4c14cd6ba41653d70ca200f8c4b"
+      "inline_js_sha256": "b39ae1cf36f82cbb230382f9bbbc499e8db6f9127943cfeb09fcf723374d4ad7"
     },
     {
       "category": "skills-context-roi",
@@ -103,7 +103,7 @@
       "reference": false,
       "prompt": "prompts/v03-prompt.md",
       "prompt_sha256": "7ff073ad6dbec26af7f01b899648170a4f68fbbe33f36424c908a4c39f71fd9a",
-      "html_sha256": "a4ca071acc9ee9f5e9041b1e782e21a4b8286532fb4aba2f741cb2f0fbb33a05",
+      "html_sha256": "6f6a8ddc0b9287e25acaabf9039b62dd45e54db3f32dd2e9b52c1a100eec8074",
       "topology_signature": "topology-pin-lane",
       "p0": "S1 2/8 pins behind",
       "axis_y": "Longitudinal contact lane above a single evidence hinge; Quality selection changes the hinge owner",
@@ -113,7 +113,7 @@
       "archetype": "VS-003",
       "prompt_file": "prompts/v03-prompt.md",
       "topology_name": "topology-pin-lane",
-      "topology_tree_sha256": "864f3e155d71577c7b9b348148f8ecc68475ad696b1caa7f7aef18523f65b6d5",
+      "topology_tree_sha256": "d0e75488c1bd359c109e7174c6c94435cbca9058089ac99756fb8e7d4be9c111",
       "coordinates": {
         "VS": "VS-003",
         "CL": "CL-003",
@@ -122,7 +122,7 @@
         "Z": "solid instrument bed",
         "AppTheme": "R2.PinLane"
       },
-      "inline_js_sha256": "88044c8cef23656db0ae0495965930684547e87bdd4776cce74baa18bf387de9"
+      "inline_js_sha256": "b9a99ce65b2114e96980a29e6fb632ea96fa7525631db089f5f03791952b162b"
     },
     {
       "category": "skills-context-roi",
@@ -139,7 +139,7 @@
       "reference": false,
       "prompt": "prompts/v04-prompt.md",
       "prompt_sha256": "5344a679346f0207f0887267cc7904c3ff7cf29ec5b3c4b0d7ef086001200d09",
-      "html_sha256": "ddb9db568b8bd1c8d97992fdbcff11b59982abae3eb83be4949fb33b1dc5c855",
+      "html_sha256": "e028c00251d60b839ea79a2bdc0b615bfc121dff73a70d4af87891b8205c2ada",
       "topology_signature": "topology-disclosure-gate",
       "p0": "S7 L0-only 55%",
       "axis_y": "Two disclosure branches select one vertical definition shutter; independent violation link shares the shutter",
@@ -149,7 +149,7 @@
       "archetype": "VS-005",
       "prompt_file": "prompts/v04-prompt.md",
       "topology_name": "topology-disclosure-gate",
-      "topology_tree_sha256": "65aa0aa6ae9d1b172b1bd0366dd3d865c75f8c99e0e619d086c6bb42d9c92b49",
+      "topology_tree_sha256": "d26fe4fa23794864e95dca034e3e90c97239570f71d97148bdb11adae7688859",
       "coordinates": {
         "VS": "VS-005",
         "CL": "CL-006",
@@ -158,7 +158,7 @@
         "Z": "paper gate and functional lens chrome",
         "AppTheme": "R2.DisclosureGate"
       },
-      "inline_js_sha256": "41d017e08ebdfb0ae18acc21d4b4da479ea92bf8e18e372993fef636caf7b8b1"
+      "inline_js_sha256": "ad34839868cedcc277bd5a6e0a6f2cabdd58521e3dbf56cd25230ba431711072"
     },
     {
       "category": "skills-context-roi",
@@ -175,7 +175,7 @@
       "reference": false,
       "prompt": "prompts/v05-prompt.md",
       "prompt_sha256": "f6cbe052915137ec5c0e8c3be84063256d50efc9c1791f091f8eb2abd64ba095",
-      "html_sha256": "87ef46a846714e96625b05f52edef6a801fae4ae086cd80e455d9eafb6656a06",
+      "html_sha256": "569496a16a33842f44513f2bc9713dc04d6975d1c5d587cb52da43f2c16d1520",
       "topology_signature": "topology-cache-meter",
       "p0": "S11 KV Cache 96.8%, 96,800/100,000 eligible token requests",
       "axis_y": "Single radial Cache readout; composition and Tool burn replace the dial with a denominator placard",
@@ -185,7 +185,7 @@
       "archetype": "VS-007",
       "prompt_file": "prompts/v05-prompt.md",
       "topology_name": "topology-cache-meter",
-      "topology_tree_sha256": "85c0e5313b7ed264a74dff972909bf4f5eca0ab2ecc2ca8937e89ecfa179476f",
+      "topology_tree_sha256": "7ab15e5e9b33b9ea2bd44f3fea06c70d870dfd5fee3c5c7cae0a1f69ea33bd2a",
       "coordinates": {
         "VS": "VS-007",
         "CL": "CL-008",
@@ -194,7 +194,7 @@
         "Z": "opaque dial and definition popover",
         "AppTheme": "R2.CacheMeter"
       },
-      "inline_js_sha256": "56bcf94d178d44d41694deb2bbc9e20a132af5da54a06a222ba315f8d6c520d8"
+      "inline_js_sha256": "cfc3025bc02ec83ddfb692f79caadf65153ceca5080df98a1175765e0ef9b8dd"
     },
     {
       "category": "skills-context-roi",
@@ -211,7 +211,7 @@
       "reference": false,
       "prompt": "prompts/v06-prompt.md",
       "prompt_sha256": "8c1fb8269a261b6799b353135c2ee16c79a55f1fd6108da63034a6edc9a1a9a2",
-      "html_sha256": "d4f41c9f91c74011f2d03121ad2f0ae2739d63ba141cdc477024a4a1fdd3a213",
+      "html_sha256": "74ddf7741ada2dfb4027eda9ac53365c7bb69dfb4e5703bec26669e085a48c9c",
       "topology_signature": "topology-churn-pocket",
       "p0": "S8 18 edits across 20 sessions",
       "axis_y": "Aggregate count-bead rows above a tucked ROI leaf; lip opens one outcome pocket",
@@ -230,7 +230,7 @@
         "Z": "solid warm leaves",
         "AppTheme": "R2.ChurnPocket"
       },
-      "inline_js_sha256": "e9c012adef6a7cd8874077506eb22f83db68add80fe0b5ae2dacfab3b8d5df59"
+      "inline_js_sha256": "019f8d54d7123c0cdcb49d3ed84ebe2a715ed36e9d18890368439927af148dc1"
     },
     {
       "category": "skills-context-roi",
@@ -247,7 +247,7 @@
       "reference": false,
       "prompt": "prompts/v07-prompt.md",
       "prompt_sha256": "00444cd02b9ba38b62edeb56cb2663d9d970a1c537266fd301b4bf3f8f965940",
-      "html_sha256": "dee23cef2ed7a91aa6de7a29bd57e85070bb0c8e3cdc3f5692d2bc29cbe5280a",
+      "html_sha256": "d16fba03ceb04579082d5363da3a23d90f478a698be883a14020b0fb29b983b7",
       "topology_signature": "topology-catch-bridge",
       "p0": "S2 Gate Catch Rate 8/40 = 20%",
       "axis_y": "Independent trial lanes with one central definition joint and a replaceable evidence band",
@@ -257,7 +257,7 @@
       "archetype": "VS-007",
       "prompt_file": "prompts/v07-prompt.md",
       "topology_name": "topology-catch-bridge",
-      "topology_tree_sha256": "684f1dc5951798227ea91404658bacfdae3ba015ef7834a9e0c8d81c117d1400",
+      "topology_tree_sha256": "3539d3f31442dccd88195e1035d83cf7d7d81b9ea55fe4538ae6f625ad5edabd",
       "coordinates": {
         "VS": "VS-007",
         "CL": "CL-008",
@@ -266,7 +266,7 @@
         "Z": "flat solid bridge",
         "AppTheme": "R2.CatchBridge"
       },
-      "inline_js_sha256": "6670e7436db396950a4c1853b0a77e565e1b28ac0b3a00c19ab8fb14653f6709"
+      "inline_js_sha256": "708fa6660e1acf58eacb6baf45b21ccfb1a66045e86c472ab4bdab3a590b03f5"
     },
     {
       "category": "skills-context-roi",
@@ -283,7 +283,7 @@
       "reference": false,
       "prompt": "prompts/v08-prompt.md",
       "prompt_sha256": "6d3779a4983e19a3026f4770b0aefca9f759ce0d6f7b8254a24a3813ffd33534",
-      "html_sha256": "c4af8712f970d2906fc780ecbc5089f659239c6bdd260dbfa23e75b1b6f5ff4e",
+      "html_sha256": "1a1d18cd6f1412f1040753c38e8f6ee07e0910643af53890beed0a2a76e29aa2",
       "topology_signature": "topology-touch-desk",
       "p0": "S6 my-designer touch8 / loads40 = 20%, independent script12",
       "axis_y": "Touch/load operand bed separate from execution wing; bottom inspection drawer opens in place",
@@ -293,7 +293,7 @@
       "archetype": "VS-003",
       "prompt_file": "prompts/v08-prompt.md",
       "topology_name": "topology-touch-desk",
-      "topology_tree_sha256": "f56d6d4e42537a08c9f004f9fcf606f8d7c50dfc8a4c57c854118f10180a7a3b",
+      "topology_tree_sha256": "77b142b694aea8904ff38621f26e7e5708446c5624ff476e6ba213a91bed9e9b",
       "coordinates": {
         "VS": "VS-003",
         "CL": "CL-003",
@@ -302,7 +302,7 @@
         "Z": "solid slate workbench",
         "AppTheme": "R2.TouchDesk"
       },
-      "inline_js_sha256": "6d9e05be2bdbb35e3e0aa29742952721eb1ffe0cd189124e0e2915340cd568bb"
+      "inline_js_sha256": "4ef8b09ace62ffb2e0caaf652b329169cb5eefde42fea8171c6f4ea3388ee46a"
     },
     {
       "category": "skills-context-roi",
@@ -319,7 +319,7 @@
       "reference": false,
       "prompt": "prompts/v09-prompt.md",
       "prompt_sha256": "28525ab02ab96aa696d5fd8482cc330980994f3d63cfd75376412d4bb0a84c2b",
-      "html_sha256": "62ded4ed281b6a494bb7d3b82be98aa1729628d83dc01448ae069810611af953",
+      "html_sha256": "c8a29ee73a35da1b7be5242368b9d3b96b3533b212652e9ed897cf8338e89263",
       "topology_signature": "topology-audit-mosaic",
       "p0": "S3 9/12 audits passed, separate 48 eval cases +6 this week",
       "axis_y": "Three-by-four audit mosaic with replacement evidence register; evals is a quiet companion",
@@ -329,7 +329,7 @@
       "archetype": "VS-005",
       "prompt_file": "prompts/v09-prompt.md",
       "topology_name": "topology-audit-mosaic",
-      "topology_tree_sha256": "3a8aa4f84adf18df84ba757454a238971a99f01a948b23c346fe75bdce60da39",
+      "topology_tree_sha256": "864011d83a01056fd55710d2b64595ec303aa26cedd4c383ffe2ffd79bf19f1b",
       "coordinates": {
         "VS": "VS-005",
         "CL": "CL-006",
@@ -338,7 +338,7 @@
         "Z": "opaque cool paper",
         "AppTheme": "R2.AuditMosaic"
       },
-      "inline_js_sha256": "459f9ab2f0b8a8912a5c7abe67d71df4bd269ece0201486a40d4886a0d0d575c"
+      "inline_js_sha256": "7148f00f6400c26b23378faf0cfe94115a2e5ed7bf14f98ea3f70b2a818a5d98"
     },
     {
       "category": "skills-context-roi",
@@ -355,7 +355,7 @@
       "reference": false,
       "prompt": "prompts/v10-prompt.md",
       "prompt_sha256": "ccd27cd4f068b1ddc721fc83aad091ca524a891751227bc6f6af14219ce0a0cb",
-      "html_sha256": "5ca210869c4f2dc1e1e4558a376077637a99d71cf62515b310500ad4159252f4",
+      "html_sha256": "37fc84d01a2d8267b58d9b0eb1680080a2dd113f3976cb9571b034ac8ea8300d",
       "topology_signature": "topology-escape-dossier",
       "p0": "S9 [SPEC_GAP] 5 vs [IMPL_BUG] 3, total8 escapes",
       "axis_y": "Two attribution leaves with one open aggregate evidence leaf; specification side starts selected",
@@ -365,7 +365,7 @@
       "archetype": "VS-008",
       "prompt_file": "prompts/v10-prompt.md",
       "topology_name": "topology-escape-dossier",
-      "topology_tree_sha256": "141c3c0778b39ceb65c33a0e6fd13ae0d20963e99c45867943de0b6e1b2fa965",
+      "topology_tree_sha256": "4c8385d60628fbb63a992dfe064f13072b4aaf6b89ece9186988bbc7a5d14317",
       "coordinates": {
         "VS": "VS-008",
         "CL": "CL-008",
@@ -374,7 +374,7 @@
         "Z": "solid editorial block",
         "AppTheme": "R2.EscapeDossier"
       },
-      "inline_js_sha256": "f75d3c828576a25a9b965e747333018163e3372f6fe87c2f6aad1ee44e0a69db"
+      "inline_js_sha256": "84b37add91f4359551a57cb508835f88b95a2590fa75a6b1dfb0b985aec1045d"
     }
   ],
   "prompt_contract": {

@@ -31,7 +31,7 @@
       "reference": false,
       "prompt": "prompts/v01-prompt.md",
       "prompt_sha256": "0683ac0037fe24085a1364d5c02a0b8adf868f18c3041c0a36c22ea47ab26a03",
-      "html_sha256": "98537530eaa3e20ac4524fffd95d1ed002d228625a1fa55e648ad32495604b30",
+      "html_sha256": "78d5b06a3c8c0f24f748a2fd621485a3117c2f26ac809d03c887f64843fd6838",
       "topology_signature": "topology-pulse-magnets",
       "p0": "Selected digest 5/5 passed stages in one enlarged magnet",
       "axis_y": "Exchange selected article with its satellite; stage/receipt replaces the lead detail region",
@@ -115,7 +115,7 @@
       "reference": false,
       "prompt": "prompts/v02-prompt.md",
       "prompt_sha256": "4129342d7d934336b5b8dea30be7dfaeb587224a47bcd7e1c4fd5f897a4b9e5a",
-      "html_sha256": "5f5c9c92f4234c203b7bcdec02d3705f1adfec873f54b1eabd657a9d3d816cf1",
+      "html_sha256": "719f601024bbb765c45b2ddb46cf9b95de286380a83dc3b55f10695049cf4f57",
       "topology_signature": "topology-cadence-stations",
       "p0": "My PR due at 04:15, latest success 04:10, expanded station",
       "axis_y": "One attached station fold across categorical minute/daily lanes; bounded receipt popover",
@@ -181,7 +181,7 @@
         "Z": "rail-action-popover",
         "AppTheme": "R2CadenceRail"
       },
-      "inline_js_sha256": "39030c1883ec981e39d735afcc3ebd7303a23bd7c3693e3bc2387ce738ec47dd"
+      "inline_js_sha256": "8330ef2d55a723574850bd457c8327d5e4e2922d6875c2a0b0847a43bf4ebb0e"
     },
     {
       "category": "scheduled-pulse",
@@ -198,7 +198,7 @@
       "reference": false,
       "prompt": "prompts/v03-prompt.md",
       "prompt_sha256": "7943a9e63465c874cbc267ae7b9cf00961fb3284c2fd77560cdb108832d24752",
-      "html_sha256": "60f321fb5406f21a1c55fc7851b67de5c3977ebfd7fa1bb97dd3cf9488cb8254",
+      "html_sha256": "ea655438b1f09cebbfebb984dab49f41326fd7d2bd54caa9d711e1b8b228ed51",
       "topology_signature": "topology-five-point-orbit",
       "p0": "Central selected-digest 5/5; no aggregate health percentage",
       "axis_y": "Five fixed station choices; center summary is replaced by stage definitions or receipt",
@@ -286,7 +286,7 @@
       "archetype": "VS-006 Mindful Focus, static observatory remix without breathing animation",
       "prompt_file": "prompts/v03-prompt.md",
       "topology_name": "topology-five-point-orbit",
-      "topology_tree_sha256": "d87e0a4df186f16461b13bbd8333a783ec8ffe3ba4d94eafb58a82dfccd2da8d",
+      "topology_tree_sha256": "5e181b68b824a8c242fb772543b2cce6a9b829fc097c2d13098c90942a8691a7",
       "coordinates": {
         "VS": "VS-006",
         "CL": "CL-008",
@@ -295,7 +295,7 @@
         "Z": "opaque-instrument",
         "AppTheme": "R2FivePointOrbit"
       },
-      "inline_js_sha256": "721f4df135c319d0ed7a5f4ed7a8246ae9fd657b18bd9f976b843bfa02ebe962"
+      "inline_js_sha256": "2da36576d61ca829517436c780d6d2ab1aad37fb285097fe8dc54707a7974ea9"
     },
     {
       "category": "scheduled-pulse",
@@ -579,7 +579,7 @@
       "reference": false,
       "prompt": "prompts/v07-prompt.md",
       "prompt_sha256": "64b156483d0d37ad91a3ebdb4281498081d0efa6897e67722255e786dae3734d",
-      "html_sha256": "892383a6cc962ad083b9f873cb0316d44a68f1b746acde7e8c913618b8c39576",
+      "html_sha256": "508f9fbcf25fd3c201f1ac0df7661cf14002d4bf226a7c646c52266e3398e7a9",
       "topology_signature": "topology-job-evidence-matrix",
       "p0": "Digest's single selected outcome cell showing 5/5",
       "axis_y": "One enlarged result cell; stage/receipt replaces cell body with fixed shared tracks",
@@ -644,7 +644,7 @@
         "Z": "solid-grid-paper",
         "AppTheme": "R2EvidenceMatrix"
       },
-      "inline_js_sha256": "d38a8d1e4bcf2671ba3491e66b6541f3d9b10c84fcec54e53fe14b6f45fbb493"
+      "inline_js_sha256": "d34e875cde12d2f00d7d7e74a5a55cd001751d7224be72d6f26b3877f8914822"
     },
     {
       "category": "scheduled-pulse",
@@ -759,7 +759,7 @@
       "reference": false,
       "prompt": "prompts/v09-prompt.md",
       "prompt_sha256": "77f2942c75e673b1e68046c8ccd0ad68e410fc3f8815532c30673df7b7f5e44d",
-      "html_sha256": "aef3a9969edc1532436a58dbf6caa6f0fe5c99b465d8fe25a2491767408de785",
+      "html_sha256": "3d2855fdc44c3f7f20731ff318f1403d7c0160989ffd647fdb557d08db8182c2",
       "topology_signature": "topology-paper-pocket-deck",
       "p0": "Front digest paper's 5/5 completed result, all four rear titles exposed",
       "axis_y": "Bring original paper forward in a stepped Z-deck; replace its outcome with inset evidence",
@@ -834,7 +834,7 @@
         "Z": "opaque-stepped-deck",
         "AppTheme": "R2MorningPocket"
       },
-      "inline_js_sha256": "f2e746e05587c0d98bc9930ece85d4c37c49e1f788ee2310a6bcad315cf725b7"
+      "inline_js_sha256": "65d7c9bff16bafada50ddbee5e597dae685f3a4a9f839dc60173e561f68383f6"
     },
     {
       "category": "scheduled-pulse",

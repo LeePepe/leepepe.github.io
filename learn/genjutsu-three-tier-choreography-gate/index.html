@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Genjutsu：三尺度视觉编排（cast/paint/bunshin）、风格化视觉生成控制与跨平台契约门禁 · Lee Pepe</title>
+<meta name="description" content="Genjutsu 管住 AI 视觉与动效不翻车的核心，不是写更长的形容词 Prompt，而是按「单交互（cast）→ 整套风格（paint）→ 整站多代理（bunshin）」三级尺度锁定审批粒度，并用字节级共享块校验 + 真实渲染截图回执（shoot.mjs）替代「只读代码不看画面」的盲审。">
+<link rel="alternate" type="application/atom+xml" title="Lee Pepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+<header class="site-header shell">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
+    <nav class="nav" aria-label="主导航"><a href="/">首页</a><a href="/learn/" aria-current="page">求知</a><a href="/thoughts/">思考</a><a href="/vault/">素材库</a><a href="/demos/">Demos</a><a href="/archive/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav>
+    <div class="theme-toggle" role="group" aria-label="外观"><button type="button" data-theme-choice="light" aria-pressed="false" title="浅色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span class="label">浅色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="dark" aria-pressed="false" title="深色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg><span class="label">深色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="system" aria-pressed="true" title="系统"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11.5V14"/></svg><span class="label">系统</span><span class="visually-hidden">主题</span></button></div>
+  </div>
+</header>
+<main id="main" class="shell">
+  <div class="post-layout">
+    <div>
+      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <article class="card article">
+        <header class="article-header">
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t6">Genjutsu</a></li><li><a class="tag" href="/tags/#t23">视觉编排</a></li><li><a class="tag" href="/tags/#t25">评测门禁</a></li></ul>
+          <h1>Genjutsu：三尺度视觉编排（cast/paint/bunshin）、风格化视觉生成控制与跨平台契约门禁</h1>
+          <p class="lede">Genjutsu 管住 AI 视觉与动效不翻车的核心，不是写更长的形容词 Prompt，而是按「单交互（cast）→ 整套风格（paint）→ 整站多代理（bunshin）」三级尺度锁定审批粒度，并用字节级共享块校验 + 真实渲染截图回执（shoot.mjs）替代「只读代码不看画面」的盲审。</p>
+          <div class="post-meta"><time datetime="2026-11-15">2026 年 11 月 15 日</time><span class="dot" aria-hidden="true">·</span><span>约 2,700 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
+        </header>
+        <div class="prose">
+<blockquote><p><strong>一句话结论</strong>：<strong>Genjutsu 管住 AI 视觉与动效不翻车的核心，不是写更长的形容词 Prompt，而是按「单交互（<code>cast</code>）→ 整套风格（<code>paint</code>）→ 整站多代理（<code>bunshin</code>）」三级尺度锁定审批粒度，并用字节级共享块校验 + 真实渲染截图回执（<code>shoot.mjs</code>）替代「只读代码不看画面」的盲审</strong> —— 在覆盖 <strong>3 大平台族、6 个目标端、736 个 API 符号</strong>的规模下，把单模块上下文严格封顶在 <strong>25,000 字符</strong>以内。</p></blockquote>
+<h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
+<table><thead><tr><th>抽象概念 / 参数</th><th>关键数字</th><th>生活教具 / 直观参照</th><th>物理/工程效果</th></tr></thead><tbody><tr><td>三级编排尺度（<code>cast</code> / <code>paint</code> / <code>bunshin</code>）</td><td>从 <strong>$1.53 / 23 轮</strong>（单交互）到 <strong>10.5M Token</strong>（7 页整站）</td><td>拍短视频特写 vs. 定美术设定集 vs. 剧组多机位拍长片</td><td>防止杀鸡用牛刀；进入高成本 <code>bunshin</code> 前必须先报预算并过 <strong>2 道人工拍板门禁</strong></td></tr><tr><td>11 点跨文件同步锁（<code>check-shared-blocks.sh</code>）</td><td><strong>3 个编排器 × 4 个守卫区（7 处）</strong> 字节级一致</td><td>三联复写纸（改一页必须三页字字对齐）</td><td>杜绝不同入口的扫描、加载、审计规则在迭代中各自漂移</td></tr><tr><td>单次内联加载上限（<code>validate-skills.py</code>）</td><td>每个模块与 <code>load_ref</code> 引用硬上限 <strong>25,000 字符</strong></td><td>登机随身行李尺寸框（超 <strong>30,000 字符</strong>会被宿主截断）</td><td>保证单次 Shell 读取 100% 完整送达模型上下文，不发生静默截断丢规则</td></tr></tbody></table>
+<h2 id="sec-2">核心痛点问答<a class="anchor" href="#sec-2" aria-label="本节链接">#</a></h2>
+<h3 id="sec-2-1">Q1. 为什么用 AI 生成风格化视觉与动效时，要么「改一个小按钮却把全站配色掀翻」，要么「做整站却漏掉一半页面状态」？<a class="anchor" href="#sec-2-1" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：因为没有把「单点交互微调」「整套视觉系统」「多页面整站工程」拆成正交的审批回路；Genjutsu 通过 <strong><code>cast</code>（原 <code>uchiha</code> 单交互）→ <code>paint</code>（原 <code>kuchiyose</code> 整套视觉与 <code>MASTER.md</code>）→ <code>bunshin</code>（多代理整站编排）</strong> 严格隔离作用域与审批门禁。</li><li><strong>原理与教具</strong>：就像装修房子——<ol><li><strong><code>cast</code>（换一个阻尼门把手）</strong>：只针对单一界面动作提炼 <strong>1 条交互命题（Interaction Thesis）</strong>，渲染带重播按钮的预览获批后直接落代码（单次约 <strong>$1.53</strong>）；</li><li><strong><code>paint</code>（全屋软装色彩设定）</strong>：先问清“保留旧品牌 / 局部改 / 推翻重做”，产出视觉命题 + 交互命题 + 跨组件 <code>MASTER.md</code> 令牌系统；</li><li><strong><code>bunshin</code>（总包施工队建整栋楼）</strong>：先明示 Token 成本，强制经过 <strong>Tier 确认 + 视觉方向确认</strong> 两道人工门禁，再由艺术总监（Art Director）调度「每页 1 个 Builder + 独立 Reviewer + 止损轮次上限」。</li></ol></li></ul>
+<h3 id="sec-2-2">Q2. Genjutsu 如何控制风格化画面与复杂连续动效（如昼夜天象渐变、陶艺烧制曲线），避免生成千篇一律的 AI 塑料感？<a class="anchor" href="#sec-2-2" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：强制要求<strong>「视觉元素绑定真实结构化数据源 + 显式标注未验证项（Receipt Honesty）」</strong>，绝不允许凭空捏造装饰卡片或假数据。</li><li><strong>原理与教具</strong>：在 Nocturne 天象馆案例中，画面没有用随机 CSS 噪点冒充星空，而是直接读取 <code>data/stars.json</code> 中里斯本 22:00 真实的 <strong>403 颗恒星与土星坐标</strong>，随滚动将地平线从暮蓝压暗至纯黑并按星等依次点亮；在 Étale 潮汐案例中，每一条曲线均来自 NOAA 真实潮汐数据并标注站点与日期。更重要的是，它的运行回执（<code>receipt.md</code>）强制诚实记录缺陷：只要无头运行没做实机截图对比，就必须在回执上打上 <code>UNVALIDATED</code> 烙印，绝不把“代码编译通过”谎报为“视觉验收通过”。</li></ul>
+<h3 id="sec-2-3">Q3. 当技能库同时支持 Web、Android Compose 和 Apple SwiftUI（共 736 个 API 符号）时，如何防止规则腐化或漏检？<a class="anchor" href="#sec-2-3" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：用 <code>PLATFORM-CONTRACT.md</code> 的 <strong>10 问准入清单</strong> + <code>check-shared-blocks.sh</code> 的 <strong>字节级三端同步锁</strong> + <strong>25,000 字符硬上限</strong>把维护成本关进笼子。</li><li><strong>原理与教具</strong>：维护跨端设计技能最怕“改了 A 忘了 B”。Genjutsu 要求任何平台家族入库必须回答 <strong>10 个硬问题</strong>（如何从磁盘文件识别技术栈、Reduce Motion API 是什么、哪些属性严禁动画、如何用精确工具菜单测量 <strong>16.67ms</strong> 掉帧、版本敏感断言记在哪里等），并将 <code>scan</code>、<code>load</code>、<code>audit</code>、<code>preview</code> 四大区块在三个编排器之间做字节级比对——只改一处 CI 当场拒绝。</li></ul>
+<h3 id="sec-2-4">Q4. 为什么 <code>bunshin</code> 宁可在 SwiftUI / Compose 上主动降级回 <code>paint</code>，也绝不在缺少「静态截图测试台（Evidence Harness）」时强行跑多代理整站循环？<a class="anchor" href="#sec-2-4" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：因为没有真实渲染截图回执（<code>shoot.mjs</code>）时，Reviewer 只能“读代码脑补画面”，多代理评审循环会瞬间退化成昂贵的文字游戏。</li><li><strong>原理与教具</strong>：就像<strong>蒙着眼睛评判画展</strong>——不看画布只看颜料配方表，根本抓不住“1100px 宽度下星表文字压住穹顶”或“手机端面板遮挡底部”这类真实几何碰撞。因此 Genjutsu 立下铁律：任何新平台接入 <code>bunshin</code> 前，必须先具备免开发服务器启动、固定视口截图、控制台报错捕获以及带 <code>--self-test</code>（证明测试台自己能抓出失败）的 Evidence Harness。</li></ul>
+<h2 id="sec-3">立即可用清单<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
+<ul><li><strong>按改动半径三档选型</strong>：单组件手感用 <code>cast</code> 级单命题快审；单页/全 App 换肤先冻结 <code>design.md / MASTER.md</code>（<code>paint</code> 级）；跨页整站重做才启动多代理并发并预设止损轮次（<code>bunshin</code> 级）。</li><li><strong>无截图不宣称 UI 审查通过</strong>：凡涉及视觉样式、折行与图层遮挡，Reviewer 必须基于真实视口渲染截图（如 <code>390px</code> 移动端与 <code>1280px/1440px</code> 桌面端）做 Visual Traceback；未跑真实画面对比的项必须在回执中显式标注未验证边界。</li><li><strong>给跨技能共享块加字节级同步校验</strong>：将多入口共用的扫描、加载与审计表抽成受检区块，并将单份 L2 参考文件控制在 <strong>25,000 字符</strong>以内，防止宿主静默截断。</li></ul>
+        </div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/bama-budget-aware-multi-agent/"><span class="dir">← 上一篇</span><span class="t">BAMA：预算感知多智能体路由、Agent CLI 与免 GUI 故事验收架构</span></a><a class="next" href="/learn/swiftui-26-tabview-sidebar-splitview/"><span class="dir">下一篇 →</span><span class="t">SwiftUI 26+ 导航与 API 演进：TabView / Sidebar / SplitView 液态玻璃自适应架构与确定性迁移扫描</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+      </article>
+    </div>
+    <aside class="toc" aria-label="本文目录">
+      <p class="section-label">目录</p>
+      <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">核心痛点问答</a></li><li class="l3"><a href="#sec-2-1">Q1. 为什么用 AI 生成风格化视觉与动效时，要…</a></li><li class="l3"><a href="#sec-2-2">Q2. Genjutsu 如何控制风格化画面与复杂…</a></li><li class="l3"><a href="#sec-2-3">Q3. 当技能库同时支持 Web、Android …</a></li><li class="l3"><a href="#sec-2-4">Q4. 为什么 bunshin 宁可在 Swift…</a></li><li class="l2"><a href="#sec-3">立即可用清单</a></li></ol>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>© 2026 Lee Pepe · 写代码，也写生活</span>
+    <nav aria-label="页脚"><a href="/feed.xml">RSS 订阅</a><a href="https://github.com/LeePepe">GitHub</a><a href="#main">回到顶部</a></nav>
+  </div>
+</footer>
+</body>
+</html>

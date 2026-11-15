@@ -32,10 +32,28 @@
       <h2 id="latest" class="visually-hidden">最新文章</h2>
       <ol class="post-list">
 <li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-15">2026 年 11 月 15 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
+  <h2><a href="/learn/bama-budget-aware-multi-agent/">BAMA：预算感知多智能体路由、Agent CLI 与免 GUI 故事验收架构</a></h2>
+  <p>BAMA 不是让大模型盲猜整个 macOS 工程，而是用「按需技能路由（0 上下文闲置开销）+ 应用内建 Socket CLI + 1 Story = 1 Commit 快照门禁」把 GUI 开发拆成确定性流水线 —— 21 个分阶段微技能与 --help 即时发现机制让日常上下文 Token 预算降低 80% 以上，并通过单写者 Socket 保证 CLI 与窗口 100% 状态同步。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t5">BAMA</a></li><li><a class="tag" href="/tags/#t17">多智能体路由</a></li><li><a class="tag" href="/tags/#t20">架构分层</a></li></ul>
+</li>
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-15">2026 年 11 月 15 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
+  <h2><a href="/learn/genjutsu-styled-image-generation/">Genjutsu：三尺度视觉编排（cast/paint/bunshin）、风格化视觉生成控制与跨平台契约门禁</a></h2>
+  <p>Genjutsu 管住 AI 视觉与动效不翻车的核心，不是写更长的形容词 Prompt，而是按「单交互（cast）→ 整套风格（paint）→ 整站多代理（bunshin）」三级尺度锁定审批粒度，并用字节级共享块校验 + 真实渲染截图回执（shoot.mjs）替代「只读代码不看画面」的盲审。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t6">Genjutsu</a></li><li><a class="tag" href="/tags/#t23">视觉编排</a></li><li><a class="tag" href="/tags/#t25">评测门禁</a></li></ul>
+</li>
+<li class="post-item">
+  <div class="post-meta"><time datetime="2026-11-15">2026 年 11 月 15 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 9 分钟</span></div>
+  <h2><a href="/learn/swiftui-26-tabview-sidebar-splitview/">SwiftUI 26+ 导航与 API 演进：TabView / Sidebar / SplitView 液态玻璃自适应架构与确定性迁移扫描</a></h2>
+  <p>iOS 26 / macOS 26 的导航架构升级，本质是把 TabView、Sidebar 与 NavigationSplitView 统一为「悬浮在全画幅内容流之上的自适应液态玻璃胶囊（.sidebarAdaptable + GlassEffectContainer）」，同时配合 scan-manifest 确定性扫描清单淘汰布尔弹窗与旧导航状态。</p>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t10">TabView</a></li></ul>
+</li>
+<li class="post-item">
   <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>思考</span><span class="dot" aria-hidden="true">·</span><span>阅读约 3 分钟</span></div>
   <h2><a href="/thoughts/study-switch-long-press-ac/">为什么我给书房按键加了「长按开空调」</a></h2>
   <p>折腾智能家居最舒服的时刻，往往不是写出了多复杂的自动化规则，而是当家里的空调遥控器丢了一个，你顺手把空调连进去，给手边的书房按键加了一个「长按开空调」——因为每次坐下来，其实只需要开就行。</p>
-  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t15">智能家居</a></li><li><a class="tag" href="/tags/#t10">书房</a></li><li><a class="tag" href="/tags/#t12">减法设计</a></li></ul>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t19">智能家居</a></li><li><a class="tag" href="/tags/#t13">书房</a></li><li><a class="tag" href="/tags/#t15">减法设计</a></li></ul>
 </li>
 <li class="post-item">
   <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
@@ -47,37 +65,37 @@
   <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 10 分钟</span></div>
   <h2><a href="/learn/liquid-glass-optics/">Liquid Glass 光学第一性原理与 SwiftUI 26→27 实战破案</a></h2>
   <p>为什么 Liquid Glass 是实时弯折光线的「液态凸透镜」而非磨砂毛玻璃？为什么严禁玻璃叠玻璃？详解 GlassEffectContainer 共享采样区、有色玻璃映射、Toolbar 防挤爆与 @State Macro。</p>
-  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t11">光学设计</a></li></ul>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t14">光学设计</a></li></ul>
 </li>
 <li class="post-item">
   <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 9 分钟</span></div>
   <h2><a href="/learn/swiftui-shader-pipeline/">SwiftUI 27 高级图形与动效管线：Metal Shader 扭曲、时间流与图钉对齐</a></h2>
   <p>拆解 Apple Music 级流体封面与实时歌词：三大 Shader 修饰符选型、Domain Warping 二次噪声采样、TimelineView 无状态时间注入，以及 alignmentGuide 图钉孔位反转法。</p>
-  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t6">Metal Shader</a></li><li><a class="tag" href="/tags/#t13">动效管线</a></li></ul>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t8">Metal Shader</a></li><li><a class="tag" href="/tags/#t16">动效管线</a></li></ul>
 </li>
 <li class="post-item">
   <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 11 分钟</span></div>
   <h2><a href="/learn/swiftui-scroll-drag/">SwiftUI 27 高性能滚动与多元素拖拽：LazyStack 帧预取与纸牌级重排</a></h2>
   <p>揪出 LazyVStack 子视图 if 过滤导致内存暴涨、onAppear 废掉帧间预取（Prefetching）三大掉帧元凶；用 .reorderContainer + .dragContainer 解锁纸牌接龙级成叠拖拽与非法弹回。</p>
-  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t7">ScrollView</a></li><li><a class="tag" href="/tags/#t14">性能优化</a></li></ul>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t9">ScrollView</a></li><li><a class="tag" href="/tags/#t18">性能优化</a></li></ul>
 </li>
 <li class="post-item">
   <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 10 分钟</span></div>
   <h2><a href="/learn/appkit-uikit-27/">macOS 27 AppKit 与 iOS 27 UIKit 现代化：自由缩放窗口、同心圆角与手势革命</a></h2>
   <p>iOS 27 让 iPhone 窗口在 Mac 镜像与 iPad 上任意拉伸（UIScreen.main、idiom 与 orientation 彻底失效）；macOS 27 AppKit 告别 mouseDown 阻塞循环，拥抱 NSControl.Events 与容器同心圆角。</p>
-  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t4">AppKit</a></li><li><a class="tag" href="/tags/#t8">UIKit</a></li><li><a class="tag" href="/tags/#t17">窗口适配</a></li></ul>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t4">AppKit</a></li><li><a class="tag" href="/tags/#t11">UIKit</a></li><li><a class="tag" href="/tags/#t22">窗口适配</a></li></ul>
 </li>
 <li class="post-item">
   <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
   <h2><a href="/learn/wwdc-storytelling-craft/">WWDC 视觉化与架构讲法拆解：水管数据流、图钉几何与贴纸叙事法</a></h2>
   <p>提炼 6 节高分 WWDC 视觉动效课的 8 步剧本骨架：先亮出贴纸/折纸/纸牌玩具靶子，用水管/图钉/透镜替掉公式，故意展示直觉写法翻车，再用 2 行代码完成画面质变。</p>
-  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t3">技术叙事</a></li><li><a class="tag" href="/tags/#t2">WWDC26</a></li><li><a class="tag" href="/tags/#t18">视觉隐喻</a></li></ul>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t3">技术叙事</a></li><li><a class="tag" href="/tags/#t2">WWDC26</a></li><li><a class="tag" href="/tags/#t24">视觉隐喻</a></li></ul>
 </li>
 <li class="post-item">
   <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>求知</span><span class="dot" aria-hidden="true">·</span><span>阅读约 10 分钟</span></div>
   <h2><a href="/learn/wifi-invisible-light/">如果能看见 WiFi：看不见的光、室内信号破案与科普脚本技法</a></h2>
   <p>把可见光波长放大 25 万倍，穿过客厅只需 30 多纳秒——用冰箱反射、鱼缸吸收、微波炉 1 万倍同频轰炸破案室内断网，并附上「把不可见变成可见」的九步科普脚本拆解。</p>
-  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t9">WiFi</a></li><li><a class="tag" href="/tags/#t16">物理可视化</a></li><li><a class="tag" href="/tags/#t3">技术叙事</a></li></ul>
+  <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t12">WiFi</a></li><li><a class="tag" href="/tags/#t21">物理可视化</a></li><li><a class="tag" href="/tags/#t3">技术叙事</a></li></ul>
 </li>
       </ol>
     </section>
@@ -89,16 +107,16 @@
       </section>
       <section class="card">
         <h2>专栏</h2>
-        <p>「求知」用生活教具拆穿技术原理（7 篇）；「思考」记录日常工具与生活随笔（1 篇）；「素材库」汇总 40 张设计卡与 8 张实测截图。</p>
+        <p>「求知」用生活教具拆穿技术原理（10 篇）；「思考」记录日常工具与生活随笔（1 篇）；「素材库」汇总 40 张设计卡与 8 张实测截图。</p>
         <div class="links">
-          <a class="btn btn--secondary" href="/learn/">求知笔记 (7)</a>
+          <a class="btn btn--secondary" href="/learn/">求知笔记 (10)</a>
           <a class="btn btn--secondary" href="/thoughts/">思考与感悟 (1)</a>
           <a class="btn btn--secondary" href="/vault/">素材库 (40+)</a>
         </div>
       </section>
       <section class="card">
         <h2>热门标签</h2>
-        <ul class="tags"><li><a class="tag" href="/tags/#t0">SwiftUI <span class="count">4</span></a></li><li><a class="tag" href="/tags/#t1">Liquid Glass <span class="count">2</span></a></li><li><a class="tag" href="/tags/#t2">WWDC26 <span class="count">2</span></a></li><li><a class="tag" href="/tags/#t3">技术叙事 <span class="count">2</span></a></li><li><a class="tag" href="/tags/#t4">AppKit <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t5">Home Assistant <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t6">Metal Shader <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t7">ScrollView <span class="count">1</span></a></li></ul>
+        <ul class="tags"><li><a class="tag" href="/tags/#t0">SwiftUI <span class="count">5</span></a></li><li><a class="tag" href="/tags/#t1">Liquid Glass <span class="count">3</span></a></li><li><a class="tag" href="/tags/#t2">WWDC26 <span class="count">2</span></a></li><li><a class="tag" href="/tags/#t3">技术叙事 <span class="count">2</span></a></li><li><a class="tag" href="/tags/#t4">AppKit <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t5">BAMA <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t6">Genjutsu <span class="count">1</span></a></li><li><a class="tag" href="/tags/#t7">Home Assistant <span class="count">1</span></a></li></ul>
         <p style="margin-top:16px;margin-bottom:0"><a href="/tags/">查看全部标签 →</a></p>
       </section>
     </aside>

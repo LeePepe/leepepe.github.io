@@ -1,0 +1,36 @@
+import {webkit} from '/tmp/tia-pw/node_modules/playwright/index.mjs';
+import {createServer} from 'node:http';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {resolve,extname,dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import assert from 'node:assert/strict';
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+const outputArg=process.argv.indexOf('--output');
+if(outputArg<0)throw new Error('Supply --output /absolute/handoff/receipts/webkit');
+const output=resolve(process.argv[outputArg+1]);
+if(output===root||output.startsWith(root+'/'))throw new Error('Evidence must stay outside the published repository');
+await mkdir(output,{recursive:true});
+const server=createServer(async(req,res)=>{try{const url=new URL(req.url,'http://local'),path=resolve(root,'.'+url.pathname),file=url.pathname.endsWith('/')?resolve(path,'index.html'):path;if(!file.startsWith(root+'/'))throw Error();res.setHeader('Content-Type',({'.html':'text/html','.css':'text/css','.js':'text/javascript'})[extname(file)]||'application/octet-stream');res.end(await readFile(file));}catch{res.writeHead(404);res.end();}});
+await new Promise(r=>server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${server.address().port}`;
+let browser;const results=[],errors=[];const timer=setTimeout(()=>browser?.close(),120000);timer.unref();
+async function check(name,fn){try{await fn();results.push({name,status:'PASS'});}catch(e){results.push({name,status:'FAIL',reason:e.message});}}
+async function shot(page,name,locator){const options={path:output+'/'+name,animations:'disabled'};if(locator){await locator.scrollIntoViewIfNeeded();const r=await locator.evaluate(n=>{const r=n.getBoundingClientRect();return{x:r.x+scrollX-8,y:r.y+scrollY-8,width:r.width+16,height:r.height+16};});options.fullPage=true;options.clip=r;}await page.screenshot(options);}
+try{
+ browser=await webkit.launch({headless:true});const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true});context.setDefaultTimeout(6000);const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(base+'/vault/');
+ for(let i=1;i<=8;i++)await check('WebKit CL-'+String(i).padStart(3,'0')+' theme and CTA',async()=>{const s=page.locator(`[data-specimen-id="CL-${String(i).padStart(3,'0')}"]`),before=await s.evaluate(n=>getComputedStyle(n).backgroundColor);await s.locator('[data-specimen-theme-toggle]').click();assert.notEqual(await s.evaluate(n=>getComputedStyle(n).backgroundColor),before);await s.locator('[data-specimen-cta]').click();assert.match(await s.locator('.specimen-status').textContent(),/就绪/);await s.locator('[data-specimen-cta]').click();await s.locator('[data-specimen-theme-toggle]').click();});
+ const stage=id=>page.locator(`.vault-pattern [data-stage-id="${id}"]`);
+ await check('WebKit actual slide cancel and threshold commit',async()=>{const s=stage('MP-002'),b=s.locator('.stage-thumb');for(const fraction of [.5,.95]){await b.scrollIntoViewIfNeeded();const box=await b.boundingBox(),track=await s.locator('.stage-track').boundingBox();await page.mouse.move(box.x+22,box.y+22);await page.mouse.down();await page.mouse.move(track.x+22+(track.width-44)*fraction,box.y+22,{steps:10});await page.mouse.up();assert.equal(await b.getAttribute('aria-valuenow'),fraction<.85?'0':'100');}await s.locator('[data-reset-confirm]').click();assert.equal(await b.getAttribute('aria-valuenow'),'0');});
+ await check('WebKit actual native folder drop',async()=>{const s=stage('MP-006');await s.locator('.stage-file').dragTo(s.locator('.stage-folder'));assert.equal(await s.locator('.stage-folder b').textContent(),'1');await s.locator('[data-reset-folder]').click();});
+ await check('WebKit actual ring, disclosure and fluid pause',async()=>{const ring=stage('IP-005');await ring.locator('label').first().click();assert.match(await ring.locator('output').textContent(),/33%/);assert.equal(await ring.locator('svg').getAttribute('aria-label'),'完成 33%');const s=stage('IP-007');await s.locator('.stage-switch').click();await s.locator('[data-advanced]').click();await s.locator('select').selectOption({label:'工作日'});assert.match(await s.locator('output').textContent(),/开启.*工作日/);await s.locator('[data-advanced]').click();const fluid=stage('MP-008');await fluid.locator('.stage-play').click();assert.equal(await fluid.locator('i').first().evaluate(n=>getComputedStyle(n).animationPlayState),'paused');});
+ for(const width of [390,1280])for(const theme of ['light','dark'])await check(`WebKit ${width} ${theme} real optical fallback and hit geometry`,async()=>{
+   await page.setViewportSize({width,height:width===390?844:900});await page.emulateMedia({colorScheme:theme,reducedMotion:'reduce'});await page.evaluate(t=>localStorage.setItem('lp-theme',t),theme);await page.goto(base+'/vault/');
+   const bad=await page.evaluate(()=>{const bad=[];for(const stage of document.querySelectorAll('.vault-live-stage'))for(const n of stage.querySelectorAll('button,select,input:not([type=checkbox]),label:has(input[type=checkbox])')){const r=n.getBoundingClientRect();if(!r.width||!r.height)continue;if(r.width<43.99||r.height<43.99)bad.push({id:stage.dataset.stageId,reason:'small',width:r.width,height:r.height});n.scrollIntoView({block:'center',behavior:'instant'});const v=n.getBoundingClientRect(),s=stage.getBoundingClientRect(),hit=document.elementFromPoint(v.x+v.width/2,v.y+v.height/2);if(!hit||!n.contains(hit))bad.push({id:stage.dataset.stageId,reason:'occluded'});if(v.left<s.left-.1||v.right>s.right+.1||v.top<s.top-.1||v.bottom>s.bottom+.1)bad.push({id:stage.dataset.stageId,reason:'outside'});}return bad;});assert.deepEqual(bad,[]);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+   const glass=page.locator('[data-preview-id=GM-001] .glass-chrome');assert.match(await glass.evaluate(n=>getComputedStyle(n).getPropertyValue('-webkit-backdrop-filter')),/blur/);
+   await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await shot(page,`vault-${width}-${theme}-reduce.png`);
+   for(const preview of await page.locator('.vault-material-preview').all())await shot(page,`${await preview.getAttribute('data-preview-id')}-${width}-${theme}.png`,preview);
+   for(const goal of ['aidash-cards-redesign','voxpocket-holistic-redesign']){await page.goto(base+`/demos/${goal}/`);assert.equal(await page.locator('html').getAttribute('data-lp-theme'),theme);await page.locator('[data-group-filter=all]').click();const card=page.locator('#portal-grid .variant-card:visible').first();await card.locator('[data-star]').check();assert.equal(await card.locator('[data-star]').isChecked(),true);await shot(page,`${goal}-${width}-${theme}.png`);}
+ });
+ await check('WebKit no browser errors',async()=>assert.deepEqual(errors,[]));
+}finally{clearTimeout(timer);await browser?.close();await new Promise(r=>server.close(r));}
+const data={engine:'WebKit',checks:results,passed:results.filter(r=>r.status==='PASS').length,failed:results.filter(r=>r.status==='FAIL').length};await writeFile(output+'/results.json',JSON.stringify(data,null,2));console.log(JSON.stringify(data));if(data.failed)process.exitCode=1;

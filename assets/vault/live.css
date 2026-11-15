@@ -20,6 +20,7 @@
 .vault-live-stage { height:200px; box-sizing:border-box; min-width:0; position:relative; display:flex; flex-direction:column; justify-content:center; gap:6px; padding:24px 10px 8px; border:1px solid var(--strata-border); border-radius:14px; background:var(--strata-surface-inset); color:var(--strata-text-primary); font-size:12px; isolation:isolate; }
 .vault-live-stage [hidden] { display:none!important; }
 .vault-live-stage button,.vault-live-stage select,.vault-live-stage input:not([type=checkbox]) { box-sizing:border-box; min-height:44px; min-width:44px; max-width:100%; border:1px solid var(--strata-border); border-radius:10px; padding:4px 6px; color:var(--strata-text-primary); background:var(--strata-surface-card); font:inherit; cursor:pointer; }
+.vault-live-stage select { appearance:none; -webkit-appearance:none; height:44px; padding-right:22px; background-image:linear-gradient(45deg,transparent 50%,var(--strata-text-secondary) 50%),linear-gradient(135deg,var(--strata-text-secondary) 50%,transparent 50%); background-position:calc(100% - 12px) 19px,calc(100% - 8px) 19px; background-size:4px 4px; background-repeat:no-repeat; }
 .vault-live-stage button:focus-visible,.vault-live-stage input:focus-visible,.vault-live-stage select:focus-visible { outline:2px solid var(--strata-brand-text); outline-offset:2px; }
 .vault-live-stage button[aria-pressed=true] { background:var(--strata-brand-primary); color:var(--strata-brand-on-accent); }
 .stage-caption { position:absolute; top:6px; right:10px; color:var(--strata-text-secondary); font-size:11px; }

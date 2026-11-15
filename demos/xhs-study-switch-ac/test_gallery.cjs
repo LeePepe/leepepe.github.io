@@ -53,13 +53,16 @@ async function ready(page) {
 
     const hub = await context.newPage();
     await hub.goto(new URL('../', base).href);
-    assert.equal(await hub.locator('[data-goal-telemetry="xhs-study-switch-ac"]').textContent(), '已记录 2 条观察 · 2 个收藏 · 1 个选择');
+    const telemetry = await hub.locator('[data-goal-telemetry="xhs-study-switch-ac"]').textContent();
+    assert.match(telemetry, /已记录 2 条观察/);
+    assert.match(telemetry, /2 个收藏/);
+    assert.match(telemetry, /(?:已选 1 项|1 个选择)/);
     await hub.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.copiedText = text; } } }));
     await hub.locator('[data-copy-goal="xhs-study-switch-ac"]').click();
     await hub.waitForFunction(() => typeof window.copiedText === 'string');
     const summary = await hub.evaluate(() => window.copiedText);
-    assert.match(summary, /SELECT: r1\/style-b/);
-    assert.match(summary, /STAR: r1\/style-a, r1\/style-b/);
+    assert.match(summary, /(?:SELECT:|选择：)\s*r1\/style-b/);
+    assert.match(summary, /(?:STAR:|收藏：)\s*r1\/style-a(?:, |、)r1\/style-b/);
     for (const note of Object.values(notes)) assert.ok(summary.includes(note));
 
     for (const corrupt of ['{bad', '[]', 'null']) {

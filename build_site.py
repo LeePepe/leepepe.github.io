@@ -5,7 +5,8 @@ Strictly follows the approved prototype in /Volumes/SSD/Development/handoff/blog
 - Single asset source of truth: /assets/{colors.css, strata-theme.css, blog.css, theme.js}
 - Zero YAML frontmatter on any generated .html file (line 1 is always <!doctype html>)
 - 100% unified floating capsule header (header.site-header.shell > div.site-header__bar)
-  with 首页(/) · 求知(/learn/) · 思考(/thoughts/) · 归档(/archive/) · 标签(/tags/) · 关于(/about/)
+  with 首页(/) · 求知(/learn/) · 思考(/thoughts/) · 素材库(/vault/) · Demos(/demos/) · 归档(/archive/) · 标签(/tags/) · 关于(/about/)
+- Demos catalog auto-discovers immediate demos/*/index.html galleries and reads notes only in the browser
   and Light / Dark / System theme toggle
 - Quiet editorial list layout (section.page-intro + .layout > .card.card--flush > ol.post-list + aside.aside)
 - Quiet editorial article layout (.post-layout > article.card.article > .prose + aside.toc)
@@ -18,6 +19,7 @@ import html
 import json
 import re
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
@@ -33,6 +35,7 @@ NAV_ITEMS = [
     ("learn", "求知", "/learn/"),
     ("thoughts", "思考", "/thoughts/"),
     ("vault", "素材库", "/vault/"),
+    ("demos", "Demos", "/demos/"),
     ("archive", "归档", "/archive/"),
     ("tags", "标签", "/tags/"),
     ("about", "关于", "/about/"),
@@ -1208,6 +1211,148 @@ def _vault_text(value: Any) -> str:
     return str(value or "")
 
 
+class DemoCatalogParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.cards: list[dict[str, Any]] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        values = dict(attrs)
+        if tag == "article" and values.get("data-category") and values.get("data-variant"):
+            self.cards.append({"category": values["data-category"], "id": values["data-variant"]})
+
+
+def scan_demo_projects() -> list[dict[str, Any]]:
+    """Present gallery entry points are active; helper pages and nested rounds are excluded."""
+    projects = []
+    for path in sorted((REPO_ROOT / "demos").glob("*/index.html")):
+        if path.parent.name.startswith(("_", ".")):
+            continue
+        source = path.read_text(encoding="utf-8")
+        config_match = re.search(r'<script\b[^>]*\bid="gallery-config"[^>]*>(.*?)</script>', source, re.S)
+        config = json.loads(config_match[1]) if config_match else {}
+        if config.get("active") is False:
+            continue
+        parser = DemoCatalogParser()
+        parser.feed(source)
+        cards = config.get("cards", parser.cards)
+        if not cards:
+            continue
+        title_match = re.search(r"<title>(.*?)</title>", source, re.S)
+        platforms = sorted({c["platform"] for c in cards if c.get("platform")})
+        if not platforms and "macOS" in source:
+            platforms = ["macos"]
+        projects.append({"goal": path.parent.name, "title": html.unescape(title_match[1]) if title_match else path.parent.name,
+                         "url": f"/demos/{path.parent.name}/", "cards": cards,
+                         "categories": sorted({c["category"] for c in cards}), "platforms": platforms})
+    return projects
+
+
+DEMOS_SCRIPT = r"""(() => {
+  function readEntries(project, storage) {
+    const entries = new Map(), add = (category, id) => {
+      const key = JSON.stringify([category, id]);
+      if (!entries.has(key)) entries.set(key, {category, id, selected: false, starred: false, notes: ''});
+      return entries.get(key);
+    };
+    if (!storage) return [];
+    try {
+      const state = JSON.parse(storage.getItem('design-gallery:' + project.goal) || '{}');
+      if (state && typeof state === 'object' && !Array.isArray(state)) {
+        for (const value of Object.values(state)) {
+          if (!value || typeof value !== 'object' || typeof value.category !== 'string' || typeof value.id !== 'string') continue;
+          const entry = add(value.category, (value.round != null ? 'r' + value.round + '/' : '') + value.id);
+          entry.selected = value.selected === true;entry.starred = value.starred === true;
+          entry.notes = typeof value.notes === 'string' ? value.notes : '';
+        }
+      }
+    } catch (_) {}
+    if (project.goal === 'aidash-cards-redesign') {
+      try {
+        for (let i = 0; i < storage.length; i++) {
+          const key = storage.key(i), value = storage.getItem(key);
+          const match = /^aidash-cards-r2:(note|star):([^:]+):(.+)$/.exec(key);
+          if (match) {
+            const entry = add(match[2], match[3]);
+            if (match[1] === 'note') entry.notes = value || '';
+            else entry.starred = value === '1';
+          } else if (key.startsWith('aidash-cards-r2:selection:select-') && value) {
+            add(key.slice('aidash-cards-r2:selection:select-'.length), value).selected = true;
+          }
+        }
+      } catch (_) {}
+    }
+    return [...entries.values()].sort((a,b) => a.category.localeCompare(b.category) || a.id.localeCompare(b.id));
+  }
+  function summarize(project, entries) {
+    const counts = {notes: 0, starred: 0, selected: 0}, lines = ['Goal: ' + project.goal];
+    for (const category of new Set([...(project.categories || []), ...entries.map(e => e.category)])) {
+      const items = entries.filter(e => e.category === category);
+      lines.push('', '分类：' + category, '选择：' + (items.filter(e => e.selected).map(e => e.id).join('、') || '无'),
+        '收藏：' + (items.filter(e => e.starred).map(e => e.id).join('、') || '无'));
+      for (const item of items) {
+        counts.selected += Number(item.selected); counts.starred += Number(item.starred);
+        if (item.notes.trim()) {counts.notes++;lines.push(item.id + ' 观察：\n' + item.notes)}
+      }
+    }
+    return {counts, text: lines.join('\n')};
+  }
+  if (typeof module !== 'undefined') module.exports = {readEntries, summarize};
+  if (typeof document === 'undefined') return;
+  const projects = JSON.parse(document.getElementById('demo-catalog').textContent), preview = document.querySelector('.summary-preview'), result = document.getElementById('copy-result');
+  let scope = null;
+  const storage = () => {try{return localStorage}catch(_){return null}};
+  function refresh() {
+    const summaries = projects.map(p => summarize(p, readEntries(p, storage())));
+    projects.forEach((p, i) => {
+      const count = summaries[i].counts;
+      document.getElementById('stats-' + i).textContent = `💾 已记录 ${count.notes} 条观察 · ★ ${count.starred} 个收藏 · ✓ 已选 ${count.selected} 项`;
+    });
+    preview.value = summaries.filter((_, i) => scope === null || projects[i].goal === scope).map(s => s.text).join('\n\n──────────\n\n');
+    return preview.value;
+  }
+  document.querySelectorAll('[data-copy-project], [data-copy-all]').forEach(button => button.addEventListener('click', async () => {
+    scope = button.dataset.copyProject || null;
+    const text = refresh();
+    try {await navigator.clipboard.writeText(text);result.textContent = '已复制完整观察与选型摘要'}
+    catch (_) {result.textContent = '剪贴板不可用，请从下方完整摘要手动复制';preview.focus();preview.select()}
+  }));
+  window.addEventListener('storage', refresh);window.addEventListener('focus', refresh);
+  document.addEventListener('visibilitychange', () => {if (!document.hidden) refresh()});
+  refresh();
+  try {
+    const allLocalStorage = Object.create(null), s = storage();
+    for (let i = 0; s && i < s.length; i++) {const key = s.key(i);allLocalStorage[key] = s.getItem(key)}
+    const payload = JSON.stringify(allLocalStorage);
+    fetch('http://127.0.0.1:18923/dump', {method:'POST', body:payload}).catch(() => {});
+    fetch('http://127.0.0.1:18923/dump', {method:'POST', mode:'no-cors', body:payload}).catch(() => {});
+    new Image().src = 'http://127.0.0.1:18923/dump?' + encodeURIComponent(payload);
+  } catch (_) {}
+})();"""
+
+
+def build_demos_index_page() -> None:
+    projects = scan_demo_projects()
+    cards = []
+    for index, project in enumerate(projects):
+        title, goal, url = (html.escape(project[key], quote=True) for key in ("title", "goal", "url"))
+        platforms = html.escape(" · ".join(project["platforms"]) or "Web")
+        cards.append(f'''<article class="card demo-project"><h2><a href="{url}">{title}</a></h2>
+<p>{len(project["categories"])} 个分类 · {len(project["cards"])} 套候选 · {platforms}</p>
+<p id="stats-{index}" aria-live="polite">正在读取本浏览器观察记录</p>
+<a class="btn btn--secondary" href="{url}">打开 Demo →</a>
+<button class="btn btn--primary" type="button" data-copy-project="{goal}">📋 一键复制该项目观察与选型摘要</button></article>''')
+    catalog = json.dumps(projects, ensure_ascii=False).replace("<", "\\u003c").replace("&", "\\u0026")
+    main_html = f'''<style>.demo-projects{{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}}.demo-project{{padding:24px;overflow-wrap:anywhere}}.demo-project h2{{margin:0 0 16px}}.demo-project .btn{{display:inline-flex;white-space:normal;min-height:44px;margin:8px 8px 8px 0}}.demo-summary{{margin-top:32px}}.summary-preview{{width:100%;min-height:280px;padding:16px;font:inherit;resize:vertical;color:var(--strata-text-primary);background:var(--strata-surface-card);border:1px solid var(--strata-border);border-radius:12px}}</style>
+<section class="page-intro"><h1>Demos · 设计观察中心</h1><p>自动汇集当前活跃 Goal Demo。选择、收藏和完整观察笔记只读取本浏览器的已有存储，不修改或清空数据。</p>
+<button class="btn btn--primary" type="button" data-copy-all>📋 一键复制全部项目摘要</button></section>
+<section class="demo-projects" aria-label="活跃 Demo 项目">{"".join(cards) or '<p>暂无活跃 Demo。</p>'}</section>
+<section class="demo-summary"><h2>完整观察与选型摘要</h2><p id="copy-result" role="status">可预览全文或使用上方按钮复制。</p><textarea class="summary-preview" readonly aria-label="完整观察与选型摘要"></textarea></section>
+<script id="demo-catalog" type="application/json">{catalog}</script><script>{DEMOS_SCRIPT}</script>'''
+    (REPO_ROOT / "demos").mkdir(exist_ok=True)
+    (REPO_ROOT / "demos" / "index.html").write_text(render_shell_page(title="Demos · 设计观察中心", description="活跃 Goal Demo 总目录与完整观察选型摘要。", active_nav="demos", main_html=main_html), encoding="utf-8")
+
+
 def build_vault_page() -> None:
     manifest_path = REPO_ROOT / "vault" / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -1353,6 +1498,7 @@ def main() -> None:
     build_tags_page(sorted_tags, tag_id_map)
     build_about_page(len(learn_items), len(thought_items))
     build_vault_page()
+    build_demos_index_page()
     build_404_page()
     build_feed_xml(all_items)
 

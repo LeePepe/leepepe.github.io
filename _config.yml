@@ -12,7 +12,7 @@ theme: null
 plugins: []
 
 include:
-  - demos/_sync_notes.html
+  - _sync_notes.html
 
 exclude:
   - Gemfile

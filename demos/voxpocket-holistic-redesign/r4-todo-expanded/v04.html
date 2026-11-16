@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light" data-platform="mobile">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>VoxPocket · 手风琴子任务树与语音追记</title>
+<script id="page-config" type="application/json">
+{
+  "schema": "screen-page/v3",
+  "id": "v04",
+  "category": "todo-expanded",
+  "selection_key": "todo-expanded/v04",
+  "title": "手风琴子任务树 + 声波追记轨",
+  "summary": "点击待办展开左侧垂直子任务树与右侧语音追记时间轨，每次按右下角录音直补均生成带时间戳的结构化追记节点。",
+  "app_theme": "D04.QuartzTree",
+  "prompt_file": "prompts/v04-prompt.md",
+  "prompt_sha256": "1b2f5b3ba1d3775e1bc910957c0528315c9b2e8548604c5f8836f404bab43a94"
+}
+</script>
+<style>
+:root {
+  --bg: #F3F2F8; --surface: #FCFBFF; --focus: #E8E5F4;
+  --ink: #211C35; --muted: #5E5678; --accent: #5243AA;
+  --statusTodo: #285A8C; --statusInprogress: #8C5210; --statusDone: #236B48;
+  --priorityP0: #B33648; --priorityP1: #8C5210; --priorityP2: #5E5678;
+  --atr-tint: .28; --atr-rim: .66; --atr-side: .15; --atr-shadow: .12; --atr-halo: .10;
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--bg);
+}
+:root[data-theme="dark"], body[data-theme="dark"] {
+  --bg: #13111E; --surface: #1D1A2E; --focus: #292440;
+  --ink: #F3F0FC; --muted: #B7B0D1; --accent: #B0A2FF;
+  --statusTodo: #94C5F7; --statusInprogress: #F5C67E; --statusDone: #89DFB2;
+  --priorityP0: #FF98A8; --priorityP1: #F5C67E; --priorityP2: #B7B0D1;
+  --atr-tint: .48; --atr-rim: .20; --atr-side: .11; --atr-shadow: .28; --atr-halo: .16;
+  color-scheme: dark;
+}
+.atr-body { margin: 0; height: 100dvh; overflow: hidden; background: var(--bg); -webkit-text-size-adjust: 100%; }
+.atr-body *, .atr-body *::before, .atr-body *::after { box-sizing: border-box; }
+.atr-body button, .atr-body input, .atr-body select { font: inherit; color: inherit; }
+.atr-body button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.atr-body button:focus-visible, .atr-body input:focus-visible, .atr-body select:focus-visible, .atr-preview:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.atr-body [hidden] { display: none !important; }
+.atr-icon { width: 24px; height: 24px; flex: 0 0 24px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.atr-frame { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; max-width: 1076px; margin: auto; }
+.atr-page-heading { margin: 0; padding: max(env(safe-area-inset-top), 54px) 18px 24px; font-size: 1.75rem; font-weight: 650; line-height: 1.25; letter-spacing: -.035em; }
+.atr-track-pager { min-width: 0; overflow: hidden; position: relative; }
+.atr-canvas-track { display: flex; height: 100%; width: 200%; transition: transform 330ms cubic-bezier(.22, 1, .36, 1); }
+.atr-frame[data-page="recorder"] .atr-canvas-track { transform: translateX(-50%); }
+.atr-todo-page, .atr-recorder-page { width: 50%; flex: 0 0 50%; min-width: 0; overflow-y: auto; overflow-x: hidden; scroll-padding: 16px; overscroll-behavior-y: contain; }
+.atr-accordion-list { padding: 0 18px 16px; display: grid; gap: 16px; }
+.atr-node-card { min-width: 0; scroll-margin: 16px; }
+.atr-node-head { padding: 18px; border-radius: 18px; background: var(--surface); display: grid; gap: 10px; transition: background 180ms ease; }
+.atr-node-card[data-expanded="true"] .atr-node-head { background: var(--focus); }
+.atr-disclosure { padding: 0; border: 0; background: transparent; text-align: left; display: grid; grid-template-columns: minmax(0, 1fr) 24px; align-items: start; gap: 8px; min-height: 44px; width: 100%; }
+.atr-title { margin: 0; font-size: 1.4375rem; font-weight: 650; line-height: 2rem; letter-spacing: -.025em; overflow-wrap: anywhere; }
+.atr-disclosure .atr-icon { margin-top: 4px; color: var(--muted); transition: transform 320ms ease; }
+.atr-node-card[data-expanded="true"] .atr-disclosure .atr-icon { transform: rotate(180deg); color: var(--accent); }
+.atr-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: .9375rem; line-height: 1.4375rem; font-weight: 550; }
+.atr-status { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0; min-height: 44px; background: transparent; }
+.atr-status[data-status="todo"] { color: var(--statusTodo); }
+.atr-status[data-status="inprogress"] { color: var(--statusInprogress); }
+.atr-status[data-status="done"] { color: var(--statusDone); }
+.atr-status .atr-glyph-arc, .atr-status .atr-glyph-check { visibility: hidden; }
+.atr-status[data-status="inprogress"] .atr-glyph-arc, .atr-status[data-status="done"] .atr-glyph-check { visibility: visible; }
+.atr-priority[data-priority="P0"] { color: var(--priorityP0); }
+.atr-priority[data-priority="P1"] { color: var(--priorityP1); }
+.atr-priority[data-priority="P2"] { color: var(--priorityP2); }
+.atr-tags { color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; overflow-wrap: anywhere; }
+.atr-time { color: var(--muted); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; width: 100%; }
+.atr-row-feedback { color: var(--accent); font-size: .8125rem; line-height: 1.25rem; padding: 10px 18px 0; overflow-wrap: anywhere; }
+.atr-undo { color: var(--accent); background: var(--surface); border: 1px solid var(--accent); border-radius: 10px; min-height: 44px; padding: 6px 12px; margin: 8px 0 0; }
+.atr-unfold-panel { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 320ms cubic-bezier(.22, 1, .36, 1), visibility 320ms; }
+.atr-node-card[data-expanded="true"] .atr-unfold-panel { grid-template-rows: 1fr; visibility: visible; }
+.atr-unfold-content { min-height: 0; overflow: hidden; }
+.atr-dual-rails { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 20px; padding-top: 28px; }
+.atr-tree-zone, .atr-append-zone { min-width: 0; }
+.atr-rail-caption { font-size: .8125rem; font-weight: 550; line-height: 1.25rem; color: var(--muted); margin: 0 0 14px 8px; letter-spacing: .035em; }
+.atr-tree-rail { list-style: none; margin: 0 0 0 8px; padding: 0 0 6px 16px; border-left: 2px solid var(--accent); position: relative; }
+.atr-tree-rail::before { content: ""; position: absolute; inset: 0 auto 0 -5px; width: 8px; background: color-mix(in srgb, var(--accent) calc(var(--atr-halo) * 100%), transparent); filter: blur(3px); pointer-events: none; }
+.atr-tree-branch { position: relative; min-height: 60px; padding-bottom: 6px; }
+.atr-tree-branch::before { content: ""; position: absolute; top: 22px; left: -16px; width: 16px; border-top: 1.5px solid var(--accent); }
+.atr-child-check { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 0; align-items: start; border: 0; background: var(--focus); border-radius: 12px; width: 100%; padding: 0 6px 6px 0; text-align: left; min-height: 54px; }
+.atr-child-check .atr-icon { margin: 10px; color: var(--accent); }
+.atr-child-title { padding-top: 9px; font-size: 1.0625rem; font-weight: 500; line-height: 1.625rem; overflow-wrap: anywhere; }
+.atr-child-check .atr-glyph-check { visibility: hidden; }
+.atr-child-check[aria-checked="true"] .atr-glyph-check { visibility: visible; }
+.atr-child-check[aria-checked="true"] { color: var(--statusDone); }
+.atr-child-check[aria-checked="true"] .atr-icon { color: var(--statusDone); }
+.atr-child-check[data-referenced="true"] { outline: 2px solid var(--accent); outline-offset: 2px; }
+.atr-append-rail { padding: 0 0 0 12px; margin: 0 0 0 8px; list-style: none; border-left: 1px solid var(--muted); }
+.atr-append-entry { position: relative; margin: 0; padding: 0 0 22px; }
+.atr-append-entry::before { content: ""; position: absolute; width: 7px; height: 7px; border: 1.5px solid var(--accent); border-radius: 50%; background: var(--surface); top: 8px; left: -16px; }
+.atr-event-link { background: var(--surface); border: 0; text-align: left; display: block; padding: 0 3px; width: 100%; min-height: 44px; font-size: .8125rem; font-weight: 500; line-height: 1.25rem; overflow-wrap: anywhere; }
+.atr-event-link > .atr-icon { width: 13px; height: 13px; margin-right: 4px; vertical-align: -2px; color: var(--muted); }
+.atr-event-time { display: inline; color: var(--muted); font-variant-numeric: tabular-nums; }
+.atr-event-source { color: var(--muted); }
+.atr-event-title { display: block; color: var(--ink); margin-top: 4px; }
+.atr-empty-events { font-size: .8125rem; line-height: 1.25rem; color: var(--muted); margin: 0 0 0 20px; }
+.atr-empty-events[data-populated="true"] { visibility: hidden; height: 0; }
+.atr-workbench { margin-top: 28px; padding: 18px; border-radius: 18px; background: var(--surface); }
+.atr-workbench-title { margin: 0 0 16px; font-size: .9375rem; line-height: 1.4375rem; font-weight: 550; }
+.atr-meta-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; }
+.atr-field { min-width: 0; display: grid; gap: 6px; font-size: .9375rem; line-height: 1.4375rem; }
+.atr-field-label { color: var(--muted); font-weight: 550; }
+.atr-field[data-field="title"], .atr-field[data-field="tags"], .atr-field[data-field="time"] { grid-column: 1 / -1; }
+.atr-input { min-width: 0; width: 100%; min-height: 44px; padding: 9px 10px; border-radius: 9px; border: 1px solid var(--muted); background: var(--surface); font-size: .9375rem; line-height: 1.4375rem; }
+.atr-select-field { position: relative; }
+.atr-select-field > .atr-icon { position: absolute; right: 10px; bottom: 13px; width: 18px; height: 18px; color: var(--muted); pointer-events: none; }
+select.atr-input { -webkit-appearance: none; appearance: none; padding-right: 34px; cursor: pointer; }
+.atr-tag-slots { display: grid; gap: 6px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.atr-tag-slots .atr-input { padding-inline: 6px; font-size: .8125rem; }
+.atr-field-error { font-size: .8125rem; line-height: 1.25rem; color: var(--priorityP0); min-height: 0; margin: 14px 0 0; overflow-wrap: anywhere; }
+.atr-export-row { display: grid; gap: 8px; margin-top: 18px; }
+.atr-export-button { display: flex; justify-content: center; align-items: center; gap: 8px; background: transparent; border: 1px solid var(--accent); border-radius: 10px; color: var(--accent); min-height: 44px; padding: 10px; font-size: .9375rem; line-height: 1.4375rem; }
+.atr-preview { white-space: pre-wrap; overflow-wrap: anywhere; font-family: inherit; font-size: .8125rem; line-height: 1.25rem; background: var(--focus); color: var(--ink); border-radius: 10px; margin: 14px 0 0; padding: 12px; user-select: text; -webkit-user-select: text; }
+.atr-export-receipt { font-size: .8125rem; line-height: 1.25rem; color: var(--accent); margin: 14px 0 0; overflow-wrap: anywhere; }
+.atr-recorder-page { display: grid; align-content: center; padding: 24px 32px; }
+.atr-recorder-sentence { font-size: 1.625rem; line-height: 1.5; font-weight: 550; letter-spacing: -.025em; margin: 0 0 18px; }
+.atr-recorder-hint { font-size: .9375rem; line-height: 1.5; color: var(--muted); margin: 0; }
+.atr-recorder-feedback { color: var(--accent); font-size: .9375rem; line-height: 1.5; margin: 24px 0 0; }
+.atr-bottom-capsules { display: grid; grid-template-columns: 56px minmax(0, 1fr); align-items: end; gap: 16px; padding: 16px 18px max(env(safe-area-inset-bottom), 34px); background: var(--bg); }
+.atr-glass { position: relative; isolation: isolate; border: 0; background: transparent; color: var(--ink); box-shadow: 0 9px 28px color-mix(in srgb, var(--ink) calc(var(--atr-shadow) * 100%), transparent); }
+.atr-glass::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: inherit; background: color-mix(in srgb, var(--surface) calc(var(--atr-tint) * 100%), transparent); -webkit-backdrop-filter: blur(24px) saturate(155%); backdrop-filter: blur(24px) saturate(155%); border: 1px solid color-mix(in srgb, var(--ink) calc(var(--atr-side) * 100%), transparent); box-shadow: inset 0 1px 0 rgb(255 255 255 / var(--atr-rim)); }
+.atr-glass:active { transform: scale(.985); }
+.atr-left-switch { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; }
+.atr-right-record { justify-self: end; border-radius: 27px; display: flex; gap: 10px; align-items: center; justify-content: center; min-height: 64px; width: 100%; max-width: 340px; padding: 12px 16px; touch-action: none; user-select: none; -webkit-user-select: none; }
+.atr-right-record > .atr-icon { color: var(--accent); }
+.atr-record-copy { min-width: 0; text-align: left; }
+.atr-record-label { display: block; font-size: .9375rem; font-weight: 550; line-height: 1.4375rem; overflow-wrap: anywhere; }
+.atr-record-hint { display: block; font-size: .8125rem; line-height: 1.25rem; color: var(--muted); margin-top: 2px; }
+.atr-right-record[data-capturing="true"] { outline: 2px solid var(--accent); outline-offset: 3px; }
+.atr-right-record[data-capturing="true"] .atr-record-hint { display: none; }
+.atr-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; border: 0; clip-path: inset(50%); overflow: hidden; white-space: nowrap; }
+@media (min-width: 760px) {
+  :root:not([data-platform="mobile"]) .atr-page-heading { padding-top: 40px; }
+  :root:not([data-platform="mobile"]) .atr-title { font-size: 1.5625rem; }
+  :root:not([data-platform="mobile"]) .atr-dual-rails { grid-template-columns: minmax(0, 56fr) minmax(0, 44fr); gap: 32px; }
+  :root:not([data-platform="mobile"]) .atr-node-head { grid-template-columns: minmax(0, 1fr) minmax(260px, .8fr); align-items: start; gap: 28px; }
+  :root:not([data-platform="mobile"]) .atr-time { width: auto; }
+  :root:not([data-platform="mobile"]) .atr-tree-branch { min-height: 60px; }
+  :root:not([data-platform="mobile"]) .atr-child-check { min-height: 44px; }
+  :root:not([data-platform="mobile"]) .atr-workbench { padding: 18px 22px; }
+  :root:not([data-platform="mobile"]) .atr-meta-controls { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  :root:not([data-platform="mobile"]) .atr-field[data-field="title"] { grid-column: span 2; }
+  :root:not([data-platform="mobile"]) .atr-field[data-field="tags"] { grid-column: span 2; }
+  :root:not([data-platform="mobile"]) .atr-field[data-field="time"] { grid-column: span 2; }
+  :root:not([data-platform="mobile"]) .atr-export-row { display: flex; flex-wrap: wrap; }
+  :root:not([data-platform="mobile"]) .atr-export-button { padding-inline: 18px; }
+}
+@media (max-width: 359px) {
+  .atr-dual-rails { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .atr-tag-slots { grid-template-columns: minmax(0, 1fr); }
+  .atr-meta-controls { grid-template-columns: minmax(0, 1fr); }
+  .atr-field { grid-column: 1 / -1; }
+  .atr-append-rail { margin-left: 8px; }
+}
+:root[data-text-scale="large"] .atr-dual-rails { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+:root[data-text-scale="large"] .atr-node-head { grid-template-columns: minmax(0, 1fr); }
+:root[data-text-scale="large"] .atr-meta-controls, :root[data-text-scale="large"] .atr-tag-slots { grid-template-columns: minmax(0, 1fr); }
+:root[data-text-scale="large"] .atr-field { grid-column: 1 / -1; }
+:root[data-text-scale="large"] .atr-export-row { display: grid; }
+@media (prefers-reduced-motion: reduce) {
+  .atr-unfold-panel, .atr-canvas-track, .atr-disclosure .atr-icon, .atr-node-head { transition: none; }
+  .atr-tree-rail::before { filter: none; }
+  .atr-glass:active { transform: none; }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .atr-glass::before { background: var(--surface); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .atr-glass::before { background: var(--surface); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+</style>
+</head>
+<body class="atr-body" data-theme="light">
+<div class="atr-frame" data-page="todo">
+  <h1 class="atr-page-heading">待办</h1>
+  <main class="atr-track-pager">
+    <div class="atr-canvas-track">
+      <section class="atr-todo-page" aria-label="待办列表">
+        <div class="atr-accordion-list">
+          <article class="atr-node-card" id="demo-01" data-expanded="true">
+            <header class="atr-node-head">
+              <button class="atr-disclosure" aria-expanded="true" aria-controls="demo-01-panel">
+                <span class="atr-title">整理星桥样稿的反馈</span>
+                <svg class="atr-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="atr-meta"></div>
+            </header>
+            <div class="atr-row-feedback" hidden><span class="atr-feedback-text" role="status" aria-live="polite"></span><button class="atr-undo" hidden>撤销完成</button></div>
+            <div class="atr-unfold-panel" id="demo-01-panel">
+              <div class="atr-unfold-content">
+                <div class="atr-dual-rails">
+                  <section class="atr-tree-zone" aria-label="子任务树"><h2 class="atr-rail-caption">子任务树</h2><ol class="atr-tree-rail"></ol></section>
+                  <section class="atr-append-zone" aria-label="声波追记轨"><h2 class="atr-rail-caption">声波追记轨</h2><ol class="atr-append-rail"></ol><p class="atr-empty-events">还没有补充记录</p></section>
+                </div>
+                <section class="atr-workbench" aria-label="待办属性与导出"><h2 class="atr-workbench-title">调整待办</h2><form class="atr-meta-controls"></form><p class="atr-field-error" hidden></p><div class="atr-export-row"></div><p class="atr-export-receipt" hidden></p><pre class="atr-preview" tabindex="0" hidden></pre></section>
+              </div>
+            </div>
+          </article>
+          <article class="atr-node-card" id="demo-02" data-expanded="false">
+            <header class="atr-node-head">
+              <button class="atr-disclosure" aria-expanded="false" aria-controls="demo-02-panel"><span class="atr-title">校对云湾目录</span><svg class="atr-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="atr-meta"></div>
+            </header>
+            <div class="atr-row-feedback" hidden><span class="atr-feedback-text" role="status" aria-live="polite"></span><button class="atr-undo" hidden>撤销完成</button></div>
+            <div class="atr-unfold-panel" id="demo-02-panel" inert><div class="atr-unfold-content">
+              <div class="atr-dual-rails">
+                <section class="atr-tree-zone" aria-label="子任务树"><h2 class="atr-rail-caption">子任务树</h2><ol class="atr-tree-rail"></ol></section>
+                <section class="atr-append-zone" aria-label="声波追记轨"><h2 class="atr-rail-caption">声波追记轨</h2><ol class="atr-append-rail"></ol><p class="atr-empty-events">还没有补充记录</p></section>
+              </div>
+              <section class="atr-workbench" aria-label="待办属性与导出"><h2 class="atr-workbench-title">调整待办</h2><form class="atr-meta-controls"></form><p class="atr-field-error" hidden></p><div class="atr-export-row"></div><p class="atr-export-receipt" hidden></p><pre class="atr-preview" tabindex="0" hidden></pre></section>
+            </div></div>
+          </article>
+          <article class="atr-node-card" id="demo-03" data-expanded="false">
+            <header class="atr-node-head">
+              <button class="atr-disclosure" aria-expanded="false" aria-controls="demo-03-panel"><span class="atr-title">准备纸舟导览</span><svg class="atr-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="atr-meta"></div>
+            </header>
+            <div class="atr-row-feedback" hidden><span class="atr-feedback-text" role="status" aria-live="polite"></span><button class="atr-undo" hidden>撤销完成</button></div>
+            <div class="atr-unfold-panel" id="demo-03-panel" inert><div class="atr-unfold-content">
+              <div class="atr-dual-rails">
+                <section class="atr-tree-zone" aria-label="子任务树"><h2 class="atr-rail-caption">子任务树</h2><ol class="atr-tree-rail"></ol></section>
+                <section class="atr-append-zone" aria-label="声波追记轨"><h2 class="atr-rail-caption">声波追记轨</h2><ol class="atr-append-rail"></ol><p class="atr-empty-events">还没有补充记录</p></section>
+              </div>
+              <section class="atr-workbench" aria-label="待办属性与导出"><h2 class="atr-workbench-title">调整待办</h2><form class="atr-meta-controls"></form><p class="atr-field-error" hidden></p><div class="atr-export-row"></div><p class="atr-export-receipt" hidden></p><pre class="atr-preview" tabindex="0" hidden></pre></section>
+            </div></div>
+          </article>
+          <article class="atr-node-card" id="demo-04" data-expanded="false">
+            <header class="atr-node-head">
+              <button class="atr-disclosure" aria-expanded="false" aria-controls="demo-04-panel"><span class="atr-title">归档风铃色板</span><svg class="atr-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="atr-meta"></div>
+            </header>
+            <div class="atr-row-feedback" hidden><span class="atr-feedback-text" role="status" aria-live="polite"></span><button class="atr-undo" hidden>撤销完成</button></div>
+            <div class="atr-unfold-panel" id="demo-04-panel" inert><div class="atr-unfold-content">
+              <div class="atr-dual-rails">
+                <section class="atr-tree-zone" aria-label="子任务树"><h2 class="atr-rail-caption">子任务树</h2><ol class="atr-tree-rail"></ol></section>
+                <section class="atr-append-zone" aria-label="声波追记轨"><h2 class="atr-rail-caption">声波追记轨</h2><ol class="atr-append-rail"></ol><p class="atr-empty-events">还没有补充记录</p></section>
+              </div>
+              <section class="atr-workbench" aria-label="待办属性与导出"><h2 class="atr-workbench-title">调整待办</h2><form class="atr-meta-controls"></form><p class="atr-field-error" hidden></p><div class="atr-export-row"></div><p class="atr-export-receipt" hidden></p><pre class="atr-preview" tabindex="0" hidden></pre></section>
+            </div></div>
+          </article>
+          <article class="atr-node-card" id="demo-05" data-expanded="false">
+            <header class="atr-node-head">
+              <button class="atr-disclosure" aria-expanded="false" aria-controls="demo-05-panel"><span class="atr-title">汇总月砂提纲</span><svg class="atr-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="atr-meta"></div>
+            </header>
+            <div class="atr-row-feedback" hidden><span class="atr-feedback-text" role="status" aria-live="polite"></span><button class="atr-undo" hidden>撤销完成</button></div>
+            <div class="atr-unfold-panel" id="demo-05-panel" inert><div class="atr-unfold-content">
+              <div class="atr-dual-rails">
+                <section class="atr-tree-zone" aria-label="子任务树"><h2 class="atr-rail-caption">子任务树</h2><ol class="atr-tree-rail"></ol></section>
+                <section class="atr-append-zone" aria-label="声波追记轨"><h2 class="atr-rail-caption">声波追记轨</h2><ol class="atr-append-rail"></ol><p class="atr-empty-events">还没有补充记录</p></section>
+              </div>
+              <section class="atr-workbench" aria-label="待办属性与导出"><h2 class="atr-workbench-title">调整待办</h2><form class="atr-meta-controls"></form><p class="atr-field-error" hidden></p><div class="atr-export-row"></div><p class="atr-export-receipt" hidden></p><pre class="atr-preview" tabindex="0" hidden></pre></section>
+            </div></div>
+          </article>
+          <article class="atr-node-card" id="demo-06" data-expanded="false">
+            <header class="atr-node-head">
+              <button class="atr-disclosure" aria-expanded="false" aria-controls="demo-06-panel"><span class="atr-title">把海盐示例中分散的修改意见整理成一页可执行的清单并核对顺序</span><svg class="atr-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="atr-meta"></div>
+            </header>
+            <div class="atr-row-feedback" hidden><span class="atr-feedback-text" role="status" aria-live="polite"></span><button class="atr-undo" hidden>撤销完成</button></div>
+            <div class="atr-unfold-panel" id="demo-06-panel" inert><div class="atr-unfold-content">
+              <div class="atr-dual-rails">
+                <section class="atr-tree-zone" aria-label="子任务树"><h2 class="atr-rail-caption">子任务树</h2><ol class="atr-tree-rail"></ol></section>
+                <section class="atr-append-zone" aria-label="声波追记轨"><h2 class="atr-rail-caption">声波追记轨</h2><ol class="atr-append-rail"></ol><p class="atr-empty-events">还没有补充记录</p></section>
+              </div>
+              <section class="atr-workbench" aria-label="待办属性与导出"><h2 class="atr-workbench-title">调整待办</h2><form class="atr-meta-controls"></form><p class="atr-field-error" hidden></p><div class="atr-export-row"></div><p class="atr-export-receipt" hidden></p><pre class="atr-preview" tabindex="0" hidden></pre></section>
+            </div></div>
+          </article>
+        </div>
+      </section>
+      <section class="atr-recorder-page" aria-label="录音页" inert aria-hidden="true">
+        <p class="atr-recorder-sentence">让下一步，<br>从一句话开始。</p>
+        <p class="atr-recorder-hint">按住右下角，记下新的待办。</p>
+        <p class="atr-recorder-feedback" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </main>
+  <footer class="atr-bottom-capsules">
+    <button class="atr-left-switch atr-glass" data-action="switch-canvas" aria-label="切至录音页" title="切至录音页"><svg class="atr-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16m-4-4 4 4-4 4M20 16H4m4-4-4 4 4 4"/></svg><span class="atr-visually-hidden">切至录音页</span></button>
+    <button class="atr-right-record atr-glass" data-action="record-voice" data-capturing="false" aria-label="按住补充步骤"><svg class="atr-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M6 11v1a6 6 0 0 0 12 0v-1m-6 7v3m-3 0h6"/></svg><span class="atr-record-copy"><span class="atr-record-label">按住补充步骤</span><span class="atr-record-hint">松开，留下一条追记</span></span></button>
+  </footer>
+</div>
+<script>
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const q = (selector, scope = document) => scope.querySelector(selector);
+  const frame = q('.atr-frame');
+  const todoPage = q('.atr-todo-page');
+  const recorderPage = q('.atr-recorder-page');
+  const recordButton = q('.atr-right-record');
+  const switchButton = q('.atr-left-switch');
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const state = { page: 'todo', expandedId: 'demo-01', rememberedId: 'demo-01', scroll: 0, capture: null, session: 0, nextTodo: 7 };
+  const statusNames = { todo: '待处理', inprogress: '进行中', done: '已完成' };
+  const rows = [
+    { id: 'demo-01', status: 'todo', priority: 'P0', title: '整理星桥样稿的反馈', tags: ['#VoxPocket', '#AI'], time: '今天 18:00', steps: ['收集三条反馈', '按主题归类', '写一段结论'] },
+    { id: 'demo-02', status: 'inprogress', priority: 'P1', title: '校对云湾目录', tags: ['#AI', '#iOS'], time: '今天 20:00', steps: ['对照章节标题', '核对页码', '标出错字'] },
+    { id: 'demo-03', status: 'todo', priority: 'P1', title: '准备纸舟导览', tags: ['#iOS'], time: '明天 10:00', steps: ['选出三件展品', '写简短介绍', '排好导览顺序'] },
+    { id: 'demo-04', status: 'done', priority: 'P2', title: '归档风铃色板', tags: ['#AI'], time: '昨天 16:00', steps: ['整理示例色值', '检查命名', '保存色板清单'] },
+    { id: 'demo-05', status: 'todo', priority: 'P2', title: '汇总月砂提纲', tags: ['#VoxPocket'], time: '本周五 14:00', steps: ['通读提纲', '合并重复点', '写一句摘要'] },
+    { id: 'demo-06', status: 'todo', priority: 'P1', title: '把海盐示例中分散的修改意见整理成一页可执行的清单并核对顺序', tags: ['#iOS', '#VoxPocket', '#AI'], time: '明天 15:30', steps: ['收集修改意见', '拆成行动项', '核对执行顺序'] }
+  ];
+  const records = new Map();
+  const textRefs = new WeakMap();
+  const text = (element, value) => {
+    let node = textRefs.get(element);
+    if (!node) {
+      node = [...element.childNodes].find(child => child.nodeType === Node.TEXT_NODE);
+      if (!node) { node = document.createTextNode(''); element.appendChild(node); }
+      textRefs.set(element, node);
+    }
+    node.data = String(value);
+  };
+  const node = (tag, className, value) => {
+    const element = document.createElement(tag);
+    element.className = className;
+    if (value !== undefined) text(element, value);
+    return element;
+  };
+  function icon(kind) {
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('class', 'atr-icon'); svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('aria-hidden', 'true');
+    function shape(tag, attrs) {
+      const child = document.createElementNS(svgNS, tag);
+      Object.entries(attrs).forEach(([key, value]) => child.setAttribute(key, value));
+      svg.appendChild(child);
+    }
+    if (kind === 'ring') {
+      shape('circle', { cx: 12, cy: 12, r: 9 });
+      shape('path', { d: 'm8 12 3 3 5-6', class: 'atr-glyph-check' });
+      shape('path', { d: 'M12 6a6 6 0 0 1 6 6', class: 'atr-glyph-arc' });
+    } else if (kind === 'copy') {
+      shape('rect', { x: 8, y: 8, width: 12, height: 12, rx: 3 });
+      shape('path', { d: 'M15 4H7a3 3 0 0 0-3 3v8' });
+    } else if (kind === 'linear') {
+      shape('path', { d: 'M5 19 19 5M5 13l6 6M5 7l12 12M11 5l8 8' });
+    } else if (kind === 'clock') {
+      shape('circle', { cx: 12, cy: 12, r: 9 });
+      shape('path', { d: 'M12 7v5l3 2' });
+    } else {
+      shape('path', { d: 'm6 9 6 6 6-6' });
+    }
+    return svg;
+  }
+  function feedback(record, message) {
+    const region = q('.atr-row-feedback', record.article);
+    region.hidden = false;
+    text(q('.atr-feedback-text', region), message);
+  }
+  function clearUndo(record) {
+    clearTimeout(record.undoTimer);
+    record.undo = null;
+    q('.atr-undo', record.article).hidden = true;
+  }
+  function updateIdleLabel() {
+    if (state.capture) return;
+    const expanded = state.page === 'todo' && state.expandedId !== null;
+    const label = expanded ? '按住补充步骤' : '按住新建待办';
+    text(q('.atr-record-label'), label);
+    text(q('.atr-record-hint'), expanded ? '松开，留下一条追记' : '松开，留下一件待办');
+    recordButton.setAttribute('aria-label', label);
+  }
+  function paint(record) {
+    text(q('.atr-title', record.article), record.title);
+    record.statusButton.dataset.status = record.status;
+    text(record.statusText, statusNames[record.status]);
+    record.statusButton.setAttribute('aria-label', `${record.title}：${statusNames[record.status]}，点击切换状态`);
+    record.priorityLabel.dataset.priority = record.priority;
+    text(record.priorityLabel, record.priority);
+    record.tagLabels.forEach((label, index) => {
+      label.hidden = index > 0 && !record.tags[index];
+      text(label, record.tags[index] || (index === 0 ? '未分类' : ''));
+    });
+    text(record.timeLabel, record.time);
+    for (const field of ['status', 'priority', 'title', 'time']) record.editors[field].value = record[field];
+    record.editors.tags.forEach((input, index) => { input.value = record.tags[index] || ''; });
+    q('.atr-disclosure', record.article).setAttribute('aria-label', record.title);
+    updateIdleLabel();
+  }
+  function selectTodo(id, focusTitle = false) {
+    abortCapture();
+    if (state.page !== 'todo') return;
+    state.expandedId = id;
+    state.rememberedId = id;
+    records.forEach(record => {
+      const open = record.id === id;
+      record.article.dataset.expanded = String(open);
+      q('.atr-disclosure', record.article).setAttribute('aria-expanded', String(open));
+      q('.atr-unfold-panel', record.article).inert = !open;
+    });
+    updateIdleLabel();
+    if (focusTitle && id) q('.atr-disclosure', records.get(id).article).focus({ preventScroll: true });
+  }
+  function changeStatus(record, value) {
+    abortCapture();
+    const previous = record.status;
+    clearUndo(record);
+    record.status = value;
+    paint(record);
+    feedback(record, `状态已改为${statusNames[value]}`);
+    if (value === 'done' && previous !== 'done') {
+      record.undo = previous;
+      q('.atr-undo', record.article).hidden = false;
+      record.undoTimer = setTimeout(() => {
+        clearUndo(record);
+        feedback(record, '已完成');
+      }, 5000);
+    }
+  }
+  function addChild(record, title) {
+    const child = { id: `${record.id}-s${String(record.children.length + 1).padStart(2, '0')}`, title, checked: false };
+    const branch = node('li', 'atr-tree-branch');
+    const button = node('button', 'atr-child-check');
+    button.type = 'button'; button.id = child.id;
+    button.setAttribute('role', 'checkbox'); button.setAttribute('aria-checked', 'false'); button.setAttribute('aria-label', title);
+    const ring = icon('ring');
+    q('.atr-glyph-arc', ring).setAttribute('visibility', 'hidden');
+    button.appendChild(ring);
+    button.appendChild(node('span', 'atr-child-title', title));
+    button.addEventListener('click', () => {
+      abortCapture();
+      child.checked = !child.checked;
+      button.setAttribute('aria-checked', String(child.checked));
+      feedback(record, `${child.checked ? '已完成' : '已恢复'}步骤：${child.title}`);
+    });
+    branch.appendChild(button);
+    q('.atr-tree-rail', record.article).appendChild(branch);
+    child.button = button;
+    record.children.push(child);
+    return child;
+  }
+  function addEvent(record, child, timestamp) {
+    const event = { id: `${record.id}-e${String(record.events.length + 1).padStart(2, '0')}`, todoId: record.id, subtaskId: child.id, timestamp, kind: 'voice_append', title: child.title };
+    const item = node('li', 'atr-append-entry'); item.dataset.eventId = event.id;
+    const button = node('button', 'atr-event-link'); button.type = 'button';
+    button.setAttribute('aria-label', `${timestamp} 语音追记，前往子任务：${child.title}`);
+    button.appendChild(icon('clock'));
+    const time = node('time', 'atr-event-time', `${timestamp} · `); time.dateTime = timestamp;
+    button.appendChild(time);
+    button.appendChild(node('span', 'atr-event-source', '语音追记 → '));
+    button.appendChild(node('span', 'atr-event-title', `新增子任务：${child.title}`));
+    button.addEventListener('click', () => {
+      abortCapture();
+      child.button.scrollIntoView({ block: 'nearest' });
+      child.button.focus({ preventScroll: true });
+      child.button.dataset.referenced = 'true';
+      clearTimeout(child.highlightTimer);
+      child.highlightTimer = setTimeout(() => { child.button.dataset.referenced = 'false'; }, 1200);
+    });
+    item.appendChild(button);
+    q('.atr-append-rail', record.article).appendChild(item);
+    q('.atr-empty-events', record.article).dataset.populated = 'true';
+    record.events.push(event);
+  }
+  function snapshot(record) {
+    return {
+      identifier: `DEMO-${record.id.split('-')[1].padStart(3, '0')}`,
+      id: record.id, status: record.status, priority: record.priority, title: record.title, tags: [...record.tags], time: record.time,
+      subtasks: record.children.map(child => ({ id: child.id, title: child.title, checked: child.checked })),
+      events: record.events.map(event => ({ ...event }))
+    };
+  }
+  function markdown(record) {
+    const lines = [`# ${record.title}`, '', `Status: ${record.status}`, `Priority: ${record.priority}`, `Tags: ${record.tags.join(' ') || '未分类'}`, `Time: ${record.time}`, '', ...record.children.map(child => `- [${child.checked ? 'x' : ' '}] ${child.title}`)];
+    if (record.events.length) lines.push('', '## 语音追记', ...record.events.map(event => `- ${event.timestamp} · 语音追记 → 新增子任务：${event.title}`));
+    return lines.join('\n');
+  }
+  function showExport(record, output, receipt) {
+    const preview = q('.atr-preview', record.article);
+    text(preview, output); preview.hidden = false;
+    const line = q('.atr-export-receipt', record.article);
+    text(line, receipt); line.hidden = false;
+    feedback(record, receipt);
+  }
+  function mountEditors(record) {
+    const form = q('.atr-meta-controls', record.article);
+    const error = q('.atr-field-error', record.article);
+    record.editors = {};
+    form.addEventListener('submit', event => event.preventDefault());
+    function field(key, labelText, choices) {
+      const label = node('label', 'atr-field'); label.dataset.field = key;
+      label.appendChild(node('span', 'atr-field-label', labelText));
+      const input = node(choices ? 'select' : 'input', 'atr-input');
+      input.name = key; input.id = `${record.id}-${key}`;
+      if (choices) choices.forEach(([value, caption]) => {
+        const option = node('option', 'atr-option', caption); option.value = value; input.appendChild(option);
+      });
+      else { input.type = 'text'; input.autocomplete = 'off'; input.required = true; }
+      input.setAttribute('aria-describedby', `${record.id}-error`);
+      input.addEventListener('input', () => { abortCapture(); clearUndo(record); });
+      input.addEventListener('change', () => acceptEdit(record, key));
+      label.appendChild(input);
+      if (choices) { label.classList.add('atr-select-field'); label.appendChild(icon('chevron')); }
+      form.appendChild(label); record.editors[key] = input;
+    }
+    field('status', '状态', [['todo', '待处理'], ['inprogress', '进行中'], ['done', '已完成']]);
+    field('priority', '优先级', [['P0', 'P0'], ['P1', 'P1'], ['P2', 'P2']]);
+    field('title', '标题');
+    const tags = node('fieldset', 'atr-field'); tags.dataset.field = 'tags'; tags.style.border = '0'; tags.style.padding = '0'; tags.style.margin = '0';
+    tags.appendChild(node('legend', 'atr-field-label', '标签 · 最多 3 个'));
+    const slots = node('div', 'atr-tag-slots');
+    record.editors.tags = [1, 2, 3].map(index => {
+      const input = node('input', 'atr-input'); input.type = 'text'; input.name = `tag-${index}`; input.autocomplete = 'off';
+      input.setAttribute('aria-label', `标签 ${index}`); input.setAttribute('aria-describedby', `${record.id}-error`);
+      input.addEventListener('input', () => { abortCapture(); clearUndo(record); });
+      input.addEventListener('change', () => acceptEdit(record, 'tags'));
+      slots.appendChild(input); return input;
+    });
+    tags.appendChild(slots); form.appendChild(tags);
+    field('time', '时间');
+    error.id = `${record.id}-error`; text(error, '');
+  }
+  function acceptEdit(record, key) {
+    abortCapture(); clearUndo(record);
+    const inputs = key === 'tags' ? record.editors.tags : [record.editors[key]];
+    let value = key === 'tags' ? inputs.flatMap(input => input.value.trim().split(/[\s,，;；]+/u).filter(Boolean)) : inputs[0].value.trim();
+    const message = key === 'tags' && value.length > 3 ? '最多 3 个标签' : !value && key !== 'tags' ? `${key === 'title' ? '标题' : '时间'}不能为空` : '';
+    const error = q('.atr-field-error', record.article);
+    text(error, message); error.hidden = !message;
+    inputs.forEach(input => input.setAttribute('aria-invalid', String(Boolean(message))));
+    if (message) { paint(record); feedback(record, message); return; }
+    if (key === 'tags') value = value.map(tag => tag.startsWith('#') ? tag : `#${tag}`);
+    if (key === 'status') changeStatus(record, value);
+    else { record[key] = value; paint(record); feedback(record, '待办属性已更新'); }
+  }
+  function mountRecord(data, article) {
+    const record = { ...data, tags: [...data.tags], article, children: [], events: [], appendCount: 0, undo: null };
+    records.set(record.id, record);
+    const meta = q('.atr-meta', article);
+    record.statusButton = node('button', 'atr-status'); record.statusButton.type = 'button';
+    record.statusButton.appendChild(icon('ring'));
+    record.statusText = node('span', 'atr-status-label', ''); record.statusButton.appendChild(record.statusText);
+    record.statusButton.addEventListener('click', () => {
+      const values = ['todo', 'inprogress', 'done']; changeStatus(record, values[(values.indexOf(record.status) + 1) % 3]);
+    });
+    meta.appendChild(record.statusButton);
+    record.priorityLabel = node('span', 'atr-priority', ''); meta.appendChild(record.priorityLabel);
+    const tags = node('span', 'atr-tags');
+    record.tagLabels = [1, 2, 3].map(() => { const label = node('span', 'atr-tag', ''); tags.appendChild(label); return label; }); meta.appendChild(tags);
+    record.timeLabel = node('span', 'atr-time', ''); meta.appendChild(record.timeLabel);
+    q('.atr-disclosure', article).addEventListener('click', () => selectTodo(state.expandedId === record.id ? null : record.id));
+    q('.atr-undo', article).addEventListener('click', () => {
+      abortCapture(); if (record.undo === null) return;
+      const previous = record.undo; clearUndo(record); record.status = previous; paint(record); feedback(record, `已撤销完成 · ${statusNames[previous]}`);
+    });
+    text(q('.atr-feedback-text', article), '');
+    text(q('.atr-export-receipt', article), ''); text(q('.atr-preview', article), '');
+    mountEditors(record);
+    record.steps.forEach(title => addChild(record, title));
+    const exports = q('.atr-export-row', article);
+    const linear = node('button', 'atr-export-button'); linear.type = 'button'; linear.dataset.action = 'export-linear';
+    linear.appendChild(icon('linear')); linear.appendChild(node('span', 'atr-export-label', '一键转 Linear Issue'));
+    linear.addEventListener('click', () => {
+      abortCapture(); const issue = snapshot(record);
+      showExport(record, JSON.stringify(issue, null, 2), `演示：已生成 Linear Issue · ${issue.identifier}（未联网）`);
+    });
+    const copy = node('button', 'atr-export-button'); copy.type = 'button'; copy.dataset.action = 'copy-markdown';
+    copy.appendChild(icon('copy')); copy.appendChild(node('span', 'atr-export-label', '复制 Markdown'));
+    copy.addEventListener('click', async () => {
+      abortCapture(); const output = markdown(record); const token = ++record.copyToken;
+      let receipt = '未复制：请选中文本后复制';
+      try { await navigator.clipboard.writeText(output); receipt = '已复制 Markdown（演示数据）'; } catch { /* The retained preview is the selectable fallback. */ }
+      if (record.copyToken === token) showExport(record, output, receipt);
+    });
+    record.copyToken = 0;
+    exports.appendChild(linear); exports.appendChild(copy);
+    paint(record);
+    return record;
+  }
+  function newArticle(id, title) {
+    const article = node('article', 'atr-node-card'); article.id = id; article.dataset.expanded = 'false';
+    const header = node('header', 'atr-node-head');
+    const disclosure = node('button', 'atr-disclosure'); disclosure.type = 'button'; disclosure.setAttribute('aria-expanded', 'false'); disclosure.setAttribute('aria-controls', `${id}-panel`);
+    disclosure.appendChild(node('span', 'atr-title', title)); disclosure.appendChild(icon('chevron'));
+    header.appendChild(disclosure); header.appendChild(node('div', 'atr-meta')); article.appendChild(header);
+    const response = node('div', 'atr-row-feedback'); response.hidden = true;
+    const live = node('span', 'atr-feedback-text', ''); live.setAttribute('role', 'status'); live.setAttribute('aria-live', 'polite');
+    const undo = node('button', 'atr-undo', '撤销完成'); undo.hidden = true;
+    response.appendChild(live); response.appendChild(undo); article.appendChild(response);
+    const panel = node('div', 'atr-unfold-panel'); panel.id = `${id}-panel`; panel.inert = true;
+    const content = node('div', 'atr-unfold-content');
+    const rails = node('div', 'atr-dual-rails');
+    const tree = node('section', 'atr-tree-zone'); tree.setAttribute('aria-label', '子任务树'); tree.appendChild(node('h2', 'atr-rail-caption', '子任务树')); tree.appendChild(node('ol', 'atr-tree-rail'));
+    const history = node('section', 'atr-append-zone'); history.setAttribute('aria-label', '声波追记轨'); history.appendChild(node('h2', 'atr-rail-caption', '声波追记轨')); history.appendChild(node('ol', 'atr-append-rail')); history.appendChild(node('p', 'atr-empty-events', '还没有补充记录'));
+    rails.appendChild(tree); rails.appendChild(history); content.appendChild(rails);
+    const workbench = node('section', 'atr-workbench'); workbench.setAttribute('aria-label', '待办属性与导出');
+    workbench.appendChild(node('h2', 'atr-workbench-title', '调整待办')); workbench.appendChild(node('form', 'atr-meta-controls'));
+    const error = node('p', 'atr-field-error', ''); error.hidden = true; workbench.appendChild(error);
+    workbench.appendChild(node('div', 'atr-export-row'));
+    const receipt = node('p', 'atr-export-receipt', ''); receipt.hidden = true; workbench.appendChild(receipt);
+    const preview = node('pre', 'atr-preview', ''); preview.hidden = true; preview.tabIndex = 0; workbench.appendChild(preview);
+    content.appendChild(workbench); panel.appendChild(content); article.appendChild(panel);
+    return article;
+  }
+  function createTodo() {
+    const id = `demo-${String(state.nextTodo++).padStart(2, '0')}`;
+    const data = { id, title: '整理晨光示例清单', status: 'todo', priority: 'P1', tags: ['#AI'], time: '明天 11:00', steps: ['收集示例条目', '合并重复项', '排好清单顺序'] };
+    const article = newArticle(id, data.title);
+    const record = mountRecord(data, article);
+    q('.atr-accordion-list').appendChild(article);
+    if (state.page === 'todo') {
+      feedback(record, '已新建语音待办 · 3 个步骤');
+      requestAnimationFrame(() => { article.scrollIntoView({ block: 'end' }); });
+    } else text(q('.atr-recorder-feedback'), '已新建语音待办：整理晨光示例清单');
+  }
+  function abortCapture() {
+    const capture = state.capture;
+    if (!capture) return;
+    state.capture = null;
+    clearTimeout(capture.timer);
+    recordButton.dataset.capturing = 'false';
+    if (capture.pointerId !== undefined && recordButton.hasPointerCapture(capture.pointerId)) recordButton.releasePointerCapture(capture.pointerId);
+    updateIdleLabel();
+  }
+  function startCapture(kind, pointerId) {
+    if (state.capture) { abortCapture(); return; }
+    const targetId = state.page === 'todo' ? state.expandedId : null;
+    const title = targetId ? records.get(targetId).title : null;
+    const capture = { token: ++state.session, kind, pointerId, targetId, title, page: state.page, started: performance.now(), armed: false };
+    state.capture = capture;
+    capture.timer = setTimeout(() => { if (state.capture === capture) capture.armed = true; }, 180);
+    const label = targetId ? `🎙️ 正在继续补充至：${title}` : '🎙️ 按住新建语音待办…';
+    recordButton.dataset.capturing = 'true';
+    text(q('.atr-record-label'), label); recordButton.setAttribute('aria-label', label);
+  }
+  function finishCapture(kind) {
+    const capture = state.capture;
+    if (!capture || capture.kind !== kind) return;
+    const visibleId = state.page === 'todo' ? state.expandedId : null;
+    const accepted = capture.armed && performance.now() - capture.started >= 180 && capture.page === state.page && capture.targetId === visibleId;
+    abortCapture();
+    if (!accepted) return;
+    if (capture.targetId) {
+      const record = records.get(capture.targetId);
+      const child = addChild(record, '补充每条反馈对应的下一步');
+      const minutes = 18 * 60 + 2 + record.appendCount;
+      const timestamp = `${String(Math.floor(minutes / 60) % 24).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}`;
+      addEvent(record, child, timestamp); record.appendCount++;
+      feedback(record, '已补充 1 个步骤 · 已新增 1 条追记');
+    } else createTodo();
+  }
+  function inside(event) {
+    const rect = recordButton.getBoundingClientRect();
+    return event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+  }
+  recordButton.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || !event.isPrimary) return;
+    event.preventDefault(); recordButton.focus({ preventScroll: true });
+    startCapture('pointer', event.pointerId);
+    if (state.capture) recordButton.setPointerCapture(event.pointerId);
+  });
+  recordButton.addEventListener('pointermove', event => {
+    if (state.capture?.pointerId === event.pointerId && !inside(event)) abortCapture();
+  });
+  recordButton.addEventListener('pointerup', event => {
+    if (state.capture?.pointerId !== event.pointerId) return;
+    if (inside(event)) finishCapture('pointer'); else abortCapture();
+  });
+  recordButton.addEventListener('pointercancel', abortCapture);
+  recordButton.addEventListener('lostpointercapture', abortCapture);
+  recordButton.addEventListener('click', event => event.preventDefault());
+  recordButton.addEventListener('keydown', event => {
+    if (event.code !== 'Space' || event.altKey || event.ctrlKey || event.metaKey) return;
+    event.preventDefault();
+    if (event.repeat) { abortCapture(); return; }
+    startCapture('keyboard');
+  });
+  recordButton.addEventListener('keyup', event => {
+    if (event.code !== 'Space') return;
+    event.preventDefault(); finishCapture('keyboard');
+  });
+  recordButton.addEventListener('blur', abortCapture);
+  function switchPage() {
+    abortCapture();
+    if (state.page === 'todo') {
+      state.rememberedId = state.expandedId; state.scroll = todoPage.scrollTop; state.expandedId = null; state.page = 'recorder';
+      todoPage.inert = true; todoPage.setAttribute('aria-hidden', 'true'); recorderPage.inert = false; recorderPage.setAttribute('aria-hidden', 'false');
+    } else {
+      state.page = 'todo'; state.expandedId = state.rememberedId;
+      todoPage.inert = false; todoPage.setAttribute('aria-hidden', 'false'); recorderPage.inert = true; recorderPage.setAttribute('aria-hidden', 'true');
+      todoPage.scrollTop = state.scroll;
+    }
+    frame.dataset.page = state.page;
+    text(q('.atr-page-heading'), state.page === 'todo' ? '待办' : '录音');
+    const label = state.page === 'todo' ? '切至录音页' : '返回待办';
+    switchButton.setAttribute('aria-label', label); switchButton.title = label; text(q('.atr-visually-hidden', switchButton), label);
+    if (todoPage.contains(document.activeElement) || recorderPage.contains(document.activeElement)) switchButton.focus({ preventScroll: true });
+    updateIdleLabel();
+  }
+  switchButton.addEventListener('click', switchPage);
+  let gesture = null;
+  q('.atr-track-pager').addEventListener('pointerdown', event => {
+    if (!event.isPrimary || event.button !== 0 || event.target.closest('button, input, select, label, .atr-tree-zone, .atr-append-zone, .atr-workbench')) return;
+    gesture = { id: event.pointerId, x: event.clientX, y: event.clientY };
+  });
+  q('.atr-track-pager').addEventListener('pointerup', event => {
+    const start = gesture; gesture = null;
+    if (!start || start.id !== event.pointerId) return;
+    const dx = event.clientX - start.x, dy = event.clientY - start.y;
+    if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && ((state.page === 'todo' && dx < 0) || (state.page === 'recorder' && dx > 0))) switchPage();
+  });
+  q('.atr-track-pager').addEventListener('pointercancel', () => { gesture = null; });
+  let menu = null;
+  document.addEventListener('pointerdown', event => { menu = event.target.matches('select') ? event.target : null; });
+  document.addEventListener('keydown', event => {
+    if (event.target.matches('select') && ['Space', 'ArrowDown', 'ArrowUp'].includes(event.code)) menu = event.target;
+    if (event.key !== 'Escape') return;
+    if (menu) { menu.blur(); menu = null; return; }
+    if (state.capture) { abortCapture(); event.preventDefault(); return; }
+    if (state.page === 'todo' && state.expandedId) {
+      const previous = state.expandedId; selectTodo(null); q('.atr-disclosure', records.get(previous).article).focus({ preventScroll: true }); event.preventDefault();
+    }
+  });
+  window.addEventListener('blur', () => { abortCapture(); gesture = null; });
+  window.addEventListener('pagehide', abortCapture);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) abortCapture(); });
+  function applyAppearance(theme, platform) {
+    if (theme !== undefined && !['light', 'dark'].includes(theme)) return;
+    if (platform !== undefined && !['mobile', 'desktop', 'macos'].includes(platform)) return;
+    abortCapture();
+    if (theme) { root.dataset.theme = theme; document.body.dataset.theme = theme; }
+    if (platform) root.dataset.platform = platform;
+  }
+  const query = new URLSearchParams(location.search);
+  applyAppearance(['light', 'dark'].includes(query.get('theme')) ? query.get('theme') : undefined, ['mobile', 'desktop', 'macos'].includes(query.get('platform')) ? query.get('platform') : undefined);
+  window.addEventListener('message', event => {
+    if (window.parent === window || event.source !== window.parent) return;
+    const sameOrigin = event.origin === location.origin;
+    const localFileParent = location.protocol === 'file:' && event.origin === 'null';
+    if (!sameOrigin && !localFileParent) return;
+    const data = event.data;
+    if (!data || typeof data !== 'object' || Array.isArray(data)) return;
+    if (data.theme === undefined && data.platform === undefined) return;
+    applyAppearance(data.theme, data.platform);
+  });
+  rows.forEach(data => mountRecord(data, document.getElementById(data.id)));
+  const primary = records.get('demo-01');
+  addEvent(primary, primary.children[1], '17:58');
+  addEvent(primary, primary.children[2], '18:00');
+  updateIdleLabel();
+  text(q('.atr-recorder-feedback'), '');
+  function measureTextScale() { root.dataset.textScale = parseFloat(getComputedStyle(root).fontSize) >= 31 ? 'large' : 'normal'; }
+  measureTextScale();
+  const rootObserver = new MutationObserver(measureTextScale);
+  rootObserver.observe(root, { attributes: true, attributeFilter: ['style'] });
+  window.addEventListener('resize', measureTextScale);
+})();
+</script>
+</body>
+</html>

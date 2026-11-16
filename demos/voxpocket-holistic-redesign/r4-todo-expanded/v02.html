@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light" data-platform="mobile">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>VoxPocket · 顶部聚焦舞台</title>
+<script id="page-config" type="application/json">{"id":"v02","category":"todo-expanded","selection_key":"todo-expanded/v02","title":"顶部聚焦舞台","AppTheme":"D02.LinenFocus","prompt_file":"prompts/v02-prompt.md","prompt_sha256":"b6d969f3824c1995057a3a5318e4fc53752abe614e207ffcf9dcf9ec85febc81"}</script>
+<style>
+:root {
+  --bg: #F7F2EA; --surface: #FFFDF9; --focus: #EFE7DA; --ink: #2B211B;
+  --muted: #6E5C4F; --accent: #9C4A24; --statusTodo: #2B5B84;
+  --statusInprogress: #8F5612; --statusDone: #2D6A46;
+  --priorityP0: #B5382E; --priorityP1: #8F5612; --priorityP2: #6E5C4F;
+  --glass-tint: .34; --glass-top: .62; --glass-side: .14; --glass-shadow: .10;
+  --control-target: 44px; color-scheme: light;
+}
+:root[data-theme="dark"], body[data-theme="dark"] {
+  --bg: #181411; --surface: #241E19; --focus: #322922; --ink: #FAF2E8;
+  --muted: #C8B5A4; --accent: #F5A97F; --statusTodo: #95C4F0;
+  --statusInprogress: #F4C47C; --statusDone: #8CD9A7;
+  --priorityP0: #FF9B91; --priorityP1: #F4C47C; --priorityP2: #C8B5A4;
+  --glass-tint: .50; --glass-top: .18; --glass-side: .10; --glass-shadow: .26;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", sans-serif; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+[hidden] { display: none !important; }
+.hfs-icons { position: absolute; width: 0; height: 0; overflow: hidden; }
+.hfs-icon { flex: 0 0 auto; width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.hfs-app { height: 100%; height: 100dvh; max-width: 1048px; margin: auto; padding: max(env(safe-area-inset-top), 54px) 24px 0; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+.hfs-top-bar { margin: 0 0 16px; min-height: 36px; font-size: 24px; line-height: 36px; font-weight: 650; letter-spacing: -.8px; }
+.hfs-viewport { min-height: 0; overflow: hidden; }
+.hfs-slider { display: flex; height: 100%; width: 200%; transform: translateX(0); transition: transform 300ms cubic-bezier(.22,.8,.25,1); }
+.hfs-app[data-page="recorder"] .hfs-slider { transform: translateX(-50%); }
+.hfs-todo-screen, .hfs-recorder-screen { flex: 0 0 50%; width: 50%; min-width: 0; height: 100%; }
+.hfs-todo-screen { display: grid; grid-template-rows: minmax(0, 3fr) minmax(0, 2fr); gap: 24px; }
+.hfs-todo-screen[data-expanded="false"] { grid-template-rows: 0 minmax(0,1fr); gap: 0; }
+.hfs-hero-stage { position: relative; min-height: 0; overflow: hidden; background: var(--surface); border-radius: 5px 5px 18px 18px; }
+.hfs-hero-card { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; padding: 18px; scrollbar-width: thin; scroll-padding-block: 18px; opacity: 0; transform: translateY(-8px); transition: opacity 120ms ease, transform 340ms cubic-bezier(.2,.88,.25,1); pointer-events: none; }
+.hfs-hero-card[data-focused="true"] { opacity: 1; transform: translateY(0); pointer-events: auto; z-index: 1; }
+.hfs-hero-card[data-entering="true"] { transform: translateY(18px); opacity: 0; }
+.hfs-title-dial { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
+.hfs-title-wrap { min-width: 0; flex: 1 1 8rem; }
+.hfs-title-dial .hfs-progress-ring { flex: 0 0 68px; }
+.hfs-eyebrow { margin: 0 0 6px; font-size: 13px; line-height: 20px; font-weight: 500; color: var(--muted); }
+.hfs-hero-title { margin: 0; font-size: 30px; line-height: 40px; font-weight: 650; letter-spacing: -.75px; }
+.hfs-title-button { padding: 0; border: 0; background: transparent; text-align: left; font: inherit; min-height: var(--control-target); overflow-wrap: anywhere; }
+.hfs-progress-ring { margin: 2px 0 0; width: 68px; text-align: center; }
+.hfs-dial { display: block; width: 68px; height: 68px; overflow: visible; }
+.hfs-dial-track { fill: none; stroke: var(--focus); stroke-width: 5; }
+.hfs-dial-arc { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dasharray 280ms ease; }
+.hfs-dial-numerator { fill: var(--ink); font-size: 13px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.hfs-dial-caption { margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 20px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.hfs-hero-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; align-items: center; font-size: 13px; line-height: 20px; font-weight: 550; }
+.hfs-value { border-radius: 6px; padding: 3px 6px; background: color-mix(in srgb, currentColor 6%, var(--surface)); }
+.hfs-value[data-status="todo"] { color: var(--statusTodo); }
+.hfs-value[data-status="inprogress"] { color: var(--statusInprogress); }
+.hfs-value[data-status="done"] { color: var(--statusDone); }
+.hfs-value[data-priority="P0"] { color: var(--priorityP0); }
+.hfs-value[data-priority="P1"] { color: var(--priorityP1); }
+.hfs-value[data-priority="P2"] { color: var(--priorityP2); }
+.hfs-tag-value, .hfs-time-value { color: var(--muted); overflow-wrap: anywhere; }
+.hfs-work-area { min-width: 0; }
+.hfs-checklist { list-style: none; padding: 0; margin: 28px 0; display: grid; gap: 6px; }
+.hfs-check-node { min-height: var(--control-target); width: 100%; padding: 4px 0; display: flex; align-items: flex-start; gap: 12px; background: none; border: 0; text-align: left; font-size: 17px; line-height: 26px; font-weight: 500; overflow-wrap: anywhere; }
+.hfs-check-node .hfs-icon { margin-top: 1px; color: var(--muted); }
+.hfs-check-node[aria-checked="true"] .hfs-icon { color: var(--statusDone); }
+.hfs-check-node[aria-checked="false"] .hfs-check-stroke { visibility: hidden; }
+.hfs-attr-deck { padding: 14px; background: var(--focus); border-radius: 10px; display: grid; gap: 12px; }
+.hfs-field { min-width: 0; display: grid; gap: 6px; }
+.hfs-field-label { color: var(--muted); font-size: 13px; line-height: 20px; font-weight: 500; }
+.hfs-field-input { width: 100%; min-width: 0; min-height: var(--control-target); background: var(--surface); border: 1px solid color-mix(in srgb, var(--muted) 55%, var(--surface)); border-radius: 7px; padding: 8px; font-size: 15px; line-height: 23px; font-weight: 550; }
+.hfs-field-pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; }
+.hfs-action-strip { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin-top: 28px; }
+.hfs-detail-action { display: inline-flex; align-items: center; justify-content: flex-start; gap: 6px; min-height: var(--control-target); padding: 7px 0; background: transparent; border: 0; color: var(--accent); font-size: 15px; line-height: 23px; font-weight: 550; text-align: left; }
+.hfs-collapse-action { color: var(--muted); }
+.hfs-feedback { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 20px; overflow-wrap: anywhere; }
+.hfs-feedback:empty { margin: 0; }
+.hfs-undo-slot { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13px; line-height: 20px; color: var(--muted); }
+.hfs-undo-button { border: 0; background: transparent; color: var(--accent); min-height: var(--control-target); padding: 4px 8px; font-size: 15px; }
+.hfs-export-output { margin: 12px 0 0; padding: 12px; border-radius: 8px; background: var(--focus); font: 13px/20px ui-monospace, SFMono-Regular, monospace; white-space: pre-wrap; overflow-wrap: anywhere; user-select: text; }
+.hfs-secondary-tray { overflow-y: auto; overscroll-behavior: contain; min-height: 0; scroll-padding-block: 16px; scrollbar-width: thin; }
+.hfs-tray-bank { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.hfs-tray-row { min-height: 92px; padding: 12px 14px; background: var(--surface); border-radius: 8px; }
+.hfs-tray-row[data-focused="true"] { display: none; }
+.hfs-tray-fields { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: start; gap: 2px 8px; }
+.hfs-status-control { grid-column: 1; grid-row: 1; border: 0; padding: 0; background: none; min-height: var(--control-target); display: inline-flex; align-items: center; gap: 6px; justify-self: start; font-size: 13px; line-height: 20px; font-weight: 550; }
+.hfs-status-control[data-status="todo"] { color: var(--statusTodo); }
+.hfs-status-control[data-status="inprogress"] { color: var(--statusInprogress); }
+.hfs-status-control[data-status="done"] { color: var(--statusDone); }
+.hfs-status-control[data-status="todo"] .hfs-state-progress, .hfs-status-control[data-status="todo"] .hfs-state-check { visibility: hidden; }
+.hfs-status-control[data-status="inprogress"] .hfs-state-check { visibility: hidden; }
+.hfs-status-control[data-status="done"] .hfs-state-progress { visibility: hidden; }
+.hfs-tray-priority { grid-column: 2; grid-row: 1; align-self: center; font-size: 13px; line-height: 20px; font-weight: 650; }
+.hfs-tray-title { grid-column: 1 / -1; min-height: var(--control-target); border: 0; padding: 0; background: none; display: flex; align-items: center; justify-content: space-between; gap: 8px; text-align: left; color: var(--ink); font-size: 17px; line-height: 26px; font-weight: 550; overflow-wrap: anywhere; }
+.hfs-tray-title .hfs-icon { width: 18px; height: 18px; color: var(--muted); }
+.hfs-tray-tags { grid-column: 1 / -1; color: var(--muted); font-size: 13px; line-height: 20px; overflow-wrap: anywhere; }
+.hfs-tray-time { grid-column: 1 / -1; color: var(--muted); font-size: 13px; line-height: 20px; overflow-wrap: anywhere; }
+.hfs-recorder-screen { display: grid; align-content: center; padding: 18px; }
+.hfs-recorder-sentence { margin: 0; max-width: 440px; font-size: 30px; line-height: 1.5; font-weight: 550; letter-spacing: -.6px; }
+.hfs-recorder-hint { margin: 18px 0 0; color: var(--muted); font-size: 15px; line-height: 23px; }
+.hfs-corner-dock { display: flex; gap: 16px; justify-content: space-between; align-items: flex-end; padding: 16px 0 max(env(safe-area-inset-bottom), 34px); background: var(--bg); }
+.hfs-slide-btn, .hfs-mic-btn { border: 1px solid color-mix(in srgb, var(--ink) calc(var(--glass-side) * 100%), transparent); background: color-mix(in srgb, var(--surface) calc(var(--glass-tint) * 100%), transparent); -webkit-backdrop-filter: blur(20px) saturate(145%); backdrop-filter: blur(20px) saturate(145%); box-shadow: inset 0 1px 0 rgb(255 255 255 / var(--glass-top)), 0 7px 22px color-mix(in srgb, var(--ink) calc(var(--glass-shadow) * 100%), transparent); color: var(--ink); }
+.hfs-slide-btn { flex: 0 0 56px; width: 56px; height: 56px; border-radius: 20px; display: grid; place-items: center; }
+.hfs-mic-btn { min-height: 64px; min-width: 64px; max-width: calc(100% - 72px); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 17px 18px; border-radius: 25px; font-size: 15px; line-height: 23px; font-weight: 550; text-align: left; touch-action: none; user-select: none; -webkit-user-select: none; }
+.hfs-mic-label { min-width: 0; overflow-wrap: anywhere; }
+.hfs-mic-btn[data-holding="true"] { background: var(--focus); color: var(--accent); }
+.hfs-live-region { position: absolute; width: 1px; height: 1px; padding: 0; clip-path: inset(50%); overflow: hidden; white-space: nowrap; }
+.hfs-top-bar { font-size: 1.5rem; line-height: 1.5; }
+.hfs-hero-title, .hfs-recorder-sentence { font-size: 1.875rem; }
+.hfs-hero-title { line-height: 1.333333; }
+.hfs-eyebrow, .hfs-dial-caption, .hfs-hero-meta, .hfs-field-label, .hfs-feedback, .hfs-undo-slot, .hfs-status-control, .hfs-tray-priority, .hfs-tray-tags, .hfs-tray-time { font-size: .8125rem; line-height: 1.538462; }
+.hfs-dial-numerator { font-size: .8125rem; }
+.hfs-check-node, .hfs-tray-title { font-size: 1.0625rem; line-height: 1.529412; }
+.hfs-field-input, .hfs-detail-action, .hfs-undo-button, .hfs-recorder-hint, .hfs-mic-btn { font-size: .9375rem; line-height: 1.533333; }
+.hfs-export-output { font-size: .8125rem; line-height: 1.538462; }
+@supports not ((backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px))) { .hfs-slide-btn, .hfs-mic-btn { background: var(--surface); } }
+@media (prefers-reduced-transparency: reduce) { .hfs-slide-btn, .hfs-mic-btn { background: var(--surface); -webkit-backdrop-filter: none; backdrop-filter: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .hfs-slider { transition-duration: 80ms; }
+  .hfs-hero-card { transition: opacity 80ms ease; transform: none !important; }
+  .hfs-dial-arc { transition: none; }
+}
+@media (min-width: 760px) {
+  :root:not([data-platform="mobile"]) { --control-target: 32px; }
+  .hfs-hero-card { display: grid; grid-template-columns: minmax(0,45fr) minmax(0,55fr); gap: 28px; padding: 24px; }
+  .hfs-hero-title { font-size: 2rem; line-height: 1.3125; }
+  .hfs-checklist { margin-top: 0; }
+  .hfs-tray-fields { grid-template-columns: 108px 42px minmax(0,1fr) minmax(120px, .45fr) 110px; gap: 10px; align-items: center; }
+  .hfs-status-control { grid-column: 1; grid-row: 1; }
+  .hfs-tray-priority { grid-column: 2; grid-row: 1; }
+  .hfs-tray-title { grid-column: 3; grid-row: 1; }
+  .hfs-tray-tags { grid-column: 4; grid-row: 1; }
+  .hfs-tray-time { grid-column: 5; grid-row: 1; }
+}
+@media (max-width: 359px) {
+  .hfs-title-dial { column-gap: 8px; }
+  .hfs-hero-meta { margin-top: 12px; }
+  .hfs-field-pair { grid-template-columns: minmax(0,1fr); }
+}
+</style>
+</head>
+<body data-theme="light" data-platform="mobile">
+<svg class="hfs-icons" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+  <symbol id="hfs-switch" viewBox="0 0 24 24"><path d="M4 8h16m-4-4 4 4-4 4M20 16H4m4-4-4 4 4 4"/></symbol>
+  <symbol id="hfs-microphone" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M6 11v2a6 6 0 0 0 12 0v-2M12 19v3m-4 0h8"/></symbol>
+  <symbol id="hfs-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M15 5V3H4v13h2"/></symbol>
+  <symbol id="hfs-linear" viewBox="0 0 24 24"><path d="m5 19 14-14M9 5h10v10M5 12v7h7"/></symbol>
+  <symbol id="hfs-up" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"/></symbol>
+  <symbol id="hfs-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="hfs-child" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path class="hfs-check-stroke" d="m8 12 3 3 5-6"/></symbol>
+  <symbol id="hfs-status" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path class="hfs-state-progress" d="M12 3a9 9 0 0 1 9 9" stroke-width="4"/><path class="hfs-state-check" d="m8 12 3 3 5-6"/></symbol>
+</defs></svg>
+<main class="hfs-app" data-page="todo_list" aria-label="VoxPocket 待办执行台">
+  <h1 class="hfs-top-bar">待办</h1>
+  <div class="hfs-viewport">
+    <div class="hfs-slider">
+      <section class="hfs-todo-screen" data-expanded="true" aria-label="待办画布">
+        <section class="hfs-hero-stage" aria-label="顶部聚焦舞台"></section>
+        <section class="hfs-secondary-tray" aria-label="其他待办"><ol class="hfs-tray-bank"></ol></section>
+      </section>
+      <section class="hfs-recorder-screen" aria-label="录音画布" inert aria-hidden="true">
+        <p class="hfs-recorder-sentence">把想做的事，<br>轻轻说出来。</p>
+        <p class="hfs-recorder-hint">按住录音，松手成为一条待办。</p>
+      </section>
+    </div>
+  </div>
+  <footer class="hfs-corner-dock" aria-label="画布切换与语音录入">
+    <button class="hfs-slide-btn" type="button" data-action="switch-canvas" aria-label="切至录音页" title="切至录音页"><svg class="hfs-icon" aria-hidden="true"><use href="#hfs-switch"/></svg></button>
+    <button class="hfs-mic-btn" type="button" data-action="record-voice" data-holding="false" aria-label="按住录音，继续补充当前待办"><svg class="hfs-icon" aria-hidden="true"><use href="#hfs-microphone"/></svg><span class="hfs-mic-label">按住录音</span></button>
+  </footer>
+</main>
+<p class="hfs-live-region" role="status" aria-live="polite" aria-atomic="true"></p>
+<script>
+(() => {
+  'use strict';
+  const NS = 'http://www.w3.org/2000/svg';
+  const app = document.querySelector('.hfs-app');
+  const todoScreen = document.querySelector('.hfs-todo-screen');
+  const recorderScreen = document.querySelector('.hfs-recorder-screen');
+  const heroBank = document.querySelector('.hfs-hero-stage');
+  const tray = document.querySelector('.hfs-secondary-tray');
+  const trayBank = document.querySelector('.hfs-tray-bank');
+  const switchButton = document.querySelector('.hfs-slide-btn');
+  const mic = document.querySelector('.hfs-mic-btn');
+  const statusNames = {todo: '待处理', inprogress: '进行中', done: '已完成'};
+  const state = {page: 'todo_list', expandedId: 'demo-01', rememberedId: 'demo-01', nextOrdinal: 7, capture: null, trayScroll: 0, initiator: null};
+  const records = new Map();
+  const views = new Map();
+  const textNodes = new WeakMap();
+  function text(element, value) {
+    let node = textNodes.get(element);
+    if (!node) { node = document.createTextNode(''); element.append(node); textNodes.set(element, node); }
+    node.data = String(value);
+    return element;
+  }
+  function node(tag, className, value) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (value !== undefined) text(element, value);
+    return element;
+  }
+  function icon(name) {
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', 'hfs-icon'); svg.setAttribute('aria-hidden', 'true');
+    if (name === 'child' || name === 'status') {
+      svg.setAttribute('viewBox', '0 0 24 24');
+      const ring = document.createElementNS(NS, 'circle'); ring.setAttribute('cx', '12'); ring.setAttribute('cy', '12'); ring.setAttribute('r', '9'); svg.append(ring);
+      if (name === 'status') {
+        const progress = document.createElementNS(NS, 'path'); progress.setAttribute('class', 'hfs-state-progress'); progress.setAttribute('d', 'M12 3a9 9 0 0 1 9 9'); progress.setAttribute('stroke-width', '4'); svg.append(progress);
+      }
+      const check = document.createElementNS(NS, 'path'); check.setAttribute('class', name === 'child' ? 'hfs-check-stroke' : 'hfs-state-check'); check.setAttribute('d', 'm8 12 3 3 5-6'); svg.append(check);
+    } else {
+      const use = document.createElementNS(NS, 'use'); use.setAttribute('href', '#hfs-' + name); svg.append(use);
+    }
+    return svg;
+  }
+  function button(className, label, iconName, action) {
+    const element = node('button', className); element.type = 'button';
+    if (iconName) element.append(icon(iconName));
+    const labelSlot = node('span', 'hfs-button-label', label); element.append(labelSlot);
+    element.addEventListener('click', action);
+    return {element, label: labelSlot};
+  }
+  const live = document.querySelector('.hfs-live-region'); text(live, '');
+  const micLabel = document.querySelector('.hfs-mic-label');
+  textNodes.set(micLabel, micLabel.firstChild);
+  const pageHeading = document.querySelector('.hfs-top-bar'); textNodes.set(pageHeading, pageHeading.firstChild);
+  function announce(message) { text(live, message); }
+  function notify(record, message) { record.feedback = message; text(views.get(record.id).feedback, message); announce(message); }
+  function makeRecord(id, status, priority, title, tags, time, children) {
+    return {id, status, priority, title, tags, time, subtasks: children.map((title, index) => ({id: id + '-s' + String(index + 1).padStart(2, '0'), title, checked: false})), feedback: '', undo: null, undoTimer: null, exportRevision: 0};
+  }
+  const fixtures = [
+    makeRecord('demo-01', 'todo', 'P0', '整理星桥样稿的反馈', ['#VoxPocket', '#AI'], '今天 18:00', ['收集三条反馈', '按主题归类', '写一段结论']),
+    makeRecord('demo-02', 'inprogress', 'P1', '校对云湾目录', ['#AI', '#iOS'], '今天 20:00', ['对照章节标题', '核对页码', '标出错字']),
+    makeRecord('demo-03', 'todo', 'P1', '准备纸舟导览', ['#iOS'], '明天 10:00', ['选出三件展品', '写简短介绍', '排好导览顺序']),
+    makeRecord('demo-04', 'done', 'P2', '归档风铃色板', ['#AI'], '昨天 16:00', ['整理示例色值', '检查命名', '保存色板清单']),
+    makeRecord('demo-05', 'todo', 'P2', '汇总月砂提纲', ['#VoxPocket'], '本周五 14:00', ['通读提纲', '合并重复点', '写一句摘要']),
+    makeRecord('demo-06', 'todo', 'P1', '把海盐示例中分散的修改意见整理成一页可执行的清单并核对顺序', ['#iOS', '#VoxPocket', '#AI'], '明天 15:30', ['收集修改意见', '拆成行动项', '核对执行顺序'])
+  ];
+  function invalidateUndo(record) {
+    clearTimeout(record.undoTimer); record.undoTimer = null; record.undo = null;
+  }
+  function snapshot(record) {
+    return {title: record.title, status: record.status, priority: record.priority, tags: [...record.tags], time: record.time,
+      subtasks: record.subtasks.map(child => ({title: child.title, checked: child.checked}))};
+  }
+  function invalidateExport(record) {
+    record.exportRevision += 1;
+    const view = views.get(record.id);
+    view.output.hidden = true; text(view.output, ''); text(view.feedback, ''); record.feedback = '';
+  }
+  function updateUndo(record) {
+    const view = views.get(record.id);
+    const active = record.undo !== null;
+    view.heroUndo.querySelector('button').setAttribute('aria-label', '撤销完成：' + record.title);
+    view.rowUndo.querySelector('button').setAttribute('aria-label', '撤销完成：' + record.title);
+    view.heroUndo.hidden = !active || state.expandedId !== record.id || state.page !== 'todo_list';
+    view.rowUndo.hidden = !active || state.expandedId === record.id || state.page !== 'todo_list';
+  }
+  function setStatus(record, value) {
+    cancelCapture();
+    if (record.status === value) return;
+    const old = record.status; invalidateUndo(record); invalidateExport(record); record.status = value;
+    if (value === 'done') {
+      record.undo = old;
+      record.undoTimer = setTimeout(() => { record.undo = null; updateUndo(record); }, 5000);
+    }
+    refresh(record); announce(record.title + '：' + statusNames[value]);
+  }
+  function undoStatus(record) {
+    cancelCapture();
+    if (record.undo === null) return;
+    const previous = record.undo; invalidateUndo(record); invalidateExport(record); record.status = previous;
+    refresh(record); announce('已撤销完成：' + record.title);
+  }
+  function childNode(record, child, list) {
+    const item = node('li', 'hfs-check-item'); item.dataset.childId = child.id;
+    const control = button('hfs-check-node', child.title, 'child', () => {
+      cancelCapture(); child.checked = !child.checked; invalidateExport(record); refresh(record);
+      announce(record.title + '，' + child.title + (child.checked ? '，已完成' : '，未完成'));
+    }).element;
+    control.setAttribute('role', 'checkbox'); control.setAttribute('aria-checked', String(child.checked));
+    control.setAttribute('aria-label', record.title + '：' + child.title);
+    control.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault(); if (!event.repeat) control.click();
+      }
+    });
+    item.append(control); list.append(item); return control;
+  }
+  function field(record, key, label, options) {
+    const wrap = node('label', 'hfs-field'); wrap.append(node('span', 'hfs-field-label', label));
+    const input = node(options ? 'select' : 'input', 'hfs-field-input'); input.dataset.field = key;
+    if (options) for (const [value, caption] of options) {
+      const option = node('option', '', caption); option.value = value; input.append(option);
+    }
+    else { input.type = 'text'; input.autocomplete = 'off'; input.spellcheck = false; }
+    input.setAttribute('aria-label', record.title + ' · ' + label);
+    input.addEventListener('focus', cancelCapture); input.addEventListener('input', cancelCapture);
+    input.addEventListener('change', () => {
+      cancelCapture(); const raw = input.value.trim(); let accepted = raw;
+      if (key === 'title' && !raw) { input.value = record.title; notify(record, '标题不能为空，已保留原值'); return; }
+      if (key === 'time' && !/^(今天|明天|昨天|本周[一二三四五六日天]|\d{4}-\d{2}-\d{2})\s+([01]?\d|2[0-3]):[0-5]\d$/.test(raw)) {
+        input.value = record.time; notify(record, '请输入有效时间，例如「明天 10:00」，已保留原值'); return;
+      }
+      if (key === 'time' && /^\d{4}-/.test(raw)) {
+        const date = raw.split(' ')[0]; const parsed = new Date(date + 'T12:00:00Z');
+        if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== date) { input.value = record.time; notify(record, '日期不存在，已保留原值'); return; }
+      }
+      if (key === 'tags') {
+        const tags = raw ? raw.split(/[\s,，]+/).filter(Boolean).map(tag => tag.startsWith('#') ? tag : '#' + tag) : [];
+        if (tags.length > 3) { input.value = record.tags.join(' '); notify(record, '最多 3 个标签'); return; }
+        accepted = [...new Set(tags)];
+      }
+      if (key === 'status') { setStatus(record, raw); return; }
+      invalidateUndo(record); invalidateExport(record); record[key] = accepted;
+      refresh(record); notify(record, '已更新' + label);
+    });
+    input.addEventListener('keydown', event => {
+      if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); input.value = key === 'tags' ? record.tags.join(' ') : record[key]; input.blur(); views.get(record.id).titleButton.focus(); }
+      if (event.key === 'Enter' && !options) { event.preventDefault(); input.blur(); }
+    });
+    wrap.append(input); return {wrap, input};
+  }
+  function undoSlot(record) {
+    const slot = node('div', 'hfs-undo-slot'); slot.hidden = true;
+    slot.append(node('span', 'hfs-undo-copy', '已标记完成'));
+    const undo = button('hfs-undo-button', '撤销', null, () => undoStatus(record)).element;
+    undo.setAttribute('aria-label', '撤销完成：' + record.title); slot.append(undo); return slot;
+  }
+  function mount(record) {
+    records.set(record.id, record);
+    const hero = node('article', 'hfs-hero-card'); hero.dataset.todoId = record.id; hero.dataset.focused = 'false'; hero.inert = true;
+    hero.setAttribute('aria-hidden', 'true');
+    const titlePlane = node('div', 'hfs-title-plane');
+    const titleDial = node('div', 'hfs-title-dial');
+    const titleWrap = node('div', 'hfs-title-wrap'); titleWrap.append(node('p', 'hfs-eyebrow', '此刻，专注这一件'));
+    const heading = node('h2', 'hfs-hero-title');
+    const titleAction = button('hfs-title-button', record.title, null, () => collapse(true));
+    titleAction.element.dataset.field = 'title'; heading.append(titleAction.element); titleWrap.append(heading);
+    const ring = node('figure', 'hfs-progress-ring');
+    const dial = document.createElementNS(NS, 'svg'); dial.setAttribute('viewBox', '0 0 68 68'); dial.setAttribute('class', 'hfs-dial'); dial.setAttribute('role', 'img');
+    const track = document.createElementNS(NS, 'circle'); track.setAttribute('cx', '34'); track.setAttribute('cy', '34'); track.setAttribute('r', '27'); track.setAttribute('class', 'hfs-dial-track');
+    const arc = document.createElementNS(NS, 'circle'); arc.setAttribute('cx', '34'); arc.setAttribute('cy', '34'); arc.setAttribute('r', '27'); arc.setAttribute('class', 'hfs-dial-arc'); arc.setAttribute('stroke-dasharray', '0 169.646');
+    const count = document.createElementNS(NS, 'text'); count.setAttribute('x', '34'); count.setAttribute('y', '39'); count.setAttribute('text-anchor', 'middle'); count.setAttribute('class', 'hfs-dial-numerator'); text(count, '0/3');
+    const caption = node('figcaption', 'hfs-dial-caption', '0%'); dial.append(track, arc, count); ring.append(dial, caption); titleDial.append(titleWrap, ring);
+    const meta = node('div', 'hfs-hero-meta'); meta.setAttribute('aria-label', '状态、优先级、标签与时间');
+    const statusValue = node('span', 'hfs-value', ''); statusValue.dataset.field = 'status';
+    const priorityValue = node('span', 'hfs-value', ''); priorityValue.dataset.field = 'priority';
+    const tagsValue = node('span', 'hfs-tag-value', ''); tagsValue.dataset.field = 'tags';
+    const timeValue = node('span', 'hfs-time-value', ''); timeValue.dataset.field = 'time';
+    meta.append(statusValue, priorityValue, tagsValue, timeValue); titlePlane.append(titleDial, meta);
+    const work = node('div', 'hfs-work-area');
+    const checklist = node('ul', 'hfs-checklist'); checklist.setAttribute('aria-label', record.title + ' · AI 行动步骤');
+    const childControls = record.subtasks.map(child => childNode(record, child, checklist));
+    const deck = node('div', 'hfs-attr-deck'); deck.setAttribute('aria-label', '编辑五项属性');
+    const titleField = field(record, 'title', '标题');
+    const pair = node('div', 'hfs-field-pair');
+    const statusField = field(record, 'status', '状态', Object.entries(statusNames));
+    const priorityField = field(record, 'priority', '优先级', [['P0', 'P0 · 首要'], ['P1', 'P1 · 重要'], ['P2', 'P2 · 常规']]);
+    const tagsField = field(record, 'tags', '标签 · 最多 3 个');
+    const timeField = field(record, 'time', '时间'); pair.append(statusField.wrap, priorityField.wrap);
+    deck.append(titleField.wrap, pair, tagsField.wrap, timeField.wrap);
+    const actions = node('div', 'hfs-action-strip');
+    const linear = button('hfs-detail-action', '一键转 Linear Issue', 'linear', () => exportLinear(record)).element; linear.dataset.action = 'export-linear';
+    const copy = button('hfs-detail-action', '复制 Markdown', 'copy', () => exportMarkdown(record)).element; copy.dataset.action = 'copy-markdown';
+    const close = button('hfs-detail-action hfs-collapse-action', '收起舞台', 'up', () => collapse(true)).element; close.dataset.action = 'collapse';
+    actions.append(linear, copy, close);
+    const feedback = node('p', 'hfs-feedback', ''); feedback.setAttribute('role', 'status');
+    const heroUndo = undoSlot(record); const output = node('pre', 'hfs-export-output', ''); output.hidden = true; output.tabIndex = 0; output.setAttribute('aria-label', '可选中复制的结构化导出');
+    work.append(checklist, deck, actions, feedback, heroUndo, output); hero.append(titlePlane, work);
+    const row = node('li', 'hfs-tray-row'); row.dataset.todoId = record.id; row.dataset.focused = 'false';
+    const fields = node('div', 'hfs-tray-fields');
+    const rowStatus = button('hfs-status-control', '', 'status', () => {
+      const order = ['todo', 'inprogress', 'done']; setStatus(record, order[(order.indexOf(record.status) + 1) % 3]);
+    }); rowStatus.element.dataset.field = 'status';
+    const rowPriority = node('span', 'hfs-tray-priority hfs-value', ''); rowPriority.dataset.field = 'priority';
+    const rowTitle = button('hfs-tray-title', '', null, event => focusRecord(record.id, event.detail === 0, rowTitle.element));
+    rowTitle.element.dataset.field = 'title'; rowTitle.element.append(icon('right'));
+    const rowTags = node('span', 'hfs-tray-tags', ''); rowTags.dataset.field = 'tags';
+    const rowTime = node('span', 'hfs-tray-time', ''); rowTime.dataset.field = 'time';
+    fields.append(rowStatus.element, rowPriority, rowTitle.element, rowTags, rowTime);
+    const rowUndo = undoSlot(record); row.append(fields, rowUndo);
+    const view = {hero, row, titleButton: titleAction.element, title: titleAction.label, dial, arc, count, caption,
+      statusValue, priorityValue, tagsValue, timeValue, checklist, childControls, feedback, heroUndo, rowUndo, output,
+      rowStatus: rowStatus.element, rowStatusLabel: rowStatus.label, rowPriority, rowTitle: rowTitle.element, rowTitleLabel: rowTitle.label, rowTags, rowTime,
+      inputs: {title: titleField.input, status: statusField.input, priority: priorityField.input, tags: tagsField.input, time: timeField.input}};
+    views.set(record.id, view); heroBank.append(hero); trayBank.append(row); refresh(record);
+  }
+  function refresh(record) {
+    const v = views.get(record.id); const checked = record.subtasks.filter(child => child.checked).length; const total = record.subtasks.length;
+    const fraction = total ? checked / total : 0; const circumference = 2 * Math.PI * 27;
+    text(v.title, record.title); v.titleButton.setAttribute('aria-label', record.title + '，收起舞台');
+    text(v.statusValue, statusNames[record.status]); v.statusValue.dataset.status = record.status;
+    text(v.priorityValue, record.priority); v.priorityValue.dataset.priority = record.priority;
+    text(v.tagsValue, record.tags.join(' ') || '未分类'); text(v.timeValue, record.time);
+    text(v.count, checked + '/' + total); text(v.caption, Math.round(fraction * 100) + '%');
+    v.dial.setAttribute('aria-label', '已完成 ' + checked + ' / 共 ' + total + ' 步');
+    v.arc.setAttribute('stroke-dasharray', (circumference * fraction) + ' ' + circumference);
+    v.childControls.forEach((control, index) => { control.setAttribute('aria-checked', String(record.subtasks[index].checked)); control.setAttribute('aria-label', record.title + '：' + record.subtasks[index].title); });
+    v.checklist.setAttribute('aria-label', record.title + ' · AI 行动步骤');
+    v.hero.setAttribute('aria-label', '聚焦待办：' + record.title);
+    for (const [action, caption] of Object.entries({'export-linear': '一键转 Linear Issue', 'copy-markdown': '复制 Markdown', collapse: '收起舞台'})) {
+      v.hero.querySelector('[data-action="' + action + '"]').setAttribute('aria-label', caption + '：' + record.title);
+    }
+    text(v.rowStatusLabel, statusNames[record.status]); v.rowStatus.dataset.status = record.status;
+    v.rowStatus.setAttribute('aria-label', record.title + '：' + statusNames[record.status] + '，切换状态');
+    text(v.rowPriority, record.priority); v.rowPriority.dataset.priority = record.priority;
+    text(v.rowTitleLabel, record.title); v.rowTitle.setAttribute('aria-label', '聚焦：' + record.title);
+    text(v.rowTags, record.tags.join(' ') || '未分类'); text(v.rowTime, record.time);
+    for (const [key, input] of Object.entries(v.inputs)) {
+      input.value = key === 'tags' ? record.tags.join(' ') : record[key];
+      input.setAttribute('aria-label', record.title + ' · ' + {title: '标题', status: '状态', priority: '优先级', tags: '标签', time: '时间'}[key]);
+    }
+    updateUndo(record); syncMicLabel();
+  }
+  function applyFocus() {
+    todoScreen.dataset.expanded = String(state.expandedId !== null);
+    for (const [id, v] of views) {
+      const focused = state.page === 'todo_list' && state.expandedId === id;
+      v.hero.dataset.focused = String(focused); v.hero.inert = !focused; v.hero.setAttribute('aria-hidden', String(!focused));
+      v.row.dataset.focused = String(focused); v.row.inert = focused; v.row.setAttribute('aria-hidden', String(focused)); updateUndo(records.get(id));
+    }
+    tray.setAttribute('aria-label', state.expandedId ? '其他待办' : '全部待办'); syncMicLabel();
+  }
+  function focusRecord(id, keyboard, initiatingControl) {
+    cancelCapture(); state.trayScroll = tray.scrollTop; state.initiator = initiatingControl;
+    state.expandedId = id; state.rememberedId = id;
+    const view = views.get(id); view.hero.dataset.entering = 'true'; applyFocus();
+    requestAnimationFrame(() => { requestAnimationFrame(() => { view.hero.dataset.entering = 'false'; }); });
+    if (keyboard) view.titleButton.focus({preventScroll: true});
+    announce('聚焦：' + records.get(id).title);
+  }
+  function collapse(restoreFocus) {
+    cancelCapture(); const old = state.expandedId;
+    state.expandedId = null; state.rememberedId = null; applyFocus(); tray.scrollTop = state.trayScroll;
+    if (restoreFocus && old) (state.initiator || views.get(old).rowTitle).focus({preventScroll: true});
+    announce('已收起舞台，显示全部待办');
+  }
+  function switchCanvas() {
+    cancelCapture();
+    if (state.page === 'todo_list') {
+      state.rememberedId = state.expandedId; state.trayScroll = tray.scrollTop; state.expandedId = null; state.page = 'recorder';
+    } else { state.page = 'todo_list'; state.expandedId = state.rememberedId; }
+    app.dataset.page = state.page; todoScreen.inert = state.page !== 'todo_list'; recorderScreen.inert = state.page !== 'recorder';
+    todoScreen.setAttribute('aria-hidden', String(todoScreen.inert)); recorderScreen.setAttribute('aria-hidden', String(recorderScreen.inert));
+    text(pageHeading, state.page === 'todo_list' ? '待办' : '录音');
+    const label = state.page === 'todo_list' ? '切至录音页' : '返回待办'; switchButton.setAttribute('aria-label', label); switchButton.title = label;
+    applyFocus(); tray.scrollTop = state.trayScroll; announce(state.page === 'todo_list' ? '已返回待办' : '已切至录音页');
+  }
+  function syncMicLabel() {
+    if (state.capture) return;
+    text(micLabel, '按住录音'); mic.dataset.holding = 'false';
+    mic.setAttribute('aria-label', state.expandedId ? '按住录音，继续补充至：' + records.get(state.expandedId).title : '按住录音，新建语音待办');
+  }
+  function beginCapture(kind, pointerId) {
+    if (state.capture) { cancelCapture(); return; }
+    const id = state.page === 'todo_list' ? state.expandedId : null;
+    const title = id ? records.get(id).title : null;
+    state.capture = {kind, pointerId, id, title, started: performance.now(), page: state.page};
+    const label = id ? '🎙️ 正在继续补充至：' + title : '🎙️ 按住新建语音待办…';
+    text(micLabel, label); mic.dataset.holding = 'true'; announce(label);
+  }
+  function cancelCapture() {
+    const token = state.capture; if (!token) return;
+    state.capture = null;
+    if (token.kind === 'pointer' && mic.hasPointerCapture(token.pointerId)) mic.releasePointerCapture(token.pointerId);
+    syncMicLabel(); announce('已取消语音录入');
+  }
+  function finishCapture(kind) {
+    const token = state.capture;
+    if (!token || token.kind !== kind) return;
+    if (performance.now() - token.started < 180 || token.page !== state.page || token.id !== state.expandedId) { cancelCapture(); return; }
+    state.capture = null;
+    if (token.kind === 'pointer' && mic.hasPointerCapture(token.pointerId)) mic.releasePointerCapture(token.pointerId);
+    if (token.id) {
+      const record = records.get(token.id);
+      const child = {id: record.id + '-s' + String(record.subtasks.length + 1).padStart(2, '0'), title: '确认结论与反馈主题对应', checked: false};
+      record.subtasks.push(child); views.get(record.id).childControls.push(childNode(record, child, views.get(record.id).checklist));
+      invalidateExport(record); refresh(record); notify(record, '已为「' + record.title + '」补充 1 个行动步骤');
+    } else {
+      const id = 'demo-' + String(state.nextOrdinal++).padStart(2, '0');
+      const record = makeRecord(id, 'todo', 'P1', '整理晨光示例清单', ['#AI'], '明天 11:00', ['收集示例条目', '合并重复项', '排好清单顺序']);
+      mount(record); applyFocus();
+      if (state.page === 'todo_list') { tray.scrollTop = tray.scrollHeight; state.trayScroll = tray.scrollTop; }
+      announce('已新建语音待办：' + record.title);
+    }
+    syncMicLabel();
+  }
+  function pointInside(event) {
+    const bounds = mic.getBoundingClientRect();
+    return event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
+  }
+  mic.addEventListener('pointerdown', event => {
+    if (!event.isPrimary || event.button !== 0) return;
+    event.preventDefault(); mic.focus({preventScroll: true}); beginCapture('pointer', event.pointerId); mic.setPointerCapture(event.pointerId);
+  });
+  mic.addEventListener('pointermove', event => { if (state.capture?.kind === 'pointer' && !pointInside(event)) cancelCapture(); });
+  mic.addEventListener('pointerup', event => {
+    event.preventDefault(); if (state.capture?.pointerId !== event.pointerId) return;
+    if (!pointInside(event)) cancelCapture(); else finishCapture('pointer');
+  });
+  mic.addEventListener('pointercancel', cancelCapture);
+  mic.addEventListener('lostpointercapture', cancelCapture);
+  mic.addEventListener('keydown', event => {
+    if (event.code !== 'Space' && event.key !== ' ') return;
+    event.preventDefault(); if (event.repeat) { cancelCapture(); return; } beginCapture('keyboard');
+  });
+  mic.addEventListener('keyup', event => { if (event.code === 'Space' || event.key === ' ') { event.preventDefault(); finishCapture('keyboard'); } });
+  mic.addEventListener('click', event => { event.preventDefault(); event.stopPropagation(); });
+  mic.addEventListener('blur', cancelCapture);
+  window.addEventListener('blur', cancelCapture); window.addEventListener('pagehide', cancelCapture);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) cancelCapture(); });
+  switchButton.addEventListener('click', switchCanvas);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      if (state.capture) { cancelCapture(); event.preventDefault(); }
+      else if (state.page === 'todo_list' && state.expandedId) { collapse(true); event.preventDefault(); }
+    }
+  });
+  let gesture = null;
+  document.querySelector('.hfs-viewport').addEventListener('pointerdown', event => {
+    gesture = null;
+    if (!event.isPrimary || event.target.closest('button,input,select,svg,pre')) return;
+    gesture = {x: event.clientX, y: event.clientY};
+  });
+  document.querySelector('.hfs-viewport').addEventListener('pointerup', event => {
+    if (!gesture) return; const dx = event.clientX - gesture.x; const dy = event.clientY - gesture.y; gesture = null;
+    if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && !state.capture) switchCanvas();
+  });
+  document.querySelector('.hfs-viewport').addEventListener('pointercancel', () => { gesture = null; });
+  function exportLinear(record) {
+    cancelCapture();
+    const identifier = 'DEMO-' + record.id.split('-')[1].padStart(3, '0');
+    const view = views.get(record.id); text(view.output, JSON.stringify({identifier, ...snapshot(record)}, null, 2)); view.output.hidden = false;
+    notify(record, '演示：已生成 Linear Issue · ' + identifier + '（未联网）'); view.output.scrollIntoView({block: 'nearest'});
+  }
+  async function exportMarkdown(record) {
+    cancelCapture();
+    const current = snapshot(record); const revision = record.exportRevision;
+    const markdown = '# ' + current.title + '\n\nStatus: ' + current.status + '\nPriority: ' + current.priority + '\nTags: ' + (current.tags.join(' ') || '未分类') + '\nTime: ' + current.time + '\n\n' + current.subtasks.map(child => '- [' + (child.checked ? 'x' : ' ') + '] ' + child.title).join('\n');
+    const view = views.get(record.id); text(view.output, markdown); view.output.hidden = false;
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(markdown);
+      if (revision === record.exportRevision) notify(record, '已复制 Markdown（演示数据）');
+    } catch {
+      if (revision === record.exportRevision) { notify(record, '未复制：请选中文本后复制'); view.output.scrollIntoView({block: 'nearest'}); }
+    }
+  }
+  function appearance(theme, platform) {
+    if (theme === 'light' || theme === 'dark') { document.documentElement.dataset.theme = theme; document.body.dataset.theme = theme; }
+    if (['mobile', 'desktop', 'macos'].includes(platform)) { document.documentElement.dataset.platform = platform; document.body.dataset.platform = platform; }
+  }
+  const query = new URLSearchParams(location.search); appearance(query.get('theme'), query.get('platform'));
+  const allowedOrigins = new Set(location.origin === 'null' ? [] : [location.origin]);
+  if (document.referrer) { try { const origin = new URL(document.referrer).origin; if (origin === location.origin || origin === 'https://leepepe.github.io') allowedOrigins.add(origin); } catch {} }
+  window.addEventListener('message', event => {
+    if (window.parent === window || event.source !== window.parent || !allowedOrigins.has(event.origin)) return;
+    const data = event.data; if (!data || typeof data !== 'object' || Array.isArray(data)) return;
+    if (['theme', 'set-theme', 'theme-change', 'design-theme'].includes(data.type)) appearance(data.theme ?? data.value, null);
+    else if (['platform', 'set-platform', 'platform-change', 'design-platform'].includes(data.type)) appearance(null, data.platform ?? data.value);
+    else if (['appearance', 'design-config', 'gallery-config'].includes(data.type)) appearance(data.theme, data.platform);
+  });
+  for (const record of fixtures) mount(record);
+  applyFocus();
+})();
+</script>
+</body>
+</html>

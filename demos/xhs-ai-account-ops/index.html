@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="solid">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>AI 托管小红书账号全链路工作台 · 多栏目赛马与草稿箱预览舱</title>
+<meta name="description" content="TIA-464 · 构建由 AI 托管的小红书账号全链路：3 大栏目 × 3 大视觉风格 × 3 类标题公式正交赛马、auto_draft_owner_confirm 草稿箱自动投递与 CES 数据复盘飞轮。">
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+<script defer src="/assets/theme.js"></script>
+<style>
+:root {
+  --ink: #34271d;
+  --muted-ink: #66513f;
+  --paper: #fff7ec;
+  --panel: #fffcf5;
+  --panel-alt: #f6eee3;
+  --accent: #80512e;
+  --forest: #355e3b;
+  --forest-soft: #e6efe6;
+  --gold: #e8c56d;
+  --border-warm: #d9c8b4;
+}
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+.xhs-ops-shell {
+  width: min(calc(100% - 32px), 1200px);
+  margin: auto;
+}
+.crumbs {
+  padding: 24px 0 8px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.hero {
+  padding: 36px 0 28px;
+  max-width: 960px;
+}
+.eyebrow {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin: 0 0 10px;
+}
+.hero h1 {
+  font-size: clamp(32px, 4.6vw, 56px);
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+.hero p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted-ink);
+  margin: 0 0 14px;
+}
+.hero-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #efe2d2;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+.pill.green {
+  background: var(--forest-soft);
+  color: var(--forest);
+}
+.pill.amber {
+  background: #f9ebc8;
+  color: #6f4b10;
+}
+.section {
+  padding: 28px 0;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.section-head h2 {
+  font-size: clamp(24px, 3vw, 32px);
+  margin: 0 0 6px;
+}
+.section-head p {
+  margin: 0;
+  color: var(--muted-ink);
+}
+.panel {
+  background: var(--panel);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 1px 2px #493c3218, inset 0 0 0 1px #80512e22;
+}
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+.step-card {
+  background: var(--panel);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: inset 0 0 0 1px #80512e22;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.step-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: .06em;
+}
+.step-card h3 {
+  font-size: 17px;
+  margin: 0;
+}
+.step-card p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted-ink);
+  margin: 0;
+}
+.guardrail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.guardrail-grid h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+.guardrail-grid ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted-ink);
+  line-height: 1.65;
+  font-size: 14px;
+}
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.filter-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  background: #f3e6d6;
+  padding: 6px;
+  border-radius: 999px;
+}
+.btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 9px 15px;
+  min-height: 40px;
+  background: #efe2d2;
+  color: var(--ink);
+  font: 600 13.5px inherit;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.btn:hover {
+  background: #e4d2bc;
+}
+.btn[aria-pressed="true"], .btn.primary {
+  background: var(--forest);
+  color: #fff;
+}
+.btn.star[aria-pressed="true"] {
+  background: var(--gold);
+  color: var(--ink);
+}
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.kpi-box {
+  background: var(--panel);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: inset 0 0 0 1px #80512e22;
+}
+.kpi-box small {
+  display: block;
+  color: var(--muted-ink);
+  font-size: 13px;
+}
+.kpi-box strong {
+  display: block;
+  font-size: 26px;
+  margin: 6px 0 4px;
+  color: var(--ink);
+}
+.kpi-box span {
+  font-size: 12.5px;
+  color: var(--forest);
+  font-weight: 600;
+}
+.matrix-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 16px;
+}
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.matrix-table th, .matrix-table td {
+  text-align: left;
+  padding: 11px 10px;
+  border-bottom: 1px solid #e6d8c5;
+}
+.matrix-table th {
+  color: var(--muted-ink);
+  font-weight: 600;
+  font-size: 12.5px;
+}
+.weight-bar {
+  display: flex;
+  height: 12px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #eadcc9;
+  margin: 10px 0;
+}
+.backlog-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 10px;
+}
+.backlog-list li {
+  background: var(--panel-alt);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.post-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.post-top h3 {
+  font-size: 22px;
+  margin: 4px 0 6px;
+}
+.variant-summary {
+  color: var(--muted-ink);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.candidate-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.candidate-btn {
+  border: 1px solid var(--border-warm);
+  border-radius: 12px;
+  padding: 7px 11px;
+  background: #fffdf9;
+  color: var(--ink);
+  font: 600 12.5px inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.candidate-btn[aria-selected="true"] {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.draft-stage {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.cover-frame {
+  background: #eadcc9;
+  padding: 8px;
+  border-radius: 18px;
+  text-align: left;
+  border: 0;
+  cursor: zoom-in;
+  width: 100%;
+}
+.cover-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.cover-meta {
+  display: block;
+  padding: 8px 4px 2px;
+  font-size: 12px;
+  color: var(--muted-ink);
+}
+.storyboard-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+.slide-chip {
+  background: var(--panel-alt);
+  border-radius: 10px;
+  padding: 7px;
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+.slide-chip strong {
+  display: block;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+.copy-box {
+  background: var(--panel-alt);
+  border-radius: 18px;
+  padding: 15px;
+}
+.copy-box pre {
+  white-space: pre-wrap;
+  font: 13.5px/1.68 inherit;
+  margin: 8px 0 12px;
+  color: var(--ink);
+}
+.status {
+  min-height: 20px;
+  color: var(--forest);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 6px 0 0;
+}
+.notes {
+  width: 100%;
+  min-height: 74px;
+  border: 1px solid var(--border-warm);
+  border-radius: 12px;
+  padding: 10px;
+  background: #fffdf9;
+  font: 13.5px/1.55 inherit;
+  color: var(--ink);
+}
+.cli-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.cli-card pre {
+  background: #2b2119;
+  color: #fdf5e8;
+  padding: 14px;
+  border-radius: 14px;
+  overflow-x: auto;
+  font: 12.5px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace;
+  margin: 10px 0 12px;
+}
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: #34271dcc;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  z-index: 30;
+}
+.lightbox[hidden] {
+  display: none !important;
+}
+.lightbox img {
+  max-width: min(90vw, 720px);
+  max-height: 86vh;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px #0008;
+}
+.close-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  color: var(--ink);
+}
+.footer {
+  padding: 36px 0 64px;
+  color: var(--muted-ink);
+  font-size: 14px;
+}
+@media (max-width: 960px) {
+  .pipeline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .guardrail-grid, .matrix-layout, .posts-grid, .cli-grid { grid-template-columns: 1fr; }
+  .kpi-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .draft-stage { grid-template-columns: 1fr; }
+  .storyboard-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+<header class="site-header shell">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
+    <nav class="nav" aria-label="主导航">
+      <a href="/">首页</a>
+      <a href="/learn/">求知</a>
+      <a href="/thoughts/">思考</a>
+      <a href="/vault/">素材库</a>
+      <a href="/demos/" aria-current="page">Demos</a>
+      <a href="/archive/">归档</a>
+      <a href="/tags/">标签</a>
+      <a href="/about/">关于</a>
+    </nav>
+    <div class="theme-toggle" role="group" aria-label="外观">
+      <button type="button" data-theme-choice="light" aria-pressed="true">浅色</button>
+      <button type="button" data-theme-choice="dark" aria-pressed="false">深色</button>
+      <button type="button" data-theme-choice="system" aria-pressed="false">系统</button>
+    </div>
+  </div>
+</header>
+
+<main class="xhs-ops-shell">
+  <nav class="crumbs" aria-label="面包屑">
+    <a href="/">← 返回 Blog 首页</a>
+    <span aria-hidden="true">·</span>
+    <a href="/demos/">返回 Demos 总目录</a>
+    <span aria-hidden="true">·</span>
+    <a href="/demos/xhs-study-switch-ac/">查看首篇长按开空调 15 张样张画廊 →</a>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">TIA-464 · AI-MANAGED XIAOHONGSHU ACCOUNT PIPELINE</p>
+    <h1>AI 托管小红书账号全链路工作台</h1>
+    <p>把个人知识库（<code>knowledge-vault</code>）与工程故事脱敏管线（<code>story-craft</code>）直接编译成小红书「3 大栏目 × 3 种视觉风格 × 3 类标题公式」正交赛马流水线。AI 承包 95% 排期、3:4 卡片排版、反搬运正文生成与 <code>creator.xiaohongshu.com</code> 草稿箱投递；保留 <strong>10 秒人工安全阀（<code>auto_draft_owner_confirm</code>）</strong> 与 CES 数据复盘飞轮。</p>
+    <div class="hero-badges">
+      <span class="pill green">✓ 策略：multi_column_experiment（3×3×3 正交赛马）</span>
+      <span class="pill green">✓ 投递：auto_draft_owner_confirm（草稿箱暂存 + Linear 确认）</span>
+      <span class="pill amber">⚡ CLI：scripts/xhs_account_ops.py（零密钥/私有路径泄露）</span>
+    </div>
+  </header>
+
+  <section class="section" aria-labelledby="sec-pipeline">
+    <div class="section-head">
+      <div>
+        <h2 id="sec-pipeline">1. 全链路闭环架构与防封安全门禁</h2>
+        <p>从本地真实笔记到创作者平台草稿箱，再到评论区高频追问回流下一期选题的 6 步闭环。</p>
+      </div>
+    </div>
+    <div class="pipeline-grid">
+      <article class="step-card">
+        <span class="step-num">STEP 01 · 素材源</span>
+        <h3>双通道知识库接入</h3>
+        <p>直接扫描 <code>thoughts/</code>、<code>concepts/</code>、<code>craft/</code> 与自研产品实录，自动执行 <code>story-craft</code> 敏感路径与密钥脱敏。</p>
+      </article>
+      <article class="step-card">
+        <span class="step-num">STEP 02 · 正交排期</span>
+        <h3>3×3×3 赛马分配</h3>
+        <p><code>plan-schedule</code> 为每篇分配栏目（A/B/C）、视觉风格（Style A/B/C）与标题公式，生成 3 个 ≤20 字备选标题。</p>
+      </article>
+      <article class="step-card">
+        <span class="step-num">STEP 03 · 视觉与防搬运</span>
+        <h3>1080×1440 (3:4) 卡片</h3>
+        <p>强制校验无首行空格缩进、每段 ≤3 行、前 80 字抛痛点钩子、5 个蓝色正式 <code>#话题</code> 与 3:4 画布像素尺寸。</p>
+      </article>
+      <article class="step-card">
+        <span class="step-num">STEP 04 · 草稿投递</span>
+        <h3>Playwright 暂存草稿</h3>
+        <p><code>login-check</code> 校验持久化 Profile 登录态，自动上传图文并点击「暂存离开」，严禁未经确认直接公开群发。</p>
+      </article>
+      <article class="step-card">
+        <span class="step-num">STEP 05 · 10 秒安全阀</span>
+        <h3>Linear 通知拍板</h3>
+        <p>向 <code>TIA-464</code> 推送草稿就绪卡片，Owner 手机端或创作者后台 10 秒核对封面与 AI 内容标识后一键发布。</p>
+      </article>
+      <article class="step-card">
+        <span class="step-num">STEP 06 · 复盘飞轮</span>
+        <h3>CES 赛马与追问回流</h3>
+        <p>采集 CTR、收藏率与 CES 评分，自动把胜出栏目下周排期权重提至 50%，并将评论区高频追问转入选题池。</p>
+      </article>
+    </div>
+
+    <div class="guardrail-grid">
+      <article class="panel">
+        <h3>防判搬运与排版硬门禁</h3>
+        <ul>
+          <li>标题严格 <strong>≤20 字</strong>，每篇提供 3 条不同公式备选标题（痛点反差 / 反常识数字 / 减法抄作业）。</li>
+          <li>正文<strong>零首行空格缩进</strong>，每段严格 <strong>≤3 行</strong>，段间空行呼吸，前 80 字直接亮出反常识结论或痛点。</li>
+          <li>固定挂载 <strong>5 个正式 <code>#话题</code></strong>，封面与内页统一 <code>1080×1440</code> (3:4) 原创渲染 PNG。</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h3>账号风控与登录态红线</h3>
+        <ul>
+          <li>仅使用本机专用持久化 Chrome Profile（<code>~/.config/xhs-account-ops/chrome-profile</code>），绝不抓包破解签名或买第三方野路子 API。</li>
+          <li><code>login-check</code> 发现 Cookie 过期时立即返回 <code>AUTH_REQUIRED</code> 并提醒扫码续期，绝不无头死循环硬闯验证码。</li>
+          <li>涉及 Style B AI 场景底图时，在发布页主动勾选「含 AI 生成合成内容」标识。</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h3>Story-Craft 隐私脱敏锁</h3>
+        <ul>
+          <li><code>desensitize_text()</code> 自动拦截 <code>sk-*</code>、<code>Bearer</code>、<code>web_session</code> 与本机绝对路径（<code>/Users/...</code>、<code>/Volumes/SSD</code>）。</li>
+          <li>公开卡片只保留可验证的物理常数、工程机制与生活教具，不暴露内部仓库私密凭据。</li>
+          <li>所有草稿状态、选型收藏与观察笔记同步到 <code>/demos/</code> 总目录统一检视。</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="sec-matrix">
+    <div class="section-head">
+      <div>
+        <h2 id="sec-matrix">2. 三大栏目 × 三种视觉风格赛马实验看板（Horse-Race Matrix）</h2>
+        <p>点击下方栏目或视觉风格筛选器，实时联动计算封面 CTR、收藏率、CES 综合互动率以及下周排期推荐权重。</p>
+      </div>
+    </div>
+
+    <div class="filter-bar" role="region" aria-label="栏目与风格筛选器">
+      <div class="filter-group" role="group" aria-label="按栏目筛选">
+        <button class="btn" type="button" data-filter-col="all" aria-pressed="true">全部栏目 (6)</button>
+        <button class="btn" type="button" data-filter-col="smart-home" aria-pressed="false">栏目 A · 智能家居 (1)</button>
+        <button class="btn" type="button" data-filter-col="ai-indie-dev" aria-pressed="false">栏目 B · AI 独立开发 (3)</button>
+        <button class="btn" type="button" data-filter-col="hardcore-digest" aria-pressed="false">栏目 C · 硬核科普 (2)</button>
+      </div>
+      <div class="filter-group" role="group" aria-label="按视觉风格筛选">
+        <button class="btn" type="button" data-filter-style="all" aria-pressed="true">全部风格</button>
+        <button class="btn" type="button" data-filter-style="style-a-bento" aria-pressed="false">Style A · 暖纸 Bento</button>
+        <button class="btn" type="button" data-filter-style="style-b-ai-editorial" aria-pressed="false">Style B · AI 插画叠字</button>
+        <button class="btn" type="button" data-filter-style="style-c-handdrawn" aria-pressed="false">Style C · 手绘分镜</button>
+      </div>
+    </div>
+
+    <div class="kpi-strip" id="kpi-strip" aria-live="polite"></div>
+
+    <div class="matrix-layout">
+      <article class="panel">
+        <h3>栏目 × 视觉风格 × 标题公式实时赛马排行</h3>
+        <p class="variant-summary">CES 公式：<code>(点赞×1 + 收藏×3 + 评论×4 + 分享×4) / 阅读量 × 100</code></p>
+        <div style="overflow-x:auto;margin-top:12px">
+          <table class="matrix-table" aria-label="赛马指标排行表">
+            <thead>
+              <tr>
+                <th>排期种子 / 栏目</th>
+                <th>视觉风格</th>
+                <th>标题公式</th>
+                <th>封面 CTR</th>
+                <th>收藏率</th>
+                <th>CES 评分</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-tbody"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>下周排期权重建议 &amp; 评论区追问选题池</h3>
+        <p class="variant-summary" id="winner-summary"></p>
+        <div class="weight-bar" aria-label="下周栏目排期推荐占比">
+          <span style="width:50%;background:#355e3b" title="栏目 C · 反常识硬核科普 50%"></span>
+          <span style="width:30%;background:#80512e" title="栏目 B · AI 工具与独立开发 30%"></span>
+          <span style="width:20%;background:#c9963b" title="栏目 A · 智能家居与生活折腾 20%"></span>
+        </div>
+        <p style="font-size:12.5px;color:var(--muted-ink);margin:0 0 14px">
+          推荐配比：<strong>栏目 C 硬核科普 50%</strong> · <strong>栏目 B AI 独立开发 30%</strong> · <strong>栏目 A 智能家居 20%</strong>
+        </p>
+        <h4 style="margin:12px 0 6px;font-size:15px">评论区高频追问 → 自动回流下期候选：</h4>
+        <ul class="backlog-list" id="backlog-list"></ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="sec-queue">
+    <div class="section-head">
+      <div>
+        <h2 id="sec-queue">3. 首期 6 篇跨栏目种子排期与草稿箱预览舱（Post Queue &amp; Draft Inspector）</h2>
+        <p>每张排期卡均源自本机真实文章，支持切换 3 个备选标题、一键复制无缩进小红书正文+话题、预览 3:4 封面分镜，以及记录选择/收藏/观察笔记（自动同步至 <code>/demos/</code> 总目录）。</p>
+      </div>
+    </div>
+    <div class="posts-grid" id="posts-grid"></div>
+  </section>
+
+  <section class="section" aria-labelledby="sec-cli">
+    <div class="section-head">
+      <div>
+        <h2 id="sec-cli">4. CLI 自动化命令速查与定时任务（launchd / cron）面板</h2>
+        <p>本机可执行入口：<code>scripts/xhs_account_ops.py</code> 与兼容包装器 <code>~/Development/Personal/collected-tools/xhs_account_ops.py</code>。</p>
+      </div>
+    </div>
+    <div class="cli-grid" id="cli-grid"></div>
+  </section>
+
+  <footer class="footer">
+    <p>TIA-464 · AI 托管小红书账号全链路工作台 · 遵循 <code>auto_draft_owner_confirm</code>（自动投递草稿箱 + Owner 10 秒确认发布）与 <code>story-craft</code> 脱敏规范。</p>
+  </footer>
+</main>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="3:4 封面大图预览">
+  <button class="btn close-btn" type="button" data-close-lightbox>关闭预览</button>
+  <img id="lightbox-img" alt="">
+</div>
+
+<script id="gallery-config" type="application/json">{"active":true,"goal":"xhs-ai-account-ops","platform":"web","categories":["smart-home","ai-indie-dev","hardcore-digest"],"cards":[{"category":"smart-home","round":1,"id":"seed-01-study-switch-ac","platform":"web","title":"给书房按键加了长按开空调，少五步","summary":"栏目 A · 智能家居与生活折腾（Style A 暖纸 Bento）：把书房多买的一颗无线开关闲置「长按」接上 Node-RED，砍掉米家 App 五步找空调流程，坐下盲按一秒出风。"},{"category":"hardcore-digest","round":1,"id":"seed-02-wifi-invisible-light","platform":"web","title":"微波炉一开就断网？功率是路由1万倍","summary":"栏目 C · 反常识硬核科普（Style C 奶油手绘分镜）：把可见光波长放大 25 万倍看见 WiFi，用冰箱反射、鱼缸吸收与微波炉 1 万倍同频功率破案客厅断网。"},{"category":"ai-indie-dev","round":1,"id":"seed-03-bama-agent-cli","platform":"web","title":"AI写App太烧钱？这招省80%预算","summary":"栏目 B · AI 工具与独立开发实录（Style A 暖纸 Bento）：拆解 BAMA 预算感知多智能体路由与单写者 Socket CLI，砍掉 80% 闲置 Token 预算并实现免 GUI 快照验收。"},{"category":"hardcore-digest","round":1,"id":"seed-04-liquid-glass-optics","platform":"web","title":"为什么苹果严禁玻璃叠玻璃？凸透镜破案","summary":"栏目 C · 反常识硬核科普（Style B AI 暖光插画叠字）：揭秘 Apple Liquid Glass 不是磨砂毛玻璃而是实时弯折光线的液态凸透镜，解释为什么严禁玻璃叠玻璃。"},{"category":"ai-indie-dev","round":1,"id":"seed-05-voxpocket-redesign","platform":"web","title":"做语音待办App，我砍掉了所有底部弹窗","summary":"栏目 B · AI 工具与独立开发实录（Style B AI 暖光插画叠字）：VoxPocket 语音待办 App 砍掉多层布尔弹窗，用单键横滑双画布与液态玻璃胶囊把闪念速记缩到 1 秒。"},{"category":"ai-indie-dev","round":1,"id":"seed-06-genjutsu-visual-gate","platform":"web","title":"AI画界面总是一股塑料味？缺这3道门禁","summary":"栏目 B · AI 工具与独立开发实录（Style C 奶油手绘分镜）：用 Genjutsu 三尺度视觉编排（cast/paint/bunshin）与真实渲染截图回执治好 AI 写界面的塑料感。"}]}</script>
+
+<script>
+const POSTS = [
+  {
+    id: "seed-01-study-switch-ac",
+    category: "smart-home",
+    columnLabel: "栏目 A · 智能家居与生活折腾",
+    visualStyle: "style-a-bento",
+    styleLabel: "Style A · 暖纸 Bento",
+    formula: "lazy-subtraction",
+    formulaLabel: "减法抄作业清单",
+    slot: "2026-11-17 20:30 CST (周二)",
+    sourceUrl: "/thoughts/study-switch-long-press-ac/",
+    sourceTitle: "为什么我给书房按键加了「长按开空调」",
+    summary: "栏目 A · 智能家居与生活折腾（Style A 暖纸 Bento）：把书房多买的一颗无线开关闲置「长按」接上 Node-RED，砍掉米家 App 五步找空调流程，坐下盲按一秒出风。",
+    candidateTitles: [
+      "给书房按键加了长按开空调，少五步",
+      "买多了的无线开关，成了盲开空调神键",
+      "砍掉手机五步操作，书房长按一秒出风"
+    ],
+    body: "夏天进书房最烦的不是热，是找空调遥控器。\n用米家 App 开机要走完掏手机、解锁、找房间整整五步。\n\n装修时被 HA 和 Node-RED 劝退搁置。\n后来让 AI 帮搭流程骨架，实机延迟和边界排障自己动手抠。\n\n正好床头一键入眠买多了一颗无线开关。\n随手放书房桌边当测试键，发现「长按」动作一直闲置。\n\n干脆在 Node-RED 里把闲置长按直接绑定书房空调开机。\n坐进书房只需要「开」，长按滴一声出风，零心智负担。\n\n#智能家居 #减法设计 #书房改造 #NodeRED #HomeAssistant",
+    cover: "/demos/xhs-study-switch-ac/assets/style-a/slide-01.png",
+    slides: [
+      {num: "P1 封面", text: "长按开空调，少一道选择题"},
+      {num: "P2 搁置", text: "七七八八配置太多劝退搁置"},
+      {num: "P3 破局", text: "25 年 AI 搭骨架，实测自己抠"},
+      {num: "P4 意外", text: "买多了的无线开关当测试键"},
+      {num: "P5 神来之笔", text: "闲置长按 → 盲开空调一秒出风"}
+    ],
+    metrics: { impressions: 18400, views: 2610, ctr: 14.18, collectRate: 9.50, ces: 51.65, followers: 58 },
+    questions: [
+      "无线开关是什么型号？Zigbee 还是蓝牙 Mesh？",
+      "夏天离开书房忘了关空调怎么自动兜底？"
+    ]
+  },
+  {
+    id: "seed-02-wifi-invisible-light",
+    category: "hardcore-digest",
+    columnLabel: "栏目 C · 反常识硬核科普",
+    visualStyle: "style-c-handdrawn",
+    styleLabel: "Style C · 手绘分镜",
+    formula: "counter-intuitive-number",
+    formulaLabel: "反常识数字对比",
+    slot: "2026-11-19 12:30 CST (周四)",
+    sourceUrl: "/learn/wifi-invisible-light/",
+    sourceTitle: "如果能看见 WiFi：看不见的光与室内信号破案",
+    summary: "栏目 C · 反常识硬核科普（Style C 奶油手绘分镜）：把可见光波长放大 25 万倍看见 WiFi，用冰箱反射、鱼缸吸收与微波炉 1 万倍同频功率破案客厅断网。",
+    candidateTitles: [
+      "微波炉一开就断网？功率是路由1万倍",
+      "如果能看见WiFi：挪6厘米信号差十倍",
+      "别把路由器放冰箱鱼缸旁！3步救活WiFi"
+    ],
+    body: "为什么厨房微波炉一热饭，客厅 2.4G WiFi 就瞬间转圈？\n如果肉眼能看见 WiFi，它其实是波长放大 25 万倍的慢速光。\n\n家用路由器功率只有 0.1 瓦，而同在 2.4GHz 的微波炉高达 1000 瓦。\n相差整整 1 万倍，门缝漏一丝余波就是贴脸防空警报。\n\n信号遇冰箱金属会像照镜子一样弹回，遇大鱼缸水体直接被吃掉。\n床上多路反射波叠加，手机只挪 6 厘米就会掉进波谷死点。\n\n抄作业：路由器摆全屋中央垫高，远离冰箱鱼缸和金属弱电箱。\n厨房热饭时主力手机切 5GHz，隔两堵墙的智能插座留给 2.4GHz。\n\n#硬核科普 #WiFi信号 #路由器摆放 #冷知识 #数码科技",
+    cover: "/demos/xhs-study-switch-ac/assets/style-c/slide-01.png",
+    slides: [
+      {num: "P1 封面", text: "10000 倍同频功率降维轰炸"},
+      {num: "P2 尺度", text: "可见光放大 25 万倍穿客厅 30ns"},
+      {num: "P3 障碍", text: "冰箱反射 · 鱼缸吸收 · 6cm 死点"},
+      {num: "P4 辟谣", text: "非电离辐射能量低数十万倍不伤 DNA"},
+      {num: "P5 清单", text: "中央垫高 + 避金属水体 + 5G/2.4G 分工"}
+    ],
+    metrics: { impressions: 29600, views: 4520, ctr: 15.27, collectRate: 15.27, ces: 79.42, followers: 168 },
+    questions: [
+      "家里是两层复式或 L 型户型，Mesh 组网节点摆哪最稳？",
+      "WiFi 7 的 MLO 多链路聚合真的能防微波炉干扰吗？"
+    ]
+  },
+  {
+    id: "seed-03-bama-agent-cli",
+    category: "ai-indie-dev",
+    columnLabel: "栏目 B · AI 工具与独立开发实录",
+    visualStyle: "style-a-bento",
+    styleLabel: "Style A · 暖纸 Bento",
+    formula: "counter-intuitive-number",
+    formulaLabel: "反常识数字对比",
+    slot: "2026-11-21 21:00 CST (周六)",
+    sourceUrl: "/learn/bama-budget-aware-multi-agent/",
+    sourceTitle: "BAMA：预算感知多智能体路由与免 GUI 故事验收架构",
+    summary: "栏目 B · AI 工具与独立开发实录（Style A 暖纸 Bento）：拆解 BAMA 预算感知多智能体路由与单写者 Socket CLI，砍掉 80% 闲置 Token 预算并实现免 GUI 快照验收。",
+    candidateTitles: [
+      "AI写App太烧钱？这招省80%预算",
+      "别让AI直写数据库！单写者破局",
+      "免打开GUI验收App：1故事1提交"
+    ],
+    body: "让大模型写桌面 App，为什么越写越贵、改完数据库窗口还不刷新？\n因为把全套规范塞进上下文，又让脚本半夜翻窗直改 SQLite。\n\nBAMA 架构把流程拆成 5 阶段 21 个微技能，平时占 0 Token。\n按磁盘产物单步派发，日常上下文预算直接砍掉 80% 以上。\n\n严禁脚本绕过 App 直写数据库，统一走应用内建私有 Socket CLI。\n像真实点击按钮一样走唯一写者通道，窗口与命令行 100% 同步。\n\n每个用户故事绑定 snap 快照与 unit 单测，1 Story = 1 Commit。\n单文件超 600 行即刻触发架构体检，告别模糊的差不多能跑。\n\n#独立开发 #AI编程 #多智能体 #软件架构 #macOS开发",
+    cover: "/demos/xhs-study-switch-ac/assets/probes/gpt-codex.png",
+    slides: [
+      {num: "P1 封面", text: "砍掉 80% 闲置 Token 预算"},
+      {num: "P2 路由", text: "5 阶段 21 微技能按需 0 驻留"},
+      {num: "P3 通道", text: "单写者私有 Socket 零延迟同步"},
+      {num: "P4 验收", text: "[snap] 双色快照 + [unit] 纯值单测"},
+      {num: "P5 红线", text: "600 行预警与删除测试防膨胀"}
+    ],
+    metrics: { impressions: 15200, views: 2190, ctr: 14.41, collectRate: 14.52, ces: 70.32, followers: 76 },
+    questions: [
+      "私有 Unix Domain Socket 怎么防止多个终端并发写冲突？"
+    ]
+  },
+  {
+    id: "seed-04-liquid-glass-optics",
+    category: "hardcore-digest",
+    columnLabel: "栏目 C · 反常识硬核科普",
+    visualStyle: "style-b-ai-editorial",
+    styleLabel: "Style B · AI 插画叠字",
+    formula: "pain-point-hook",
+    formulaLabel: "痛点反差钩子",
+    slot: "2026-11-24 20:30 CST (周二)",
+    sourceUrl: "/learn/liquid-glass-optics/",
+    sourceTitle: "Liquid Glass 光学第一性原理与 SwiftUI 实战破案",
+    summary: "栏目 C · 反常识硬核科普（Style B AI 暖光插画叠字）：揭秘 Apple Liquid Glass 不是磨砂毛玻璃而是实时弯折光线的液态凸透镜，解释为什么严禁玻璃叠玻璃。",
+    candidateTitles: [
+      "毛玻璃早就过时了？揭秘液态玻璃光学",
+      "为什么苹果严禁玻璃叠玻璃？凸透镜破案",
+      "两个玻璃按钮凑近像水滴融合是怎么做的"
+    ],
+    body: "很多人以为新系统的液态玻璃只是把毛玻璃模糊度调高了一点。\n其实它根本不是磨砂散射，而是实时弯折光线的「液态凸透镜」。\n\n就像把水滴放大镜压在画报上，边缘会浓缩比自身更大一圈的像素。\n所以苹果立下死规矩：玻璃只属于顶层导航，严禁玻璃叠玻璃。\n\n因为玻璃无法采样另一块玻璃，叠三层镇纸看报纸只会糊成一团。\n相邻玻璃按钮必须放进同一个 GlassEffectContainer 共享采样底片。\n\n想给主按钮上色也别用实色填充封死光线，改用 tint 色调映射。\n对着亮底透亮、暗底深邃，像真正的红宝石玻璃一样呼吸。\n\n#苹果设计 #SwiftUI #LiquidGlass #UI设计 #光学原理",
+    cover: "/demos/xhs-study-switch-ac/assets/style-b/slide-01.png",
+    slides: [
+      {num: "P1 封面", text: "液态凸透镜 Lensing ≠ 磨砂毛玻璃"},
+      {num: "P2 铁律", text: "为什么严禁 Glass on Glass？"},
+      {num: "P3 容器", text: "GlassEffectContainer 水滴融合底片"},
+      {num: "P4 染色", text: ".tint() 红宝石色调映射呼吸感"},
+      {num: "P5 适配", text: "自由缩放窗口工具栏三级防挤爆"}
+    ],
+    metrics: { impressions: 22800, views: 3120, ctr: 13.68, collectRate: 14.17, ces: 71.57, followers: 106 },
+    questions: [
+      "Web 端用 CSS backdrop-filter + SVG 置换滤镜怎么模拟 Liquid Glass 边缘折射？"
+    ]
+  },
+  {
+    id: "seed-05-voxpocket-redesign",
+    category: "ai-indie-dev",
+    columnLabel: "栏目 B · AI 工具与独立开发实录",
+    visualStyle: "style-b-ai-editorial",
+    styleLabel: "Style B · AI 插画叠字",
+    formula: "pain-point-hook",
+    formulaLabel: "痛点反差钩子",
+    slot: "2026-11-26 12:30 CST (周四)",
+    sourceUrl: "/demos/voxpocket-holistic-redesign/",
+    sourceTitle: "VoxPocket · 单键横滑双画布与桌面录音控制台",
+    summary: "栏目 B · AI 工具与独立开发实录（Style B AI 暖光插画叠字）：VoxPocket 语音待办 App 砍掉多层布尔弹窗，用单键横滑双画布与液态玻璃胶囊把闪念速记缩到 1 秒。",
+    candidateTitles: [
+      "做语音待办App，我砍掉了所有底部弹窗",
+      "走路闪念1秒转待办：单键横滑双画布",
+      "语音碎碎念秒变清单，我改了3处交互"
+    ],
+    body: "走路突然冒出个灵感，掏手机点开三层菜单准备录音，话早就忘了。\n做独立录音待办 App VoxPocket 时，我决定向所有多余弹窗开刀。\n\n首屏直接就是清爽的 Todo 执行流，顶栏只留一颗单键横滑胶囊。\n拇指轻轻一拨直接切进录音画布，0 层级跳转。\n\n配合液态玻璃自适应容器，在 Mac 上自动退居菜单栏与角落灵动岛。\n说一段碎碎念，AI 自动拆成带优先级的行动树，原地展开子任务。\n\n更把页面里七八个布尔弹窗合并成单一枚举状态机，彻底消灭卡死。\n好工具不该逼用户做选择题，录完即走才是效率工具的本分。\n\n#独立开发者 #效率工具 #语音转文字 #产品设计 #iOSApp",
+    cover: "/demos/xhs-study-switch-ac/assets/style-b/slide-02.png",
+    slides: [
+      {num: "P1 封面", text: "砍掉多层弹窗：1 秒闪念转待办"},
+      {num: "P2 导航", text: "顶栏单键横滑双画布 0 层级跳转"},
+      {num: "P3 桌面", text: "Mac 灵动岛与原声/AI 双栏对照"},
+      {num: "P4 状态", text: "1 个枚举替代 N 个布尔弹窗防卡死"},
+      {num: "P5 画廊", text: "22 套手搓交互原型开源可体验"}
+    ],
+    metrics: { impressions: 16900, views: 2280, ctr: 13.49, collectRate: 9.87, ces: 53.11, followers: 63 },
+    questions: [
+      "Apple Watch 端抬腕录音能直接同步进同一条 Todo 流吗？"
+    ]
+  },
+  {
+    id: "seed-06-genjutsu-visual-gate",
+    category: "ai-indie-dev",
+    columnLabel: "栏目 B · AI 工具与独立开发实录",
+    visualStyle: "style-c-handdrawn",
+    styleLabel: "Style C · 手绘分镜",
+    formula: "lazy-subtraction",
+    formulaLabel: "减法抄作业清单",
+    slot: "2026-11-28 21:00 CST (周六)",
+    sourceUrl: "/learn/genjutsu-styled-image-generation/",
+    sourceTitle: "Genjutsu：三尺度视觉编排与跨平台契约门禁",
+    summary: "栏目 B · AI 工具与独立开发实录（Style C 奶油手绘分镜）：用 Genjutsu 三尺度视觉编排（cast/paint/bunshin）与真实渲染截图回执治好 AI 写界面的塑料感。",
+    candidateTitles: [
+      "AI画界面总是一股塑料味？缺这3道门禁",
+      "别让AI盲改全站配色！三尺度视觉编排法",
+      "不看真实截图的UI审查，都是在文字游戏"
+    ],
+    body: "让 AI 改一个小按钮，它顺手把全站配色全掀了；做整站又漏掉一半状态。\nAI 视觉翻车的核心不是提示词不够长，而是没锁死改动尺度。\n\nGenjutsu 把视觉编排拆成三级：改单点手感用 cast，约 1.5 美元快审。\n换整套皮肤用 paint 先锁令牌；整站并发才开 bunshin 并设止损。\n\n拒绝随机假数据冒充高级感，天象馆案例直接绑定 403 颗真实恒星坐标。\n并且立下死规矩：没跑真实视口渲染截图，绝不许宣称 UI 审查通过。\n\n单模块严控在 2.5 万字符以内防截断，三端共享块做字节级比对。\n把审美关进工程契约笼子里，AI 才能稳定交出杂志级画面。\n\n#AI设计 #前端开发 #UI动效 #提示词工程 #独立开发",
+    cover: "/demos/xhs-study-switch-ac/assets/probes/gemini-bounded.png",
+    slides: [
+      {num: "P1 封面", text: "治好 AI 界面塑料感的三道门禁"},
+      {num: "P2 尺度", text: "cast 单交互 → paint 整站令牌 → bunshin"},
+      {num: "P3 数据", text: "绑定 403 颗真实恒星坐标拒绝假噪点"},
+      {num: "P4 截图", text: "shoot.mjs 真实视口截图对比门禁"},
+      {num: "P5 锁死", text: "25,000 字符上限 + 字节级三联同步"}
+    ],
+    metrics: { impressions: 19500, views: 2790, ctr: 14.31, collectRate: 13.05, ces: 65.02, followers: 84 },
+    questions: [
+      "shoot.mjs 截图门禁怎么在 GitHub Actions 无头环境跑稳字体渲染？"
+    ]
+  }
+];
+
+const CLI_RECIPES = [
+  {
+    id: "cli-login",
+    title: "① 登录态与风控健康检查（login-check）",
+    desc: "每早投递前自动检查持久化 Chrome Profile 会话是否有效；若过期返回 AUTH_REQUIRED 并通知扫码续期。",
+    cmd: "python3 scripts/xhs_account_ops.py login-check --dry-run --json"
+  },
+  {
+    id: "cli-plan",
+    title: "② 扫描知识库生成 2 周正交赛马排期（plan-schedule）",
+    desc: "连接 knowledge-vault 与 story-craft 脱敏管线，按 3 栏目 × 3 风格 × 3 标题公式输出 6 篇完整图文与防搬运校验报告。",
+    cmd: "python3 scripts/xhs_account_ops.py plan-schedule --weeks 2 --json"
+  },
+  {
+    id: "cli-upload",
+    title: "③ 自动投递至小红书草稿箱 + Linear 确认卡片（upload-draft）",
+    desc: "严格执行 auto_draft_owner_confirm：校验 1080×1440 (3:4) 与 ≤20 字标题后存入「暂存离开」，绝不越权直接群发。",
+    cmd: "python3 scripts/xhs_account_ops.py upload-draft --post-id seed-01-study-switch-ac --title-index 0 --dry-run --notify-linear TIA-464 --json"
+  },
+  {
+    id: "cli-retro",
+    title: "④ 采集数据计算 CES 赛马胜出矩阵与追问回流（retro-report）",
+    desc: "汇总曝光/CTR/收藏率/CES 综合互动率，自动调优下周栏目排期权重（胜出栏目提至 50%）并回流评论区高频问题。",
+    cmd: "python3 ~/Development/Personal/collected-tools/xhs_account_ops.py retro-report --json"
+  }
+];
+
+const STORAGE_KEY = "design-gallery:xhs-ai-account-ops";
+let activeColFilter = "all";
+let activeStyleFilter = "all";
+const activeTitleIndex = {};
+
+function canonicalKey(post) {
+  return JSON.stringify([post.category, 1, post.id]);
+}
+
+function readStorage() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    return raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+function writeStorage(state) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    window.dispatchEvent(new Event("storage"));
+  } catch (_) {}
+}
+
+function getEntry(post) {
+  const all = readStorage();
+  const saved = all[canonicalKey(post)];
+  return {
+    category: post.category,
+    round: 1,
+    id: post.id,
+    selected: saved?.selected === true,
+    starred: saved?.starred === true,
+    notes: typeof saved?.notes === "string" ? saved.notes : ""
+  };
+}
+
+function saveEntry(post, patch) {
+  const all = readStorage();
+  all[canonicalKey(post)] = { ...getEntry(post), ...patch };
+  writeStorage(all);
+  renderPosts();
+}
+
+function escapeHtml(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function filteredPosts() {
+  return POSTS.filter(p =>
+    (activeColFilter === "all" || p.category === activeColFilter) &&
+    (activeStyleFilter === "all" || p.visualStyle === activeStyleFilter)
+  );
+}
+
+function renderMatrix() {
+  const subset = filteredPosts();
+  const list = subset.length ? subset : POSTS;
+  const avgCtr = (list.reduce((s, p) => s + p.metrics.ctr, 0) / list.length).toFixed(2);
+  const avgCollect = (list.reduce((s, p) => s + p.metrics.collectRate, 0) / list.length).toFixed(2);
+  const avgCes = (list.reduce((s, p) => s + p.metrics.ces, 0) / list.length).toFixed(2);
+  const totalFollowers = list.reduce((s, p) => s + p.metrics.followers, 0);
+  const sorted = [...list].sort((a, b) => b.metrics.ces - a.metrics.ces);
+  const top = sorted[0];
+
+  document.getElementById("kpi-strip").innerHTML = `
+    <div class="kpi-box"><small>筛选范围平均封面 CTR</small><strong>${avgCtr}%</strong><span>基准线 ≥10.0% · 表现优异</span></div>
+    <div class="kpi-box"><small>筛选范围平均收藏率</small><strong>${avgCollect}%</strong><span>长尾搜索权重核心指标</span></div>
+    <div class="kpi-box"><small>筛选范围平均 CES 互动分</small><strong>${avgCes}</strong><span>赞×1 + 藏×3 + 评×4 + 转×4</span></div>
+    <div class="kpi-box"><small>赛马胜出标杆 &amp; 净增关注</small><strong>+${totalFollowers}</strong><span>冠军：${escapeHtml(top.styleLabel)}</span></div>
+  `;
+
+  document.getElementById("matrix-tbody").innerHTML = sorted.map(p => `
+    <tr>
+      <td><strong>${escapeHtml(p.candidateTitles[0])}</strong><br><small style="color:var(--muted-ink)">${escapeHtml(p.columnLabel)}</small></td>
+      <td><span class="pill">${escapeHtml(p.styleLabel)}</span></td>
+      <td>${escapeHtml(p.formulaLabel)}</td>
+      <td><strong>${p.metrics.ctr.toFixed(2)}%</strong></td>
+      <td><strong>${p.metrics.collectRate.toFixed(2)}%</strong></td>
+      <td><span class="pill green">${p.metrics.ces.toFixed(2)}</span></td>
+    </tr>
+  `).join("");
+
+  document.getElementById("winner-summary").textContent =
+    `当前筛选胜出组合：${top.columnLabel} × ${top.styleLabel} × ${top.formulaLabel}（CES ${top.metrics.ces.toFixed(2)}，收藏率 ${top.metrics.collectRate.toFixed(2)}%）。`;
+
+  const questions = [];
+  sorted.forEach(p => {
+    p.questions.forEach(q => questions.push({ col: p.columnLabel, q, style: p.styleLabel }));
+  });
+  document.getElementById("backlog-list").innerHTML = questions.map(item => `
+    <li><strong>[${escapeHtml(item.col)}]</strong> ${escapeHtml(item.q)} <span style="color:var(--forest);font-weight:600">→ 下期推荐：${escapeHtml(item.style)}</span></li>
+  `).join("");
+}
+
+function renderPosts() {
+  const subset = filteredPosts();
+  const root = document.getElementById("posts-grid");
+  if (!subset.length) {
+    root.innerHTML = `<article class="panel"><p>当前筛选组合下暂无种子排期，请点击「全部栏目」或「全部风格」查看全部 6 篇。</p></article>`;
+    return;
+  }
+  root.innerHTML = subset.map(post => {
+    const entry = getEntry(post);
+    const tIdx = activeTitleIndex[post.id] || 0;
+    const currentTitle = post.candidateTitles[tIdx] || post.candidateTitles[0];
+    const titleButtons = post.candidateTitles.map((t, idx) => `
+      <button type="button" class="candidate-btn" data-title-post="${post.id}" data-title-idx="${idx}" aria-selected="${idx === tIdx}">
+        备选 ${idx + 1}（${t.length}字）：${escapeHtml(t)}
+      </button>
+    `).join("");
+    const slidesHtml = post.slides.map(s => `
+      <div class="slide-chip"><strong>${escapeHtml(s.num)}</strong><span>${escapeHtml(s.text)}</span></div>
+    `).join("");
+
+    return `
+      <article class="panel post-card" id="${post.id}" data-category="${post.category}" data-variant="${post.id}" data-round="1" data-platform="web">
+        <div class="post-top">
+          <div>
+            <span class="pill">${escapeHtml(post.columnLabel)}</span>
+            <span class="pill amber">${escapeHtml(post.styleLabel)}</span>
+            <span class="pill green">${escapeHtml(post.formulaLabel)}</span>
+            <h3>${escapeHtml(currentTitle)}</h3>
+            <p class="variant-summary">${escapeHtml(post.summary)}</p>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn primary" data-select-post="${post.id}" aria-pressed="${entry.selected}">
+              ${entry.selected ? "✓ 已选入本周首发" : "选择此排期"}
+            </button>
+            <button type="button" class="btn star" data-star-post="${post.id}" aria-pressed="${entry.starred}">
+              ${entry.starred ? "★ 已收藏" : "☆ 收藏"}
+            </button>
+          </div>
+        </div>
+
+        <div class="candidate-tabs" role="tablist" aria-label="切换 3 个备选标题">
+          ${titleButtons}
+        </div>
+
+        <div class="draft-stage">
+          <div>
+            <button type="button" class="cover-frame" data-lightbox-src="${post.cover}" data-lightbox-alt="${escapeHtml(currentTitle)} 3:4 封面预览">
+              <img loading="lazy" src="${post.cover}" alt="${escapeHtml(currentTitle)} 3:4 封面预览">
+              <span class="cover-meta">🔍 点击放大 3:4 封面 · ${escapeHtml(post.slot)}</span>
+            </button>
+          </div>
+          <div class="copy-box">
+            <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center">
+              <strong>当前选中标题（${currentTitle.length}/20 字）：${escapeHtml(currentTitle)}</strong>
+              <a href="${post.sourceUrl}" style="font-size:13px">阅读原博客文章 →</a>
+            </div>
+            <pre id="copy-text-${post.id}">${escapeHtml(post.body)}</pre>
+            <div class="actions">
+              <button type="button" class="btn" data-copy-title="${post.id}">复制当前标题</button>
+              <button type="button" class="btn primary" data-copy-all-post="${post.id}">📋 一键复制标题＋无缩进正文＋5个话题</button>
+            </div>
+            <p class="status" aria-live="polite" id="status-${post.id}"></p>
+          </div>
+        </div>
+
+        <div class="storyboard-strip" aria-label="5 页 3:4 卡片分镜脚本">
+          ${slidesHtml}
+        </div>
+
+        <div>
+          <label for="notes-${post.id}" style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">
+            观察笔记与发布前确认备注（自动持久化并同步至 /demos/ 总目录）：
+          </label>
+          <textarea class="notes" id="notes-${post.id}" data-notes-post="${post.id}" placeholder="记录封面构图微调、备选标题偏好或定时发布时间点…">${escapeHtml(entry.notes)}</textarea>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function renderCli() {
+  document.getElementById("cli-grid").innerHTML = CLI_RECIPES.map(item => `
+    <article class="panel cli-card">
+      <h3 style="margin:0 0 6px;font-size:18px">${escapeHtml(item.title)}</h3>
+      <p class="variant-summary">${escapeHtml(item.desc)}</p>
+      <pre>${escapeHtml(item.cmd)}</pre>
+      <button type="button" class="btn" data-copy-cli="${escapeHtml(item.cmd)}" data-cli-status="status-${item.id}">📋 复制命令</button>
+      <p class="status" aria-live="polite" id="status-${item.id}"></p>
+    </article>
+  `).join("");
+}
+
+async function copyText(text, btn, statusNode, defaultLabel) {
+  if (statusNode) statusNode.textContent = "正在复制…";
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = "✓ 已复制";
+    if (statusNode) statusNode.textContent = "已复制到剪贴板";
+  } catch (_) {
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    try {
+      document.execCommand("copy");
+      btn.textContent = "✓ 已复制";
+      if (statusNode) statusNode.textContent = "已复制到剪贴板";
+    } catch (__) {
+      if (statusNode) statusNode.textContent = "剪贴板受限，请直接选中上方文本复制";
+    }
+    area.remove();
+  }
+  setTimeout(() => {
+    btn.textContent = defaultLabel;
+    if (statusNode) statusNode.textContent = "";
+  }, 1600);
+}
+
+document.addEventListener("click", e => {
+  const lightbox = document.getElementById("lightbox");
+  if (e.target === lightbox || e.target.closest("[data-close-lightbox]")) {
+    lightbox.hidden = true;
+    document.body.style.overflow = "";
+    return;
+  }
+
+  const colBtn = e.target.closest("[data-filter-col]");
+  if (colBtn) {
+    activeColFilter = colBtn.dataset.filterCol;
+    document.querySelectorAll("[data-filter-col]").forEach(b => b.setAttribute("aria-pressed", String(b === colBtn)));
+    renderMatrix();
+    renderPosts();
+    return;
+  }
+
+  const styleBtn = e.target.closest("[data-filter-style]");
+  if (styleBtn) {
+    activeStyleFilter = styleBtn.dataset.filterStyle;
+    document.querySelectorAll("[data-filter-style]").forEach(b => b.setAttribute("aria-pressed", String(b === styleBtn)));
+    renderMatrix();
+    renderPosts();
+    return;
+  }
+
+  const titleBtn = e.target.closest("[data-title-post]");
+  if (titleBtn) {
+    activeTitleIndex[titleBtn.dataset.titlePost] = Number(titleBtn.dataset.titleIdx);
+    renderPosts();
+    return;
+  }
+
+  const selectBtn = e.target.closest("[data-select-post]");
+  if (selectBtn) {
+    const post = POSTS.find(p => p.id === selectBtn.dataset.selectPost);
+    if (post) {
+      const current = getEntry(post);
+      saveEntry(post, { selected: !current.selected });
+    }
+    return;
+  }
+
+  const starBtn = e.target.closest("[data-star-post]");
+  if (starBtn) {
+    const post = POSTS.find(p => p.id === starBtn.dataset.starPost);
+    if (post) {
+      const current = getEntry(post);
+      saveEntry(post, { starred: !current.starred });
+    }
+    return;
+  }
+
+  const copyTitleBtn = e.target.closest("[data-copy-title]");
+  if (copyTitleBtn) {
+    const post = POSTS.find(p => p.id === copyTitleBtn.dataset.copyTitle);
+    if (post) {
+      const idx = activeTitleIndex[post.id] || 0;
+      copyText(post.candidateTitles[idx], copyTitleBtn, document.getElementById(`status-${post.id}`), "复制当前标题");
+    }
+    return;
+  }
+
+  const copyAllBtn = e.target.closest("[data-copy-all-post]");
+  if (copyAllBtn) {
+    const post = POSTS.find(p => p.id === copyAllBtn.dataset.copyAllPost);
+    if (post) {
+      const idx = activeTitleIndex[post.id] || 0;
+      const payload = `${post.candidateTitles[idx]}\n\n${post.body}`;
+      copyText(payload, copyAllBtn, document.getElementById(`status-${post.id}`), "📋 一键复制标题＋无缩进正文＋5个话题");
+    }
+    return;
+  }
+
+  const copyCliBtn = e.target.closest("[data-copy-cli]");
+  if (copyCliBtn) {
+    copyText(copyCliBtn.dataset.copyCli, copyCliBtn, document.getElementById(copyCliBtn.dataset.cliStatus), "📋 复制命令");
+    return;
+  }
+
+  const coverBtn = e.target.closest("[data-lightbox-src]");
+  if (coverBtn) {
+    const img = document.getElementById("lightbox-img");
+    img.src = coverBtn.dataset.lightboxSrc;
+    img.alt = coverBtn.dataset.lightboxAlt || "";
+    lightbox.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+});
+
+document.addEventListener("input", e => {
+  const notesArea = e.target.closest("[data-notes-post]");
+  if (!notesArea) return;
+  const post = POSTS.find(p => p.id === notesArea.dataset.notesPost);
+  if (!post) return;
+  const all = readStorage();
+  all[canonicalKey(post)] = { ...getEntry(post), notes: notesArea.value };
+  writeStorage(all);
+});
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    const lightbox = document.getElementById("lightbox");
+    if (!lightbox.hidden) {
+      lightbox.hidden = true;
+      document.body.style.overflow = "";
+    }
+  }
+});
+
+renderMatrix();
+renderPosts();
+renderCli();
+</script>
+</body>
+</html>

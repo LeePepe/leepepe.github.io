@@ -31,14 +31,13 @@ VAULT_THOUGHTS_DIR = VAULT_DIR / "thoughts"
 SITE_URL = "https://leepepe.github.io"
 
 NAV_ITEMS = [
-    ("home", "首页", "/"),
-    ("learn", "求知", "/learn/"),
-    ("thoughts", "思考", "/thoughts/"),
-    ("vault", "素材库", "/vault/"),
+    ("learn", "Learn", "/learn/"),
+    ("thoughts", "Thoughts", "/thoughts/"),
+    ("vault", "Vault", "/vault/"),
     ("demos", "Demos", "/demos/"),
-    ("archive", "归档", "/archive/"),
-    ("tags", "标签", "/tags/"),
-    ("about", "关于", "/about/"),
+    ("archive", "Archive", "/archive/"),
+    ("activity", "Activity ↗", "https://leepepe.github.io/LeePepe/"),
+    ("github", "GitHub ↗", "https://github.com/LeePepe"),
 ]
 
 LINK_MAP = {
@@ -757,47 +756,59 @@ def parse_thought_markdown(path: Path) -> dict[str, Any]:
 
 
 def render_shell_page(*, title: str, description: str, active_nav: str, main_html: str) -> str:
-    """Render prototype HTML shell (strictly starting with <!doctype html>, zero YAML frontmatter)."""
+    """Render LeePepe Engineering Notebook HTML shell (strictly starting with <!doctype html>, zero YAML frontmatter)."""
     nav_links: list[str] = []
     for key, label, href in NAV_ITEMS:
         curr = ' aria-current="page"' if key == active_nav else ""
-        nav_links.append(f'<a href="{href}"{curr}>{html.escape(label)}</a>')
+        if label.endswith(" ↗"):
+            base_label = html.escape(label[:-2])
+            nav_links.append(
+                f'<a href="{href}"{curr}>{base_label} <span aria-hidden="true">↗</span></a>'
+            )
+        else:
+            nav_links.append(f'<a href="{href}"{curr}>{html.escape(label)}</a>')
 
-    full_title = title if "Lee Pepe" in title else f"{title} · Lee Pepe"
+    full_title = title if "LeePepe" in title or "Lee Pepe" in title else f"{title} — LeePepe"
 
     return f"""<!doctype html>
-<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="green" data-strata-material="solid">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:,">
 <title>{html.escape(full_title)}</title>
 <meta name="description" content="{html.escape(description, quote=True)}">
-<link rel="alternate" type="application/atom+xml" title="Lee Pepe · RSS 订阅" href="/feed.xml">
+<link rel="alternate" type="application/atom+xml" title="LeePepe · RSS 订阅" href="/feed.xml">
 <script src="/assets/theme.js"></script>
 <link rel="stylesheet" href="/assets/colors.css">
 <link rel="stylesheet" href="/assets/strata-theme.css">
 <link rel="stylesheet" href="/assets/blog.css">
 </head>
 <body>
-<a class="skip-link" href="#main">跳到正文</a>
-<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
-<header class="site-header shell">
-  <div class="site-header__bar">
-    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
-    <nav class="nav" aria-label="主导航">{"".join(nav_links)}</nav>
-    <div class="theme-toggle" role="group" aria-label="外观"><button type="button" data-theme-choice="light" aria-pressed="false" title="浅色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span class="label">浅色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="dark" aria-pressed="false" title="深色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg><span class="label">深色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="system" aria-pressed="true" title="系统"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11.5V14"/></svg><span class="label">系统</span><span class="visually-hidden">主题</span></button></div>
-  </div>
-</header>
-<main id="main" class="shell">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="shell">
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
+    <span class="header-note">An engineering notebook</span>
+    <nav aria-label="Main navigation">{"".join(nav_links)}</nav>
+    <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
+  </header>
+  <main id="main">
 {main_html}
-</main>
-<footer class="site-footer">
-  <div class="shell">
-    <span>© 2026 Lee Pepe · 写代码，也写生活</span>
-    <nav aria-label="页脚"><a href="/feed.xml">RSS 订阅</a><a href="https://github.com/LeePepe">GitHub</a><a href="#main">回到顶部</a></nav>
-  </div>
-</footer>
+  </main>
+  <footer class="site-footer">
+    <a class="wordmark" href="#main" aria-label="Back to top">lp<span>.</span></a>
+    <p>Built with care. Shared in public.</p>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/tags/">Tags</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="https://leepepe.github.io/LeePepe/">Activity ↗</a>
+      <a href="https://github.com/LeePepe">GitHub ↗</a>
+    </div>
+  </footer>
+</div>
 </body>
 </html>
 """
@@ -848,9 +859,19 @@ def build_home_page(
     list_html = render_post_list_items(all_items, tag_id_map)
     top_tags_html = render_top_tags_ul(sorted_tags, tag_id_map, limit=8)
 
-    main_html = f"""  <section class="page-intro">
-    <h1>写代码，也写生活</h1>
-    <p>记录苹果生态开发、AI 多智能体工程、求知拆解与日常思考。</p>
+    main_html = f"""  <section class="page-intro page-intro--hero">
+    <div>
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> LEEPEPE · ENGINEERING NOTEBOOK</p>
+      <h1>写代码，<br><em>也写生活.</em></h1>
+    </div>
+    <div class="page-intro__aside">
+      <p>记录苹果生态开发、AI 多智能体工程、求知拆解与日常思考。</p>
+      <p class="secondary">First principles, useful tools, and the quiet notes behind them.</p>
+    </div>
+    <div class="notebook-stack">
+      <span class="mono">NOTEBOOK SECTIONS</span>
+      <p>Learn ({len(learn_items)}) <span>·</span> Thoughts ({len(thought_items)}) <span>·</span> Vault (40+ cards) <span>·</span> Demos <span>·</span> Archive</p>
+    </div>
   </section>
   <div class="layout">
     <section class="card card--flush" aria-labelledby="latest">
@@ -861,9 +882,12 @@ def build_home_page(
     </section>
     <aside class="aside" aria-label="侧栏">
       <section class="card">
-        <div class="profile"><span class="avatar" aria-hidden="true">L</span><div><h2>Lee Pepe</h2><div class="post-meta">iOS · 前端 · 跑步</div></div></div>
+        <div class="profile"><span class="avatar" aria-hidden="true">lp.</span><div><h2>LeePepe</h2><div class="post-meta">iOS · AI Tools · Running</div></div></div>
         <p>做过 iOS、自然语言和前端。从 210 斤减到 150 斤，喜欢健身、跑步和篮球。</p>
-        <a class="btn btn--secondary" href="/about/">关于我</a>
+        <div class="links">
+          <a class="btn btn--secondary" href="/about/">关于我</a>
+          <a class="btn btn--secondary" href="https://leepepe.github.io/LeePepe/">Activity ↗</a>
+        </div>
       </section>
       <section class="card">
         <h2>专栏</h2>
@@ -1400,25 +1424,27 @@ DEMOS_SCRIPT = r"""(() => {
 
 
 def adapt_demo_portals() -> None:
-    """Reapply only the two root shells, preserving upstream candidate markup/config."""
+    """Reapply the LeePepe Engineering Notebook header shell to active demo portals, preserving upstream candidate markup/config."""
     shell = render_shell_page(title="Demos", description="", active_nav="demos", main_html="")
-    header = re.search(r'<header class="site-header shell">.*?</header>', shell, re.S)[0]
+    header = re.search(r'<header class="site-header">.*?</header>', shell, re.S)[0]
     assets = '\n'.join(f'<link rel="stylesheet" href="/assets/{name}">' for name in ("colors.css", "strata-theme.css", "blog.css", "vault/portals.css")) + '\n<script src="/assets/theme.js"></script>\n'
-    for goal in ("aidash-cards-redesign", "voxpocket-holistic-redesign"):
+    for goal in ("aidash-cards-redesign", "voxpocket-holistic-redesign", "xhs-study-switch-ac", "xhs-ai-account-ops"):
         path = REPO_ROOT / "demos" / goal / "index.html"
         if not path.exists():
             continue
         source = path.read_text(encoding="utf-8")
-        source = re.sub(r'<html\b[^>]*>', '<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">', source, count=1)
-        source = re.sub(r'<link[^>]*href="/assets/(?:colors.css|strata-theme.css|blog.css|vault/portals.css)"[^>]*>\s*', '', source)
-        source = re.sub(r'<script[^>]*src="/assets/theme.js"[^>]*></script>\s*', '', source)
-        source = re.sub(r'<header class="site-header shell">.*?</header>', '', source, flags=re.S)
-        source = re.sub(r'(<body\b[^>]*>)\s*', lambda m: m[1] + header, source, count=1)
+        source = re.sub(r'<html\b[^>]*>', '<html lang="zh-CN" data-lp-theme="light" data-strata-brand="green" data-strata-material="solid">', source, count=1)
+        source = re.sub(r'<link[^>]*href="/assets/(?:colors\.css|strata-theme\.css|blog\.css|vault/portals\.css)"[^>]*>\s*', '', source)
+        source = re.sub(r'<script[^>]*src="/assets/theme\.js"[^>]*></script>\s*', '', source)
+        source = re.sub(r'<header class="site-header[^"]*">.*?</header>', '', source, flags=re.S)
+        source = re.sub(r'<div class="shell">\s*(<header class="site-header">.*?</header>)\s*</div>', '', source, flags=re.S)
+        source = re.sub(r'(<body\b[^>]*>)\s*', lambda m: m[1] + f'<div class="shell">{header}</div>', source, count=1)
         source = source.replace('</head>', assets + '</head>', 1)
-        source = re.sub(r'html,body\{[^}]*}', '.gallery-page{margin:0;min-height:100%}', source)
-        for selector in ("button,textarea", "button", "button:focus-visible,summary:focus-visible,textarea:focus-visible", "p", "summary", "details+details"):
-            scoped = ','.join('.gallery ' + part for part in selector.split(','))
-            source = re.sub(r'(?<=[}\n])' + re.escape(selector) + r'(?=\{)', scoped, source)
+        if goal in ("aidash-cards-redesign", "voxpocket-holistic-redesign"):
+            source = re.sub(r'html,body\{[^}]*}', '.gallery-page{margin:0;min-height:100%}', source)
+            for selector in ("button,textarea", "button", "button:focus-visible,summary:focus-visible,textarea:focus-visible", "p", "summary", "details+details"):
+                scoped = ','.join('.gallery ' + part for part in selector.split(','))
+                source = re.sub(r'(?<=[}\n])' + re.escape(selector) + r'(?=\{)', scoped, source)
         path.write_text(source, encoding="utf-8")
 
 

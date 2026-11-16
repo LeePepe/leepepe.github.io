@@ -1,28 +1,28 @@
 <!doctype html>
-<html lang="zh-CN" data-lp-theme="light" data-strata-brand="yellow" data-strata-material="glass">
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="green" data-strata-material="solid">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:,">
-<title>Demos · 设计观察中心 · Lee Pepe</title>
+<title>Demos · 设计观察中心 — LeePepe</title>
 <meta name="description" content="活跃 Goal Demo 总目录与完整观察选型摘要。">
-<link rel="alternate" type="application/atom+xml" title="Lee Pepe · RSS 订阅" href="/feed.xml">
+<link rel="alternate" type="application/atom+xml" title="LeePepe · RSS 订阅" href="/feed.xml">
 <script src="/assets/theme.js"></script>
 <link rel="stylesheet" href="/assets/colors.css">
 <link rel="stylesheet" href="/assets/strata-theme.css">
 <link rel="stylesheet" href="/assets/blog.css">
 </head>
 <body>
-<a class="skip-link" href="#main">跳到正文</a>
-<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
-<header class="site-header shell">
-  <div class="site-header__bar">
-    <a class="brand" href="/"><span class="brand__mark" aria-hidden="true">L</span>Lee Pepe</a>
-    <nav class="nav" aria-label="主导航"><a href="/">首页</a><a href="/learn/">求知</a><a href="/thoughts/">思考</a><a href="/vault/">素材库</a><a href="/demos/" aria-current="page">Demos</a><a href="/archive/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav>
-    <div class="theme-toggle" role="group" aria-label="外观"><button type="button" data-theme-choice="light" aria-pressed="false" title="浅色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span class="label">浅色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="dark" aria-pressed="false" title="深色"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg><span class="label">深色</span><span class="visually-hidden">主题</span></button><button type="button" data-theme-choice="system" aria-pressed="true" title="系统"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1.5"/><path d="M5.5 14h5M8 11.5V14"/></svg><span class="label">系统</span><span class="visually-hidden">主题</span></button></div>
-  </div>
-</header>
-<main id="main" class="shell">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="shell">
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
+    <span class="header-note">An engineering notebook</span>
+    <nav aria-label="Main navigation"><a href="/learn/">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/" aria-current="page">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
+  </header>
+  <main id="main">
 <style>.demo-projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}.demo-project{padding:24px;overflow-wrap:anywhere}.demo-project h2{margin:0 0 16px}.demo-project .btn{display:inline-flex;white-space:normal;min-height:44px;margin:8px 8px 8px 0}.demo-summary{margin-top:32px}.summary-preview{width:100%;min-height:280px;padding:16px;font:inherit;resize:vertical;color:var(--strata-text-primary);background:var(--strata-surface-card);border:1px solid var(--strata-border);border-radius:12px}</style>
 <section class="page-intro"><h1>Demos · 设计观察中心</h1><p>自动汇集当前活跃 Goal Demo。选择、收藏和完整观察笔记只读取本浏览器的已有存储，不修改或清空数据。</p>
 <button id="copy-all-demos-summary" class="btn btn--primary" type="button" data-copy-all>📋 一键复制全部项目摘要</button></section>
@@ -109,12 +109,18 @@
   document.addEventListener('visibilitychange', () => {if (!document.hidden) refresh()});
   refresh();
 })();</script>
-</main>
-<footer class="site-footer">
-  <div class="shell">
-    <span>© 2026 Lee Pepe · 写代码，也写生活</span>
-    <nav aria-label="页脚"><a href="/feed.xml">RSS 订阅</a><a href="https://github.com/LeePepe">GitHub</a><a href="#main">回到顶部</a></nav>
-  </div>
-</footer>
+  </main>
+  <footer class="site-footer">
+    <a class="wordmark" href="#main" aria-label="Back to top">lp<span>.</span></a>
+    <p>Built with care. Shared in public.</p>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/tags/">Tags</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="https://leepepe.github.io/LeePepe/">Activity ↗</a>
+      <a href="https://github.com/LeePepe">GitHub ↗</a>
+    </div>
+  </footer>
+</div>
 </body>
 </html>

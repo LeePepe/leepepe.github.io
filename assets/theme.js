@@ -1,32 +1,67 @@
-/* One theme owner for <html>: data-lp-theme (light|dark, resolved), data-strata-material (effective).
- * Preference key "lp-theme" = light | dark | system (default system). Prototype-only: ?material=solid. */
+/* Theme owner for <html>: synchronizes data-theme ("light"|"dark" or unset for system)
+ * and data-lp-theme ("light"|"dark", resolved), plus localStorage keys "profile-theme" and "lp-theme". */
 (function () {
-  var root = document.documentElement, KEY = "lp-theme";
+  var root = document.documentElement;
   var mqDark = window.matchMedia("(prefers-color-scheme: dark)");
   var mqClear = window.matchMedia("(prefers-reduced-transparency: reduce)");
-  function pref() { try { var v = localStorage.getItem(KEY); return v === "light" || v === "dark" ? v : "system"; } catch (e) { return "system"; } }
+  function pref() {
+    try {
+      var v = localStorage.getItem("profile-theme") || localStorage.getItem("lp-theme");
+      return v === "light" || v === "dark" || v === "system" ? v : "system";
+    } catch (e) {
+      return "system";
+    }
+  }
   function material() {
     var forced = /[?&]material=solid\b/.test(location.search);
     var blur = window.CSS && (CSS.supports("backdrop-filter", "blur(1px)") || CSS.supports("-webkit-backdrop-filter", "blur(1px)"));
     return forced || mqClear.matches || !blur ? "solid" : "glass";
   }
-  function apply() {
-    var p = pref();
-    root.setAttribute("data-lp-theme", p === "system" ? (mqDark.matches ? "dark" : "light") : p);
+  function setPref(value) {
+    var v = value === "light" || value === "dark" || value === "system" ? value : "system";
+    try {
+      localStorage.setItem("profile-theme", v);
+      localStorage.setItem("lp-theme", v);
+    } catch (e) {}
+    apply(v);
+  }
+  function apply(explicit) {
+    var p = explicit || pref();
+    var resolved = p === "system" ? (mqDark.matches ? "dark" : "light") : p;
+    if (p === "system") {
+      delete root.dataset.theme;
+    } else {
+      root.dataset.theme = p;
+    }
+    root.setAttribute("data-lp-theme", resolved);
     root.setAttribute("data-strata-material", material());
+    var sel = document.getElementById("theme");
+    if (sel && sel.value !== p) {
+      sel.value = p;
+    }
     var btns = document.querySelectorAll("[data-theme-choice]");
-    for (var i = 0; i < btns.length; i++) btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-theme-choice") === p));
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-theme-choice") === p));
+    }
   }
   apply();
-  mqDark.addEventListener && mqDark.addEventListener("change", apply);
-  mqClear.addEventListener && mqClear.addEventListener("change", apply);
+  mqDark.addEventListener && mqDark.addEventListener("change", function () { apply(); });
+  mqClear.addEventListener && mqClear.addEventListener("change", function () { apply(); });
+  window.addEventListener("storage", function (e) {
+    if (!e.key || e.key === "profile-theme" || e.key === "lp-theme") apply();
+  });
   document.addEventListener("DOMContentLoaded", function () {
     apply();
+    var sel = document.getElementById("theme");
+    if (sel) {
+      sel.addEventListener("change", function (e) {
+        setPref(e.target.value);
+      });
+    }
     document.addEventListener("click", function (e) {
       var b = e.target.closest && e.target.closest("[data-theme-choice]");
       if (!b) return;
-      try { localStorage.setItem(KEY, b.getAttribute("data-theme-choice")); } catch (err) {}
-      apply();
+      setPref(b.getAttribute("data-theme-choice"));
     });
 
     /* Quiet scroll-spy for article TOC (aside.toc) */

@@ -312,8 +312,8 @@
 <body>
   <header class="topbar">
     <div class="brand-title">
-      <h1>VoxPocket · Todo 卡片收敛版 (v02 收起四要素 + v03 子任务 + 4 套零重叠 Tag 设计 · R5 Round 3 · TIA-508)</h1>
-      <p>100% 真 SwiftUI NSHostingView 60fps 渲染导出 · 收起态仅保留 Title / 固定文字 Status / Priority / 时间（仅 Status 可点，其余全域展开）· TodoExpandRevealLayout 消除展开视图与 Status 文字突变</p>
+      <h1>VoxPocket · Todo 卡片终局定版 (v02 同框裁剪标签架 + 左下角 Liquid Glass Filter + 固定第 2 行与 Linear 独立行 · R5 Round 4 · TIA-508)</h1>
+      <p>100% 真 SwiftUI NSHostingView 60fps 渲染导出 · 第 1 行独占标题平滑缩放（15.5pt&lt;-&gt;18pt）· 第 2 行固定 [状态] [P0] [&gt;=2子步进度] [今天 17:31] + 常驻翻转箭头 · 左下返回按钮正上方 Liquid Glass Filter（录音页隐藏）· Linear 独占一行</p>
     </div>
     <div class="toolbar-controls">
       <div class="seg-group" role="group" aria-label="Playback Speed">
@@ -350,7 +350,7 @@
           <span class="badge">todo-swiftui/v01</span>
           <h2 class="card-title">Inline Horizontal Tag Rail · 单轨内联标签条 (v02收起 + v03子任务)</h2>
         </div>
-        <p class="variant-summary">收起态锁定 v02 两行四要素（短标题 + 今天 17:31；固定 24pt 图标+文字状态胶囊 + P0，收起仅状态可点、其余全域展开）；展开经 TodoExpandRevealLayout 连续揭示 v03 圆角子任务卡与「单行水平滚动内联标签轨」，零二级弹窗、零重叠。</p>
+        <p class="variant-summary">第 1 行独占标题（15.5pt&lt;-&gt;18pt 平滑缩放）；第 2 行固定 [状态] [P0] [&gt;=2子步进度] [今天 17:31] + 末尾常驻翻转箭头；Filter 移至左下返回按钮正上方 Liquid Glass 胶囊；展开抽屉内 Linear 独占一行 + 单轨内联标签条。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -358,8 +358,8 @@
           <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
         </div>
         <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
-          <video autoplay loop muted playsinline src="videos/v01-dark.mp4?v=r3"></video>
-          <img class="hidden" alt="v01 keyframe" src="keyframes/v01-dark-expanded.png?v=r3" />
+          <video autoplay loop muted playsinline src="videos/v01-dark.mp4?v=r4"></video>
+          <img class="hidden" alt="v01 keyframe" src="keyframes/v01-dark-expanded.png?v=r4" />
         </div>
         <div class="chooser-bar">
           <button class="select-btn">SELECT</button>
@@ -369,12 +369,12 @@
       </article>
 
       <!-- v02 -->
-      <article class="variant-card" data-variant="todo-swiftui/v02" data-code="v02">
+      <article class="variant-card selected" data-variant="todo-swiftui/v02" data-code="v02">
         <div class="card-header">
-          <span class="badge">todo-swiftui/v02</span>
-          <h2 class="card-title">Unified Clipped Tag Shelf · 同框卷轴标签架 (v02收起 + v03子任务)</h2>
+          <span class="badge">todo-swiftui/v02 · PRODUCTION FINAL</span>
+          <h2 class="card-title">Unified Clipped Tag Shelf · 同框卷轴标签架 (Owner 终局选定方案)</h2>
         </div>
-        <p class="variant-summary">收起态锁定 v02 两行四要素（零 Tag、零 1/3 分进度，状态文字永不跳变）；展开态采用「一体式同框卷轴标签架」，点 + 标签在同一圆角边框内经 TodoExpandRevealLayout + .clipped() 原地向下卷开候选标签与输入框，彻底杜绝穿模重叠。</p>
+        <p class="variant-summary">【Owner 终局选定方案】第 1 行独占标题（15.5pt&lt;-&gt;18pt 平滑缩放）；第 2 行固定 [状态] [P0] [&gt;=2子步进度] [今天 17:31] + 末尾常驻翻转箭头；左下返回按钮正上方 Liquid Glass Filter；展开抽屉采用同框裁剪标签架 + v03 子任务微卡 + Linear 独立行。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -382,11 +382,11 @@
           <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
         </div>
         <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
-          <video autoplay loop muted playsinline src="videos/v02-dark.mp4?v=r3"></video>
-          <img class="hidden" alt="v02 keyframe" src="keyframes/v02-dark-expanded.png?v=r3" />
+          <video autoplay loop muted playsinline src="videos/v02-dark.mp4?v=r4"></video>
+          <img class="hidden" alt="v02 keyframe" src="keyframes/v02-dark-expanded.png?v=r4" />
         </div>
         <div class="chooser-bar">
-          <button class="select-btn">SELECT</button>
+          <button class="select-btn">✓ SELECTED</button>
           <button class="star-btn">★ STAR</button>
         </div>
         <textarea class="notes-input" placeholder="记录对 v02 (Unified Clipped Tag Shelf) 的反馈备注…"></textarea>
@@ -398,7 +398,7 @@
           <span class="badge">todo-swiftui/v03</span>
           <h2 class="card-title">Inline Morphing Pill Editor · 原位胶囊伸展编辑 (v02收起 + v03子任务)</h2>
         </div>
-        <p class="variant-summary">收起态锁定 v02 两行四要素 + 展开态锁定 v03 独立圆角子任务卡；Tag 区采用「原位胶囊横向伸展编辑器」，点击 + 在当前行内经 TodoHorizontalRevealLayout 横向平滑伸展候选芯片与输入框，单层等高零纵向重叠。</p>
+        <p class="variant-summary">第 1 行独占标题（15.5pt&lt;-&gt;18pt 平滑缩放）；第 2 行固定 [状态] [P0] [&gt;=2子步进度] [今天 17:31] + 末尾常驻翻转箭头；左下返回按钮正上方 Liquid Glass Filter；展开抽屉含原位胶囊横向伸展标签编辑 + Linear 独立行。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -406,8 +406,8 @@
           <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
         </div>
         <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
-          <video autoplay loop muted playsinline src="videos/v03-dark.mp4?v=r3"></video>
-          <img class="hidden" alt="v03 keyframe" src="keyframes/v03-dark-expanded.png?v=r3" />
+          <video autoplay loop muted playsinline src="videos/v03-dark.mp4?v=r4"></video>
+          <img class="hidden" alt="v03 keyframe" src="keyframes/v03-dark-expanded.png?v=r4" />
         </div>
         <div class="chooser-bar">
           <button class="select-btn">SELECT</button>
@@ -422,7 +422,7 @@
           <span class="badge">todo-swiftui/v04</span>
           <h2 class="card-title">Flat Toggle Tag Matrix · 一目了然平铺芯片槽 (v02收起 + v03子任务)</h2>
         </div>
-        <p class="variant-summary">收起态锁定 v02 两行四要素 + 展开态锁定 v03 独立圆角子任务卡；Tag 区采用「平铺一键切换芯片槽」，已选标签（实心高亮）与常用候选标签（浅描边）及末尾内联 #新标签 同层平铺，无需展开二级面板，一步点选零重叠。</p>
+        <p class="variant-summary">第 1 行独占标题（15.5pt&lt;-&gt;18pt 平滑缩放）；第 2 行固定 [状态] [P0] [&gt;=2子步进度] [今天 17:31] + 末尾常驻翻转箭头；左下返回按钮正上方 Liquid Glass Filter；展开抽屉含平铺一键切换标签芯片槽 + Linear 独立行。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -430,8 +430,8 @@
           <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
         </div>
         <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
-          <video autoplay loop muted playsinline src="videos/v04-dark.mp4?v=r3"></video>
-          <img class="hidden" alt="v04 keyframe" src="keyframes/v04-dark-expanded.png?v=r3" />
+          <video autoplay loop muted playsinline src="videos/v04-dark.mp4?v=r4"></video>
+          <img class="hidden" alt="v04 keyframe" src="keyframes/v04-dark-expanded.png?v=r4" />
         </div>
         <div class="chooser-bar">
           <button class="select-btn">SELECT</button>
@@ -469,7 +469,7 @@
         const activeTab = card.querySelector(".state-tab.active")?.dataset.mode || "video";
         const video = card.querySelector("video");
         const img = card.querySelector("img");
-        const targetVideoSrc = `videos/${code}-${currentAppearance}.mp4?v=r3`;
+        const targetVideoSrc = `videos/${code}-${currentAppearance}.mp4?v=r4`;
         if (video.getAttribute("src") !== targetVideoSrc) {
           video.setAttribute("src", targetVideoSrc);
           video.playbackRate = currentSpeed;
@@ -483,7 +483,7 @@
           video.pause();
           video.classList.add("hidden");
           img.classList.remove("hidden");
-          img.setAttribute("src", `keyframes/${code}-${currentAppearance}-${activeTab}.png?v=r3`);
+          img.setAttribute("src", `keyframes/${code}-${currentAppearance}-${activeTab}.png?v=r4`);
         }
       }
 

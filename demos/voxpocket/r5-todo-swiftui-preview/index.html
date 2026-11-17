@@ -312,8 +312,8 @@
 <body>
   <header class="topbar">
     <div class="brand-title">
-      <h1>VoxPocket · Todo 超紧凑卡片 (52–68pt) + AI 短标题/Description 原地展开 4 套真 SwiftUI 60fps 画廊 (R5 Round 2 · TIA-508)</h1>
-      <p>100% 真 SwiftUI NSHostingView 60fps 渲染导出 · 收起态单屏容纳 6–8 条待办 · 端侧 AI 自动拆解 &lt;=14字极简短标题 + Description 详情</p>
+      <h1>VoxPocket · Todo 卡片收敛版 (v02 收起四要素 + v03 子任务 + 4 套零重叠 Tag 设计 · R5 Round 3 · TIA-508)</h1>
+      <p>100% 真 SwiftUI NSHostingView 60fps 渲染导出 · 收起态仅保留 Title / 固定文字 Status / Priority / 时间（仅 Status 可点，其余全域展开）· TodoExpandRevealLayout 消除展开视图与 Status 文字突变</p>
     </div>
     <div class="toolbar-controls">
       <div class="seg-group" role="group" aria-label="Playback Speed">
@@ -348,9 +348,9 @@
       <article class="variant-card" data-variant="todo-swiftui/v01" data-code="v01">
         <div class="card-header">
           <span class="badge">todo-swiftui/v01</span>
-          <h2 class="card-title">Single-Line Pill Rail · 单行超紧凑胶囊轨 (~52pt)</h2>
+          <h2 class="card-title">Inline Horizontal Tag Rail · 单轨内联标签条 (v02收起 + v03子任务)</h2>
         </div>
-        <p class="variant-summary">收起态压至 ~52pt 单行胶囊轨（状态圆环 + &lt;=14字极简短标题 + P0 + #VoxPocket + 1/3），隐藏 + 与子任务；展开时标题平滑放大至 17.5pt，Status/Priority/Tag 经 matchedGeometryEffect 零跳变连续过渡，下方生长出可编辑 Description 详情块与子任务树。</p>
+        <p class="variant-summary">收起态锁定 v02 两行四要素（短标题 + 今天 17:31；固定 24pt 图标+文字状态胶囊 + P0，收起仅状态可点、其余全域展开）；展开经 TodoExpandRevealLayout 连续揭示 v03 圆角子任务卡与「单行水平滚动内联标签轨」，零二级弹窗、零重叠。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -358,23 +358,23 @@
           <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
         </div>
         <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
-          <video autoplay loop muted playsinline src="videos/v01-dark.mp4"></video>
-          <img class="hidden" alt="v01 keyframe" src="keyframes/v01-dark-expanded.png" />
+          <video autoplay loop muted playsinline src="videos/v01-dark.mp4?v=r3"></video>
+          <img class="hidden" alt="v01 keyframe" src="keyframes/v01-dark-expanded.png?v=r3" />
         </div>
         <div class="chooser-bar">
           <button class="select-btn">SELECT</button>
           <button class="star-btn">★ STAR</button>
         </div>
-        <textarea class="notes-input" placeholder="记录对 v01 (Single-Line Pill Rail) 的反馈备注…"></textarea>
+        <textarea class="notes-input" placeholder="记录对 v01 (Inline Horizontal Tag Rail) 的反馈备注…"></textarea>
       </article>
 
       <!-- v02 -->
       <article class="variant-card" data-variant="todo-swiftui/v02" data-code="v02">
         <div class="card-header">
           <span class="badge">todo-swiftui/v02</span>
-          <h2 class="card-title">Compact Two-Line Micro-Card · 头部零位移双行微卡 (~62pt)</h2>
+          <h2 class="card-title">Unified Clipped Tag Shelf · 同框卷轴标签架 (v02收起 + v03子任务)</h2>
         </div>
-        <p class="variant-summary">收起态上下内边距压至 10pt（~62pt 紧凑双行微卡），第 1 行短标题 + 1/3 + 17:31，第 2 行 22pt 微轨共排 [待处理] [P0] · #VoxPocket #iOS；展开时第 1、2 行 0px 零位移，末端平滑滑出 + 与 Linear，下方抽屉展开 Description 与子任务。</p>
+        <p class="variant-summary">收起态锁定 v02 两行四要素（零 Tag、零 1/3 分进度，状态文字永不跳变）；展开态采用「一体式同框卷轴标签架」，点 + 标签在同一圆角边框内经 TodoExpandRevealLayout + .clipped() 原地向下卷开候选标签与输入框，彻底杜绝穿模重叠。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -382,23 +382,23 @@
           <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
         </div>
         <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
-          <video autoplay loop muted playsinline src="videos/v02-dark.mp4"></video>
-          <img class="hidden" alt="v02 keyframe" src="keyframes/v02-dark-expanded.png" />
+          <video autoplay loop muted playsinline src="videos/v02-dark.mp4?v=r3"></video>
+          <img class="hidden" alt="v02 keyframe" src="keyframes/v02-dark-expanded.png?v=r3" />
         </div>
         <div class="chooser-bar">
           <button class="select-btn">SELECT</button>
           <button class="star-btn">★ STAR</button>
         </div>
-        <textarea class="notes-input" placeholder="记录对 v02 (Compact Two-Line Micro-Card) 的反馈备注…"></textarea>
+        <textarea class="notes-input" placeholder="记录对 v02 (Unified Clipped Tag Shelf) 的反馈备注…"></textarea>
       </article>
 
       <!-- v03 -->
       <article class="variant-card" data-variant="todo-swiftui/v03" data-code="v03">
         <div class="card-header">
           <span class="badge">todo-swiftui/v03</span>
-          <h2 class="card-title">Description Peek &amp; Spatial Unfold · 单行微预览景深展开 (~66pt)</h2>
+          <h2 class="card-title">Inline Morphing Pill Editor · 原位胶囊伸展编辑 (v02收起 + v03子任务)</h2>
         </div>
-        <p class="variant-summary">收起态（~66pt）第 1 行展示状态点 + 短标题 + P0 + #VoxPocket + 17:31，第 2 行带 12pt 单行浅色 Description 截断微预览；展开时卡片微抬升，单行 Description 经 matchedGeometryEffect 平滑伸展为多行可编辑详情段，并显现完整操作栏与分步卡。</p>
+        <p class="variant-summary">收起态锁定 v02 两行四要素 + 展开态锁定 v03 独立圆角子任务卡；Tag 区采用「原位胶囊横向伸展编辑器」，点击 + 在当前行内经 TodoHorizontalRevealLayout 横向平滑伸展候选芯片与输入框，单层等高零纵向重叠。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -406,23 +406,23 @@
           <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
         </div>
         <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
-          <video autoplay loop muted playsinline src="videos/v03-dark.mp4"></video>
-          <img class="hidden" alt="v03 keyframe" src="keyframes/v03-dark-expanded.png" />
+          <video autoplay loop muted playsinline src="videos/v03-dark.mp4?v=r3"></video>
+          <img class="hidden" alt="v03 keyframe" src="keyframes/v03-dark-expanded.png?v=r3" />
         </div>
         <div class="chooser-bar">
           <button class="select-btn">SELECT</button>
           <button class="star-btn">★ STAR</button>
         </div>
-        <textarea class="notes-input" placeholder="记录对 v03 (Description Peek &amp; Spatial Unfold) 的反馈备注…"></textarea>
+        <textarea class="notes-input" placeholder="记录对 v03 (Inline Morphing Pill Editor) 的反馈备注…"></textarea>
       </article>
 
       <!-- v04 -->
       <article class="variant-card" data-variant="todo-swiftui/v04" data-code="v04">
         <div class="card-header">
           <span class="badge">todo-swiftui/v04</span>
-          <h2 class="card-title">Staggered Minimal Strip · 极简横条两段式瀑布展开 (~54pt)</h2>
+          <h2 class="card-title">Flat Toggle Tag Matrix · 一目了然平铺芯片槽 (v02收起 + v03子任务)</h2>
         </div>
-        <p class="variant-summary">收起态为 ~54pt 极简高密度清单条（间距 8pt，一屏容纳 7–8 条待办）；点击后第 1 阶段（0–130ms）外框撑开并经 matchedGeometryEffect 原位伸展 Status/Priority/Tag 胶囊，第 2 阶段（50–230ms）瀑布式滑入 Description 详情块、+ 标签触发器与子任务。</p>
+        <p class="variant-summary">收起态锁定 v02 两行四要素 + 展开态锁定 v03 独立圆角子任务卡；Tag 区采用「平铺一键切换芯片槽」，已选标签（实心高亮）与常用候选标签（浅描边）及末尾内联 #新标签 同层平铺，无需展开二级面板，一步点选零重叠。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -430,14 +430,14 @@
           <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
         </div>
         <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
-          <video autoplay loop muted playsinline src="videos/v04-dark.mp4"></video>
-          <img class="hidden" alt="v04 keyframe" src="keyframes/v04-dark-expanded.png" />
+          <video autoplay loop muted playsinline src="videos/v04-dark.mp4?v=r3"></video>
+          <img class="hidden" alt="v04 keyframe" src="keyframes/v04-dark-expanded.png?v=r3" />
         </div>
         <div class="chooser-bar">
           <button class="select-btn">SELECT</button>
           <button class="star-btn">★ STAR</button>
         </div>
-        <textarea class="notes-input" placeholder="记录对 v04 (Staggered Minimal Strip) 的反馈备注…"></textarea>
+        <textarea class="notes-input" placeholder="记录对 v04 (Flat Toggle Tag Matrix) 的反馈备注…"></textarea>
       </article>
     </section>
   </main>
@@ -469,7 +469,7 @@
         const activeTab = card.querySelector(".state-tab.active")?.dataset.mode || "video";
         const video = card.querySelector("video");
         const img = card.querySelector("img");
-        const targetVideoSrc = `videos/${code}-${currentAppearance}.mp4`;
+        const targetVideoSrc = `videos/${code}-${currentAppearance}.mp4?v=r3`;
         if (video.getAttribute("src") !== targetVideoSrc) {
           video.setAttribute("src", targetVideoSrc);
           video.playbackRate = currentSpeed;
@@ -483,7 +483,7 @@
           video.pause();
           video.classList.add("hidden");
           img.classList.remove("hidden");
-          img.setAttribute("src", `keyframes/${code}-${currentAppearance}-${activeTab}.png`);
+          img.setAttribute("src", `keyframes/${code}-${currentAppearance}-${activeTab}.png?v=r3`);
         }
       }
 

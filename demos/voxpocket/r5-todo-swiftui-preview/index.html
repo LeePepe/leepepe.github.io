@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoxPocket · Todo 卡片原地展开 4 套真 SwiftUI 60fps 动效预览画廊 (v01–v04)</title>
+  <style>
+    :root {
+      --bg-page: #0d0f14;
+      --bg-surface: #151922;
+      --bg-elevated: #1e2431;
+      --text-primary: #f3f5f8;
+      --text-secondary: #9aa4b8;
+      --accent: #0a84ff;
+      --accent-soft: rgba(10, 132, 255, 0.16);
+      --border: rgba(255, 255, 255, 0.10);
+      --star: #ff9f0a;
+      --success: #30d158;
+    }
+    html[data-theme="light"] {
+      --bg-page: #f2f4f8;
+      --bg-surface: #ffffff;
+      --bg-elevated: #eef1f6;
+      --text-primary: #11141a;
+      --text-secondary: #5a6478;
+      --accent: #007aff;
+      --accent-soft: rgba(0, 122, 255, 0.12);
+      --border: rgba(0, 0, 0, 0.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding-bottom: 96px;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(18, 22, 30, 0.86);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    html[data-theme="light"] .topbar {
+      background: rgba(255, 255, 255, 0.88);
+    }
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .brand-title h1 {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .brand-title p {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .toolbar-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .seg-group {
+      display: inline-flex;
+      background: var(--bg-elevated);
+      padding: 3px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      gap: 2px;
+    }
+    .seg-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .seg-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    .action-btn {
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .action-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .action-btn:hover { opacity: 0.92; }
+
+    .container {
+      max-width: 1760px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+    .local-cmd-banner {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .local-cmd-banner code {
+      font-family: "SF Mono", Menlo, monospace;
+      font-size: 12px;
+      background: var(--bg-elevated);
+      padding: 5px 10px;
+      border-radius: 8px;
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 22px;
+      align-items: start;
+    }
+    .variant-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .variant-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .badge {
+      font-family: "SF Mono", Menlo, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      flex: 1;
+    }
+    .variant-summary {
+      font-size: 13px;
+      color: var(--text-secondary);
+      min-height: 58px;
+    }
+    .state-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .state-tab {
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .state-tab.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .bezel-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 390px;
+      margin: 0 auto;
+      border-radius: 40px;
+      overflow: hidden;
+      background: #000;
+      border: 2px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+      cursor: pointer;
+    }
+    .bezel-wrap video,
+    .bezel-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .bezel-wrap img.hidden,
+    .bezel-wrap video.hidden {
+      display: none;
+    }
+    .chooser-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 4px;
+    }
+    .select-btn {
+      flex: 1;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .variant-card.selected .select-btn {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .star-btn {
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .star-btn.starred {
+      color: var(--star);
+      border-color: var(--star);
+      background: rgba(255, 159, 10, 0.12);
+    }
+    .notes-input {
+      width: 100%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      padding: 8px 10px;
+      font-size: 12px;
+      resize: vertical;
+      min-height: 42px;
+    }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 20px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      max-width: 680px;
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .modal pre {
+      background: var(--bg-elevated);
+      padding: 14px;
+      border-radius: 10px;
+      font-family: "SF Mono", Menlo, monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+      max-height: 360px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-title">
+      <h1>VoxPocket · Todo 卡片原地展开 4 套真 SwiftUI 60fps 动效画廊 (R5 · TIA-508)</h1>
+      <p>100% 真 SwiftUI NSHostingView 60fps 渲染导出 · 支持 1.0x / 0.5x / 0.35x / 0.25x 慢放与收起/展开/标签抽屉帧对比</p>
+    </div>
+    <div class="toolbar-controls">
+      <div class="seg-group" role="group" aria-label="Playback Speed">
+        <button class="seg-btn active" data-speed="1">1.0x 正常</button>
+        <button class="seg-btn" data-speed="0.5">0.5x 慢放</button>
+        <button class="seg-btn" data-speed="0.35">0.35x 慢放</button>
+        <button class="seg-btn" data-speed="0.25">0.25x 逐帧</button>
+      </div>
+      <div class="seg-group" role="group" aria-label="Appearance">
+        <button class="seg-btn active" data-appearance="dark">Dark (0.10)</button>
+        <button class="seg-btn" data-appearance="light">Light</button>
+      </div>
+      <button class="action-btn" id="sync-restart-btn">同步重播 4 套动效</button>
+      <button class="action-btn primary" id="open-summary-btn">Copy Selection Summary</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="local-cmd-banner">
+      <div>
+        <strong>本地 macOS 120Hz 真 SwiftUI 原生 4 机壳实时交互窗：</strong>
+        <span>可随时通过脚本一键置顶唤醒本地真 SwiftUI 窗口</span>
+      </div>
+      <div>
+        <code>./scripts/open-local-preview.sh</code>
+        <code>swift run --package-path Packages/VoxPresentation VoxTodoPreviewHost</code>
+      </div>
+    </section>
+
+    <section class="grid" id="variant-grid">
+      <!-- v01 -->
+      <article class="variant-card" data-variant="todo-swiftui/v01" data-code="v01">
+        <div class="card-header">
+          <span class="badge">todo-swiftui/v01</span>
+          <h2 class="card-title">Continuous Morph · 单树连续几何变形</h2>
+        </div>
+        <p class="variant-summary">单树持久化 Header，标题字重与字号连续平滑插值（17pt → 19.5pt），Status · Priority · 今天 17:31 原位锚定零跳变，#Tag + 下方内联展开标签托盘与垂直细线子任务树。</p>
+        <div class="state-tabs">
+          <button class="state-tab active" data-mode="video">60fps 循环动效</button>
+          <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
+          <button class="state-tab" data-mode="expanded">展开态 @2x</button>
+          <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
+        </div>
+        <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
+          <video autoplay loop muted playsinline src="videos/v01-dark.mp4"></video>
+          <img class="hidden" alt="v01 keyframe" src="keyframes/v01-dark-expanded.png" />
+        </div>
+        <div class="chooser-bar">
+          <button class="select-btn">SELECT</button>
+          <button class="star-btn">★ STAR</button>
+        </div>
+        <textarea class="notes-input" placeholder="记录对 v01 (Continuous Morph) 的反馈备注…"></textarea>
+      </article>
+
+      <!-- v02 -->
+      <article class="variant-card" data-variant="todo-swiftui/v02" data-code="v02">
+        <div class="card-header">
+          <span class="badge">todo-swiftui/v02</span>
+          <h2 class="card-title">Inline Drawer · 头部零位移纯下推抽屉</h2>
+        </div>
+        <p class="variant-summary">收起态与展开态的卡片头部（Title + Status/Priority/创建时间 + #Tag + 行 + 右侧常驻箭头）像素坐标 100% 锁定不动（0px 位移），仅在卡片底部通过顶部锚点弹簧抽屉纯净展开子任务与 Linear 操作。</p>
+        <div class="state-tabs">
+          <button class="state-tab active" data-mode="video">60fps 循环动效</button>
+          <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
+          <button class="state-tab" data-mode="expanded">展开态 @2x</button>
+          <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
+        </div>
+        <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
+          <video autoplay loop muted playsinline src="videos/v02-dark.mp4"></video>
+          <img class="hidden" alt="v02 keyframe" src="keyframes/v02-dark-expanded.png" />
+        </div>
+        <div class="chooser-bar">
+          <button class="select-btn">SELECT</button>
+          <button class="star-btn">★ STAR</button>
+        </div>
+        <textarea class="notes-input" placeholder="记录对 v02 (Zero-Header-Shift Drawer) 的反馈备注…"></textarea>
+      </article>
+
+      <!-- v03 -->
+      <article class="variant-card" data-variant="todo-swiftui/v03" data-code="v03">
+        <div class="card-header">
+          <span class="badge">todo-swiftui/v03</span>
+          <h2 class="card-title">Spatial Hero Elevation · 景深微抬升与分步卡</h2>
+        </div>
+        <p class="variant-summary">点击展开时当前卡片以高阻尼弹簧（response: 0.38, damping: 0.86）微幅抬升阴影与亮色描边，子任务化作独立圆角微卡片，未选中兄弟卡片柔和退后至 0.78 透明度。</p>
+        <div class="state-tabs">
+          <button class="state-tab active" data-mode="video">60fps 循环动效</button>
+          <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
+          <button class="state-tab" data-mode="expanded">展开态 @2x</button>
+          <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
+        </div>
+        <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
+          <video autoplay loop muted playsinline src="videos/v03-dark.mp4"></video>
+          <img class="hidden" alt="v03 keyframe" src="keyframes/v03-dark-expanded.png" />
+        </div>
+        <div class="chooser-bar">
+          <button class="select-btn">SELECT</button>
+          <button class="star-btn">★ STAR</button>
+        </div>
+        <textarea class="notes-input" placeholder="记录对 v03 (Spatial Hero Elevation) 的反馈备注…"></textarea>
+      </article>
+
+      <!-- v04 -->
+      <article class="variant-card" data-variant="todo-swiftui/v04" data-code="v04">
+        <div class="card-header">
+          <span class="badge">todo-swiftui/v04</span>
+          <h2 class="card-title">Two-Stage Cascade · 两段式错峰瀑布展开</h2>
+        </div>
+        <p class="variant-summary">基于两段式相位弹簧时序：第 1 阶段（0–120ms）卡片外框撑开并显现右侧 Linear 与收起按钮；第 2 阶段（60–260ms）子任务分支按 35ms 梯次自上而下错峰滑入，兼具丝滑节奏与零元素突变。</p>
+        <div class="state-tabs">
+          <button class="state-tab active" data-mode="video">60fps 循环动效</button>
+          <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
+          <button class="state-tab" data-mode="expanded">展开态 @2x</button>
+          <button class="state-tab" data-mode="tagtray">#Tag 托盘 @2x</button>
+        </div>
+        <div class="bezel-wrap" title="点击暂停/播放真 SwiftUI 60fps 动效">
+          <video autoplay loop muted playsinline src="videos/v04-dark.mp4"></video>
+          <img class="hidden" alt="v04 keyframe" src="keyframes/v04-dark-expanded.png" />
+        </div>
+        <div class="chooser-bar">
+          <button class="select-btn">SELECT</button>
+          <button class="star-btn">★ STAR</button>
+        </div>
+        <textarea class="notes-input" placeholder="记录对 v04 (Two-Stage Staggered Cascade) 的反馈备注…"></textarea>
+      </article>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="summary-modal">
+    <div class="modal">
+      <h3>Selection Summary (TIA-508 · Real SwiftUI Todo Unfold)</h3>
+      <pre id="summary-output"></pre>
+      <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <button class="action-btn" id="close-modal-btn">关闭</button>
+        <button class="action-btn primary" id="copy-summary-btn">复制到剪贴板</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "voxpocket_r5_todo_swiftui_preview_state_v1";
+      let currentAppearance = "dark";
+      let currentSpeed = 1.0;
+      const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"selected":null,"starred":{},"notes":{}}');
+
+      function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function syncCardMedia(card) {
+        const code = card.dataset.code;
+        const activeTab = card.querySelector(".state-tab.active")?.dataset.mode || "video";
+        const video = card.querySelector("video");
+        const img = card.querySelector("img");
+        const targetVideoSrc = `videos/${code}-${currentAppearance}.mp4`;
+        if (video.getAttribute("src") !== targetVideoSrc) {
+          video.setAttribute("src", targetVideoSrc);
+          video.playbackRate = currentSpeed;
+        }
+        if (activeTab === "video") {
+          video.classList.remove("hidden");
+          img.classList.add("hidden");
+          video.playbackRate = currentSpeed;
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+          video.classList.add("hidden");
+          img.classList.remove("hidden");
+          img.setAttribute("src", `keyframes/${code}-${currentAppearance}-${activeTab}.png`);
+        }
+      }
+
+      document.querySelectorAll(".variant-card").forEach((card) => {
+        const id = card.dataset.variant;
+        const selectBtn = card.querySelector(".select-btn");
+        const starBtn = card.querySelector(".star-btn");
+        const notesInput = card.querySelector(".notes-input");
+        const bezel = card.querySelector(".bezel-wrap");
+        const video = card.querySelector("video");
+
+        if (state.selected === id) {
+          card.classList.add("selected");
+          selectBtn.textContent = "✓ SELECTED";
+        }
+        if (state.starred[id]) {
+          starBtn.classList.add("starred");
+        }
+        if (state.notes[id]) {
+          notesInput.value = state.notes[id];
+        }
+
+        selectBtn.addEventListener("click", () => {
+          state.selected = state.selected === id ? null : id;
+          document.querySelectorAll(".variant-card").forEach((c) => {
+            const cid = c.dataset.variant;
+            c.classList.toggle("selected", state.selected === cid);
+            c.querySelector(".select-btn").textContent = state.selected === cid ? "✓ SELECTED" : "SELECT";
+          });
+          saveState();
+        });
+
+        starBtn.addEventListener("click", () => {
+          state.starred[id] = !state.starred[id];
+          starBtn.classList.toggle("starred", !!state.starred[id]);
+          saveState();
+        });
+
+        notesInput.addEventListener("input", () => {
+          state.notes[id] = notesInput.value;
+          saveState();
+        });
+
+        card.querySelectorAll(".state-tab").forEach((tab) => {
+          tab.addEventListener("click", () => {
+            card.querySelectorAll(".state-tab").forEach((t) => t.classList.remove("active"));
+            tab.classList.add("active");
+            syncCardMedia(card);
+          });
+        });
+
+        bezel.addEventListener("click", () => {
+          if (!video.classList.contains("hidden")) {
+            if (video.paused) {
+              video.play();
+            } else {
+              video.pause();
+            }
+          }
+        });
+      });
+
+      document.querySelectorAll("[data-speed]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-speed]").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentSpeed = parseFloat(btn.dataset.speed);
+          document.querySelectorAll("video").forEach((v) => {
+            v.playbackRate = currentSpeed;
+          });
+        });
+      });
+
+      document.querySelectorAll("[data-appearance]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-appearance]").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentAppearance = btn.dataset.appearance;
+          document.documentElement.setAttribute("data-theme", currentAppearance);
+          document.querySelectorAll(".variant-card").forEach(syncCardMedia);
+        });
+      });
+
+      document.getElementById("sync-restart-btn").addEventListener("click", () => {
+        document.querySelectorAll(".variant-card").forEach((card) => {
+          card.querySelectorAll(".state-tab").forEach((t) => t.classList.remove("active"));
+          card.querySelector('[data-mode="video"]').classList.add("active");
+          syncCardMedia(card);
+          const v = card.querySelector("video");
+          v.currentTime = 0;
+          v.playbackRate = currentSpeed;
+          v.play().catch(() => {});
+        });
+      });
+
+      function buildSummaryText() {
+        const lines = [
+          "# VoxPocket Todo In-Place Unfold SwiftUI Chooser Summary (TIA-508)",
+          `- Selected Winner: ${state.selected || "none"}`,
+          `- Starred: ${Object.keys(state.starred).filter((k) => state.starred[k]).join(", ") || "none"}`,
+          `- Appearance: ${currentAppearance}`,
+          `- Playback Rate: ${currentSpeed}x`,
+          ""
+        ];
+        document.querySelectorAll(".variant-card").forEach((card) => {
+          const id = card.dataset.variant;
+          const note = (state.notes[id] || "").trim();
+          const summary = card.querySelector(".variant-summary").textContent.trim();
+          lines.push(`## ${id}`);
+          lines.push(`- Summary: ${summary}`);
+          if (note) lines.push(`- Notes: ${note}`);
+          lines.push("");
+        });
+        return lines.join("\n");
+      }
+
+      const modal = document.getElementById("summary-modal");
+      const output = document.getElementById("summary-output");
+      document.getElementById("open-summary-btn").addEventListener("click", () => {
+        output.textContent = buildSummaryText();
+        modal.classList.add("open");
+      });
+      document.getElementById("close-modal-btn").addEventListener("click", () => {
+        modal.classList.remove("open");
+      });
+      document.getElementById("copy-summary-btn").addEventListener("click", () => {
+        navigator.clipboard.writeText(output.textContent);
+        document.getElementById("copy-summary-btn").textContent = "已复制 ✓";
+        setTimeout(() => {
+          document.getElementById("copy-summary-btn").textContent = "复制到剪贴板";
+        }, 1500);
+      });
+    })();
+  </script>
+</body>
+</html>

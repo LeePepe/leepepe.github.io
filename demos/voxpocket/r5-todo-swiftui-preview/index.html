@@ -312,8 +312,8 @@
 <body>
   <header class="topbar">
     <div class="brand-title">
-      <h1>VoxPocket · Todo 卡片原地展开 4 套真 SwiftUI 60fps 动效画廊 (R5 · TIA-508)</h1>
-      <p>100% 真 SwiftUI NSHostingView 60fps 渲染导出 · 支持 1.0x / 0.5x / 0.35x / 0.25x 慢放与收起/展开/标签抽屉帧对比</p>
+      <h1>VoxPocket · Todo 超紧凑卡片 (52–68pt) + AI 短标题/Description 原地展开 4 套真 SwiftUI 60fps 画廊 (R5 Round 2 · TIA-508)</h1>
+      <p>100% 真 SwiftUI NSHostingView 60fps 渲染导出 · 收起态单屏容纳 6–8 条待办 · 端侧 AI 自动拆解 &lt;=14字极简短标题 + Description 详情</p>
     </div>
     <div class="toolbar-controls">
       <div class="seg-group" role="group" aria-label="Playback Speed">
@@ -348,9 +348,9 @@
       <article class="variant-card" data-variant="todo-swiftui/v01" data-code="v01">
         <div class="card-header">
           <span class="badge">todo-swiftui/v01</span>
-          <h2 class="card-title">Continuous Morph · 单树连续几何变形</h2>
+          <h2 class="card-title">Single-Line Pill Rail · 单行超紧凑胶囊轨 (~52pt)</h2>
         </div>
-        <p class="variant-summary">单树持久化 Header，标题字重与字号连续平滑插值（17pt → 19.5pt），Status · Priority · 今天 17:31 原位锚定零跳变，#Tag + 下方内联展开标签托盘与垂直细线子任务树。</p>
+        <p class="variant-summary">收起态压至 ~52pt 单行胶囊轨（状态圆环 + &lt;=14字极简短标题 + P0 + #VoxPocket + 1/3），隐藏 + 与子任务；展开时标题平滑放大至 17.5pt，Status/Priority/Tag 经 matchedGeometryEffect 零跳变连续过渡，下方生长出可编辑 Description 详情块与子任务树。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -365,16 +365,16 @@
           <button class="select-btn">SELECT</button>
           <button class="star-btn">★ STAR</button>
         </div>
-        <textarea class="notes-input" placeholder="记录对 v01 (Continuous Morph) 的反馈备注…"></textarea>
+        <textarea class="notes-input" placeholder="记录对 v01 (Single-Line Pill Rail) 的反馈备注…"></textarea>
       </article>
 
       <!-- v02 -->
       <article class="variant-card" data-variant="todo-swiftui/v02" data-code="v02">
         <div class="card-header">
           <span class="badge">todo-swiftui/v02</span>
-          <h2 class="card-title">Inline Drawer · 头部零位移纯下推抽屉</h2>
+          <h2 class="card-title">Compact Two-Line Micro-Card · 头部零位移双行微卡 (~62pt)</h2>
         </div>
-        <p class="variant-summary">收起态与展开态的卡片头部（Title + Status/Priority/创建时间 + #Tag + 行 + 右侧常驻箭头）像素坐标 100% 锁定不动（0px 位移），仅在卡片底部通过顶部锚点弹簧抽屉纯净展开子任务与 Linear 操作。</p>
+        <p class="variant-summary">收起态上下内边距压至 10pt（~62pt 紧凑双行微卡），第 1 行短标题 + 1/3 + 17:31，第 2 行 22pt 微轨共排 [待处理] [P0] · #VoxPocket #iOS；展开时第 1、2 行 0px 零位移，末端平滑滑出 + 与 Linear，下方抽屉展开 Description 与子任务。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -389,16 +389,16 @@
           <button class="select-btn">SELECT</button>
           <button class="star-btn">★ STAR</button>
         </div>
-        <textarea class="notes-input" placeholder="记录对 v02 (Zero-Header-Shift Drawer) 的反馈备注…"></textarea>
+        <textarea class="notes-input" placeholder="记录对 v02 (Compact Two-Line Micro-Card) 的反馈备注…"></textarea>
       </article>
 
       <!-- v03 -->
       <article class="variant-card" data-variant="todo-swiftui/v03" data-code="v03">
         <div class="card-header">
           <span class="badge">todo-swiftui/v03</span>
-          <h2 class="card-title">Spatial Hero Elevation · 景深微抬升与分步卡</h2>
+          <h2 class="card-title">Description Peek &amp; Spatial Unfold · 单行微预览景深展开 (~66pt)</h2>
         </div>
-        <p class="variant-summary">点击展开时当前卡片以高阻尼弹簧（response: 0.38, damping: 0.86）微幅抬升阴影与亮色描边，子任务化作独立圆角微卡片，未选中兄弟卡片柔和退后至 0.78 透明度。</p>
+        <p class="variant-summary">收起态（~66pt）第 1 行展示状态点 + 短标题 + P0 + #VoxPocket + 17:31，第 2 行带 12pt 单行浅色 Description 截断微预览；展开时卡片微抬升，单行 Description 经 matchedGeometryEffect 平滑伸展为多行可编辑详情段，并显现完整操作栏与分步卡。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -413,16 +413,16 @@
           <button class="select-btn">SELECT</button>
           <button class="star-btn">★ STAR</button>
         </div>
-        <textarea class="notes-input" placeholder="记录对 v03 (Spatial Hero Elevation) 的反馈备注…"></textarea>
+        <textarea class="notes-input" placeholder="记录对 v03 (Description Peek &amp; Spatial Unfold) 的反馈备注…"></textarea>
       </article>
 
       <!-- v04 -->
       <article class="variant-card" data-variant="todo-swiftui/v04" data-code="v04">
         <div class="card-header">
           <span class="badge">todo-swiftui/v04</span>
-          <h2 class="card-title">Two-Stage Cascade · 两段式错峰瀑布展开</h2>
+          <h2 class="card-title">Staggered Minimal Strip · 极简横条两段式瀑布展开 (~54pt)</h2>
         </div>
-        <p class="variant-summary">基于两段式相位弹簧时序：第 1 阶段（0–120ms）卡片外框撑开并显现右侧 Linear 与收起按钮；第 2 阶段（60–260ms）子任务分支按 35ms 梯次自上而下错峰滑入，兼具丝滑节奏与零元素突变。</p>
+        <p class="variant-summary">收起态为 ~54pt 极简高密度清单条（间距 8pt，一屏容纳 7–8 条待办）；点击后第 1 阶段（0–130ms）外框撑开并经 matchedGeometryEffect 原位伸展 Status/Priority/Tag 胶囊，第 2 阶段（50–230ms）瀑布式滑入 Description 详情块、+ 标签触发器与子任务。</p>
         <div class="state-tabs">
           <button class="state-tab active" data-mode="video">60fps 循环动效</button>
           <button class="state-tab" data-mode="collapsed">收起态 @2x</button>
@@ -437,7 +437,7 @@
           <button class="select-btn">SELECT</button>
           <button class="star-btn">★ STAR</button>
         </div>
-        <textarea class="notes-input" placeholder="记录对 v04 (Two-Stage Staggered Cascade) 的反馈备注…"></textarea>
+        <textarea class="notes-input" placeholder="记录对 v04 (Staggered Minimal Strip) 的反馈备注…"></textarea>
       </article>
     </section>
   </main>

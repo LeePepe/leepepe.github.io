@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="green" data-strata-material="solid">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>热泵为什么能用 1 度电搬来 3 度热：COP、温差与低温衰减 · Lee Pepe</title>
+<meta name="description" content="热泵不是制造三份热，而是用一份电把两份环境热搬进室内；COP、Carnot 上限和供水温度解释了为什么低温与高温末端会同时抬高电费。">
+<link rel="alternate" type="application/atom+xml" title="LeePepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="shell">
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
+    <span class="header-note">An engineering notebook</span>
+    <nav aria-label="Main navigation"><a href="/learn/" aria-current="page">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
+  </header>
+  <main id="main">
+  <div class="post-layout">
+    <div>
+      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <article class="card article">
+        <header class="article-header">
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t32">热泵</a></li><li><a class="tag" href="/tags/#t7">COP</a></li><li><a class="tag" href="/tags/#t36">能量守恒</a></li></ul>
+          <h1>热泵为什么能用 1 度电搬来 3 度热：COP、温差与低温衰减</h1>
+          <p class="lede">热泵不是制造三份热，而是用一份电把两份环境热搬进室内；COP、Carnot 上限和供水温度解释了为什么低温与高温末端会同时抬高电费。</p>
+          <div class="post-meta"><time datetime="2026-11-22">2026 年 11 月 22 日</time><span class="dot" aria-hidden="true">·</span><span>约 1,800 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 7 分钟</span></div>
+        </header>
+        <div class="prose">
+<blockquote><p><strong>一句话结论</strong>：<strong>热泵不是把 1 度电“变成”3 度热，而是用电驱动压缩机，把室外空气、土壤或水中的热量搬进屋内。</strong> 因此供热性能用 COP（性能系数）表示：<code>COP_h = Q_h / W = 1 + Q_c / W</code>；COP 为 3 时，1 kWh 电对应约 3 kWh 的室内热量，其中约 2 kWh 是从环境搬来的。</p></blockquote>
+<h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
+<table><thead><tr><th>参数</th><th>关键公式/数字</th><th>生活教具</th><th>工程效果</th></tr></thead><tbody><tr><td>供热 COP</td><td><code>COP_h = Q_h / W</code></td><td>搬运工的“搬运量/油费”</td><td>可大于 1，因为电力驱动的是搬运</td></tr><tr><td>能量守恒</td><td><code>Q_h = Q_c + W</code></td><td>冰箱背面比内部更热</td><td>室内得到的热 = 室外吸热 + 压缩机功</td></tr><tr><td>理想上限</td><td><code>COP_Carnot = T_hot / (T_hot - T_cold)</code>（K）</td><td>两个水桶温差越小越好提水</td><td>供回水温差越大，理论上限越低</td></tr><tr><td>实际范围</td><td>空气源常见约 2–5；寒冷时会下降</td><td>夏天搬冰块容易，冬天搬冰难</td><td>额定点不能代替全年季节性能</td></tr><tr><td>供水温度</td><td>35°C 比 55°C 更容易达到高 COP</td><td>低楼梯比高楼梯省力</td><td>地暖/大面积末端通常更利于效率</td></tr></tbody></table>
+<h2 id="sec-2">一、先把“效率超过 100%”的误会拆掉<a class="anchor" href="#sec-2" aria-label="本节链接">#</a></h2>
+<p>电阻电暖器把 1 kWh 电几乎全部变成 1 kWh 热，热效率接近 100%。热泵的 COP 可以是 3，但这不是违反能量守恒，因为它的输出由两部分组成：压缩机输入的功 <code>W</code>，以及蒸发器从低温环境吸收的热 <code>Q_c</code>。</p>
+<p>把它想成一台反向电梯：电梯消耗 1 份电，把 2 份原本散在室外的热量一起搬上楼，室内最终得到 3 份热。制冷模式则把这台电梯反过来，室内变成被抽热的一侧；冰箱背面发热正是被搬出的室内热量加上压缩机功。</p>
+<h2 id="sec-3">二、COP 为什么会随着温差变差<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
+<p>热泵必须让制冷剂在室外低温侧蒸发、在室内高温侧冷凝。两侧温度差越大，压缩机需要提升的压力比越大，单位热量的功耗就越高。理想可逆循环的上限是：</p>
+<p><code>COP_Carnot = T_hot / (T_hot - T_cold)</code></p>
+<p>温度必须用开尔文。若室内冷凝温度从 308 K（约 35°C）提高到 328 K（约 55°C），分母变大，理想上限下降；现实中还要加上压缩机效率、换热器温差、除霜和风机功耗，实际 COP 会进一步降低。</p>
+<p>这就是“同一台机器、同样 1 kWh 电，低温地暖比高温暖气片更省”的机制：不是地暖创造了更多热，而是它要求的热端温度更低，压缩机爬的温差楼梯更矮。</p>
+<h2 id="sec-4">三、为什么额定 COP 不能直接当电费预算<a class="anchor" href="#sec-4" aria-label="本节链接">#</a></h2>
+<p>厂商通常给出特定空气温度和供水温度下的 COP。真实冬季包含多个工况：室外温度下降、建筑热负荷上升、室外机结霜、系统进入除霜周期、风机和循环泵耗电都会改变结果。</p>
+<p>所以预算应使用季节性能而不是单一实验点：</p>
+<p><code>季节 COP = 全季节供热量 / 全季节总用电量</code></p>
+<p>一个 COP=3 的设备，在某个温和测试点可能非常漂亮；当室外变冷、供水温度升高后，瞬时 COP 可能落到 2 左右。反过来，通过改善保温、降低供水温度、清理换热器和合理控制除霜，可以在不更换压缩机的情况下减少温差损失。</p>
+<h2 id="sec-5">核心痛点问答<a class="anchor" href="#sec-5" aria-label="本节链接">#</a></h2>
+<h3 id="sec-5-1">Q1. COP=3 是不是代表电费只有电暖器的三分之一？<a class="anchor" href="#sec-5-1" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：在相同供热量、相同工况下大致如此，但全年要用季节 COP；安装、低温衰减、除霜和辅助电加热都可能改变实际账单。</li></ul>
+<h3 id="sec-5-2">Q2. 为什么室外零下还有热可以搬？<a class="anchor" href="#sec-5-2" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：只要室外温度高于绝对零度，空气仍有热能；难点不是“有没有热”，而是要把热量提升到室内温度需要多大的压缩比。</li></ul>
+<h3 id="sec-5-3">Q3. 把出水温度调高是不是更暖更好？<a class="anchor" href="#sec-5-3" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：更高的热端温度通常会降低 COP；应先改善末端散热面积和建筑保温，让系统用较低供水温度达到目标室温。</li></ul>
+<h3 id="sec-5-4">Q4. 为什么寒潮时热泵会突然耗电很多？<a class="anchor" href="#sec-5-4" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：低温让温差变大，室外机还可能需要除霜；若系统启用电阻辅助加热，COP 会接近 1，电表读数就会明显上升。</li></ul>
+<h2 id="sec-6">立即可用清单<a class="anchor" href="#sec-6" aria-label="本节链接">#</a></h2>
+<ul><li><strong>用季节 COP 估算电费</strong>：不要只抄铭牌额定值，向安装方索取低温、不同供水温度和除霜工况数据。</li><li><strong>优先降低热端温度</strong>：改善保温、清洁过滤器、增大末端散热面积，让室内舒适度不依赖高温出水。</li><li><strong>记录寒潮工况</strong>：分别记录室外温度、供水温度、辅助加热和每日用电，找出系统真正的 COP 断崖点。</li></ul>
+<h2 id="sec-7">来源与边界<a class="anchor" href="#sec-7" aria-label="本节链接">#</a></h2>
+<p>COP 是设备在特定边界条件下的性能指标，不能直接比较不同测试标准的数字。本文用于理解能量与温差机制，不替代暖通设计或设备选型。</p>
+        </div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/sleep-debt-and-circadian-recovery/"><span class="dir">← 上一篇</span><span class="t">睡眠债不是存钱罐：为什么补觉能消除困意，却不能立刻恢复注意力</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+      </article>
+    </div>
+    <aside class="toc" aria-label="本文目录">
+      <p class="section-label">目录</p>
+      <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">一、先把“效率超过 100%”的误会拆掉</a></li><li class="l2"><a href="#sec-3">二、COP 为什么会随着温差变差</a></li><li class="l2"><a href="#sec-4">三、为什么额定 COP 不能直接当电费预算</a></li><li class="l2"><a href="#sec-5">核心痛点问答</a></li><li class="l3"><a href="#sec-5-1">Q1. COP=3 是不是代表电费只有电暖器的三分…</a></li><li class="l3"><a href="#sec-5-2">Q2. 为什么室外零下还有热可以搬？</a></li><li class="l3"><a href="#sec-5-3">Q3. 把出水温度调高是不是更暖更好？</a></li><li class="l3"><a href="#sec-5-4">Q4. 为什么寒潮时热泵会突然耗电很多？</a></li><li class="l2"><a href="#sec-6">立即可用清单</a></li><li class="l2"><a href="#sec-7">来源与边界</a></li></ol>
+    </aside>
+  </div>
+  </main>
+  <footer class="site-footer">
+    <a class="wordmark" href="#main" aria-label="Back to top">lp<span>.</span></a>
+    <p>Built with care. Shared in public.</p>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/tags/">Tags</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="https://leepepe.github.io/LeePepe/">Activity ↗</a>
+      <a href="https://github.com/LeePepe">GitHub ↗</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

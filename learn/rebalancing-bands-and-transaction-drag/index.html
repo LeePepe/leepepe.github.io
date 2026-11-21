@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="green" data-strata-material="solid">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>为什么再平衡不是越勤越好：阈值、交易摩擦与波动收割的数学边界 · Lee Pepe</title>
+<meta name="description" content="再平衡赚的不是“每次卖高买低”的免费收益，而是用可控的漂移换取交易成本、税费与错过趋势之间的折中；当组合偏离还没有跨过成本阈值时，最优动作往往是“不动”。 以 60/40 组合为例，月度强制归位会把每一次小波动都变成交易，而 200/175bp 阈值策略可以把平均交易成本压低到日历策略的约三分之一至四分之一。">
+<link rel="alternate" type="application/atom+xml" title="LeePepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="shell">
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
+    <span class="header-note">An engineering notebook</span>
+    <nav aria-label="Main navigation"><a href="/learn/" aria-current="page">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
+  </header>
+  <main id="main">
+  <div class="post-layout">
+    <div>
+      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <article class="card article">
+        <header class="article-header">
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t20">再平衡</a></li><li><a class="tag" href="/tags/#t4">资产配置</a></li><li><a class="tag" href="/tags/#t18">交易成本</a></li></ul>
+          <h1>为什么再平衡不是越勤越好：阈值、交易摩擦与波动收割的数学边界</h1>
+          <p class="lede">再平衡赚的不是“每次卖高买低”的免费收益，而是用可控的漂移换取交易成本、税费与错过趋势之间的折中；当组合偏离还没有跨过成本阈值时，最优动作往往是“不动”。 以 60/40 组合为例，月度强制归位会把每一次小波动都变成交易，而 200/175bp 阈值策略可以把平均交易成本压低到日历策略的约三分之一至四分之一。</p>
+          <div class="post-meta"><time datetime="2026-11-22">2026 年 11 月 22 日</time><span class="dot" aria-hidden="true">·</span><span>约 2,000 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 7 分钟</span></div>
+        </header>
+        <div class="prose">
+<blockquote><p><strong>一句话结论</strong>：<strong>再平衡赚的不是“每次卖高买低”的免费收益，而是用可控的漂移换取交易成本、税费与错过趋势之间的折中；当组合偏离还没有跨过成本阈值时，最优动作往往是“不动”。</strong> 以 60/40 组合为例，月度强制归位会把每一次小波动都变成交易，而 200/175bp 阈值策略可以把平均交易成本压低到日历策略的约三分之一至四分之一。</p></blockquote>
+<h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
+<table><thead><tr><th>抽象参数</th><th>关键数字/公式</th><th>生活教具</th><th>真正含义</th></tr></thead><tbody><tr><td>目标权重</td><td>股票 60% / 债券 40%</td><td>水池的两格刻度</td><td>是风险预算，不是每天必须回到的读数</td></tr><tr><td>漂移</td><td><code>d = 当前权重 - 目标权重</code></td><td>水位离刻度线的距离</td><td>先允许水位在安全带内波动</td></tr><tr><td>阈值再平衡</td><td><code>abs(d) &gt;= 2%</code> 才触发</td><td>恒温器死区</td><td>避免压缩机为 0.1℃ 波动反复启停</td></tr><tr><td>净收益判据</td><td><code>预期纠偏收益 &gt; 佣金 + 点差 + 税费 + 滑点</code></td><td>搬家成本不能超过家具价值</td><td>交易不是免费的观测动作</td></tr><tr><td>200/175 策略</td><td>目标权重偏离 200bp 触发，交易后回到 175bp</td><td>只把水位推回安全带，不抽干重装</td><td>少交易，同时限制风险漂移</td></tr></tbody></table>
+<h2 id="sec-2">一、再平衡为什么会有收益：把它看成“逆着权重漂移交易”<a class="anchor" href="#sec-2" aria-label="本节链接">#</a></h2>
+<p>设股票目标权重为 <code>w* = 60%</code>，当前权重为 <code>w = 63%</code>。如果股票随后下跌，组合先前多持有的 3 个百分点会放大损失；卖出一部分股票、买入债券，相当于把风险暴露拉回预先设计的水平。反过来，若股票持续上涨，过早卖出也会放弃趋势收益。再平衡因此不是预测市场，而是把组合重新绑回风险预算。</p>
+<p>可以把它想成两个水池：股票池进水快、波动大，债券池进水慢、波动小。水池水位自然会漂移；只有当水位越过警戒线，抽水机才值得启动。每次启动都付出固定电费（佣金、买卖价差、税费），所以“每天纠偏”并不等于“每天增加收益”。</p>
+<h2 id="sec-3">二、为什么频繁归位会吃掉波动收割<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
+<p>再平衡的简化净收益可以写成：</p>
+<p><code>Net = Δrisk_control + Δmean_reversion - Ctrade - Ctax - Copportunity</code></p>
+<p>其中 <code>Δrisk_control</code> 是把风险维持在目标区间的价值，<code>Δmean_reversion</code> 是波动带来的低买高卖机会，后三项是交易成本与机会成本。日历策略每月或每季固定执行，优点是简单；缺点是在组合几乎没有漂移时仍然强行交易。</p>
+<p>Vanguard 的阈值研究显示，200/175bp 的策略相较月度、季度日历策略，平均交易成本更低，年化相对收益约高 <strong>11–18bp</strong>；另一项分析也提醒，较小阈值虽然降低跟踪误差，却会显著提高交易次数。这个数字不是“再平衡必然赚钱”的承诺，而是说明成本项足以改变最优策略。</p>
+<h2 id="sec-4">三、怎样把“偏离多少”换成可执行规则<a class="anchor" href="#sec-4" aria-label="本节链接">#</a></h2>
+<p>先算当前权重：</p>
+<p><code>w_i = market_value_i / total_portfolio_value</code></p>
+<p>再算漂移：</p>
+<p><code>d_i = w_i - w_i*</code></p>
+<p>最后把每类资产的交易成本写成同一张表：</p>
+<table><thead><tr><th>项目</th><th>估算方式</th><th>何时必须纳入</th></tr></thead><tbody><tr><td>显性费用</td><td>申购/赎回、佣金、平台费</td><td>每笔交易</td></tr><tr><td>点差与冲击</td><td><code>成交价 - 中间价</code></td><td>流动性差、金额大</td></tr><tr><td>税费</td><td>应税资本利得或分红</td><td>非免税账户</td></tr><tr><td>机会成本</td><td>卖出强势资产后继续上涨的收益</td><td>趋势强、偏离仍小</td></tr></tbody></table>
+<p>一个可落地的默认策略是：每月只<strong>检查</strong>一次，每年或当任一大类资产偏离目标 <strong>2 个百分点</strong>时才<strong>交易</strong>；交易时优先用新现金流补低配资产，不先卖出刚买入、税费或赎回费最高的份额。</p>
+<h2 id="sec-5">核心痛点问答<a class="anchor" href="#sec-5" aria-label="本节链接">#</a></h2>
+<h3 id="sec-5-1">Q1. 为什么 60/40 不是“股票涨了 1%，就卖一点股票”？<a class="anchor" href="#sec-5-1" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：因为 1% 价格变化不等于 1% 权重漂移。水池总水量也在变化，必须先计算 <code>w_i</code>，再判断 <code>d_i</code> 是否越过阈值。</li></ul>
+<h3 id="sec-5-2">Q2. 阈值设得越小，风险就越安全吗？<a class="anchor" href="#sec-5-2" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：跟踪误差会更小，但交易成本会更高。像把恒温器死区设成 0.01℃：温度更贴刻度，压缩机却可能一直启停。</li></ul>
+<h3 id="sec-5-3">Q3. 200/175bp 是通用答案吗？<a class="anchor" href="#sec-5-3" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：不是。它是一个成本—漂移折中范例。应按资产波动、税费、流动性和可接受最大风险漂移重新校准；高波动资产可能需要更宽阈值，税费高的账户可能更依赖现金流再平衡。</li></ul>
+<h3 id="sec-5-4">Q4. 再平衡是不是在预测均值回归？<a class="anchor" href="#sec-5-4" aria-label="本节链接">#</a></h3>
+<ul><li><strong>直答</strong>：不需要。它首先是风险预算纪律，均值回归只是可能的附带收益；如果把它当作必然低买高卖，就会在强趋势中卖得过早。</li></ul>
+<h2 id="sec-6">立即可用清单<a class="anchor" href="#sec-6" aria-label="本节链接">#</a></h2>
+<ul><li><strong>把“检查频率”和“交易频率”分开</strong>：每月记录权重，每次只有当漂移超过预设阈值才下单。</li><li><strong>建立成本底表</strong>：把佣金、点差、税费和赎回费换算成基点；若预计纠偏收益小于成本，保持不动。</li><li><strong>优先用增量现金流纠偏</strong>：工资、分红或到期资金先补低配资产，减少卖出带来的税费与趋势机会成本。</li></ul>
+<h2 id="sec-7">来源与边界<a class="anchor" href="#sec-7" aria-label="本节链接">#</a></h2>
+<p>本文的阈值与成本数字来自 Vanguard 的阈值再平衡研究；实际结果取决于市场路径、税制、账户类型与执行成本，不构成个性化投资建议。</p>
+        </div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/costco-treasure-hunt-and-loss-leader-psychology/"><span class="dir">← 上一篇</span><span class="t">为什么去 Costco 只想买只烤鸡，出来却花了 1000 块？</span></a><a class="next" href="/learn/sleep-debt-and-circadian-recovery/"><span class="dir">下一篇 →</span><span class="t">睡眠债不是存钱罐：为什么补觉能消除困意，却不能立刻恢复注意力</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+      </article>
+    </div>
+    <aside class="toc" aria-label="本文目录">
+      <p class="section-label">目录</p>
+      <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">一、再平衡为什么会有收益：把它看成“逆着权重漂移交易”</a></li><li class="l2"><a href="#sec-3">二、为什么频繁归位会吃掉波动收割</a></li><li class="l2"><a href="#sec-4">三、怎样把“偏离多少”换成可执行规则</a></li><li class="l2"><a href="#sec-5">核心痛点问答</a></li><li class="l3"><a href="#sec-5-1">Q1. 为什么 60/40 不是“股票涨了 1%，…</a></li><li class="l3"><a href="#sec-5-2">Q2. 阈值设得越小，风险就越安全吗？</a></li><li class="l3"><a href="#sec-5-3">Q3. 200/175bp 是通用答案吗？</a></li><li class="l3"><a href="#sec-5-4">Q4. 再平衡是不是在预测均值回归？</a></li><li class="l2"><a href="#sec-6">立即可用清单</a></li><li class="l2"><a href="#sec-7">来源与边界</a></li></ol>
+    </aside>
+  </div>
+  </main>
+  <footer class="site-footer">
+    <a class="wordmark" href="#main" aria-label="Back to top">lp<span>.</span></a>
+    <p>Built with care. Shared in public.</p>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/tags/">Tags</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="https://leepepe.github.io/LeePepe/">Activity ↗</a>
+      <a href="https://github.com/LeePepe">GitHub ↗</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

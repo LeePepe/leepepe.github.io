@@ -28,7 +28,7 @@
       <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
       <article class="card article">
         <header class="article-header">
-          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t10">TabView</a></li></ul>
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t11">TabView</a></li></ul>
           <h1>SwiftUI 26+ 导航与 API 演进：TabView / Sidebar / SplitView 液态玻璃自适应架构与确定性迁移扫描</h1>
           <p class="lede">iOS 26 / macOS 26 的导航架构升级，本质是把 TabView、Sidebar 与 NavigationSplitView 统一为「悬浮在全画幅内容流之上的自适应液态玻璃胶囊（.sidebarAdaptable + GlassEffectContainer）」，同时配合 scan-manifest 确定性扫描清单淘汰布尔弹窗与旧导航状态。</p>
           <div class="post-meta"><time datetime="2026-11-15">2026 年 11 月 15 日</time><span class="dot" aria-hidden="true">·</span><span>约 3,900 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 9 分钟</span></div>
@@ -64,7 +64,7 @@
 <h2 id="sec-3">立即可用清单<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
 <ul><li><strong>跨端导航首选 <code>TabView</code> + <code>.sidebarAdaptable</code> 与 <code>NavigationSplitView</code></strong>：让系统接管顶部/底部/侧边栏的液态玻璃悬浮与滚动避让，主画布不加多余的外层卡片边框。</li><li><strong>多玻璃按钮必进 <code>GlassEffectContainer</code> 并严守修饰符顺序</strong>：相邻玻璃控件必须放进同一个 <code>GlassEffectContainer(spacing:)</code>，<code>.glassEffect(.regular.interactive())</code> 永远写在 <code>padding</code>/<code>frame</code>/<code>font</code> 之后。</li><li><strong>用 <code>Identifiable</code> 枚举 <code>.sheet(item:)</code> 统一收敛弹窗状态</strong>：按 <code>scan-manifest.md</code> 排查页面中的多个 <code>@State private var showXXX = false</code>，合并为单个枚举状态机，消除状态竞争。</li></ul>
         </div>
-        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/genjutsu-styled-image-generation/"><span class="dir">← 上一篇</span><span class="t">Genjutsu：三尺度视觉编排（cast/paint/bunshin）、风格化视觉生成控制与跨平台契约门禁</span></a></nav>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/genjutsu-styled-image-generation/"><span class="dir">← 上一篇</span><span class="t">Genjutsu：三尺度视觉编排（cast/paint/bunshin）、风格化视觉生成控制与跨平台契约门禁</span></a><a class="next" href="/learn/all-weather-gold-real-rate-decoupling/"><span class="dir">下一篇 →</span><span class="t">为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点</span></a></nav>
         <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
       </article>
     </div>

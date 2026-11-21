@@ -5,11 +5,41 @@
   <link href="https://leepepe.github.io/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://leepepe.github.io/" rel="alternate" type="text/html"/>
   <id>https://leepepe.github.io/</id>
-  <updated>2026-11-15T08:00:00+08:00</updated>
+  <updated>2026-11-21T08:00:00+08:00</updated>
   <author>
     <name>Lee Pepe</name>
     <email>1105208297@qq.com</email>
   </author>
+  <entry>
+    <title>为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点</title>
+    <link href="https://leepepe.github.io/learn/all-weather-gold-real-rate-decoupling/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/all-weather-gold-real-rate-decoupling/</id>
+    <published>2026-11-21T08:00:00+08:00</published>
+    <updated>2026-11-21T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="黄金"/><category term="全天候组合"/><category term="实际利率"/>
+    <summary type="html">黄金的定价锚已经从过去的「美债实际利率倒数（西方机构机会成本）」切换为「全球央行去美元化储备 + 主权债务久期对冲」 —— 在高利率与高债务并存的周期里，黄金不再只是抗 CPI 通胀的阶段性工具，而是全天候组合里唯一零信用风险、与股债相关性同时脱钩的底仓保险。</summary>
+  </entry>
+  <entry>
+    <title>二区有氧（Zone 2）的真正标尺：不是看心率区间，而是看「心率漂移率 ＜ 5%」</title>
+    <link href="https://leepepe.github.io/learn/zone2-cardiac-drift-and-mitochondrial-base/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/zone2-cardiac-drift-and-mitochondrial-base/</id>
+    <published>2026-11-21T08:00:00+08:00</published>
+    <updated>2026-11-21T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="二区有氧"/><category term="心率漂移"/><category term="线粒体"/>
+    <summary type="html">判断一次长跑是不是真正的二区有氧（Zone 2），不能只看手表上写死的「最大心率 60%~70%」，而要看 60 分钟稳态跑前后的「配速心率解耦率（Aerobic Decoupling / Pa:Hr）」是否控制在 5% 以内 —— 漂移低于 5% 说明慢肌纤维线粒体能靠脂肪稳态供能；高于 5% 说明你的有氧底座已经撑不住当前配速，身体正在偷偷透支糖原与快肌。</summary>
+  </entry>
+  <entry>
+    <title>为什么去 Costco 只想买只烤鸡，出来却花了 1000 块？拆解「寻宝动线」与 14% 毛利上限的反直觉零售哲学</title>
+    <link href="https://leepepe.github.io/learn/costco-treasure-hunt-and-loss-leader-psychology/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/costco-treasure-hunt-and-loss-leader-psychology/</id>
+    <published>2026-11-21T08:00:00+08:00</published>
+    <updated>2026-11-21T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="Costco"/><category term="商业模式"/><category term="行为经济学"/>
+    <summary type="html">Costco 根本不是靠卖货赚差价的超市，而是一家「用 14% 硬性毛利封顶换取极致信任、再靠会员费赚走全部净利润」的订阅制俱乐部 —— 那只永远亏钱卖 4.99 美元（国内 39.9 元） 的烤鸡和没有路牌的迷宫货架，是精心设计的「沉没成本 + 稀缺寻宝（Variable Reward）」心理飞轮。</summary>
+  </entry>
   <entry>
     <title>BAMA：预算感知多智能体路由、Agent CLI 与免 GUI 故事验收架构</title>
     <link href="https://leepepe.github.io/learn/bama-budget-aware-multi-agent/" rel="alternate" type="text/html"/>

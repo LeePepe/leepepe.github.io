@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="green" data-strata-material="solid">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>省下来的能源去哪了：Jevons 悖论与效率反弹的三层机制 · Lee Pepe</title>
+<meta name="description" content="效率把完成一次服务的资源成本压低后，需求不一定停在原来的数量；如果新增使用超过节省量，就会出现反弹，极端时总消耗反而上升。">
+<link rel="alternate" type="application/atom+xml" title="LeePepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="shell">
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
+    <span class="header-note">An engineering notebook</span>
+    <nav aria-label="Main navigation"><a href="/learn/" aria-current="page">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
+  </header>
+  <main id="main">
+  <div class="post-layout">
+    <div>
+      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <article class="card article">
+        <header class="article-header">
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t14">Jevons悖论</a></li><li><a class="tag" href="/tags/#t41">能源效率</a></li><li><a class="tag" href="/tags/#t30">反弹效应</a></li></ul>
+          <h1>省下来的能源去哪了：Jevons 悖论与效率反弹的三层机制</h1>
+          <p class="lede">效率把完成一次服务的资源成本压低后，需求不一定停在原来的数量；如果新增使用超过节省量，就会出现反弹，极端时总消耗反而上升。</p>
+          <div class="post-meta"><time datetime="2026-11-22">2026 年 11 月 22 日</time><span class="dot" aria-hidden="true">·</span><span>约 1,700 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
+        </header>
+        <div class="prose">
+<blockquote><p><strong>一句话结论</strong>：<strong>效率把“完成一次服务的资源成本”压低后，需求不一定停在原来的数量；如果新增使用超过节省量，就会出现反弹，极端时总消耗反而上升。</strong> 反弹率可写成 <code>R = (预期节省 - 实际节省) / 预期节省</code>：<code>R=30%</code> 表示省下来的三成被新增使用吃回，<code>R&gt;100%</code> 才是严格意义上的 backfire。</p></blockquote>
+<h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
+<table><thead><tr><th>层级</th><th>机制</th><th>生活教具</th><th>结果</th></tr></thead><tbody><tr><td>直接反弹</td><td>单位服务变便宜，使用次数/时长增加</td><td>省电空调让你多开几小时</td><td>家庭节省少于工程额定值</td></tr><tr><td>间接反弹</td><td>省下的钱转去购买其他耗能服务</td><td>省下油钱后增加旅行</td><td>能源从一个篮子流向另一个篮子</td></tr><tr><td>宏观反弹</td><td>生产率提高、价格下降、产业扩张</td><td>更便宜的计算带来更多服务器</td><td>总需求增长可能抵消效率收益</td></tr><tr><td>反弹率 <code>R</code></td><td><code>(预期节省-实际节省)/预期节省</code></td><td>水池漏水率</td><td>衡量“承诺节省”有多少漏回系统</td></tr></tbody></table>
+<h2 id="sec-2">第一层：单位成本下降会改变使用量<a class="anchor" href="#sec-2" aria-label="本节链接">#</a></h2>
+<p>假设一台旧空调每小时耗电 1.0 kWh，每年开 500 小时，年耗电 500 kWh。换成效率提高 40% 的新机，若使用时长不变，理论耗电降为 300 kWh，节省 200 kWh。</p>
+<p>但如果舒适成本下降让使用时长从 500 小时增到 700 小时，实际耗电是 <code>0.6 × 700 = 420 kWh</code>，只节省 80 kWh。反弹率为：</p>
+<p><code>R = (200 - 80) / 200 = 60%</code></p>
+<p>效率没有失效；它确实降低了每小时的电耗，只是更便宜的服务让人购买了更多“凉爽小时”。这就是把工程效率数字直接等同于账单节省时最容易漏掉的需求反馈。</p>
+<h2 id="sec-3">第二层：省下的钱不会自动离开能源系统<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
+<p>直接反弹之外，家庭可能把省下的电费投入更长距离出行、更大住宅或更多电器。对单个设备做测算时看似完成了节能，家庭预算却把需求转移到了别处。</p>
+<p>把它想成漏水的水池：换高效水龙头确实减小了每分钟流量，但如果水价下降让你洗更久，省下的水还可能被另一只水龙头用掉。系统边界从“这台空调”扩大到“家庭消费篮子”，节省量才不会被错误归因。</p>
+<h2 id="sec-4">第三层：宏观效率可能扩大市场本身<a class="anchor" href="#sec-4" aria-label="本节链接">#</a></h2>
+<p>Jevons 在煤炭蒸汽机时代观察到，效率提高会让资源更便宜、更有利可图，进而扩大使用。现代研究把反弹分成短期/长期、微观/宏观多个层次：价格、收入、替代、产业规模和技术扩散都可能共同作用。</p>
+<p>要注意三个概念不要混为一谈：</p>
+<ul><li><strong>效率提升</strong>：每单位服务消耗更少资源。</li><li><strong>反弹效应</strong>：实际节省小于工程基线。</li><li><strong>backfire</strong>：反弹超过 100%，总资源消耗超过效率改造前。</li></ul>
+<p>“有反弹”不等于“效率没有价值”。大多数政策仍然可以获得净节省，只是需要把价格、使用量和系统边界一起纳入评估。</p>
+<h2 id="sec-5">核心痛点问答<a class="anchor" href="#sec-5" aria-label="本节链接">#</a></h2>
+<h3 id="sec-5-1">看到额定效率提升 40%，就能承诺账单下降 40%吗？<a class="anchor" href="#sec-5-1" aria-label="本节链接">#</a></h3>
+<p>不能。40%是单位服务的工程变化；账单还受使用时长、温度设定、价格和其他设备消费影响。</p>
+<h3 id="sec-5-2">只要限制使用次数，就能消灭反弹吗？<a class="anchor" href="#sec-5-2" aria-label="本节链接">#</a></h3>
+<p>可能把直接反弹压住，却忽略了省下的钱转去别的消费；更好的方案是同时观察设备、家庭和宏观三个边界。</p>
+<h3 id="sec-5-3">Jevons 悖论是否意味着不要追求效率？<a class="anchor" href="#sec-5-3" aria-label="本节链接">#</a></h3>
+<p>不是。它是一个测量和政策设计警报：给效率项目配合反馈、价格、标准或总量约束，才能把单位效率转成系统节省。</p>
+<h2 id="sec-6">立即可用清单<a class="anchor" href="#sec-6" aria-label="本节链接">#</a></h2>
+<ul><li><strong>把基线写成“服务量 × 单位能耗”</strong>：同时记录使用小时/里程/计算量，别只记录设备铭牌效率。</li><li><strong>两周后复测实际反弹率</strong>：用 <code>R</code> 比较工程预期与账单/使用数据，区分直接反弹和消费转移。</li><li><strong>为系统设总量护栏</strong>：节能设备配合温控上限、预算提醒或总能耗目标，避免效率收益完全变成新增使用。</li></ul>
+<h2 id="sec-7">来源与边界<a class="anchor" href="#sec-7" aria-label="本节链接">#</a></h2>
+<p>机制分层参考 <a href="https://www.sciencedirect.com/science/article/pii/S221462962100075X">The Jevons paradox unravelled</a>；关于 backfire 的证据边界参考 <a href="https://www.sciencedirect.com/science/article/pii/S0301421508007428">Jevons’ Paradox revisited</a>。反弹大小高度依赖技术、价格、收入和时间尺度，不能用单一百分比套用所有设备。</p>
+        </div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/sleep-regularity-and-recovery/"><span class="dir">← 上一篇</span><span class="t">睡眠规律性不是作息洁癖：同样睡八小时，时钟漂移也会改变恢复</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+      </article>
+    </div>
+    <aside class="toc" aria-label="本文目录">
+      <p class="section-label">目录</p>
+      <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">第一层：单位成本下降会改变使用量</a></li><li class="l2"><a href="#sec-3">第二层：省下的钱不会自动离开能源系统</a></li><li class="l2"><a href="#sec-4">第三层：宏观效率可能扩大市场本身</a></li><li class="l2"><a href="#sec-5">核心痛点问答</a></li><li class="l3"><a href="#sec-5-1">看到额定效率提升 40%，就能承诺账单下降 40%…</a></li><li class="l3"><a href="#sec-5-2">只要限制使用次数，就能消灭反弹吗？</a></li><li class="l3"><a href="#sec-5-3">Jevons 悖论是否意味着不要追求效率？</a></li><li class="l2"><a href="#sec-6">立即可用清单</a></li><li class="l2"><a href="#sec-7">来源与边界</a></li></ol>
+    </aside>
+  </div>
+  </main>
+  <footer class="site-footer">
+    <a class="wordmark" href="#main" aria-label="Back to top">lp<span>.</span></a>
+    <p>Built with care. Shared in public.</p>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/tags/">Tags</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="https://leepepe.github.io/LeePepe/">Activity ↗</a>
+      <a href="https://github.com/LeePepe">GitHub ↗</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

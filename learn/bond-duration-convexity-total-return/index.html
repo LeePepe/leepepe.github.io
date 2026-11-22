@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="green" data-strata-material="solid">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>债券久期不是到期时间：利率冲击下的总回报与凸性 · Lee Pepe</title>
+<meta name="description" content="久期不是“还有几年到期”，而是债券全部未来现金流的现值重心；利率上升 1 个百分点时，修正久期约 7 年的组合先损失约 7%，票息与凸性再把这张账单部分拉回。">
+<link rel="alternate" type="application/atom+xml" title="LeePepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="shell">
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
+    <span class="header-note">An engineering notebook</span>
+    <nav aria-label="Main navigation"><a href="/learn/" aria-current="page">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
+  </header>
+  <main id="main">
+  <div class="post-layout">
+    <div>
+      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <article class="card article">
+        <header class="article-header">
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t24">债券</a></li><li><a class="tag" href="/tags/#t20">久期</a></li><li><a class="tag" href="/tags/#t28">凸性</a></li></ul>
+          <h1>债券久期不是到期时间：利率冲击下的总回报与凸性</h1>
+          <p class="lede">久期不是“还有几年到期”，而是债券全部未来现金流的现值重心；利率上升 1 个百分点时，修正久期约 7 年的组合先损失约 7%，票息与凸性再把这张账单部分拉回。</p>
+          <div class="post-meta"><time datetime="2026-11-22">2026 年 11 月 22 日</time><span class="dot" aria-hidden="true">·</span><span>约 1,800 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
+        </header>
+        <div class="prose">
+<blockquote><p><strong>一句话结论</strong>：<strong>久期不是“还有几年到期”，而是债券全部未来现金流的现值重心；利率上升 1 个百分点时，修正久期约 7 年的组合先损失约 7%，票息与凸性再把这张账单部分拉回。</strong></p></blockquote>
+<h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
+<table><thead><tr><th>抽象参数</th><th>关键数字/公式</th><th>生活教具</th><th>真正含义</th></tr></thead><tbody><tr><td>修正久期 <code>D</code></td><td><code>ΔP/P ≈ -D×Δy</code></td><td>一根现金流跷跷板</td><td>利率小幅变化时的价格一阶敏感度</td></tr><tr><td>凸性 <code>C</code></td><td><code>+ ½C×(Δy)²</code></td><td>弯曲的滑梯</td><td>利率变化越大，直线近似的误差越明显</td></tr><tr><td>票息收益</td><td><code>coupon / price</code></td><td>持有期间收租</td><td>价格下跌时仍在提供现金流</td></tr><tr><td>总回报</td><td><code>price change + coupon + reinvestment</code></td><td>房价变化加租金</td><td>不能只看净值曲线的一天波动</td></tr><tr><td>100bp</td><td><code>0.01 = 100bp</code></td><td>温度计的一格刻度</td><td>把“利率涨很多”换成可计算单位</td></tr></tbody></table>
+<h2 id="sec-2">现金流重心决定了利率敏感度<a class="anchor" href="#sec-2" aria-label="本节链接">#</a></h2>
+<p>把债券想成一串未来到账的红包：零息债只有到期日一个大红包，现金流重心靠后；高票息债不断提前发小红包，重心被拉向今天。债券价格是这些红包按收益率折现后的总和，因此收益率上升，相当于把远处红包打更大的折扣，长久期债券先受伤。</p>
+<p>如果一个债券组合的修正久期是 <code>D = 7</code>，收益率从 4.00% 上升到 4.50%，即 <code>Δy = 0.005</code>，一阶估算为：</p>
+<p><code>ΔP/P ≈ -7 × 0.005 = -3.5%</code></p>
+<p>这不是“持有七年就不会亏”的保证，而是今天价格对利率瞬时变化的斜率。到期时间只是一个日期，久期才是风险暴露的重心。</p>
+<h2 id="sec-3">总回报是一张三栏账，而不是只看净值<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
+<p>债券投资者在持有期内同时面对三项：价格因利率变化产生的资本利得/损失、收到的票息、票息再投资的收益。用一年持有期做简化账本：</p>
+<p><code>总回报 ≈ 价格变化 + 票息收入 + 票息再投资收益</code></p>
+<p>因此，短期利率冲击可能令净值先跌，但高票息会持续“进水”；若持有期拉长，较高收益率还会提高新收到现金的再投资回报。评价债券基金不能只截取一次加息日的价格跌幅，也不能把票息当成能立刻抵消久期损失的护盾。</p>
+<h2 id="sec-4">凸性为什么让大幅变动不能用直线硬算<a class="anchor" href="#sec-4" aria-label="本节链接">#</a></h2>
+<p>价格—收益率关系不是直线，而是向上弯曲的曲线。加入凸性后：</p>
+<p><code>ΔP/P ≈ -D×Δy + ½C×(Δy)²</code></p>
+<p>假设 <code>D = 7</code>、<code>C = 60</code>、收益率上升 150bp：</p>
+<ul><li>久期项：<code>-7 × 0.015 = -10.50%</code></li><li>凸性修正：<code>½ × 60 × 0.015² = +0.675%</code></li><li>合计约：<code>-9.825%</code>，比只用久期的估算少跌约 0.675 个百分点。</li></ul>
+<p>凸性不是免费收益，也不是所有债券都一样；可赎回债券的现金流会随利率改变，不能简单套用普通固定利率债的正凸性。CFA Institute 的复习材料也把“久期是一阶近似、凸性是二阶修正”作为组合利率风险的基本边界。</p>
+<h2 id="sec-5">核心痛点问答<a class="anchor" href="#sec-5" aria-label="本节链接">#</a></h2>
+<h3 id="sec-5-1">到期时间越长，久期一定越长吗？<a class="anchor" href="#sec-5-1" aria-label="本节链接">#</a></h3>
+<p>不一定。票息越高，越多现值提前回收，久期可能低于到期时间；带期权的债券还会出现有效久期随利率变化。</p>
+<h3 id="sec-5-2">利率上涨时，债券一定亏钱吗？<a class="anchor" href="#sec-5-2" aria-label="本节链接">#</a></h3>
+<p>短期价格通常承压，但总回报还包含票息与再投资；真正要问的是持有期、久期、票息和利率路径是否匹配。</p>
+<h3 id="sec-5-3">“持有到期就没有利率风险”对基金成立吗？<a class="anchor" href="#sec-5-3" aria-label="本节链接">#</a></h3>
+<p>对单只债券，持有到期可以把本金和票息路径锁得更清楚；债券基金不断买卖、没有单一到期日，净值仍会随市场利率变化。</p>
+<h2 id="sec-6">立即可用清单<a class="anchor" href="#sec-6" aria-label="本节链接">#</a></h2>
+<ul><li><strong>先看久期再看“债券”标签</strong>：把收益率变动 50bp、100bp 代入 <code>-D×Δy</code>，先得到压力测试的一阶结果。</li><li><strong>把总回报拆三栏</strong>：分别记录价格、票息、再投资，不用单日净值变化替代持有期回报。</li><li><strong>大幅利率情景加凸性</strong>：久期只适合小变动；遇到 100bp 以上冲击或长久期组合，加入 <code>½C×(Δy)²</code>，并检查是否含嵌入期权。</li></ul>
+<h2 id="sec-7">来源与边界<a class="anchor" href="#sec-7" aria-label="本节链接">#</a></h2>
+<p>公式和凸性定义参考 <a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/yield-based-bond-convexity-and-portfolio-properties">CFA Institute 的 Yield-Based Bond Convexity and Portfolio Properties</a>。示例是教育性近似，不构成个性化投资建议；实际结果还受信用利差、税费、流动性和现金流再投资影响。</p>
+        </div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/heat-pump-cop-temperature-lift/"><span class="dir">← 上一篇</span><span class="t">热泵为什么能用 1 度电搬来 3 度热：COP、温差与低温衰减</span></a><a class="next" href="/learn/sleep-regularity-and-recovery/"><span class="dir">下一篇 →</span><span class="t">睡眠规律性不是作息洁癖：同样睡八小时，时钟漂移也会改变恢复</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+      </article>
+    </div>
+    <aside class="toc" aria-label="本文目录">
+      <p class="section-label">目录</p>
+      <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">现金流重心决定了利率敏感度</a></li><li class="l2"><a href="#sec-3">总回报是一张三栏账，而不是只看净值</a></li><li class="l2"><a href="#sec-4">凸性为什么让大幅变动不能用直线硬算</a></li><li class="l2"><a href="#sec-5">核心痛点问答</a></li><li class="l3"><a href="#sec-5-1">到期时间越长，久期一定越长吗？</a></li><li class="l3"><a href="#sec-5-2">利率上涨时，债券一定亏钱吗？</a></li><li class="l3"><a href="#sec-5-3">“持有到期就没有利率风险”对基金成立吗？</a></li><li class="l2"><a href="#sec-6">立即可用清单</a></li><li class="l2"><a href="#sec-7">来源与边界</a></li></ol>
+    </aside>
+  </div>
+  </main>
+  <footer class="site-footer">
+    <a class="wordmark" href="#main" aria-label="Back to top">lp<span>.</span></a>
+    <p>Built with care. Shared in public.</p>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/tags/">Tags</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="https://leepepe.github.io/LeePepe/">Activity ↗</a>
+      <a href="https://github.com/LeePepe">GitHub ↗</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

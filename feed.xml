@@ -37,8 +37,38 @@
     <published>2026-11-22T08:00:00+08:00</published>
     <updated>2026-11-22T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="热泵"/><category term="COP"/><category term="制冷循环"/>
-    <summary type="html">热泵不是把 1 度电“变成”3 度热，而是用电驱动压缩机，把室外空气、土壤或水中的热量搬进屋内。 因此供热性能用 COP（性能系数）表示：`COP_h = Q_h / W = 1 + Q_c / W`；COP 为 3 时，1 kWh 电对应约 3 kWh 的室内热量，其中约 2 kWh 是从环境搬来的。</summary>
+    <category term="热泵"/><category term="COP"/><category term="能量守恒"/>
+    <summary type="html">热泵不是制造三份热，而是用一份电把两份环境热搬进室内；COP、Carnot 上限和供水温度解释了为什么低温与高温末端会同时抬高电费。</summary>
+  </entry>
+  <entry>
+    <title>债券久期不是到期时间：利率冲击下的总回报与凸性</title>
+    <link href="https://leepepe.github.io/learn/bond-duration-convexity-total-return/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/bond-duration-convexity-total-return/</id>
+    <published>2026-11-22T08:00:00+08:00</published>
+    <updated>2026-11-22T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="债券"/><category term="久期"/><category term="凸性"/>
+    <summary type="html">久期不是“还有几年到期”，而是债券全部未来现金流的现值重心；利率上升 1 个百分点时，修正久期约 7 年的组合先损失约 7%，票息与凸性再把这张账单部分拉回。</summary>
+  </entry>
+  <entry>
+    <title>睡眠规律性不是作息洁癖：同样睡八小时，时钟漂移也会改变恢复</title>
+    <link href="https://leepepe.github.io/learn/sleep-regularity-and-recovery/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/sleep-regularity-and-recovery/</id>
+    <published>2026-11-22T08:00:00+08:00</published>
+    <updated>2026-11-22T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="睡眠"/><category term="昼夜节律"/><category term="恢复"/>
+    <summary type="html">睡够时长不等于给生物钟稳定输入；像每天把闹钟拨动一小时，睡眠总量可以相同，昼夜节律却一直在追赶。</summary>
+  </entry>
+  <entry>
+    <title>省下来的能源去哪了：Jevons 悖论与效率反弹的三层机制</title>
+    <link href="https://leepepe.github.io/learn/jevons-paradox-energy-rebound/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/jevons-paradox-energy-rebound/</id>
+    <published>2026-11-22T08:00:00+08:00</published>
+    <updated>2026-11-22T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="Jevons悖论"/><category term="能源效率"/><category term="反弹效应"/>
+    <summary type="html">效率把完成一次服务的资源成本压低后，需求不一定停在原来的数量；如果新增使用超过节省量，就会出现反弹，极端时总消耗反而上升。</summary>
   </entry>
   <entry>
     <title>为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点</title>

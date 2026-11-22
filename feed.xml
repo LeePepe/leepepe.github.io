@@ -37,8 +37,8 @@
     <published>2026-11-22T08:00:00+08:00</published>
     <updated>2026-11-22T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="热泵"/><category term="COP"/><category term="能量守恒"/>
-    <summary type="html">热泵不是制造三份热，而是用一份电把两份环境热搬进室内；COP、Carnot 上限和供水温度解释了为什么低温与高温末端会同时抬高电费。</summary>
+    <category term="热泵"/><category term="COP"/><category term="制冷循环"/>
+    <summary type="html">热泵不是把 1 度电“变成”3 度热，而是用电驱动压缩机，把室外空气、土壤或水中的热量搬进屋内。 因此供热性能用 COP（性能系数）表示：`COP_h = Q_h / W = 1 + Q_c / W`；COP 为 3 时，1 kWh 电对应约 3 kWh 的室内热量，其中约 2 kWh 是从环境搬来的。</summary>
   </entry>
   <entry>
     <title>为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点</title>

@@ -590,6 +590,24 @@ def render_blocks(
             )
             continue
 
+        # Standalone Markdown image -> <figure class="prose-diagram"><img ...><figcaption>...</figcaption></figure>
+        img_match = re.match(r"^!\[([^\]]*)\]\(([^)]+)\)\s*$", stripped)
+        if img_match:
+            alt_text = img_match.group(1).strip()
+            src_url = img_match.group(2).strip()
+            cap_html = (
+                f'<figcaption style="margin-top:10px;font-size:0.875rem;color:var(--strata-text-secondary);text-align:center">{format_inline(alt_text)}</figcaption>'
+                if alt_text
+                else ""
+            )
+            out.append(
+                f'<figure class="prose-diagram" style="margin:24px 0;padding:16px;background:var(--strata-surface-card);border:1px solid var(--strata-border);border-radius:14px">'
+                f'<img src="{html.escape(src_url, quote=True)}" alt="{html.escape(strip_emoji(alt_text), quote=True)}" loading="lazy" style="display:block;width:100%;height:auto;border-radius:10px">'
+                f"{cap_html}</figure>"
+            )
+            i += 1
+            continue
+
         # Blockquote
         if stripped.startswith(">"):
             bq_lines: list[str] = []

@@ -216,6 +216,58 @@ LEARN_ARTICLES: list[dict[str, Any]] = [
         "aliases": [],
         "category": "理财与宏观",
         "title": "为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点",
+        "short_title": "全天候组合里的黄金定价新锚点",
+        "reading_time": "阅读约 6 分钟",
+        "updated": "2026-11-21",
+        "teaser": "黄金的定价锚已从过去的「10 年期 TIPS 美债实际利率倒数」切换为「全球央行年均 1,000+ 吨去美元化储备 + 主权债务久期对冲」——详解边际买家转移、全天候四象限零信用风险压舱石机制，以及 ETF 与联接 A/C 的费率临界点与 ±5% 再平衡纪律。",
+        "sources": ["concepts/all-weather-gold-real-rate-decoupling.md"],
+        "tags": ["黄金", "全天候组合", "资产配置"],
+    },
+    {
+        "num": "12",
+        "slug": "zone2-cardiac-drift-and-mitochondrial-base",
+        "aliases": [],
+        "category": "运动与生理科学",
+        "title": "二区有氧（Zone 2）的真正标尺：不是看心率区间，而是看「心率漂移率 ＜ 5%」",
+        "short_title": "二区有氧的真正标尺：心率漂移率 ＜ 5%",
+        "reading_time": "阅读约 6 分钟",
+        "updated": "2026-11-21",
+        "teaser": "判断一次长跑是不是真正的二区有氧，不能只看年龄公式算出的固定心率区间，而要看 45～60 分钟稳态跑前后半程的「配速-心率解耦率（Pa:Hr）」是否控制在 5% 以内——详解慢肌线粒体 MCT1 乳酸穿梭、LT1 第一乳酸阈值与 1% 脱水率的心血管漂移机制。",
+        "sources": ["concepts/zone2-cardiac-drift-and-mitochondrial-base.md"],
+        "tags": ["二区有氧", "心率漂移", "跑步科学"],
+    },
+    {
+        "num": "13",
+        "slug": "costco-treasure-hunt-and-loss-leader-psychology",
+        "aliases": [],
+        "category": "商业与行为心理",
+        "title": "为什么去 Costco 只想买只烤鸡，出来却花了 1000 块？拆解「寻宝动线」与 14% 毛利上限的反直觉零售哲学",
+        "short_title": "Costco 寻宝动线与 14% 毛利上限哲学",
+        "reading_time": "阅读约 6 分钟",
+        "updated": "2026-11-21",
+        "teaser": "Costco 不是靠卖货赚差价的超市，而是用「14% 硬性毛利封顶 + 3,800 个严选 SKU」消除比价防御与选择悖论，再通过年亏数千万的 4.99 美元最深处烤鸡、299 元年费沉没成本心理账户与无路牌可变奖赏寻宝货架，赚走 90%+ 续费率的会员费纯利。",
+        "sources": ["concepts/costco-treasure-hunt-and-loss-leader-psychology.md"],
+        "tags": ["Costco", "商业模式", "行为经济学"],
+    },
+    {
+        "num": "14",
+        "slug": "nasm-ep01-kinetic-chain-three-systems",
+        "aliases": [],
+        "category": "NASM 运动科学连载",
+        "title": "NASM 运动科学连载 Ep.01：动力链三系统总览——骨骼、关节、肌肉与神经如何协同发力",
+        "short_title": "NASM Ep.01：动力链三系统协同发力",
+        "reading_time": "阅读约 7 分钟",
+        "updated": "2026-11-22",
+        "teaser": "人体的任何动作都不是单一肌肉孤立收缩的结果，而是由骨骼关节（刚性杠杆与铰链）、肌肉筋膜（主动拉力致动器）与神经系统（30 毫秒闭环控制器）构成的「动力链（Kinetic Chain）」协同输出；详解杠杆换向、30ms 感觉-整合-运动反馈回路与下交叉代偿链。",
+        "sources": ["concepts/nasm-ep01-kinetic-chain-three-systems.md"],
+        "tags": ["NASM", "动力链", "运动解剖"],
+    },
+    {
+        "num": "11",
+        "slug": "all-weather-gold-real-rate-decoupling",
+        "aliases": [],
+        "category": "理财与宏观",
+        "title": "为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点",
         "short_title": "黄金与实际利率脱钩",
         "reading_time": "阅读约 6 分钟",
         "updated": "2026-11-21",
@@ -505,7 +557,7 @@ def render_blocks(
             i += 1
             continue
 
-        # Code block -> prototype Rouge structure
+        # Code block -> prototype Rouge structure (or native SVG diagram when lang is svg[:caption])
         if stripped.startswith("```"):
             lang = stripped[3:].strip()
             code_lines: list[str] = []
@@ -515,7 +567,19 @@ def render_blocks(
                 i += 1
             i += 1
             raw_code = "\n".join(code_lines)
-            lang_norm = (lang or "text").lower()
+            lang_head, _, caption_raw = lang.partition(":")
+            lang_norm = (lang_head or "text").strip().lower()
+            if lang_norm in {"svg", "diagram"} and "<svg" in raw_code:
+                cap_html = (
+                    f'<figcaption style="margin-top:10px;font-size:0.875rem;color:var(--strata-text-secondary);text-align:center">{format_inline(caption_raw.strip())}</figcaption>'
+                    if caption_raw.strip()
+                    else ""
+                )
+                out.append(
+                    f'<figure class="prose-diagram" style="margin:24px 0;padding:20px;background:var(--strata-surface-card);border:1px solid var(--strata-border);border-radius:14px;overflow-x:auto">'
+                    f"{raw_code.strip()}{cap_html}</figure>"
+                )
+                continue
             lang_badge = html.escape(lang_norm.upper() if lang else "CODE")
             code_highlighted = highlight_code(raw_code)
             out.append(

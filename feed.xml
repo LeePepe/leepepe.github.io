@@ -11,6 +11,16 @@
     <email>1105208297@qq.com</email>
   </author>
   <entry>
+    <title>NASM 运动科学连载 Ep.01：动力链三系统总览——骨骼、关节、肌肉与神经如何协同发力</title>
+    <link href="https://leepepe.github.io/learn/nasm-ep01-kinetic-chain-three-systems/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/nasm-ep01-kinetic-chain-three-systems/</id>
+    <published>2026-11-22T08:00:00+08:00</published>
+    <updated>2026-11-22T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="NASM"/><category term="动力链"/><category term="运动解剖"/>
+    <summary type="html">人体的任何动作都不是单一肌肉孤立收缩的结果，而是由骨骼关节（刚性杠杆与铰链）、肌肉筋膜（主动拉力致动器）与神经系统（30 毫秒闭环控制器）构成的「动力链（Kinetic Chain）」协同输出；详解杠杆换向、30ms 感觉-整合-运动反馈回路与下交叉代偿链。</summary>
+  </entry>
+  <entry>
     <title>为什么再平衡不是越勤越好：阈值、交易摩擦与波动收割的数学边界</title>
     <link href="https://leepepe.github.io/learn/rebalancing-bands-and-transaction-drag/" rel="alternate" type="text/html"/>
     <id>https://leepepe.github.io/learn/rebalancing-bands-and-transaction-drag/</id>
@@ -71,24 +81,14 @@
     <summary type="html">效率把完成一次服务的资源成本压低后，需求不一定停在原来的数量；如果新增使用超过节省量，就会出现反弹，极端时总消耗反而上升。</summary>
   </entry>
   <entry>
-    <title>NASM 运动科学连载 Ep.01：动力链三系统总览——骨骼、关节、肌肉与神经如何协同发力</title>
-    <link href="https://leepepe.github.io/learn/nasm-ep01-kinetic-chain-three-systems/" rel="alternate" type="text/html"/>
-    <id>https://leepepe.github.io/learn/nasm-ep01-kinetic-chain-three-systems/</id>
-    <published>2026-11-22T08:00:00+08:00</published>
-    <updated>2026-11-22T08:00:00+08:00</updated>
-    <author><name>Lee Pepe</name></author>
-    <category term="NASM"/><category term="动力链"/><category term="运动解剖"/>
-    <summary type="html">人体的任何动作都不是单一肌肉孤立收缩的结果，而是由骨骼关节（刚性杠杆与铰链）、肌肉筋膜（主动拉力致动器）与神经系统（30 毫秒闭环控制器）共同构成的「动力链（Kinetic Chain）」协同输出；只要链条中的任一环节出现关节受限、肌肉短缩或神经募集失灵，相邻关节与肌群就必然被迫发生结构性代偿。</summary>
-  </entry>
-  <entry>
     <title>为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点</title>
     <link href="https://leepepe.github.io/learn/all-weather-gold-real-rate-decoupling/" rel="alternate" type="text/html"/>
     <id>https://leepepe.github.io/learn/all-weather-gold-real-rate-decoupling/</id>
     <published>2026-11-21T08:00:00+08:00</published>
     <updated>2026-11-21T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="黄金"/><category term="全天候组合"/><category term="实际利率"/>
-    <summary type="html">黄金的边际定价锚已从过去的「10 年期美债实际利率倒数（西方机构利息机会成本）」切换为「全球央行去美元化储备 + 主权财政债务久期对冲」；在全天候资产配置中，15% 的黄金底仓不是博取短期价差的投机筹码，而是唯一零对手方信用风险、用于在滞胀与财政主导周期中对冲「股债双杀」的结构性压舱石。</summary>
+    <category term="黄金"/><category term="全天候组合"/><category term="资产配置"/>
+    <summary type="html">黄金的定价锚已从过去的「10 年期 TIPS 美债实际利率倒数」切换为「全球央行年均 1,000+ 吨去美元化储备 + 主权债务久期对冲」——详解边际买家转移、全天候四象限零信用风险压舱石机制，以及 ETF 与联接 A/C 的费率临界点与 ±5% 再平衡纪律。</summary>
   </entry>
   <entry>
     <title>二区有氧（Zone 2）的真正标尺：不是看心率区间，而是看「心率漂移率 ＜ 5%」</title>
@@ -97,8 +97,8 @@
     <published>2026-11-21T08:00:00+08:00</published>
     <updated>2026-11-21T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
-    <category term="二区有氧"/><category term="心率漂移"/><category term="线粒体"/>
-    <summary type="html">二区有氧（Zone 2）的生理本质是「在第一乳酸阈值（LT1）以下最大化刺激慢肌纤维线粒体与脂肪氧化」；判断一次长跑是否真正处于二区，不能依赖年龄公式算出的静态心率区间，而要看 45～60 分钟稳态跑前后的配速-心率解耦率（Pa:Hr，即心率漂移率）是否控制在 5% 以内。</summary>
+    <category term="二区有氧"/><category term="心率漂移"/><category term="跑步科学"/>
+    <summary type="html">判断一次长跑是不是真正的二区有氧，不能只看年龄公式算出的固定心率区间，而要看 45～60 分钟稳态跑前后半程的「配速-心率解耦率（Pa:Hr）」是否控制在 5% 以内——详解慢肌线粒体 MCT1 乳酸穿梭、LT1 第一乳酸阈值与 1% 脱水率的心血管漂移机制。</summary>
   </entry>
   <entry>
     <title>为什么去 Costco 只想买只烤鸡，出来却花了 1000 块？拆解「寻宝动线」与 14% 毛利上限的反直觉零售哲学</title>
@@ -108,7 +108,37 @@
     <updated>2026-11-21T08:00:00+08:00</updated>
     <author><name>Lee Pepe</name></author>
     <category term="Costco"/><category term="商业模式"/><category term="行为经济学"/>
-    <summary type="html">Costco 的本质不是赚取商品进销差价的传统零售商，而是以会员费为核心利润源的「买方代理俱乐部」：通过 14% 硬性毛利上限与 3,800 个严选 SKU 消除消费者的比价防御，再利用年费沉没成本、卖场深处的亏本引流品（Loss Leader）与无路牌可变比率奖赏（Variable-Ratio Reinforcement），系统性放大单次客单价。</summary>
+    <summary type="html">Costco 不是靠卖货赚差价的超市，而是用「14% 硬性毛利封顶 + 3,800 个严选 SKU」消除比价防御与选择悖论，再通过年亏数千万的 4.99 美元最深处烤鸡、299 元年费沉没成本心理账户与无路牌可变奖赏寻宝货架，赚走 90%+ 续费率的会员费纯利。</summary>
+  </entry>
+  <entry>
+    <title>为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点</title>
+    <link href="https://leepepe.github.io/learn/all-weather-gold-real-rate-decoupling/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/all-weather-gold-real-rate-decoupling/</id>
+    <published>2026-11-21T08:00:00+08:00</published>
+    <updated>2026-11-21T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="黄金"/><category term="实际利率"/><category term="资产配置"/>
+    <summary type="html">黄金与实际利率的旧负相关并没有消失，而是被央行储备需求、财政久期和信用风险重新加权；理解全天候组合里的黄金，先要拆开机会成本与对手方风险。</summary>
+  </entry>
+  <entry>
+    <title>二区有氧的真正标尺：不是看心率区间，而是看心率漂移率</title>
+    <link href="https://leepepe.github.io/learn/zone2-cardiac-drift-and-mitochondrial-base/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/zone2-cardiac-drift-and-mitochondrial-base/</id>
+    <published>2026-11-21T08:00:00+08:00</published>
+    <updated>2026-11-21T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="二区有氧"/><category term="心率漂移"/><category term="运动生理"/>
+    <summary type="html">二区训练的边界不是年龄公式给出的一个静态数字，而是长时间稳态下配速与心率是否解耦；把心率漂移变成可复测的训练仪表盘。</summary>
+  </entry>
+  <entry>
+    <title>为什么去 Costco 只想买只烤鸡，出来却花了 1000 块？</title>
+    <link href="https://leepepe.github.io/learn/costco-treasure-hunt-and-loss-leader-psychology/" rel="alternate" type="text/html"/>
+    <id>https://leepepe.github.io/learn/costco-treasure-hunt-and-loss-leader-psychology/</id>
+    <published>2026-11-21T08:00:00+08:00</published>
+    <updated>2026-11-21T08:00:00+08:00</updated>
+    <author><name>Lee Pepe</name></author>
+    <category term="Costco"/><category term="行为经济学"/><category term="商业模式"/>
+    <summary type="html">会员费、低毛利上限、亏本引流品和无路牌动线共同制造了“寻宝”反馈回路；客单价上升不是顾客突然失去自制力，而是激励结构被重新设计。</summary>
   </entry>
   <entry>
     <title>BAMA：预算感知多智能体路由、Agent CLI 与免 GUI 故事验收架构</title>

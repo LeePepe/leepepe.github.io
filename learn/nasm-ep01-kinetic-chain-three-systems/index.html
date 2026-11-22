@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:,">
 <title>NASM 运动科学连载 Ep.01：动力链三系统总览——骨骼、关节、肌肉与神经如何协同发力 · Lee Pepe</title>
-<meta name="description" content="人体的任何动作都不是单一肌肉孤立收缩的结果，而是由骨骼关节（刚性杠杆与铰链）、肌肉筋膜（主动拉力致动器）与神经系统（30 毫秒闭环控制器）共同构成的「动力链（Kinetic Chain）」协同输出；只要链条中的任一环节出现关节受限、肌肉短缩或神经募集失灵，相邻关节与肌群就必然被迫发生结构性代偿。">
+<meta name="description" content="人体的任何动作都不是单一肌肉孤立收缩的结果，而是由骨骼关节（刚性杠杆与铰链）、肌肉筋膜（主动拉力致动器）与神经系统（30 毫秒闭环控制器）构成的「动力链（Kinetic Chain）」协同输出；详解杠杆换向、30ms 感觉-整合-运动反馈回路与下交叉代偿链。">
 <link rel="alternate" type="application/atom+xml" title="LeePepe · RSS 订阅" href="/feed.xml">
 <script src="/assets/theme.js"></script>
 <link rel="stylesheet" href="/assets/colors.css">
@@ -28,10 +28,10 @@
       <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
       <article class="card article">
         <header class="article-header">
-          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t15">NASM</a></li><li><a class="tag" href="/tags/#t30">动力链</a></li><li><a class="tag" href="/tags/#t51">运动解剖</a></li></ul>
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t21">NASM</a></li><li><a class="tag" href="/tags/#t35">动力链</a></li><li><a class="tag" href="/tags/#t53">运动解剖</a></li></ul>
           <h1>NASM 运动科学连载 Ep.01：动力链三系统总览——骨骼、关节、肌肉与神经如何协同发力</h1>
-          <p class="lede">人体的任何动作都不是单一肌肉孤立收缩的结果，而是由骨骼关节（刚性杠杆与铰链）、肌肉筋膜（主动拉力致动器）与神经系统（30 毫秒闭环控制器）共同构成的「动力链（Kinetic Chain）」协同输出；只要链条中的任一环节出现关节受限、肌肉短缩或神经募集失灵，相邻关节与肌群就必然被迫发生结构性代偿。</p>
-          <div class="post-meta"><time datetime="2026-11-22">2026 年 11 月 22 日</time><span class="dot" aria-hidden="true">·</span><span>约 7,200 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 7 分钟</span></div>
+          <p class="lede">人体的任何动作都不是单一肌肉孤立收缩的结果，而是由骨骼关节（刚性杠杆与铰链）、肌肉筋膜（主动拉力致动器）与神经系统（30 毫秒闭环控制器）构成的「动力链（Kinetic Chain）」协同输出；详解杠杆换向、30ms 感觉-整合-运动反馈回路与下交叉代偿链。</p>
+          <div class="post-meta"><time datetime="2026-11-22">2026 年 11 月 22 日</time><span class="dot" aria-hidden="true">·</span><span>约 28,000 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 7 分钟</span></div>
         </header>
         <div class="prose">
 <blockquote><p><strong>一句话结论</strong>：人体的任何动作都不是单一肌肉孤立收缩的结果，而是由<strong>骨骼关节（刚性杠杆与铰链）、肌肉筋膜（主动拉力致动器）与神经系统（30 毫秒闭环控制器）</strong>共同构成的「动力链（Kinetic Chain）」协同输出；只要链条中的任一环节出现关节受限、肌肉短缩或神经募集失灵，相邻关节与肌群就必然被迫发生结构性代偿。</p></blockquote>
@@ -47,38 +47,203 @@
 <h3 id="sec-2-1">1. 骨骼与关节系统：被动刚性机架与轴承铰链<a class="anchor" href="#sec-2-1" aria-label="本节链接">#</a></h3>
 <p>人体的 206 块骨骼分为两大部分：<strong>中轴骨（Axial Skeleton，共 80 块）</strong>——包括颅骨、脊柱和胸廓，构成了人体纵向承重与保护中枢神经的主立柱；<strong>附肢骨（Appendicular Skeleton，共 126 块）</strong>——包括上肢带（锁骨、肩胛骨）、自由上肢骨，以及下肢带（骨盆）、自由下肢骨，负责将主立柱的稳定支撑转化为四肢的大幅度位移与做功。</p>
 <p>两块或多块骨骼交汇之处形成<strong>关节（Arthrokinematics）</strong>。骨骼本身是没有任何主动运动能力的被动刚体；关节囊、滑液与韧带则像高精度轴承与限位器，一方面通过滑液将摩擦系数降至接近冰面，另一方面通过韧带的抗拉强度限制骨头发生脱位。骨骼与关节为运动划定了“物理轨道”——例如膝关节主要是屈伸铰链，而髋关节与肩盂肱关节则是允许三平面旋转的球窝轴承。</p>
-<h3 id="sec-2-2">2. 肌肉与筋膜系统：主动线性致动器与张力网<a class="anchor" href="#sec-2-2" aria-label="本节链接">#</a></h3>
+<h3 id="sec-2-2">2. 肌肉与筋膜系统：为什么肌肉只能“拉”却能完成“推”<a class="anchor" href="#sec-2-2" aria-label="本节链接">#</a></h3>
 <p>如果只有骨骼和关节，人体只是一具散架的骨架。让骨架站立并移动的，是通过肌腱附着在骨骼两端、跨过一个或多个关节的<strong>骨骼肌与筋膜系统</strong>。</p>
 <p>在生物力学中，理解肌肉工作有一条铁律：<strong>肌肉纤维只能“拉（Pull）”，永远不能“推（Push）”</strong>。当肌小节内的肌动蛋白（Actin）与肌球蛋白（Myosin）横桥在 ATP 驱动下相互滑行时，肌肉只会向中心产生向心拉力。</p>
 <p>那么人体是如何完成“卧推”“推举”或“蹬地”这类看似向外推的动作的？答案是<strong>杠杆换向</strong>：比如在卧推伸肘时，位于上臂后侧的肱三头肌收缩，向上<strong>拉动</strong>尺骨鹰嘴；由于尺骨鹰嘴位于肘关节旋转轴的后方，这股向上的拉力绕着肘关节旋转轴转化为前臂向前的伸展力矩，最终表现为手掌将杠铃“推”离胸口。因此，人体的每一个关节都必须成对配置功能相反的肌群（原动肌与拮抗肌），靠两侧拉力的动态平衡来控制关节的正向驱动与反向制动。</p>
+<figure class="prose-diagram" style="margin:24px 0;padding:20px;background:var(--strata-surface-card);border:1px solid var(--strata-border);border-radius:14px;overflow-x:auto"><svg viewBox="0 0 760 270" width="100%" role="img" aria-label="杠杆换向原理：屈肘弯举拉近与伸肘跷跷板换向外推双栏生物力学对比图" style="display:block;max-width:100%;height:auto;font-family:system-ui,-apple-system,sans-serif">
+  <defs>
+    <marker id="d1-pull-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#16A34A"/>
+    </marker>
+    <marker id="d1-motion-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#2563EB"/>
+    </marker>
+    <marker id="d1-push-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#DC2626"/>
+    </marker>
+  </defs>
+
+  <!-- Left Panel: Elbow Flexion (Curl / Pull) -->
+  <rect x="10" y="10" width="362" height="250" rx="10" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-border, #C7CFDA)" stroke-width="1.2"/>
+  <text x="24" y="34" font-size="13.5" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">A. 屈肘上举（肱二头肌在旋转轴前侧向上拉）</text>
+  <text x="24" y="52" font-size="11" fill="var(--strata-text-secondary, #5A6575)">力点位于支点 Δ 前方 → 向心拉力直接带动前臂向上弯举</text>
+
+  <!-- Humerus (Left Panel) -->
+  <rect x="96" y="72" width="14" height="110" rx="7" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-text-secondary, #5A6575)" stroke-width="2"/>
+  <text x="86" y="122" text-anchor="end" font-size="11" font-weight="600" fill="var(--strata-text-secondary, #5A6575)">肱骨</text>
+
+  <!-- Biceps Muscle Belly & Upward Pull Vector -->
+  <path d="M110,82 C136,105 144,142 142,176 C126,154 114,122 110,82 Z" fill="rgba(24,120,61,0.12)" stroke="#16A34A" stroke-width="1.5"/>
+  <line x1="142" y1="176" x2="142" y2="88" stroke="#16A34A" stroke-width="3" marker-end="url(#d1-pull-green)"/>
+  <text x="152" y="102" font-size="11.5" font-weight="700" fill="#16A34A">F拉（二头肌向上拉）</text>
+  <text x="152" y="118" font-size="10.5" fill="var(--strata-text-secondary, #5A6575)">附着于支点前侧桡骨粗隆</text>
+
+  <!-- Forearm Lever (Left Panel) -->
+  <rect x="103" y="177" width="196" height="11" rx="5.5" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-text-primary, #1D1D1F)" stroke-width="2"/>
+  <circle cx="142" cy="182.5" r="4.5" fill="#16A34A"/>
+  <text x="210" y="204" text-anchor="middle" font-size="11" fill="var(--strata-text-secondary, #5A6575)">前臂尺桡骨杠杆</text>
+
+  <!-- Elbow Fulcrum (Left Panel) -->
+  <circle cx="103" cy="182.5" r="7" fill="rgba(217,119,6,0.18)" stroke="#D97706" stroke-width="2"/>
+  <polygon points="103,191 93,208 113,208" fill="rgba(217,119,6,0.18)" stroke="#D97706" stroke-width="1.8"/>
+  <text x="103" y="221" text-anchor="middle" font-size="10.5" font-weight="700" fill="#D97706">肘支点 Δ (Fulcrum)</text>
+
+  <!-- Dumbbell & Upward Curl Arc -->
+  <rect x="292" y="168" width="18" height="28" rx="4" fill="rgba(35,105,199,0.10)" stroke="#2563EB" stroke-width="1.8"/>
+  <path d="M302,160 A78,78 0 0,0 264,104" fill="none" stroke="#2563EB" stroke-width="2.4" stroke-dasharray="5,3" marker-end="url(#d1-motion-blue)"/>
+  <text x="348" y="132" text-anchor="end" font-size="11.5" font-weight="700" fill="#2563EB">手部轨迹 ↑</text>
+  <text x="348" y="147" text-anchor="end" font-size="10.5" fill="var(--strata-text-secondary, #5A6575)">逆时针弯举拉近</text>
+
+  <!-- Left Bottom Formula Badge -->
+  <rect x="22" y="230" width="338" height="22" rx="5" fill="rgba(24,120,61,0.10)" stroke="#16A34A" stroke-width="1"/>
+  <text x="191" y="245" text-anchor="middle" font-size="11" font-weight="600" fill="var(--strata-text-primary, #1D1D1F)">支点前侧拉动：肌肉向心收缩 F拉 ↑  ⇒  屈肘“拉近”力矩 ↺</text>
+
+  <!-- Right Panel: Elbow Extension (Seesaw Reversal / Push) -->
+  <rect x="388" y="10" width="362" height="250" rx="10" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-border, #C7CFDA)" stroke-width="1.2"/>
+  <text x="402" y="34" font-size="13.5" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">B. 伸肘推离（肱三头肌在旋转轴后侧拉尺骨鹰嘴）</text>
+  <text x="402" y="52" font-size="11" fill="var(--strata-text-secondary, #5A6575)">尺骨鹰嘴延伸至支点 Δ 后方 → 向上拉力经跷跷板换向为向外推力</text>
+
+  <!-- Humerus (Right Panel) -->
+  <rect x="526" y="72" width="14" height="100" rx="7" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-text-secondary, #5A6575)" stroke-width="2"/>
+  <text x="550" y="114" font-size="11" font-weight="600" fill="var(--strata-text-secondary, #5A6575)">肱骨</text>
+
+  <!-- Triceps Muscle Belly & Upward Pull Vector BEHIND Fulcrum -->
+  <path d="M526,82 C502,102 486,134 476,166 C498,148 518,118 526,82 Z" fill="rgba(24,120,61,0.12)" stroke="#16A34A" stroke-width="1.5"/>
+  <line x1="476" y1="166" x2="476" y2="86" stroke="#16A34A" stroke-width="3" marker-end="url(#d1-pull-green)"/>
+  <text x="402" y="96" font-size="11.5" font-weight="700" fill="#16A34A">F拉（三头肌向上拉）</text>
+  <text x="402" y="112" font-size="10.5" fill="var(--strata-text-secondary, #5A6575)">肌肉依然只能向上拉！</text>
+
+  <!-- Forearm + Olecranon Seesaw Lever (Right Panel) -->
+  <!-- Posterior Olecranon segment behind pivot -->
+  <rect x="468" y="167" width="65" height="11" rx="5.5" fill="rgba(217,119,6,0.12)" stroke="#D97706" stroke-width="2"/>
+  <!-- Anterior Forearm segment in front of pivot -->
+  <rect x="528" y="167" width="174" height="11" rx="5.5" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-text-primary, #1D1D1F)" stroke-width="2"/>
+  <circle cx="476" cy="172.5" r="4.5" fill="#16A34A"/>
+  <text x="468" y="194" text-anchor="middle" font-size="10.5" font-weight="600" fill="#D97706">尺骨鹰嘴（支点后）</text>
+  <text x="615" y="160" text-anchor="middle" font-size="11" fill="var(--strata-text-secondary, #5A6575)">前臂杠杆（支点前）</text>
+
+  <!-- Elbow Fulcrum Seesaw Center (Right Panel) -->
+  <circle cx="533" cy="172.5" r="7" fill="rgba(217,119,6,0.18)" stroke="#D97706" stroke-width="2"/>
+  <polygon points="533,181 522,199 544,199" fill="rgba(217,119,6,0.18)" stroke="#D97706" stroke-width="1.8"/>
+  <text x="533" y="213" text-anchor="middle" font-size="10.5" font-weight="700" fill="#D97706">肘支点 Δ（跷跷板轴心）</text>
+
+  <!-- Seesaw Reversal Arc over Fulcrum -->
+  <path d="M498,152 C516,136 548,136 566,152" fill="none" stroke="#D97706" stroke-width="1.8" marker-end="url(#d1-push-red)"/>
+  <text x="533" y="136" text-anchor="middle" font-size="10.5" font-weight="700" fill="#D97706">杠杆换向 ↻</text>
+
+  <!-- Resulting Downward/Outward Push Vector at Hand -->
+  <rect x="694" y="158" width="18" height="28" rx="4" fill="rgba(200,31,62,0.10)" stroke="#DC2626" stroke-width="1.8"/>
+  <path d="M698,190 A72,72 0 0,1 664,224" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="5,3" marker-end="url(#d1-push-red)"/>
+  <line x1="718" y1="172" x2="718" y2="220" stroke="#DC2626" stroke-width="3" marker-end="url(#d1-push-red)"/>
+  <text x="656" y="206" text-anchor="end" font-size="11.5" font-weight="700" fill="#DC2626">F推（向外推离）↓</text>
+
+  <!-- Right Bottom Formula Badge -->
+  <rect x="400" y="230" width="338" height="22" rx="5" fill="rgba(200,31,62,0.10)" stroke="#DC2626" stroke-width="1"/>
+  <text x="569" y="245" text-anchor="middle" font-size="11" font-weight="600" fill="var(--strata-text-primary, #1D1D1F)">支点后侧拉动：三头肌向心拉 F拉 ↑  ⇒  换向输出伸肘“外推” F推 ↻</text>
+</svg><figcaption style="margin-top:10px;font-size:0.875rem;color:var(--strata-text-secondary);text-align:center">图 1 — 杠杆换向原理：肌肉永远只能向心“收缩拉动（Pull）”，通过跨过肘关节旋转支点（Fulcrum）的附着点位置差异，分别转化为屈肘“拉近”与伸肘“外推”力矩。</figcaption></figure>
 <h3 id="sec-2-3">3. 神经系统：中央控制器与闭环传感器网络<a class="anchor" href="#sec-2-3" aria-label="本节链接">#</a></h3>
 <p>骨骼提供了杠杆，肌肉提供了拉力，但如果没有神经系统的精密调度，全身数百块肌肉同时乱拉只会造成关节锁死甚至肌腱撕裂。</p>
 <p>神经系统由<strong>中枢神经系统（CNS，大脑与脊髓）</strong>和<strong>外周神经系统（PNS，遍布全身的神经分支）</strong>组成。在力量训练与动作控制中，神经系统扮演着总指挥官的角色：它不光决定“哪块肌肉收缩”，更以毫秒级的精度决定着三个核心参数：</p>
 <ol><li><strong>募集数量（Motor Unit Recruitment）</strong>：当前负载需要唤醒 30% 还是 90% 的运动单位；</li><li><strong>点火频率（Rate Coding）</strong>：神经冲动是以每秒 10 次还是每秒 50 次的高频脉冲下发，以叠加出更大的肌纤维张力；</li><li><strong>协同与抑制时序（Intermuscular Coordination）</strong>：在主动肌发力的同一瞬间，精准命令对侧拮抗肌放松，并提前几十毫秒激活深层核心稳定肌固定脊柱底盘。</li></ol>
 <h2 id="sec-3">二、一次深蹲或举铁背后的 30 毫秒闭环：感觉输入 → 中枢整合 → 运动输出<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
 <p>当你扛起杠铃下蹲，或者单脚落地稳住身体时，你的意识可能只关注“蹲下去、站起来”，但在意识底层，神经系统正在以 <strong>30～50 毫秒</strong> 为周期，高频率运行着一套由 <strong>感觉输入（Sensory Input）→ 中枢整合（Integration）→ 运动输出（Motor Output）</strong> 构成的闭环控制回路。</p>
-<div class="language-text highlighter-rouge"><span class="code-label" aria-hidden="true">CODE</span><div class="highlight"><pre class="highlight"><code>[外部负载 / 重力变化]
-        │
-        ▼
-┌───────────────────────────────────────────────────────────┐
-│ <span class="mi">1</span>. 感觉输入（<span class="kt">Afferent</span> <span class="kt">Pathway</span> / 传入通路）                │
-│    肌梭（长度与拉伸速率）、高尔基腱器 <span class="kt">GTO</span>（肌腱张力）、    │
-│    关节囊感受器（角度与压力） → 转化为传入神经电脉冲      │
-└───────────────────────────┬───────────────────────────────┘
-                            │ 沿背根神经节传入
-                            ▼
-┌───────────────────────────────────────────────────────────┐
-│ <span class="mi">2</span>. 中枢整合（<span class="kt">Interneurons</span> &amp; <span class="kt">CNS</span> / 脊髓与大脑皮层）        │
-│    • 脊髓层：中间神经元触发毫秒级牵张反射与自源性抑制     │
-│    • 皮层与小脑：比对本体感觉反馈与预期动作模型，计算修正 │
-└───────────────────────────┬───────────────────────────────┘
-                            │ 沿腹根传出通路下发
-                            ▼
-┌───────────────────────────────────────────────────────────┐
-│ <span class="mi">3</span>. 运动输出（<span class="kt">Efferent</span> <span class="kt">Pathway</span> / 传出通路）                │
-│    α 运动神经元末梢释放乙酰胆碱（<span class="kt">ACh</span>） → 触发肌纤维动作   │
-│    电位 → 原动肌、协同肌、稳定肌与拮抗肌按时序协同收缩    │
-└───────────────────────────────────────────────────────────┘</code></pre></div></div>
+<figure class="prose-diagram" style="margin:24px 0;padding:20px;background:var(--strata-surface-card);border:1px solid var(--strata-border);border-radius:14px;overflow-x:auto"><svg viewBox="0 0 760 340" width="100%" role="img" aria-label="神经肌肉30至50毫秒闭环控制回路工程框图：外部负载形变经感觉输入、中枢整合到四路协同运动输出并闭环回传" style="display:block;max-width:100%;height:auto;font-family:system-ui,-apple-system,sans-serif">
+  <defs>
+    <marker id="d2-arrow-neutral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#5A6575"/>
+    </marker>
+    <marker id="d2-arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#2563EB"/>
+    </marker>
+    <marker id="d2-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#16A34A"/>
+    </marker>
+    <marker id="d2-arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#D97706"/>
+    </marker>
+  </defs>
+
+  <!-- Node 0: External Load & Joint Deformation -->
+  <rect x="12" y="42" width="118" height="148" rx="9" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-border, #C7CFDA)" stroke-width="1.4"/>
+  <text x="71" y="64" text-anchor="middle" font-size="12" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">外部负载/重力扰动</text>
+  <line x1="22" y1="73" x2="120" y2="73" stroke="var(--strata-border, #C7CFDA)" stroke-width="1"/>
+  <rect x="20" y="83" width="102" height="44" rx="6" fill="rgba(200,31,62,0.10)" stroke="#DC2626" stroke-width="1"/>
+  <text x="71" y="101" text-anchor="middle" font-size="11" font-weight="700" fill="#DC2626">杠铃负荷 / 冲击</text>
+  <text x="71" y="117" text-anchor="middle" font-size="10" fill="var(--strata-text-secondary, #5A6575)">外力矩施加于骨骼</text>
+  <rect x="20" y="135" width="102" height="44" rx="6" fill="rgba(35,105,199,0.10)" stroke="#2563EB" stroke-width="1"/>
+  <text x="71" y="153" text-anchor="middle" font-size="11" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">关节/肌腱物理形变</text>
+  <text x="71" y="169" text-anchor="middle" font-size="10" fill="var(--strata-text-secondary, #5A6575)">ΔL 拉伸 · ΔF 张力 · Δθ</text>
+
+  <!-- Arrow 0 -> 1 -->
+  <line x1="130" y1="116" x2="156" y2="116" stroke="#2563EB" stroke-width="2.2" marker-end="url(#d2-arrow-blue)"/>
+
+  <!-- Node 1: Sensory Input (Mechanoreceptors) -->
+  <rect x="160" y="22" width="164" height="188" rx="10" fill="rgba(35,105,199,0.10)" stroke="#2563EB" stroke-width="1.6"/>
+  <text x="242" y="44" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2563EB">1. 感觉输入（机械感受器）</text>
+  <rect x="170" y="54" width="144" height="42" rx="6" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-border, #C7CFDA)" stroke-width="1"/>
+  <text x="178" y="71" font-size="11" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">肌梭 (Muscle Spindle)</text>
+  <text x="178" y="87" font-size="10" fill="var(--strata-text-secondary, #5A6575)">监测肌腹绝对长度与拉伸速度</text>
+  <rect x="170" y="104" width="144" height="42" rx="6" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-border, #C7CFDA)" stroke-width="1"/>
+  <text x="178" y="121" font-size="11" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">高尔基腱器 (GTO)</text>
+  <text x="178" y="137" font-size="10" fill="var(--strata-text-secondary, #5A6575)">监测肌腱交界处机械张力峰值</text>
+  <rect x="170" y="154" width="144" height="42" rx="6" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-border, #C7CFDA)" stroke-width="1"/>
+  <text x="178" y="171" font-size="11" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">关节囊感受器</text>
+  <text x="178" y="187" font-size="10" fill="var(--strata-text-secondary, #5A6575)">监测关节角度 θ、加速度与压力</text>
+
+  <!-- Afferent Pathway Arrow (1 -> 2) -->
+  <line x1="324" y1="116" x2="366" y2="116" stroke="#2563EB" stroke-width="2.8" marker-end="url(#d2-arrow-blue)"/>
+  <text x="345" y="96" text-anchor="middle" font-size="10.5" font-weight="700" fill="#2563EB">传入通路</text>
+  <text x="345" y="109" text-anchor="middle" font-size="9.5" fill="#2563EB">(Afferent)</text>
+  <text x="345" y="133" text-anchor="middle" font-size="9.5" fill="var(--strata-text-secondary, #5A6575)">背根传入</text>
+
+  <!-- Node 2: CNS Integration -->
+  <rect x="370" y="22" width="172" height="188" rx="10" fill="rgba(217,119,6,0.12)" stroke="#D97706" stroke-width="1.6"/>
+  <text x="456" y="44" text-anchor="middle" font-size="12.5" font-weight="700" fill="#D97706">2. 中枢整合（双层控制）</text>
+  <rect x="380" y="56" width="152" height="64" rx="6" fill="var(--strata-canvas, #F5F6F8)" stroke="#D97706" stroke-width="1.2"/>
+  <text x="388" y="74" font-size="11" font-weight="700" fill="#D97706">⚡ 脊髓反射短路 (~30ms)</text>
+  <text x="388" y="90" font-size="10" fill="var(--strata-text-primary, #1D1D1F)">中间神经元直接整合：</text>
+  <text x="388" y="106" font-size="10" fill="var(--strata-text-secondary, #5A6575)">牵张反射防塌陷 / GTO 保护抑制</text>
+  <rect x="380" y="130" width="152" height="66" rx="6" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-border, #C7CFDA)" stroke-width="1.2"/>
+  <text x="388" y="148" font-size="11" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">🎯 小脑/运动皮层 (~150ms)</text>
+  <text x="388" y="164" font-size="10" fill="var(--strata-text-secondary, #5A6575)">比对反馈角度与内部动作模型</text>
+  <text x="388" y="180" font-size="10" fill="var(--strata-text-secondary, #5A6575)">实时计算重心与膝轨迹误差修正</text>
+
+  <!-- Efferent Pathway Arrow (2 -> 3) -->
+  <line x1="542" y1="116" x2="584" y2="116" stroke="#16A34A" stroke-width="2.8" marker-end="url(#d2-arrow-green)"/>
+  <text x="563" y="96" text-anchor="middle" font-size="10.5" font-weight="700" fill="#16A34A">传出通路</text>
+  <text x="563" y="109" text-anchor="middle" font-size="9.5" fill="#16A34A">(Efferent)</text>
+  <text x="563" y="133" text-anchor="middle" font-size="9.5" fill="var(--strata-text-secondary, #5A6575)">α神经元·ACh</text>
+
+  <!-- Node 3: Motor Output 4-Way Functional Split -->
+  <rect x="588" y="14" width="160" height="212" rx="10" fill="rgba(24,120,61,0.10)" stroke="#16A34A" stroke-width="1.6"/>
+  <text x="668" y="35" text-anchor="middle" font-size="12" font-weight="700" fill="#16A34A">3. 运动输出四路协同分流</text>
+  <!-- Role 1: Agonist -->
+  <rect x="598" y="45" width="140" height="38" rx="5" fill="var(--strata-canvas, #F5F6F8)" stroke="#16A34A" stroke-width="1.3"/>
+  <text x="606" y="61" font-size="11" font-weight="700" fill="#16A34A">① 原动肌 (Agonist)</text>
+  <text x="606" y="75" font-size="9.8" fill="var(--strata-text-secondary, #5A6575)">主力做功（臀大肌/股四头肌）</text>
+  <!-- Role 2: Synergist -->
+  <rect x="598" y="89" width="140" height="38" rx="5" fill="var(--strata-canvas, #F5F6F8)" stroke="#16A34A" stroke-width="1"/>
+  <text x="606" y="105" font-size="11" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">② 协同肌 (Synergist)</text>
+  <text x="606" y="119" font-size="9.8" fill="var(--strata-text-secondary, #5A6575)">辅助发力并抵消多余旋转</text>
+  <!-- Role 3: Stabilizer -->
+  <rect x="598" y="133" width="140" height="38" rx="5" fill="var(--strata-canvas, #F5F6F8)" stroke="#2563EB" stroke-width="1"/>
+  <text x="606" y="149" font-size="11" font-weight="700" fill="#2563EB">③ 稳定肌 (Stabilizer)</text>
+  <text x="606" y="163" font-size="9.8" fill="var(--strata-text-secondary, #5A6575)">提前等长收缩锁死脊柱骨盆底座</text>
+  <!-- Role 4: Antagonist -->
+  <rect x="598" y="177" width="140" height="38" rx="5" fill="var(--strata-canvas, #F5F6F8)" stroke="#D97706" stroke-width="1"/>
+  <text x="606" y="193" font-size="11" font-weight="700" fill="#D97706">④ 拮抗肌 (Antagonist)</text>
+  <text x="606" y="207" font-size="9.8" fill="var(--strata-text-secondary, #5A6575)">交互抑制顺应放松 / 终点制动</text>
+
+  <!-- Closed-Loop Feedback Return Path (Node 3 -> Node 0/1) -->
+  <path d="M668,226 L668,292 L71,292 L71,194" fill="none" stroke="#2563EB" stroke-width="2.4" stroke-dasharray="6,4" marker-end="url(#d2-arrow-blue)"/>
+  <path d="M242,292 L242,214" fill="none" stroke="#2563EB" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#d2-arrow-blue)"/>
+
+  <!-- Feedback Loop Badge on Bottom Return Line -->
+  <rect x="195" y="262" width="370" height="56" rx="8" fill="var(--strata-canvas, #F5F6F8)" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="380" y="284" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2563EB">🔄 关节合力矩输出 → 实时更新关节角度 θ 与肌腱张力 F（30～50ms 采样闭环）</text>
+  <text x="380" y="304" text-anchor="middle" font-size="10.5" fill="var(--strata-text-secondary, #5A6575)">每一帧运动输出都会改变底层机械感受器读数，沿背根传入通路持续回传中枢修正</text>
+</svg><figcaption style="margin-top:10px;font-size:0.875rem;color:var(--strata-text-secondary);text-align:center">图 2 — 神经肌肉 30～50ms 闭环控制回路：前向运动指令分流驱动四类功能肌群，底层机械感受器实时将长度、张力与角度沿背根传入通路回传修正。</figcaption></figure>
 <h3 id="sec-3-1">1. 感觉输入（Sensory Input —— 传入通路 / Afferent Pathway）<a class="anchor" href="#sec-3-1" aria-label="本节链接">#</a></h3>
 <p>闭环的第一步是<strong>实时感知</strong>。分布在肌肉、肌腱、韧带和关节囊中的数百万个<strong>机械感受器（Mechanoreceptors）</strong>，时刻把物理形变翻译成生物电信号：</p>
 <ul><li><strong>肌梭（Muscle Spindles）</strong>：嵌在肌腹内部，专门监测肌肉被拉长的<strong>绝对长度</strong>与<strong>被拉伸的速率</strong>；</li><li><strong>高尔基腱器（Golgi Tendon Organs, GTO）</strong>：位于肌肉与肌腱交界处，专门监测肌腱承受的<strong>机械张力（Tension）</strong>；</li><li><strong>关节感受器（Joint Receptors，如鲁菲尼小体、环层小体）</strong>：分布在关节囊与韧带中，监测关节所处的<strong>旋转角度、加速度与囊内压力</strong>。</li></ul>
@@ -95,6 +260,114 @@
 <p>我们以现代办公族与健身者中最普遍的 <strong>“久坐引发的下背痛与后链拉伤”</strong> 为例，追踪一次故障是如何在肌肉、骨骼与神经三个系统之间引发多米诺骨牌式崩塌的：</p>
 <ol><li><strong>起点：肌肉系统适应性短缩（Muscular System）</strong><p>每天连续久坐 8 小时以上，髋关节长期处于 90 度屈曲位。跨过髋关节前侧的屈髋肌群（髂腰肌、股直肌、阔筋膜张肌）因长期处于缩短状态，肌小节串联数量减少、筋膜粘连，发生<strong>适应性变紧与高张力（Overactive / Shortened）</strong>。</p></li><li><strong>传导：骨骼与关节系统对位偏移（Skeletal &amp; Articular System）</strong><p>当你从椅子上站起来准备深蹲或跑步时，变短的屈髋肌群像一根绷紧的橡皮筋，把骨盆前缘向下、向前死死拽住，迫使骨盆发生<strong>骨盆前倾（Anterior Pelvic Tilt）</strong>，并连带造成腰椎生理曲度过大（腰椎过度前凸）。此时髋关节与腰椎小关节的正常旋转轴心已经偏离了中立位（即 <strong>关节共轴性破坏，Altered Joint Centration</strong>）。</p></li><li><strong>放大：神经系统触发交互抑制（Nervous System）</strong><p>因为髋前侧的屈髋肌群持续向脊髓发送高张力兴奋信号，根据神经生理学的<strong>交互抑制定律（Reciprocal Inhibition）</strong>，脊髓中间神经元会自动降低对侧拮抗肌——也就是髋后侧<strong>臀大肌（Gluteus Maximus）</strong>的神经驱动信号。结果是：哪怕你的臀大肌体积不小，在做伸髋动作时也无法被神经系统及时、充分地唤醒。</p></li><li><strong>终局：协同肌被迫篡位（Synergist Dominance）与结构损伤</strong><p>人体仍然要完成深蹲站起或跑步蹬地（需要强大的伸髋力矩）。既然主力原动肌（臀大肌）处于神经抑制状态，中枢神经系统只能退而求其次，强行超负荷抽调两个原本只负责打下手的角色——<strong>大腿后侧的腘绳肌（Hamstrings）</strong>与<strong>下背部的竖脊肌（Erector Spinae）</strong>来顶替臀大肌完成伸髋。</p>
 <ul><li>腘绳肌本是跨髋、膝双关节的次级协同肌，长期替臀大肌扛下主负荷，极易在冲刺或硬拉时发生拉伤；</li><li>腰椎竖脊肌本是维持脊柱稳定的局部肌群，在骨盆前倾叠加代偿发力的双重挤压下，腰椎间盘后侧与椎间孔承受巨大压缩与剪切应力，最终爆发慢性下背痛。</li></ul></li></ol>
+<figure class="prose-diagram" style="margin:24px 0;padding:20px;background:var(--strata-surface-card);border:1px solid var(--strata-border);border-radius:14px;overflow-x:auto"><svg viewBox="0 0 760 310" width="100%" role="img" aria-label="下交叉综合征动力链跨系统代偿对比图：左侧正常中立位骨盆力偶平衡，右侧久坐失衡位骨盆前倾与交互抑制代偿链" style="display:block;max-width:100%;height:auto;font-family:system-ui,-apple-system,sans-serif">
+  <defs>
+    <marker id="d3-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#16A34A"/>
+    </marker>
+    <marker id="d3-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#2563EB"/>
+    </marker>
+    <marker id="d3-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#DC2626"/>
+    </marker>
+    <marker id="d3-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#D97706"/>
+    </marker>
+  </defs>
+
+  <!-- ================= LEFT PANEL: NEUTRAL PELVIS FORCE-COUPLE ================= -->
+  <rect x="10" y="10" width="354" height="290" rx="10" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-border, #C7CFDA)" stroke-width="1.2"/>
+  <text x="24" y="33" font-size="13.5" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">A. 正常中立位骨盆 · 力偶平衡</text>
+  <text x="24" y="50" font-size="10.8" fill="var(--strata-text-secondary, #5A6575)">前后上下肌群张力均衡 → 髋与腰椎共轴，臀大肌 100% 主导伸髋</text>
+
+  <!-- Orientation Tags (Left Panel) -->
+  <text x="32" y="74" font-size="10.5" font-weight="600" fill="var(--strata-text-secondary, #5A6575)">← 前侧 (Anterior)</text>
+  <text x="342" y="74" text-anchor="end" font-size="10.5" font-weight="600" fill="var(--strata-text-secondary, #5A6575)">后侧 (Posterior) →</text>
+
+  <!-- Neutral Lumbar Spine & Femur -->
+  <path d="M187,78 C180,98 182,118 187,138" fill="none" stroke="var(--strata-text-secondary, #5A6575)" stroke-width="5" stroke-linecap="round"/>
+  <line x1="187" y1="176" x2="187" y2="246" stroke="var(--strata-text-secondary, #5A6575)" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Neutral Pelvis Disk (0 deg tilt) -->
+  <ellipse cx="187" cy="162" rx="52" ry="26" fill="rgba(24,120,61,0.10)" stroke="#16A34A" stroke-width="2.2"/>
+  <line x1="130" y1="162" x2="244" y2="162" stroke="#16A34A" stroke-width="1.6" stroke-dasharray="4,3"/>
+  <circle cx="187" cy="168" r="5.5" fill="var(--strata-canvas, #F5F6F8)" stroke="#16A34A" stroke-width="2"/>
+  <text x="187" y="158" text-anchor="middle" font-size="10.5" font-weight="700" fill="#16A34A">骨盆中立位 0°</text>
+
+  <!-- 4 Balanced Force Vectors (Left Panel) -->
+  <!-- Top-Left: Abdominals pulling UP -->
+  <line x1="142" y1="148" x2="142" y2="92" stroke="#16A34A" stroke-width="2.5" marker-end="url(#d3-green)"/>
+  <text x="134" y="102" text-anchor="end" font-size="11" font-weight="700" fill="#16A34A">腹直肌/腹横肌 ↑</text>
+  <text x="134" y="116" text-anchor="end" font-size="10" fill="var(--strata-text-secondary, #5A6575)">上提骨盆前缘</text>
+
+  <!-- Bottom-Left: Hip Flexors normal downward pull -->
+  <line x1="146" y1="176" x2="146" y2="228" stroke="#2563EB" stroke-width="2.2" marker-end="url(#d3-blue)"/>
+  <text x="136" y="212" text-anchor="end" font-size="11" font-weight="700" fill="#2563EB">髂腰肌/股直肌 ↓</text>
+  <text x="136" y="226" text-anchor="end" font-size="10" fill="var(--strata-text-secondary, #5A6575)">正常弹性张力</text>
+
+  <!-- Top-Right: Erector Spinae normal upward pull -->
+  <line x1="230" y1="148" x2="230" y2="92" stroke="#2563EB" stroke-width="2.2" marker-end="url(#d3-blue)"/>
+  <text x="238" y="102" font-size="11" font-weight="700" fill="#2563EB">↑ 腰椎竖脊肌</text>
+  <text x="238" y="116" font-size="10" fill="var(--strata-text-secondary, #5A6575)">维持正常腰曲</text>
+
+  <!-- Bottom-Right: Gluteus Maximus strong downward/extensor pull -->
+  <line x1="230" y1="176" x2="230" y2="232" stroke="#16A34A" stroke-width="3" marker-end="url(#d3-green)"/>
+  <text x="238" y="212" font-size="11" font-weight="700" fill="#16A34A">↓ 臀大肌 (100% 激活)</text>
+  <text x="238" y="226" font-size="10" fill="var(--strata-text-secondary, #5A6575)">主力伸髋+后倾制衡</text>
+
+  <!-- Left Panel Bottom Status Bar -->
+  <rect x="22" y="254" width="330" height="34" rx="6" fill="rgba(24,120,61,0.10)" stroke="#16A34A" stroke-width="1"/>
+  <text x="187" y="275" text-anchor="middle" font-size="11" font-weight="600" fill="#16A34A">✓ 四向力偶均衡：腰椎无剪切超载，臀大肌承担主力伸髋</text>
+
+  <!-- ================= RIGHT PANEL: LOWER CROSSED SYNDROME ================= -->
+  <rect x="376" y="10" width="374" height="290" rx="10" fill="var(--strata-canvas, #F5F6F8)" stroke="var(--strata-border, #C7CFDA)" stroke-width="1.2"/>
+  <text x="390" y="33" font-size="13.5" font-weight="700" fill="var(--strata-text-primary, #1D1D1F)">B. 久坐失衡位 · 下交叉代偿链</text>
+  <text x="390" y="50" font-size="10.8" fill="var(--strata-text-secondary, #5A6575)">屈髋肌短缩前拽骨盆（红）+ 交互抑制关停臀大肌与核心（虚线 ✕）</text>
+
+  <!-- Hyperlordotic Lumbar Spine & Femur -->
+  <path d="M562,74 C538,98 540,120 564,138" fill="none" stroke="#DC2626" stroke-width="5" stroke-linecap="round"/>
+  <line x1="562" y1="176" x2="562" y2="240" stroke="var(--strata-text-secondary, #5A6575)" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Lower Crossed "X" Diagonal Axes -->
+  <line x1="518" y1="216" x2="606" y2="104" stroke="#DC2626" stroke-width="1.4" stroke-dasharray="3,3"/>
+  <line x1="518" y1="104" x2="606" y2="216" stroke="#D97706" stroke-width="1.4" stroke-dasharray="3,3"/>
+
+  <!-- Anteriorly Tilted Pelvis Disk (~15 deg forward/downward on left) -->
+  <g transform="rotate(-16 562 162)">
+    <ellipse cx="562" cy="162" rx="52" ry="26" fill="rgba(200,31,62,0.10)" stroke="#DC2626" stroke-width="2.4"/>
+    <line x1="504" y1="162" x2="620" y2="162" stroke="#DC2626" stroke-width="1.8"/>
+  </g>
+  <circle cx="562" cy="168" r="5.5" fill="var(--strata-canvas, #F5F6F8)" stroke="#DC2626" stroke-width="2"/>
+  <text x="562" y="161" text-anchor="middle" font-size="10.5" font-weight="700" fill="#DC2626">骨盆前倾 ~15°</text>
+
+  <!-- 1. Top-Left UNDERACTIVE: Abdominals (Dashed Amber + X) -->
+  <line x1="512" y1="158" x2="512" y2="94" stroke="#D97706" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#d3-amber)"/>
+  <text x="512" y="128" text-anchor="middle" font-size="13" font-weight="800" fill="#D97706">✕</text>
+  <text x="502" y="96" text-anchor="end" font-size="11" font-weight="700" fill="#D97706">腹横肌/腹直肌</text>
+  <text x="502" y="110" text-anchor="end" font-size="10" fill="#D97706">✕ 抑制/被拉长失活</text>
+
+  <!-- 2. Bottom-Left OVERACTIVE: Hip Flexors (Thick Red Solid Arrow DOWN) -->
+  <line x1="518" y1="176" x2="518" y2="232" stroke="#DC2626" stroke-width="3.6" marker-end="url(#d3-red)"/>
+  <text x="506" y="206" text-anchor="end" font-size="11" font-weight="700" fill="#DC2626">髂腰肌/股直肌 ↓</text>
+  <text x="506" y="220" text-anchor="end" font-size="10" font-weight="600" fill="#DC2626">过紧短缩·死拽前缘</text>
+
+  <!-- 3. Top-Right OVERACTIVE: Erector Spinae (Thick Red Solid Arrow UP) -->
+  <line x1="606" y1="146" x2="606" y2="88" stroke="#DC2626" stroke-width="3.6" marker-end="url(#d3-red)"/>
+  <text x="616" y="96" font-size="11" font-weight="700" fill="#DC2626">↑ 腰椎竖脊肌（过紧）</text>
+  <text x="616" y="110" font-size="10" font-weight="600" fill="#DC2626">上拽后缘·腰椎超伸挤压</text>
+
+  <!-- 4. Bottom-Right UNDERACTIVE: Gluteus Maximus (Dashed Amber + X Reciprocal Inhibition) -->
+  <line x1="606" y1="172" x2="606" y2="232" stroke="#D97706" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#d3-amber)"/>
+  <text x="606" y="204" text-anchor="middle" font-size="13" font-weight="800" fill="#D97706">✕</text>
+  <text x="618" y="204" font-size="11" font-weight="700" fill="#D97706">臀大肌（被关停）</text>
+  <text x="618" y="218" font-size="10" font-weight="600" fill="#D97706">✕ 交互抑制（臀肌失忆）</text>
+
+  <!-- Right Panel Bottom Compensation Callout -->
+  <rect x="388" y="246" width="350" height="42" rx="6" fill="rgba(200,31,62,0.10)" stroke="#DC2626" stroke-width="1.3"/>
+  <text x="563" y="264" text-anchor="middle" font-size="11" font-weight="700" fill="#DC2626">⚠️ 协同肌被迫越位代偿：腘绳肌 + 下背竖脊肌强行顶替伸髋</text>
+  <text x="563" y="280" text-anchor="middle" font-size="10.2" fill="var(--strata-text-primary, #1D1D1F)">后果：冲刺/硬拉时大腿后侧（腘绳肌）极易拉伤 + 椎间盘挤压慢性下背痛</text>
+</svg><figcaption style="margin-top:10px;font-size:0.875rem;color:var(--strata-text-secondary);text-align:center">图 3 — 动力链跨系统代偿（下交叉综合征）：中立位力偶平衡（左） vs. 久坐屈髋肌短缩牵拉骨盆前倾、交互抑制关停臀大肌并迫使竖脊肌与腘绳肌超载代偿（右）。</figcaption></figure>
 <p>在这条证据链中，伤痛虽然表现在“腰酸”或“大腿后侧紧痛”，但如果只去按摩腰部、疯狂拉伸大腿后侧，甚至直接带伤做大重量硬拉“练腰”，不仅无法解除根源（紧缩的髂腰肌与被抑制的臀大肌），反而是在错误的神经募集模式上强加机械负荷——正如运动医学界的经典训诫：<strong>“切勿在功能障碍之上叠加负荷（Never add load to dysfunction）。”</strong></p>
 <p>真正的解决路径必须回到动力链三系统：先通过泡沫轴与静态拉伸放松紧张的屈髋肌群（解除肌肉短缩与错误传入信号），再通过孤立激活训练重新唤醒臀大肌的神经募集（恢复神经输出），让骨盆回到中立轴位（恢复关节对位），最后才进入复合负重动作整合。这正是后续章节将深入展开的 NASM 纠正训练与 OPT 模型的核心底层逻辑。</p>
 <h2 id="sec-5">四、本讲小结与下一讲预告<a class="anchor" href="#sec-5" aria-label="本节链接">#</a></h2>
@@ -104,13 +377,13 @@
 <p>在看清了动力链的宏观三系统架构后，<strong>下一讲（Ep.02《神经控制与本体感觉：运动单位募集「大小原则」、肌梭与高尔基腱器（GTO）》）</strong> 我们将镜头推近到神经与肌肉交界的微观层面，拆解两个决定训练效果的关键机制：</p>
 <ol><li>为什么轻重量慢摇练不到高阈值快肌纤维？神经系统是如何按照<strong>赫氏大小原则（Henneman&#x27;s Size Principle）</strong>从慢到快逐级解锁运动单位的？</li><li>身体内置的两大精密力学传感器——<strong>肌梭（Muscle Spindles）与高尔基腱器（GTO）</strong>——如何在日常活动、静态拉伸与极限大重量举铁中扮演“油门”与“刹车”？我们又该如何利用“自源性抑制”原理安全突破柔韧性与力量瓶颈？</li></ol>
         </div>
-        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/jevons-paradox-energy-rebound/"><span class="dir">← 上一篇</span><span class="t">省下来的能源去哪了：Jevons 悖论与效率反弹的三层机制</span></a></nav>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/costco-treasure-hunt-and-loss-leader-psychology/"><span class="dir">← 上一篇</span><span class="t">为什么去 Costco 只想买只烤鸡，出来却花了 1000 块？拆解「寻宝动线」与 14% 毛利上限的反直觉零售哲学</span></a><a class="next" href="/learn/all-weather-gold-real-rate-decoupling/"><span class="dir">下一篇 →</span><span class="t">为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点</span></a></nav>
         <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
       </article>
     </div>
     <aside class="toc" aria-label="本文目录">
       <p class="section-label">目录</p>
-      <ol><li class="l2"><a href="#sec-1" aria-current="true">连载定位：为什么学健身要先看懂“动力链”</a></li><li class="l2"><a href="#sec-2">一、人体运动系统的“三明治架构”与职责边界</a></li><li class="l3"><a href="#sec-2-1">1. 骨骼与关节系统：被动刚性机架与轴承铰链</a></li><li class="l3"><a href="#sec-2-2">2. 肌肉与筋膜系统：主动线性致动器与张力网</a></li><li class="l3"><a href="#sec-2-3">3. 神经系统：中央控制器与闭环传感器网络</a></li><li class="l2"><a href="#sec-3">二、一次深蹲或举铁背后的 30 毫秒闭环：感觉输入 → 中枢整合 → 运动输出</a></li><li class="l3"><a href="#sec-3-1">1. 感觉输入（Sensory Input —— …</a></li><li class="l3"><a href="#sec-3-2">2. 中枢整合（Integration —— 中间…</a></li><li class="l3"><a href="#sec-3-3">3. 运动输出（Motor Output —— 传…</a></li><li class="l2"><a href="#sec-4">三、为什么“头疼医头、膝痛练腿”往往无效：动力链代偿的连锁反应</a></li><li class="l2"><a href="#sec-5">四、本讲小结与下一讲预告</a></li><li class="l3"><a href="#sec-5-1">本讲核心要点</a></li><li class="l3"><a href="#sec-5-2">下一讲预告：Ep.02</a></li></ol>
+      <ol><li class="l2"><a href="#sec-1" aria-current="true">连载定位：为什么学健身要先看懂“动力链”</a></li><li class="l2"><a href="#sec-2">一、人体运动系统的“三明治架构”与职责边界</a></li><li class="l3"><a href="#sec-2-1">1. 骨骼与关节系统：被动刚性机架与轴承铰链</a></li><li class="l3"><a href="#sec-2-2">2. 肌肉与筋膜系统：为什么肌肉只能“拉”却能完成…</a></li><li class="l3"><a href="#sec-2-3">3. 神经系统：中央控制器与闭环传感器网络</a></li><li class="l2"><a href="#sec-3">二、一次深蹲或举铁背后的 30 毫秒闭环：感觉输入 → 中枢整合 → 运动输出</a></li><li class="l3"><a href="#sec-3-1">1. 感觉输入（Sensory Input —— …</a></li><li class="l3"><a href="#sec-3-2">2. 中枢整合（Integration —— 中间…</a></li><li class="l3"><a href="#sec-3-3">3. 运动输出（Motor Output —— 传…</a></li><li class="l2"><a href="#sec-4">三、为什么“头疼医头、膝痛练腿”往往无效：动力链代偿的连锁反应</a></li><li class="l2"><a href="#sec-5">四、本讲小结与下一讲预告</a></li><li class="l3"><a href="#sec-5-1">本讲核心要点</a></li><li class="l3"><a href="#sec-5-2">下一讲预告：Ep.02</a></li></ol>
     </aside>
   </div>
   </main>

@@ -19,21 +19,76 @@
   <header class="site-header">
     <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
     <span class="header-note">An engineering notebook</span>
-    <nav aria-label="Main navigation"><a href="/learn/" aria-current="page">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Main navigation"><a href="/series/" aria-current="page">Series</a><a href="/learn/">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
     <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
   </header>
   <main id="main">
+<style>
+.series-stack { display: grid; gap: 24px; }
+.series-card { padding: 28px 32px; }
+.series-card__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.series-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); font: 600 11px/1.4 var(--strata-font-mono); letter-spacing: 0.4px; }
+.series-gate { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); padding: 4px 10px; border-radius: 6px; background: var(--inset); border: 1px solid var(--line); }
+.series-card h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(24px, 3vw, 30px); line-height: 1.28; letter-spacing: -0.4px; margin: 4px 0 10px; }
+.series-card h2 a { color: var(--text); text-decoration: none; }
+.series-card h2 a:hover { color: var(--accent); }
+.series-card__desc { margin: 0 0 18px; color: var(--secondary); font-size: 14.5px; line-height: 1.7; }
+.series-progress { margin: 0 0 22px; padding: 14px 16px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); }
+.series-progress__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font: 12px/1.4 var(--strata-font-mono); color: var(--text); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+.series-progress__bar { height: 7px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.series-progress__fill { height: 100%; border-radius: 999px; background: var(--accent); }
+.series-modules-preview { display: grid; gap: 14px; margin: 0 0 22px; }
+.series-mod-preview { padding: 14px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.series-mod-preview h3 { font-size: 14px; font-weight: 600; margin: 0 0 10px; color: var(--text); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.series-mod-preview h3 span { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); font-weight: 400; }
+.series-ep-mini { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.series-ep-mini li { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; font-size: 13.5px; line-height: 1.5; padding-top: 8px; border-top: 1px dashed var(--line); }
+.series-ep-mini li:first-child { padding-top: 0; border-top: 0; }
+.ep-code { font: 600 11.5px/1.4 var(--strata-font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.ep-locked .ep-code { color: var(--secondary); }
+.ep-locked .ep-title { color: var(--secondary); }
+.ep-title a { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.ep-title a:hover { color: var(--accent); }
+.ep-status { font: 11px/1.3 var(--strata-font-mono); padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.ep-status--pub { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); font-weight: 600; }
+.ep-status--lock { background: var(--inset); color: var(--secondary); border: 1px solid var(--line); }
+.syllabus-module { padding: 24px 28px; }
+.syllabus-module__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.syllabus-module__head h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 22px; margin: 0; color: var(--text); }
+.syllabus-module__count { font: 11.5px/1.4 var(--strata-font-mono); color: var(--secondary); }
+.syllabus-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.syllabus-item { padding: 16px 18px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.syllabus-item--pub { border-color: var(--accent); background: var(--surface); }
+.syllabus-item__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.syllabus-item h3 { font-size: 16px; line-height: 1.45; margin: 0 0 8px; font-weight: 600; }
+.syllabus-item h3 a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.syllabus-item h3 a:hover { color: var(--accent); }
+.syllabus-item--lock h3 { color: var(--secondary); font-weight: 500; }
+.syllabus-item p { margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--secondary); }
+.series-callout { margin: 0 0 24px; padding: 14px 18px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); border-left: 3px solid var(--accent); font-size: 13.5px; line-height: 1.6; color: var(--secondary); }
+.series-callout strong { color: var(--text); }
+.series-callout a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.post-nav__locked { display: block; padding: 16px; border-radius: 8px; background: var(--inset); border: 1px dashed var(--line); color: var(--secondary); text-align: right; }
+.post-nav__locked .dir { display: block; font: 11px/1.5 var(--strata-font-mono); color: var(--secondary); margin-bottom: 4px; }
+.post-nav__locked .t { display: block; font-weight: 600; line-height: 1.45; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+.post-nav__locked .sub { display: block; font-size: 12px; line-height: 1.5; color: var(--secondary); }
+.toc-series { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+.toc-series .section-label a { color: var(--text); text-decoration: none; }
+.toc-series .section-label a:hover { color: var(--accent); }
+.toc-series__locked { display: block; padding: 5px 12px; color: var(--secondary); font-size: 12px; line-height: 1.45; opacity: 0.78; }
+</style>
   <div class="post-layout">
     <div>
-      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <a class="btn btn--ghost back-link" href="/series/wwdc-liquid-glass-motion/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回专栏：WWDC Liquid Glass 与动效体系</a>
       <article class="card article">
         <header class="article-header">
-          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t20">Metal Shader</a></li><li><a class="tag" href="/tags/#t36">动效管线</a></li></ul>
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t15">Metal Shader</a></li><li><a class="tag" href="/tags/#t32">动效管线</a></li></ul>
           <h1>SwiftUI 27 高级图形与动效管线：Metal Shader 扭曲、时间流与图钉对齐</h1>
           <p class="lede">拆解 Apple Music 级流体封面与实时歌词：三大 Shader 修饰符选型、Domain Warping 二次噪声采样、TimelineView 无状态时间注入，以及 alignmentGuide 图钉孔位反转法。</p>
           <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>约 4,500 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 9 分钟</span></div>
         </header>
-        <div class="prose">
+        <div class="series-callout"><strong>所属体系专栏</strong>：<a href="/series/wwdc-liquid-glass-motion/">WWDC 25/26 (OS 26 → OS 27) Liquid Glass 与动效体系</a> · 模块二：Metal 渲染管线、高性能滚动与跨端窗口现代化 · 第 4 / 6 讲（已更新 6/6）</div>
+<div class="prose">
 <blockquote><p><strong>一句话结论</strong>：<strong>再炫酷的 Apple Music 级动效，拆穿了也只是「把数据接进 3 根标准水管（Creative Pipeline）」</strong> —— 用 <strong><code>layerEffect</code> 二次采样噪声图（Domain Warping）</strong> 把封面变成有机流体，用 <strong><code>TimelineView</code> 时间水管</strong> 给无状态的 GPU Shader 注入心跳，再用 <strong><code>alignmentGuide</code> 改写图钉孔位</strong> 零计算挂上悬浮时间戳。</p></blockquote>
 <h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
 <table><thead><tr><th>抽象概念 / API</th><th>关键签名 / 数字</th><th>生活教具 / 直观参照</th><th>视觉与工程效果</th></tr></thead><tbody><tr><td><strong><code>colorEffect</code></strong></td><td>输入 <code>(position, currentColor)</code> → 输出 <code>newColor</code></td><td><strong>给拼图单块积木原地上色</strong></td><td>极快，不知晓邻居像素，适合黑白滤镜、色调映射</td></tr><tr><td><strong><code>distortionEffect</code></strong></td><td>输入 <code>(position)</code> → 输出 <code>sourcePosition</code></td><td><strong>哈哈镜（只改取色坐标，不改色）</strong></td><td>纯几何采样偏移，适合波浪形变、斜切拉伸（Shear）</td></tr><tr><td><strong><code>layerEffect</code></strong></td><td>输入 <code>(position, SwiftUI::Layer)</code> → 输出 <code>half4</code></td><td><strong>带广角取景器的画笔（可看全图邻居）</strong></td><td>最灵活，可调用 <code>layer.sample()</code> 跨区域采样，适合模糊与复杂扭曲</td></tr><tr><td><strong>Domain Warping（定义域扭曲）</strong></td><td>对 <code>NoiseTexture</code> <strong>连续采样 2 次</strong>（偏移量放大 <code>200.0</code>）</td><td><strong>往 swirled 咖啡拉花里再搅一勺奶泡</strong></td><td>1 次采样只是生硬扭曲；用第 1 次采出的 <code>(r, g)</code> 偏移 UV 再采第 2 次，瞬间涌现有机流动的流体斑块</td></tr><tr><td><strong><code>TimelineView(.animation)</code></strong></td><td>每帧发射 <code>elapsed</code> 秒数（<code>Float</code>）</td><td><strong>给无记忆的石头装上外接节拍器</strong></td><td>GPU Shader 天生无状态（不记得上一帧），靠每帧传入递增时间 <code>elapsed</code> 驱动纹理持续流动</td></tr><tr><td><strong><code>alignmentGuide</code> 覆写</strong></td><td><code>.alignmentGuide(.bottom) { $0[.top] }</code></td><td><strong>把图钉从便利贴底边挪到顶边再钉死</strong></td><td>无需 <code>GeometryReader</code> 测高或硬编码 <code>offset</code>，让角标顶边严丝合缝贴住歌词底边</td></tr></tbody></table>
@@ -76,13 +131,14 @@
 <h2 id="sec-4">延伸视野<a class="anchor" href="#sec-4" aria-label="本节链接">#</a></h2>
 <ul><li><strong>「高级」在于组合，而不在于复杂度（The &#x27;advanced&#x27; lies in the construction, not the complexity）</strong>：这是 WWDC26 Session 322 最核心的工程哲学。把音频时间戳换成手机陀螺仪（CoreMotion），把二次噪声扭曲换成水波涟漪，把歌词列表换成自由画布，完全相同的 3 个 API 就能组合出千变万化的交互艺术。</li></ul>
         </div>
-        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/liquid-glass-optics/"><span class="dir">← 上一篇</span><span class="t">Liquid Glass 光学第一性原理与 SwiftUI 26→27 实战破案</span></a><a class="next" href="/learn/swiftui-scroll-drag/"><span class="dir">下一篇 →</span><span class="t">SwiftUI 27 高性能滚动与多元素拖拽：LazyStack 帧预取与纸牌级重排</span></a></nav>
-        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/swiftui-26-tabview-sidebar-splitview/"><span class="dir">← 上一讲 · Ep.03</span><span class="t">SwiftUI 26+ 导航与 API 演进：TabView / Sidebar / SplitView 液态玻璃自适应架构与确定性迁移扫描</span></a><a class="next" href="/learn/swiftui-scroll-drag/"><span class="dir">下一讲 · Ep.05 →</span><span class="t">SwiftUI 27 高性能滚动与多元素拖拽：LazyStack 帧预取与纸牌级重排</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/series/wwdc-liquid-glass-motion/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回专栏：WWDC Liquid Glass 与动效体系</a></div>
       </article>
     </div>
     <aside class="toc" aria-label="本文目录">
       <p class="section-label">目录</p>
       <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">核心痛点问答</a></li><li class="l3"><a href="#sec-2-1">Q1. colorEffect、distortio…</a></li><li class="l3"><a href="#sec-2-2">Q2. 为什么我用噪声图（NoiseTexture…</a></li><li class="l3"><a href="#sec-2-3">Q3. 为什么给带 Shader 的视图加 .an…</a></li><li class="l3"><a href="#sec-2-4">Q4. 想在当前歌词左下方「外挂」一个悬浮小时间戳…</a></li><li class="l2"><a href="#sec-3">立即可用清单</a></li><li class="l2"><a href="#sec-4">延伸视野</a></li></ol>
+      <div class="toc-series"><p class="section-label"><a href="/series/wwdc-liquid-glass-motion/">本体系目录（6/6）</a></p><ol><li><a href="/learn/wwdc27-glass-motion/">Ep.01 · WWDC25/26 (OS 26 → OS…</a></li><li><a href="/learn/liquid-glass-optics/">Ep.02 · Liquid Glass 光学第一性原理与…</a></li><li><a href="/learn/swiftui-26-tabview-sidebar-splitview/">Ep.03 · SwiftUI 26+ 导航与 API 演…</a></li><li><a href="/learn/swiftui-shader-pipeline/" aria-current="true">Ep.04 · SwiftUI 27 高级图形与动效管线：…</a></li><li><a href="/learn/swiftui-scroll-drag/">Ep.05 · SwiftUI 27 高性能滚动与多元素拖…</a></li><li><a href="/learn/appkit-uikit-27/">Ep.06 · macOS 27 AppKit 与 iOS…</a></li><li><a href="/series/wwdc-liquid-glass-motion/">查看全部 6 讲大纲 →</a></li></ol></div>
     </aside>
   </div>
   </main>

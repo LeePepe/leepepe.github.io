@@ -19,21 +19,76 @@
   <header class="site-header">
     <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
     <span class="header-note">An engineering notebook</span>
-    <nav aria-label="Main navigation"><a href="/learn/" aria-current="page">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Main navigation"><a href="/series/" aria-current="page">Series</a><a href="/learn/">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
     <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
   </header>
   <main id="main">
+<style>
+.series-stack { display: grid; gap: 24px; }
+.series-card { padding: 28px 32px; }
+.series-card__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.series-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); font: 600 11px/1.4 var(--strata-font-mono); letter-spacing: 0.4px; }
+.series-gate { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); padding: 4px 10px; border-radius: 6px; background: var(--inset); border: 1px solid var(--line); }
+.series-card h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(24px, 3vw, 30px); line-height: 1.28; letter-spacing: -0.4px; margin: 4px 0 10px; }
+.series-card h2 a { color: var(--text); text-decoration: none; }
+.series-card h2 a:hover { color: var(--accent); }
+.series-card__desc { margin: 0 0 18px; color: var(--secondary); font-size: 14.5px; line-height: 1.7; }
+.series-progress { margin: 0 0 22px; padding: 14px 16px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); }
+.series-progress__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font: 12px/1.4 var(--strata-font-mono); color: var(--text); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+.series-progress__bar { height: 7px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.series-progress__fill { height: 100%; border-radius: 999px; background: var(--accent); }
+.series-modules-preview { display: grid; gap: 14px; margin: 0 0 22px; }
+.series-mod-preview { padding: 14px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.series-mod-preview h3 { font-size: 14px; font-weight: 600; margin: 0 0 10px; color: var(--text); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.series-mod-preview h3 span { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); font-weight: 400; }
+.series-ep-mini { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.series-ep-mini li { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; font-size: 13.5px; line-height: 1.5; padding-top: 8px; border-top: 1px dashed var(--line); }
+.series-ep-mini li:first-child { padding-top: 0; border-top: 0; }
+.ep-code { font: 600 11.5px/1.4 var(--strata-font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.ep-locked .ep-code { color: var(--secondary); }
+.ep-locked .ep-title { color: var(--secondary); }
+.ep-title a { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.ep-title a:hover { color: var(--accent); }
+.ep-status { font: 11px/1.3 var(--strata-font-mono); padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.ep-status--pub { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); font-weight: 600; }
+.ep-status--lock { background: var(--inset); color: var(--secondary); border: 1px solid var(--line); }
+.syllabus-module { padding: 24px 28px; }
+.syllabus-module__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.syllabus-module__head h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 22px; margin: 0; color: var(--text); }
+.syllabus-module__count { font: 11.5px/1.4 var(--strata-font-mono); color: var(--secondary); }
+.syllabus-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.syllabus-item { padding: 16px 18px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.syllabus-item--pub { border-color: var(--accent); background: var(--surface); }
+.syllabus-item__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.syllabus-item h3 { font-size: 16px; line-height: 1.45; margin: 0 0 8px; font-weight: 600; }
+.syllabus-item h3 a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.syllabus-item h3 a:hover { color: var(--accent); }
+.syllabus-item--lock h3 { color: var(--secondary); font-weight: 500; }
+.syllabus-item p { margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--secondary); }
+.series-callout { margin: 0 0 24px; padding: 14px 18px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); border-left: 3px solid var(--accent); font-size: 13.5px; line-height: 1.6; color: var(--secondary); }
+.series-callout strong { color: var(--text); }
+.series-callout a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.post-nav__locked { display: block; padding: 16px; border-radius: 8px; background: var(--inset); border: 1px dashed var(--line); color: var(--secondary); text-align: right; }
+.post-nav__locked .dir { display: block; font: 11px/1.5 var(--strata-font-mono); color: var(--secondary); margin-bottom: 4px; }
+.post-nav__locked .t { display: block; font-weight: 600; line-height: 1.45; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+.post-nav__locked .sub { display: block; font-size: 12px; line-height: 1.5; color: var(--secondary); }
+.toc-series { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+.toc-series .section-label a { color: var(--text); text-decoration: none; }
+.toc-series .section-label a:hover { color: var(--accent); }
+.toc-series__locked { display: block; padding: 5px 12px; color: var(--secondary); font-size: 12px; line-height: 1.45; opacity: 0.78; }
+</style>
   <div class="post-layout">
     <div>
-      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <a class="btn btn--ghost back-link" href="/series/nasm-fitness-health-24/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回专栏：NASM 运动科学 24 讲</a>
       <article class="card article">
         <header class="article-header">
-          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t21">NASM</a></li><li><a class="tag" href="/tags/#t35">动力链</a></li><li><a class="tag" href="/tags/#t53">运动解剖</a></li></ul>
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t16">NASM</a></li><li><a class="tag" href="/tags/#t31">动力链</a></li><li><a class="tag" href="/tags/#t50">运动解剖</a></li></ul>
           <h1>NASM 运动科学连载 Ep.01：动力链三系统总览——骨骼、关节、肌肉与神经如何协同发力</h1>
           <p class="lede">人体的任何动作都不是单一肌肉孤立收缩的结果，而是由骨骼关节（刚性杠杆与铰链）、肌肉筋膜（主动拉力致动器）与神经系统（30 毫秒闭环控制器）构成的「动力链（Kinetic Chain）」协同输出；详解杠杆换向、30ms 感觉-整合-运动反馈回路与下交叉代偿链。</p>
           <div class="post-meta"><time datetime="2026-11-22">2026 年 11 月 22 日</time><span class="dot" aria-hidden="true">·</span><span>约 14,600 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 7 分钟</span></div>
         </header>
-        <div class="prose">
+        <div class="series-callout"><strong>所属体系专栏</strong>：<a href="/series/nasm-fitness-health-24/">NASM 运动科学、纠正训练与营养恢复全景体系</a> · 模块一：运动解剖与神经控制基础 · 第 1 / 24 讲（已更新 1/24）</div>
+<div class="prose">
 <blockquote><p><strong>一句话结论</strong>：人体的任何动作都不是单一肌肉孤立收缩的结果，而是由<strong>骨骼关节（刚性杠杆与铰链）、肌肉筋膜（主动拉力致动器）与神经系统（30 毫秒闭环控制器）</strong>共同构成的「动力链（Kinetic Chain）」协同输出；只要链条中的任一环节出现关节受限、肌肉短缩或神经募集失灵，相邻关节与肌群就必然被迫发生结构性代偿。</p></blockquote>
 <h2 id="sec-1">连载定位：为什么学健身要先看懂“动力链”<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
 <p>本篇是 <strong>《NASM 运动科学、纠正训练与营养恢复全景体系》（共 7 大模块、24 讲）</strong> 的开篇第一讲。整个连载按照从底层生理机制到高阶训练处方的逻辑递进，划分为七个模块：</p>
@@ -180,13 +235,14 @@
 <p>在看清了动力链的宏观三系统架构后，<strong>下一讲（Ep.02《神经控制与本体感觉：运动单位募集「大小原则」、肌梭与高尔基腱器（GTO）》）</strong> 我们将镜头推近到神经与肌肉交界的微观层面，拆解两个决定训练效果的关键机制：</p>
 <ol><li>为什么轻重量慢摇练不到高阈值快肌纤维？神经系统是如何按照<strong>赫氏大小原则（Henneman&#x27;s Size Principle）</strong>从慢到快逐级解锁运动单位的？</li><li>身体内置的两大精密力学传感器——<strong>肌梭（Muscle Spindles）与高尔基腱器（GTO）</strong>——如何在日常活动、静态拉伸与极限大重量举铁中扮演“油门”与“刹车”？我们又该如何利用“自源性抑制”原理安全突破柔韧性与力量瓶颈？</li></ol>
         </div>
-        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/costco-treasure-hunt-and-loss-leader-psychology/"><span class="dir">← 上一篇</span><span class="t">为什么去 Costco 只想买只烤鸡，出来却花了 1000 块？拆解「寻宝动线」与 14% 毛利上限的反直觉零售哲学</span></a><a class="next" href="/learn/all-weather-gold-real-rate-decoupling/"><span class="dir">下一篇 →</span><span class="t">为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点</span></a></nav>
-        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><div class="next post-nav__locked" aria-disabled="true"><span class="dir">下一讲预告（待读完本讲标 Done 后解锁）：Ep.02</span><span class="t">Ep.02 · 神经控制与本体感觉：运动单位募集「大小原则」、肌梭与高尔基腱器（GTO）</span><span class="sub">运动单位（Motor Unit）与全或无定律；Henneman 大小原则（低阈值慢肌到高阈值快肌的顺序募集）；肌梭（监测长度与速度→触发牵张反射防拉伤）与高尔基腱器 GTO（监测张力→按压 30 秒触发自源性抑制防断裂）的拮抗保护机制。</span></div></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/series/nasm-fitness-health-24/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回专栏：NASM 运动科学 24 讲</a></div>
       </article>
     </div>
     <aside class="toc" aria-label="本文目录">
       <p class="section-label">目录</p>
       <ol><li class="l2"><a href="#sec-1" aria-current="true">连载定位：为什么学健身要先看懂“动力链”</a></li><li class="l2"><a href="#sec-2">一、人体运动系统的“三明治架构”与职责边界</a></li><li class="l3"><a href="#sec-2-1">1. 骨骼与关节系统：被动刚性机架与轴承铰链</a></li><li class="l3"><a href="#sec-2-2">2. 肌肉与筋膜系统：为什么肌肉只能“拉”却能完成…</a></li><li class="l3"><a href="#sec-2-3">3. 神经系统：中央控制器与闭环传感器网络</a></li><li class="l2"><a href="#sec-3">二、一次深蹲或举铁背后的 30 毫秒闭环：感觉输入 → 中枢整合 → 运动输出</a></li><li class="l3"><a href="#sec-3-1">1. 感觉输入（Sensory Input —— …</a></li><li class="l3"><a href="#sec-3-2">2. 中枢整合（Integration —— 中间…</a></li><li class="l3"><a href="#sec-3-3">3. 运动输出（Motor Output —— 传…</a></li><li class="l2"><a href="#sec-4">三、为什么“头疼医头、膝痛练腿”往往无效：动力链代偿的连锁反应</a></li><li class="l2"><a href="#sec-5">四、本讲小结与下一讲预告</a></li><li class="l3"><a href="#sec-5-1">本讲核心要点</a></li><li class="l3"><a href="#sec-5-2">下一讲预告：Ep.02</a></li></ol>
+      <div class="toc-series"><p class="section-label"><a href="/series/nasm-fitness-health-24/">本体系目录（1/24）</a></p><ol><li><a href="/learn/nasm-ep01-kinetic-chain-three-systems/" aria-current="true">Ep.01 · 动力链三系统总览：骨骼、关节、肌肉与神经如…</a></li><li><span class="toc-series__locked">Ep.02 · 神经控制与本体感觉：运动单位募集「大小原则…（待解锁）</span></li><li><span class="toc-series__locked">Ep.03 · 肌肉微观构造与收缩力学：肌丝滑行学说、快慢…（待解锁）</span></li><li><span class="toc-series__locked">Ep.04 · 关节分类与关节运动学：滑膜关节、滚动/滑动…（待解锁）</span></li><li><a href="/series/nasm-fitness-health-24/">查看全部 24 讲大纲 →</a></li></ol></div>
     </aside>
   </div>
   </main>

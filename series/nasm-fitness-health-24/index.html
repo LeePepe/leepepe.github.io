@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN" data-lp-theme="light" data-strata-brand="green" data-strata-material="solid">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>NASM 运动科学、纠正训练与营养恢复全景体系 · 体系专栏 · Lee Pepe</title>
+<meta name="description" content="从动力链三系统（神经、骨骼关节、肌肉）出发，贯通能量代谢、运动生物力学、CES 四步纠正训练、OPT 五阶段周期化编程与运动营养睡眠恢复——按 7 大模块、24 讲递进拆解，读完一讲标 Done 解锁下一讲。">
+<link rel="alternate" type="application/atom+xml" title="LeePepe · RSS 订阅" href="/feed.xml">
+<script src="/assets/theme.js"></script>
+<link rel="stylesheet" href="/assets/colors.css">
+<link rel="stylesheet" href="/assets/strata-theme.css">
+<link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="shell">
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
+    <span class="header-note">An engineering notebook</span>
+    <nav aria-label="Main navigation"><a href="/series/" aria-current="page">Series</a><a href="/learn/">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
+  </header>
+  <main id="main">
+<style>
+.series-stack { display: grid; gap: 24px; }
+.series-card { padding: 28px 32px; }
+.series-card__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.series-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); font: 600 11px/1.4 var(--strata-font-mono); letter-spacing: 0.4px; }
+.series-gate { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); padding: 4px 10px; border-radius: 6px; background: var(--inset); border: 1px solid var(--line); }
+.series-card h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(24px, 3vw, 30px); line-height: 1.28; letter-spacing: -0.4px; margin: 4px 0 10px; }
+.series-card h2 a { color: var(--text); text-decoration: none; }
+.series-card h2 a:hover { color: var(--accent); }
+.series-card__desc { margin: 0 0 18px; color: var(--secondary); font-size: 14.5px; line-height: 1.7; }
+.series-progress { margin: 0 0 22px; padding: 14px 16px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); }
+.series-progress__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font: 12px/1.4 var(--strata-font-mono); color: var(--text); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+.series-progress__bar { height: 7px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.series-progress__fill { height: 100%; border-radius: 999px; background: var(--accent); }
+.series-modules-preview { display: grid; gap: 14px; margin: 0 0 22px; }
+.series-mod-preview { padding: 14px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.series-mod-preview h3 { font-size: 14px; font-weight: 600; margin: 0 0 10px; color: var(--text); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.series-mod-preview h3 span { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); font-weight: 400; }
+.series-ep-mini { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.series-ep-mini li { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; font-size: 13.5px; line-height: 1.5; padding-top: 8px; border-top: 1px dashed var(--line); }
+.series-ep-mini li:first-child { padding-top: 0; border-top: 0; }
+.ep-code { font: 600 11.5px/1.4 var(--strata-font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.ep-locked .ep-code { color: var(--secondary); }
+.ep-locked .ep-title { color: var(--secondary); }
+.ep-title a { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.ep-title a:hover { color: var(--accent); }
+.ep-status { font: 11px/1.3 var(--strata-font-mono); padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.ep-status--pub { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); font-weight: 600; }
+.ep-status--lock { background: var(--inset); color: var(--secondary); border: 1px solid var(--line); }
+.syllabus-module { padding: 24px 28px; }
+.syllabus-module__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.syllabus-module__head h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 22px; margin: 0; color: var(--text); }
+.syllabus-module__count { font: 11.5px/1.4 var(--strata-font-mono); color: var(--secondary); }
+.syllabus-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.syllabus-item { padding: 16px 18px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.syllabus-item--pub { border-color: var(--accent); background: var(--surface); }
+.syllabus-item__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.syllabus-item h3 { font-size: 16px; line-height: 1.45; margin: 0 0 8px; font-weight: 600; }
+.syllabus-item h3 a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.syllabus-item h3 a:hover { color: var(--accent); }
+.syllabus-item--lock h3 { color: var(--secondary); font-weight: 500; }
+.syllabus-item p { margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--secondary); }
+.series-callout { margin: 0 0 24px; padding: 14px 18px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); border-left: 3px solid var(--accent); font-size: 13.5px; line-height: 1.6; color: var(--secondary); }
+.series-callout strong { color: var(--text); }
+.series-callout a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.post-nav__locked { display: block; padding: 16px; border-radius: 8px; background: var(--inset); border: 1px dashed var(--line); color: var(--secondary); text-align: right; }
+.post-nav__locked .dir { display: block; font: 11px/1.5 var(--strata-font-mono); color: var(--secondary); margin-bottom: 4px; }
+.post-nav__locked .t { display: block; font-weight: 600; line-height: 1.45; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+.post-nav__locked .sub { display: block; font-size: 12px; line-height: 1.5; color: var(--secondary); }
+.toc-series { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+.toc-series .section-label a { color: var(--text); text-decoration: none; }
+.toc-series .section-label a:hover { color: var(--accent); }
+.toc-series__locked { display: block; padding: 5px 12px; color: var(--secondary); font-size: 12px; line-height: 1.45; opacity: 0.78; }
+</style>
+  <section class="page-intro">
+    <p class="eyebrow"><a href="/series/">SERIES · 体系专栏</a> <span>/</span> 体系连载 · 7 大模块 · 24 讲</p>
+    <h1>NASM 运动科学、纠正训练与营养恢复全景体系</h1>
+    <p>从动力链三系统（神经、骨骼关节、肌肉）出发，贯通能量代谢、运动生物力学、CES 四步纠正训练、OPT 五阶段周期化编程与运动营养睡眠恢复——按 7 大模块、24 讲递进拆解，读完一讲标 Done 解锁下一讲。</p>
+    <div class="series-progress" style="max-width:680px;margin-top:20px;margin-bottom:0" aria-label="连载进度">
+      <div class="series-progress__head"><span>已更新 1 / 24 讲</span><span>读完标 Done 解锁下一讲 · 4%</span></div>
+      <div class="series-progress__bar"><div class="series-progress__fill" style="width:4%"></div></div>
+    </div>
+  </section>
+  <div class="layout">
+    <div class="series-stack" aria-label="分模块课程大纲">
+<section class="card syllabus-module" id="module-1" aria-labelledby="h-module-1">
+  <div class="syllabus-module__head"><h2 id="h-module-1">模块一：运动解剖与神经控制基础</h2><span class="syllabus-module__count">已更新 1 / 4 讲</span></div>
+  <ol class="syllabus-list">
+<li class="syllabus-item syllabus-item--pub" id="ep-01">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.01</span><span class="ep-status ep-status--pub">已发布 · 可阅读</span></div>
+  <h3><a href="/learn/nasm-ep01-kinetic-chain-three-systems/">动力链三系统总览：骨骼、关节、肌肉与神经如何协同发力</a></h3>
+  <p>人体运动系统（HMS / Kinetic Chain）三大子系统（神经系统指挥官、骨骼关节杠杆、肌肉发动机）的闭环耦合；运动感觉输入→中枢整合→运动输出的毫秒级反馈回路；为什么任何一个环节卡壳都会引发代偿性损伤。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-02">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.02</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>神经控制与本体感觉：运动单位募集「大小原则」、肌梭与高尔基腱器（GTO）</h3>
+  <p>运动单位（Motor Unit）与全或无定律；Henneman 大小原则（低阈值慢肌到高阈值快肌的顺序募集）；肌梭（监测长度与速度→触发牵张反射防拉伤）与高尔基腱器 GTO（监测张力→按压 30 秒触发自源性抑制防断裂）的拮抗保护机制。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-03">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.03</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>肌肉微观构造与收缩力学：肌丝滑行学说、快慢肌纤维与三类收缩模式</h3>
+  <p>肌束→肌纤维→肌原纤维→肌节（Sarcomere）层级；肌球蛋白横桥与肌动蛋白结合的钙离子（Ca2+）与 ATP 驱动机制；I 型慢肌 vs IIa/IIx 快肌的线粒体/毛细血管/疲劳速率对比；向心、等长、离心收缩的力输出排序。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-04">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.04</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>关节分类与关节运动学：滑膜关节、滚动/滑动/旋转与关节共轴性</h3>
+  <p>骨运动学 vs 关节运动学（Arthrokinematics）；滑膜关节的三大运动（滚动 Roll、滑动 Slide、旋转 Spin）与凹凸定律；为什么没有“滑动”只有“滚动”会导致肩峰撞击或膝关节软骨磨损；关节共轴性（Joint Centration）。</p>
+</li>
+  </ol>
+</section>
+<section class="card syllabus-module" id="module-2" aria-labelledby="h-module-2">
+  <div class="syllabus-module__head"><h2 id="h-module-2">模块二：能量代谢、心肺生理与内分泌</h2><span class="syllabus-module__count">已更新 0 / 3 讲</span></div>
+  <ol class="syllabus-list">
+<li class="syllabus-item syllabus-item--lock" id="ep-05">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.05</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>三大能量系统与底物切换：ATP-PCr、无氧糖酵解与有氧氧化的无缝交接</h3>
+  <p>ATP 肌细胞内仅够维持 2~3 秒的存量限制；磷酸原系统（0~15 秒极限力量，3~5 分钟组间恢复）、无氧糖酵解（15~120 秒肌肥大主供能与氢离子 H+ 酸痛真相）、有氧氧化系统的功率-容量权衡与混合供能曲线。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-06">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.06</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>心肺气体交换与双阈值模型：VT1/VT2 通气阈值、VO2max 与 EPOC</h3>
+  <p>Fick 公式（VO2 = 心输出量 Q × 动静脉氧差 a-vO2 diff）；第一通气阈值（VT1，有氧底线/说话测试临界点）与第二通气阈值（VT2，无氧阈值/乳酸急剧堆积点）；运动后过量氧耗（EPOC）的真实量级与生理修复成本。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-07">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.07</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>运动内分泌学：睾酮、生长激素、皮质醇与胰岛素在训练中的合成与分解博弈</h3>
+  <p>合成代谢激素（睾酮、IGF-1、生长激素 GH、胰岛素）vs 分解代谢激素（皮质醇 Cortisol、肾上腺素/去甲肾上腺素）；大肌群复合动作与短间歇如何触发急性激素响应；为什么单次训练超过 75~90 分钟会导致皮质醇反超并分解肌肉。</p>
+</li>
+  </ol>
+</section>
+<section class="card syllabus-module" id="module-3" aria-labelledby="h-module-3">
+  <div class="syllabus-module__head"><h2 id="h-module-3">模块三：运动生物力学</h2><span class="syllabus-module__count">已更新 0 / 3 讲</span></div>
+  <ol class="syllabus-list">
+<li class="syllabus-item syllabus-item--lock" id="ep-08">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.08</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>三大解剖平面与人体杠杆：矢状面、额状面、水平面与力矩（Torque）设计</h3>
+  <p>矢状面（屈伸）、额状面（外展内收/侧屈）、水平面（旋转）与对应运动轴；人体第一、二、三类杠杆（为什么人体绝大多数关节是“费力但赚速度”的第三类杠杆）；力矩 = 力 × 力臂（如何通过微调哑铃距离改变动作难度）。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-09">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.09</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>长度-张力关系与力偶（Force-Couple）：为什么肌肉太紧或太松都发不出最大力</h3>
+  <p>肌节最佳静息长度（横桥重叠数量最大化）与长度-张力钟形曲线；原动肌/协同肌/稳定肌/拮抗肌的动态分工；力偶关系（前锯肌+上下斜方肌协同驱动肩胛骨上回旋，腹肌+臀肌协同控制骨盆后倾）。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-10">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.10</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>神经肌肉失衡机制：改变的交互抑制与协同肌主导代偿</h3>
+  <p>Sherrington 交互抑制定律；改变的交互抑制（久坐导致髂腰肌过紧，通过神经反射强行关停拮抗肌臀大肌）；协同肌主导（Synergistic Dominance：臀大肌罢工后，膕绳肌与竖脊肌被迫越俎代庖，引发大腿后侧拉伤与下背痛）；关节运动学改变与累积损伤周期（Cumulative Injury Cycle）。</p>
+</li>
+  </ol>
+</section>
+<section class="card syllabus-module" id="module-4" aria-labelledby="h-module-4">
+  <div class="syllabus-module__head"><h2 id="h-module-4">模块四：体态评估与 CES 纠正性训练体系</h2><span class="syllabus-module__count">已更新 0 / 3 讲</span></div>
+  <ol class="syllabus-list">
+<li class="syllabus-item syllabus-item--lock" id="ep-11">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.11</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>静态体态与三大失衡模式：上交叉、下交叉与旋前变形综合征</h3>
+  <p>动力链五大观测检查点（足踝、膝、LPHC 腰盆髋复合体、肩、头颈）；Janda 上交叉综合征（胸大肌/胸小肌/上斜方肌过紧 vs 深层颈屈肌/中下斜方肌过弱）、下交叉综合征（髋屈肌/竖脊肌过紧 vs 腹肌/臀大肌过弱）、旋前变形综合征（腓肠肌/比目鱼肌/内收肌过紧 vs 胫骨前肌/胫骨后肌/臀中肌过弱）。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-12">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.12</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>动态动作筛查（OHSA 过顶深蹲 &amp; 单腿蹲）：从代偿动作直接反推紧绷与薄弱肌群</h3>
+  <p>为什么静态站姿正常的人一动就暴露代偿；过顶深蹲评估（OHSA）正面观（脚尖外展、膝内扣）与侧面观（躯干过度前倾、腰椎过度反弓、手臂前掉）的完整生物力学破案矩阵；单腿深蹲与推/拉评估补充。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-13">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.13</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>NASM-CES 纠正训练连续体四步法：抑制 → 拉长 → 激活 → 整合</h3>
+  <p>为什么直接练弱肌没用（拮抗肌还在持续释放抑制信号）；第一步抑制（SMR 泡沫轴降低过活跃肌张力）→ 第二步拉长（静态/神经肌肉拉伸恢复延展性）→ 第三步激活（位置等长收缩与慢速离心孤立唤醒弱肌）→ 第四步整合（多平面功能性协同发力）的严格顺序。</p>
+</li>
+  </ol>
+</section>
+<section class="card syllabus-module" id="module-5" aria-labelledby="h-module-5">
+  <div class="syllabus-module__head"><h2 id="h-module-5">模块五：六大专项训练技术模块</h2><span class="syllabus-module__count">已更新 0 / 4 讲</span></div>
+  <ol class="syllabus-list">
+<li class="syllabus-item syllabus-item--lock" id="ep-14">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.14</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>柔韧性训练科学：筋膜网络、自源性抑制与三级柔韧连续体</h3>
+  <p>Davis 定律与软组织粘连重塑；纠正性柔韧（SMR + 静态拉伸 30 秒，依赖自源性抑制）、主动柔韧（主动孤立拉伸 AIS 保持 1~2 秒重复 5~10 次，依赖交互抑制）、功能性柔韧（动态拉伸，神经预热）的适用阶段与禁忌。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-15">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.15</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>核心与平衡训练科学：深层局部稳定系统、腹内压（IAP）与本体感觉进阶</h3>
+  <p>局部稳定系统（腹横肌、多裂肌、内斜肌、盆底肌、膈肌——富含 I 型肌纤维，在四肢移动前提前收缩稳住椎间）vs 整体稳定/运动系统（腹直肌、竖脊肌、背阔肌）；Drawing-in（吸腹激活腹横肌）vs Bracing（腹部绷紧建立 360 度腹内压刚性气缸）；平衡训练三级进阶。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-16">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.16</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>超等长（Plyometric）与反应力量：牵张-缩短周期（SSC）与摊销期弹簧机制</h3>
+  <p>串联弹性成分（SEC 肌腱储能）与牵张反射的叠加效应；SSC 三阶段：离心加载期（预拉伸储能）→ 摊销期（Amortization Phase，过渡时间必须极短，过长则弹性势能化为热能散失）→ 向心释放期；落地缓冲稳定→超等长力量→超等长爆发力三级进阶。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-17">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.17</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>SAQ（速度/敏捷/快速反应）与基于 VT1/VT2 的三阶段心肺编程</h3>
+  <p>速度（直线最大位移率与前侧力学 Frontside Mechanics：踝背屈、屈膝屈髋三关节同步）、敏捷（减速与变向离心制动能力）、快速反应（视觉/听觉信号下的神经反应时）；NASM Stage 1（低于 VT1 稳态恢复）、Stage 2（VT1~VT2 有氧耐力间歇）、Stage 3（高于 VT2 无氧爆发间歇）的工作/休息比设计。</p>
+</li>
+  </ol>
+</section>
+<section class="card syllabus-module" id="module-6" aria-labelledby="h-module-6">
+  <div class="syllabus-module__head"><h2 id="h-module-6">模块六：OPT 模型五阶段与周期化编程</h2><span class="syllabus-module__count">已更新 0 / 4 讲</span></div>
+  <ol class="syllabus-list">
+<li class="syllabus-item syllabus-item--lock" id="ep-18">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.18</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>OPT 模型总览与 Phase 1（稳定耐力）：4-2-1 慢离心节拍如何重塑结缔组织</h3>
+  <p>NASM OPT 模型三大层级（稳定层、力量层、爆发层）与五个阶段的递进逻辑；Phase 1 急性变量（12~20 次、50%~70% 1RM、4-2-1 节拍：4 秒离心下落、2 秒底端等长保持、1 秒向心起身）；为什么慢离心与等长停顿是强化肌腱/韧带胶原纤维排列与校准动作模式的必经底座。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-19">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.19</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>OPT Phase 2（力量耐力）与 Phase 3（肌肥大）：稳定超级组与肌肥大三大机制</h3>
+  <p>Phase 2 核心设计：生物力学同源超级组（1 个大重量主肌群动作 8~12 次 + 立即无间歇接 1 个稳定挑战动作 8~12 次，如杠铃卧推接瑞士球俯卧撑）；Phase 3（肌肥大）三大生理驱动力：机械张力（75%~85% 1RM）、代谢压力（6~12 次、2-0-2 节拍、60 秒短间歇）与肌纤维重塑。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-20">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.20</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>OPT Phase 4（最大力量）与 Phase 5（爆发力）：高阈值神经募集与力-速度曲线</h3>
+  <p>Phase 4（最大力量）：85%~100% 1RM、1~5 次、3~5 分钟长间歇（完全恢复 ATP-PCr），依靠运动单位同步募集、放电频率（Rate Coding）与降低高尔基腱器抑制提升绝对力量；Phase 5（爆发力）：力（Force）× 速度（Velocity）复合超级组（1 个 85%+ 1RM 大重量动作激活高阈值神经 + 立即接 1 个 30%~45% 1RM 或自重爆发动作全速释放，利用激活后增强效应 PAP）。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-21">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.21</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>训练周期化（Periodization）与疲劳管理：一般适应综合征（GAS）与减载周设计</h3>
+  <p>Hans Selye 一般适应综合征三阶段：警觉反应期（Alarm Reaction，DOMS 延迟性酸痛与短暂能力下降）→ 抵抗发展期（Resistance Development，超量恢复 Supercompensation）→ 衰竭期（Exhaustion，过度训练综合征 OTS）；宏周期（年）、中周期（月，Phase 1/2/3 轮转）、微周期（周）与线性 vs 每日波动周期化（DUP）编排。</p>
+</li>
+  </ol>
+</section>
+<section class="card syllabus-module" id="module-7" aria-labelledby="h-module-7">
+  <div class="syllabus-module__head"><h2 id="h-module-7">模块七：运动营养（NASM-CNC）与睡眠/HRV 恢复科学</h2><span class="syllabus-module__count">已更新 0 / 3 讲</span></div>
+  <ol class="syllabus-list">
+<li class="syllabus-item syllabus-item--lock" id="ep-22">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.22</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>能量平衡、NEAT 与身体成分重塑：为什么节食加上过量有氧反而掉肌肉降代谢</h3>
+  <p>每日总能量消耗（TDEE）四部分占比：基础代谢 BMR（~60%~70%）、非运动性日常活动消耗 NEAT（~15%~30%，个体差异最大）、食物热效应 TEF（~10%，蛋白质高达 20%~30%）、运动消耗 EAT（~5%~10%）；大幅热量缺口触发的代谢适应（下调 NEAT 与甲状腺素 T3）；减脂不掉肌的黄金赤字（300~500 kcal/d）与力量训练保肌信号。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-23">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.23</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>宏量营养素与循证补剂机制：蛋白质「亮氨酸阈值」、糖原窗口与肌酸/咖啡因原理</h3>
+  <p>肌蛋白合成（MPS）的 mTOR 开关与「亮氨酸阈值（单餐需含 2.5~3g 亮氨酸，约合 25~40g 优质蛋白）」；每日 1.6~2.2g/kg 蛋白质均匀分布在 3~4 餐的合成效率对比；碳水化合物与肌糖原/肝糖原恢复速率；ISSN/NASM A 级循证补剂底层机制：一水肌酸（扩充 PCr 磷酸肌酸池与细胞水合）与咖啡因（拮抗腺苷受体降低 RPE 主观疲劳度）。</p>
+</li>
+<li class="syllabus-item syllabus-item--lock" id="ep-24">
+  <div class="syllabus-item__top"><span class="ep-code">Ep.24</span><span class="ep-status ep-status--lock">待解锁</span></div>
+  <h3>睡眠结构、HRV 与自主神经恢复闭环：如何用晨间生理数据动态导航训练强度</h3>
+  <p>睡眠 90 分钟周期中慢波深睡（SWS，释放全天 70%+ 生长激素脉冲修复肌肉与结缔组织）与快速眼动期（REM，巩固神经肌肉运动技能记忆）的分工；心率变异性（HRV / RMSSD）反映迷走神经（副交感）张力的原理；基于 7 日晨间 HRV 基线走廊与静息心率（RHR）的自动调节训练（Autoregulation）决策矩阵。</p>
+</li>
+  </ol>
+</section>
+    </div>
+    <aside class="aside" aria-label="侧栏">
+      <section class="card">
+        <h2>模块导航</h2>
+        <ol style="padding-left:18px;margin:0;display:grid;gap:8px;font-size:13px"><li><a href="#module-1">模块一：运动解剖与神经控制基础 <span class="mono">(1/4)</span></a></li><li><a href="#module-2">模块二：能量代谢、心肺生理与内分泌 <span class="mono">(0/3)</span></a></li><li><a href="#module-3">模块三：运动生物力学 <span class="mono">(0/3)</span></a></li><li><a href="#module-4">模块四：体态评估与 CES 纠正性训练体系 <span class="mono">(0/3)</span></a></li><li><a href="#module-5">模块五：六大专项训练技术模块 <span class="mono">(0/4)</span></a></li><li><a href="#module-6">模块六：OPT 模型五阶段与周期化编程 <span class="mono">(0/4)</span></a></li><li><a href="#module-7">模块七：运动营养（NASM-CNC）与睡眠/HRV 恢复科学 <span class="mono">(0/3)</span></a></li></ol>
+      </section>
+      <section class="card">
+        <h2>连载解锁机制</h2>
+        <p>读完标 Done 解锁下一讲。已发布章节可直接点击精读，待解锁章节提前展示核心机制大纲，方便对照全局骨架。</p>
+        <div class="links">
+          <a class="btn btn--secondary" href="/series/">返回体系专栏总览</a>
+          <a class="btn btn--ghost" href="/learn/">求知单篇</a>
+        </div>
+      </section>
+    </aside>
+  </div>
+  </main>
+  <footer class="site-footer">
+    <a class="wordmark" href="#main" aria-label="Back to top">lp<span>.</span></a>
+    <p>Built with care. Shared in public.</p>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/tags/">Tags</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="https://leepepe.github.io/LeePepe/">Activity ↗</a>
+      <a href="https://github.com/LeePepe">GitHub ↗</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

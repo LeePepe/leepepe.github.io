@@ -19,21 +19,76 @@
   <header class="site-header">
     <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
     <span class="header-note">An engineering notebook</span>
-    <nav aria-label="Main navigation"><a href="/learn/" aria-current="page">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Main navigation"><a href="/series/" aria-current="page">Series</a><a href="/learn/">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
     <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
   </header>
   <main id="main">
+<style>
+.series-stack { display: grid; gap: 24px; }
+.series-card { padding: 28px 32px; }
+.series-card__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.series-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); font: 600 11px/1.4 var(--strata-font-mono); letter-spacing: 0.4px; }
+.series-gate { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); padding: 4px 10px; border-radius: 6px; background: var(--inset); border: 1px solid var(--line); }
+.series-card h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(24px, 3vw, 30px); line-height: 1.28; letter-spacing: -0.4px; margin: 4px 0 10px; }
+.series-card h2 a { color: var(--text); text-decoration: none; }
+.series-card h2 a:hover { color: var(--accent); }
+.series-card__desc { margin: 0 0 18px; color: var(--secondary); font-size: 14.5px; line-height: 1.7; }
+.series-progress { margin: 0 0 22px; padding: 14px 16px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); }
+.series-progress__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font: 12px/1.4 var(--strata-font-mono); color: var(--text); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+.series-progress__bar { height: 7px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.series-progress__fill { height: 100%; border-radius: 999px; background: var(--accent); }
+.series-modules-preview { display: grid; gap: 14px; margin: 0 0 22px; }
+.series-mod-preview { padding: 14px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.series-mod-preview h3 { font-size: 14px; font-weight: 600; margin: 0 0 10px; color: var(--text); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.series-mod-preview h3 span { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); font-weight: 400; }
+.series-ep-mini { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.series-ep-mini li { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; font-size: 13.5px; line-height: 1.5; padding-top: 8px; border-top: 1px dashed var(--line); }
+.series-ep-mini li:first-child { padding-top: 0; border-top: 0; }
+.ep-code { font: 600 11.5px/1.4 var(--strata-font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.ep-locked .ep-code { color: var(--secondary); }
+.ep-locked .ep-title { color: var(--secondary); }
+.ep-title a { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.ep-title a:hover { color: var(--accent); }
+.ep-status { font: 11px/1.3 var(--strata-font-mono); padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.ep-status--pub { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); font-weight: 600; }
+.ep-status--lock { background: var(--inset); color: var(--secondary); border: 1px solid var(--line); }
+.syllabus-module { padding: 24px 28px; }
+.syllabus-module__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.syllabus-module__head h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 22px; margin: 0; color: var(--text); }
+.syllabus-module__count { font: 11.5px/1.4 var(--strata-font-mono); color: var(--secondary); }
+.syllabus-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.syllabus-item { padding: 16px 18px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.syllabus-item--pub { border-color: var(--accent); background: var(--surface); }
+.syllabus-item__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.syllabus-item h3 { font-size: 16px; line-height: 1.45; margin: 0 0 8px; font-weight: 600; }
+.syllabus-item h3 a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.syllabus-item h3 a:hover { color: var(--accent); }
+.syllabus-item--lock h3 { color: var(--secondary); font-weight: 500; }
+.syllabus-item p { margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--secondary); }
+.series-callout { margin: 0 0 24px; padding: 14px 18px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); border-left: 3px solid var(--accent); font-size: 13.5px; line-height: 1.6; color: var(--secondary); }
+.series-callout strong { color: var(--text); }
+.series-callout a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.post-nav__locked { display: block; padding: 16px; border-radius: 8px; background: var(--inset); border: 1px dashed var(--line); color: var(--secondary); text-align: right; }
+.post-nav__locked .dir { display: block; font: 11px/1.5 var(--strata-font-mono); color: var(--secondary); margin-bottom: 4px; }
+.post-nav__locked .t { display: block; font-weight: 600; line-height: 1.45; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+.post-nav__locked .sub { display: block; font-size: 12px; line-height: 1.5; color: var(--secondary); }
+.toc-series { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+.toc-series .section-label a { color: var(--text); text-decoration: none; }
+.toc-series .section-label a:hover { color: var(--accent); }
+.toc-series__locked { display: block; padding: 5px 12px; color: var(--secondary); font-size: 12px; line-height: 1.45; opacity: 0.78; }
+</style>
   <div class="post-layout">
     <div>
-      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <a class="btn btn--ghost back-link" href="/series/wwdc-liquid-glass-motion/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回专栏：WWDC Liquid Glass 与动效体系</a>
       <article class="card article">
         <header class="article-header">
-          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t22">ScrollView</a></li><li><a class="tag" href="/tags/#t40">性能优化</a></li></ul>
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t17">ScrollView</a></li><li><a class="tag" href="/tags/#t37">性能优化</a></li></ul>
           <h1>SwiftUI 27 高性能滚动与多元素拖拽：LazyStack 帧预取与纸牌级重排</h1>
           <p class="lede">揪出 LazyVStack 子视图 if 过滤导致内存暴涨、onAppear 废掉帧间预取（Prefetching）三大掉帧元凶；用 .reorderContainer + .dragContainer 解锁纸牌接龙级成叠拖拽与非法弹回。</p>
           <div class="post-meta"><time datetime="2026-11-09">2026 年 11 月 9 日</time><span class="dot" aria-hidden="true">·</span><span>约 5,500 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 11 分钟</span></div>
         </header>
-        <div class="prose">
+        <div class="series-callout"><strong>所属体系专栏</strong>：<a href="/series/wwdc-liquid-glass-motion/">WWDC 25/26 (OS 26 → OS 27) Liquid Glass 与动效体系</a> · 模块二：Metal 渲染管线、高性能滚动与跨端窗口现代化 · 第 5 / 6 讲（已更新 6/6）</div>
+<div class="prose">
 <blockquote><p><strong>一句话结论</strong>：<strong><code>LazyVStack</code> 不掉帧的秘密是「离屏高度估算 + 跨帧空闲预取（Prefetching）」，而最常见的卡顿与滚飞全是因为你在视图出现后篡改了它的高度或子视图数量</strong>；在拖拽侧，OS 27 用 <code>.reorderContainer</code> + <code>.dragContainer</code> 让任意容器（含 <code>LazyVStack</code> / <code>LazyVGrid</code>）拥有了像玩纸牌接龙一样「一抓一摞、空中成叠、非法弹回」的原生能力。</p></blockquote>
 <h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
 <table><thead><tr><th>抽象机制 / API</th><th>关键规则 / 数字</th><th>生活教具 / 直观参照</th><th>物理与工程效果</th></tr></thead><tbody><tr><td><strong>离屏高度估算</strong></td><td><code>已加载视图平均高度 × 剩余数量</code></td><td><strong>用前 3 本书的厚度估算整面书架高度</strong></td><td>不加载离屏视图省内存，但绝对 <code>contentOffset.y</code> 会随真实视图滚入而动态修正</td></tr><tr><td><strong>理想横轴尺寸</strong></td><td>取决于<strong>第 1 个子视图</strong>的宽/高</td><td><strong>按排头兵的身高定整排天花板高度</strong></td><td><code>LazyHStack</code> 的理想高度直接取第 1 个子视图高度；若后续子视图文字行数变多会被截断，需固定高度或 <code>lineLimit</code></td></tr><tr><td><strong>1:1 子视图解析铁律</strong></td><td><code>ForEach</code> 每项必须恒定解析为 <strong>1 个 Subview</strong></td><td><strong>火车车厢对号入座（严禁空车厢或双胞胎）</strong></td><td>叶子视图里写 <code>if</code> 过滤会产生 <code>0</code> 或 <code>1</code> 个不确定子视图，迫使 <code>LazyVStack</code> 永远不敢释放旧视图以维护索引</td></tr><tr><td><strong>帧间预取（Prefetching）</strong></td><td>在 <strong>8.3ms / 16.6ms 帧截止线</strong> 空闲期提前算好下一项 <code>body</code> 与布局</td><td><strong>餐厅后厨在客人进门前提前备菜</strong></td><td>若把初始化全塞进 <code>onAppear</code>，视图上屏瞬间才推翻重排，预取心血全部白费并直接掉帧（Hitch）</td></tr><tr><td><strong>多元素成叠拖拽</strong></td><td><code>.dragContainer</code> + <code>.dragPreviewsFormation(.stack)</code></td><td><strong>纸牌接龙抓起中间一张牌，上面一摞自动跟着走</strong></td><td>支持 <code>.pile</code>（散落堆）、<code>.list</code>（列表）、<code>.stack</code>（紧凑叠牌），配合 <code>.dropPreviewsFormation</code> 保持跨区预览一致</td></tr><tr><td><strong>落点规则仲裁</strong></td><td><code>.dropConfiguration</code> 返回 <code>.move</code> 或 <code>.forbidden</code></td><td><strong>发牌员验牌：合规入列，违规原路弹回</strong></td><td>告别默认 <code>.copy</code> 产生重复脏数据，非法落点由系统自动播放平滑回弹动画</td></tr></tbody></table>
@@ -76,13 +131,14 @@
 <h2 id="sec-4">延伸视野<a class="anchor" href="#sec-4" aria-label="本节链接">#</a></h2>
 <ul><li><strong>理解框架的「幕后契约」才能顺水推舟</strong>：<code>LazyVStack</code> 用“索引假设 + 平均高度估算 + 帧间预取”换取了万级列表的内存效率。当你遵守“1 个元素 = 1 个定高/单遍布局子视图”的契约时，框架就是你的涡轮增压器；反之，在叶子视图里搞条件分支和二次测高，就是在跟预取引擎顶牛。</li></ul>
         </div>
-        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/swiftui-shader-pipeline/"><span class="dir">← 上一篇</span><span class="t">SwiftUI 27 高级图形与动效管线：Metal Shader 扭曲、时间流与图钉对齐</span></a><a class="next" href="/learn/appkit-uikit-27/"><span class="dir">下一篇 →</span><span class="t">macOS 27 AppKit 与 iOS 27 UIKit 现代化：自由缩放窗口、同心圆角与手势革命</span></a></nav>
-        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/swiftui-shader-pipeline/"><span class="dir">← 上一讲 · Ep.04</span><span class="t">SwiftUI 27 高级图形与动效管线：Metal Shader 扭曲、时间流与图钉对齐</span></a><a class="next" href="/learn/appkit-uikit-27/"><span class="dir">下一讲 · Ep.06 →</span><span class="t">macOS 27 AppKit 与 iOS 27 UIKit 现代化：自由缩放窗口、同心圆角与手势革命</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/series/wwdc-liquid-glass-motion/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回专栏：WWDC Liquid Glass 与动效体系</a></div>
       </article>
     </div>
     <aside class="toc" aria-label="本文目录">
       <p class="section-label">目录</p>
       <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">核心痛点问答</a></li><li class="l3"><a href="#sec-2-1">Q1. 为什么我在 LazyVStack 的子视图…</a></li><li class="l3"><a href="#sec-2-2">Q2. 为什么我的长列表快速滑动时总是掉帧（Hit…</a></li><li class="l3"><a href="#sec-2-3">Q3. 为什么我的 .scrollTransiti…</a></li><li class="l3"><a href="#sec-2-4">Q4. 不想用死板的 List，怎么在自定义 La…</a></li><li class="l2"><a href="#sec-3">立即可用清单</a></li><li class="l2"><a href="#sec-4">延伸视野</a></li></ol>
+      <div class="toc-series"><p class="section-label"><a href="/series/wwdc-liquid-glass-motion/">本体系目录（6/6）</a></p><ol><li><a href="/learn/wwdc27-glass-motion/">Ep.01 · WWDC25/26 (OS 26 → OS…</a></li><li><a href="/learn/liquid-glass-optics/">Ep.02 · Liquid Glass 光学第一性原理与…</a></li><li><a href="/learn/swiftui-26-tabview-sidebar-splitview/">Ep.03 · SwiftUI 26+ 导航与 API 演…</a></li><li><a href="/learn/swiftui-shader-pipeline/">Ep.04 · SwiftUI 27 高级图形与动效管线：…</a></li><li><a href="/learn/swiftui-scroll-drag/" aria-current="true">Ep.05 · SwiftUI 27 高性能滚动与多元素拖…</a></li><li><a href="/learn/appkit-uikit-27/">Ep.06 · macOS 27 AppKit 与 iOS…</a></li><li><a href="/series/wwdc-liquid-glass-motion/">查看全部 6 讲大纲 →</a></li></ol></div>
     </aside>
   </div>
   </main>

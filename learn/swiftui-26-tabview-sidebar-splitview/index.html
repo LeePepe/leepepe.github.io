@@ -19,21 +19,76 @@
   <header class="site-header">
     <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
     <span class="header-note">An engineering notebook</span>
-    <nav aria-label="Main navigation"><a href="/learn/" aria-current="page">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Main navigation"><a href="/series/" aria-current="page">Series</a><a href="/learn/">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
     <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
   </header>
   <main id="main">
+<style>
+.series-stack { display: grid; gap: 24px; }
+.series-card { padding: 28px 32px; }
+.series-card__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.series-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); font: 600 11px/1.4 var(--strata-font-mono); letter-spacing: 0.4px; }
+.series-gate { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); padding: 4px 10px; border-radius: 6px; background: var(--inset); border: 1px solid var(--line); }
+.series-card h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(24px, 3vw, 30px); line-height: 1.28; letter-spacing: -0.4px; margin: 4px 0 10px; }
+.series-card h2 a { color: var(--text); text-decoration: none; }
+.series-card h2 a:hover { color: var(--accent); }
+.series-card__desc { margin: 0 0 18px; color: var(--secondary); font-size: 14.5px; line-height: 1.7; }
+.series-progress { margin: 0 0 22px; padding: 14px 16px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); }
+.series-progress__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font: 12px/1.4 var(--strata-font-mono); color: var(--text); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+.series-progress__bar { height: 7px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.series-progress__fill { height: 100%; border-radius: 999px; background: var(--accent); }
+.series-modules-preview { display: grid; gap: 14px; margin: 0 0 22px; }
+.series-mod-preview { padding: 14px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.series-mod-preview h3 { font-size: 14px; font-weight: 600; margin: 0 0 10px; color: var(--text); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.series-mod-preview h3 span { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); font-weight: 400; }
+.series-ep-mini { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.series-ep-mini li { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; font-size: 13.5px; line-height: 1.5; padding-top: 8px; border-top: 1px dashed var(--line); }
+.series-ep-mini li:first-child { padding-top: 0; border-top: 0; }
+.ep-code { font: 600 11.5px/1.4 var(--strata-font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.ep-locked .ep-code { color: var(--secondary); }
+.ep-locked .ep-title { color: var(--secondary); }
+.ep-title a { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.ep-title a:hover { color: var(--accent); }
+.ep-status { font: 11px/1.3 var(--strata-font-mono); padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.ep-status--pub { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); font-weight: 600; }
+.ep-status--lock { background: var(--inset); color: var(--secondary); border: 1px solid var(--line); }
+.syllabus-module { padding: 24px 28px; }
+.syllabus-module__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.syllabus-module__head h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 22px; margin: 0; color: var(--text); }
+.syllabus-module__count { font: 11.5px/1.4 var(--strata-font-mono); color: var(--secondary); }
+.syllabus-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.syllabus-item { padding: 16px 18px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.syllabus-item--pub { border-color: var(--accent); background: var(--surface); }
+.syllabus-item__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.syllabus-item h3 { font-size: 16px; line-height: 1.45; margin: 0 0 8px; font-weight: 600; }
+.syllabus-item h3 a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.syllabus-item h3 a:hover { color: var(--accent); }
+.syllabus-item--lock h3 { color: var(--secondary); font-weight: 500; }
+.syllabus-item p { margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--secondary); }
+.series-callout { margin: 0 0 24px; padding: 14px 18px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); border-left: 3px solid var(--accent); font-size: 13.5px; line-height: 1.6; color: var(--secondary); }
+.series-callout strong { color: var(--text); }
+.series-callout a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.post-nav__locked { display: block; padding: 16px; border-radius: 8px; background: var(--inset); border: 1px dashed var(--line); color: var(--secondary); text-align: right; }
+.post-nav__locked .dir { display: block; font: 11px/1.5 var(--strata-font-mono); color: var(--secondary); margin-bottom: 4px; }
+.post-nav__locked .t { display: block; font-weight: 600; line-height: 1.45; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+.post-nav__locked .sub { display: block; font-size: 12px; line-height: 1.5; color: var(--secondary); }
+.toc-series { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+.toc-series .section-label a { color: var(--text); text-decoration: none; }
+.toc-series .section-label a:hover { color: var(--accent); }
+.toc-series__locked { display: block; padding: 5px 12px; color: var(--secondary); font-size: 12px; line-height: 1.45; opacity: 0.78; }
+</style>
   <div class="post-layout">
     <div>
-      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <a class="btn btn--ghost back-link" href="/series/wwdc-liquid-glass-motion/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回专栏：WWDC Liquid Glass 与动效体系</a>
       <article class="card article">
         <header class="article-header">
-          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t23">TabView</a></li></ul>
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t0">SwiftUI</a></li><li><a class="tag" href="/tags/#t1">Liquid Glass</a></li><li><a class="tag" href="/tags/#t18">TabView</a></li></ul>
           <h1>SwiftUI 26+ 导航与 API 演进：TabView / Sidebar / SplitView 液态玻璃自适应架构与确定性迁移扫描</h1>
           <p class="lede">iOS 26 / macOS 26 的导航架构升级，本质是把 TabView、Sidebar 与 NavigationSplitView 统一为「悬浮在全画幅内容流之上的自适应液态玻璃胶囊（.sidebarAdaptable + GlassEffectContainer）」，同时配合 scan-manifest 确定性扫描清单淘汰布尔弹窗与旧导航状态。</p>
           <div class="post-meta"><time datetime="2026-11-15">2026 年 11 月 15 日</time><span class="dot" aria-hidden="true">·</span><span>约 3,900 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 9 分钟</span></div>
         </header>
-        <div class="prose">
+        <div class="series-callout"><strong>所属体系专栏</strong>：<a href="/series/wwdc-liquid-glass-motion/">WWDC 25/26 (OS 26 → OS 27) Liquid Glass 与动效体系</a> · 模块一：液态玻璃光学与自适应导航架构 · 第 3 / 6 讲（已更新 6/6）</div>
+<div class="prose">
 <blockquote><p><strong>一句话结论</strong>：<strong>iOS 26 / macOS 26 的导航架构升级，本质是把 <code>TabView</code>、<code>Sidebar</code> 与 <code>NavigationSplitView</code> 统一为「悬浮在全画幅内容流之上的自适应液态玻璃胶囊（<code>.sidebarAdaptable</code> + <code>GlassEffectContainer</code>）」，同时配合 <code>scan-manifest</code> 确定性扫描清单淘汰布尔弹窗与旧导航状态</strong> —— 用 <strong>1 个 <code>Identifiable</code> 枚举状态</strong>替代 <strong>N 个布尔属性</strong>，彻底消除多弹窗状态冲突与跨端导航割裂。</p></blockquote>
 <h2 id="sec-1">核心教具与量级速览<a class="anchor" href="#sec-1" aria-label="本节链接">#</a></h2>
 <table><thead><tr><th>抽象概念 / 参数</th><th>关键数字</th><th>生活教具 / 直观参照</th><th>物理/工程效果</th></tr></thead><tbody><tr><td>自适应导航容器（<code>TabView</code> + <code>.tabViewStyle(.sidebarAdaptable)</code>）</td><td><strong>1 套声明代码</strong>横跨 iPhone 底部胶囊、iPad 顶栏/侧栏与 Mac 侧边栏</td><td>变形金刚模块化底盘（随空间自动折叠或展开）</td><td>导航栏自动获得原生 Liquid Glass 光学折射与滚动最小化（Minimize on Scroll），底部内容全画幅穿透</td></tr><tr><td>玻璃共享采样容器（<code>GlassEffectContainer(spacing:)</code>）</td><td>容器 <code>spacing</code> 与 <code>HStack</code> 间距 <strong>1:1 严格对齐</strong>；仅提供 <strong>3 种原生 Glass 枚举</strong>（<code>.regular</code> / <code>.clear</code> / <code>.identity</code>）</td><td>共用同一块光学镜片底板的连体护目镜</td><td>解决「玻璃不能采样玻璃」导致的相邻按钮折射撕裂，并支持 <code>@Namespace</code> + <code>glassEffectID</code> 流体融合</td></tr><tr><td>确定性 API 扫描清单（<code>scan-manifest.md</code> + Item-Driven State）</td><td>覆盖 <strong>7 大 API 领域</strong>；将 <strong>N 个 <code>@State Bool</code></strong> 压缩为 <strong>1 个 <code>Sheet?</code> 枚举</strong></td><td>飞机起飞前的分项机械检查单 + 单钥匙总控锁</td><td>批量扫描废弃 API（<code>NavigationView</code> / <code>ObservableObject</code> / <code>foregroundColor</code> / 布尔 Sheet），零状态回归完成迁移</td></tr></tbody></table>
@@ -64,13 +119,14 @@
 <h2 id="sec-3">立即可用清单<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
 <ul><li><strong>跨端导航首选 <code>TabView</code> + <code>.sidebarAdaptable</code> 与 <code>NavigationSplitView</code></strong>：让系统接管顶部/底部/侧边栏的液态玻璃悬浮与滚动避让，主画布不加多余的外层卡片边框。</li><li><strong>多玻璃按钮必进 <code>GlassEffectContainer</code> 并严守修饰符顺序</strong>：相邻玻璃控件必须放进同一个 <code>GlassEffectContainer(spacing:)</code>，<code>.glassEffect(.regular.interactive())</code> 永远写在 <code>padding</code>/<code>frame</code>/<code>font</code> 之后。</li><li><strong>用 <code>Identifiable</code> 枚举 <code>.sheet(item:)</code> 统一收敛弹窗状态</strong>：按 <code>scan-manifest.md</code> 排查页面中的多个 <code>@State private var showXXX = false</code>，合并为单个枚举状态机，消除状态竞争。</li></ul>
         </div>
-        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/genjutsu-styled-image-generation/"><span class="dir">← 上一篇</span><span class="t">Genjutsu：三尺度视觉编排（cast/paint/bunshin）、风格化视觉生成控制与跨平台契约门禁</span></a><a class="next" href="/learn/all-weather-gold-real-rate-decoupling/"><span class="dir">下一篇 →</span><span class="t">为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点</span></a></nav>
-        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/liquid-glass-optics/"><span class="dir">← 上一讲 · Ep.02</span><span class="t">Liquid Glass 光学第一性原理与 SwiftUI 26→27 实战破案</span></a><a class="next" href="/learn/swiftui-shader-pipeline/"><span class="dir">下一讲 · Ep.04 →</span><span class="t">SwiftUI 27 高级图形与动效管线：Metal Shader 扭曲、时间流与图钉对齐</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/series/wwdc-liquid-glass-motion/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回专栏：WWDC Liquid Glass 与动效体系</a></div>
       </article>
     </div>
     <aside class="toc" aria-label="本文目录">
       <p class="section-label">目录</p>
       <ol><li class="l2"><a href="#sec-1" aria-current="true">核心教具与量级速览</a></li><li class="l2"><a href="#sec-2">核心痛点问答</a></li><li class="l3"><a href="#sec-2-1">Q1. 在 iOS 26 / macOS 26 中…</a></li><li class="l3"><a href="#sec-2-2">Q2. 自定义浮动工具条或侧边折叠按钮时，为什么相…</a></li><li class="l3"><a href="#sec-2-3">Q3. update-swiftui-apis 是…</a></li><li class="l3"><a href="#sec-2-4">Q4. 向 iOS 26+ 迁移导航与玻璃样式时，…</a></li><li class="l2"><a href="#sec-3">立即可用清单</a></li></ol>
+      <div class="toc-series"><p class="section-label"><a href="/series/wwdc-liquid-glass-motion/">本体系目录（6/6）</a></p><ol><li><a href="/learn/wwdc27-glass-motion/">Ep.01 · WWDC25/26 (OS 26 → OS…</a></li><li><a href="/learn/liquid-glass-optics/">Ep.02 · Liquid Glass 光学第一性原理与…</a></li><li><a href="/learn/swiftui-26-tabview-sidebar-splitview/" aria-current="true">Ep.03 · SwiftUI 26+ 导航与 API 演…</a></li><li><a href="/learn/swiftui-shader-pipeline/">Ep.04 · SwiftUI 27 高级图形与动效管线：…</a></li><li><a href="/learn/swiftui-scroll-drag/">Ep.05 · SwiftUI 27 高性能滚动与多元素拖…</a></li><li><a href="/learn/appkit-uikit-27/">Ep.06 · macOS 27 AppKit 与 iOS…</a></li><li><a href="/series/wwdc-liquid-glass-motion/">查看全部 6 讲大纲 →</a></li></ol></div>
     </aside>
   </div>
   </main>

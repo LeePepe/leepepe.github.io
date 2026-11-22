@@ -24,13 +24,16 @@ from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parent
+SERIES_DIR = REPO_ROOT / "series"
 LEARN_DIR = REPO_ROOT / "learn"
 THOUGHTS_DIR = REPO_ROOT / "thoughts"
 VAULT_DIR = Path.home() / "Development" / "Personal" / "knowledge-vault"
 VAULT_THOUGHTS_DIR = VAULT_DIR / "thoughts"
+NASM_SYLLABUS_PATH = VAULT_DIR / "nasm-24-syllabus.json"
 SITE_URL = "https://leepepe.github.io"
 
 NAV_ITEMS = [
+    ("series", "Series", "/series/"),
     ("learn", "Learn", "/learn/"),
     ("thoughts", "Thoughts", "/thoughts/"),
     ("vault", "Vault", "/vault/"),
@@ -263,46 +266,7 @@ LEARN_ARTICLES: list[dict[str, Any]] = [
         "tags": ["NASM", "动力链", "运动解剖"],
     },
     {
-        "num": "11",
-        "slug": "all-weather-gold-real-rate-decoupling",
-        "aliases": [],
-        "category": "理财与宏观",
-        "title": "为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点",
-        "short_title": "黄金与实际利率脱钩",
-        "reading_time": "阅读约 6 分钟",
-        "updated": "2026-11-21",
-        "teaser": "黄金与实际利率的旧负相关并没有消失，而是被央行储备需求、财政久期和信用风险重新加权；理解全天候组合里的黄金，先要拆开机会成本与对手方风险。",
-        "sources": ["concepts/all-weather-gold-real-rate-decoupling.md"],
-        "tags": ["黄金", "实际利率", "资产配置"],
-    },
-    {
-        "num": "12",
-        "slug": "zone2-cardiac-drift-and-mitochondrial-base",
-        "aliases": [],
-        "category": "运动与生理科学",
-        "title": "二区有氧的真正标尺：不是看心率区间，而是看心率漂移率",
-        "short_title": "二区有氧与心率漂移",
-        "reading_time": "阅读约 6 分钟",
-        "updated": "2026-11-21",
-        "teaser": "二区训练的边界不是年龄公式给出的一个静态数字，而是长时间稳态下配速与心率是否解耦；把心率漂移变成可复测的训练仪表盘。",
-        "sources": ["concepts/zone2-cardiac-drift-and-mitochondrial-base.md"],
-        "tags": ["二区有氧", "心率漂移", "运动生理"],
-    },
-    {
-        "num": "13",
-        "slug": "costco-treasure-hunt-and-loss-leader-psychology",
-        "aliases": [],
-        "category": "商业与行为心理",
-        "title": "为什么去 Costco 只想买只烤鸡，出来却花了 1000 块？",
-        "short_title": "Costco 寻宝动线与损失厌恶",
-        "reading_time": "阅读约 6 分钟",
-        "updated": "2026-11-21",
-        "teaser": "会员费、低毛利上限、亏本引流品和无路牌动线共同制造了“寻宝”反馈回路；客单价上升不是顾客突然失去自制力，而是激励结构被重新设计。",
-        "sources": ["concepts/costco-treasure-hunt-and-loss-leader-psychology.md"],
-        "tags": ["Costco", "行为经济学", "商业模式"],
-    },
-    {
-        "num": "14",
+        "num": "15",
         "slug": "rebalancing-bands-and-transaction-drag",
         "aliases": [],
         "category": "理财与宏观",
@@ -315,7 +279,7 @@ LEARN_ARTICLES: list[dict[str, Any]] = [
         "tags": ["再平衡", "资产配置", "交易成本"],
     },
     {
-        "num": "15",
+        "num": "16",
         "slug": "sleep-debt-and-circadian-recovery",
         "aliases": [],
         "category": "身体与运动科学",
@@ -328,7 +292,7 @@ LEARN_ARTICLES: list[dict[str, Any]] = [
         "tags": ["睡眠", "昼夜节律", "恢复"],
     },
     {
-        "num": "16",
+        "num": "17",
         "slug": "heat-pump-cop-temperature-lift",
         "aliases": [],
         "category": "物理与工程",
@@ -341,7 +305,7 @@ LEARN_ARTICLES: list[dict[str, Any]] = [
         "tags": ["热泵", "COP", "能量守恒"],
     },
     {
-        "num": "17",
+        "num": "18",
         "slug": "bond-duration-convexity-total-return",
         "aliases": [],
         "category": "理财与宏观",
@@ -354,7 +318,7 @@ LEARN_ARTICLES: list[dict[str, Any]] = [
         "tags": ["债券", "久期", "凸性"],
     },
     {
-        "num": "18",
+        "num": "19",
         "slug": "sleep-regularity-and-recovery",
         "aliases": [],
         "category": "科学健康与生活",
@@ -367,7 +331,7 @@ LEARN_ARTICLES: list[dict[str, Any]] = [
         "tags": ["睡眠", "昼夜节律", "恢复"],
     },
     {
-        "num": "19",
+        "num": "20",
         "slug": "jevons-paradox-energy-rebound",
         "aliases": [],
         "category": "物理与工程",
@@ -381,6 +345,312 @@ LEARN_ARTICLES: list[dict[str, Any]] = [
     },
 ]
 
+DEFAULT_NASM_SYLLABUS: dict[str, Any] = {
+    "series_id": "nasm-fitness-health-24",
+    "title": "NASM 运动科学、纠正训练与营养恢复全景体系（7 大模块 · 24 讲）",
+    "gating_policy": "one_active_issue_at_a_time: only generate and publish Ep.(N+1) on the next daily tick after Owner marks Ep.N's independent Multica issue as 'done'.",
+    "episodes": [
+        {
+            "ep": 1,
+            "ep_code": "Ep.01",
+            "module_num": 1,
+            "module_title": "模块一：运动解剖与神经控制基础",
+            "slug": "nasm-ep01-kinetic-chain-three-systems",
+            "title": "动力链三系统总览：骨骼、关节、肌肉与神经如何协同发力",
+            "core_mechanisms": "人体运动系统（HMS / Kinetic Chain）三大子系统（神经系统指挥官、骨骼关节杠杆、肌肉发动机）的闭环耦合；运动感觉输入→中枢整合→运动输出的毫秒级反馈回路；为什么任何一个环节卡壳都会引发代偿性损伤。",
+            "status": "in_progress",
+        },
+        {
+            "ep": 2,
+            "ep_code": "Ep.02",
+            "module_num": 1,
+            "module_title": "模块一：运动解剖与神经控制基础",
+            "slug": "nasm-ep02-motor-unit-spindles-and-gto",
+            "title": "神经控制与本体感觉：运动单位募集「大小原则」、肌梭与高尔基腱器（GTO）",
+            "core_mechanisms": "运动单位（Motor Unit）与全或无定律；Henneman 大小原则（低阈值慢肌到高阈值快肌的顺序募集）；肌梭（监测长度与速度→触发牵张反射防拉伤）与高尔基腱器 GTO（监测张力→按压 30 秒触发自源性抑制防断裂）的拮抗保护机制。",
+            "status": "pending",
+        },
+        {
+            "ep": 3,
+            "ep_code": "Ep.03",
+            "module_num": 1,
+            "module_title": "模块一：运动解剖与神经控制基础",
+            "slug": "nasm-ep03-sliding-filament-and-muscle-fiber-types",
+            "title": "肌肉微观构造与收缩力学：肌丝滑行学说、快慢肌纤维与三类收缩模式",
+            "core_mechanisms": "肌束→肌纤维→肌原纤维→肌节（Sarcomere）层级；肌球蛋白横桥与肌动蛋白结合的钙离子（Ca2+）与 ATP 驱动机制；I 型慢肌 vs IIa/IIx 快肌的线粒体/毛细血管/疲劳速率对比；向心、等长、离心收缩的力输出排序。",
+            "status": "pending",
+        },
+        {
+            "ep": 4,
+            "ep_code": "Ep.04",
+            "module_num": 1,
+            "module_title": "模块一：运动解剖与神经控制基础",
+            "slug": "nasm-ep04-arthrokinematics-and-joint-centration",
+            "title": "关节分类与关节运动学：滑膜关节、滚动/滑动/旋转与关节共轴性",
+            "core_mechanisms": "骨运动学 vs 关节运动学（Arthrokinematics）；滑膜关节的三大运动（滚动 Roll、滑动 Slide、旋转 Spin）与凹凸定律；为什么没有“滑动”只有“滚动”会导致肩峰撞击或膝关节软骨磨损；关节共轴性（Joint Centration）。",
+            "status": "pending",
+        },
+        {
+            "ep": 5,
+            "ep_code": "Ep.05",
+            "module_num": 2,
+            "module_title": "模块二：能量代谢、心肺生理与内分泌",
+            "slug": "nasm-ep05-three-bioenergetic-pathways",
+            "title": "三大能量系统与底物切换：ATP-PCr、无氧糖酵解与有氧氧化的无缝交接",
+            "core_mechanisms": "ATP 肌细胞内仅够维持 2~3 秒的存量限制；磷酸原系统（0~15 秒极限力量，3~5 分钟组间恢复）、无氧糖酵解（15~120 秒肌肥大主供能与氢离子 H+ 酸痛真相）、有氧氧化系统的功率-容量权衡与混合供能曲线。",
+            "status": "pending",
+        },
+        {
+            "ep": 6,
+            "ep_code": "Ep.06",
+            "module_num": 2,
+            "module_title": "模块二：能量代谢、心肺生理与内分泌",
+            "slug": "nasm-ep06-cardiorespiratory-vt1-vt2-and-epoc",
+            "title": "心肺气体交换与双阈值模型：VT1/VT2 通气阈值、VO2max 与 EPOC",
+            "core_mechanisms": "Fick 公式（VO2 = 心输出量 Q × 动静脉氧差 a-vO2 diff）；第一通气阈值（VT1，有氧底线/说话测试临界点）与第二通气阈值（VT2，无氧阈值/乳酸急剧堆积点）；运动后过量氧耗（EPOC）的真实量级与生理修复成本。",
+            "status": "pending",
+        },
+        {
+            "ep": 7,
+            "ep_code": "Ep.07",
+            "module_num": 2,
+            "module_title": "模块二：能量代谢、心肺生理与内分泌",
+            "slug": "nasm-ep07-exercise-endocrinology-hormones",
+            "title": "运动内分泌学：睾酮、生长激素、皮质醇与胰岛素在训练中的合成与分解博弈",
+            "core_mechanisms": "合成代谢激素（睾酮、IGF-1、生长激素 GH、胰岛素）vs 分解代谢激素（皮质醇 Cortisol、肾上腺素/去甲肾上腺素）；大肌群复合动作与短间歇如何触发急性激素响应；为什么单次训练超过 75~90 分钟会导致皮质醇反超并分解肌肉。",
+            "status": "pending",
+        },
+        {
+            "ep": 8,
+            "ep_code": "Ep.08",
+            "module_num": 3,
+            "module_title": "模块三：运动生物力学",
+            "slug": "nasm-ep08-anatomical-planes-and-levers",
+            "title": "三大解剖平面与人体杠杆：矢状面、额状面、水平面与力矩（Torque）设计",
+            "core_mechanisms": "矢状面（屈伸）、额状面（外展内收/侧屈）、水平面（旋转）与对应运动轴；人体第一、二、三类杠杆（为什么人体绝大多数关节是“费力但赚速度”的第三类杠杆）；力矩 = 力 × 力臂（如何通过微调哑铃距离改变动作难度）。",
+            "status": "pending",
+        },
+        {
+            "ep": 9,
+            "ep_code": "Ep.09",
+            "module_num": 3,
+            "module_title": "模块三：运动生物力学",
+            "slug": "nasm-ep09-length-tension-and-force-couples",
+            "title": "长度-张力关系与力偶（Force-Couple）：为什么肌肉太紧或太松都发不出最大力",
+            "core_mechanisms": "肌节最佳静息长度（横桥重叠数量最大化）与长度-张力钟形曲线；原动肌/协同肌/稳定肌/拮抗肌的动态分工；力偶关系（前锯肌+上下斜方肌协同驱动肩胛骨上回旋，腹肌+臀肌协同控制骨盆后倾）。",
+            "status": "pending",
+        },
+        {
+            "ep": 10,
+            "ep_code": "Ep.10",
+            "module_num": 3,
+            "module_title": "模块三：运动生物力学",
+            "slug": "nasm-ep10-altered-reciprocal-inhibition-and-synergistic-dominance",
+            "title": "神经肌肉失衡机制：改变的交互抑制与协同肌主导代偿",
+            "core_mechanisms": "Sherrington 交互抑制定律；改变的交互抑制（久坐导致髂腰肌过紧，通过神经反射强行关停拮抗肌臀大肌）；协同肌主导（Synergistic Dominance：臀大肌罢工后，膕绳肌与竖脊肌被迫越俎代庖，引发大腿后侧拉伤与下背痛）；关节运动学改变与累积损伤周期（Cumulative Injury Cycle）。",
+            "status": "pending",
+        },
+        {
+            "ep": 11,
+            "ep_code": "Ep.11",
+            "module_num": 4,
+            "module_title": "模块四：体态评估与 CES 纠正性训练体系",
+            "slug": "nasm-ep11-static-posture-three-distortion-syndromes",
+            "title": "静态体态与三大失衡模式：上交叉、下交叉与旋前变形综合征",
+            "core_mechanisms": "动力链五大观测检查点（足踝、膝、LPHC 腰盆髋复合体、肩、头颈）；Janda 上交叉综合征（胸大肌/胸小肌/上斜方肌过紧 vs 深层颈屈肌/中下斜方肌过弱）、下交叉综合征（髋屈肌/竖脊肌过紧 vs 腹肌/臀大肌过弱）、旋前变形综合征（腓肠肌/比目鱼肌/内收肌过紧 vs 胫骨前肌/胫骨后肌/臀中肌过弱）。",
+            "status": "pending",
+        },
+        {
+            "ep": 12,
+            "ep_code": "Ep.12",
+            "module_num": 4,
+            "module_title": "模块四：体态评估与 CES 纠正性训练体系",
+            "slug": "nasm-ep12-dynamic-movement-assessments-ohsa",
+            "title": "动态动作筛查（OHSA 过顶深蹲 & 单腿蹲）：从代偿动作直接反推紧绷与薄弱肌群",
+            "core_mechanisms": "为什么静态站姿正常的人一动就暴露代偿；过顶深蹲评估（OHSA）正面观（脚尖外展、膝内扣）与侧面观（躯干过度前倾、腰椎过度反弓、手臂前掉）的完整生物力学破案矩阵；单腿深蹲与推/拉评估补充。",
+            "status": "pending",
+        },
+        {
+            "ep": 13,
+            "ep_code": "Ep.13",
+            "module_num": 4,
+            "module_title": "模块四：体态评估与 CES 纠正性训练体系",
+            "slug": "nasm-ep13-ces-corrective-exercise-continuum",
+            "title": "NASM-CES 纠正训练连续体四步法：抑制 → 拉长 → 激活 → 整合",
+            "core_mechanisms": "为什么直接练弱肌没用（拮抗肌还在持续释放抑制信号）；第一步抑制（SMR 泡沫轴降低过活跃肌张力）→ 第二步拉长（静态/神经肌肉拉伸恢复延展性）→ 第三步激活（位置等长收缩与慢速离心孤立唤醒弱肌）→ 第四步整合（多平面功能性协同发力）的严格顺序。",
+            "status": "pending",
+        },
+        {
+            "ep": 14,
+            "ep_code": "Ep.14",
+            "module_num": 5,
+            "module_title": "模块五：六大专项训练技术模块",
+            "slug": "nasm-ep14-flexibility-training-continuum",
+            "title": "柔韧性训练科学：筋膜网络、自源性抑制与三级柔韧连续体",
+            "core_mechanisms": "Davis 定律与软组织粘连重塑；纠正性柔韧（SMR + 静态拉伸 30 秒，依赖自源性抑制）、主动柔韧（主动孤立拉伸 AIS 保持 1~2 秒重复 5~10 次，依赖交互抑制）、功能性柔韧（动态拉伸，神经预热）的适用阶段与禁忌。",
+            "status": "pending",
+        },
+        {
+            "ep": 15,
+            "ep_code": "Ep.15",
+            "module_num": 5,
+            "module_title": "模块五：六大专项训练技术模块",
+            "slug": "nasm-ep15-core-and-balance-stabilization",
+            "title": "核心与平衡训练科学：深层局部稳定系统、腹内压（IAP）与本体感觉进阶",
+            "core_mechanisms": "局部稳定系统（腹横肌、多裂肌、内斜肌、盆底肌、膈肌——富含 I 型肌纤维，在四肢移动前提前收缩稳住椎间）vs 整体稳定/运动系统（腹直肌、竖脊肌、背阔肌）；Drawing-in（吸腹激活腹横肌）vs Bracing（腹部绷紧建立 360 度腹内压刚性气缸）；平衡训练三级进阶。",
+            "status": "pending",
+        },
+        {
+            "ep": 16,
+            "ep_code": "Ep.16",
+            "module_num": 5,
+            "module_title": "模块五：六大专项训练技术模块",
+            "slug": "nasm-ep16-plyometric-stretch-shortening-cycle",
+            "title": "超等长（Plyometric）与反应力量：牵张-缩短周期（SSC）与摊销期弹簧机制",
+            "core_mechanisms": "串联弹性成分（SEC 肌腱储能）与牵张反射的叠加效应；SSC 三阶段：离心加载期（预拉伸储能）→ 摊销期（Amortization Phase，过渡时间必须极短，过长则弹性势能化为热能散失）→ 向心释放期；落地缓冲稳定→超等长力量→超等长爆发力三级进阶。",
+            "status": "pending",
+        },
+        {
+            "ep": 17,
+            "ep_code": "Ep.17",
+            "module_num": 5,
+            "module_title": "模块五：六大专项训练技术模块",
+            "slug": "nasm-ep17-saq-and-three-stage-cardio",
+            "title": "SAQ（速度/敏捷/快速反应）与基于 VT1/VT2 的三阶段心肺编程",
+            "core_mechanisms": "速度（直线最大位移率与前侧力学 Frontside Mechanics：踝背屈、屈膝屈髋三关节同步）、敏捷（减速与变向离心制动能力）、快速反应（视觉/听觉信号下的神经反应时）；NASM Stage 1（低于 VT1 稳态恢复）、Stage 2（VT1~VT2 有氧耐力间歇）、Stage 3（高于 VT2 无氧爆发间歇）的工作/休息比设计。",
+            "status": "pending",
+        },
+        {
+            "ep": 18,
+            "ep_code": "Ep.18",
+            "module_num": 6,
+            "module_title": "模块六：OPT 模型五阶段与周期化编程",
+            "slug": "nasm-ep18-opt-model-and-phase1-stabilization",
+            "title": "OPT 模型总览与 Phase 1（稳定耐力）：4-2-1 慢离心节拍如何重塑结缔组织",
+            "core_mechanisms": "NASM OPT 模型三大层级（稳定层、力量层、爆发层）与五个阶段的递进逻辑；Phase 1 急性变量（12~20 次、50%~70% 1RM、4-2-1 节拍：4 秒离心下落、2 秒底端等长保持、1 秒向心起身）；为什么慢离心与等长停顿是强化肌腱/韧带胶原纤维排列与校准动作模式的必经底座。",
+            "status": "pending",
+        },
+        {
+            "ep": 19,
+            "ep_code": "Ep.19",
+            "module_num": 6,
+            "module_title": "模块六：OPT 模型五阶段与周期化编程",
+            "slug": "nasm-ep19-opt-phase2-strength-endurance-and-phase3-hypertrophy",
+            "title": "OPT Phase 2（力量耐力）与 Phase 3（肌肥大）：稳定超级组与肌肥大三大机制",
+            "core_mechanisms": "Phase 2 核心设计：生物力学同源超级组（1 个大重量主肌群动作 8~12 次 + 立即无间歇接 1 个稳定挑战动作 8~12 次，如杠铃卧推接瑞士球俯卧撑）；Phase 3（肌肥大）三大生理驱动力：机械张力（75%~85% 1RM）、代谢压力（6~12 次、2-0-2 节拍、60 秒短间歇）与肌纤维重塑。",
+            "status": "pending",
+        },
+        {
+            "ep": 20,
+            "ep_code": "Ep.20",
+            "module_num": 6,
+            "module_title": "模块六：OPT 模型五阶段与周期化编程",
+            "slug": "nasm-ep20-opt-phase4-max-strength-and-phase5-power",
+            "title": "OPT Phase 4（最大力量）与 Phase 5（爆发力）：高阈值神经募集与力-速度曲线",
+            "core_mechanisms": "Phase 4（最大力量）：85%~100% 1RM、1~5 次、3~5 分钟长间歇（完全恢复 ATP-PCr），依靠运动单位同步募集、放电频率（Rate Coding）与降低高尔基腱器抑制提升绝对力量；Phase 5（爆发力）：力（Force）× 速度（Velocity）复合超级组（1 个 85%+ 1RM 大重量动作激活高阈值神经 + 立即接 1 个 30%~45% 1RM 或自重爆发动作全速释放，利用激活后增强效应 PAP）。",
+            "status": "pending",
+        },
+        {
+            "ep": 21,
+            "ep_code": "Ep.21",
+            "module_num": 6,
+            "module_title": "模块六：OPT 模型五阶段与周期化编程",
+            "slug": "nasm-ep21-periodization-gas-and-deload",
+            "title": "训练周期化（Periodization）与疲劳管理：一般适应综合征（GAS）与减载周设计",
+            "core_mechanisms": "Hans Selye 一般适应综合征三阶段：警觉反应期（Alarm Reaction，DOMS 延迟性酸痛与短暂能力下降）→ 抵抗发展期（Resistance Development，超量恢复 Supercompensation）→ 衰竭期（Exhaustion，过度训练综合征 OTS）；宏周期（年）、中周期（月，Phase 1/2/3 轮转）、微周期（周）与线性 vs 每日波动周期化（DUP）编排。",
+            "status": "pending",
+        },
+        {
+            "ep": 22,
+            "ep_code": "Ep.22",
+            "module_num": 7,
+            "module_title": "模块七：运动营养（NASM-CNC）与睡眠/HRV 恢复科学",
+            "slug": "nasm-ep22-energy-balance-neat-and-body-recomposition",
+            "title": "能量平衡、NEAT 与身体成分重塑：为什么节食加上过量有氧反而掉肌肉降代谢",
+            "core_mechanisms": "每日总能量消耗（TDEE）四部分占比：基础代谢 BMR（~60%~70%）、非运动性日常活动消耗 NEAT（~15%~30%，个体差异最大）、食物热效应 TEF（~10%，蛋白质高达 20%~30%）、运动消耗 EAT（~5%~10%）；大幅热量缺口触发的代谢适应（下调 NEAT 与甲状腺素 T3）；减脂不掉肌的黄金赤字（300~500 kcal/d）与力量训练保肌信号。",
+            "status": "pending",
+        },
+        {
+            "ep": 23,
+            "ep_code": "Ep.23",
+            "module_num": 7,
+            "module_title": "模块七：运动营养（NASM-CNC）与睡眠/HRV 恢复科学",
+            "slug": "nasm-ep23-macronutrients-leucine-threshold-and-supplements",
+            "title": "宏量营养素与循证补剂机制：蛋白质「亮氨酸阈值」、糖原窗口与肌酸/咖啡因原理",
+            "core_mechanisms": "肌蛋白合成（MPS）的 mTOR 开关与「亮氨酸阈值（单餐需含 2.5~3g 亮氨酸，约合 25~40g 优质蛋白）」；每日 1.6~2.2g/kg 蛋白质均匀分布在 3~4 餐的合成效率对比；碳水化合物与肌糖原/肝糖原恢复速率；ISSN/NASM A 级循证补剂底层机制：一水肌酸（扩充 PCr 磷酸肌酸池与细胞水合）与咖啡因（拮抗腺苷受体降低 RPE 主观疲劳度）。",
+            "status": "pending",
+        },
+        {
+            "ep": 24,
+            "ep_code": "Ep.24",
+            "module_num": 7,
+            "module_title": "模块七：运动营养（NASM-CNC）与睡眠/HRV 恢复科学",
+            "slug": "nasm-ep24-sleep-architecture-hrv-and-autonomic-recovery",
+            "title": "睡眠结构、HRV 与自主神经恢复闭环：如何用晨间生理数据动态导航训练强度",
+            "core_mechanisms": "睡眠 90 分钟周期中慢波深睡（SWS，释放全天 70%+ 生长激素脉冲修复肌肉与结缔组织）与快速眼动期（REM，巩固神经肌肉运动技能记忆）的分工；心率变异性（HRV / RMSSD）反映迷走神经（副交感）张力的原理；基于 7 日晨间 HRV 基线走廊与静息心率（RHR）的自动调节训练（Autoregulation）决策矩阵。",
+            "status": "pending",
+        },
+    ],
+}
+
+WWDC_SERIES_EPISODES: list[dict[str, Any]] = [
+    {
+        "ep": 1,
+        "ep_code": "Ep.01",
+        "module_num": 1,
+        "module_title": "模块一：液态玻璃光学与自适应导航架构",
+        "slug": "wwdc27-glass-motion",
+        "title": "WWDC25/26 (OS 26 → OS 27) Liquid Glass 与动效 8 节课全景导读地图",
+        "core_mechanisms": "把 UI 拆成「浮在上面的液态光学控制层（Liquid Glass）」与「沉在底下的全画幅内容流（Pipeline）」——8 节课寻宝图、OS 26→27 进化矩阵与按研发场景 10 分钟精准切入指南。",
+    },
+    {
+        "ep": 2,
+        "ep_code": "Ep.02",
+        "module_num": 1,
+        "module_title": "模块一：液态玻璃光学与自适应导航架构",
+        "slug": "liquid-glass-optics",
+        "title": "Liquid Glass 光学第一性原理与 SwiftUI 26→27 实战破案",
+        "core_mechanisms": "为什么 Liquid Glass 是实时弯折光线的「液态凸透镜」而非磨砂毛玻璃？为什么严禁玻璃叠玻璃？详解 GlassEffectContainer 共享采样区、有色玻璃映射、Toolbar 防挤爆与 @State Macro。",
+    },
+    {
+        "ep": 3,
+        "ep_code": "Ep.03",
+        "module_num": 1,
+        "module_title": "模块一：液态玻璃光学与自适应导航架构",
+        "slug": "swiftui-26-tabview-sidebar-splitview",
+        "title": "SwiftUI 26+ 导航与 API 演进：TabView / Sidebar / SplitView 液态玻璃自适应架构与确定性迁移扫描",
+        "core_mechanisms": "iOS 26 / macOS 26 的导航架构升级，本质是把 TabView、Sidebar 与 NavigationSplitView 统一为「悬浮在全画幅内容流之上的自适应液态玻璃胶囊（.sidebarAdaptable + GlassEffectContainer）」，同时配合 scan-manifest 确定性扫描清单淘汰布尔弹窗与旧导航状态。",
+    },
+    {
+        "ep": 4,
+        "ep_code": "Ep.04",
+        "module_num": 2,
+        "module_title": "模块二：Metal 渲染管线、高性能滚动与跨端窗口现代化",
+        "slug": "swiftui-shader-pipeline",
+        "title": "SwiftUI 27 高级图形与动效管线：Metal Shader 扭曲、时间流与图钉对齐",
+        "core_mechanisms": "拆解 Apple Music 级流体封面与实时歌词：三大 Shader 修饰符选型、Domain Warping 二次噪声采样、TimelineView 无状态时间注入，以及 alignmentGuide 图钉孔位反转法。",
+    },
+    {
+        "ep": 5,
+        "ep_code": "Ep.05",
+        "module_num": 2,
+        "module_title": "模块二：Metal 渲染管线、高性能滚动与跨端窗口现代化",
+        "slug": "swiftui-scroll-drag",
+        "title": "SwiftUI 27 高性能滚动与多元素拖拽：LazyStack 帧预取与纸牌级重排",
+        "core_mechanisms": "揪出 LazyVStack 子视图 if 过滤导致内存暴涨、onAppear 废掉帧间预取（Prefetching）三大掉帧元凶；用 .reorderContainer + .dragContainer 解锁纸牌接龙级成叠拖拽与非法弹回。",
+    },
+    {
+        "ep": 6,
+        "ep_code": "Ep.06",
+        "module_num": 2,
+        "module_title": "模块二：Metal 渲染管线、高性能滚动与跨端窗口现代化",
+        "slug": "appkit-uikit-27",
+        "title": "macOS 27 AppKit 与 iOS 27 UIKit 现代化：自由缩放窗口、同心圆角与手势革命",
+        "core_mechanisms": "iOS 27 让 iPhone 窗口在 Mac 镜像与 iPad 上任意拉伸（UIScreen.main、idiom 与 orientation 彻底失效）；macOS 27 AppKit 告别 mouseDown 阻塞循环，拥抱 NSControl.Events 与容器同心圆角。",
+    },
+]
+
+
 _EMOJI_STRIP_RE = re.compile(
     r"[\U0001F300-\U0001FAFF\u2600-\u27BF\uFE0F]+"
 )
@@ -388,6 +658,120 @@ _EMOJI_STRIP_RE = re.compile(
 
 def strip_emoji(text: str) -> str:
     return re.sub(r"\s+", " ", _EMOJI_STRIP_RE.sub("", text)).strip()
+
+
+def load_nasm_syllabus() -> dict[str, Any]:
+    if NASM_SYLLABUS_PATH.exists():
+        try:
+            data = json.loads(NASM_SYLLABUS_PATH.read_text(encoding="utf-8"))
+            if isinstance(data, dict) and isinstance(data.get("episodes"), list) and data["episodes"]:
+                return data
+        except (OSError, ValueError, TypeError):
+            pass
+    return DEFAULT_NASM_SYLLABUS
+
+
+def build_structured_series() -> list[dict[str, Any]]:
+    """Build STRUCTURED_SERIES dynamically from nasm-24-syllabus.json and WWDC 25/26 series metadata."""
+    nasm_raw = load_nasm_syllabus()
+    nasm_episodes: list[dict[str, Any]] = []
+    for raw_ep in nasm_raw.get("episodes", []):
+        slug = str(raw_ep.get("slug", "")).strip()
+        md_exists = bool(slug) and (VAULT_DIR / "concepts" / f"{slug}.md").exists()
+        ep_num = int(raw_ep.get("ep", len(nasm_episodes) + 1))
+        ep_code = str(raw_ep.get("ep_code") or f"Ep.{ep_num:02d}")
+        nasm_episodes.append(
+            {
+                "ep": ep_num,
+                "ep_code": ep_code,
+                "module_num": int(raw_ep.get("module_num", 1)),
+                "module_title": strip_emoji(str(raw_ep.get("module_title", ""))),
+                "slug": slug,
+                "title": strip_emoji(str(raw_ep.get("title", ""))),
+                "core_mechanisms": strip_emoji(str(raw_ep.get("core_mechanisms", ""))),
+                "published": md_exists,
+                "url": f"/learn/{slug}/" if md_exists else None,
+                "status_label": "已发布 · 可阅读" if md_exists else "待解锁",
+            }
+        )
+
+    wwdc_episodes: list[dict[str, Any]] = []
+    for raw_ep in WWDC_SERIES_EPISODES:
+        slug = str(raw_ep["slug"]).strip()
+        wwdc_episodes.append(
+            {
+                "ep": int(raw_ep["ep"]),
+                "ep_code": str(raw_ep["ep_code"]),
+                "module_num": int(raw_ep["module_num"]),
+                "module_title": strip_emoji(str(raw_ep["module_title"])),
+                "slug": slug,
+                "title": strip_emoji(str(raw_ep["title"])),
+                "core_mechanisms": strip_emoji(str(raw_ep["core_mechanisms"])),
+                "published": True,
+                "url": f"/learn/{slug}/",
+                "status_label": "已发布 · 可阅读",
+            }
+        )
+
+    def group_modules(episodes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        modules: list[dict[str, Any]] = []
+        by_num: dict[int, dict[str, Any]] = {}
+        for ep in episodes:
+            m_num = ep["module_num"]
+            if m_num not in by_num:
+                mod = {
+                    "module_num": m_num,
+                    "module_title": ep["module_title"],
+                    "episodes": [],
+                    "published_count": 0,
+                }
+                by_num[m_num] = mod
+                modules.append(mod)
+            by_num[m_num]["episodes"].append(ep)
+            if ep["published"]:
+                by_num[m_num]["published_count"] += 1
+        return modules
+
+    nasm_modules = group_modules(nasm_episodes)
+    nasm_pub_count = sum(1 for e in nasm_episodes if e["published"])
+    wwdc_modules = group_modules(wwdc_episodes)
+    wwdc_pub_count = sum(1 for e in wwdc_episodes if e["published"])
+
+    return [
+        {
+            "series_id": "nasm-fitness-health-24",
+            "url": "/series/nasm-fitness-health-24/",
+            "badge": "体系连载 · 7 大模块 · 24 讲",
+            "title": "NASM 运动科学、纠正训练与营养恢复全景体系",
+            "short_title": "NASM 运动科学 24 讲",
+            "subtitle": "从动力链三系统（神经、骨骼关节、肌肉）出发，贯通能量代谢、运动生物力学、CES 四步纠正训练、OPT 五阶段周期化编程与运动营养睡眠恢复——按 7 大模块、24 讲递进拆解，读完一讲标 Done 解锁下一讲。",
+            "reading_gate": "读完标 Done 解锁下一讲",
+            "total_count": len(nasm_episodes),
+            "published_count": nasm_pub_count,
+            "module_count": len(nasm_modules),
+            "episodes": nasm_episodes,
+            "modules": nasm_modules,
+            "tags": ["NASM", "动力链", "运动解剖", "纠正训练", "运动营养"],
+        },
+        {
+            "series_id": "wwdc-liquid-glass-motion",
+            "url": "/series/wwdc-liquid-glass-motion/",
+            "badge": "体系专栏 · 2 大模块 · 6 讲 · 已完结",
+            "title": "WWDC 25/26 (OS 26 → OS 27) Liquid Glass 与动效体系",
+            "short_title": "WWDC Liquid Glass 与动效体系",
+            "subtitle": "把 Apple OS 26 → OS 27 的视觉与交互升级拆成「浮在上面的液态光学控制层（Liquid Glass）」与「沉在底下的全画幅内容动效管线（Shader / Scroll / Window）」两大模块，6 讲全部完结。",
+            "reading_gate": "2 大模块 · 6 讲 · 已完结",
+            "total_count": len(wwdc_episodes),
+            "published_count": wwdc_pub_count,
+            "module_count": len(wwdc_modules),
+            "episodes": wwdc_episodes,
+            "modules": wwdc_modules,
+            "tags": ["SwiftUI", "Liquid Glass", "WWDC26", "Metal Shader", "AppKit"],
+        },
+    ]
+
+
+STRUCTURED_SERIES: list[dict[str, Any]] = build_structured_series()
 
 
 def format_cn_date(iso_date: str) -> str:
@@ -1048,13 +1432,71 @@ def render_top_tags_ul(
     return f'<ul class="tags">{"".join(lis)}</ul>'
 
 
+SERIES_CSS = """<style>
+.series-stack { display: grid; gap: 24px; }
+.series-card { padding: 28px 32px; }
+.series-card__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.series-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); font: 600 11px/1.4 var(--strata-font-mono); letter-spacing: 0.4px; }
+.series-gate { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); padding: 4px 10px; border-radius: 6px; background: var(--inset); border: 1px solid var(--line); }
+.series-card h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(24px, 3vw, 30px); line-height: 1.28; letter-spacing: -0.4px; margin: 4px 0 10px; }
+.series-card h2 a { color: var(--text); text-decoration: none; }
+.series-card h2 a:hover { color: var(--accent); }
+.series-card__desc { margin: 0 0 18px; color: var(--secondary); font-size: 14.5px; line-height: 1.7; }
+.series-progress { margin: 0 0 22px; padding: 14px 16px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); }
+.series-progress__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font: 12px/1.4 var(--strata-font-mono); color: var(--text); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+.series-progress__bar { height: 7px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.series-progress__fill { height: 100%; border-radius: 999px; background: var(--accent); }
+.series-modules-preview { display: grid; gap: 14px; margin: 0 0 22px; }
+.series-mod-preview { padding: 14px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.series-mod-preview h3 { font-size: 14px; font-weight: 600; margin: 0 0 10px; color: var(--text); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.series-mod-preview h3 span { font: 11px/1.4 var(--strata-font-mono); color: var(--secondary); font-weight: 400; }
+.series-ep-mini { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.series-ep-mini li { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; font-size: 13.5px; line-height: 1.5; padding-top: 8px; border-top: 1px dashed var(--line); }
+.series-ep-mini li:first-child { padding-top: 0; border-top: 0; }
+.ep-code { font: 600 11.5px/1.4 var(--strata-font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.ep-locked .ep-code { color: var(--secondary); }
+.ep-locked .ep-title { color: var(--secondary); }
+.ep-title a { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.ep-title a:hover { color: var(--accent); }
+.ep-status { font: 11px/1.3 var(--strata-font-mono); padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.ep-status--pub { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); font-weight: 600; }
+.ep-status--lock { background: var(--inset); color: var(--secondary); border: 1px solid var(--line); }
+.syllabus-module { padding: 24px 28px; }
+.syllabus-module__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.syllabus-module__head h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 22px; margin: 0; color: var(--text); }
+.syllabus-module__count { font: 11.5px/1.4 var(--strata-font-mono); color: var(--secondary); }
+.syllabus-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.syllabus-item { padding: 16px 18px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); }
+.syllabus-item--pub { border-color: var(--accent); background: var(--surface); }
+.syllabus-item__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.syllabus-item h3 { font-size: 16px; line-height: 1.45; margin: 0 0 8px; font-weight: 600; }
+.syllabus-item h3 a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.syllabus-item h3 a:hover { color: var(--accent); }
+.syllabus-item--lock h3 { color: var(--secondary); font-weight: 500; }
+.syllabus-item p { margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--secondary); }
+.series-callout { margin: 0 0 24px; padding: 14px 18px; border-radius: 8px; background: var(--inset); border: 1px solid var(--line); border-left: 3px solid var(--accent); font-size: 13.5px; line-height: 1.6; color: var(--secondary); }
+.series-callout strong { color: var(--text); }
+.series-callout a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.post-nav__locked { display: block; padding: 16px; border-radius: 8px; background: var(--inset); border: 1px dashed var(--line); color: var(--secondary); text-align: right; }
+.post-nav__locked .dir { display: block; font: 11px/1.5 var(--strata-font-mono); color: var(--secondary); margin-bottom: 4px; }
+.post-nav__locked .t { display: block; font-weight: 600; line-height: 1.45; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+.post-nav__locked .sub { display: block; font-size: 12px; line-height: 1.5; color: var(--secondary); }
+.toc-series { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+.toc-series .section-label a { color: var(--text); text-decoration: none; }
+.toc-series .section-label a:hover { color: var(--accent); }
+.toc-series__locked { display: block; padding: 5px 12px; color: var(--secondary); font-size: 12px; line-height: 1.45; opacity: 0.78; }
+</style>"""
+
+
 def build_home_page(
     all_items: list[dict[str, Any]],
     learn_items: list[dict[str, Any]],
     thought_items: list[dict[str, Any]],
     sorted_tags: list[tuple[str, list[dict[str, Any]]]],
     tag_id_map: dict[str, str],
+    series_catalog: list[dict[str, Any]] | None = None,
 ) -> None:
+    series_list = series_catalog if series_catalog is not None else STRUCTURED_SERIES
     list_html = render_post_list_items(all_items, tag_id_map)
     top_tags_html = render_top_tags_ul(sorted_tags, tag_id_map, limit=8)
 
@@ -1064,12 +1506,12 @@ def build_home_page(
       <h1>写代码，<br><em>也写生活.</em></h1>
     </div>
     <div class="page-intro__aside">
-      <p>记录苹果生态开发、AI 多智能体工程、求知拆解与日常思考。</p>
+      <p>记录苹果生态开发、AI 多智能体工程、体系化长连载与日常思考。</p>
       <p class="secondary">First principles, useful tools, and the quiet notes behind them.</p>
     </div>
     <div class="notebook-stack">
       <span class="mono">NOTEBOOK SECTIONS</span>
-      <p>Learn ({len(learn_items)}) <span>·</span> Thoughts ({len(thought_items)}) <span>·</span> Vault (40+ cards) <span>·</span> Demos <span>·</span> Archive</p>
+      <p><a href="/series/">Series · 体系专栏 ({len(series_list)})</a> <span>·</span> <a href="/learn/">Learn · 求知单篇 ({len(learn_items)})</a> <span>·</span> <a href="/thoughts/">Thoughts ({len(thought_items)})</a> <span>·</span> <a href="/vault/">Vault (40+ cards)</a> <span>·</span> <a href="/demos/">Demos</a> <span>·</span> <a href="/archive/">Archive</a></p>
     </div>
   </section>
   <div class="layout">
@@ -1090,11 +1532,13 @@ def build_home_page(
       </section>
       <section class="card">
         <h2>专栏</h2>
-        <p>「求知」用生活教具拆穿技术原理（{len(learn_items)} 篇）；「思考」记录日常工具与生活随笔（{len(thought_items)} 篇）；「素材库」汇总 40 张设计卡、8 组色彩样板与 17 个交互舞台。</p>
+        <p>「体系专栏」按学科模块递进连载长课（{len(series_list)} 个体系）；「求知单篇」用生活教具拆穿独立技术与科学原理（{len(learn_items)} 篇）；「思考」记录日常工具与生活随笔（{len(thought_items)} 篇）；「素材库」汇总 40 张设计卡、8 组色彩样板与 17 个交互舞台。</p>
         <div class="links">
-          <a class="btn btn--secondary" href="/learn/">求知笔记 ({len(learn_items)})</a>
+          <a class="btn btn--secondary" href="/series/">体系专栏 ({len(series_list)})</a>
+          <a class="btn btn--secondary" href="/learn/">求知单篇 ({len(learn_items)})</a>
           <a class="btn btn--secondary" href="/thoughts/">思考与感悟 ({len(thought_items)})</a>
           <a class="btn btn--secondary" href="/vault/">素材库 (40+)</a>
+          <a class="btn btn--secondary" href="/demos/">Demos</a>
         </div>
       </section>
       <section class="card">
@@ -1107,11 +1551,201 @@ def build_home_page(
 
     html_out = render_shell_page(
         title="首页 · Lee Pepe",
-        description="Lee Pepe 的个人博客：记录苹果生态开发、AI 多智能体工程、求知拆解与日常思考。",
+        description="Lee Pepe 的个人博客：记录苹果生态开发、AI 多智能体工程、体系专栏、求知单篇与日常思考。",
         active_nav="home",
         main_html=main_html,
     )
     (REPO_ROOT / "index.html").write_text(html_out, encoding="utf-8")
+
+
+def build_series_index_page(
+    series_catalog: list[dict[str, Any]],
+    standalone_learn_count: int,
+    tag_id_map: dict[str, str],
+) -> None:
+    cards_html: list[str] = []
+    for s in series_catalog:
+        pct = max(4, round((s["published_count"] / max(1, s["total_count"])) * 100))
+        mod_blocks: list[str] = []
+        for mod in s["modules"]:
+            ep_lis: list[str] = []
+            for ep in mod["episodes"]:
+                if ep["published"] and ep["url"]:
+                    ep_lis.append(
+                        f'<li><span class="ep-code">{html.escape(ep["ep_code"])}</span>'
+                        f'<span class="ep-title"><a href="{html.escape(ep["url"])}">{html.escape(ep["title"])}</a></span>'
+                        f'<span class="ep-status ep-status--pub">已发布 · 可阅读</span></li>'
+                    )
+                else:
+                    ep_lis.append(
+                        f'<li class="ep-locked"><span class="ep-code">{html.escape(ep["ep_code"])}</span>'
+                        f'<span class="ep-title">{html.escape(ep["title"])}</span>'
+                        f'<span class="ep-status ep-status--lock">待解锁</span></li>'
+                    )
+            mod_blocks.append(
+                f'<section class="series-mod-preview">'
+                f'<h3>{html.escape(mod["module_title"])}<span>已更新 {mod["published_count"]} / {len(mod["episodes"])} 讲</span></h3>'
+                f'<ol class="series-ep-mini">{"".join(ep_lis)}</ol>'
+                f"</section>"
+            )
+
+        tags_li = "".join(
+            f'<li><a class="tag" href="/tags/#{tag_id_map[t]}">{html.escape(t)}</a></li>'
+            for t in s.get("tags", [])
+            if t in tag_id_map
+        )
+        first_pub = next((ep for ep in s["episodes"] if ep["published"] and ep["url"]), None)
+        start_btn = (
+            f'<a class="btn btn--secondary" href="{html.escape(first_pub["url"])}">从 {html.escape(first_pub["ep_code"])} 开始阅读</a>'
+            if first_pub
+            else ""
+        )
+
+        cards_html.append(
+            f'<article class="card series-card" id="{html.escape(s["series_id"])}">\n'
+            f'  <div class="series-card__top">'
+            f'<span class="series-badge">{html.escape(s["badge"])}</span>'
+            f'<span class="series-gate">{html.escape(s["reading_gate"])}</span></div>\n'
+            f'  <h2><a href="{html.escape(s["url"])}">{html.escape(s["title"])}</a></h2>\n'
+            f'  <p class="series-card__desc">{html.escape(s["subtitle"])}</p>\n'
+            f'  <div class="series-progress" aria-label="连载进度">'
+            f'<div class="series-progress__head"><span>连载进度：已更新 {s["published_count"]} / {s["total_count"]} 讲</span><span>{s["module_count"]} 大模块 · {pct}%</span></div>'
+            f'<div class="series-progress__bar"><div class="series-progress__fill" style="width:{pct}%"></div></div></div>\n'
+            f'  <div class="series-modules-preview">{"".join(mod_blocks)}</div>\n'
+            f'  <div class="links" style="margin-bottom:14px">'
+            f'<a class="btn btn--primary" href="{html.escape(s["url"])}">查看完整课程大纲与各讲机制 →</a>'
+            f'{start_btn}</div>\n'
+            f'  <ul class="tags" aria-label="标签">{tags_li}</ul>\n'
+            f"</article>"
+        )
+
+    series_nav_lis = "".join(
+        f'<li><a href="{html.escape(s["url"])}"><strong>{html.escape(s["short_title"])}</strong></a>'
+        f' <span class="mono">({s["published_count"]}/{s["total_count"]})</span></li>'
+        for s in series_catalog
+    )
+
+    main_html = f"""{SERIES_CSS}
+  <section class="page-intro">
+    <h1>体系专栏</h1>
+    <p>按完整学科骨架与模块递进的长连载课程——每读完一讲解锁下一讲，把零散知识串成体系。</p>
+  </section>
+  <div class="layout">
+    <div class="series-stack" aria-label="体系专栏列表">
+{chr(10).join(cards_html)}
+    </div>
+    <aside class="aside" aria-label="侧栏">
+      <section class="card">
+        <h2>关于体系专栏</h2>
+        <p>「体系专栏（/series/）」专门承载多模块、强先后依赖的系统长课；读完当前讲并在看板标 Done 后，下一讲才会生成解锁。</p>
+        <p>独立成篇的日常硬核科普与技术拆解已归入「求知单篇（/learn/，共 {standalone_learn_count} 篇）」，互不混排。</p>
+        <div class="links">
+          <a class="btn btn--secondary" href="/learn/">去求知单篇 ({standalone_learn_count})</a>
+          <a class="btn btn--ghost" href="/">回首页</a>
+        </div>
+      </section>
+      <section class="card">
+        <h2>专栏目录</h2>
+        <ul style="padding-left:18px;margin:0;display:grid;gap:8px;font-size:13.5px">{series_nav_lis}</ul>
+      </section>
+      <section class="card">
+        <h2>订阅</h2>
+        <p>新解锁的连载章节通过 RSS 同步推送。</p>
+        <a class="btn btn--primary" href="/feed.xml">订阅 RSS</a>
+      </section>
+    </aside>
+  </div>"""
+
+    html_out = render_shell_page(
+        title="体系专栏 · Lee Pepe",
+        description="按完整学科骨架与模块递进的长连载课程——每读完一讲解锁下一讲，把零散知识串成体系。",
+        active_nav="series",
+        main_html=main_html,
+    )
+    SERIES_DIR.mkdir(parents=True, exist_ok=True)
+    (SERIES_DIR / "index.html").write_text(html_out, encoding="utf-8")
+
+
+def build_series_detail_pages(series_catalog: list[dict[str, Any]]) -> None:
+    for s in series_catalog:
+        pct = max(4, round((s["published_count"] / max(1, s["total_count"])) * 100))
+        module_cards: list[str] = []
+        module_toc_lis: list[str] = []
+
+        for mod in s["modules"]:
+            mod_id = f"module-{mod['module_num']}"
+            module_toc_lis.append(
+                f'<li><a href="#{mod_id}">{html.escape(mod["module_title"])} '
+                f'<span class="mono">({mod["published_count"]}/{len(mod["episodes"])})</span></a></li>'
+            )
+            ep_items: list[str] = []
+            for ep in mod["episodes"]:
+                ep_anchor = f"ep-{ep['ep']:02d}"
+                if ep["published"] and ep["url"]:
+                    title_html = f'<a href="{html.escape(ep["url"])}">{html.escape(ep["title"])}</a>'
+                    item_cls = "syllabus-item syllabus-item--pub"
+                    badge_cls = "ep-status ep-status--pub"
+                else:
+                    title_html = html.escape(ep["title"])
+                    item_cls = "syllabus-item syllabus-item--lock"
+                    badge_cls = "ep-status ep-status--lock"
+                ep_items.append(
+                    f'<li class="{item_cls}" id="{ep_anchor}">\n'
+                    f'  <div class="syllabus-item__top">'
+                    f'<span class="ep-code">{html.escape(ep["ep_code"])}</span>'
+                    f'<span class="{badge_cls}">{html.escape(ep["status_label"])}</span></div>\n'
+                    f'  <h3>{title_html}</h3>\n'
+                    f'  <p>{html.escape(ep["core_mechanisms"])}</p>\n'
+                    f"</li>"
+                )
+            module_cards.append(
+                f'<section class="card syllabus-module" id="{mod_id}" aria-labelledby="h-{mod_id}">\n'
+                f'  <div class="syllabus-module__head">'
+                f'<h2 id="h-{mod_id}">{html.escape(mod["module_title"])}</h2>'
+                f'<span class="syllabus-module__count">已更新 {mod["published_count"]} / {len(mod["episodes"])} 讲</span></div>\n'
+                f'  <ol class="syllabus-list">\n{chr(10).join(ep_items)}\n  </ol>\n'
+                f"</section>"
+            )
+
+        main_html = f"""{SERIES_CSS}
+  <section class="page-intro">
+    <p class="eyebrow"><a href="/series/">SERIES · 体系专栏</a> <span>/</span> {html.escape(s["badge"])}</p>
+    <h1>{html.escape(s["title"])}</h1>
+    <p>{html.escape(s["subtitle"])}</p>
+    <div class="series-progress" style="max-width:680px;margin-top:20px;margin-bottom:0" aria-label="连载进度">
+      <div class="series-progress__head"><span>已更新 {s["published_count"]} / {s["total_count"]} 讲</span><span>{html.escape(s["reading_gate"])} · {pct}%</span></div>
+      <div class="series-progress__bar"><div class="series-progress__fill" style="width:{pct}%"></div></div>
+    </div>
+  </section>
+  <div class="layout">
+    <div class="series-stack" aria-label="分模块课程大纲">
+{chr(10).join(module_cards)}
+    </div>
+    <aside class="aside" aria-label="侧栏">
+      <section class="card">
+        <h2>模块导航</h2>
+        <ol style="padding-left:18px;margin:0;display:grid;gap:8px;font-size:13px">{"".join(module_toc_lis)}</ol>
+      </section>
+      <section class="card">
+        <h2>连载解锁机制</h2>
+        <p>{html.escape(s["reading_gate"])}。已发布章节可直接点击精读，待解锁章节提前展示核心机制大纲，方便对照全局骨架。</p>
+        <div class="links">
+          <a class="btn btn--secondary" href="/series/">返回体系专栏总览</a>
+          <a class="btn btn--ghost" href="/learn/">求知单篇</a>
+        </div>
+      </section>
+    </aside>
+  </div>"""
+
+        out_dir = SERIES_DIR / s["series_id"]
+        out_dir.mkdir(parents=True, exist_ok=True)
+        html_out = render_shell_page(
+            title=f"{s['title']} · 体系专栏 · Lee Pepe",
+            description=s["subtitle"],
+            active_nav="series",
+            main_html=main_html,
+        )
+        (out_dir / "index.html").write_text(html_out, encoding="utf-8")
 
 
 def build_series_list_page(
@@ -1153,6 +1787,7 @@ def build_series_list_page(
         <h2>{html.escape(aside_title)}</h2>
         <p>{html.escape(aside_desc)}</p>
         <div class="links">
+          <a class="btn btn--secondary" href="/series/">体系专栏 (长连载)</a>
           <a class="btn btn--secondary" href="/archive/">查看全站归档</a>
           <a class="btn btn--ghost" href="/">回首页</a>
         </div>
@@ -1188,11 +1823,18 @@ def build_post_pages(
     back_label: str,
     base_dir: Path,
     tag_id_map: dict[str, str],
+    series_by_id: dict[str, dict[str, Any]] | None = None,
 ) -> None:
-    total = len(items)
-    for idx, item in enumerate(items):
-        prev_item = items[idx - 1] if idx > 0 else None
-        next_item = items[idx + 1] if idx + 1 < total else None
+    standalone_items = [it for it in items if not it.get("series_id")]
+    standalone_idx_map = {it["slug"]: i for i, it in enumerate(standalone_items)}
+
+    for item in items:
+        series_id = item.get("series_id")
+        series_obj = (series_by_id or {}).get(series_id) if series_id else None
+
+        item_active_nav = "series" if series_obj else active_nav
+        item_back_href = f"/series/{series_id}/" if series_obj else back_href
+        item_back_label = f"返回专栏：{series_obj['short_title']}" if series_obj else back_label
 
         tags_li = "".join(
             f'<li><a class="tag" href="/tags/#{tag_id_map[t]}">{html.escape(t)}</a></li>'
@@ -1210,25 +1852,103 @@ def build_post_pages(
             )
 
         nav_cards: list[str] = []
-        if prev_item:
-            nav_cards.append(
-                f'<a class="prev" href="{html.escape(prev_item["url"])}">'
-                f'<span class="dir">← 上一篇</span><span class="t">{html.escape(prev_item["title"])}</span></a>'
+        series_callout_html = ""
+        toc_series_html = ""
+
+        if series_obj:
+            eps = series_obj["episodes"]
+            ep_idx = next((i for i, e in enumerate(eps) if e["slug"] == item["slug"]), 0)
+            cur_ep = eps[ep_idx]
+            prev_ep = eps[ep_idx - 1] if ep_idx > 0 else None
+            next_ep = eps[ep_idx + 1] if ep_idx + 1 < len(eps) else None
+
+            series_callout_html = (
+                f'<div class="series-callout">'
+                f'<strong>所属体系专栏</strong>：<a href="{html.escape(series_obj["url"])}">{html.escape(series_obj["title"])}</a>'
+                f' · {html.escape(cur_ep["module_title"])}'
+                f' · 第 {cur_ep["ep"]} / {series_obj["total_count"]} 讲（已更新 {series_obj["published_count"]}/{series_obj["total_count"]}）'
+                f"</div>\n"
             )
-        if next_item:
-            nav_cards.append(
-                f'<a class="next" href="{html.escape(next_item["url"])}">'
-                f'<span class="dir">下一篇 →</span><span class="t">{html.escape(next_item["title"])}</span></a>'
+
+            if prev_ep and prev_ep.get("published") and prev_ep.get("url"):
+                nav_cards.append(
+                    f'<a class="prev" href="{html.escape(prev_ep["url"])}">'
+                    f'<span class="dir">← 上一讲 · {html.escape(prev_ep["ep_code"])}</span>'
+                    f'<span class="t">{html.escape(prev_ep["title"])}</span></a>'
+                )
+            if next_ep:
+                if next_ep.get("published") and next_ep.get("url"):
+                    nav_cards.append(
+                        f'<a class="next" href="{html.escape(next_ep["url"])}">'
+                        f'<span class="dir">下一讲 · {html.escape(next_ep["ep_code"])} →</span>'
+                        f'<span class="t">{html.escape(next_ep["title"])}</span></a>'
+                    )
+                else:
+                    nav_cards.append(
+                        f'<div class="next post-nav__locked" aria-disabled="true">'
+                        f'<span class="dir">下一讲预告（待读完本讲标 Done 后解锁）：{html.escape(next_ep["ep_code"])}</span>'
+                        f'<span class="t">{html.escape(next_ep["ep_code"])} · {html.escape(next_ep["title"])}</span>'
+                        f'<span class="sub">{html.escape(next_ep["core_mechanisms"])}</span></div>'
+                    )
+
+            nearby_eps = (
+                eps
+                if len(eps) <= 8
+                else [
+                    e
+                    for e in eps
+                    if e["module_num"] == cur_ep["module_num"]
+                    or abs(e["ep"] - cur_ep["ep"]) <= 2
+                    or e.get("published")
+                ]
             )
+            series_toc_lis: list[str] = []
+            for e in nearby_eps:
+                short_t = e["title"]
+                if len(short_t) > 22:
+                    short_t = short_t[:21] + "…"
+                if e.get("published") and e.get("url"):
+                    is_curr = ' aria-current="true"' if e["slug"] == item["slug"] else ""
+                    series_toc_lis.append(
+                        f'<li><a href="{html.escape(e["url"])}"{is_curr}>{html.escape(e["ep_code"])} · {html.escape(short_t)}</a></li>'
+                    )
+                else:
+                    series_toc_lis.append(
+                        f'<li><span class="toc-series__locked">{html.escape(e["ep_code"])} · {html.escape(short_t)}（待解锁）</span></li>'
+                    )
+            series_toc_lis.append(
+                f'<li><a href="{html.escape(series_obj["url"])}">查看全部 {series_obj["total_count"]} 讲大纲 →</a></li>'
+            )
+            toc_series_html = (
+                f'\n      <div class="toc-series">'
+                f'<p class="section-label"><a href="{html.escape(series_obj["url"])}">本体系目录（{series_obj["published_count"]}/{series_obj["total_count"]}）</a></p>'
+                f'<ol>{"".join(series_toc_lis)}</ol></div>'
+            )
+        else:
+            s_idx = standalone_idx_map.get(item["slug"], 0)
+            prev_item = standalone_items[s_idx - 1] if s_idx > 0 else None
+            next_item = standalone_items[s_idx + 1] if s_idx + 1 < len(standalone_items) else None
+            if prev_item:
+                nav_cards.append(
+                    f'<a class="prev" href="{html.escape(prev_item["url"])}">'
+                    f'<span class="dir">← 上一篇</span><span class="t">{html.escape(prev_item["title"])}</span></a>'
+                )
+            if next_item:
+                nav_cards.append(
+                    f'<a class="next" href="{html.escape(next_item["url"])}">'
+                    f'<span class="dir">下一篇 →</span><span class="t">{html.escape(next_item["title"])}</span></a>'
+                )
+
         post_nav_html = (
             f'<nav class="post-nav" aria-label="上一篇和下一篇">{"".join(nav_cards)}</nav>'
             if nav_cards
             else ""
         )
 
-        main_html = f"""  <div class="post-layout">
+        extra_css = f"{SERIES_CSS}\n" if series_obj else ""
+        main_html = f"""{extra_css}  <div class="post-layout">
     <div>
-      <a class="btn btn--ghost back-link" href="{html.escape(back_href)}"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>{html.escape(back_label)}</a>
+      <a class="btn btn--ghost back-link" href="{html.escape(item_back_href)}"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>{html.escape(item_back_label)}</a>
       <article class="card article">
         <header class="article-header">
           <ul class="tags" aria-label="标签">{tags_li}</ul>
@@ -1236,23 +1956,23 @@ def build_post_pages(
           <p class="lede">{html.escape(item["lede"])}</p>
           <div class="post-meta"><time datetime="{html.escape(item["date"])}">{html.escape(cn_date)}</time><span class="dot" aria-hidden="true">·</span><span>{html.escape(words_str)}</span><span class="dot" aria-hidden="true">·</span><span>{html.escape(item["reading_time"])}</span></div>
         </header>
-        <div class="prose">
+        {series_callout_html}<div class="prose">
 {item["prose_html"]}
         </div>
         {post_nav_html}
-        <div class="post-end"><a class="btn btn--secondary" href="{html.escape(back_href)}"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>{html.escape(back_label)}</a></div>
+        <div class="post-end"><a class="btn btn--secondary" href="{html.escape(item_back_href)}"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>{html.escape(item_back_label)}</a></div>
       </article>
     </div>
     <aside class="toc" aria-label="本文目录">
       <p class="section-label">目录</p>
-      <ol>{"".join(toc_lis)}</ol>
+      <ol>{"".join(toc_lis)}</ol>{toc_series_html}
     </aside>
   </div>"""
 
         html_out = render_shell_page(
             title=f"{item['title']} · Lee Pepe",
             description=item["teaser"],
-            active_nav=active_nav,
+            active_nav=item_active_nav,
             main_html=main_html,
         )
         slug_dir = base_dir / item["slug"]
@@ -1372,7 +2092,12 @@ def build_tags_page(
     (REPO_ROOT / "tags" / "index.html").write_text(html_out, encoding="utf-8")
 
 
-def build_about_page(learn_count: int, thought_count: int) -> None:
+def build_about_page(
+    learn_count: int,
+    thought_count: int,
+    series_count: int = 2,
+    series_ep_count: int = 7,
+) -> None:
     main_html = f"""  <div class="about">
     <article class="card article">
       <div class="about-head">
@@ -1382,14 +2107,15 @@ def build_about_page(learn_count: int, thought_count: int) -> None:
       <ul class="facts">
         <li><span class="k">减重</span><span class="v">60 斤</span></li>
         <li><span class="k">写博客始于</span><span class="v">2016 年</span></li>
-        <li><span class="k">全站专栏文章</span><span class="v">{learn_count + thought_count} 篇</span></li>
+        <li><span class="k">全站专栏文章</span><span class="v">{learn_count + series_ep_count + thought_count} 篇</span></li>
       </ul>
       <div class="prose">
         <p>描述一下我？我也不太知道怎么描述。生活里从 210 斤减到现在的 150 斤，喜欢健身、跑步、篮球，想去试试跑酷。</p>
         <p>毕业后一直在写代码：iOS、自然语言、前端都做过。最近在用多个 AI agent 协作做个人项目，也在学心理学。</p>
         <h2 id="columns">博客专栏</h2>
         <ul>
-          <li><strong><a href="/learn/">求知笔记（{learn_count} 篇）</a></strong>：把抽象的工程架构与科学原理拆成生活教具，按「一句话结论 → 核心痛点问答 → 立即可用清单 → 叙事与制作拆解」沉淀。</li>
+          <li><strong><a href="/series/">体系专栏（{series_count} 个体系 · 已更新 {series_ep_count} 讲）</a></strong>：按完整学科骨架与模块递进的长连载课程（NASM 运动科学 24 讲、WWDC Liquid Glass 6 讲），每读完一讲标 Done 解锁下一讲。</li>
+          <li><strong><a href="/learn/">求知单篇（{learn_count} 篇）</a></strong>：独立成篇的硬核科普与工程拆解，按「一句话结论 → 核心痛点问答 → 立即可用清单 → 叙事与制作拆解」沉淀。</li>
           <li><strong><a href="/thoughts/">思考与感悟（{thought_count} 篇）</a></strong>：记录日常折腾智能家居、减法工具设计与生活习惯时的真实随笔。</li>
         </ul>
         <h2 id="now">现在在做</h2>
@@ -1755,13 +2481,55 @@ python3 scripts/vault_ingest.py --text "一个可撤销的确认动效" --kind p
 
 
 def main() -> None:
-    learn_items: list[dict[str, Any]] = []
-    for art in LEARN_ARTICLES:
+    series_catalog = build_structured_series()
+    STRUCTURED_SERIES[:] = series_catalog
+    series_by_id = {s["series_id"]: s for s in series_catalog}
+    episode_to_series: dict[str, tuple[dict[str, Any], dict[str, Any]]] = {}
+    for s in series_catalog:
+        for ep in s["episodes"]:
+            episode_to_series[ep["slug"]] = (s, ep)
+
+    articles_to_build = list(LEARN_ARTICLES)
+    known_slugs = {art["slug"] for art in articles_to_build}
+    for s in series_catalog:
+        for ep in s["episodes"]:
+            if ep["published"] and ep["slug"] not in known_slugs:
+                articles_to_build.append(
+                    {
+                        "num": f"{len(articles_to_build) + 1:02d}",
+                        "slug": ep["slug"],
+                        "aliases": [],
+                        "category": s["short_title"],
+                        "title": f"{s['short_title']} {ep['ep_code']}：{ep['title']}",
+                        "short_title": f"{ep['ep_code']}：{ep['title']}",
+                        "reading_time": "阅读约 7 分钟",
+                        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                        "teaser": ep["core_mechanisms"],
+                        "sources": [f"concepts/{ep['slug']}.md"],
+                        "tags": list(s.get("tags", ["NASM"]))[:3],
+                    }
+                )
+                known_slugs.add(ep["slug"])
+
+    all_learn_items: list[dict[str, Any]] = []
+    for art in articles_to_build:
         toc, prose_html, words = parse_learn_article(art)
-        learn_items.append(
+        s_pair = episode_to_series.get(art["slug"])
+        if s_pair:
+            s_obj, ep_obj = s_pair
+            series_key = "series"
+            series_label = f"专栏 · {s_obj['short_title']} {ep_obj['ep_code']}"
+            series_id: str | None = s_obj["series_id"]
+        else:
+            series_key = "learn"
+            series_label = "求知单篇"
+            series_id = None
+
+        all_learn_items.append(
             {
-                "series": "learn",
-                "series_label": "求知",
+                "series": series_key,
+                "series_label": series_label,
+                "series_id": series_id,
                 "num": art["num"],
                 "slug": art["slug"],
                 "aliases": art.get("aliases", []),
@@ -1780,12 +2548,15 @@ def main() -> None:
             }
         )
 
+    standalone_learn_items = [it for it in all_learn_items if not it.get("series_id")]
+    series_learn_items = [it for it in all_learn_items if it.get("series_id")]
+
     thought_items: list[dict[str, Any]] = []
     for md_path in sorted(VAULT_THOUGHTS_DIR.glob("*.md")):
         thought_items.append(parse_thought_markdown(md_path))
     thought_items.sort(key=lambda x: x["date"], reverse=True)
 
-    all_items = thought_items + learn_items
+    all_items = thought_items + all_learn_items
     all_items.sort(key=lambda x: (x["date"], 1 if x["series"] == "thoughts" else 0), reverse=True)
 
     tag_map: dict[str, list[dict[str, Any]]] = {}
@@ -1796,16 +2567,26 @@ def main() -> None:
     sorted_tags = sorted(tag_map.items(), key=lambda kv: (-len(kv[1]), kv[0]))
     tag_id_map = {t: f"t{idx}" for idx, (t, _) in enumerate(sorted_tags)}
 
-    build_home_page(all_items, learn_items, thought_items, sorted_tags, tag_id_map)
+    build_home_page(
+        all_items,
+        standalone_learn_items,
+        thought_items,
+        sorted_tags,
+        tag_id_map,
+        series_catalog=series_catalog,
+    )
+
+    build_series_index_page(series_catalog, len(standalone_learn_items), tag_id_map)
+    build_series_detail_pages(series_catalog)
 
     build_series_list_page(
         out_path=LEARN_DIR / "index.html",
         active_nav="learn",
-        title="求知笔记",
-        intro="用生活教具拆穿抽象技术与物理原理：先给一句话结论，再答核心痛点，最后附立即可用清单。",
-        items=learn_items,
-        aside_title="关于求知笔记",
-        aside_desc="每篇笔记围绕一个具体技术或科学主题，砍掉八股铺垫，按「一句话结论 · 核心痛点问答 · 立即可用清单 · 叙事与制作拆解」四段式整理。",
+        title="求知单篇",
+        intro="独立成篇的硬核科普与工程拆解——用生活教具拆穿抽象技术、物理、商业与生理原理，先给一句话结论，再答核心痛点，最后附立即可用清单。长连载课程请前往「体系专栏（/series/）」。",
+        items=standalone_learn_items,
+        aside_title="关于求知单篇",
+        aside_desc="每篇笔记聚焦一个独立主题，按「一句话结论 · 核心痛点问答 · 立即可用清单 · 叙事与制作拆解」整理；多模块递进的长连载课程已独立至「体系专栏（/series/）」。",
         tag_id_map=tag_id_map,
     )
 
@@ -1821,12 +2602,13 @@ def main() -> None:
     )
 
     build_post_pages(
-        learn_items,
+        all_learn_items,
         active_nav="learn",
         back_href="/learn/",
-        back_label="返回求知笔记",
+        back_label="返回求知单篇",
         base_dir=LEARN_DIR,
         tag_id_map=tag_id_map,
+        series_by_id=series_by_id,
     )
 
     build_post_pages(
@@ -1840,14 +2622,20 @@ def main() -> None:
 
     build_archive_page(all_items, sorted_tags, tag_id_map)
     build_tags_page(sorted_tags, tag_id_map)
-    build_about_page(len(learn_items), len(thought_items))
+    build_about_page(
+        len(standalone_learn_items),
+        len(thought_items),
+        series_count=len(series_catalog),
+        series_ep_count=len(series_learn_items),
+    )
     build_vault_page()
     build_demos_index_page()
     build_404_page()
     build_feed_xml(all_items)
 
     print(
-        f"Built unified quiet editorial site: {len(learn_items)} learn posts, "
+        f"Built unified quiet editorial site: {len(series_catalog)} structured series "
+        f"({len(series_learn_items)} series episodes), {len(standalone_learn_items)} standalone learn posts, "
         f"{len(thought_items)} thought posts, {len(sorted_tags)} tags."
     )
 

@@ -19,16 +19,16 @@
   <header class="site-header">
     <a class="wordmark" href="/" aria-label="LeePepe home">lp<span>.</span></a>
     <span class="header-note">An engineering notebook</span>
-    <nav aria-label="Main navigation"><a href="/learn/" aria-current="page">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Main navigation"><a href="/series/">Series</a><a href="/learn/" aria-current="page">Learn</a><a href="/thoughts/">Thoughts</a><a href="/vault/">Vault</a><a href="/demos/">Demos</a><a href="/archive/">Archive</a><a href="https://leepepe.github.io/LeePepe/">Activity <span aria-hidden="true">↗</span></a><a href="https://github.com/LeePepe">GitHub <span aria-hidden="true">↗</span></a></nav>
     <label class="theme-label"><span class="sr-only">Color theme</span><select id="theme"><option value="system">◐ System</option><option value="light">☀ Light</option><option value="dark">☾ Dark</option></select></label>
   </header>
   <main id="main">
   <div class="post-layout">
     <div>
-      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a>
+      <a class="btn btn--ghost back-link" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知单篇</a>
       <article class="card article">
         <header class="article-header">
-          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t17">Genjutsu</a></li><li><a class="tag" href="/tags/#t48">视觉编排</a></li><li><a class="tag" href="/tags/#t50">评测门禁</a></li></ul>
+          <ul class="tags" aria-label="标签"><li><a class="tag" href="/tags/#t12">Genjutsu</a></li><li><a class="tag" href="/tags/#t46">视觉编排</a></li><li><a class="tag" href="/tags/#t48">评测门禁</a></li></ul>
           <h1>Genjutsu：三尺度视觉编排（cast/paint/bunshin）、风格化视觉生成控制与跨平台契约门禁</h1>
           <p class="lede">Genjutsu 管住 AI 视觉与动效不翻车的核心，不是写更长的形容词 Prompt，而是按「单交互（cast）→ 整套风格（paint）→ 整站多代理（bunshin）」三级尺度锁定审批粒度，并用字节级共享块校验 + 真实渲染截图回执（shoot.mjs）替代「只读代码不看画面」的盲审。</p>
           <div class="post-meta"><time datetime="2026-11-15">2026 年 11 月 15 日</time><span class="dot" aria-hidden="true">·</span><span>约 2,700 字</span><span class="dot" aria-hidden="true">·</span><span>阅读约 8 分钟</span></div>
@@ -49,8 +49,8 @@
 <h2 id="sec-3">立即可用清单<a class="anchor" href="#sec-3" aria-label="本节链接">#</a></h2>
 <ul><li><strong>按改动半径三档选型</strong>：单组件手感用 <code>cast</code> 级单命题快审；单页/全 App 换肤先冻结 <code>design.md / MASTER.md</code>（<code>paint</code> 级）；跨页整站重做才启动多代理并发并预设止损轮次（<code>bunshin</code> 级）。</li><li><strong>无截图不宣称 UI 审查通过</strong>：凡涉及视觉样式、折行与图层遮挡，Reviewer 必须基于真实视口渲染截图（如 <code>390px</code> 移动端与 <code>1280px/1440px</code> 桌面端）做 Visual Traceback；未跑真实画面对比的项必须在回执中显式标注未验证边界。</li><li><strong>给跨技能共享块加字节级同步校验</strong>：将多入口共用的扫描、加载与审计表抽成受检区块，并将单份 L2 参考文件控制在 <strong>25,000 字符</strong>以内，防止宿主静默截断。</li></ul>
         </div>
-        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/bama-budget-aware-multi-agent/"><span class="dir">← 上一篇</span><span class="t">BAMA：预算感知多智能体路由、Agent CLI 与免 GUI 故事验收架构</span></a><a class="next" href="/learn/swiftui-26-tabview-sidebar-splitview/"><span class="dir">下一篇 →</span><span class="t">SwiftUI 26+ 导航与 API 演进：TabView / Sidebar / SplitView 液态玻璃自适应架构与确定性迁移扫描</span></a></nav>
-        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知笔记</a></div>
+        <nav class="post-nav" aria-label="上一篇和下一篇"><a class="prev" href="/learn/bama-budget-aware-multi-agent/"><span class="dir">← 上一篇</span><span class="t">BAMA：预算感知多智能体路由、Agent CLI 与免 GUI 故事验收架构</span></a><a class="next" href="/learn/all-weather-gold-real-rate-decoupling/"><span class="dir">下一篇 →</span><span class="t">为什么美债实际利率飙升，黄金却创历史新高？全天候组合里的黄金定价新锚点</span></a></nav>
+        <div class="post-end"><a class="btn btn--secondary" href="/learn/"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>返回求知单篇</a></div>
       </article>
     </div>
     <aside class="toc" aria-label="本文目录">
